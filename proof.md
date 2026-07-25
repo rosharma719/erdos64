@@ -86,6 +86,37 @@ E–G, since C16 remains available below n=32). See plan P1 / experiments E6.
 - 2-connectivity of a minimal counterexample (claimed in literature; my
   deletion-only re-derivation is incomplete — see B2).
 
+### P5 [PROVED IN WORKSPACE, NOVELTY UNCHECKED] Bridgelessness + cut-vertex classification (2026-07-25 redirection)
+**S4.** A minimal counterexample has no bridge. **S5.** If v is a cut
+vertex, G−v has exactly two components, v has exactly 2 neighbors in each
+(degree 4), the two lobes have equal order (n odd) and equal edge count,
+and G has at most one cut vertex. Both proved from B0–B4/M1–M4 by a
+degree-preserving "doubling" construction (glue two copies of a lobe at
+their shared low-attachment vertex) — see lemmas.md S4/S5, defect.md §1
+remark. This supersedes the stalled B2 attempt (unsafe suppression); no
+suppression is needed. Literature check (L16): no prior statement found in
+accessible sources (arXiv full-text blocked in this session — re-check
+Carr 2026's body when access is restored).
+
+### P6 [mixed — see defect.md] Ordering-defect parameter D
+D := 2n−2−m. The requested identity and Σ(deg−3)=n−4−2D are
+[PROVED, pure algebra]. D≤⌊n/2⌋−2 is [PROVED from S1]. D≥2 (⇔m≤2n−4) is
+**[OPEN — gap]**: not implied by current lemmas, and the natural witness
+route fails computationally on 6.8–16.0% of C4-free δ≥3 graphs (growing
+with n). The literal central target "n≤2D+3" is **[DISPROVED]**
+unconditionally for every δ≥3 graph (equivalent to m≤(3n−1)/2, contradicted
+by S1) — see defect.md §4 for the full proof and diagnosis. The vine
+charging lemma V1 ("#missing dyadic lengths ≤ D") is **[DISPROVED]**,
+witness n=13 D=0 missing={4}. Full detail: defect.md (new file).
+
+### P7 [COMPUTATIONALLY VERIFIED, in progress] One-pole search (task Part 5)
+Rooted graphs with one degree-2 root, rest δ≥3, searched for power-of-two-
+cycle-freeness (a survivor doubles into a direct counterexample via S4's
+construction). n=5..9 exhaustive: 67,432 candidates, 0 survivors. n=10
+launched; independent verifier (`one_pole_verify.py`, dual-detector +
+explicit doubled-graph recheck) ready for any future survivor. See
+experiments.md E9.
+
 ## Next concrete steps (revised 2026-07-24 — see plan.md for full priority order)
 The unrestricted brute-force ladder (n=12) and the n=13..16 CP-SAT sweep are
 **cancelled** as strategically redundant. New target: the *stronger* 4-or-8

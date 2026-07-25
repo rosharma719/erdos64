@@ -90,6 +90,49 @@ can't certify the model, translate to CNF/PB and use a proof-producing solver.
 Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, heavy
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
+## Redirection 2026-07-25: structures for arbitrary order
+The project now also carries a second track alongside P1–P5: results that
+apply to *arbitrary* n rather than small fixed n. New/updated files:
+`lemmas.md` (S4, S5, ordering-defect lemma summaries), `defect.md` (new —
+the ordering-defect parameter D, full derivation), `verifier/defect_model.py`,
+`verifier/vine_experiment.py`, `verifier/one_pole_search.py` +
+`one_pole_verify.py`. Summary of this pass (see defect.md/lemmas.md for
+full proofs):
+- **S4 (bridgelessness)** and **S5 (cut-vertex classification)**: PROVED IN
+  WORKSPACE from B0–B4/M1–M4 by a "doubling" construction (glue two copies
+  of a low-attachment lobe at the shared vertex) — strictly refines the old
+  stalled B2 2-connectivity attempt (which tried unsafe suppression; S4/S5
+  need no suppression at all). NOVELTY UNCHECKED — see literature.md L16
+  (arXiv full-text access blocked in this session; Carr 2026's *abstract*
+  has no connectivity content).
+- **Defect parameter D := 2n−2−m**: the requested identity and
+  Σ(deg−3)=n−4−2D are pure algebra (PROVED). D≤⌊n/2⌋−2 is PROVED from S1.
+  D≥2 (⇔ m≤2n−4) is an **open gap** — the natural route ("G−x₁ is
+  2-degenerate") is not implied by current lemmas and fails on 6.8–16.0% of
+  C4-free δ≥3 graphs computationally (growing with n — see experiments.md
+  E7). **The literal central target "n≤2D+3" is DISPROVED outright** — it
+  is equivalent to m≤(3n−1)/2, which contradicts S1 unconditionally for
+  every δ≥3 graph (not just hypothetical counterexamples); see defect.md §4
+  for the exact gap formula and a methodological diagnosis (a pure
+  (n,m)-based bound can never work; the real content must come from the
+  cycle-avoidance structure).
+- **Vine charging lemma V1** ("#missing dyadic lengths ≤ D"): DISPROVED,
+  smallest witness n=13 D=0 missing={4} (experiments.md E8).
+- **One-pole search** (Part 5): implemented + independent verifier
+  (`one_pole_search.py`/`one_pole_verify.py`, cross-checked DFS vs nx
+  detectors on both H and its doubled graph). Initial run n=5..9 exhaustive
+  (67,432 one-pole candidates, 0 survivors); n=10 in progress — see
+  experiments.md E9.
+- **P13→lemma-extraction redirection (Part 6)**: no local implementation of
+  the P13-free search exists in this repo (L7/Track E cites an external
+  paper, Hegde–Sandeep–Shashank, whose code is not reproduced here) — a
+  literal "convert the P13 computation" is not possible without first
+  re-implementing their search, which is out of scope for this pass. Scoped
+  down honestly to applying the same methodology (canonical state
+  memoization, proof-DAG of failed completions, minimal impossible states)
+  to a search we do control locally — see `verifier/state_search_proto.py`
+  and experiments.md E10 for the prototype and its (small, local) findings.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

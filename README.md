@@ -15,12 +15,21 @@ work in the sibling `erdos/` directory — no shared code.
 - `lemmas.md` — candidate lemmas with status labels; Track-B/Track-C results.
 - `experiments.md` — every run: command, params, output, interpretation.
 - `proof.md` — current rigorously-established progress vs. conjectural notes.
+- `defect.md` — **arbitrary-order redirection (2026-07-25):** the
+  ordering-defect parameter D, S4/S5 bridge/cut-vertex proofs summary,
+  and the disproof of the literal "n≤2D+3" central target.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
   - `exhaustive_lb.py` — geng-based exhaustive lower-bound reproduction.
   - `additive_study.py` — max power-of-two-sum-free set (Track C).
   - `test_detector.py` — cross-validation harness.
+  - `defect_model.py` — computes D and cycle spectra on real small graphs.
+  - `vine_experiment.py` — vine-graph construction and V1 lemma test.
+  - `one_pole_search.py` / `one_pole_verify.py` — one-pole counterexample
+    search (Part 5) with an independent dual-detector verifier.
+  - `state_search_proto.py` — canonical-state / proof-DAG search prototype
+    (Part 6, scoped to the one-pole search — see experiments.md E10).
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment

@@ -109,6 +109,44 @@ The extremal layer is known exactly; the unresolved computational task is to
 examine the extremal and one-below-extremal layers compatible with δ≥3 — and the
 extremal (top) layer is now done, leaving cases 1–4. See plan.md P1 / experiments E6.
 
+### L16 — Novelty check on S4 (bridgelessness) / S5 (cut-vertex classification)
+[checked 2026-07-25; WebFetch to arxiv.org blocked by proxy policy — see caveat]
+
+Searched for prior publication of S4/S5 (lemmas.md) before labeling them
+"PROVED IN WORKSPACE, NOVELTY UNCHECKED":
+- **Carr 2026 (arXiv:2605.22844, "Predominantly Cubic")**: abstract text
+  (retrieved via WebSearch snippets, consistent across 3 independent
+  queries) covers only M1 (deg≥4 independent set), M2 (every vertex
+  adjacent to a degree-3 vertex), M3 (≥4/7 degree-3 density) — **no mention
+  of bridgelessness, 2-edge-connectivity, 2-connectivity, or cut-vertex
+  structure**. No stronger/equal claim to S4/S5 found in the abstract.
+- Broader search found no published bridge/cut-vertex classification
+  specific to Erdős–Gyárfás. "Minimal counterexample is 2-connected" is
+  confirmed as classical folklore *technique* in other minimal-
+  counterexample settings (cycle double cover, flow-critical graphs,
+  coloring), but via a different mechanism (recombine colorings/covers on
+  each side) than S4/S5's degree-preserving doubling construction — a
+  spiritual analogue, not a prior instance of this exact argument.
+  Neither the equal-lobe-order, degree-4-cut-vertex, nor at-most-one-
+  cut-vertex refinements (S5 claims 2–5) were found anywhere.
+- arXiv:2410.22842 (P13-free) and arXiv:2508.19302 (diameter-2, also Carr)
+  abstracts: no connectivity content found.
+- **Access caveat**: direct WebFetch to arxiv.org (abs/html/pdf) and
+  export.arxiv.org returned HTTP 403 (proxy policy denial, confirmed via
+  `$HTTPS_PROXY/__agentproxy/status` — `connect_rejected` to
+  `arxiv.org:443`), and WebFetch failed broadly (also ar5iv.org,
+  semanticscholar.org, en.wikipedia.org) in this session. Only
+  WebSearch-returned abstract/snippet text was checked, **not** the full
+  body of Carr 2026 or any other paper. A body-text bridgelessness/
+  2-connectivity lemma buried in Carr's proof (not advertised in the
+  abstract) cannot be ruled out from here.
+
+**Conclusion:** no prior published statement of S4 or S5 found in
+accessible sources; label stands as **PROVED IN WORKSPACE, NOVELTY
+UNCHECKED (full-text access to arXiv:2605.22844 blocked here — re-verify
+the paper body when access is available)**, not upgraded to a novelty
+claim.
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +
