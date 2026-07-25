@@ -102,9 +102,13 @@ full proofs):
   WORKSPACE from B0–B4/M1–M4 by a "doubling" construction (glue two copies
   of a low-attachment lobe at the shared vertex) — strictly refines the old
   stalled B2 2-connectivity attempt (which tried unsafe suppression; S4/S5
-  need no suppression at all). NOVELTY UNCHECKED — see literature.md L16
-  (arXiv full-text access blocked in this session; Carr 2026's *abstract*
-  has no connectivity content).
+  need no suppression at all). NOVELTY SUPPORTED BY SEARCH — two targeted
+  passes (literature.md L16, L17) found no prior EGC statement of S4/S5;
+  arXiv/mirror full-text access is a confirmed hard platform-level block
+  in this environment (not a transient session issue), so this can never
+  be upgraded past "search-supported" from here. Closest classical analog:
+  Dirac 1953 (k-critical graphs have no cut vertex) — same technique,
+  different theorem, no EGC application found.
 - **Defect parameter D := 2n−2−m**: the requested identity and
   Σ(deg−3)=n−4−2D are pure algebra (PROVED). D≤⌊n/2⌋−2 is PROVED from S1.
   D≥2 (⇔ m≤2n−4) is an **open gap** — the natural route ("G−x₁ is
@@ -136,13 +140,20 @@ full proofs):
 ## Reprioritization 2026-07-25 (second pass, post external review)
 External review of the redirection pass above reframed priorities. Adopted
 in full:
-1. **Determine whether S4/S5 are genuinely new.** Targeted literature
-   search launched (specific phrase combinations: "minimal counterexample"
+1. **Determine whether S4/S5 are genuinely new.** DONE — literature.md L17.
+   Targeted search (specific phrase combinations: "minimal counterexample"
    + connectivity/bridge/cut-vertex/block-decomposition terms; standard
    extremal-graph-theory "doubling" technique names; EG survey articles;
    Royle–Markström, Gyárfás, Daniel–Shauger, Heckman–Krakovski, Hegde–
-   Sandeep–Shashank papers). Result appended to literature.md L17 when the
-   search completes.
+   Sandeep–Shashank papers) found no prior EGC statement of S4/S5/O1/O3.
+   Access to arXiv and every tested mirror is a **confirmed hard
+   platform-level block** (verified via direct curl through the egress
+   proxy, not just WebFetch) — this project can never read a full paper
+   body from this environment, so "novelty supported by search" is the
+   ceiling label achievable here, permanently, not just this session.
+   Closest classical analog: Dirac 1953 (k-critical graphs have no cut
+   vertex) — same proof technique, different theorem, no EGC application
+   found; cite it as the method's origin if S4/S5/O1/O3 are written up.
 2. **Develop the rooted one-pole theory** — now the top computational/
    structural priority, above cubic search. New file `one_pole.md`: a
    "master minimality" framing (smallest object that is either a plain

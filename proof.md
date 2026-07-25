@@ -86,7 +86,7 @@ E–G, since C16 remains available below n=32). See plan P1 / experiments E6.
 - 2-connectivity of a minimal counterexample (claimed in literature; my
   deletion-only re-derivation is incomplete — see B2).
 
-### P5 [PROVED IN WORKSPACE, NOVELTY UNCHECKED] Bridgelessness + cut-vertex classification (2026-07-25 redirection)
+### P5 [PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH] Bridgelessness + cut-vertex classification (2026-07-25 redirection)
 **S4.** A minimal counterexample has no bridge. **S5.** If v is a cut
 vertex, G−v has exactly two components, v has exactly 2 neighbors in each
 (degree 4), the two lobes have equal order (n odd) and equal edge count,
@@ -94,9 +94,13 @@ and G has at most one cut vertex. Both proved from B0–B4/M1–M4 by a
 degree-preserving "doubling" construction (glue two copies of a lobe at
 their shared low-attachment vertex) — see lemmas.md S4/S5, defect.md §1
 remark. This supersedes the stalled B2 attempt (unsafe suppression); no
-suppression is needed. Literature check (L16): no prior statement found in
-accessible sources (arXiv full-text blocked in this session — re-check
-Carr 2026's body when access is restored).
+suppression is needed. Literature check (L16, L17 — two targeted passes):
+no prior statement found in accessible sources. arXiv/mirror full-text
+access is confirmed blocked at the platform level (direct curl through
+the egress proxy also 403s, not just WebFetch), so this label cannot be
+upgraded past "novelty supported by search" from this environment, ever.
+Closest classical analog: Dirac 1953 (k-critical graphs have no cut
+vertex) — same technique, no EGC application found.
 
 ### P6 [mixed — see defect.md] Ordering-defect parameter D
 D := 2n−2−m. The requested identity and Σ(deg−3)=n−4−2D are

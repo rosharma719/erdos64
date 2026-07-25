@@ -38,7 +38,7 @@ exists whenever the union of the two families is nonempty (well-ordering).
   B0–B4/M1–M4/S4/S5 are conditional on G being minimal. No claim here
   presumes a counterexample exists.
 
-## O1. Bridgelessness [PROVED IN WORKSPACE, NOVELTY UNCHECKED — 2026-07-25]
+## O1. Bridgelessness [PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH — 2026-07-25; literature.md L17]
 A master-minimal one-pole graph H has no bridge (anywhere, including edges
 incident to r).
 
@@ -67,7 +67,7 @@ components of H−r, both r-a and r-b would be bridges — contradicting O1.
 Hence a,b are in the *same* component, so **H−r is connected**, and in
 particular **r lies on at least one cycle of H**. ∎
 
-## O3. Full 2-connectivity [PROVED — 2026-07-25, strictly stronger than S5 gave for G]
+## O3. Full 2-connectivity [PROVED, novelty supported by search — 2026-07-25, strictly stronger than S5 gave for G; literature.md L17]
 A master-minimal one-pole graph H has **no cut vertex at all** (H is
 2-connected), not merely "at most one" as in S5 for G.
 
@@ -160,8 +160,8 @@ test structural conjectures, not to push raw vertex bounds).
 
 | lemma | status | content |
 |---|---|---|
-| O1 | PROVED IN WORKSPACE, NOVELTY UNCHECKED | master-minimal one-pole H has no bridge |
+| O1 | PROVED IN WORKSPACE, novelty supported by search (L17) | master-minimal one-pole H has no bridge |
 | O2 | PROVED (corollary of O1) | H−r connected; r lies on a cycle |
-| O3 | PROVED, novelty unchecked, strictly stronger than S5's cut-vertex bound for G | H is fully 2-connected |
+| O3 | PROVED, novelty supported by search (L17), strictly stronger than S5's cut-vertex bound for G | H is fully 2-connected |
 | O4 | OPEN — precise target stated | does H−r contain 2 disjoint a–b paths (⇔ a real theta/book, feeding Track C)? |
 | §5 | direction, not developed | ear decomposition of H, forced/forbidden ear lengths |

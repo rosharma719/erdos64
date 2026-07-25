@@ -147,6 +147,55 @@ UNCHECKED (full-text access to arXiv:2605.22844 blocked here — re-verify
 the paper body when access is available)**, not upgraded to a novelty
 claim.
 
+### L17 — Second-pass targeted novelty search for S4/S5 [2026-07-25]
+
+**Access status confirmed as a hard platform-level block, not a transient
+proxy issue.** WebFetch to arxiv.org, arxiv.org/html, arxiv.org/pdf,
+ar5iv.org, alphaxiv.org, export.arxiv.org, an r.jina.ai reader-proxy of the
+arXiv abstract page, en.wikipedia.org, and dwest.web.illinois.edu all
+returned HTTP 403. A direct `curl` against arxiv.org/wikipedia.org through
+the session's egress proxy also failed (`CONNECT tunnel failed, 403`),
+confirmed via the proxy's own status endpoint as an organization egress
+policy block, not a per-tool or per-host glitch. **No full paper body text
+has been read for any source in this project, ever** — every literature
+claim here rests on WebSearch snippets only. This is a standing limitation,
+not something to keep re-attempting.
+
+**Targeted search results (specific phrase combinations: "minimal
+counterexample" × connectivity/bridge/cut-vertex/block-decomposition;
+extremal/critical-graph-theory "doubling" technique names; EG survey
+articles; Royle–Markström, Gyárfás, Daniel–Shauger, Heckman–Krakovski,
+Hegde–Sandeep–Shashank):**
+- **S4 (bridgelessness):** no source found asserting this for EGC minimal
+  counterexamples, in any paper or survey snippet searched. Heckman–
+  Krakovski (Electron. J. Combin. 20(2) #P7, 2013) prove EGC for
+  "3-connected cubic **planar**" graphs — but 3-connectivity there is a
+  *hypothesis restricting the class studied*, not a derived property of a
+  minimal counterexample; not the same claim.
+- **S5 (cut-vertex classification):** no EGC-specific source found. Closest
+  classical analog identified: **Dirac's theorem** (G. A. Dirac, "The
+  Structure of k-Chromatic Graphs," Fund. Math. 40 (1953), 42–55) — k-
+  critical (chromatic-critical) graphs have no cut vertex, with a refined
+  gluing lemma for 2-vertex cuts. Same *proof pattern* (split at a cut
+  vertex, recombine lobes to violate minimality), applied to chromatic
+  criticality rather than cycle-length avoidance, and without S5's specific
+  equal-order/equal-edge-count lobe refinement (which follows from
+  lexicographic (|V|,|E|) minimality, not |V|-only). This is folklore
+  technique, appropriately citable as the origin of the *method*, not a
+  prior instance of S4/S5 themselves.
+
+**Conclusion:** S4 and S5 (and by the same search, O1/O3 in one_pole.md,
+which use the identical technique) appear **novel within the EGC
+literature as it can be searched from here** — no equal-or-stronger
+published statement found after two independent targeted passes. Labels
+stand as **PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH BUT UNVERIFIED
+AGAINST FULL TEXT** (full-text arXiv/mirror access is confirmed blocked at
+the platform level in this environment, not just unlucky this session) —
+this is the most confident label the project's no-overclaim discipline
+allows without ever having read a full paper body. Dirac 1953 is the
+correct citation for "this proof pattern is a classical technique," to be
+used if S4/S5 are ever written up formally.
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +

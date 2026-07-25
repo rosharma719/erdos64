@@ -81,7 +81,7 @@ If G is r-regular, r≥4 ⇒ no degree-3 vertex, contradicting B3's corollary
 
 ---
 
-## S4. Bridgelessness  [PROVED IN WORKSPACE, NOVELTY UNCHECKED — 2026-07-25]
+## S4. Bridgelessness  [PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH — 2026-07-25; see literature.md L17]
 A minimal counterexample G has no bridge.
 
 *Proof.* Suppose e = uv is a bridge. G−e has exactly two components; let A be
@@ -136,7 +136,7 @@ doubled at its root, is by itself already a valid smaller-order candidate
 counterexample (it does not even need to originate from splitting a larger
 G) — see Part 5.
 
-## S5. Cut-vertex classification  [PROVED IN WORKSPACE, NOVELTY UNCHECKED — 2026-07-25]
+## S5. Cut-vertex classification  [PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH — 2026-07-25; see literature.md L17]
 Let v be a cut vertex of a minimal counterexample G. Then:
 1. G−v has **exactly two** components.
 2. v has **exactly two** neighbors in each of the two components (so
@@ -248,6 +248,14 @@ two distinct cut vertices: at most one exists.** ∎(5) ∎
   attempted in B2 above — B2's stalled suppression argument is superseded:
   the *doubling* construction (not suppression) is what carries S4/S5
   through, and it needs no length-shifting reduction at all.
+- **Provenance note (literature.md L17):** the split-at-a-cut-vertex-and-
+  recombine-to-violate-minimality *technique* is classical in critical-
+  graph theory — closest named analog is Dirac's theorem that k-chromatic-
+  critical graphs have no cut vertex (G. A. Dirac, Fund. Math. 40 (1953),
+  42–55) — but no source found applies it to Erdős–Gyárfás, and Dirac's
+  version lacks S5's equal-order/equal-edge-count lobe refinement (which
+  needs lexicographic (|V|,|E|) minimality, not |V|-only). Cite Dirac 1953
+  as the method's origin if S4/S5 are written up formally.
 
 ## Search-space lemmas (small-order 4-or-8 dichotomy)
 
