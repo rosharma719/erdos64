@@ -34,10 +34,17 @@ work in the sibling `erdos/` directory — no shared code.
     search (Part 5) with an independent dual-detector verifier.
   - `state_search_proto.py` — canonical-state / proof-DAG search prototype
     (Part 6, scoped to the one-pole search — see experiments.md E10).
+  - `o4_analysis.py` — O4/O4a failure-structure and terminal-path-spectrum
+    analysis (see experiments.md E11).
+  - `spqr_analysis.py` — SPQR-tree classification of the two-terminal
+    root-neighbor structure, via the verified `spqrtree` package (see
+    experiments.md E12).
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment
-Python venv in `.venv` (networkx, numpy, OR-Tools CP-SAT, PySAT); nauty `geng`.
+Python venv in `.venv` (networkx, numpy, OR-Tools CP-SAT, PySAT); nauty
+`geng`; `spqrtree` (pure-Python Gutwenger–Mutzel SPQR-tree algorithm, used
+by `verifier/spqr_analysis.py`).
 ```
 . .venv/bin/activate
 cd verifier && python test_detector.py          # validate the detector

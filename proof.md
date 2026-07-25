@@ -128,6 +128,25 @@ Track C's additive machinery) is the precise next open target, with the
 exact Menger-theorem obstruction recorded. This is now the top structural
 priority per the reprioritization in plan.md.
 
+### P7c [PROVED / mixed] Admissible paths, O4a failure structure, SPQR (2026-07-25, third redirection pass)
+Cited and verified Gao–Huo–Liu–Ma 2022 (IMRN, arXiv:1904.08126) and applied
+it (k=2, after proving K+ab 2-connected via classical degree-2
+suppression) to get **O4′ [PROVED]:** every master-minimal one-pole graph
+has 2 cycles through its root differing in length by 1 or 2 — without
+needing path disjointness. **O4a [PROVED IN WORKSPACE]:** if 2 disjoint
+root-neighbor paths don't exist, Menger gives a 1-vertex separator x
+splitting H−{r,x} into exactly 2 lobes attached to both r,x. Exact
+terminal-path-spectrum identity (cross-lobe cycles = Λ₁+Λ₂) and a
+two-terminal doubling criterion (new cycles from doubling one lobe =
+Λᵢ+Λᵢ) both proved. Computation: O4 holds directly 99.9% of the time in a
+small relaxed population (E11); a real SPQR-tree classifier (`spqrtree`
+package, Gutwenger–Mutzel algorithm) shows K+ab's 2-connectivity is
+genuine content of O3 (fails 174/67,432 times outside the F-clean/minimal
+setting) and that rigid (non-series-parallel) pieces already dominate at
+n≤9 (E12). Full detail and the logical-scope correction (finding a
+survivor vs. eliminating the cut-vertex case vs. the untouched
+2-connected case) in one_pole.md.
+
 ### P7 [COMPUTATIONALLY VERIFIED, in progress] One-pole search (task Part 5)
 Rooted graphs with one degree-2 root, rest δ≥3, searched for power-of-two-
 cycle-freeness (a survivor doubles into a direct counterexample via S4's

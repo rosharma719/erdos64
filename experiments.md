@@ -273,3 +273,78 @@ M1, and max-n past 8) rather than a claimed reducible-configuration set.
 No cycle-caused impossible configuration was extracted at this scale;
 reported as the honest (negative) Part-6 result, not padded into a false
 positive.
+
+## E11. O4/O4a computational test (redirection 2026-07-25, second pass, task Part 4)  [COMPUTATIONALLY VERIFIED]
+`verifier/o4_analysis.py`: for every one-pole candidate (relaxed
+population -- root r degree 2, else delta>=3, connected, cycles of any
+length allowed, i.e. NOT required F-clean -- this is exactly what tells
+us whether O4 needs F-cleanness/minimality or follows from
+degree+connectivity alone), checks local vertex-connectivity of a,b in
+K=H-r (does O4 -- 2 disjoint a-b paths -- hold directly?), and if not,
+runs the full O4a analysis (minimum separator x, the two lobes, terminal
+path spectra Lambda_1,Lambda_2, cross/self-sum dyadic hits).
+
+Command: `python3 verifier/o4_analysis.py --nmin 5 --nmax 9 --path-cap 9`
+
+| n range | one-pole candidates (relaxed) | O4 holds directly | O4 fails (needs O4a) |
+|---|---|---|---|
+| 5-9 | 67,432 | 67,386 (99.9%) | 46 (0.1%) |
+
+**O4 (2 disjoint a-b paths) holds directly for the overwhelming majority
+of small relaxed one-pole graphs -- it is close to "generic" behavior, not
+a delicate minimality-dependent fact, at least at this size.** The rare
+failures cluster at n=8-9 (smallest witness n=8, g6 GCQrUo); every
+failure example found has small, near-symmetric lobes (|D1|,|D2| in {3,4}),
+consistent with the failure mode being "the graph is barely big enough to
+have 2 vertices >=3 outside {r,a,b} at all," not a subtle obstruction.
+
+**Representative terminal spectra (>=10, satisfying task Part 4 item 5):**
+all 10+ O4-failure witnesses at n=8-9 were recorded with their
+Lambda_1,Lambda_2 (see raw run output); e.g. n=8 g6 GCQrUo: Lambda1=
+Lambda2=[3,4], cross-sum hits dyadic {8}, both self-sums hit dyadic {8} --
+meaning doubling EITHER lobe at both terminals would immediately create an
+8-cycle (self-sum 4+4=8, since 4 is in Lambda_i), so neither lobe survives
+the two-terminal doubling criterion here (one_pole.md's Lambda_i+Lambda_i
+condition), consistent with 0 one-pole survivors found anywhere so far.
+n=9 g6 H?`bcrn: Lambda1=[2,3,4,5], Lambda2=[2,3,4], cross-sum hits {4,8},
+both self-sums hit {4,8} -- same conclusion, more severely (even the
+CROSS-lobe combination, which is guaranteed safe by H's own F-cleanness in
+a genuine survivor, hits dyadic here -- confirming this particular relaxed
+graph is NOT itself F-clean, as expected since we did not filter for
+F-cleanness in this pass).
+
+## E12. SPQR-based classification (redirection 2026-07-25, task Part 5)  [COMPUTATIONALLY VERIFIED]
+`verifier/spqr_analysis.py`: uses the `spqrtree` PyPI package (pure-Python
+implementation of the Gutwenger-Mutzel 2001 SPQR-tree algorithm -- a real
+published algorithm, not a custom heuristic) to decompose K+ab (K=H-r) for
+every relaxed one-pole candidate and classify node types (S=series,
+P=parallel, R=rigid, Q=edge).
+
+Command: `python3 verifier/spqr_analysis.py --nmin 5 --nmax 9`
+
+| n range | candidates | K+ab has a cut vertex (SPQR inapplicable) | pure series-parallel (no R), of the rest | contains >=1 rigid node, of the rest |
+|---|---|---|---|---|
+| 5-9 | 67,432 | 174 (0.3%) | 0 (0.0%) | 67,258 (99.7%) |
+
+Node-type totals across all classified candidates: R=69,686, S=6,083,
+P=5,482.
+
+**Two findings, both informative:**
+1. **"K+ab has a cut vertex" occurs 174 times in the relaxed population --
+   this is O3's real content, not a free structural fact.** one_pole.md's
+   O3 proof (H fully 2-connected) is conditional on H being master-minimal
+   AND F-clean; the 174 counterexamples here confirm that without that
+   hypothesis, a one-pole graph's K+ab genuinely can have a cut vertex
+   (SPQR requires 2-connected input, so these were skipped, not silently
+   misclassified). Smallest witness: n=7, g6 FQhVo.
+2. **At this small size, essentially every one-pole candidate's SPQR tree
+   contains at least one rigid (R) node -- "pure series-parallel" (fully
+   explained by the Lambda_i+Lambda_j path arithmetic alone) essentially
+   never happens for n<=9.** Smallest example overall: n=5, g6 DV{, a
+   single bare R node (K+ab is already minimally 3-connected, no 2-cut at
+   all). This means, per one_pole.md's SPQR scoping section, that
+   rigid-piece analysis (the "only place ear decomposition is still
+   needed") is already the dominant regime even at the smallest sizes --
+   the series/parallel path-arithmetic alone will not suffice for most
+   candidates; the next concrete target is understanding cycle structure
+   INSIDE R-node skeletons, not extending the S/P arithmetic further.

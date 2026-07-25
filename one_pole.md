@@ -142,19 +142,231 @@ book at the root, and forces attention to the cut vertex w's own local
 structure instead (w would itself be a degree-2-or-3 branch point one step
 removed from r).
 
-## 5. Connection to ear decomposition [next direction, not developed here]
-O3 (H 2-connected) means H admits an **open ear decomposition**: a
-starting cycle C₀ plus a sequence of ears (paths with both endpoints on
-the graph built so far, internally disjoint from it) whose union is H.
-Every ear of length ℓ added to an existing cycle/path structure creates
-new cycles by combining ℓ with existing distances between the ear's
-endpoints — formally analogous to O4's theta mechanism, but iterated
-across the whole ear sequence rather than a single root split. This is
-recorded as the natural next computational/structural target (build small
-2-connected F-clean-attempt graphs via explicit ear sequences and track
-which ear lengths are forced/forbidden at each step) but is **not**
-attempted here — flagged per the redirection's point 4 (use computation to
-test structural conjectures, not to push raw vertex bounds).
+## O4′. The admissible-path corollary [PROVED; underlying theorem KNOWN FROM LITERATURE]
+
+**Theorem (Gao, Huo, Liu, Ma 2022).** Jun Gao, Qingyi Huo, Chun-Hung Liu,
+Jie Ma, *"A Unified Proof of Conjectures on Cycle Lengths in Graphs,"*
+IMRN 2022(10):7615–7653 (arXiv:1904.08126, 2019). If G+xy is 2-connected
+and every vertex of G∖{x,y} has degree ≥ k+1, then G contains k
+**admissible** x–y paths: paths P₁,…,Pₖ whose lengths form an arithmetic
+progression of length k with common difference 1 or 2.
+**Verification note:** confirmed via targeted search (matches the stated
+hypotheses and conclusion essentially exactly — same G+xy 2-connected
+condition, same k+1 degree bound, same admissible-path definition); full
+paper text could not be read (arXiv/IMRN both blocked in this
+environment, per literature.md L16/L17's confirmed hard platform block).
+**Explicitly NOT claimed by the theorem: the k paths need not be
+internally vertex-disjoint** — nothing in the located hypotheses or
+statement asserts disjointness, and the proof method (iteratively
+combining shorter admissible families) does not obviously produce
+disjoint paths. This matches the redirection's explicit instruction not
+to infer disjointness, and is essential to how O4′ is derived below
+(the argument does not need it).
+
+**Application (k=2).** Let H be a master-minimal one-pole graph, root r,
+neighbors a,b, K := H−r. Set x=a, y=b, G=K in the theorem.
+- *K+ab is 2-connected:* this is the standard degree-2-vertex-suppression
+  fact. [PROVED, elementary/classical — not claimed novel.] *Proof.*
+  Suppose K+ab has a cut vertex w. If w∉{a,b}: H−w is connected (H
+  2-connected, O3) and contains r with both its edges to a,b intact (w≠a,b).
+  In (H−w)−r = K−w, a and b lie in at most 2 components (any component
+  containing neither would already be disconnected from r in H−w, since r
+  only reaches a,b — but H−w is connected, contradiction), and adding edge
+  ab merges those into one, so (K+ab)−w = (K−w)+ab is connected —
+  contradicting w a cut vertex. If w=a (symmetric for w=b): (K+ab)−a =
+  K−a. H−a is connected (O3); in H−a, r has only its edge to b left
+  (degree 1, a pendant on b), so removing r from H−a (giving K−a) doesn't
+  disconnect anything else. So K−a is connected. Either case contradicts
+  w being a cut vertex, so **K+ab is 2-connected.** ∎
+- *Degree hypothesis:* every vertex of K∖{a,b} = H∖{r,a,b} has H-degree ≥3
+  (one-pole definition, since these vertices ≠r), and K doesn't touch r,
+  so their K-degree equals their H-degree, ≥3 = k+1 for k=2. Hypothesis
+  holds with equality.
+- Both hypotheses of the theorem hold with x=a,y=b,k=2, giving **2
+  admissible a–b paths in K**: lengths ℓ₁,ℓ₂ with |ℓ₁−ℓ₂|∈{1,2}.
+
+**Corollary O4′ [PROVED].** Each aᵢ-path Pᵢ (i=1,2), being entirely within
+K=H−r, avoids r; concatenating it with the 2-edge detour a-r-b gives a
+**simple cycle** Cᵢ of H of length ℓᵢ+2 through r (simple because Pᵢ is
+simple and disjoint from r). This needs **no disjointness** between P₁
+and P₂ — each Cᵢ is built independently from its own Pᵢ plus the fixed
+r-detour. So: **every master-minimal one-pole graph contains two cycles
+through its root, C₁ and C₂, with |len(C₁) − len(C₂)| ∈ {1,2}.** ∎
+
+Since H is F-clean, neither length is itself forced into F, but their
+near-equality is a real constraint: consecutive-or-near integers can't
+both avoid {4,8,16,…} for long stretches only near small n (the gaps
+between consecutive powers of two grow), so this bites hardest for small
+H and becomes weak for large H — flagged honestly, not oversold as a
+strong bound by itself.
+
+## O4a. Failure structure of O4 [PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH]
+Suppose K=H−r does **not** contain 2 internally-disjoint a–b paths (i.e.
+O4, the disjoint-paths question from earlier, fails). By the vertex form
+of Menger's theorem, the maximum number of internally-disjoint a–b paths
+equals the minimum a–b vertex separator size; since K is connected (O2, so
+≥1 path exists) and by hypothesis <2 disjoint paths exist, that minimum is
+exactly 1: **∃ x∈V(K)∖{a,b} such that K−x disconnects a from b.**
+
+*Claim: H−{r,x} has exactly two components, D₁∋a and D₂∋b, and both
+attach to r and to x.*
+
+*Proof.* Since x separates a,b in K, they lie in different components of
+K−x = H−{r,x}; call them D₁∋a, D₂∋b. Suppose a third component D₃ exists
+(containing neither a nor b). r's only edges are to a,b, so r has **no**
+edge into D₃ (r has only two neighbors, and neither is in D₃). Since K is
+connected, x must have an edge into D₃ (else D₃ would already be a
+separate component of K itself, without even removing x — contradicting K
+connected). So D₃'s **only** connection to the rest of H is through x
+(not through r, which doesn't reach it at all). Removing x from H would
+then disconnect D₃ from the rest — **making x a cut vertex of H**,
+contradicting O3. So no third component exists: exactly D₁,D₂. Each
+attaches to x automatically (x is exactly the separator: K connected means
+every piece left over after removing x must have had an edge to x, or it
+would already have been its own component of K). Each attaches to r
+trivially: a∈D₁ with edge r-a; b∈D₂ with edge r-b. ∎
+
+This matches every point requested: no-attachment-to-r would make x a cut
+vertex of H (used to rule out a third component); no-attachment-to-x is
+impossible given K's connectivity; r has only two neighbors (used to see r
+cannot reach any component beyond the ones holding a,b); a,b are separated
+by x (the defining property of x). **Label: PROVED IN WORKSPACE, NOVELTY
+SUPPORTED BY SEARCH** (same search pass as S4/S5/O1/O3 — literature.md
+L16/L17 — found no prior EGC statement; not re-run separately here since
+it uses the identical technique already checked).
+
+## Terminal path spectra and the exact cross-cycle identity [PROVED]
+Write Lᵢ := H[Dᵢ∪{r,x}] (i=1,2), the **two-terminal lobe** with terminals
+r,x. Since r's only H-edges are to a∈D₁ and b∈D₂, **r has degree exactly 1
+within each Lᵢ** (only the edge to a in L₁, only to b in L₂) — r is a
+pendant relative to each lobe individually. Define
+**Λᵢ := {ℓ : Lᵢ has a simple r–x path of length ℓ}** (i=1,2). Since every
+r–x path in Lᵢ must start with r's unique edge (to a or b), Λᵢ = 1 +
+{lengths of simple a–x (resp. b–x) paths in H[Dᵢ∪{x}]}; Λᵢ is nonempty
+(Dᵢ connects to both r and x).
+
+**Exact identity: {lengths of cycles of H using both lobes} = Λ₁ + Λ₂**
+(sumset). *Proof.* L₁∩L₂ = {r,x} exactly (D₁,D₂ disjoint components).
+Any simple cycle using vertices of both lobes must cross between them only
+at r or x (the sole shared vertices), so between consecutive visits to
+{r,x} it stays entirely within one lobe; visiting each of r,x at most once
+(simple cycle), it therefore splits into exactly one r–x arc in L₁
+(length ℓ₁∈Λ₁) and one in L₂ (length ℓ₂∈Λ₂), total length ℓ₁+ℓ₂.
+Conversely, any ℓ₁∈Λ₁,ℓ₂∈Λ₂ concatenate (sharing only endpoints r,x, and
+otherwise vertex-disjoint since D₁∩D₂=∅) into a genuine simple cycle of
+length ℓ₁+ℓ₂. ∎ Since H is F-clean: **(Λ₁+Λ₂) ∩ {2ʲ : j≥2} = ∅.**
+
+**Internal cycle spectra recorded separately** (not folded into the sum
+above): cycles lying entirely inside one Lᵢ (whether or not they use x)
+are a *different* constraint, F-clean by inheritance from H alone, and
+depend on Lᵢ's own internal 2-cut structure recursively — this is exactly
+what the SPQR analysis below is for.
+
+## Two-terminal doubling criterion [PROVED, expressed via Λᵢ+Λᵢ]
+Glue **two copies of a single lobe Lᵢ** at *both* terminals (identify the
+two copies' r's into r*, and the two copies' x's into x*) — the natural
+generalization of S4/O1's one-vertex doubling to a 2-cut. Every internal
+Dᵢ vertex keeps its Lᵢ-degree (≥3, unchanged, inherited from H). Since r
+has degree exactly 1 within Lᵢ (shown above), **r\* always has degree
+exactly 2** (one edge from each copy) — structurally forced, regardless of
+i. x\* has degree 2·deg_{Lᵢ}(x). Since x∉{r} (x∈V(K)∖{a,b}, not adjacent to
+r), deg_{L₁}(x)+deg_{L₂}(x) = deg_H(x) ≥ 3, so **at least one of the two
+lobes has deg_{Lᵢ}(x) ≥ 2** (pigeonhole; possibly not both).
+
+Cycles of the doubled graph: exactly as in S4/O1's *single*-vertex case,
+cycles staying inside one copy inherit Lᵢ's own (already F-clean, by
+inheritance from H) spectrum. But **with two shared vertices instead of
+one, crossing cycles are now possible** (impossible in the one-vertex
+doubling of O1/S4) — a cycle can run copy-1's r\*–x\* path (length ℓ∈Λᵢ,
+since copy 1 is just Lᵢ) then copy-2's x\*–r\* path (length ℓ′∈Λᵢ, same
+spectrum, it's the same lobe). So:
+
+- **New cycles created by doubling have lengths exactly Λᵢ+Λᵢ** (the
+  *self*-sumset — including ℓ=ℓ′, i.e. genuine self-sums 2ℓ for ℓ∈Λᵢ).
+- **The doubled graph is F-clean ⟺ (Λᵢ+Λᵢ) ∩ {2ʲ:j≥2} = ∅** — a
+  *strictly new* condition, not implied by H's own F-cleanness (H only
+  gave (Λ₁+Λ₂)∩F=∅, pairing the two *different* lobes; Λᵢ+Λᵢ pairs a lobe
+  with *itself*, an untested combination).
+- **Valid one-pole (root r\*, all else ≥3) ⟺ deg_{Lᵢ}(x)≥2 AND
+  (Λᵢ+Λᵢ)∩F=∅** — both the degree condition and the cycle condition are
+  required; neither alone suffices, and no order/size balance claim is
+  made beyond this (per the redirection's caution).
+- **Never a full plain counterexample directly:** r\* is *always* exactly
+  degree 2 by the structural fact above (r has degree 1 in every lobe,
+  unconditionally) — single-lobe two-terminal doubling can produce a
+  one-pole graph or (if deg_{Lᵢ}(x)=1) an unresolved **two-pole**
+  intermediate object (both r\*,x\* at degree 2, needing further gluing),
+  but never a plain δ≥3 graph outright. This directly matches item 6's
+  required scope correction below.
+
+## SPQR decomposition before arbitrary ear decompositions [scope correction]
+O3 (H 2-connected) technically means H admits an open ear decomposition,
+but per the redirection this is now **demoted**: an arbitrary ear
+decomposition is the wrong primary representation while 2-cuts (like x in
+O4a) remain unresolved, because it does not distinguish "this ear is
+forced by a series/parallel 2-cut structure" from "this ear lives inside a
+genuinely rigid (3-connected) piece where no smaller vertex cut helps."
+Instead, use the **SPQR tree** of K+ab (K=H−r; 2-connected by the O4′
+application above) — a real, verified decomposition (Gutwenger–Mutzel
+2001 algorithm, correcting Hopcroft–Tarjan 1973, data structures of Di
+Battista–Tamassia 1996; implemented here via the `spqrtree` PyPI package,
+a pure-Python implementation of exactly this algorithm — not a custom
+heuristic). Every 2-connected multigraph decomposes into a tree of nodes,
+each of type:
+- **S (series):** a simple cycle in the skeleton — real/virtual edges in
+  series, i.e. a chain of 2-cuts between the poles. Corresponds directly
+  to **adding terminal path lengths** end to end.
+- **P (parallel):** a bond (2+ parallel real/virtual edges between the
+  same pole pair) — independent parallel pieces between the same two
+  vertices. Corresponds to **cycle formation from pairs of the parallel
+  pieces' own path spectra** — exactly the Λᵢ+Λⱼ mechanism above, now
+  seen as a specific SPQR node type rather than an ad hoc construction.
+- **R (rigid):** a genuinely 3-connected skeleton — no further 2-cut
+  decomposition is possible here. **This is the only place where ear
+  decomposition (or any further structural tool) is still needed**; S and
+  P nodes are already fully explained by the series/parallel path-length
+  arithmetic above.
+- **Q (single edge):** the trivial base case (a real or virtual edge on
+  its own).
+
+`verifier/spqr_analysis.py` builds the SPQR tree of K+ab for every
+one-pole/relaxed candidate and reports the node-type multiset, with rigid
+(R) nodes flagged as exactly the pieces needing further work; see
+experiments.md E12 for results (which small graphs are pure S/P — fully
+explained by the arithmetic above — vs. contain an R node). Two findings
+from that run are worth flagging here directly: (i) **K+ab genuinely can
+have a cut vertex** in the relaxed (non-F-clean) population (174/67,432
+cases, n=5–9) — a live confirmation that O3's 2-connectivity is real
+content coming from F-cleanness+minimality, not a free consequence of the
+degree/connectivity hypotheses alone; (ii) **"pure series-parallel" (no
+rigid node) essentially never occurs even at n≤9** (0 of the 67,258
+classifiable candidates) — rigid pieces are already the dominant regime
+at the smallest sizes, so the O4′/Λᵢ+Λⱼ arithmetic above, while exact, is
+not by itself a full account of most small candidates' cycle structure.
+
+## Logical scope [correction, per redirection item 6]
+Three genuinely different claims must not be conflated, and the labels
+below are the only ones this project asserts:
+1. **Finding an F-clean one-pole survivor** (any order) — doubled at its
+   root — **immediately disproves Erdős–Gyárfás outright.** No minimality,
+   no O1–O4a assumptions needed; this is the strongest and simplest
+   possible outcome, and it is why the one-pole search (E9) is run at all.
+2. **Proving no F-clean one-pole graph exists at any order** (i.e. the
+   master-minimal object in §0 is never of type (b)) — this would
+   eliminate exactly the **cut-vertex case** for a minimal counterexample
+   G (S5's surviving case: G has a cut vertex ⟺ each lobe is itself a
+   one-pole graph, one_pole.md O3 remark) — **it does NOT by itself
+   resolve Erdős–Gyárfás**, because a 2-connected minimal counterexample
+   (S5's other case, no cut vertex at all) is untouched by this and
+   remains open.
+3. **2-connected minimal counterexamples** (G with no cut vertex, or
+   equivalently a one-pole graph H that is not merely one-pole but forms
+   the "core" of some G) are a **separate, unaddressed task** — nothing
+   in O1–O4a, the SPQR analysis, or Track C bears on this case yet. Do not
+   describe progress on one-pole gadgets as progress on the 2-connected
+   case; they are logically independent lines of attack that happen to
+   share machinery (S4/S5's doubling technique, Track C's additive
+   framework).
 
 ## Summary table
 
@@ -163,5 +375,8 @@ test structural conjectures, not to push raw vertex bounds).
 | O1 | PROVED IN WORKSPACE, novelty supported by search (L17) | master-minimal one-pole H has no bridge |
 | O2 | PROVED (corollary of O1) | H−r connected; r lies on a cycle |
 | O3 | PROVED, novelty supported by search (L17), strictly stronger than S5's cut-vertex bound for G | H is fully 2-connected |
-| O4 | OPEN — precise target stated | does H−r contain 2 disjoint a–b paths (⇔ a real theta/book, feeding Track C)? |
-| §5 | direction, not developed | ear decomposition of H, forced/forbidden ear lengths |
+| O4′ | PROVED; underlying theorem KNOWN FROM LITERATURE (Gao–Huo–Liu–Ma 2022) | H has 2 cycles through r with lengths differing by 1 or 2 |
+| O4a | PROVED IN WORKSPACE, novelty supported by search | if O4 fails, a 1-vertex separator x splits H−{r,x} into exactly 2 lobes attached to both r and x |
+| Λᵢ identity | PROVED | cross-lobe cycle lengths = Λ₁+Λ₂; doubling-criterion cycles = Λᵢ+Λᵢ |
+| O4 (disjoint paths) | OPEN — now secondary to O4a's failure-structure analysis | does H−r contain 2 disjoint a–b paths? (if not, O4a's structure applies) |
+| SPQR scope | tooling built, results in experiments.md E12 | S/P nodes fully explained by path arithmetic; only R (rigid) nodes need further tools |

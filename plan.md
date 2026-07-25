@@ -175,6 +175,46 @@ in full:
    this rule (it was pure bound-pushing); resume it only if O4 or the ear
    direction produces a specific small-case conjecture worth testing.
 
+## Third pass 2026-07-25: admissible paths, O4a failure structure, SPQR
+Per external review, shifted priority from *proving* O4 to *exploiting*
+admissible-path theory and classifying O4's failure mode precisely.
+- **O4′ [PROVED]:** cited and verified Gao–Huo–Liu–Ma 2022 (IMRN,
+  arXiv:1904.08126) — confirmed via targeted search to match the stated
+  hypotheses/conclusion; full text unreadable here (platform block).
+  Applying it with k=2 to K=H−r (after proving K+ab 2-connected via the
+  classical degree-2-suppression fact) gives: **every master-minimal
+  one-pole graph has two cycles through its root differing in length by 1
+  or 2** — proved without needing the two admissible paths to be
+  internally disjoint (the theorem doesn't claim that, and the
+  cycle-construction doesn't need it).
+- **O4a [PROVED IN WORKSPACE]:** if the 2-disjoint-paths property fails,
+  Menger gives a single separator x, and H−{r,x} splits into exactly 2
+  lobes attached to both r and x (else x or r would be a cut vertex,
+  contradicting O2/O3).
+- **Terminal path spectra Λ₁,Λ₂ [PROVED]:** exact identity
+  {cross-lobe cycle lengths} = Λ₁+Λ₂; two-terminal doubling (gluing a
+  single lobe to itself at both terminals) creates new cycles of length
+  exactly Λᵢ+Λᵢ, giving a precise, checked (not order-balance-guessed)
+  criterion for when doubling yields a valid one-pole vs. an intermediate
+  two-pole object vs. an immediate cycle violation.
+- **Computation (E11, E12):** extended the one-pole enumerator
+  (`verifier/o4_analysis.py`) — O4 holds directly 99.9% of the time in the
+  small relaxed population (n=5–9), failing only in 46/67,432 cases, all
+  with small near-symmetric lobes. Added a real SPQR-tree classifier
+  (`verifier/spqr_analysis.py`, using the verified `spqrtree` package —
+  Gutwenger–Mutzel 2001 algorithm, not a custom heuristic): confirms K+ab
+  can genuinely fail to be 2-connected outside the F-clean/minimal setting
+  (174/67,432 — real content for O3, not a freebie), and that "pure
+  series-parallel" essentially never happens even at n≤9 (0/67,258
+  classifiable cases) — rigid pieces dominate already at the smallest
+  sizes, so the next concrete target is cycle structure inside R-node
+  skeletons, not extending the S/P arithmetic.
+- **Logical scope correction (one_pole.md, new section):** explicitly
+  distinguishes (1) finding any F-clean one-pole survivor = disproves EG
+  outright, (2) proving none exists = closes only S5's cut-vertex case for
+  a minimal counterexample, (3) the 2-connected minimal-counterexample
+  case is untouched and remains a fully separate task.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.
