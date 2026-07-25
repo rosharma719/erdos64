@@ -265,6 +265,48 @@ unavoidable rigid core. Summary (full detail: one_pole.md, manuscript.md):
   searchable literature; full external expert verification remains
   desirable" wording and citations to Dirac 1953 and Gao–Huo–Liu–Ma 2022.
 
+## Fifth pass 2026-07-25: hardened O5, corrected edge category, O6/O7, K4 refiltering
+Per external direction: do not extend the order-8 edge-rooted search;
+use master minimality to constrain proper two-terminal pieces instead.
+Full detail: one_pole.md, manuscript.md.
+- **O5 hardened**: exact SPQR convention stated (Q-nodes suppressed except
+  the degenerate single-edge case; no two same-type nodes ever tree-
+  adjacent — confirmed by direct testing, not assumed). Added a SECOND,
+  convention-independent proof via partial 2-trees + Dirac's 1961 chordal-
+  graph theorem (≥2 non-adjacent simplicial vertices unless complete),
+  sandwiched to exact degree 2 in G via 2-connectivity. Both proofs
+  cross-checked against each other (networkx treewidth decomposition vs
+  spqrtree) and against the earlier flawed hand-examples (both
+  independently confirmed treewidth 3, i.e. genuinely not partial
+  2-trees) — kept as permanent regression tests.
+- **Suppressed-edge category corrected**: stated precisely as loopless
+  multigraphs with at most one parallel pair, located exactly at the
+  distinguished edge's endpoints; the 2 cases (adjacent/nonadjacent root
+  neighbors) handled separately; subdividing the distinguished edge
+  confirmed (case by case, not assumed) to always recover a simple graph.
+- **O6 [PROVED]**: any proper 2-terminal piece P of H (internal degree≥3,
+  terminal degree≥2), closed with a fresh root, has an exhaustive cycle
+  classification (internal-to-P, automatically safe by inheritance from
+  H's F-cleanness, or root cycles of length ℓ+2); whenever the closure is
+  lex-smaller than H, this forces Λ(P)∩{2^k−2}≠∅ — tied/non-smaller cases
+  handled explicitly, no contradiction claimed there.
+- **O7 [PROVED, conditional on O6's hypothesis]**: a remote leaf R-node's
+  2 poles can have no common neighbor outside its own territory (else an
+  external length-2 path plus O6's forced length-(2^k−2) path would give
+  a forbidden 2^k-cycle). Translates to: the parent virtual edge for such
+  a leaf can't sit in a triangle with both other edges real.
+- **K4 census refiltered**: O7 applied to the 5,525 skeleton-clean
+  configurations from the previous pass, 4,717 (85.4%) survive, collapsing
+  to 4 orbits under K4's automorphism group.
+- **One-R-node target tested, explicitly NOT conjectured** per
+  instruction: 118/2,464 relaxed one-pole candidates (n=5–8) have ≥2
+  R-nodes, 0 F-clean (expected); but 26/118 have a leaf R-node satisfying
+  every currently-proved local condition (O6+O7) while the whole graph
+  remains non-F-clean — smallest example n=8, g6 GCQVRw, where the
+  obstruction is a 4-cycle unrelated to that leaf's own root-cycle
+  mechanism entirely. Diagnosed honestly: O6+O7 are demonstrably
+  insufficient alone; the missing condition is unidentified.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

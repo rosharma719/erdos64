@@ -419,3 +419,50 @@ certify a full one-pole survivor (each virtual edge's spectrum must still
 be realized by an actual gadget with its own F-clean internal cycles, not
 tracked at this level). Reported as a candidate direction, not a proved
 reducible configuration.
+
+## E17. O7-filtered K4 census (redirection 2026-07-25, fourth pass, task Part 6)  [COMPUTATIONALLY VERIFIED]
+`verifier/spqr_k4_skeleton.py` (extended): applies O7's triangle
+restriction to the 5,525 skeleton-clean K4 configurations from E16.
+**Modeling caveat, stated explicitly:** the original E16 search only
+tracked each edge's spectrum, not which SPQR node TYPE a virtual edge's
+child actually is; this refiltering treats every virtual edge as
+representing a remote-leaf-R-child (the natural reading given the
+section's focus on rigid pieces), not a mix of S/P/R child types. A more
+refined refiltering that distinguishes child type is future work.
+
+Command: `python3 verifier/spqr_k4_skeleton.py` (O7 section runs after
+the main search).
+
+| input (E16 skeleton-clean) | O7 survivors | distinct edge patterns | orbits under K4 automorphism |
+|---|---|---|---|
+| 5,525 | 4,717 (85.4%) | 14 | 4 |
+
+The 4 orbit representatives (#real edges = 3,2,1,0) are listed in
+one_pole.md's "O7-filtered K4 census" section.
+
+## E18. One-R-node target search (redirection 2026-07-25, fourth pass, task Part 7)  [COMPUTATIONALLY VERIFIED]
+`verifier/multi_r_search.py`: searches the relaxed one-pole population for
+candidates with ≥2 R-nodes in the SPQR tree of K+ab, checks O6/O7 on
+every leaf R-node found.
+
+Command: `python3 verifier/multi_r_search.py --nmin 5 --nmax 8`
+
+| n range | one-pole candidates | ≥2 R-nodes | F-clean among them | leaf passes O6+O7 fully | leaf fails O7 (ext. common neighbor) |
+|---|---|---|---|---|---|
+| 5-8 | 2,464 | 118 (4.8%) | 0 | 26 | 108 |
+
+**No F-clean multi-R-node survivor found (expected).** The key finding:
+**26/118 relaxed multi-R candidates have a leaf R-node satisfying every
+currently-proved local condition (O6's hypotheses + O7's conclusion)
+while the overall graph is still not F-clean** — smallest example: n=8,
+g6 `GCQVRw`, root 2, leaf R-node poles (7,0) with lex_smaller=True and
+O7_holds=True, yet the whole graph has a forbidden 4-cycle unrelated to
+that leaf's own root-cycle mechanism. **Diagnosis:** O6/O7 only constrain
+cycles running through one specific leaf's own poles; they say nothing
+about cycles elsewhere in the graph. Per the explicit instruction not to
+label "exactly one R-node" a conjecture prematurely: **it is not labeled
+here** — the data shows O6+O7 are demonstrably insufficient on their own
+(26 counterexamples to "O6+O7 at every leaf implies F-clean"), and the
+"additional condition" that would close the gap is not yet identified.
+Recorded as the honest open state, not papered over with a false
+conjecture.

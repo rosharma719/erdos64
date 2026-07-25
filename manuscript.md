@@ -178,6 +178,62 @@ and every edge e, either G−e contains a 2ᵏ-cycle or G contains an e-using
 (2ᵏ−1)-cycle — true for every (G,e) exactly when no one-pole graph
 exists. Full derivation: one_pole.md, "Suppressed-edge reformulation."
 
+## 3b. Hardening pass — O5's second proof, the corrected edge category, and forcing lemmas at remote rigid pieces
+
+**O5, second independent proof.** The SPQR-based proof of O5 is retained,
+with its exact convention stated precisely (Q-nodes suppressed except in
+the fully degenerate single-edge case; no two same-type nodes are ever
+tree-adjacent — a theorem about the canonical/reduced SPQR tree, not an
+assumption). A second, convention-independent proof is added via **partial
+2-trees**: a simple series-parallel graph is a partial 2-tree (standard
+treewidth theory); complete it, on the same vertex set, to an actual
+2-tree; every 2-tree with n≥4 is chordal and non-complete, so **Dirac's
+theorem on chordal graphs** (G. A. Dirac, "On rigid circuit graphs,"
+Abh. Math. Sem. Univ. Hamburg 25 (1961), 71–76) gives ≥2 non-adjacent
+simplicial vertices, each forced to have degree exactly 2 (since 2-trees
+have no K4 and every vertex has degree ≥2); 2-connectivity of the original
+graph then sandwiches these same vertices to degree exactly 2 there too.
+Both proofs were cross-checked computationally against each other and
+against the two flawed hand-examples from the earlier pass (which,
+independently, both register treewidth 3 — genuinely not partial 2-trees,
+agreeing with their SPQR-based rejection via a completely different
+algorithm).
+
+**The suppressed-edge category, corrected.** Gₑ lands exactly in the
+category of loopless multigraphs with at most one parallel pair, located
+exactly at the distinguished edge's own endpoints — never a broader
+relaxation. The two cases (root neighbors adjacent or not in K) are
+handled separately, and subdividing the distinguished edge is confirmed,
+case by case, to always recover a simple graph (namely H itself).
+
+**O6 (proper two-pole forcing).** For any proper connected subgraph P of
+H with terminals x,y (internal degree ≥3, terminal degree ≥2 at x,y),
+attaching a fresh root to both terminals gives a valid one-pole graph
+H_P; every cycle of H_P is exhaustively either an internal cycle of P
+(automatically F-clean, inherited from H) or a root cycle of length ℓ+2
+for ℓ∈Λ(P). So whenever H_P is lexicographically smaller than H,
+Λ(P)∩{2ᵏ−2:k≥2}≠∅ — proved with the tied/non-smaller cases handled
+explicitly (no contradiction is extractable there).
+
+**O7 (no external common neighbor).** Applied to a remote leaf R-node's
+pertinent graph P_R (terminal degree ≥2 and internal min degree ≥3 both
+proved automatically from 3-connectivity of the R-node skeleton): if O6's
+hypothesis holds, P_R's forced terminal path of length 2ᵏ−2 combines with
+any external common neighbor of the two poles into a forbidden 2ᵏ-cycle —
+contradiction. Translated into the parent skeleton: the virtual edge for
+such a leaf cannot sit in a triangle whose other two edges are both real.
+
+**Empirical status of the one-R-node target.** Applying O7 to the earlier
+K4 census (5,525 skeleton-clean configurations) leaves 4,717 survivors in
+4 orbits under K4's automorphism group. A direct search of the relaxed
+one-pole population for ≥2-R-node candidates found 118/2,464 (n=5–8), 0
+F-clean, but **26 with a leaf R-node satisfying every currently proved
+local condition (O6+O7) while the whole graph remains non-F-clean** —
+smallest example n=8, g6 `GCQVRw`. Per instruction, "every master-minimal
+one-pole has exactly one R-node" is **explicitly not conjectured** at
+this stage: O6+O7 are demonstrated empirically insufficient on their own,
+and the additional condition needed remains unidentified.
+
 ## 4. Logical scope — what each result does and does not imply
 
 Recorded explicitly to prevent the three outcomes below from being
@@ -210,6 +266,11 @@ rigid-skeleton search (E16).
 - G. A. Dirac, "The Structure of k-Chromatic Graphs," Fundamenta
   Mathematicae 40 (1953), 42–55. [Historical technique: cut-vertex
   splitting and recombination in a critical-graph minimality argument.]
+- G. A. Dirac, "On rigid circuit graphs," Abhandlungen aus dem
+  Mathematischen Seminar der Universität Hamburg 25 (1961), 71–76.
+  [Chordal graphs have ≥2 non-adjacent simplicial vertices unless
+  complete — used for O5's second, convention-independent proof via
+  2-trees.]
 - Jun Gao, Qingyi Huo, Chun-Hung Liu, Jie Ma, "A Unified Proof of
   Conjectures on Cycle Lengths in Graphs," International Mathematics
   Research Notices 2022(10):7615–7653; arXiv:1904.08126 (2019).

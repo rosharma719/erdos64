@@ -156,9 +156,28 @@ SPQR-tree theory (Gutwenger–Mutzel 2001, per the SPQR package already in
 use). "Series-parallel" below means exactly this: 2-connected, no K4-minor,
 SPQR tree pure S/P/Q.
 
+**Exact SPQR convention used below [stated explicitly, 2026-07-25 hardening
+pass].** The *reduced* SPQR tree, standard in the literature (Di
+Battista–Tamassia 1996; Gutwenger–Mutzel 2001) and confirmed to match this
+project's `spqrtree` implementation by direct testing: (i) **Q-nodes are
+suppressed** — a bare edge never appears as its own tree node except in
+the fully degenerate case where the *entire* input graph is a single edge
+(irrelevant here, since every graph considered has cycles); every other
+Q-edge is absorbed as a real or virtual edge inside its neighboring S/P/R
+node's skeleton. (ii) **No two S-nodes are ever tree-adjacent, and no two
+P-nodes are ever tree-adjacent** — this is not a simplifying assumption
+but a theorem about the canonical/reduced SPQR tree (adjacent same-type
+nodes are, by definition of "reduced", always merged into one larger
+node); confirmed by direct test here (a 3-branch parallel construction
+with one branch itself expandable produced a single P-node with 3
+children, never nested P-P). (iii) The host graph is simple throughout
+this section (multigraphs are used later, in the suppressed-edge
+category, but never for the O5 argument, which concerns H directly).
+
 **Lemma (degree-2 leaves of series-parallel graphs) [PROVED IN WORKSPACE,
-NOVELTY SUPPORTED BY SEARCH].** *Every nontrivial (n≥3) simple 2-connected
-series-parallel graph has at least 2 vertices of degree exactly 2.*
+NOVELTY SUPPORTED BY SEARCH — two independent proofs].** *Every nontrivial
+(n≥3) simple 2-connected series-parallel graph has at least 2 vertices of
+degree exactly 2.*
 
 *A note on methodology, kept for honesty.* Two hand-built "counterexamples"
 were tried first and both were WRONG — computational SPQR verification
@@ -174,10 +193,8 @@ silently reintroduces a K4-minor. This is recorded because it is exactly
 the kind of error the project's "test before promoting" discipline exists
 to catch — see `verifier/rigid_core_check.py`, experiments.md E13.)
 
-*Proof (correct version, via the SPQR tree).* Let G be as claimed, T its
-SPQR tree (pure S/P, no R, no Q counted separately here since Q-edges are
-absorbed as real/virtual edges within S/P skeleta in this library's
-convention).
+*Proof 1 (via the reduced SPQR tree, using the convention above).* Let G
+be as claimed, T its SPQR tree (pure S/P, no R).
 - **No P-node is ever a tree leaf.** A P-node's skeleton is a bond
   (parallel edges between its 2 poles). At most 1 of those parallel edges
   can be *real* (two real parallel edges between the same pair of vertices
@@ -209,7 +226,65 @@ convention).
   other node's skeleton, in particular from any other leaf's). Two
   leaves ⇒ ≥2 distinct degree-2 vertices of G. ∎
 
-*Computational cross-check* (`verifier/rigid_core_check.py`,
+*Proof 2 (convention-independent, via partial 2-trees) [KNOWN-BACKGROUND
++ PROVED IN WORKSPACE].* This proof does not reference the SPQR tree at
+all, as an independent check that Proof 1's conclusion is not an artifact
+of that particular decomposition's bookkeeping.
+
+- **Step 1 [KNOWN FROM LITERATURE, standard].** A simple graph has no
+  K4-minor iff it has treewidth ≤2 iff it is a **partial 2-tree** (a
+  subgraph, on the same vertex set, of some 2-tree — where a 2-tree is
+  built recursively: K₂ is a 2-tree; given a 2-tree T and an edge {u,v}
+  of T, adding a new vertex adjacent to exactly u and v gives a larger
+  2-tree). This is foundational treewidth theory (e.g. via tree-
+  decomposition composition under series/parallel gluing), standard
+  enough that it is cited rather than re-derived here; the computational
+  check below independently confirms it holds on every test graph used.
+- **Step 2 [applying Step 1].** Since G is series-parallel (no K4-minor,
+  simple), G is a partial 2-tree: there is a 2-tree T on the same vertex
+  set V(G) with E(G)⊆E(T).
+- **Step 3 [PROVED, via a citation + one elementary step].** *Every 2-tree
+  T with n≥4 vertices has ≥2 non-adjacent vertices of degree exactly 2.*
+  2-trees are **chordal** (they are built by repeatedly adding a
+  simplicial vertex — one whose neighborhood is a clique — which is
+  exactly a perfect elimination ordering in reverse; this is definitional
+  for 2-trees, not an extra fact to prove). **Dirac's theorem on chordal
+  graphs** [KNOWN FROM LITERATURE, standard: G. A. Dirac, "On rigid
+  circuit graphs," Abhandlungen aus dem Mathematischen Seminar der
+  Universität Hamburg 25 (1961), 71–76] states every chordal graph has a
+  simplicial vertex, and if it is not complete, has **at least 2
+  non-adjacent simplicial vertices**. A 2-tree with n≥4 is not complete
+  (K4 itself is not a 2-tree — it has a K4-minor, trivially itself — so
+  any 2-tree on ≥4 vertices is a proper subgraph of K_n, n≥4, hence not
+  complete). So T has ≥2 non-adjacent simplicial vertices. In a 2-tree,
+  every vertex has degree ≥2 (2-trees are 2-connected for n≥3, standard),
+  and every maximal clique has size ≤3 (no K4-minor), so a simplicial
+  vertex's neighborhood — a clique of size ≥2 (degree≥2) and ≤2 (clique
+  size ≤3 minus the vertex itself) — is **exactly** an edge, forcing that
+  vertex's own degree to be **exactly 2**. So the ≥2 non-adjacent
+  simplicial vertices are exactly ≥2 degree-2 vertices of T. (n=3 case:
+  T is a triangle, all 3 vertices trivially degree 2, no citation needed.)
+- **Step 4 [PROVED, using 2-connectivity of G].** Let v₁,v₂ be T's ≥2
+  degree-2 vertices from Step 3. Since E(G)⊆E(T), deg_G(v)≤deg_T(v) for
+  every vertex. Since G is 2-connected, deg_G(v)≥2 for every vertex. So
+  for i=1,2: 2 ≤ deg_G(vᵢ) ≤ deg_T(vᵢ) = 2, **forcing deg_G(vᵢ)=2
+  exactly.** These are the required ≥2 degree-2 vertices of G. ∎
+
+*Computational illustration of Proof 2* (not a from-scratch
+implementation of a verified completion algorithm — networkx's
+`treewidth_min_fill_in` approximation is used to produce a width-2 tree
+decomposition for each test graph, then the union of clique-completed
+bags is checked to reach exactly 2n−3 edges, confirming a genuine 2-tree
+completion): on diamond, theta(2,2,2), and book B2, the completion's own
+degree-2 vertices matched G's degree-2 vertices **exactly** in every
+case (`{u,v}`, `{m1,m2,m3}`, `{2,3}` respectively) — consistent with Proof
+2's mechanism. As a further cross-check, the two earlier flawed
+"counterexamples" (diamond+uv = K4, and double-diamond) were independently
+confirmed to have **treewidth 3**, i.e. genuinely NOT partial 2-trees —
+agreeing exactly with Proof 1's SPQR-based rejection of both, via a
+completely different algorithm.
+
+*Computational cross-check on Proof 1* (`verifier/rigid_core_check.py`,
 experiments.md E13): every connected min-degree-≥2 graph generated by
 `geng` for n=3..8, filtered to 2-connected + series-parallel (via the
 SAME `spqrtree` check used throughout this file), was tested against the
@@ -243,6 +318,47 @@ matching the observed 100% (67,258/67,258) — the earlier report of 99.7%
 conflated the K4-minor-free-input failures with true SP survivors; there
 were in fact zero true SP survivors, exactly as O5 now guarantees
 unconditionally."
+
+## Suppressed-edge reformulation, corrected category [PROVED — 2026-07-25, fourth pass]
+
+**The exact category, stated precisely (correction of the third-pass
+version).** Let **𝒢** be the category of loopless multigraphs G with a
+distinguished edge e=xy such that **G has at most one pair of parallel
+edges, and if such a pair exists it is exactly {e, one ordinary edge},
+both between e's own endpoints x,y** — equivalently, G−e (deleting just
+the one copy e) is a *simple* graph. This is not a relaxation chosen for
+convenience: it is *exactly* the category Gₑ lands in, because K=H−r is
+simple (a subgraph of the simple graph H) and the *only* edge ever added
+on top of K is e itself, so the only place a duplicate can possibly occur
+is at e's own endpoints.
+
+**Split into the two cases, both landing in 𝒢:**
+- **Case A (a,b nonadjacent in K).** Gₑ := K + (new simple edge ab). No
+  duplicate is created (ab was absent); Gₑ is **simple**, hence trivially
+  in 𝒢 (zero parallel pairs).
+- **Case B (a,b adjacent in K).** Gₑ := K + (a second, distinguished
+  parallel copy of ab, called e; the pre-existing ab edge is left
+  untouched). Gₑ has **exactly one** parallel pair — {e, the original ab
+  edge} — putting it in 𝒢 with equality, not a proper subcategory.
+
+**Subdividing e recovers a simple graph in both cases [PROVED].**
+Subdividing e means: delete e (only the distinguished copy, never the
+ordinary partner edge in Case B), add a fresh vertex r′, add edges ar′,
+r′b.
+- *Case A:* result = K (unchanged, e was the only ab-type edge and it's
+  now gone, but K never had another) plus r′ attached to a,b. r′ is a
+  fresh vertex touching only a,b once each — **simple**.
+- *Case B:* result = K (unchanged — the ordinary ab edge was never
+  touched, only the distinguished copy e was deleted) plus r′ attached
+  to a,b. Again r′ is fresh, touching a,b once each, and K's own ab edge
+  survives as a single ordinary edge — **simple**.
+
+In both cases the result is (isomorphic to) **H itself** — this is just
+the suppression/subdivision pair being mutually inverse, confirmed
+case-by-case rather than assumed. δ(Gₑ)≥3, the two cycle correspondences,
+and the resulting equivalence (below) all go through identically in both
+cases; the only thing that differs between them is which of the two
+constructions is used to build Gₑ from K.
 
 ## Suppressed-edge reformulation [PROVED — 2026-07-25, third pass]
 
@@ -319,6 +435,130 @@ itself being C4-free, inherited from B0-style reasoning if H arose inside
 a genuine minimal counterexample's lobe, would make ab∈E(K) create a
 *triangle* r-a-b in H, not forbidden by F, so this case is not excluded
 by F-cleanness alone and must be handled with the multigraph category).
+
+## O6. Proper two-pole forcing [PROVED — 2026-07-25, fourth pass]
+
+Let P be a proper (P≠H), connected subgraph of a master-minimal one-pole
+H with 2 distinct designated terminals x,y∈V(P), such that: every
+internal (≠x,y) vertex of P has degree ≥3 in P; d_P(x),d_P(y)≥2; and the
+graph **H_P := P + r_P + {r_P x, r_P y}** (P with a fresh vertex r_P
+attached to both terminals) is lexicographically smaller than H.
+
+**Exact order/edge inequalities [PROVED, immediate from the
+construction].** |V(H_P)| = |V(P)|+1 (exactly one new vertex, r_P);
+|E(H_P)| = |E(P)|+2 (exactly two new edges, r_P x and r_P y).
+
+**H_P is a valid one-pole graph.** deg_{H_P}(r_P)=2 (its only edges).
+For every internal vertex of P, degree is unchanged (≥3, given). For x
+(symmetrically y): deg_{H_P}(x) = d_P(x)+1 ≥ 2+1 = 3 (using d_P(x)≥2,
+given). So every non-root vertex of H_P has degree ≥3: **H_P is one-pole,
+root r_P.**
+
+**Exhaustive cycle classification [PROVED].** Every cycle of H_P is
+exactly one of:
+1. an **internal cycle of P** (a cycle not using r_P — since deleting
+   r_P from H_P leaves exactly P, any r_P-avoiding cycle of H_P is a
+   cycle of P); or
+2. a **root cycle of length ℓ+2** for some ℓ∈Λ(P) (Λ(P) := the set of
+   simple x–y path lengths within P) — any cycle using r_P must use both
+   its edges (deg(r_P)=2, same argument as O2/O4′), giving an x–y path
+   of P (avoiding r_P, since r_P∉P) of some length ℓ, plus the 2-edge
+   detour through r_P, total ℓ+2.
+
+This is exhaustive (every cycle either uses r_P or doesn't) and the two
+cases are disjoint.
+
+**Proof of O6.** P is a subgraph of H, so every internal cycle of P is
+already a cycle of H, hence F-clean (H is F-clean, being master-minimal).
+So case 1 above can **never** contain a forbidden length — the internal
+cycles of H_P are automatically safe, regardless of anything else. Now
+suppose H_P is lexicographically smaller than H (the stated hypothesis).
+If H_P were ALSO F-clean, it would be a strictly smaller F-clean one-pole
+graph, contradicting H's master-minimality (§0). So H_P is **not**
+F-clean: some cycle of H_P has length in F. By the exhaustive
+classification, and since case 1 is ruled out (always safe), the
+offending cycle **must** be case 2: some ℓ∈Λ(P) has ℓ+2∈F, i.e.
+ℓ = 2ᵏ−2 for some k≥2. Hence:
+[
+\Lambda(P)\cap\{2^k-2:k\ge2\}\ne\varnothing.
+]
+∎
+
+**Tied and non-smaller cases, handled explicitly (not glossed over).** If
+H_P is **not** strictly lexicographically smaller than H (tied in both
+order and edges, or larger, or tied in order but with more edges), **no
+contradiction is available** and the conclusion does **not** follow —
+H_P failing to beat H's minimality is not itself informative about
+Λ(P). O6 is conditional on the stated inequality exactly as written; it
+is not claimed unconditionally for every proper two-terminal piece of H.
+
+## Application of O6 to remote leaf R-nodes [PROVED, conditional exactly as O6]
+
+Root the reduced SPQR tree of H (equivalently of K+ab, per the O4′
+application) at the node containing (or nearest) the distinguished edge
+ab. Let P_R be the **pertinent graph** of a **leaf R-node away from the
+root**: a leaf has exactly 1 virtual edge (the parent link, between its
+2 poles) and every other skeleton edge real; P_R is that skeleton with
+the parent-link virtual edge removed, terminals = the 2 poles.
+
+- **Terminal degree ≥2 at both poles [PROVED].** An R-node's skeleton is
+  3-connected, so every skeleton vertex — including each pole — has
+  skeleton-degree ≥3. Removing the single parent-link edge (incident to
+  both poles, one each) drops each pole's degree by exactly 1, to ≥2 in
+  P_R.
+- **Internal minimum degree ≥3 [PROVED].** Every P_R-vertex other than
+  the 2 poles is, by leaf-ness (no children), **purely local** — it
+  appears in no other tree node — so its P_R-degree equals its true
+  H-degree, and since the skeleton is 3-connected, that degree is ≥3.
+  (Identical mechanism to O5 Proof 1's leaf-S-node argument, here for a
+  leaf R-node instead.)
+- **O6 applies** with P:=P_R, x,y:=the 2 poles, **whenever** H_{P_R} :=
+  P_R + r_P (fresh root attached to both poles) is lexicographically
+  smaller than H — a genuine hypothesis, checked per-instance, not
+  automatic (though generically expected for a "remote" leaf: its
+  territory is a proper subset of H's, so |V(P_R)|+1 typically < |V(H)|,
+  with the inequality needing individual verification only in extreme
+  cases where the leaf's territory is nearly all of H).
+- **Deduction:** whenever the lex-smaller hypothesis holds, O6 gives
+  **P_R contains a terminal (pole-to-pole) path of length 2ᵏ−2** for some
+  k≥2 — directly, since Λ(P_R) is by definition P_R's terminal-path
+  spectrum.
+
+## O7. No external common neighbor [PROVED, conditional on O6's hypothesis]
+
+Let x,y be the 2 poles of a remote leaf R-piece P_R satisfying O6's
+lex-smaller hypothesis (so P_R has a terminal path of length 2ᵏ⁰−2 for
+some specific k₀, by the deduction above).
+
+**Claim: x,y have no common neighbor outside P_R.**
+
+*Proof.* Suppose z∉V(P_R) is a common neighbor of x,y (z lies elsewhere
+in H — necessarily in the "rest of the tree" reachable via the parent
+virtual link, since P_R's own vertex set is exactly its own territory).
+x-z-y is then a path of length 2, vertex-disjoint from P_R's interior
+(z∉V(P_R), and this path uses no other P_R vertices). Combine with the
+length-(2ᵏ⁰−2) terminal path inside P_R (from the deduction above): the
+concatenation x-(P_R path)-y-z-x is a genuine **simple** cycle of H (the
+two arcs share only the endpoints x,y, and are otherwise vertex-disjoint
+since one lies entirely in P_R∖{x,y} and the other is just the single
+external vertex z), of length (2ᵏ⁰−2)+2 = **2ᵏ⁰** — a forbidden length.
+This contradicts H being F-clean (master-minimal). So no such z exists. ∎
+
+**Translation into the parent SPQR skeleton [PROVED].** The leaf P_R is
+represented, in its parent node's skeleton, by exactly one virtual edge
+between the same 2 poles x,y. If that virtual edge belonged to a
+**triangle of the parent skeleton whose other 2 edges are both real**,
+those 2 real edges would be genuine H-edges x-w, w-y for some vertex w —
+exactly a common neighbor w of x,y outside P_R (w lives in the parent's
+own territory, disjoint from P_R's interior). This is exactly what O7
+forbids. Hence:
+
+> **The parent virtual edge representing a remote leaf R-piece (satisfying
+> O6's hypothesis) cannot belong to a triangle of the parent skeleton
+> whose other two edges are both real.**
+
+This is a purely combinatorial, checkable restriction on SPQR skeletons —
+applied to the K4 census next.
 
 ## O4′. The admissible-path corollary [PROVED; underlying theorem KNOWN FROM LITERATURE]
 
@@ -526,6 +766,71 @@ this case, regardless of tᵢ or the Λᵢ+Λᵢ sumset. This is an honest gap,
 not resolved here — matching the instruction not to infer a contradiction
 from the sumsets alone when the order/edge comparison itself doesn't
 supply one.
+
+## O7-filtered K4 census [COMPUTATIONALLY VERIFIED — 2026-07-25, fourth pass]
+
+Applying O7's skeleton-level restriction ("the parent virtual edge for a
+remote leaf R-piece cannot belong to a triangle whose other two edges are
+both real") to the earlier 5,525 skeleton-clean K4 configurations
+(experiments.md E16), under the modeling choice that **every virtual
+edge is treated as representing a remote-leaf-R-child** (the natural
+reading for this section, stated explicitly since the original search did
+not track child-node *type* separately — see the caveat in
+experiments.md E17):
+
+- **4,717 / 5,525 (85.4%) survive** the O7 filter.
+- Exactly **14 distinct real/virtual edge patterns** occur among
+  survivors; up to K4's automorphism group (S₄ acting on the 6 edges),
+  these collapse to exactly **4 orbits**:
+  1. #real=3 (a full real triangle, the other 3 edges virtual)
+  2. #real=2 (a real perfect matching's complement pattern)
+  3. #real=1
+  4. #real=0 (every edge virtual)
+- Full command + representative-per-orbit listing: `verifier/
+  spqr_k4_skeleton.py`, experiments.md E17.
+
+## The one-R-node target: tested, not yet conjectured [COMPUTATIONALLY VERIFIED, per instruction not to conjecture prematurely]
+
+`verifier/multi_r_search.py` searches the relaxed one-pole population
+(root degree 2, else δ≥3, connected — cycles of any length allowed) for
+candidates whose SPQR tree of K+ab has ≥2 R-nodes, then checks O6/O7's
+conditions on every leaf R-node found.
+
+**n=5–8 (2,464 one-pole candidates): 118 have ≥2 R-nodes (4.8%).** Of
+these, **0 are F-clean** (no genuine survivor — expected, matches every
+other search in this project). Critically, per the instruction not to
+label "exactly one R-node" a conjecture until smallest counterexamples
+are found and analyzed:
+
+- **26 / 118** have at least one leaf R-node satisfying **every currently
+  proved local condition** (O6's degree hypotheses, its lex-smaller
+  hypothesis, AND O7's no-external-common-neighbor conclusion) — yet
+  are **not** F-clean overall.
+- **108 / 118** have at least one leaf R-node where O7 genuinely fails
+  (an external common neighbor is present) — the mechanism O7 was built
+  to catch, working as intended on the majority of small examples.
+
+**Smallest example passing every local check while still failing overall
+(the "additional condition" the redirection asks to identify):** n=8,
+g6 `GCQVRw`, root 2. One leaf R-node (poles 7,0; pertinent graph 4
+vertices/5 edges) has lex_smaller=True and O7_holds=True — passes both
+checks cleanly — **yet the whole graph still contains a forbidden
+4-cycle**, unrelated to this leaf's own root-cycle mechanism entirely.
+**Diagnosis:** O6/O7 only constrain cycles that pass through *this
+specific* leaf's 2 poles via the *root-cycle* mechanism (Λ(P_R) paired
+with the 2-edge root detour, or an external 2-path). They say nothing
+about cycles arising elsewhere in the graph — e.g. through a *different*
+leaf, or through the parent skeleton's own structure independent of any
+particular leaf. **The "additional condition" distinguishing genuine
+one-pole survivors from these relaxed near-misses is not yet identified**
+— it is not simply "O6+O7 hold at every leaf" (26 counterexamples already
+show that combination is achievable without F-cleanness). Recorded
+honestly as open, per the instruction not to promote "exactly one R-node"
+to a conjecture prematurely: **the correct status is that O6/O7 are
+necessary-looking but empirically demonstrated NOT sufficient conditions
+for F-cleanness, and the one-R-node target remains untested as a
+standalone claim** (a genuine single-R-node one-pole graph has not been
+constructed or ruled out here either). Full data: experiments.md E18.
 
 ## SPQR decomposition before arbitrary ear decompositions [scope correction]
 O3 (H 2-connected) technically means H admits an open ear decomposition,

@@ -194,3 +194,113 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---------------------------------------------------------------------------
+# O7 refiltering (task Part 6, 2026-07-25, fourth redirection pass)
+# ---------------------------------------------------------------------------
+import itertools as _it
+
+# edge -> its 2 triangles' "other 2 edges" (for the O7 triangle check)
+def _other_edges_in_triangles(e):
+    ek = edge_key(e)
+    out = []
+    for tri in TRIANGLES:
+        if ek in {edge_key(x) for x in tri}:
+            others = [edge_key(x) for x in tri if edge_key(x) != ek]
+            out.append(others)
+    return out  # list of 2 lists, each of length 2
+
+
+EDGE_TRIANGLE_OTHERS = {edge_key(e): _other_edges_in_triangles(e) for e in EDGES}
+
+
+def o7_survives(assignment):
+    """Reject if ANY virtual edge (spectrum != {1}, i.e. representing a
+    remote leaf R-child under the modeling choice stated in one_pole.md)
+    has either of its 2 triangles with both OTHER edges real (spectrum=={1})."""
+    for e in EDGES:
+        ek = edge_key(e)
+        if assignment[ek] == {1}:
+            continue  # real edge itself, not a virtual R-child edge
+        for others in EDGE_TRIANGLE_OTHERS[ek]:
+            if all(assignment[o] == {1} for o in others):
+                return False
+    return True
+
+
+def real_pattern(assignment):
+    return tuple(1 if assignment[edge_key(e)] == {1} else 0 for e in EDGES)
+
+
+K4_VERTEX_PERMS = list(_it.permutations(VERTICES))
+
+
+def edge_index_map():
+    return {edge_key(e): i for i, e in enumerate(EDGES)}
+
+
+def canonical_pattern(pattern):
+    """Canonical form of a 6-bit real/virtual pattern (ignoring WHICH
+    virtual spectrum, just real-vs-virtual) under K4's automorphism group
+    (S4 acting on vertices, inducing an action on the 6 edges)."""
+    idx = edge_index_map()
+    best = None
+    for perm in K4_VERTEX_PERMS:
+        relabel = {VERTICES[i]: perm[i] for i in range(4)}
+        new_pattern = [0] * 6
+        for e in EDGES:
+            a, b = relabel[e[0]], relabel[e[1]]
+            new_e = edge_key((a, b))
+            new_pattern[idx[new_e]] = pattern[idx[edge_key(e)]]
+        t = tuple(new_pattern)
+        if best is None or t < best:
+            best = t
+    return best
+
+
+def o7_refilter_report(candidates):
+    res = search_reducible_configurations(candidates)
+    clean = res["clean"]
+    survivors = [(combo, assignment, lengths) for (combo, assignment, lengths) in clean
+                 if o7_survives(assignment)]
+    print(f"\n=== O7 refiltering of the {len(clean)} skeleton-clean configurations ===")
+    print(f"survivors after O7: {len(survivors)}")
+
+    by_real_pattern = {}
+    for combo, assignment, lengths in survivors:
+        rp = real_pattern(assignment)
+        by_real_pattern.setdefault(rp, []).append((assignment, lengths))
+    print(f"distinct real/virtual EDGE patterns among survivors: {len(by_real_pattern)}")
+
+    orbits = {}
+    for rp in by_real_pattern:
+        canon = canonical_pattern(rp)
+        orbits.setdefault(canon, []).append(rp)
+    print(f"distinct real/virtual patterns up to K4 automorphism: {len(orbits)}")
+
+    print("\nrepresentatives (one per orbit), with #real edges and one example spectrum assignment:")
+    print("(canonical pattern shown for orbit identification; the printed "
+          "real_edges/virtual_edges/spectra below all refer consistently to "
+          "ONE ACTUAL representative assignment, using ITS OWN edge labels "
+          "-- not a mix of the canonical labels with a different member's "
+          "assignment.)")
+    for canon, members in sorted(orbits.items(), key=lambda kv: -sum(kv[0])):
+        example_rp = members[0]  # an actual real/virtual pattern in this orbit
+        examples = by_real_pattern[example_rp]
+        assignment, lengths = examples[0]
+        # Use example_rp's OWN labels throughout -- self-consistent.
+        real_edges = [EDGES[i] for i in range(6) if example_rp[i] == 1]
+        virt_edges = [(EDGES[i], sorted(assignment[edge_key(EDGES[i])]))
+                      for i in range(6) if example_rp[i] == 0]
+        print(f"  canonical_pattern={canon} orbit_size(#patterns)={len(members)} "
+              f"#real={sum(example_rp)} real_edges={real_edges} "
+              f"virtual_edges(spectra)={virt_edges} cycle_lengths={sorted(lengths)}")
+    return dict(total_clean=len(clean), survivors=len(survivors),
+                distinct_patterns=len(by_real_pattern), distinct_orbits=len(orbits))
+
+
+if __name__ == "__main__":
+    main()
+    candidates = [{2}, {3}, {2, 3}, {3, 4}, {2, 4}, {5}]
+    o7_refilter_report(candidates)
