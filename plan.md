@@ -215,6 +215,56 @@ admissible-path theory and classifying O4's failure mode precisely.
   a minimal counterexample, (3) the 2-connected minimal-counterexample
   case is untouched and remains a fully separate task.
 
+## Fourth pass 2026-07-25: rigid-core lemma, suppressed-edge equivalence, K4 skeleton
+Per external direction: stop broad small-order SPQR statistics, convert
+findings into exact structural formulations, begin analyzing the
+unavoidable rigid core. Summary (full detail: one_pole.md, manuscript.md):
+- **O5 [PROVED]:** every master-minimal one-pole graph has a K4-minor,
+  unconditionally (independent of F-cleanness/minimality) — replaces the
+  earlier empirical "rigid pieces dominate" (99.7%) with an exact
+  structural fact. **Methodological note kept deliberately:** the first
+  proof attempt used two hand-built graphs both WRONGLY believed to be
+  series-parallel counterexamples to the needed lemma; a direct SPQR
+  computation caught both errors before either was written up as a
+  disproof (`verifier/rigid_core_check.py` keeps both as a regression
+  test). Correct proof: every leaf of a nontrivial SP graph's SPQR tree is
+  an S-node contributing a purely-local degree-2 vertex; ≥2 leaves ⇒ ≥2
+  such vertices; a one-pole graph's degree profile (exactly 1 vertex of
+  degree 2) is incompatible with this, so it can't be SP. 0 violations
+  across 304 SP graphs found (n=3–8, E13).
+- **Suppressed-edge reformulation [PROVED]:** deleting r and closing with
+  a distinguished edge e=ab (genuinely requiring the multigraph category
+  when a,b are already adjacent — checked, not assumed: without the
+  duplicate edge, δ(Gₑ) can drop to 2) gives an exact equivalence between
+  one-pole existence and a purely edge-rooted target over (G,e) pairs with
+  δ(G)≥3. Converts the search space entirely, avoiding any special
+  handling of the degree-2 root.
+- **Exact lobe-doubling inequalities [PROVED]:** order comparison
+  |H′ᵢ|<n ⟺ |Dᵢ|<|D_other|; at equal order, edge comparison
+  |E(H′ᵢ)|<|E(H)| ⟺ E(Lᵢ)<E(L_other); the conditional conclusion
+  "(Λᵢ+Λᵢ)∩F≠∅ whenever H′ᵢ is lex-smaller" is stated WITH its necessary
+  tᵢ≥2 qualifier made explicit (not inferred from the sumset alone), and
+  the fully-tied case (equal order AND equal edges) is recorded as a
+  genuine, unresolved gap rather than glossed over.
+- **Rooted SPQR signatures [PROVED, independently verified]:** series/
+  parallel Σ(P) composition rules derived and cross-checked against
+  brute-force enumeration on concretely assembled graphs (E15, 100% pass).
+  Rigid nodes deliberately given no composition rule, per instruction —
+  handled by direct analysis instead (K4 case, E16).
+- **K4 skeleton [exploratory, E16]:** C4-freeness restriction derived and
+  verified exhaustively (at most 4 of K4's 6 edges can be real without an
+  immediate C4); bounded search over small virtual-edge spectra found
+  5,525/117,649 skeleton-level F-clean configurations — explicitly flagged
+  as skeleton-level only, not certified full gadgets.
+- **Edge-rooted search [E14]:** 47,349 (G,e) pairs tested n=4–8, 0 full
+  failures, 0 near-misses; n=9 attempted but not completed (honestly
+  reported, not papered over).
+- **Manuscript draft** (`manuscript.md`, new file): S4, S5, O1, O3, O4a,
+  O4′, O5, the terminal-spectrum identity, and the suppressed-edge
+  equivalence, with the required "novelty supported by the available
+  searchable literature; full external expert verification remains
+  desirable" wording and citations to Dirac 1953 and Gao–Huo–Liu–Ma 2022.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

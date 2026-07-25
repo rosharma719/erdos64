@@ -20,8 +20,15 @@ work in the sibling `erdos/` directory — no shared code.
   and the disproof of the literal "n≤2D+3" central target.
 - `one_pole.md` — **rooted one-pole gadget theory (2026-07-25, current top
   priority):** O1–O3 prove a master-minimal one-pole graph is fully
-  2-connected; O4 is the precise open target (theta/book structure at the
-  root) linking to Track C's additive lemmas.
+  2-connected; **O5 proves it always has a K4-minor (unconditional rigid
+  core)**; O4′ gives an admissible-path corollary (cited theorem); O4a +
+  the terminal-spectrum identity give the exact failure structure and
+  two-terminal doubling criterion; the suppressed-edge reformulation gives
+  an exact edge-rooted equivalent search target.
+- `manuscript.md` — **structural manuscript draft (2026-07-25):** pulls
+  together S4, S5, O1, O3, O4a, O4′, O5, and the suppressed-edge
+  equivalence into a single citable write-up with full novelty/reference
+  bookkeeping.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -39,6 +46,14 @@ work in the sibling `erdos/` directory — no shared code.
   - `spqr_analysis.py` — SPQR-tree classification of the two-terminal
     root-neighbor structure, via the verified `spqrtree` package (see
     experiments.md E12).
+  - `rigid_core_check.py` — O5's rigid-core lemma: exhaustive check plus a
+    regression test on two flawed hand-examples (see experiments.md E13).
+  - `edge_rooted_search.py` — direct (G,e) search per the suppressed-edge
+    equivalence (see experiments.md E14).
+  - `spqr_signature.py` — series/parallel Σ(P) composition rules,
+    independently verified against brute-force enumeration (E15).
+  - `spqr_k4_skeleton.py` — K4 rigid-skeleton triangle/quadrilateral
+    spectrum analysis and reducible-configuration search (E16).
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment

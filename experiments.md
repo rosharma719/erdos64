@@ -348,3 +348,74 @@ P=5,482.
    the series/parallel path-arithmetic alone will not suffice for most
    candidates; the next concrete target is understanding cycle structure
    INSIDE R-node skeletons, not extending the S/P arithmetic further.
+
+## E13. Rigid-core lemma verification (redirection 2026-07-25, third pass, task Part 1)  [PROVED + COMPUTATIONALLY CROSS-CHECKED]
+`verifier/rigid_core_check.py`: regression-checks the two flawed hand-built
+"counterexamples" from the first attempt at O5 (both are rejected as
+non-series-parallel, confirming the SPQR computation catches the earlier
+hand-reasoning error -- see one_pole.md O5 for the full account), then
+exhaustively tests "every nontrivial 2-connected series-parallel graph has
+>=2 degree-2 vertices" against every 2-connected graph `geng` can generate
+for n=3..8.
+
+Command: `python3 verifier/rigid_core_check.py --nmin 3 --nmax 8`
+
+| n range | 2-connected graphs | series-parallel (no R node) | violations |
+|---|---|---|---|
+| 3-8 | 7,661 | 304 | 0 |
+
+**0 violations across all 304 series-parallel graphs found** -- matches
+the proof in one_pole.md exactly (proof via SPQR-tree leaf structure: every
+leaf of a nontrivial SP graph's SPQR tree is an S-node contributing >=1
+purely-local degree-2 vertex, and a tree with >=2 nodes has >=2 leaves).
+
+## E14. Edge-rooted (G,e) search (redirection 2026-07-25, third pass, task Part 6)  [COMPUTATIONALLY VERIFIED]
+`verifier/edge_rooted_search.py`: direct search over (G,e) pairs (G
+connected delta>=3 from `geng`, e any edge) testing the suppressed-edge
+equivalence's 2 conditions (G-e has no 2^k-cycle; no e-using cycle has
+length 2^k-1) -- a full failure of both is exactly a one-pole survivor
+after subdividing e (one_pole.md's suppressed-edge reformulation).
+
+Command: `python3 verifier/edge_rooted_search.py --nmin 4 --nmax 8`
+
+| n range | (G,e) pairs tested | full failures (one-pole survivors) | near-misses (dist<=1 to nearest 2^k-1) |
+|---|---|---|---|
+| 4-8 | 47,349 | 0 | 0 |
+
+n=9 (84,242 connected delta>=3 graphs) attempted, **NOT completed**
+(per-edge SPQR + path enumeration is too slow at this size within the
+budget used here -- terminated after ~115s, no partial data trusted).
+Do NOT claim n=9. The forbidden-minus-one set only starts containing
+values beyond {3} at n>=7 (2^3-1=7), so near-miss data is genuinely thin
+at this scale; n=9-10 (reaching 2^4-1=15) is the natural next target with
+a faster implementation (streaming geng, caching SPQR per graph instead
+of per edge).
+
+## E15. SPQR composition-rule verification (redirection 2026-07-25, third pass, task Part 4)  [PROVED + INDEPENDENTLY VERIFIED]
+`verifier/spqr_signature.py`: implements the series/parallel Sigma(P)
+composition rules (one_pole.md's rooted-SPQR-signature section) and
+cross-checks them against brute-force exhaustive path/cycle enumeration
+on the concretely assembled graph, for a battery of series compositions
+(path lengths 1-3 x 1-3) and parallel compositions (2-4 branches, lengths
+1-4). **All tests passed exactly** (`python3 verifier/spqr_signature.py`
+-> "ALL composition-rule tests PASSED").
+
+## E16. K4 rigid-skeleton search (redirection 2026-07-25, third pass, task Part 5)  [COMPUTATIONALLY VERIFIED, exploratory]
+`verifier/spqr_k4_skeleton.py`: derives the C4-freeness restriction on
+K4's 6 edges (at most 4 of 6 can be real without some quadrilateral being
+entirely real -- an immediate C4; verified exhaustively over all 2^6
+real/virtual patterns), then runs a bounded search over small candidate
+virtual-edge spectra ({2},{3},{2,3},{3,4},{2,4},{5}) for all 7^6=117,649
+edge-assignment combinations.
+
+| total configs | forced C4 | forced other dyadic (8,16,...) | skeleton-level F-clean |
+|---|---|---|---|
+| 117,649 | 10,945 | 101,179 | 5,525 (4.7%) |
+
+Smallest skeleton-clean example found: edges (1,2),(1,3),(1,4) real,
+(2,3)->{3}, (2,4)->{5}, (3,4)->{5}, giving cycle spectrum {5,7,10,12,13}
+(no dyadic hits). **This is a skeleton-level result only** -- it does not
+certify a full one-pole survivor (each virtual edge's spectrum must still
+be realized by an actual gadget with its own F-clean internal cycles, not
+tracked at this level). Reported as a candidate direction, not a proved
+reducible configuration.
