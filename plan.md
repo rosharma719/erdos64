@@ -133,6 +133,37 @@ full proofs):
   to a search we do control locally — see `verifier/state_search_proto.py`
   and experiments.md E10 for the prototype and its (small, local) findings.
 
+## Reprioritization 2026-07-25 (second pass, post external review)
+External review of the redirection pass above reframed priorities. Adopted
+in full:
+1. **Determine whether S4/S5 are genuinely new.** Targeted literature
+   search launched (specific phrase combinations: "minimal counterexample"
+   + connectivity/bridge/cut-vertex/block-decomposition terms; standard
+   extremal-graph-theory "doubling" technique names; EG survey articles;
+   Royle–Markström, Gyárfás, Daniel–Shauger, Heckman–Krakovski, Hegde–
+   Sandeep–Shashank papers). Result appended to literature.md L17 when the
+   search completes.
+2. **Develop the rooted one-pole theory** — now the top computational/
+   structural priority, above cubic search. New file `one_pole.md`: a
+   "master minimality" framing (smallest object that is either a plain
+   δ≥3 F-clean graph or an F-clean one-pole graph) makes the doubling
+   argument fully rigorous. Result: **O1 (bridgeless), O2 (H−r connected),
+   O3 (H fully 2-connected — strictly stronger than S5 gave for G)** all
+   PROVED; **O4 (root-neighborhood theta/book structure)** stated as a
+   precise open target with the exact Menger-theorem obstruction recorded
+   (2-connectivity of H doesn't by itself give 2 disjoint root-neighbor
+   paths avoiding r — that needs ruling out a 2-cut {r,w}). Direct
+   cross-link found back to S5: a cut vertex's lobe in G is *itself* a
+   one-pole graph, so S5's surviving case (one cut vertex, equal lobes)
+   presupposes a one-pole survivor exists.
+3. **Ear decomposition / cycle-space** — now well-defined thanks to O3 (H
+   2-connected ⇒ has an open ear decomposition). Flagged as the next
+   structural direction (one_pole.md §5) but not developed yet.
+4. **Computation only to test structural conjectures**, not to push raw
+   vertex bounds. The n=10 one-pole exhaustive push is deprioritized under
+   this rule (it was pure bound-pushing); resume it only if O4 or the ear
+   direction produces a specific small-case conjecture worth testing.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

@@ -339,6 +339,19 @@ The honest residual statement: single-scale distinct-length pairwise forcing is
 insufficient; whether δ≥3 forces a *multi-scale* or *repeated-length* path system
 is open (Track C, still live). [Track C sub-obstruction — kept, scope corrected.]
 
+## One-pole gadget lemmas (redirection 2026-07-25) — see one_pole.md for full detail
+O1–O3 [PROVED, novelty unchecked]: a master-minimal one-pole graph
+(root r deg 2, else δ≥3, F-clean) has no bridge, H−r is connected, and H
+is **fully 2-connected** (no cut vertex at all) — strictly stronger than
+S5 could establish for G itself, because peeling a piece off a one-pole
+graph always shrinks it (no "same order" loophole the way doubling equal
+cut-vertex lobes of G does). O4 [OPEN, precise target]: whether H−r
+contains 2 internally-disjoint root-neighbor paths, which would force a
+genuine theta/book structure and connect directly to Track C's additive
+lemmas on a real (not hypothetical) object. See one_pole.md for full
+proofs and the cross-link back to S5 (a cut vertex's lobe in G is itself a
+one-pole graph).
+
 ## Ordering-defect lemmas (redirection 2026-07-25) — see defect.md for full detail
 
 ### D-def, D-identity  [PROVED, pure algebra]

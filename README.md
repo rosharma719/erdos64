@@ -18,6 +18,10 @@ work in the sibling `erdos/` directory — no shared code.
 - `defect.md` — **arbitrary-order redirection (2026-07-25):** the
   ordering-defect parameter D, S4/S5 bridge/cut-vertex proofs summary,
   and the disproof of the literal "n≤2D+3" central target.
+- `one_pole.md` — **rooted one-pole gadget theory (2026-07-25, current top
+  priority):** O1–O3 prove a master-minimal one-pole graph is fully
+  2-connected; O4 is the precise open target (theta/book structure at the
+  root) linking to Track C's additive lemmas.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.

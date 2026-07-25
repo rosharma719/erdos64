@@ -109,6 +109,21 @@ by S1) — see defect.md §4 for the full proof and diagnosis. The vine
 charging lemma V1 ("#missing dyadic lengths ≤ D") is **[DISPROVED]**,
 witness n=13 D=0 missing={4}. Full detail: defect.md (new file).
 
+### P7b [PROVED, novelty unchecked] One-pole gadget structure (2026-07-25, second redirection pass)
+New file one_pole.md, "master minimality" framing (smallest object that is
+either a plain δ≥3 F-clean graph or an F-clean one-pole graph — this
+resolves a snag where naive one-pole-only minimality can't handle a bridge
+split producing a plain graph). Result: **O1 (bridgeless), O2 (H−r
+connected), O3 (H fully 2-connected)** — O3 is strictly stronger than S5's
+"at most one cut vertex" for G, because peeling a piece off a one-pole
+graph always strictly shrinks it (no same-order loophole). Cross-link to
+S5: a cut vertex's lobe in G is itself a one-pole graph, so S5's surviving
+case presupposes a one-pole survivor exists. **O4** (does H−r contain 2
+disjoint root-neighbor paths, forcing a genuine theta/book structure onto
+Track C's additive machinery) is the precise next open target, with the
+exact Menger-theorem obstruction recorded. This is now the top structural
+priority per the reprioritization in plan.md.
+
 ### P7 [COMPUTATIONALLY VERIFIED, in progress] One-pole search (task Part 5)
 Rooted graphs with one degree-2 root, rest δ≥3, searched for power-of-two-
 cycle-freeness (a survivor doubles into a direct counterexample via S4's
