@@ -717,3 +717,59 @@ F-clean `G`, closing **all of Part VI**:
 \[
 \boxed{h=2\text{ is impossible at }q=3.}
 \]
+
+## Part VII: eliminating (or isolating) `h=3`
+
+`H=\{a,b,c\}`. Row 5 (`c_1,c_3)=(2,0)`, leaf graph a 2-edge path on
+`H`) and row 6 (`(c_1,c_3)=(3,1)`, leaf graph `K_3`).
+
+### VII.1–2. Row 5, `(c_1,c_3)=(2,0)` [ELIMINATED, by a new H-degree
+feasibility argument]
+
+**Structure forced, not assumed.** The 2 `C_1` vertices cannot split
+1+1 across components (handshake parity, II.2), so they share one
+component, forced — having exactly 2 odd-degree vertices (both degree
+1) and everything else degree 2 — to be a bare **path** (`\beta=0` for
+this component, the degenerate case of VI.2's lollipop-arithmetic
+identity with the degree-3 vertex removed). Since `c_3=0`, **no other
+kernel vertex exists anywhere in `F`** — no second kernel-bearing
+component is even possible.
+
+**Pure-cycle compatibility, checked exhaustively [PROVED].** Could a
+Part-V-legal pure-cycle component (`h=3`'s survivors: `s=3` or `s=5`)
+coexist alongside this path? `verifier/kernel_h3_c1c3_20.py` tests
+*every* (path-survivor, pure-cycle-survivor) pair jointly: **all 144
+pairs are incompatible** (every one produces a C4, C8, or C16). By
+subgraph monotonicity, one incompatible pairing already forbids *any*
+number of pure cycles (deleting extra components from an F-clean graph
+cannot remove a cycle the remaining piece already has), so `F` is
+**exactly** this one path component: `\kappa(F)=1`.
+
+**The new argument: `H`-degree feasibility [PROVED].** Every `H`-vertex
+needs `G`-degree `\ge4` — that is the definition of `H` — and since
+`H`-`H` edges never exist, `e(C,H)` is *exactly* the sum of the 3
+`H`-vertices' degrees. With `F` being just this one path
+(`n=h+c_1+c_2=5+t`, `t` the path's internal-`C_2` count), the
+already-proved identity `e(C,H)=n+3h-4-2q` gives `e(C,H)=(5+t)+9-4-6=
+4+t`. Requiring `e(C,H)\ge4h=12` forces **`t\ge8`**. Combined with Part
+IV's own proved bound `t\le8` for `h=3`, this **forces `t=8` exactly**
+— no other path length is even structurally consistent with every
+`H`-vertex actually belonging to `H`.
+
+**`t=8` has zero valid colourings [computed, exhaustive].** The full
+sweep of every `(p\text{-colours},q\text{-colours},\text{internal
+colouring})` combination at `t=8` (`verifier/kernel_h3_c1c3_20.py`,
+cross-checking Part IV's own colored-path search, which already
+enumerates every `t\le8` word exhaustively) finds **0** C4/C8/C16-free
+realizations. (The only C4/C8/C16-free path realizations at *any* `t`
+occur at `t=0` and `t=2` — 6 each, 12 total — but both are `H`-degree-
+infeasible, giving some `H`-vertex degree `<4`, so they are not
+completions of a genuine minimal counterexample regardless of their
+cycle-freeness.)
+
+**Conclusion.**
+\[
+\boxed{(c_1,c_3)=(2,0)\text{ at }h=3\text{ is impossible: row 5 is
+eliminated.}}
+\]
+See `manifests/kernel_h3_c1c3_20_manifest.json`.
