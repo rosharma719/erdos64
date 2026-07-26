@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from verifier.cubic_core import check_identities, cubic_core_partition  # noqa: E402
 from verifier.cycle_detect import from_edges, has_cycle_len_dfs, has_cycle_len_nx  # noqa: E402
 from verifier.d1_search import is_property2_fast  # noqa: E402
+from verifier.z3_certificate import compact_json  # noqa: E402
 
 
 def via_geng_q2(n: int):
@@ -561,10 +562,10 @@ def main() -> int:
         "h2_c1c3_1_shape": shape,
         "h2_c1c3_1_pendant_cases": pendant_cases,
     }
-    encoded = json.dumps(report, indent=2, sort_keys=True, default=str)
+    encoded = compact_json(report)
     report["records_sha256"] = hashlib.sha256(encoded.encode()).hexdigest()
     if args.output:
-        args.output.write_text(json.dumps(report, indent=2, sort_keys=True, default=str) + "\n")
+        args.output.write_text(compact_json(report) + "\n")
 
     ok = (
         not wif["failures"]
