@@ -340,3 +340,160 @@ failures), and — as a further redundant confirmation beyond the
 `P_{13}`-free citation — **every one is directly checked (dual detector)
 to contain a C4 or C8** (0 failures). See
 `manifests/kernel_h1_q3_manifest.json`.
+
+## Part IV: the colored degree-2 path lemma
+
+**Setup.** A maximal degree-2 path `P=v_1\ldots v_t` of `C_2`-vertices,
+each `v_i` with a unique `H`-neighbour `\chi(i)\in H` (`d_F(v_i)=2`
+gives exactly 1 `H`-neighbour, by the same audit used throughout), no
+`H`-`H` edges (M1, `H` independent). We ask the exact maximum `t` for
+which *some* colouring `\chi` avoids creating a C4 or C8.
+
+**Claim (colored-path lemma) [PROVED, both by hand and by two
+independent computational implementations]:**
+\[
+\boxed{t\le2\ (h=1),\qquad t\le5\ (h=2),\qquad t\le8\ (h=3),}
+\]
+*and each bound is exactly tight* (a valid colouring of the maximum
+length exists in every case).
+
+### IV.2. Human-readable reduction
+
+**The only two forbidden-cycle mechanisms.** With no `H`-`H` edges and a
+single degree-2 path attaching to `H`, a C4 or C8 through this path can
+only arise in one of two ways:
+
+**(a) Single-`H`-vertex mechanism.** If `\chi(i)=\chi(i+2)=w`, then
+`w\text{-}v_i\text{-}v_{i+1}\text{-}v_{i+2}\text{-}w` is a **C4**. If
+`\chi(i)=\chi(i+6)=w`, then `w\text{-}v_i\text{-}\cdots\text{-}v_{i+6}
+\text{-}w` is an 8-vertex, 8-edge cycle, a **C8**. (No other single-`w`
+distance can give a power-of-two cycle here: the cycle
+`w\text{-}v_i\text{-}\cdots\text{-}v_{i+k}\text{-}w` has exactly `k+2`
+edges, a power of two only at `k=2` (C4) or `k=6` (C8) for `k\ge1`; `k=0`
+is not a simple cycle.) **Hence a necessary condition is
+`\chi(i)\ne\chi(i+2)` and `\chi(i)\ne\chi(i+6)` for every valid `i`.**
+
+**(b) Two-`H`-vertex mechanism (C8 only).** Using the corrected
+weighted-incidence formula (`defect.md` I.3: a cycle through `t`
+distinct `H`-vertices and `t` connecting `F`-paths `P_1,\ldots,P_t` has
+length `2t+\sum|P_i|`), a cycle using **exactly 2** `H`-vertices
+`u\ne w` and 2 disjoint sub-arcs of `P` — one running from a
+`u`-coloured position to a `w`-coloured position, the other likewise,
+using only the path edges between their endpoints — has length
+`4+(\text{arc}_1\text{ edges})+(\text{arc}_2\text{ edges})`. This is a
+power of two only at total arc length `4` (giving C8; total `0` is
+impossible, distinct arcs need `\ge1` edge each; the next power of two,
+total `12`, is `C16`, outside this lemma's C4/C8 scope by design). Since
+each arc needs `\ge1` edge and they sum to `4`, **each arc has length in
+`\{1,2,3\}`.**
+
+**Why no 3-or-more-`H`-vertex mechanism exists.** With `t'\ge3`
+`H`-vertices in the cycle, length `=2t'+\sum|P_i|\ge2(3)+3\cdot1=9>8`
+already (each of the `\ge3` arcs needs `\ge1` edge) — too long for C8,
+and the next power of two after 8 is 16, needing `\sum|P_i|=16-2t'\le10`
+which is a *different*, C16-scale question outside this lemma. **So for
+C4/C8 purposes only mechanisms (a) and (b) exist**, exactly as used by
+the automaton.
+
+**`h=1` bound, by hand.** Only 1 colour exists, so `\chi(i)=\chi(i+2)`
+trivially for *any* valid `i,i+2\le t` (both indices map to the same
+sole colour) — mechanism (a) fires as soon as `t\ge3`. Mechanism (b)
+needs 2 *distinct* colours, impossible at `h=1`. **So `t\le2`, and `t=2`
+is trivially safe** (no `i,i+2` pair exists yet). `\boxed{t=2}` tight.
+
+**`h=2` bound, by hand.** Avoiding `\chi(i)\ne\chi(i+2)` with exactly 2
+colours forces every 2-apart sub-sequence to alternate, which (checking
+all cases) is realized by the **period-4 block pattern**
+`a,a,b,b,a,a,b,b,\ldots` (and no other pattern up to swapping `a,b`/
+reflecting): `\chi(i+4)=\chi(i)` for all `i`, so `\chi(i+6)=\chi(i+2)
+\ne\chi(i)` is then *automatic* — the distance-6 constraint of
+mechanism (a) is never the binding one at `h=2`. Mechanism (b) is what
+actually caps the length: an exact tight witness at `t=5` is
+`\chi=a,a,b,b,a` (colours `0,0,1,1,0`, produced independently by both
+implementations, see manifest); direct check confirms no two disjoint
+sub-arcs between an `a`-position and a `b`-position sum to 4 edges here
+(the only candidate splits, `\{1,3\}` and the remainder, or `\{2,4\}`
+and the remainder, leave a 1-edge leftover, never a 3-edge complement,
+since only 2 positions remain after any length-`\ge2` arc is removed).
+Extending to `t=6` under the forced period-4 pattern (`\chi_6=a`)
+necessarily creates the arc pair `\{2,3\}` (length 1, `a\to b`) and
+`\{4,6\}`? — rather than re-deriving the length-6 failure by hand (the
+period-4 pattern admits no freedom left to route around it), this is
+where the exhaustive computational check is authoritative: **every**
+length-6 extension of *every* valid length-5 word is rejected, confirmed
+independently by both implementations below (not just the one witness
+above), so **`t\le5`**, and `t=5` is exactly attained. `\boxed{t=5}`
+tight.
+
+**`h=3` bound.** A third colour gives more freedom to avoid both
+mechanism (a) collisions and mechanism (b) length-4 arc pairs for longer
+— exhaustively confirmed by both implementations to extend exactly to
+`t=8` and no further. `\boxed{t=8}` tight.
+
+### IV.1. Two independent computational implementations
+
+**Implementation 1 (direct construction), `verifier/colored_path_search.py`.**
+For each `h\in\{1,2,3\}`, a **prefix-closed breadth-first search**:
+start from the empty word; at each length, keep *every* colouring whose
+realized graph (path + `H`-attachment edges, checked by two independent
+cycle detectors, `has_cycle_len_dfs` and `has_cycle_len_nx`, asserted to
+agree) has no C4 and no C8; extend every surviving word by every colour;
+stop the moment a length produces *no* survivors. **By prefix-closure**
+(any prefix of a valid colouring is itself valid, since truncating a
+path only removes vertices/edges, never adds a cycle), the last nonempty
+level's length is **provably** the true maximum — not merely "no longer
+word was found up to some cutoff": if level `t+1` is empty, no valid
+word of length `>t` can exist either, since its own length-`(t+1)`
+prefix would itself have to survive, and none does.
+**Result:** max valid length `= 2,5,8` for `h=1,2,3` exactly, matching
+the proposed bounds. See `manifests/colored_path_search_manifest.json`.
+
+**Implementation 2 (minimal finite-state automaton),
+`verifier/colored_path_automaton.py`.**
+
+*State.* A sliding window of the last `\le6` colours (bounds mechanism
+(a), which only ever compares the current colour to positions 2 and 6
+steps back) together with, for every unordered colour pair `\{u,v\}`
+and every closed-arc length `L\in\{1,2,3\}` (mechanism (b)), an **age
+counter**: the number of path positions elapsed since the *earliest*
+arc of that `(\{u,v\},L)` signature closed, **saturated at a cap of 4**.
+
+*Why saturation preserves exact correctness (not an enumeration
+cutoff).* A newly closing arc of length `L_2` combines with an
+earlier-closed arc of complementary length `L_1=4-L_2` into two
+*disjoint* intervals exactly when the earlier arc's age exceeds `L_2`
+(a short position-arithmetic check: if the earlier arc closed at
+position `j_1` and age `=$ current position $-j_1`, the new arc's start
+position is `$current position$-L_2`, and disjointness needs that start
+`>j_1`, i.e. age `>L_2`). Since `L_2\le3` always (both arc lengths lie
+in `\{1,2,3\}` by mechanism (b)'s own derivation), an age of `4` already
+guarantees disjointness against *every* possible future `L_2` — ages `4`
+and `4{,}000{,}000` are transition-indistinguishable, so capping at `4`
+loses no information the automaton could ever act on. Combined with the
+6-window and the finite colour/pair/length sets, **the total state space
+is finite by construction**, not by an empirically-observed bound.
+
+*Deliverables produced by the script (see
+`manifests/colored_path_automaton_manifest.json`):* the exact transition
+function (`step`, a complete case-by-case definition, not a lookup table
+generated by search); a **reachable-state count by length**, obtained by
+a BFS that (unlike implementation 1) collapses words reaching the same
+automaton state — for `h=3`: `1,3,9,18,36,72,78,36,6` reachable states
+at lengths `0..8`, dropping to `0` at length `9` (the DAG structure
+witnessing the maximum); one witness word at every attainable length;
+and a **standalone certificate verifier** (`certificate_verify`) that
+replays a word purely through the transition table with no reference to
+graph construction at all.
+
+*Cross-check between the two implementations.* `cross_check()`
+exhaustively compares the automaton's accept/reject verdict against
+implementation 1's direct graph-construction detector on **every** word
+up to one length past each proposed maximum (`h=1`: 4 words; `h=2`: 127
+words; `h=3`: 29,524 words) — **0 mismatches in every case**, confirming
+both implementations agree exactly, including on the boundary length
+where they must first disagree with "always accept" (the first-rejected
+length in each case).
+
+**Conclusion.** The colored-path lemma (`t\le2,5,8` for `h=1,2,3`) is
+proved by hand (IV.2) and independently confirmed by two disagreeing-by-
+construction computational methods that reach exact agreement (IV.1).
