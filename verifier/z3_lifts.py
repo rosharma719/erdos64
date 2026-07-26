@@ -125,6 +125,23 @@ def lift_graph(base: Base, values: Sequence[int]) -> nx.Graph:
     return lifted
 
 
+def lift_detector_graph(base: Base, values: Sequence[int]):
+    """Construct the same lift directly in the detector's adjacency format."""
+    if len(values) != len(base.cotree_edges):
+        raise ValueError("one voltage is required per cotree edge")
+    voltage = {edge: 0 for edge in base.tree_edges}
+    voltage.update(zip(base.cotree_edges, values))
+    lifted = {v: set() for v in range(3 * base.graph.number_of_nodes())}
+    for u, v in base.edges:
+        a = voltage[(u, v)]
+        for sheet in range(3):
+            left = 3 * u + sheet
+            right = 3 * v + (sheet + a) % 3
+            lifted[left].add(right)
+            lifted[right].add(left)
+    return lifted
+
+
 def graph_as_detector_dict(graph: nx.Graph):
     return from_edges(graph.number_of_nodes(), sorted(graph.edges()))
 

@@ -174,6 +174,30 @@ Reproduction:
 `PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q tests/test_global_core_check.py`
 and `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/global_core_check.py`.
 
+## E25. Exhaustive normalized cyclic Z3 lifts (2026-07-25)
+[COMPUTATIONAL ELIMINATION; independently reproduced]
+
+The four certified 24-vertex cubic `{C4,C8}`-free, `C16`-positive bases have
+cycle rank 13. `verifier/z3_lift_search.cpp` exhaustively tested every nonzero
+normalized Z3 assignment, `4(3^13-1)=6,377,288`, without symmetry quotienting.
+The exact stage counts are:
+
+| base | C4 survivors | C8 survivors | C16 survivors | C32 | C64 |
+|---:|---:|---:|---:|---:|---:|
+| 0 | 1,594,322 | 54,458 | 0 | 0 | 0 |
+| 1 | 1,594,322 | 570,806 | 0 | 0 | 0 |
+| 2 | 1,594,322 | 750,140 | 0 | 0 | 0 |
+| 3 | 1,594,322 | 170,342 | 0 | 0 | 0 |
+
+The independent Python detector checked every one of the 6,377,288 post-C4
+assignments and every one of the 1,545,746 post-C8 assignments, plus 1,024
+deterministic random assignments and all eight stored witnesses: zero
+disagreements. See `manifests/z3_lift_run_manifest.json` for checksums and
+`z3_lifts.md` for the normalization and exactness proofs.
+
+Conclusion, with exact scope: no connected cyclic Z3-lift of these four
+specific bases is an Erdős--Gyárfás counterexample.
+
 ## E-struct. (planned) computational spot-check of B3/M3 on edge-minimal
 C4∧C8-free graphs (validates the deletion-minimality reduction on real graphs).
 ## E2. (pending) Cubic exhaustive `geng -c -d3 -D3` (reproduce L11 cubic ≥30).

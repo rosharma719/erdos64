@@ -73,3 +73,37 @@ sample); C4 took 0.058--0.062 seconds and C16 took at most 0.004 seconds because
 every sampled C8 survivor quickly exhibited a C16. No sample reached C32 or
 C64. Exact counts and timings are frozen in
 `manifests/z3_lift_benchmark.json`.
+
+## Exhaustive result
+
+All 6,377,288 nonzero assignments completed. Survivor counts were:
+
+| base | after C4 | after C8 | after C16 | after C32 | after C64 |
+|---:|---:|---:|---:|---:|---:|
+| 0 (Markström) | 1,594,322 | 54,458 | 0 | 0 | 0 |
+| 1 | 1,594,322 | 570,806 | 0 | 0 | 0 |
+| 2 | 1,594,322 | 750,140 | 0 | 0 | 0 |
+| 3 | 1,594,322 | 170,342 | 0 | 0 | 0 |
+| **total** | **6,377,288** | **1,545,746** | **0** | **0** | **0** |
+
+Thus every assignment was eliminated by an exact C8 or C16 witness; none
+reached C32. The C32 and C64 survivor counts are therefore exactly zero by
+staged rejection, and there is no final survivor to preserve under the
+counterexample protocol.
+
+The independent Python audit is exhaustive at both nonvacuous survivor
+boundaries. `has_cycle_len_dfs` reconstructed and checked all 6,377,288
+post-C4 assignments (zero C4 disagreements), then all 1,545,746 post-C8
+assignments (each independently C8-free and C16-positive). It also agreed on
+1,024 deterministic random assignments across both rejection paths and
+validated all eight saved C8/C16 witnesses edge-by-edge. There were zero
+disagreements. Checksums and exact per-shard certificates are in
+`manifests/z3_lift_run_manifest.json`.
+
+The certified conclusion is intentionally narrow:
+
+> No connected cyclic Z3-lift of these four specific 24-vertex base graphs is
+> an Erdős--Gyárfás counterexample.
+
+It says nothing about other graph covers, cyclic 5-lifts, noncyclic voltage
+groups, or arbitrary cubic graphs.

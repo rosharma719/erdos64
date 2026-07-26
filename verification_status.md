@@ -13,6 +13,7 @@ it must not be paraphrased as formally verified.
 | Defect framework (G3) | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | `q>=1`, exact forward-degree deficit identity, and degree-excess bound; small inclusion-minimal graphs checked adversarially. |
 | Four 24-vertex lift bases | `SOURCE_CERTIFIED`, `COMPUTATIONALLY_REPRODUCED` | Hegde--Sandeep--Shashank `special-graphs` at frozen commit; graph6/sparse6/edge checksums, automorphisms, rank, and two-detector C4/C8/C16 certificates in `z3_bases_manifest.json`. |
 | Normalized cyclic Z3 framework | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Exact 13-coordinate gauge normalization and connectivity proof; Python fixtures cover zero and nonzero lifts; C++ staged exact engine covers 4/8/16/32/64. |
+| Cyclic Z3 lift enumeration | `COMPUTATIONAL_ELIMINATION`, `INDEPENDENTLY_REPRODUCED` | All 6,377,288 nonzero assignments: 1,545,746 survive C8 and zero survive C16. Python checked every post-C4 and post-C8 survivor, 1,024 random assignments, and every stored witness with zero disagreements. Scope is only these four bases. |
 | S4 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Bridgelessness proof in `lemmas.md`; novelty supported by limited search. |
 | S5 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Cut-vertex classification in `lemmas.md`; novelty supported by limited search. |
 | O1 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Master-minimal one-pole graph is bridgeless. |
