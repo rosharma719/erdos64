@@ -484,6 +484,37 @@ a non-simple projection). 0 counterexample candidates found. A larger
 50M-sample confirmatory run did not complete in budget; not used in any
 conclusion.
 
+## Derived leaf graph L(G) (2026-07-27 pass) — see defect.md Leaf-compression Part I for full detail
+
+### I.1 (new). Leaf-count identity [PROVED, pure algebra]
+`c1 = c3 + 4h - 2q - 4`, by substituting `beta(F)=q+2-2h+kappa` into
+`c1=c3+2*kappa-2*beta(F)` (kappa cancels exactly). 0 failures across
+1,457 checks.
+
+### I.2 (new). Derived leaf graph L(G) [PROVED / MECHANICALLY VERIFIED]
+Multigraph on H: every `x in C1` (exactly 2 distinct H-neighbours `a_x,
+b_x`) contributes edge `a_x b_x` labelled `x`. **L1** (simplicity): a
+label collision would give a C4 in G, impossible for F-clean G. **L2**
+(cycle lifting): an r-cycle of L lifts to a genuine simple 2r-cycle of G
+(every sub-claim -- distinct vertices/labels, no overlap, edge existence
+-- checked explicitly). **L3**: L has no power-of-two cycle (else G
+would). **L4**: L is 2-degenerate (else a smaller counterexample would
+exist) -- a minimality argument, not empirically testable, same status
+as S4/S5/O1/O3/G2. Edge bound `c1<=2h-3` for `h>=2`; `h=0,1` handled
+directly (c1=0 forced by |H| too small, not by degeneracy counting).
+0 mismatches: L1 (0 collisions across 1,443 synthetic C4-free instances,
+matching the C4-freeness precondition exactly), L2 (0 failures across
+833 lifted-cycle reconstructions). **No genuine small EG counterexample
+fixture exists to test L1/L2 "for real"** -- all 12 order<=7
+inclusion-minimal-delta>=3 atlas fixtures already contain a C4.
+
+### I.3 (new). Defect/high-degree inequality [PROVED, scope precise]
+Strong form `c3+2h<=2q+1` holds **only for h>=2** (genuinely fails at
+h=0, checked directly -- not a near-miss). Weak corollary `h<=q` holds
+for ALL h>=0, but via two different mechanisms: trivial from the
+already-proved q(G)>=1 (G2) at h in {0,1}, genuine leaf-graph consequence
+at h>=2.
+
 ## Cubic-core decomposition (2026-07-26 pass) — see defect.md Part I for full detail
 
 ### I.1a-c. Cross-count/internal-edge/beta(F) identities [PROVED, pure algebra]

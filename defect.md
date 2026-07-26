@@ -1,5 +1,190 @@
 # defect.md — the ordering-defect parameter q
 
+## 2026-07-27 Leaf-compression phase, Part I: the derived leaf graph L(G)
+
+**Standing reminder (repeated, per project discipline): every proof below
+is a hand-checked Markdown argument cross-validated by independent
+computation. None of it is proof-assistant formal verification.**
+
+Throughout, `G` is a lexicographically minimal Erdős–Gyárfás counterexample
+(order-minimal first, then edge-minimal, δ≥3, no cycle of length a power
+of two), with `C`, `H`, `h`, `F`, `C_i`, `c_i`, `q` exactly as in the
+2026-07-26 Part I section below.
+
+### I.1. The leaf-count identity `c₁ = c₃ + 4h − 2q − 4` [PROVED, pure algebra]
+
+The 2026-07-26 pass proved (below, I.1c and I.1d)
+\[
+\beta(F) = q + 2 - 2h + \kappa, \qquad c_1 = c_3 + 2\kappa - 2\beta(F).
+\]
+Substitute the first into the second — `κ` cancels exactly:
+\[
+c_1 = c_3 + 2\kappa - 2(q+2-2h+\kappa) = c_3 + 2\kappa - 2q - 4 + 4h - 2\kappa,
+\]
+\[
+\boxed{c_1 = c_3 + 4h - 2q - 4.}
+\]
+
+**Audit of the C₁ definition, as requested.** `C₁ = {v∈C : d_F(v)=1}`.
+For `v∈C₁`, `d_H(v) = 3 - d_F(v) = 2` (every `C`-vertex has degree
+exactly 3, split between `F`- and `H`-neighbours). So **every `x∈C₁` has
+exactly 2 neighbours in `H`**, and those two neighbours are **distinct**
+(G is simple: a simple graph cannot have `x` adjacent to the "same"
+vertex twice, so the 2 elements of `x`'s `H`-neighbourhood, as a set of
+size 2, are genuinely two different vertices `a_x ≠ b_x`).
+
+**Computational validation.** This identity is pure algebra (needs only
+`H` independent + `C`-degree-3 + M2's `C`-restriction, exactly the same
+hypotheses as the 2026-07-26 I.1d identities it's built from) — checked
+directly via `verifier/leaf_graph.py`'s `identity_c1` on the same kind of
+populations as before (atlas graphs + synthetic H-independent, all-C-
+degree-3 constructions): **0 failures across 1,457 applicable checks.**
+
+### I.2. The derived leaf graph `L(G)` [PROVED / MECHANICALLY VERIFIED, with an honest scope note]
+
+**Definition.** `L = L(G)` is a graph on vertex set `H`. For every
+`x∈C₁`, with distinct `H`-neighbours `a_x, b_x` (I.1's audit), add an
+edge `a_x b_x` labelled `x`. (`verifier/leaf_graph.py`'s
+`build_leaf_graph` constructs this explicitly, tracking simplicity as a
+checked property of the OUTPUT rather than an assumption on the input.)
+
+**L1 (simplicity) [PROVED].** Suppose distinct `x,y∈C₁` have the *same*
+`H`-neighbour pair `{a,b}`. Then `a,x,b,y` are 4 pairwise-distinct
+vertices (`a,b∈H`, `x,y∈C`, `H∩C=∅`, `a≠b`, `x≠y`), and the 4 edges
+`ax, xb, by, ya` all exist in `G` (each of `x,y` is adjacent to both `a`
+and `b`, by hypothesis). So `a-x-b-y-a` is a genuine 4-cycle of `G`. Since
+`G` is F-clean (`4∈F`), **`G` has no C4**, so **no such collision can
+occur**: the map `x ↦ {a_x,b_x}` is injective, and **`L` is simple** —
+moreover `|E(L)| = |C₁| = c₁` exactly (the map `C₁ → E(L)` is a
+bijection: injective by L1, and surjective since every `L`-edge is
+labelled by construction).
+
+**L2 (cycle lifting) [PROVED].** Let `a_1 a_2 \cdots a_r a_1` be a simple
+cycle of `L` (`r≥3`, `L` simple), with `x_i∈C₁` labelling edge
+`a_i a_{i+1}` (indices mod `r`). Then
+`a_1, x_1, a_2, x_2, \ldots, a_r, x_r, a_1` is a simple cycle of `G` of
+length `2r`. *Proof, checking every sub-claim explicitly, as requested:*
+- **All `a_i` distinct:** immediate, `a_1,\ldots,a_r` is a simple cycle of `L`.
+- **All labels `x_i` distinct:** the edges `\{a_i,a_{i+1}\}` for
+  `i=1,\ldots,r` are pairwise distinct (a simple cycle of length `r≥3` in
+  a simple graph visits `r` distinct edges), and the labelling
+  `C_1\to E(L)` is a bijection (L1), so distinct `L`-edges have distinct
+  labels: `x_i \neq x_j` for `i\neq j`.
+- **No `a_i` equals any `x_j`:** `a_i\in H`, `x_j\in C_1\subseteq C`, and
+  `H\cap C=\varnothing` by definition.
+- **Every required edge exists:** `x_i` labels `\{a_i,a_{i+1}\}`, meaning
+  by construction `\{a_{x_i},b_{x_i}\}=\{a_i,a_{i+1}\}`, i.e. `x_i` is
+  adjacent (in `G`) to *both* `a_i` and `a_{i+1}`. So both edges
+  `a_i x_i` and `x_i a_{i+1}` exist, for every `i`.
+Combining: `2r` pairwise-distinct vertices, each consecutive pair (cyclically)
+joined by a genuine `G`-edge — a simple cycle of length `2r`. ∎
+
+**Honest scope note on computational testing.** L1/L2 are purely
+mechanical/combinatorial facts, checkable on *any* graph with the right
+local structure (`H` independent, `C`-degree-3, M2, **C4-free**) —
+**not** dependent on `G` actually being order-minimal or fully F-clean
+beyond C4-freeness. But **no genuine small Erdős–Gyárfás counterexample
+is available to test on**: every one of the 12 order-≤7
+inclusion-minimal-δ≥3 atlas fixtures already contains a C4 (checked
+directly, 0/12 are C4-free — matches the established pattern that C4 is
+essentially unavoidable at these orders; see B0, P1, P4). So L1/L2 are
+validated instead on **1,443 synthetic C4-free graphs** built by
+generating random `H`-independent, all-`C`-degree-3 constructions and
+keeping only the C4-free ones (`verifier/leaf_graph.py`,
+`synthetic_c4_free_generator`, 1,000,000 raw trials, 1,443 survived the
+C4-free filter — consistent with how rare C4-freeness is at small
+random-construction sizes). Result: **0 L1 collisions found (as required
+by C4-freeness), 0 L2 failures across 833 lifted-cycle checks** (every
+reconstructed length-`2r` cycle independently confirmed simple and of the
+claimed length by the dual DFS/NetworkX detector) —
+`manifests/leaf_graph_manifest.json`.
+
+**L3 (power-cycle cleanliness) [PROVED].** If `L` had a cycle of length
+`r=2^k` (some `k≥2`, so `r≥4≥3`, a genuine simple cycle), L2 would give a
+cycle of length `2r=2^{k+1}` in `G` — a power of two, contradicting `G`'s
+F-cleanness. **So `L` has no cycle of length a power of two.**
+
+**L4 (2-degeneracy of `L`, by order-minimality) [PROVED].** Suppose some
+subgraph `L'\subseteq L` has `\delta(L')\ge3`. Since `L'\subseteq L`:
+(i) `L'` is simple (L1, hereditary); (ii) every cycle of `L'` is a cycle
+of `L`, so `L'` has no power-of-two cycle (L3, hereditary); (iii)
+`|V(L')|\le|V(L)|=h`. Since `C\neq\varnothing` (B3's corollary: every
+minimal counterexample has a nonempty degree-3 set), `h<n`. So `L'` would
+be a **strictly smaller** (`|V(L')|\le h<n`) simple, `δ≥3`,
+power-of-two-cycle-free graph — **a smaller Erdős–Gyárfás counterexample**,
+contradicting the order-minimality of `G`. **Hence `L` has no subgraph of
+minimum degree ≥3**, i.e. `L` is 2-degenerate.
+**Scope note:** this argument is a proof by contradiction against a
+*hypothetical* smaller counterexample and is therefore **not
+independently testable on concrete data** — there is no way to "run" a
+vacuous-antecedent implication. Its soundness rests on the written logic
+above (which reuses exactly the same order-minimality mechanism already
+used, and computationally exercised via its OWN mechanics, in S4/S5/O1/O3
+elsewhere in this project) plus L1/L3's mechanically-verified inputs.
+
+**Edge bound, `h≥2` [PROVED from L4].** A 2-degenerate simple graph on
+`N≥2` vertices has at most `2N-3` edges (peeling-order caps
+`(2,\ldots,2,1,0)`; this needs `N\ge2` for the cap sequence's last two
+entries `1,0` to be distinct positions — see the small-`h` caveat below).
+For `h\ge2`: `|E(L)|=c_1\le 2h-3`.
+
+**Small-order cases, `h=0,1` [handled separately, as instructed].** The
+`2N-3` bound's derivation needs `N=h\ge2`; it is **not applied** at
+`h=0,1`. At `h=0`: `H=\varnothing` forces `C_1=\varnothing` directly (no
+vertex can have 2 distinct neighbours in an empty set), so `c_1=0` — not
+via any edge-count bound, but forced immediately by `|H|=0`. At `h=1`:
+`|H|=1` similarly forces `c_1=0` directly (a `C_1`-vertex needs 2
+*distinct* `H`-neighbours, impossible with `|H|=1`) — again not via the
+2-degeneracy bound. Both cases are handled by direct combinatorics, not
+degeneracy counting.
+
+### I.3. The defect/high-degree inequality [PROVED, with the scope of the strong form stated precisely]
+
+**Strong form, `h≥2` [PROVED].** Combine I.1 and I.2's edge bound:
+\[
+c_3 + 4h - 2q - 4 = c_1 \le 2h-3 \implies \boxed{c_3+2h\le 2q+1}\quad(h\ge2).
+\]
+
+**The strong form is genuinely restricted to `h≥2` — it does NOT extend
+to `h=0,1` as stated.** Direct check at `h=0`: `H=\varnothing` forces
+`F=G`, so every `C`-vertex has `d_F=3` (no `H` to attach to), i.e.
+`c_3=n` and `c_1=c_2=0`; with `q=n/2-2` (cubic case, derived in II.2
+below), `c_3+2h=n` while `2q+1=n-3` — **`n\le n-3` is false**, so
+`c_3+2h\le2q+1` genuinely fails at `h=0` (it is simply the wrong tool
+there, not a near-miss). This is expected and consistent: I.1's identity
+at `h=0` is `0=c_3-2q-4` (an **equality**, from `c_1=0` being forced
+directly, not an inequality from an edge bound), which independently
+recovers `q=n/2-2` exactly — see II.2.
+
+**Weak corollary, all `h` [PROVED].** For `h\ge2`, `c_3\ge0` gives
+`2h\le c_3+2h\le2q+1`, so `h\le q+\tfrac12`, and since `h,q` are integers,
+\[
+\boxed{h\le q}\qquad(h\ge2).
+\]
+For `h=0,1`: `h\le q` holds **trivially**, via the *already-proved*
+G2 theorem `q(G)\ge1` (not via any leaf-graph argument) — `h=0\le q`
+since `q\ge1\ge0`; `h=1\le q` since `q\ge1`. **So `h\le q` holds for every
+`h\ge0`, but by two different mechanisms**: a trivial corollary of G2 at
+`h\in\{0,1\}`, and a genuine consequence of the leaf-graph 2-degeneracy
+bound at `h\ge2`. Conflating these (asserting the strong inequality
+`c_3+2h\le2q+1` uniformly) would be an error — flagged and avoided here.
+
+**Computational validation, and its honest limits.** The pure-algebra
+identity (I.1) is checked broadly (1,457 cases, 0 failures, above). The
+mechanical leaf-graph facts L1/L2 underlying the edge bound are checked
+on 1,443 synthetic C4-free instances (above). The 2-degeneracy step (L4)
+and hence the *derivation* of `c_1\le2h-3` for `h\ge2` are **not**
+independently testable (L4's scope note above) — no genuine `h\ge2`
+Erdős–Gyárfás counterexample fixture exists to compute `c_1` and `2h-3`
+on and confirm the inequality "for real." This is stated explicitly, not
+elided: the strong inequality's *proof* is checked line-by-line by hand
+above and its *mechanical prerequisites* (L1, L2, the identity) are
+checked computationally; the minimality step itself is unavoidably a pure
+logical argument, exactly as with every other minimality-based lemma in
+this project (S4, S5, O1, O3, G2 itself).
+
+---
+
 ## 2026-07-26 Part I: the cubic-core decomposition [PROVED IN WORKSPACE]
 
 **Standing reminder (repeated at every major claim in this file, per project
