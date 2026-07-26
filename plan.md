@@ -343,6 +343,53 @@ Summary (full detail: two_cut.md):
 - K4 census **not extended** this pass, per instruction (retained as
   supporting data only).
 
+## Seventh pass 2026-07-25: T4, exact bridge-count classification, T5, corrected balanced census
+Per instruction: add subfamily-minimality consequences before extending
+the bridge-signature enumeration. Full detail: two_cut.md.
+- **T4 [PROVED]**: no proper sub-selection of {bridges}∪{xy edge if
+  present} reaches degree ≥3 at both terminals — omitting a bridge
+  breaks order-minimality, omitting just the edge (keeping all bridges)
+  breaks edge-minimality given the order tie.
+- **Exact classification [PROVED]**: a pairwise argument (for t≥3, every
+  pair must share aᵢ=aⱼ=1 or bᵢ=bⱼ=1) extends to a common-coordinate
+  lemma for all t≥3 bridges simultaneously, and a NEW argument shows
+  t≥4 is impossible outright (any 3-subfamily of a common-coordinate
+  ≥4-bridge set violates T4 directly) — **every 2-cut has exactly 2 or 3
+  nontrivial bridges**, sharpened into exactly Type A (t=3, xy∉E(G),
+  a₁=a₂=a₃=1, deg_G(x)=3, q=3,3,3), Type B (t=2, xy∈E(G), a₁=a₂=1,
+  deg_G(x)=3, q=3,3), or Type C (t=2, xy∉E(G), neither bridge reaches
+  both terminal degrees ≥3, q∈{2,3}).
+- **Correction to the fifth pass**: the "k=3 fully-evading" balanced
+  case was stated with only an edge INEQUALITY (2eᵢ≥eⱼ+eₖ); this was an
+  incomplete derivation — the same inequality, applied to all 3
+  simultaneously and ordered, forces e₁=e₂=e₃ EXACTLY (a short ordering
+  argument: the smallest value's inequality combined with the trivial
+  reverse bound forces equality throughout). Both S5-analogue balanced
+  cases (k=2 both q=2, and k=3 all q=3) are now fully pinned equal-
+  signature configurations, not one exact and one merely constrained.
+- **T5 [PROVED, both versions]**: replacing 2 bridges with 2 copies of
+  one of them (dropping the other, three-bridge case) or retaining the
+  shared edge (two-bridge-plus-edge case) reduces the whole lex
+  comparison to just the doubled bridge's own (c,e) vs. the dropped
+  bridge's (c,e) — the third bridge's signature cancels out entirely.
+  Corollary: a self-sum-clean bridge is always lex-maximal; if ALL
+  bridges in a triple/pair are self-sum-clean, their signatures are
+  forced identical — an independent re-derivation of the corrected
+  balanced-case conclusion above via a completely different construction.
+- **Compatibility search refactored** to the 3 exact types only (no
+  arbitrary signature cliques), with T5 applied before cross-spectrum
+  checks; new targeted Type-A abstract+realizable search
+  (`verifier/three_bridge_search.py`): 318 abstract signature triples
+  satisfy every proved condition (T2+T4+T5), 0 realizable — inherited
+  directly from the still-empty bridge-signature library (n≤7, now
+  explicitly relabeled PIPELINE VALIDATION per instruction, not evidence
+  of nonexistence). Smallest identified obstruction to a three-bridge
+  exclusion theorem: realizability, not the T2/T4/T5 combinatorics
+  themselves (already numerically satisfiable).
+- **Main target reprioritized**: excluding Type A (three-bridge 2-cuts)
+  specifically, ahead of the full 3-connectivity target — kept
+  CONJECTURAL, no exclusion theorem claimed.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

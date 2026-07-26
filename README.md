@@ -63,6 +63,8 @@ work in the sibling `erdos/` directory — no shared code.
     2-cut decomposition (E19).
   - `bridge_compatibility.py` — compatible-bridge-family search, with
     independent re-verification of every assembled candidate (E20).
+  - `three_bridge_search.py` — Type-A (three-bridge) abstract + realizable
+    signature-triple search, testing T2/T5 before realizability (E21).
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment

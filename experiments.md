@@ -509,3 +509,39 @@ T2/self-forcing pre-filtering, independent assembly verification) is
 complete and ready to run once the library is extended to an order range
 where qualifying bridges exist — reported honestly as not yet reached,
 rather than papered over with a fabricated density number.
+
+## E21. Type-A abstract + realizable three-bridge search (redirection 2026-07-25, sixth pass, task Part 6)  [COMPUTATIONALLY VERIFIED]
+`verifier/three_bridge_search.py`: for Type A (T4's exact pin: t=3,
+xy∉E(G), a₁=a₂=a₃=1), enumerates small candidate Λ sets passing T2 (65
+sets, universe 1..8, size 2-3), forms triples, and checks pairwise
+cross-compatibility ((Λᵢ+Λⱼ)∩F=∅, the global bridge-spectrum identity)
+and T5's maximality corollary (self-sum-clean bridges must be
+lex-maximal, checked against every possible (c,e) ordering).
+
+Command: `python3 verifier/three_bridge_search.py`
+
+| candidate Λ sets (pass T2) | abstract survivor triples | all-3-self-sum-clean | ≥1 dyadic self-sum | realizable survivors |
+|---|---|---|---|---|
+| 65 | 318 | 0 | 318 | 0 |
+
+**318 abstract signature triples satisfy every currently-proved
+numerical condition (T2 + pairwise cross-compatibility + T5's maximality
+consistency) — the theoretical machinery alone does NOT exclude Type A.**
+0 are realizable, but this is directly inherited from E19's empty
+library (n≤7), not new negative evidence. **Modeling caveat, noted
+honestly:** T5's maximality check here uses strict (c,e) *permutations*
+(no tie representation), so "all 3 simultaneously self-sum-clean"
+correctly registers 0 in this model (a genuine 3-way tie in (c,e), which
+T5's corollary *does* allow, isn't expressible as a strict ordering) —
+this is a modeling limitation of the abstract search, not a mathematical
+claim that 3-way-clean triples are impossible; two_cut.md's own T5
+corollary proves exact equality is exactly how 3-way self-sum-clean
+triples *would* have to look, if realizable.
+
+**Smallest identified obstruction to the three-bridge exclusion
+theorem:** realizability, not combinatorics — no concrete bridge graph
+is yet known (searched through n=7) matching any of the 318 abstract
+Λ-triples while also satisfying T1 + internal min-degree-3 + internal
+F-cleanness. Recorded as the honest state, matching the task's framing
+(search abstract first, then realizable; report the gap, not a false
+exclusion).

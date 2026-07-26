@@ -1,6 +1,8 @@
 # two_cut.md — toward 3-connectivity of a minimal counterexample
 
-**Status as of 2026-07-25 (fifth redirection pass).** New main target,
+**Status as of 2026-07-25 (sixth redirection pass — T4, the exact
+bridge-count classification, the corrected balanced census, and T5
+added).** New main target,
 replacing the one-pole gadget theory as the project's top priority (that
 work is frozen, not abandoned — see one_pole.md). This file works in the
 **2-connected case specifically**: G a lexicographically minimal
@@ -116,6 +118,101 @@ nontrivial i, i.e.
 \Lambda_i\cap\{2^k-1:k\ge2\}=\varnothing.
 ]
 
+## 2b. T4: minimal terminal cover [PROVED — 2026-07-25, sixth pass]
+
+Recall aᵢ=deg_{Bᵢ}(x), bᵢ=deg_{Bᵢ}(y), s=1 if xy∈E(G) else 0.
+
+**T4.** *No proper sub-selection of {B₁,…,B_t}∪{the xy edge, if present}
+has degree ≥3 at both x and y.* Precisely: for every proper subset
+S⊊{1,…,t} of the nontrivial bridges and every e∈{0,…,s} (i.e. e=0
+always allowed, e=1 only if s=1), the union Uₛ,ₑ := (∪_{i∈S}Bᵢ) ∪
+({xy} if e=1) satisfies deg_U(x)<3 or deg_U(y)<3 — **except** when S is
+the full bridge set {1,…,t} *and* e=s (that selection is just G itself).
+
+*Proof.* Every internal vertex of a selected bridge keeps its full
+G-degree (its edges never leave that bridge). Every cycle of U is a
+cycle of G (U⊆G). Suppose some proper U had deg_U(x)≥3 and deg_U(y)≥3
+(so U also has δ(U)≥3, combining with the internal-vertex fact — this is
+a genuine δ≥3, F-clean candidate). Two ways U can be proper:
+- **Omits a nontrivial bridge Bₖ** (S⊊{1,…,t}). Bₖ is nonempty (a
+  genuine component of G−{x,y}), so |V(U)|<|V(G)| strictly — U is then a
+  smaller δ≥3, F-clean graph, contradicting G's **order**-minimality.
+- **Includes every bridge but omits the edge** (S={1,…,t}, e=0<s=1).
+  Here |V(U)|=|V(G)| exactly (no vertex lost), but |E(U)|=|E(G)|−1
+  strictly — U is then a same-order, strictly-fewer-edges δ≥3, F-clean
+  graph, contradicting G's **edge**-minimality (given the order tie).
+
+Either way, contradiction. So no proper U reaches degree ≥3 at both
+terminals. ∎
+
+**Immediate per-bridge consequence.** Applying T4 to S={1,…,t}∖{k}, e=s
+(omit just bridge k, keep everything else): Σ_{i≠k}aᵢ+s<3 or
+Σ_{i≠k}bᵢ+s<3, i.e. (using Σᵢaᵢ+s=deg_G(x)): **aₖ≥deg_G(x)−2 or
+bₖ≥deg_G(y)−2**, for every bridge k.
+
+**Consequence when xy∈E(G).** Applying T4 to S={1,…,t}, e=0 (omit just
+the edge): Σaᵢ<3 or Σbᵢ<3, i.e. deg_G(x)−1<3 or deg_G(y)−1<3. Since
+δ(G)≥3 forces deg_G(x),deg_G(y)≥3, "<4" means "=3" exactly: **if
+xy∈E(G), then deg_G(x)=3 or deg_G(y)=3.**
+
+## 2c. The exact bridge-degree classification [PROVED — 2026-07-25]
+
+**Pairwise lemma, t≥3 [PROVED].** For t≥3, every 2-element subfamily
+{Bᵢ,Bⱼ} is proper, so T4 (with e=0) gives aᵢ+aⱼ<3 or bᵢ+bⱼ<3 for every
+pair i≠j. Since aᵢ,bᵢ≥1 always (§1), "<3" with 2 terms each ≥1 forces
+**both terms =1**: for every pair, **aᵢ=aⱼ=1 or bᵢ=bⱼ=1**.
+
+**Common-coordinate lemma [PROVED — short combinatorial argument].**
+*For t≥3, either all aᵢ=1, or all bᵢ=1.* Let A′={i : aᵢ≠1}. If A′=∅,
+done (all a=1). Otherwise pick q∈A′; for any other bridge p (p=q
+excluded), the pair {p,q} cannot be a-linked (aq≠1), so must be b-linked:
+**bₚ=b_q=1**. This holds for every p≠q — in particular for every p∈A′
+too (chaining through q) and every p∉A′ — so **every** bridge has
+b=1. ∎ (This is the t=3 argument from the fifth pass, shown to extend
+verbatim to any t≥3: the pairwise dichotomy plus one "hub" bridge q with
+a_q≠1 forces the b-coordinate universally.)
+
+**t≥4 is impossible [PROVED — new in this pass].** By the lemma above,
+t≥3 forces a common coordinate =1 for *all* t bridges — WLOG all aᵢ=1
+(else swap x,y). If t≥4, pick any 3 of the t bridges; this triple is a
+*proper* subfamily (t≥4>3), so T4 gives: (sum of a over the 3)<3 or (sum
+of b over the 3)<3. The a-sum is exactly 1+1+1=3 (not <3 — fails). The
+b-sum is ≥1+1+1=3 (each bᵢ≥1, three terms — also fails, regardless of
+the actual values). **Both disjuncts fail simultaneously — contradicting
+T4.** So t≥4 is impossible.
+
+**Conclusion: every 2-cut has exactly 2 or 3 nontrivial bridges** (t≥2
+always, by definition of a disconnecting 2-cut).
+
+**Type A (t=3).** All 3 share a common coordinate =1; WLOG (swap x,y)
+**a₁=a₂=a₃=1**. Then deg_G(x)=Σaᵢ+s=3+0=**3** (s=0, since t=3 already
+saturates T4's pairwise dichotomy without needing an edge — if xy∈E(G)
+too, deg_G(x) would be 4, but then the pairwise argument's "<3" bound
+aᵢ+aⱼ<3 would need to be checked against 2, still fine numerically, but
+turning to the "if xy∈E(G)" consequence above, deg_G(x)=3 or deg_G(y)=3
+would be needed *in addition* — consistent only if s=0 here, since
+deg_G(x)=3 exactly with 3 unit contributions from the bridges leaves no
+room for a 4th unit from an edge; **so Type A has xy∉E(G)** exactly as
+stated). qᵢ=max(⌈3/1⌉,⌈3/bᵢ⌉)=max(3,·)=**3** for all i (the aᵢ=1 term
+dominates regardless of bᵢ). **Type A: t=3, xy∉E(G), a₁=a₂=a₃=1,
+deg_G(x)=3, q₁=q₂=q₃=3.**
+
+**Type B (t=2, xy∈E(G)).** From the "xy∈E(G)" consequence: deg_G(x)=3 or
+deg_G(y)=3; WLOG deg_G(x)=3. Then a₁+a₂+s=a₁+a₂+1=3, so **a₁+a₂=2**,
+forcing (both ≥1) **a₁=a₂=1** exactly. Consistency check against the
+single-bridge conditions {Bᵢ,xy} (i=1 or 2): aᵢ+1<3 or bᵢ+1<3 — satisfied
+automatically via aᵢ=1<2. qᵢ=max(3,⌈3/bᵢ⌉)=**3** for both. **Type B: t=2,
+xy∈E(G), a₁=a₂=1, deg_G(x)=3, q₁=q₂=3.**
+
+**Type C (t=2, xy∉E(G)).** T4 on each single bridge {Bᵢ} alone: aᵢ<3 or
+bᵢ<3 — i.e. **neither bridge has both terminal degrees ≥3**. Since s=0,
+deg_G(x)=a₁+a₂≥3 and deg_G(y)=b₁+b₂≥3 are just G's own min-degree,
+restated. qᵢ∈{2,3} for both (qᵢ=1 excluded exactly by "neither bridge has
+both ≥3", matching the fifth pass's self-forcing lemma, now derived
+directly from T4 instead of a separate order-minimality argument). **Type
+C: t=2, xy∉E(G), a₁+a₂≥3, b₁+b₂≥3, neither bridge has both terminal
+degrees ≥3, q₁,q₂∈{2,3}.**
+
 ## 3. The bridge self-forcing lemma
 
 For nontrivial bridge Bᵢ: aᵢ=deg_{Bᵢ}(x), bᵢ=deg_{Bᵢ}(y),
@@ -189,28 +286,37 @@ always (§3), an evading bridge has cᵢ ≥ N/qᵢ ≥ N/3. If k bridges evade,
 Σ over just those k gives ≥ kN/3 ≤ Σ_all cᵢ = N (evading bridges are a
 subset of all bridges, each cᵢ>0), so **k≤3**.
 
-**k=3 (three bridges evade simultaneously) [PROVED, forces exact
-equality in cᵢ, an inequality in eᵢ].** Each of the 3 needs cᵢ≥N/3; if
-any had qᵢ=2 its requirement would be cᵢ≥N/2, and combined with the
-other two's ≥N/3 each the sum would exceed N — impossible since these 3
-alone must fit within Σcᵢ=N (they may be the *only* bridges, or there
-could be room for more only if the sum is strictly less than N — but
-qᵢ=2 for even one of the three already forces N/2+N/3+N/3=7N/6>N,
+**k=3 (three bridges evade simultaneously) [PROVED, forces exact equality
+in BOTH cᵢ and eᵢ — corrected from the fifth pass, which stopped at an
+inequality; the inequality does force exact equality after all, shown
+below].** Each of the 3 needs cᵢ≥N/3; if any had qᵢ=2 its requirement
+would be cᵢ≥N/2, and combined with the other two's ≥N/3 each the sum
+would exceed N — impossible since these 3 alone must fit within Σcᵢ=N
+(qᵢ=2 for even one of the three already forces N/2+N/3+N/3=7N/6>N,
 impossible). So **all 3 evading bridges have qᵢ=3 exactly**, and since
 each individually needs cᵢ≥N/3 while collectively Σ(these 3)≤N, equality
 is forced: **cᵢ=N/3 for all 3** (requires 3∣N), and **t=3 exactly** (no
-room for a 4th nontrivial bridge — the three already exhaust N). This is
-the order-tied case; **edge inequalities** come from additionally
-requiring the edge part not to break the tie either way (survival, not
-forced by T3): writing eᵢ:=|E(Bᵢ)|, |E(G)|=e₁+e₂+e₃+[xy∈E(G)]. Requiring
-m'ᵢ=3eᵢ≥|E(G)| for i=1,2,3 and summing gives 3Σeᵢ≥3Σeᵢ+3[xy], forcing
-**[xy∈E(G)] = 0** (the direct edge cannot be present), and then the
-individual conditions reduce to **2eᵢ ≥ eⱼ+eₖ** for every permutation
-{i,j,k}={1,2,3} — a genuine "near-balanced" inequality (satisfied by
-e₁=e₂=e₃, but not forced to exact equality by this route alone; e.g.
-e₁=e₂=e₃=e is one solution family, not the only algebraically consistent
-one, though realizability by actual F-clean bridges may narrow this
-further — left open).
+room for a 4th nontrivial bridge — the three already exhaust N). **This
+is evading only the order part of T3** — the weaker, order-only
+statement.
+
+**Evading T3's full lexicographic conclusion** (order tied *and* the
+edge tie-break also fails to produce a contradiction, i.e. m'ᵢ≥|E(G)|
+for every i, not just ≥ for the winner) is strictly stronger. Writing
+eᵢ:=|E(Bᵢ)|, |E(G)|=e₁+e₂+e₃+[xy∈E(G)]: requiring m'ᵢ=3eᵢ≥|E(G)| for
+i=1,2,3 and summing gives 3Σeᵢ≥3Σeᵢ+3[xy], forcing **[xy∈E(G)]=0**, and
+each individual condition reduces to **2eᵢ≥eⱼ+eₖ** for every permutation
+{i,j,k}={1,2,3}. **Correction to the fifth pass: this inequality, applied
+to all 3 simultaneously, DOES force exact equality** — the earlier
+statement that it left a nontrivial solution family was an incomplete
+derivation, not a genuine gap. *Proof:* order the three values
+e_(1)≥e_(2)≥e_(3) (relabeling). The condition for the smallest, e_(3):
+2e_(3)≥e_(1)+e_(2). But e_(1)≥e_(3) and e_(2)≥e_(3) give
+e_(1)+e_(2)≥2e_(3) unconditionally. Combining: 2e_(3) ≥ e_(1)+e_(2) ≥
+2e_(3), forcing **e_(1)+e_(2)=2e_(3) exactly**; since both e_(1),e_(2)
+are individually ≥e_(3) and their sum equals exactly 2e_(3), neither can
+exceed e_(3) (that would force the other below e_(3), contradicting
+minimality) — so **e_(1)=e_(2)=e_(3)**. Hence **e₁=e₂=e₃ exactly.** ∎
 
 **k=2, both qᵢ=2 [PROVED, forces exact equality in both cᵢ and eᵢ — the
 closest analogue to S5's equal-lobe result].** Both need cᵢ≥N/2; sum
@@ -231,16 +337,100 @@ impossible until every balanced case is treated, and not every case
 *can* be pinned to a unique configuration the way S5's single surviving
 case was.
 
-**Summary — the finite list of *fully forced* balanced configurations:**
-1. **t=2, q₁=q₂=2, c₁=c₂=N/2, xy∉E(G), e₁=e₂** (exact, both order and
-   edges tied — the direct S5 analogue).
-2. **t=3, q₁=q₂=q₃=3, c₁=c₂=c₃=N/3, xy∉E(G), 2eᵢ≥eⱼ+eₖ for all
-   permutations** (order tied exactly; edges constrained but not forced
-   to exact equality by this argument alone).
-Plus a non-exhaustively-classified family of partial (k≤2, not both
-qᵢ=2) evasions that remain open. **2-cuts are not claimed impossible —**
-every one of these cases, plus the open partial-evasion family, needs
-further treatment (§6–7) before any such claim could be made.
+**Summary — the finite list of *fully forced* balanced configurations
+(corrected):**
+1. **t=2, q₁=q₂=2, c₁=c₂=N/2, xy∉E(G), e₁=e₂ exactly** (S5 analogue).
+2. **t=3, q₁=q₂=q₃=3, c₁=c₂=c₃=N/3, xy∉E(G), e₁=e₂=e₃ exactly**
+   (corrected — full equality, not merely an inequality).
+Both are now fully pinned S5-style equal-signature configurations, not
+one exact and one merely constrained. Plus a non-exhaustively-classified
+family of partial (k≤2, not both qᵢ=2) evasions that remain open —
+**2-cuts are not claimed impossible**; every one of these cases, plus the
+open partial-evasion family, needs further treatment (§7) before any
+such claim could be made. (§2b–2c's t∈{2,3} classification is logically
+independent of and stronger than this k-evasion census — it holds for
+*every* 2-cut, not just the balanced ones; the two are cross-referenced
+in §7.)
+
+## 4b. T5: replacement forcing [PROVED — 2026-07-25, sixth pass]
+
+### Three-bridge version (Type A: t=3, xy∉E(G), a₁=a₂=a₃=1)
+
+For distinct i,j,k∈{1,2,3}, build **H_{ij}** := 2 copies of Bᵢ + 1 copy
+of Bⱼ, glued at shared x\*,y\* (bridge k is entirely excluded).
+
+**δ(H_{ij})≥3 [PROVED].** Internal vertices: unchanged copy-degree ≥3.
+deg(x\*) = 2aᵢ+aⱼ = 2·1+1 = 3 (Type A: all a=1). deg(y\*) = 2bᵢ+bⱼ ≥
+2·1+1 = 3 (bᵢ,bⱼ≥1 always) — automatically ≥3 regardless of the actual
+b-values.
+
+**Only potentially new cycle lengths lie in Λᵢ+Λᵢ [PROVED].** H_{ij} has
+3 "copies" total (2 of Bᵢ, 1 of Bⱼ) sharing x\*,y\*. A cycle confined to
+1 copy inherits that bridge's own F-clean (inherited from G) spectrum.
+A cycle crossing 2 copies could in principle pair (copyᵢ,copyᵢ) →
+Λᵢ+Λᵢ, or (copyᵢ,copyⱼ) → Λᵢ+Λⱼ — but **(Λᵢ+Λⱼ)∩F=∅ is already
+guaranteed** by §2's global bridge-spectrum identity (Bᵢ,Bⱼ are genuine
+bridges of the *same* 2-cut in the *actual* G, so their real spectra are
+already cross-clean) — no new information there. The **only** genuinely
+untested combination is Λᵢ+Λᵢ (pairing 2 *different* copies of the *same*
+bridge — a configuration that never occurs in G itself, which has only
+one copy of each bridge).
+
+**Parameters and the reduction to comparing bridge i against bridge k
+directly [PROVED].** |V(H_{ij})|=2cᵢ+cⱼ+2, |E(H_{ij})|=2eᵢ+eⱼ.
+Using |V(G)|=cᵢ+cⱼ+cₖ+2, |E(G)|=eᵢ+eⱼ+eₖ (xy∉E(G) in Type A):
+[
+|V(H_{ij})|-|V(G)| = c_i-c_k,\qquad
+|E(H_{ij})|-|E(G)| = e_i-e_k
+]
+— **bridge j's own (cⱼ,eⱼ) cancels out of both comparisons entirely.**
+So H_{ij} beats G lexicographically **exactly when** (cᵢ,eᵢ) <_lex
+(cₖ,eₖ) — comparing the doubled bridge to the dropped one, directly.
+
+**T5 (three-bridge version) [PROVED].** *If (cᵢ,eᵢ) <_lex (cₖ,eₖ), then
+(Λᵢ+Λᵢ)∩F≠∅.* If H_{ij} were F-clean, it would be a genuine δ≥3,
+F-clean graph strictly lex-smaller than G (contradiction); since the
+only untested cycle source is Λᵢ+Λᵢ, that must be the culprit. ∎
+
+**Corollary: every self-sum-clean bridge is lexicographically maximal
+[PROVED].** If (Λᵢ+Λᵢ)∩F=∅ ("bridge i is self-sum-clean"), the
+contrapositive of T5 gives: for every k≠i, NOT[(cᵢ,eᵢ)<_lex(cₖ,eₖ)], i.e.
+**(cᵢ,eᵢ) ≥_lex (cₖ,eₖ) for every other bridge k** — bridge i's own
+signature is lex-maximal among the 3.
+
+**Corollary: if all 3 are self-sum-clean, all 3 signatures coincide
+exactly [PROVED].** Each of the 3 being lex-maximal simultaneously forces
+(cᵢ,eᵢ)≥(cⱼ,eⱼ) and (cⱼ,eⱼ)≥(cᵢ,eᵢ) for every pair — a total order forces
+equality both ways — so **(c₁,e₁)=(c₂,e₂)=(c₃,e₃) exactly.** This
+reconfirms §4's corrected "k=3 full-evasion" conclusion via a completely
+independent route (T5's replacement construction, rather than the direct
+gluing-parameter inequality), a genuine cross-check.
+
+### Two-bridge-plus-edge version (Type B: t=2, xy∈E(G), a₁=a₂=1)
+
+For i≠j∈{1,2}, build **H_i** := 2 copies of Bᵢ + the retained edge xy,
+glued at x\*,y\* (bridge j excluded, edge kept).
+
+**δ(H_i)≥3.** deg(x\*)=2aᵢ+1=2·1+1=3 (Type B: aᵢ=1). deg(y\*)=2bᵢ+1≥3
+(bᵢ≥1) automatically.
+
+**Only new cycles: Λᵢ+Λᵢ.** Cycles within 1 copy: safe (inherited).
+Cycles using the retained edge plus one copy's path: length ℓ+1 for
+ℓ∈Λᵢ — already guaranteed safe by §2's Mersenne corollary
+(Λᵢ∩{2ᵏ−1}=∅, since Bᵢ is a genuine bridge of G with xy∈E(G)). Cycles
+crossing the 2 copies of Bᵢ (not using the edge): Λᵢ+Λᵢ — the only
+untested source, exactly as in the three-bridge version.
+
+**Parameters:** |V(H_i)|=2cᵢ+2 vs |V(G)|=cᵢ+cⱼ+2 ⟹ difference cᵢ−cⱼ.
+|E(H_i)|=2eᵢ+1 vs |E(G)|=eᵢ+eⱼ+1 ⟹ difference eᵢ−eⱼ. Bridge j's own
+signature again cancels out entirely.
+
+**T5 (two-bridge-plus-edge version) [PROVED].** *If (cᵢ,eᵢ) <_lex
+(cⱼ,eⱼ), then (Λᵢ+Λᵢ)∩F≠∅.* Same argument as the three-bridge version.
+∎ **Same corollaries apply**: a self-sum-clean bridge is lex-maximal
+between the 2, and if both are self-sum-clean, (c₁,e₁)=(c₂,e₂) exactly —
+matching Type B's own analogue of the S5-style equal-signature
+conclusion, derived independently of §4's direct route.
 
 ## 5. Bridge-signature library [see verifier/bridge_signature.py, experiments.md E19]
 
@@ -253,25 +443,71 @@ throughout this project since E0) and cross-checked. Deduplicated by
 signature, retaining ≥1 concrete realizing graph per signature. Results:
 experiments.md E19.
 
-## 6. Compatibility search [see verifier/bridge_compatibility.py, experiments.md E20]
+## 6. Compatibility search, refactored to the 3 exact types [see verifier/bridge_compatibility.py, experiments.md E20]
 
-Bᵢ∼Bⱼ ⟺ (Λᵢ+Λⱼ)∩F=∅. Search for compatible families with
-Σdᵢ(x)≥3, Σdᵢ(y)≥3 (the assembled x,y degree requirement). T2, T3, and
-§4's balanced-case constraints are applied **before** the compatibility
-search (pruning candidates that already fail a proved theorem, rather
-than discovering the failure only after full assembly) — every surviving
-family is additionally saved and independently re-verified as an actual
-assembled graph immediately upon discovery (not just certified via the
-signature arithmetic alone). Results: experiments.md E20.
+**Refactored per instruction: do not search arbitrary signature cliques.**
+§2c proved every 2-cut is *exactly* one of 3 types, so the search now
+only ever assembles candidates from those types:
+1. **Type C** (2 bridges, no xy edge): {Bᵢ,Bⱼ} with aᵢ+aⱼ≥3, bᵢ+bⱼ≥3,
+   neither bridge alone reaching both terminal degrees ≥3.
+2. **Type B** (2 bridges sharing a degree-1 terminal, plus xy): {Bᵢ,Bⱼ}
+   with aᵢ=aⱼ=1 (up to swapping x,y), edge xy included.
+3. **Type A** (3 bridges sharing a degree-1 terminal, no xy edge):
+   {B₁,B₂,B₃} with a₁=a₂=a₃=1 (up to swap).
 
-## 7. Toward the 3-connectivity target [CONJECTURAL]
+**T5 is applied before cross-spectrum checks**: for Types A and B, every
+candidate triple/pair is first tested against T5 (is some bridge
+non-maximal while self-sum-clean? does the maximal one's own status
+follow correctly?) before the (Λᵢ+Λⱼ)∩F=∅ compatibility test is even run
+— pruning on a proved theorem before the more expensive sumset check,
+matching the discipline requested. Bᵢ∼Bⱼ ⟺ (Λᵢ+Λⱼ)∩F=∅ remains the
+underlying compatibility relation; families need Σdᵢ(x)≥3, Σdᵢ(y)≥3.
 
-**Target (kept CONJECTURAL, not claimed):** *Every lexicographically
-minimal Erdős–Gyárfás counterexample is 3-connected.*
+**Reporting, for the three-bridge (Type A) case specifically**, per each
+candidate as requested: the ordered signature triple; which bridges have
+a dyadic self-sum (Λᵢ+Λᵢ hits F); which are self-sum-clean; whether every
+self-sum-clean bridge is lex-maximal (T5's corollary, checked directly on
+the candidate, not just assumed); pairwise cross-spectrum compatibility;
+and the admissible path pairs each Λᵢ contains (T2's own conclusion,
+verified per bridge). Every surviving family is additionally saved and
+independently re-verified as an actual assembled graph immediately upon
+discovery (not just certified via the signature arithmetic alone).
+Results: experiments.md E20.
 
-Candidate incompatibility causes, clustered for a future finite-case
-theorem (see experiments.md E20 for which causes actually fire on the
-searched population):
+## 7. Toward the three-bridge exclusion target [CONJECTURAL]
+
+**Reprioritized main target (kept CONJECTURAL, not claimed):** *A
+lexicographically minimal Erdős–Gyárfás counterexample has no 2-cut with
+three nontrivial bridges (Type A).* This is now pursued ahead of the full
+3-connectivity target (which would additionally need Types B and C
+excluded) since Type A is the most rigid of the 3 (T4/T5 pin its
+structure down completely: a₁=a₂=a₃=1, q₁=q₂=q₃=3, deg_G(x)=3,
+xy∉E(G) — leaving only the Λᵢ spectra and the c,e signatures free).
+
+**Search protocol, per instruction:** first search **abstract** signature
+triples (cᵢ,eᵢ,Λᵢ,internal-C) satisfying every proved condition (T2, T4's
+degree pins, T5's maximality corollaries, pairwise cross-spectrum
+compatibility) with no requirement that a real graph realizes each
+signature; only then filter to **realizable** triples (drawn from the
+actual bridge-signature library, §5). If abstract survivors exist but no
+realizable one does, the gap between them is itself the object of study
+— **the smallest such obstruction**, not an immediate exclusion proof.
+
+**Status this pass:** the bridge-signature library (§5) is empty through
+n=7 — **relabeled PIPELINE VALIDATION, not evidence for a general
+nonexistence pattern**, per instruction. With the library empty, both the
+abstract-triple and realizable-triple counts are reported honestly in
+experiments.md E20/E21 as "0 realizable (library empty); abstract search
+run separately over signature *parameters* directly (not requiring a
+concrete realizing graph) to test whether the proved conditions
+(T2+T4+T5) are even *numerically* satisfiable before asking about
+realizability" — see experiments.md for the exact abstract-search results
+and the smallest identified obstruction (if any) to promoting the
+three-bridge exclusion to a theorem.
+
+**Candidate incompatibility causes**, clustered for a future finite-case
+theorem (broader than just Type A — see experiments.md E20 for which
+causes actually fire on the searched population):
 1. cross-sum (Λᵢ+Λⱼ) hits a power of two;
 2. a bridge's own closure (Bᵢ+xy, or its qᵢ-fold gluing) is already a
    smaller counterexample (T1/§3's direct route, not needing
