@@ -468,6 +468,29 @@ verified against real lift reconstruction (300 random cross-checks per
 base, 0 disagreements). `verifier/z3_certificate.py`,
 `verifier/z3_min_cover.py`, `verifier/z3_standalone_verifier.py`.
 
+## Exact Z5-lift completion (2026-07-27 pass) — see z3_lifts.md Part IV (completed exactly) for full detail
+
+**Replaces every sampled Z5 conclusion with an exact one.** Full exact
+(non-sampled) scan of all `4x1,220,703,124=4,882,812,496` nonzero cyclic
+Z5-voltage assignments across the 4 certified order-24 bases against the
+mod-5 simple-C16 hyperplanes: base 1 has EXACT 100% coverage (0
+uncovered -- a genuine UNSAT/hyperplane-cover result, compressed to a
+48-vector certificate, exactly re-verified against the full space);
+bases 0, 2, 3 have exactly 444, 72, 48 uncovered assignments
+respectively (corrects the previous phase's sampled "~0 for bases
+0,1,3" claim, which undershot -- an exact scan of just the first 1M
+sequential indices for base 0 alone already found 124 uncovered).
+Proved the F5^x scalar-multiplication isomorphism (fibre relabelling
+(v,i)->(v,lambda*i)) and confirmed every uncovered count is divisible by
+4 with 0 orbit-closure exceptions across 60 sampled orbits. Every one of
+the 564 uncovered assignments was independently lift-constructed and
+exactly tested (staged C4/C8/C16/C32/C64): 148 killed at C8, 400 at C16
+(all genuine non-simple Type-3 projections, 0 anomalies after fixing a
+real vertex-projection bug caught during testing), 16 at C32, **0
+survivors**. Independent NetworkX recheck agrees on all 564.
+**Conclusion (exact): no connected cyclic Z5-lift of these four bases is
+an Erdos-Gyarfas counterexample.**
+
 ## Next voltage-cover search selection (2026-07-26 pass) — see z3_lifts.md Part IV for full detail
 
 **IV.A (Z5 lifts of the same 4 bases) SELECTED over IV.B (Z3 lifts of

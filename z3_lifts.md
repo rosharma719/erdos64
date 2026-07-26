@@ -436,3 +436,162 @@ near-instantly, leaving only genuine algebraic-survivor residuals (if any
 exist — the preliminary evidence above did not find any within its
 sample) for the expensive exact oracle, exactly the CEGAR structure the
 task's Part IV framing calls for.
+
+**This "future pass" has now been completed — see below.**
+
+---
+
+## Part IV, completed exactly (2026-07-27, leaf-compression phase)
+
+**Standing reminder, repeated: hand-checked mathematical arguments and
+computation only; not proof-assistant formal verification.**
+
+### IV.2. Exact simple-C16 constraint solving over `F5^13`, all four bases
+
+`verifier/z5_exact_solve.py` performs a **full, exact, chunked, memory-
+bounded scan of every one of the `5^13-1=1{,}220{,}703{,}124` nonzero
+assignments per base** against every simple-C16 homology vector reduced
+mod 5 (same integer vectors as III.2, same canonical gauge) — no
+sampling, no extrapolation. Each base's scan is independent (4 parallel
+processes on 4 cores), memory bounded on two axes (point-chunk size and
+hyperplane-batch size) after an initial OOM crash at naive chunk sizes
+(caught and fixed before any real run).
+
+| base | hyperplanes | assignments checked | **exactly** uncovered | rate | wall time |
+|---:|---:|---:|---:|---:|---:|
+| 0 | 228 | 1,220,703,124 | **444** | 834,807/s | 1,462.3s (24.4 min) |
+| 1 | 315 | 1,220,703,124 | **0** | 1,152,667/s | 1,059.0s (17.7 min) |
+| 2 | 330 | 1,220,703,124 | **72** | 1,000,477/s | 1,220.1s (20.3 min) |
+| 3 | 207 | 1,220,703,124 | **48** | 940,895/s | 1,297.4s (21.6 min) |
+
+**Base 1 has exact 100% coverage** (a genuine hyperplane-covering /
+UNSAT result: the union of its 315 simple-C16 hyperplanes covers
+`F5^13\{0}` completely, exactly, no exceptions). **Bases 0, 2, 3 do
+NOT** — each has a small but exactly-determined nonzero uncovered set.
+**This directly corrects the previous (sampled) section's claim that
+only base 2 was exceptional** (Part IV.1 correction above); the true
+picture is base 1 alone is 100%-covered, and bases 0, 2, 3 all have
+genuine (if sparse) exceptions.
+
+**Compact hyperplane-cover certificate for base 1.** A near-minimal
+covering subset was found by greedy selection on a 2,000,000-point random
+sample (fast candidate search, matching III.2's method), then **verified
+exactly against the full `1{,}220{,}703{,}124`-point space** (not the
+sample): **48 vectors** (down from 315) achieve the identical exact 100%
+coverage — `manifests/z5_exact/base1_min_cover.json`. This is the
+"compact, independently checkable hyperplane-cover certificate" the task
+requires for the zero-survivor case: any party can re-verify base 1's
+elimination by checking only these 48 dot-product conditions against
+every assignment, rather than replaying the full derivation.
+
+**Projective count under `F5^×`, with the required isomorphism proof
+first.** *Claim:* for `λ∈F5^×=\{1,2,3,4\}`, the derived lift for voltage
+assignment `λa` is isomorphic to the lift for `a`, via the fibre
+relabelling `φ(v,i)=(v,\lambda i\bmod5)`. *Proof.* The `a`-lift has edge
+`(u,i)\text{–}(v,i+a_e)` for every base edge `e=(u,v)` (voltage `a_e`)
+and every sheet `i`. Applying `φ`: `\varphi(u,i)\text{–}\varphi(v,i+a_e)
+=(u,\lambda i)\text{–}(v,\lambda i+\lambda a_e)`. As `i` ranges over
+`\mathbb Z_5`, `j:=\lambda i` ranges over all of `\mathbb Z_5` bijectively
+(`\lambda` invertible mod the prime 5), so this is exactly the edge set
+`(u,j)\text{–}(v,j+\lambda a_e)` of the `λa`-lift — `φ` is a bijection on
+vertices (invertible `λ`) that carries every edge of one lift exactly
+onto an edge of the other: **a graph isomorphism.** *Orbit size exactly
+4 for nonzero `a`:* `a=\lambda a` (`λ≠1`) would force `(\lambda-1)a\equiv
+0`; since `5` is prime and `\lambda-1\in\{1,2,3\}\neq0` is invertible,
+this forces `a=0` — excluded. So every nonzero assignment's `F5^×`-orbit
+has size exactly 4, and (since `a\cdot z=0\iff\lambda a\cdot z=0`, `λ`
+invertible) **coverage status is orbit-invariant** — the uncovered sets
+are unions of full size-4 orbits, so **every base's exact uncovered
+count must be divisible by 4.** Checked directly: `444/4=111`,
+`0/4=0`, `72/4=18`, `48/4=12` — all exact integers, and a direct
+orbit-closure check (all 4 scalar multiples of 20 sampled uncovered
+assignments per base, for every base with a nonzero count) confirms
+every orbit is **exactly** closed inside the uncovered set (0
+exceptions) — independent validation of both the isomorphism proof and
+the exact-scan arithmetic. **Exact projective counts:** base 0: **111**,
+base 1: **0**, base 2: **18**, base 3: **12**.
+
+### IV.3. Every algebraically feasible lift, constructed and exactly tested
+
+`verifier/z5_exact_lift.py` builds the real 120-vertex cyclic lift for
+**every one of the 444+0+72+48=564 exactly-uncovered assignments**
+across all four bases, verifies basic structure (120 vertices, 180
+edges, simple, connected, cubic — **all 564 pass**, 0 structural
+failures), and runs staged exact C4/C8/C16/C32/C64 testing (C32/C64 only
+reached by whatever survives C16, mirroring the original engine's own
+staging discipline):
+
+| base | uncovered (fed to IV.3) | killed at C4 | C8 | C16 | C32 | C64 | survivors |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 0 | 444 | 0 | 148 | 280 | 16 | 0 | **0** |
+| 1 | 0 | — | — | — | — | — | — |
+| 2 | 72 | 0 | 0 | 72 | 0 | 0 | **0** |
+| 3 | 48 | 0 | 0 | 48 | 0 | 0 | **0** |
+
+**C16 projection-type classification** (III.1's taxonomy): **every
+single C16 witness across all three bases (280+72+48=400 total) is Type
+3** (repeated base vertices, distinct lifted vertices — a genuine
+non-simple projection), **0 instances of Type 1** (which would mean a
+simple-base-C16 witness slipped through the hyperplane filter — checked
+explicitly as an "ANOMALY" flag in the code; one *did* fire during
+initial testing, tracked down to a real bug — see below — and 0 fire
+after the fix), **0 of Type 2 or Type 4.**
+
+**Bug caught and fixed during this step.** The first classification pass
+found 6 "Type 1" anomalies on a test batch — which would have meant a
+simple-base-C16 slipped past the exact hyperplane scan, a serious
+correctness problem. Direct investigation traced it to the classifier
+itself: it computed each lifted vertex's base projection as `v \bmod
+n_{\text{base}}`, but the lift construction's actual labelling
+(`verifier/z5_lift_feasibility.py`, `lift_graph_mod_p`) uses `label =
+P\cdot u+\text{sheet}`, so the correct projection is `v // P`, **not**
+`v \bmod n_{\text{base}}`. Fixed, and confirmed by an explicit
+edge-validity re-check (does the "projected cycle" actually use real
+base edges? — added as a permanent safeguard, not just relied on vertex-
+distinctness): re-running the same test batch gives 0 anomalies. This is
+exactly the kind of independent-verification catch the project's dual-
+implementation discipline is meant to produce — recorded here rather
+than silently corrected.
+
+**Independent recheck.** Every one of the 564 processed assignments was
+independently re-tested with NetworkX's simple-cycle machinery at
+exactly the length the DFS detector claimed killed it (or, trivially,
+would have confirmed a survivor) — **0 disagreements across all 564.**
+
+### IV.4. Counterexample protocol — not triggered
+
+**Zero assignments, across all four bases, survive all five lengths.**
+The counterexample-preservation protocol (stop all other work; save
+base/voltage/lift/graph6/sparse6/DIMACS/edgelist; two independent exact
+implementations; standalone verifier; full cycle spectrum, girth,
+diameter, connectivity, automorphism group) was **not invoked** — there
+is nothing to preserve. This is stated explicitly, not left implicit.
+
+### IV.5. Elimination protocol — exact, not sampled
+
+> **No connected cyclic Z5-lift of these four specific 24-vertex base
+> graphs is an Erdős–Gyárfás counterexample.**
+
+This is now an **exact** statement (superseding the previous phase's
+Monte-Carlo-qualified version): all `4\times1{,}220{,}703{,}124=
+4{,}882{,}812{,}496` nonzero cyclic Z5-voltage assignments across the
+four bases were checked — the overwhelming majority (`4{,}882{,}812{,}
+060`, i.e. all but 564) via the exact simple-C16 hyperplane scan, and
+the remaining exactly-determined 564 via direct exact-lift construction
+and staged C4/C8/C16/C32/C64 testing. **Compact exact certificates,
+per the task's requirement:**
+- **Base 1** (fully eliminated by hyperplanes alone): the 48-vector
+  compact cover, exactly verified against the full space
+  (`manifests/z5_exact/base1_min_cover.json`).
+- **Bases 0, 2, 3** (partially eliminated by hyperplanes, the rest by
+  non-simple-C16 walks): the exact uncovered-index lists (444/72/48,
+  all recorded in full, none truncated) plus the corresponding
+  exact-lift elimination records — `manifests/z5_exact/base{0,2,3}
+  _exact.json` and `base{0,2,3}_lift_results.json`. Every one of these
+  564 records is individually replayable (assignment index →
+  deterministic voltage vector → deterministic lift → deterministic
+  cycle test) from the checked-in code and base data alone.
+
+**Scope, exactly as before:** this is a theorem about these four bases
+only — nothing about other bases, other primes, or arbitrary cubic
+graphs.
