@@ -299,6 +299,54 @@ figures above are the only numbers used in this section's conclusions,
 per this project's standing discipline against silently substituting an
 unfinished run's partial state for a real result.
 
+---
+
+## Part IV correction (2026-07-27, leaf-compression phase IV.1): the "≈0" claims above were WRONG
+
+**The table above is corrected, not deleted, per this project's error-
+preservation discipline — the mistake and its exact size are recorded,
+not silently patched.**
+
+**What was wrong.** The "MC uncovered = 0" rows for bases 0, 1, 3 were
+read as "coverage ≈100%, same picture as Z3." **This is false.** An
+*exact* (not sampled) scan of the first 1,000,000 sequential assignment
+indices for base 0 alone found **124 uncovered assignments** — a rate
+utterly inconsistent with "≈0." Direct, independent hand-check of one
+witness (index 79540, base-5 digit vector
+`(0,3,1,1,2,0,0,1,0,0,0,0,0)`): every one of base 0's 228 simple-C16
+homology dot-products is nonzero (`{1,2,3,4}`, never `0`) — **genuinely
+uncovered**, not a computational artifact. Its real 120-vertex lift was
+independently built and tested: **no C4, no C8, no simple-projection
+C16 — but it DOES contain a C32.** So this specific assignment survives
+all the way past the C16 stage, only eliminated at C32.
+
+**Exact diagnosis of the sampling error.** `5^13-1=1{,}220{,}703{,}124`
+is enormous; a 2,000,000-point *uniform random* sample (≈0.00016% of the
+space) can straightforwardly miss a genuinely nonzero-but-sparse
+uncovered set, especially when — as turned out to be the case — the
+uncovered set is **not uniformly distributed**: it appears far more
+frequently among assignments with several trailing (high-order) cotree
+coordinates equal to zero (i.e. numerically "small" assignment indices)
+than the whole-space average, so early-sequential-index exact scanning
+finds many more of them than a naive uniform-random sample would predict
+by extrapolation. **The previous section's Monte Carlo estimate was
+methodologically sound (correctly labelled as a sampled estimate with an
+honest standard error) but the estimate itself undershot substantially**
+for bases 0, 1, 3 — exactly what a sampled estimate can do, and exactly
+why the task's IV.2/IV.3 instructions require replacing it with an exact
+computation. **The `records_sha256`-checksummed sampled data itself is
+NOT wrong** (it correctly reports what those 2,000,000 samples showed);
+what was wrong was **generalizing** "0 hits in 2M random samples" to
+"≈0 coverage everywhere," which this correction retracts.
+
+**What is exact, replacing the sampled claims:** see IV.2/IV.3 below.
+No other conclusion drawn from Part IV.A survives unaffected — in
+particular, **the previous section's "IV.A selected because IV.B is
+infeasible" gate decision itself is unaffected** (IV.B's infeasibility
+was independently, exactly confirmed by direct `geng` benchmarking, not
+by sampling), but every *quantitative* Z5 coverage claim above must be
+read as **superseded** by the exact results below.
+
 **Feasibility assessment for a full exhaustive IV.A search:** the
 *algebraic* (hyperplane-coverage) route is cheap regardless of `p` (same
 `O(k x 5^13)`-style computation the Z3 case used, `k≈200-330`, feasible
@@ -362,7 +410,7 @@ Comparing on the task's specified criteria:
 | estimated exact-oracle calls | ~4.9x10^9 for a full exhaustive lift search (large, but the *algebraic* pre-filter — IV.A's Monte Carlo/hyperplane route — can certify the overwhelming majority near-instantly, leaving only a small uncertain residual for exact oracle calls, exactly the CEGAR structure the task wants) | unknown until ~6+ days of generation alone completes; cannot even be estimated yet |
 | completeness-certificate capability | inherited directly from III.2/III.3's proved methodology (already demonstrated exhaustive, exact, and independently cross-validated on Z3) | none demonstrated; would need the entire Z3 certificate pipeline re-derived from scratch on unknown new bases |
 | runtime/storage | bounded, comparable order of magnitude to the completed Z3 run (with parallelization) | generation alone dominates and is already infeasible; storage for ~10^7-10^8 order-26 graphs is a further unaddressed cost |
-| probability of exploring genuinely new cycle-space behavior | **confirmed, not just plausible** — base 2 already shows measurably incomplete simple-C16 coverage under Z5 (unlike Z3's exact 100%), a genuine qualitative difference found within this pass | potentially higher (genuinely new bases) but entirely unreachable this pass |
+| probability of exploring genuinely new cycle-space behavior | **confirmed, not just plausible** — Z5 shows measurably incomplete simple-C16 coverage (unlike Z3's exact 100%), a genuine qualitative difference (*this row originally reported the incompleteness as base-2-only; the exact scan below, Part IV.1 correction, found it is NOT base-2-only — read the correction before citing this row*) | potentially higher (genuinely new bases) but entirely unreachable this pass |
 
 **Selected: IV.A (Z5 lifts of the four order-24 bases).** IV.B fails the
 gate outright on feasibility (the task's own gate criterion: "if neither
