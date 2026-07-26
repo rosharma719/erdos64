@@ -4,7 +4,9 @@ Rigid-core lemma verification (task Part 1, 2026-07-25, third redirection pass).
 Checks: "every nontrivial simple 2-connected series-parallel graph has
 >=2 vertices of degree exactly 2" -- against every connected min-degree->=2
 graph geng can generate for small n, filtered to 2-connected + SP (no
-R-node in its SPQR tree, via the verified `spqrtree` package).
+R-node in its SPQR tree, historically via `spqrtree`). New theorem-level
+R-node uses must pass `gadget_criticality.py`'s structural validation because
+the package is now known to be insertion-order-sensitive on some fixtures.
 
 Also includes the two hand-built "counterexamples" that turned out to be
 WRONG (both actually contain a K4-minor) -- kept here as an explicit

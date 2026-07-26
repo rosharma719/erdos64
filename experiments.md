@@ -609,3 +609,33 @@ nor refuted.** The generator has not yet produced a genuine (internally-
 clean, dyadic-self-sum-witnessing) Type-A candidate to test T7 against.
 Recorded as open, with the exact target statement preserved for when one
 appears.
+
+## E23a. T8/R1/T8R structural audit (2026-07-25) [PROVED + COMPUTATIONALLY VERIFIED]
+
+`verifier/gadget_criticality.py` makes T8's edge-deletion monotonicity and
+the R1/T8R conclusions executable. `verifier/brute_spqr.py` independently
+decomposes the small graphs by exhaustive split pairs and rejects any alleged
+R-skeleton that is not actually simple and 3-connected. Full proofs are in
+two_cut.md §§16–18.
+
+Command:
+`python verifier/gadget_criticality.py --nmin 5 --nmax 8`
+
+| relaxed rooted closures | real R-skeleton B-edges | R1 violations | T8R degree-critical | noncritical deletion certificates |
+|---:|---:|---:|---:|---:|
+| 5,212 | 64,596 | 0 | 25,914 | 38,682 |
+
+The last column is expected on relaxed, nonminimal fixtures: R1 preserves
+closure 2-connectivity and the edge preserves every degree condition, so T8
+certifies that such a fixture cannot be a minimal gadget.
+
+**SPQR implementation adversary.** The installed `spqrtree==0.1.2` initially
+reported two apparent R1 failures, both rootings of graph6 `GCpbeo` at the
+same edge 3–6. Its alleged R-skeleton had connectivity 2 and a degree-2
+vertex, violating the definition of R. A valid decomposition places 3–6 in
+an S-node. Graph6 `FCZv_` gives a second regression: the package leaves a
+crossing separator unsplit for every tested insertion ordering, while the
+definition-first decomposition is the reduced R–R–S path. The new validator
+and fallback prevent either package artifact from entering R1, T8R, or the
+order-nine statistics. The fallback validates all 538 biconnected graphs in
+NetworkX's graph atlas.

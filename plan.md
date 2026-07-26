@@ -204,9 +204,10 @@ admissible-path theory and classifying O4's failure mode precisely.
 - **Computation (E11, E12):** extended the one-pole enumerator
   (`verifier/o4_analysis.py`) — O4 holds directly 99.9% of the time in the
   small relaxed population (n=5–9), failing only in 46/67,432 cases, all
-  with small near-symmetric lobes. Added a real SPQR-tree classifier
-  (`verifier/spqr_analysis.py`, using the verified `spqrtree` package —
-  Gutwenger–Mutzel 2001 algorithm, not a custom heuristic): confirms K+ab
+  with small near-symmetric lobes. Added an SPQR-tree classifier
+  (`verifier/spqr_analysis.py`, using `spqrtree` — later found insertion-
+  order-sensitive, so new R-node claims require the definition-validated
+  fallback in `verifier/brute_spqr.py`): it reports that K+ab
   can genuinely fail to be 2-connected outside the F-clean/minimal setting
   (174/67,432 — real content for O3, not a freebie), and that "pure
   series-parallel" essentially never happens even at n≤9 (0/67,258

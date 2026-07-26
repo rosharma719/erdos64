@@ -167,8 +167,8 @@ SPQR tree pure S/P/Q.
 
 **Exact SPQR convention used below [stated explicitly, 2026-07-25 hardening
 pass].** The *reduced* SPQR tree, standard in the literature (Di
-Battista–Tamassia 1996; Gutwenger–Mutzel 2001) and confirmed to match this
-project's `spqrtree` implementation by direct testing: (i) **Q-nodes are
+Battista–Tamassia 1996; Gutwenger–Mutzel 2001), is the mathematical object
+used here: (i) **Q-nodes are
 suppressed** — a bare edge never appears as its own tree node except in
 the fully degenerate case where the *entire* input graph is a single edge
 (irrelevant here, since every graph considered has cycles); every other
@@ -177,11 +177,20 @@ node's skeleton. (ii) **No two S-nodes are ever tree-adjacent, and no two
 P-nodes are ever tree-adjacent** — this is not a simplifying assumption
 but a theorem about the canonical/reduced SPQR tree (adjacent same-type
 nodes are, by definition of "reduced", always merged into one larger
-node); confirmed by direct test here (a 3-branch parallel construction
-with one branch itself expandable produced a single P-node with 3
-children, never nested P-P). (iii) The host graph is simple throughout
+node). A 3-branch parallel fixture with one expandable branch confirms this
+reduction rule in the definition-first implementation. (iii) The host graph is simple throughout
 this section (multigraphs are used later, in the suppressed-edge
 category, but never for the O5 argument, which concerns H directly).
+
+**Implementation correction (2026-07-25, T8 pass).** The convention above
+remains the mathematical convention, but the installed `spqrtree==0.1.2`
+implementation is not trusted without validation: it is insertion-order-
+sensitive and can leave a connectivity-2 skeleton labeled R. All new R-node
+claims use `verifier/brute_spqr.py`'s exhaustive n≤9 split-pair decomposition,
+which checks that every R-skeleton is simple and 3-connected, virtual edges
+pair into a tree, and real skeleton edges partition the host graph. See
+two_cut.md §17 and experiments.md E23a. Earlier package-only SPQR censuses
+remain exploratory/supporting computations.
 
 **Lemma (degree-2 leaves of series-parallel graphs) [PROVED IN WORKSPACE,
 NOVELTY SUPPORTED BY SEARCH — two independent proofs].** *Every nontrivial

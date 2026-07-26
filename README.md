@@ -49,9 +49,9 @@ work in the sibling `erdos/` directory — no shared code.
     (Part 6, scoped to the one-pole search — see experiments.md E10).
   - `o4_analysis.py` — O4/O4a failure-structure and terminal-path-spectrum
     analysis (see experiments.md E11).
-  - `spqr_analysis.py` — SPQR-tree classification of the two-terminal
-    root-neighbor structure, via the verified `spqrtree` package (see
-    experiments.md E12).
+  - `spqr_analysis.py` — historical SPQR-tree classification of the
+    two-terminal root-neighbor structure; new R-node claims require the
+    structural validator/fallback documented in `two_cut.md` §17.
   - `rigid_core_check.py` — O5's rigid-core lemma: exhaustive check plus a
     regression test on two flawed hand-examples (see experiments.md E13).
   - `edge_rooted_search.py` — direct (G,e) search per the suppressed-edge
@@ -73,6 +73,10 @@ work in the sibling `erdos/` directory — no shared code.
   - `bridge_closure_search.py` — generates bridge closures J=B+xy (reusing
     the one-pole search structure), computes Λ(B)/h(B)/𝒟(B)/SPQR, ranks
     near-gadgets by h(B) (E22).
+  - `gadget_criticality.py` — executable T8/R1/T8R audits and validated
+    reduced-SPQR records for Type-A closure candidates (E23a).
+  - `brute_spqr.py` — definition-first exhaustive split-pair decomposition
+    for n≤9, used when the external SPQR package fails structural validation.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

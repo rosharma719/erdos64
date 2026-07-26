@@ -752,3 +752,125 @@ E16/E17) is retained as supporting data and **not extended this pass** —
 the bridge framework here (§2's global cross-cycle identity across
 *every* pair of bridges) subsumes the local, single-rigid-piece analysis
 that the relaxed multi-R population lacked.
+
+## 16. T8: minimal Type-A gadget criticality [PROVED — 2026-07-25]
+
+Fix a Type-A copy gadget B with terminals x,y, chosen lexicographically
+minimally by (|V(B)|,|E(B)|), and put J:=B+xy. Thus d_B(x)=1,
+d_B(y)≥1, xy∉E(B), every vertex outside {x,y} has B-degree at least 3,
+J is simple and 2-connected, B is internally F-clean, and
+(Λ(B)+Λ(B))∩F=∅.
+
+**Deletion monotonicity [PROVED].** For every e∈E(B), every cycle of B−e
+was already a cycle of B, so deleting e cannot create an internal cycle.
+Likewise every simple x–y path in B−e was already such a path in B:
+Λ(B−e)⊆Λ(B). Consequently
+
+[
+  \Lambda(B-e)+\Lambda(B-e)\subseteq\Lambda(B)+\Lambda(B),
+]
+
+so edge deletion cannot create a new self-sum length, dyadic or otherwise.
+
+**T8 [PROVED].** *For every e∈E(B), at least one of the following holds:*
+
+1. *B−e violates the internal minimum-degree condition;*
+2. *B−e violates a terminal-degree condition; or*
+3. *J−e is not 2-connected.*
+
+*Proof.* Suppose none holds. Edge deletion preserves simplicity and cannot
+introduce xy; because e∈E(B), e≠xy and (B−e)+xy=J−e exactly. The assumed
+degree statements give d_{B−e}(x)=1, d_{B−e}(y)≥1, and internal minimum
+degree at least 3. The assumed 2-connectivity of J−e also implies B−e is
+connected: deleting its edge xy from the 2-connected graph J−e cannot
+disconnect it. Internal F-cleanness and self-sum F-cleanness follow from
+the two monotonicity inclusions above. Thus B−e satisfies every T6/Type-A
+hypothesis—including looplessness, absence of parallel edges, and exclusion
+of xy—but has the same order and one fewer edge than B. This contradicts
+the chosen lexicographic minimality. ∎
+
+**Exact degree-critical locations.** The unique edge incident with x is
+terminal-critical. An edge incident with an internal degree-3 vertex is
+degree-critical at that vertex. An edge incident with y is terminal-critical
+at y exactly when d_B(y)=1; if d_B(y)≥2 its deletion leaves positive
+y-degree. In particular, if both endpoints are internal vertices of degree
+at least 4, deleting the edge preserves every degree condition.
+
+## 17. R1: deletion of a real R-skeleton edge [PROVED]
+
+The convention is the reduced SPQR convention fixed in one_pole.md: an
+R-skeleton is a simple 3-connected graph; each virtual edge uv represents
+a pertinent graph P_{uv} meeting the rest only at u,v, and
+P_{uv}+uv is 2-connected. The latter closure formulation matters: an S-piece
+expansion can itself be a path even though its pole-edge closure is
+2-connected.
+
+**R1a (skeleton deletion) [PROVED].** *If R is a 3-connected skeleton and
+e is an edge, R−e is 2-connected.* For any vertex w, if w is an endpoint of
+e then (R−e)−w=R−w is connected. Otherwise R−w is 2-connected (3-connectivity
+of R), hence has no bridge; deleting e leaves it connected. Thus deletion of
+any vertex from R−e leaves a connected graph, exactly 2-connectivity. Notice
+that no claim of preserved 3-connectivity is made. ∎
+
+**R1b (expansion preservation) [PROVED].** *Replacing edges of a
+2-connected skeleton H by two-terminal pertinent graphs P_{uv} satisfying
+P_{uv}+uv 2-connected preserves 2-connectivity.*
+
+Delete an arbitrary vertex z from the expanded graph.
+
+- If z is internal to one expansion P_{uv}, every component of P_{uv}−z
+  contains u or v; otherwise that component would remain isolated in
+  (P_{uv}+uv)−z. The other expansions realize H−uv, which is connected
+  because a 2-connected graph has no bridge, so u and v and all those
+  components remain joined.
+- If z is a skeleton vertex, H−z is connected. Every expansion not incident
+  with z remains connected (remove its pole edge from a 2-connected closure),
+  while an incident expansion P_{zv}−z is connected and attached at its other
+  pole v because (P_{zv}+zv)−z=P_{zv}−z is connected.
+- Deleting a pole is exactly the second case. Virtual edges incident with the
+  deleted pole are not treated as surviving literal edges: their incident
+  pertinent graphs remain attached through their other poles, as just shown.
+
+Hence deletion of every vertex leaves the expanded graph connected. ∎
+
+**R1 [PROVED].** Let e≠xy be a real edge in an R-node skeleton of J. Apply
+R1a to that skeleton and then R1b to all its virtual-edge expansions (and
+recursively to the rest of the reduced tree). The resulting graph is exactly
+J−e, so J−e is 2-connected. ∎
+
+**T8R [PROVED, T8+R1].** *Every real edge of B lying in an R-node skeleton
+is incident with x, an internal degree-3 vertex, or y when d_B(y)=1.* The
+closure edge xy is excluded because it is not in B. Indeed R1 rules out
+T8's connectivity failure, so one of the exact degree failures must occur.
+
+**Implementation hardening and finite audit.** The installed
+`spqrtree==0.1.2` can be insertion-order-sensitive: on graph6 `GCpbeo` one
+ordering labels a connectivity-2 skeleton R and falsely places edge 3–6
+there, although a valid reduced decomposition places 3–6 in an S-node. On
+`FCZv_` every tested package ordering leaves a crossing separation pair
+unsplit. Therefore no theorem now trusts an R label without independently
+checking 3-connectivity. `verifier/brute_spqr.py` supplies an exhaustive
+split-pair decomposition for n≤9 and validates real-edge coverage, paired
+virtual edges, tree topology, node types, and reduction. It validates all
+538 biconnected graphs in NetworkX's graph atlas. On the 5,212 relaxed E22
+closures, 64,596 genuine real R-skeleton B-edge instances satisfy R1 with
+zero violations; 25,914 meet T8R's degree-critical incidence condition and
+38,682 have an explicit noncritical deletion certificate, proving those
+relaxed fixtures cannot be minimal gadgets.
+
+## 18. Closure classes for the order-nine search [PROVED]
+
+For J=B+xy:
+
+- **SP-eligible:** d_B(y)=1. Both x and y have degree 2 in J. A
+  series-parallel closure is possible (not guaranteed), so its complete
+  reduced S/P decomposition must be recorded.
+- **Rigid-forced:** d_B(y)≥2. Then x is the unique degree-2 vertex of J:
+  y has J-degree at least 3 and every other vertex already has B-degree at
+  least 3. If J were series-parallel, the proved partial-2-tree lemma in
+  one_pole.md would give at least two degree-2 vertices, contradiction.
+  Thus J has a K4 minor and its reduced SPQR tree contains an R-node.
+
+The order-nine census keeps these classes separate. For the rigid-forced
+class it records every R-node, every real R-edge with its T8R annotation,
+and every skeleton-vertex degree profile.

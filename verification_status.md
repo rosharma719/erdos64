@@ -23,6 +23,9 @@ it must not be paraphrased as formally verified.
 | T4 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Minimal terminal cover and exact Type A/B/C classification. |
 | T5 | `PROVED_IN_MARKDOWN`, `IMPLEMENTATION_FIXED`, `NOT_FORMALLY_VERIFIED` | Replacement forcing; Type A/B filtering now precedes cross-spectrum checks. |
 | T6 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Direct simple copy-gadget criterion; terminal edge must be absent from B. |
+| T8 | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Minimal Type-A gadget edge-criticality; deletion monotonicity and exact degree cases have adversarial fixtures. |
+| R1/R1b | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `IMPLEMENTATION_FIXED`, `NOT_FORMALLY_VERIFIED` | Real R-skeleton edge deletion and expansion preservation. Zero violations across 64,596 validated R-real edge instances; invalid package R labels are rejected. |
+| T8R | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | T8+R1 incidence rule; 25,914 critical incidences and 38,682 nonminimality certificates in relaxed fixtures. |
 | E0 detector cross-check | `COMPUTATIONALLY_REPRODUCED` | 2,107 Python checks and independent C/Python checks reproduced without disagreement. |
 | E1 order 10 | `COMPUTATIONALLY_REPRODUCED` | Python and C checked 5,203,110 connected minimum-degree-3 graphs; zero survivors. |
 | E1 order 11 | `COMPUTATIONALLY_REPRODUCED` | C checked 577,076,528 graphs; zero survivors. |
@@ -37,7 +40,9 @@ it must not be paraphrased as formally verified.
 | E20 bridge compatibility | `IMPLEMENTATION_FIXED` | Exact Type A/B/C search; real n≤7 run is vacuous, while synthetic tests exercise every path nonvacuously. |
 | E21 abstract reconciliation | `COMPUTATIONALLY_REPRODUCED`, `IMPLEMENTATION_FIXED` | Old strict count 318; corrected tied count 547; exact 229-gap regression. Abstract conditions are insufficient; neither count is evidence toward the conjecture. |
 | E22 bridge closure | `COMPUTATIONALLY_REPRODUCED`, `INCOMPLETE_RANGE` | 5,212 candidates through n=8; n=9+ unfinished. |
-| T7 and later targets | `CONJECTURAL` | T7 is open. T8, bridge-order-9, SAT/CNF, and new conjectures are outside this integrity pass. |
+| Bridge order 9 | `INCOMPLETE_RANGE` | Generator and verification pipeline are the next step of the current phase; no completed-range claim yet. |
+| Three-copy lift verification | `INCOMPLETE_RANGE` | Direct dual-detector census pending the complete order-nine rooted population. |
+| T7 | `CONJECTURAL` | T7 remains gated on finding at least one internally clean bridge. |
 
 ## Integrity-pass execution record
 
