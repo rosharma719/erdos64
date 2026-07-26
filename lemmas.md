@@ -487,6 +487,32 @@ distinct H-vertices with `t` pairwise-disjoint connecting F-paths:
 inclusion-minimal-delta>=3 fixtures, 8,145 synthetic constructions) —
 `manifests/cubic_core_manifest.json`.
 
+## Defect-one theorem D1 (2026-07-26 pass) — see defect.md Part II for full detail
+
+D1: does every graph with delta>=3, property(2) (Carr Lemma 0.1), and
+`m=2n-3` contain a C4 or C8? **Verdict: outcome (4) -- one precisely
+formulated open configuration**, not proved, not refuted:
+- `h=0` case: [PROVED, forced, exhaustive] `q=1,h=0` forces `n=6` exactly;
+  both connected cubic 6-vertex graphs (K_{3,3}, triangular prism) satisfy
+  property(2) automatically and contain C4.
+- D1C ("exists nonedge ab with G+ab degree-3-critical"): [DISPROVED],
+  fails starting n=9 (3 witnesses, g6 `HCOfeW{`/`HCOfbY[`/`HCOethk`), 172
+  further failures by n=12. Closes the "reduce to EFGS via 1 edge" route.
+- Exhaustive computational search n=6..12 (1,128 property-(2) graphs, two
+  independently cross-validated generation routes): 0 counterexamples to
+  D1's conclusion. n=13 (17.4M raw graphs) attempted, did not complete.
+- Open configuration: h>=1 case of D1 (h=0 separately closed); the
+  `beta(F)=0` tight-forest case is flagged as the most promising entry
+  point (parallel to Narins-Pokrovskiy-Szabo's 1-3-tree construction,
+  literature.md L20) but NOT isolated as harder by any evidence gathered.
+- **q(G)>=2 / |E(G)|<=2|V(G)|-4 is NOT claimed** (D1 not proved); G2's
+  q(G)>=1 remains the current global bound.
+
+### II.0. Fast equivalent of property (2) [PROVED]
+property(2) <=> [B3: every edge has a degree-3 endpoint] AND [for every v,
+G-v is 2-degenerate]. Reduces an O(2^n) check to O(n(n+m)); 0 mismatches
+against the literal exponential check over 1,865 cross-validation graphs.
+
 ## Ordering-defect lemmas (redirection 2026-07-25) — see defect.md for full detail
 
 ### D-def, D-identity  [PROVED, pure algebra]

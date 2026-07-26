@@ -88,6 +88,18 @@ m=33 cubic; n=21 m=32 4,3²⁰; n=23 m=35 4,3²²) — a geng search, validated 
 A single C8-free δ≥3 survivor at n≤23 would DISPROVE the stronger theorem (but not
 E–G, since C16 remains available below n=32). See plan P1 / experiments E6.
 
+### P8 [mixed — see defect.md Part II] Defect-one theorem D1
+D1 (does delta>=3 + property(2) + m=2n-3 force a C4/C8?) is **neither
+proved nor refuted**; outcome (4) per the task's required single-outcome
+format. **[PROVED]** h=0 forces n=6 exactly, both graphs (K_{3,3}, prism)
+contain C4. **[DISPROVED]** D1C (a proposed nonedge-completion lemma)
+fails starting n=9. **[COMPUTATIONALLY VERIFIED]** 0 counterexamples to
+D1 among 1,128 property-(2) graphs, n=6..12 exhaustive, two independent
+generation routes agreeing exactly at n=6,7; n=13 attempted, incomplete.
+**Not claimed:** q(G)>=2 / |E(G)|<=2|V(G)|-4 (would require D1 proved).
+G2's q(G)>=1 remains the global bound. Full detail: defect.md Part II,
+lemmas.md, `verifier/d1_search.py`, `manifests/d1_search_manifest.json`.
+
 ## Conjectural / directional (NOT proved)
 - Whether δ≥3 forces a u–v path system spanning ≥2 dyadic scales (would revive an
   additive route). Open.

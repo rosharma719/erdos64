@@ -225,6 +225,49 @@ but no prior EGC-specific statement of this exact bound. Status:
 AS AN EGC MINIMAL-COUNTEREXAMPLE COROLLARY**. The associated `q` identity is
 elementary bookkeeping, not treated as a novelty claim.
 
+### L20 — EFGS 1988 vs. Narins–Pokrovskiy–Szabó 2017: proved vs. disproved boundary [2026-07-26, access-limited]
+
+Direct fetch of arXiv:1408.5289 (and its Springer/mirror pages) returned
+HTTP 403 in this environment — the same confirmed hard platform-level
+block recorded in L16/L17; this pass relies on WebSearch-returned
+abstracts/snippets from three independent queries, cross-checked against
+each other for consistency, not full text.
+
+**What is proved (stands, used by G2 unmodified):** Erdős, Faudree,
+Gyárfás, Schelp (1988) prove every degree-3-critical graph (n vertices,
+`2n-2` edges, no proper induced subgraph of min degree `≥3`) on `n≥5`
+vertices contains cycles of length 3, 4, and 5.
+
+**What EFGS 1988 additionally *conjectured* (separate from the above) and
+what NPS 2017 (Combinatorica 37, 495–519) *disprove*:** EFGS conjectured
+every degree-3-critical graph has cycles of **all** lengths
+`3,4,5,…,C(n)` for some `C(n)→∞`. Narins–Pokrovskiy–Szabó disprove this:
+they construct arbitrarily large degree-3-critical graphs with **no cycle
+of length 23** (not length 4 — the base `{3,4,5}` theorem is untouched),
+via **1–3 trees** (every vertex degree 1 or 3) with no two leaves at
+distance 20, closed by two extra vertices adjacent to every leaf and to
+each other. They also characterize all `n`-vertex, `2n-2`-edge graphs with
+no proper subgraph of minimum degree 3, and pose several weaker
+conjectures about degree-3-critical cycle-length spectra and 1–3-tree
+leaf-to-leaf path lengths — later work (arXiv:2504.11656,
+Di Braccio–Katsamaktsis–Ma–Malekshahian–Zhao) resolves several of these,
+proving `Ω(log n)` distinct cycle lengths and settling a leaf-to-leaf
+path-diversity conjecture in strong form.
+
+**Relevance to D1 (defect.md Part II):** the base `{3,4,5}` theorem
+(unaffected by the disproof) is exactly what G2 uses and remains valid.
+The 1–3-tree construction is structurally close to the `β(F)=0` (`F` a
+forest) tight case identified in defect.md II.3, flagged there as the most
+promising entry point for a future D1 proof attempt — NOT claimed as
+resolving D1 here, since NPS's own two closing vertices are mutually
+adjacent (violating this project's `H`-independence M1) and their target
+(arbitrary cycle-length diversity) is a different question from "must
+contain length 4 or 8 specifically." Status: **KNOWN FROM LITERATURE
+(search-supported only, full text inaccessible from this environment —
+same permanent limitation as L16/L17)**; no priority or novelty claim is
+made about any connection drawn here between NPS's construction and the
+`β(F)=0` case, which is original observation, not a literature claim.
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +

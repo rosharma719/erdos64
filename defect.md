@@ -225,6 +225,300 @@ produce a *simple* cycle, and the conclusion is about simple cycles only
 
 ---
 
+## 2026-07-26 Part II: the defect-one theorem D1
+
+**Statement (task's target, NOT assumed true).**
+> D1. Every graph `G` satisfying (1) `δ(G)≥3`; (2) every proper subgraph has
+> min degree `≤2`; (3) `|E(G)|=2|V(G)|-3`; contains a cycle of length 4 or 8.
+
+This is a **standalone graph-theory statement with no F-cycle-avoidance
+hypothesis at all** — it is not conditioned on `G` being an EG minimal
+counterexample. If `G` *is* a genuine minimal EG counterexample with
+`q(G)=1`, it automatically satisfies (1)–(3) (property (2) is exactly
+Carr's Lemma 0.1, reused directly, not re-derived; (3) is `q=1`'s
+definition), so a proof of D1 would immediately upgrade G2's `q(G)≥1` to
+`q(G)≥2`. **No such upgrade is claimed here — see the verdict in II.5.**
+
+### II.0. A fast, exact equivalent of property (2) [PROVED]
+
+Property (2) (every proper subgraph — any edge subset on any vertex
+subset — has min degree `≤2`) is checked exactly, but the literal
+definition needs an exponential (`2ⁿ`) scan of vertex subsets. It is
+equivalent to two `O(n·(n+m))` checks:
+
+\[
+\text{property (2)}\iff
+\underbrace{\text{every edge has a degree-3 endpoint}}_{\text{B3}}
+\ \text{ and }\
+\underbrace{\text{for every }v,\ G-v\text{ is 2-degenerate}}_{\text{(∗)}}.
+\]
+
+*Proof.* (⇐) Let `(S',E')` be any proper subgraph. If `S'⊊V(G)`: pick
+`v∉S'`; `(S',E')` is a subgraph of `G-v` (its vertex set avoids `v`, its
+edges are among `G[S']⊆G-v`'s edges), and 2-degeneracy is hereditary
+(every subgraph of a 2-degenerate graph is 2-degenerate, by definition),
+so `(S',E')` has a vertex of degree `≤2` because `G-v` does. If `S'=V(G)`
+and `E'⊊E(G)`: pick `e=xy∈E(G)∖E'`; B3 gives `min(deg_G(x),deg_G(y))=3`,
+say `deg_G(x)=3`; since `E'⊆E(G)∖{e}` and `x` loses at least the edge `e`
+in passing from `G` to `(V,E')`, `deg_{E'}(x)≤deg_{G-e}(x)≤2`. (⇒) B3 is
+literally the `S'=V,E'=E(G)-e` instance of property (2). For (∗): `G-v`
+itself is a proper subgraph, and property (2) applied to *every* subgraph
+of `G-v` (each is a proper subgraph of `G` too, since it excludes `v`)
+gives exactly "every subgraph of `G-v` has a vertex of degree `≤2`," i.e.
+`G-v` is 2-degenerate by definition. ∎
+
+**Computational validation.** `verifier/d1_search.py` implements both the
+literal `O(2ⁿ)` check (`is_property2`) and this `O(n(n+m))` equivalent
+(`is_property2_fast`), and the analogous fast equivalent for the modern
+degree-3-critical definition (`is_degree3_critical_fast`, dropping the B3
+clause since that definition is induced-subgraph-only). Cross-checked with
+**0 mismatches over 329 graphs** (property (2), all connected `δ≥3` graphs
+with `m=2n-3`, `n=6..9`) and **0 mismatches over 1,536 graphs**
+(degree-3-criticality, all connected `δ≥3` graphs with `m=2n-2`, `n=5..9`).
+This speed-up (from `2ⁿ` to linear-ish) is what makes II.4's exhaustive
+search reach `n=12` instead of stalling at `n≈8`.
+
+### II.1. The one-defect ordering, classified [PROVED]
+
+By G3, for a genuine minimal counterexample with `q=1`, choosing any cubic
+`v` and a 2-degeneracy order `x_1,…,x_{n-1}` of `G-v` (caps
+`(2,…,2,1,0)`), the total deficit `Σ(b_i-a_i)=q=1` with every term
+`b_i-a_i≥0` (a valid 2-degeneracy order realizes `a_i≤b_i` at *every*
+position, not just in total — this is what "2-degenerate" buys beyond the
+bare total-edge-count bound). **Hence exactly one position `i*` carries
+the entire deficit, all others realizing their cap exactly.** Two
+genuinely distinct shapes, mutually exclusive:
+
+- **Case A** (`1≤i*≤n-3`): `x_{i*}` has exactly 1 forward neighbour
+  instead of 2 (an "ordinary" position undershoots by one edge).
+- **Case B** (`i*=n-2`): `x_{n-2}` has forward degree 0 instead of 1,
+  i.e. `x_{n-2}` and `x_{n-1}` (the last two vertices peeled) are
+  **not** adjacent in `G-v`.
+
+(`i*=n-1` is impossible: its cap is already 0, so its deficit term is
+always 0 — this position can never carry the defect, matching §1's
+"vacuous by construction" remark for the historical `D`-identity above.)
+
+**Genuine distinctness under reordering.** A single graph `H=G-v` can
+admit *several* valid 2-degeneracy orderings, and the defect can land at
+different positions/Cases in different valid orderings of the *same* `H`
+— e.g. relabelling which vertex is treated as "last" can convert a Case B
+instance into a Case A instance of a different ordering realizing the same
+edge count. What is ordering-**independent** is only the *total* (`q=1`)
+and the resulting **structural fact**: `H` is obtainable from some
+maximal (extremal, `2(n-1)-3`-edge) 2-degenerate graph `H'` on the same
+vertex set by deleting exactly one edge (add back whichever single edge
+the deficit position is missing — Case A: any not-yet-present edge from
+`x_{i*}` to a later vertex; Case B: the edge `x_{n-2}x_{n-1}`). **This
+repair edge is not canonically unique** in general (Case A can have
+several valid completions when `x_{i*}` has more than one non-neighbour
+among the later vertices) — recorded explicitly, since D1C (II.2) asks
+exactly this question for `G` itself, not `G-v`.
+
+**Comparison with EFGS 1988 / Narins–Pokrovskiy–Szabó 2015/2017
+[literature, access-limited — see literature.md L20].** EFGS's own
+degree-3-critical graphs are the `q=0`, zero-defect case of exactly this
+same ordering (every position at cap, `m=2(n)-2`... for the *whole* graph,
+not `G-v`); NPS's disproof of EFGS's "long cycle-length spectrum"
+conjecture is built from **1–3 trees** (leaf-degree-1, internal-degree-3
+trees) closed by two extra vertices adjacent to every leaf and to each
+other — i.e. an `H`-like pair of high-degree vertices attached to a
+*tree*, structurally the same shape as our `β(F)=0` (forest `F`) case in
+II.3 below, though NPS's two closing vertices are mutually adjacent
+(violating our `H`-independence M1) since their target is unrelated to
+power-of-two avoidance. This is a genuine structural parallel worth
+flagging for future work, not a citation that resolves D1 here — see
+literature.md L20 for the precise access-limited citation and the exact
+disproved/proved boundary (NPS disprove "all short lengths `3..C(n)`,
+`C(n)→∞`"; they do **not** touch the base EFGS `{3,4,5}` theorem used by
+G2, which stands).
+
+**A clean corollary, independent of the rest of Part II.** Property (1)
+and (3) alone (no property (2) needed) force `Σ_v(deg(v)-3) = n-6 ≥ 0`
+(G3's identity at `q=1`), so **`n≥6` always**, with equality forcing the
+`h=0` (cubic) case — matching II.3/II.5's forced base case exactly, and
+matching G3's `q(G)≥1 ⇒` `Σ(deg-3)≤n-6` bound at equality.
+
+### II.2. D1C tested directly and found FALSE [DISPROVED — 2026-07-26]
+
+**D1C (as stated in the task):** *every graph satisfying D1's hypotheses
+has a nonedge `ab` such that `G+ab` is degree-3-critical* (the modern
+induced-only definition, L19: `2n-2` edges, no proper induced subgraph of
+min degree `≥3`).
+
+`G+ab` automatically has `δ≥3` (adding an edge never decreases degree) and
+exactly `2n-2` edges (one more than `m=2n-3`); the *only* nontrivial
+condition is the induced-subgraph one, checked exactly via II.0's fast
+equivalent. `verifier/d1_search.py`'s `test_d1c` tries **every** nonedge
+of every D1-hypothesis graph found in II.4's exhaustive search.
+
+**Result: D1C holds for every `n=6,7,8` instance (2+4+16=22 graphs), then
+FAILS starting at `n=9`.** Smallest counterexamples (3, all at `n=9`,
+`m=15`, degree sequence `3⁶4³`, i.e. `h=3`): graph6 `HCOfeW{`, `HCOfbY[`,
+`HCOethk` (`manifests/d1_search_manifest.json`). Concretely, for
+`HCOfeW{` (edges `03,06,07,14,16,17,25,26,28,36,38,47,48,57,58`), **no**
+choice of nonedge `ab` makes `G+ab` degree-3-critical: every completion
+either still has a proper induced subgraph of min degree `≥3` (typically
+because `G` already has enough redundant high-degree attachment that
+completing one gap leaves another dense chunk untouched) or fails for a
+symmetric reason. **All three witnesses already contain a C4 directly**
+(so D1's conclusion is unaffected by D1C's failure at these instances —
+D1C was only ever a proposed *proof strategy* for D1, not part of D1's
+statement), but D1C's failure closes off the "reduce D1 to EFGS via one
+edge" route in general: 172 further D1C failures accumulate by `n=12`
+(`manifests/d1_search_manifest.json`), a rate that is not shrinking.
+**Exact obstruction:** D1C would need `G+ab`'s induced-subgraph density to
+be controllable by a single edge addition; instead, once `h≥2`, several
+independent near-dense induced pieces can coexist (their `d_F`-attachment
+patterns to different `H`-vertices), and one edge cannot simultaneously
+repair all of them. **No replacement completion theorem is asserted** —
+this is recorded as a closed, failed proof route with its exact witness,
+per the project's obstruction-preservation discipline, not silently
+dropped.
+
+### II.3. The `q=1` specialization of `β(F)=κ+3-2h` [PROVED / COMPUTATIONALLY ILLUSTRATED]
+
+At `q=1`, I.1c gives `β(F) = 3 - 2h + κ`, and `β(F)≥0` forces
+\[
+\kappa \ge 2h-3.
+\]
+
+- **`h=0` [PROVED, forced, exhaustive]:** `H=∅` means `G` is cubic
+  (3-regular); `q=2n-2-3n/2=n/2-2=1 ⟺ n=6` exactly (matches the
+  independent `n≥6` bound of II.1 at equality). `κ=1` (F=G, connected by
+  B1), `β(F)=4`. There are exactly 2 connected cubic graphs on 6 vertices
+  (`geng -c -d3 6 9:9`, cross-validated against the direct ordering
+  generator in II.4): `K_{3,3}` and the triangular prism. Property (2)
+  holds automatically for both (any proper subgraph of a connected cubic
+  graph loses degree somewhere, by the same boundary-edge argument used
+  throughout this project). **Both contain a 4-cycle directly** (`K_{3,3}`
+  by bipartite girth 4; the prism via e.g. `1-2-2'-1'-1`). **D1 holds for
+  `h=0` unconditionally and exhaustively — this sub-case is a genuine
+  proved theorem, not merely computational evidence for a range.**
+- **`h=1`:** `κ≥-1`, i.e. no real constraint (`κ≥1` trivially). All
+  `n=7` D1-hypothesis graphs found (4 of them) have `κ=1` (the single
+  `C`-vertex not adjacent to `H`'s one vertex... every `C` vertex is
+  attached with `d_F≥1` by M2, forcing `F` connected in the smallest
+  instances found; no larger-`κ` `h=1` instance appears through `n=12`).
+- **`h=2`:** `κ≥1`. Both `κ=1` (`β(F)=0`: `F` is a **spanning tree** on
+  `C`) and `κ=2` (`β(F)=1`: `F` a union of 2 pieces with total cyclomatic
+  number 1, e.g. one tree + one unicyclic component) occur among the
+  `n=8` instances (203 and 138 respectively of the 341 `h=2` graphs found
+  through `n=11`).
+- **`h≥3`:** `κ≥2h-3` becomes a genuine constraint. The `n=9` instances
+  found are all `h=3,κ=3` (the *tight* case, `β(F)=0`: **`F` is a
+  disjoint union of exactly 3 trees**, each attached to `H`) — no `h=3`
+  instance with `κ>3` appears through `n=12` (larger `κ` needs more
+  `C`-vertices, hence larger `n`, consistent with not yet appearing in
+  this range).
+
+The **tight case `β(F)=0`** (`F` a forest, `κ=2h-3` exactly) is exactly
+the structural shape shared with the NPS 1–3-tree construction flagged in
+II.1 — trees hanging off the `H`-vertices, closable via leaf-to-leaf path
+arguments. **This is flagged as the most promising single direction for a
+future full proof of D1** (see II.5), but is **not** carried to a proof
+here: a full leaf-to-leaf translation would need I.3's weighted-incidence
+formula specialized to tree-`F` (paths between two `H`-neighbours inside a
+tree are unique, unlike in a general connected `F`), which is a
+substantial separate undertaking properly scoped as future work, not
+attempted in this pass per the task's explicit "continue direct analysis"
+instruction (do not silently expand scope into an unbounded new proof
+attempt).
+
+**Computational validation.** All `(h,κ,β(F))` triples above, and I.1c's
+identity itself, are checked automatically via `verifier/cubic_core.py`'s
+`check_identities` on every D1-hypothesis graph found by
+`verifier/d1_search.py` — 0 mismatches, `manifests/d1_search_manifest.json`
+records the graph6 of every instance by `n`.
+
+### II.4. Canonical generator [PROVED complete at small n; escalated via geng]
+
+Two independent routes, per the task's "generate from the ordering, not
+post-hoc filtering" instruction:
+
+1. **Direct ordering generator** (`verifier/d1_search.py`,
+   `direct_ordering_generator` + `attach_cubic_vertex`): builds every
+   labelled `H=G-v` realizing exactly one 2-degeneracy defect against caps
+   `(2,…,2,1,0)` (II.1's Case A/B enumerated directly as combinatorial
+   choices of "which later vertices"), then attaches a fresh cubic `v` to
+   every 3-subset of `H`'s vertices — literally the task's "one-defect
+   forward ordering + 3 neighbors of the restored cubic vertex," with
+   *only* the two exact degree/edge-count constraints applied afterward
+   (no arbitrary filtering). Combinatorial branching restricts this to
+   `N=|H|≤6` (`n≤7`) in practice.
+2. **`geng`-driven generator** (`via_geng`): `geng -c -d3 n {2n-3}:{2n-3}`
+   generates exactly constraints (1),(3); property (2) is then checked
+   *exactly* via II.0's fast equivalent — the one remaining constraint,
+   with no simpler `geng`-expressible form, so this is not "filtering
+   arbitrary graphs" in the sense the task warns against.
+
+**Completeness cross-check:** at `n=6` and `n=7` — every order where route
+1 is feasible — the sets of canonical (brute-force-relabelled) property-2
+survivors from routes 1 and 2 **match exactly** (2 and 4 classes
+respectively, `route1_only`/`route2_only` both empty). Route 2 is then
+used alone for `n=8..12`, escalating exactly the same "validate slow
+generator against `geng` at small order, then trust `geng`" pattern
+already used throughout this project (e.g. P1's `n=18` geng
+re-derivation).
+
+**Per-graph record schema** (one row per D1-hypothesis graph, all stored
+in `manifests/d1_search_manifest.json`): `n`, canonical graph6, `(h,κ,β(F))`
+via `cubic_core.check_identities`, C4/C8 status (dual DFS+networkx
+detector, per project discipline), D1C witness list (possibly empty).
+**Completed order range, predeclared here rather than inferred after the
+fact: `n=6` through `n=12`, exhaustive** (raw `geng` counts 2, 4, 35, 288,
+3478, 50575, 878121; property-(2) survivors 2, 4, 16, 41, 111, 273, 681 —
+**1,128 D1-hypothesis graphs total**). `n=13` (17,362,215 raw `geng`
+graphs) was **attempted and did not complete** within this session's
+compute budget (exceeded the tool's execution-time limit; no partial
+result is claimed for `n=13`) — recorded honestly as incomplete, not
+silently dropped, per this project's standing discipline for unfinished
+runs.
+
+### II.5. Verdict — exactly one outcome [outcome (4): one precisely-formulated open configuration]
+
+Per the task's explicit instruction to end with **exactly one** of four
+outcomes, not a list:
+
+**D1 is neither proved nor refuted here.** The genuinely proved content is
+narrower: (i) the `h=0` case is a complete, unconditional proof (II.3);
+(ii) D1C is disproved as a universal completion strategy, with an exact
+witness and obstruction (II.2), closing off the most natural reduction to
+EFGS; (iii) `0` counterexamples to D1's conclusion were found among all
+1,128 D1-hypothesis graphs through `n=12`, exhaustively (II.4).
+
+**The single precisely-formulated open configuration, chosen as the
+outcome per the task's option (4):**
+
+> Does every graph `G` with `δ(G)≥3`, property (2) (Carr's Lemma 0.1), and
+> `|E(G)|=2|V(G)|-3` and **`h(G)≥1`** (equivalently `n≥7`, the `h=0` case
+> being separately closed by II.3) contain a cycle of length 4 or 8? The
+> most structurally promising unresolved sub-configuration inside this
+> question is the **tight forest case** (`κ(F)=2h-3` exactly, `F` a
+> disjoint union of trees), by the NPS 1–3-tree parallel noted in II.1;
+> this sub-configuration is not itself isolated as provably harder or
+> easier than the non-tight cases by any evidence gathered here (all
+> `(h,κ,β(F))` shapes found through `n=12` satisfy D1's conclusion
+> equally, tight or not) — it is flagged as the most promising *entry
+> point* for a future proof attempt (via I.3's leaf-to-leaf path
+> translation), not as a distinguished harder case.
+
+**Explicitly not claimed, because D1 is not proved:** `q(G)≥2` for
+minimal EG counterexamples, and the consequent global bound
+`|E(G)|≤2|V(G)|-4`. **G2's `q(G)≥1` / `|E(G)|≤2|V(G)|-3` remains the
+current global edge bound** — Part II neither strengthens nor weakens it.
+
+**Reminder, restated per the task's explicit repetition requirement: none
+of the above — including the `n≤12` exhaustive claim and the `h=0` "proof"
+— is proof-assistant formal verification. Every "PROVED" here is a
+hand-written mathematical argument cross-checked by independent Python
+computation (dual DFS/NetworkX cycle detectors, two independent D1
+generation routes, fast/slow property-(2) cross-validation); no Lean, Coq,
+Isabelle, or other formal-proof artifact exists anywhere in this
+project.**
+
+---
+
 ## 2026-07-25 correction and strengthened theorem [PROVED IN WORKSPACE]
 
 The current parameter is
