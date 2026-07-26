@@ -440,6 +440,36 @@ program. Full detail: two_cut.md §7-15.
 - **T7 (minimum-overlap reduction)**: stated precisely, neither proved
   nor refuted — no genuine witness pair yet exists to test it against.
 
+## Ninth pass 2026-07-25: T8/R1 criticality and complete Type-A order-9 census
+Per instruction: prove the deletion rules first, then exhaust exactly bridge
+order 9 and directly verify every three-copy lift. Full detail: two_cut.md
+§§16–19 and experiments.md E23a/E23b.
+- **T8 [PROVED]**: both cleanliness conditions are monotone under edge
+  deletion. Minimality therefore makes every bridge edge degree-critical,
+  terminal-critical, or closure-2-connectivity-critical, with the exact
+  endpoint cases recorded in two_cut.md §16.
+- **R1/R1b [PROVED]**: deleting a real edge from a 3-connected R-skeleton
+  preserves 2-connectivity, and substituting closed two-terminal expansions
+  preserves it. A definition-first SPQR implementation was added after
+  adversarial fixtures exposed insertion-order-sensitive false R labels in
+  `spqrtree==0.1.2`; it validates all 538 biconnected graph-atlas graphs.
+- **T8R [PROVED]**: a real B-edge in an R-skeleton must meet x, an internal
+  degree-3 vertex, or y when d_B(y)=1. The relaxed n≤8 audit contains 64,596
+  genuine R-real edge instances, with zero R1 failures.
+- **Structural split [PROVED]**: d_B(y)=1 is SP-eligible; d_B(y)≥2 has exactly
+  one degree-2 closure vertex and is rigid-forced by the partial-2-tree lemma.
+- **Order-9 census [COMPUTATIONALLY VERIFIED]**: complete nauty residue 0/1,
+  193,510 raw closures, 134,204 degree-filtered rootings, and 129,040 rooted
+  oriented isomorphism classes. The split is 4,214 SP-eligible versus 124,826
+  rigid-forced; even the SP-eligible population has no actually series-parallel
+  closure at this order.
+- **Three-copy lifts [COMPUTATIONALLY VERIFIED]**: independent Python and C
+  detectors agree on C4/C8/C16 for all 129,040 bridges and all lifts. Every
+  bridge already contains C4 or C8, so there are zero internally clean bridges,
+  zero survivors, no defined minimum h(B), and no empirical instance on which
+  to develop T7. The run manifest and complete per-candidate compressed records
+  are preserved under `manifests/` and `data/`.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

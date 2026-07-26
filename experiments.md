@@ -600,9 +600,11 @@ internally-clean candidates is therefore empty at this scale — **not
 evidence of nonexistence**, consistent with every other search in this
 project reaching n≤8 or n≤9. No h(B)=0 gadget found (would have triggered
 immediate escalation per protocol). No h(B)=1 candidate qualifies either
-(internal cleanliness gates first). n=9+ not attempted this pass —
+(internal cleanliness gates first). At the E22 pass, n=9+ was not attempted —
 generation cost scales the same as the earlier one-pole search (E9),
 already documented as slow past n≈9 without a streaming rewrite.
+The later streaming E23b census completes the targeted Type-A order-9 case;
+E22's broader implementation remains a completed-range n≤8 experiment.
 
 **T7 (minimum-overlap reduction target, two_cut.md §14): neither proved
 nor refuted.** The generator has not yet produced a genuine (internally-
@@ -639,3 +641,59 @@ definition-first decomposition is the reduced R–R–S path. The new validator
 and fallback prevent either package artifact from entering R1, T8R, or the
 order-nine statistics. The fallback validates all 538 biconnected graphs in
 NetworkX's graph atlas.
+
+## E23b. Complete bridge-order-9 Type-A census (2026-07-25) [COMPUTATIONALLY VERIFIED]
+
+Here bridge order means |V(B)|=9, so every three-copy lift has
+3(9−2)+2=23 vertices. The degree sum bound
+1+1+7·3=23 and parity give |E(B)|≥12, hence |E(J)|≥13. Conversely
+d_J(x)=2 gives |E(J)|≤C(8,2)+2=30.
+
+Installed generator: nauty 2.9.3. Its help identifies `-C` as biconnected
+generation. The complete one-residue plan was frozen in
+`manifests/E23_order9_manifest.json` before the definitive run.
+
+Commands:
+
+- `geng -C -d2 9 13:30 0/1`
+- `labelg -q -fabzzzzzzz` after relabeling x=0,y=1; singleton `a` and `b`
+  cells preserve orientation and prevent exchanging terminal roles.
+- `python verifier/type_a_order9_search.py --run --manifest manifests/E23_order9_manifest.json --workers 8`
+
+| stage | count |
+|---|---:|
+| raw unlabeled biconnected closures J | 193,510 |
+| oriented incident edges from degree-2 x | 345,020 |
+| Type-A degree-filtered rootings | 134,204 |
+| rooted oriented isomorphism classes | 129,040 |
+| SP-eligible (d_B(y)=1) | 4,214 |
+| rigid-forced (d_B(y)≥2) | 124,826 |
+| internally {4,8}-cycle-free B | **0** |
+| power-cycle-free 23-vertex lifts | **0** |
+| direct lift-equivalence agreements | 129,040 / 129,040 |
+
+All 4,214 SP-eligible closures nevertheless contain a validated R-node;
+none is actually series-parallel at order 9. Across both classes the reduced
+trees contain 136,088 R-nodes: 122,126 candidates have one, 6,780 have two,
+and 134 have three. Every rigid-forced record preserves each R-skeleton's
+real edges, T8R annotations, and complete skeleton-vertex degree profile.
+
+**Direct three-copy verification.** Every B and every 23-vertex G_B was
+tested independently by Python's exact DFS detector and
+`verifier/check_power_masks.c`. Both evaluated C4, C8, and C16 separately,
+without short-circuiting after a shorter hit, and agreed on every mask.
+Every lift is simple, connected, has minimum degree at least 3, and has order
+23. The three-copy equivalence holds in all 129,040 records. There is no
+survivor/counterexample.
+
+**Internal-cycle obstruction is universal at this order.** Of the bridges,
+5,980 contain C4 but no C8, one contains C8 but no C4, and 123,059 contain
+both. Because none passes internal cleanliness, h(B) is not computed for any
+candidate, respecting the cleanliness gate. The minimum positive h is
+uninstantiated—not zero—and the T7 overlap program remains empirically
+uninstantiated.
+
+The complete 12,795,230-byte compressed record set is
+`data/E23_order9_candidates.jsonl.gz`, SHA-256
+`9f530d95918406bec166cc3e09fa5edf0d7b8f8ff58613b9ffae83c85851e446`.
+The manifest records all generator/detector stream checksums and exit codes.

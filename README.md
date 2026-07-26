@@ -77,6 +77,9 @@ work in the sibling `erdos/` directory — no shared code.
     reduced-SPQR records for Type-A closure candidates (E23a).
   - `brute_spqr.py` — definition-first exhaustive split-pair decomposition
     for n≤9, used when the external SPQR package fails structural validation.
+  - `type_a_order9_search.py` / `check_power_masks.c` — manifest-driven
+    rooted order-9 closure census and independent direct three-copy detector
+    (E23b).
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

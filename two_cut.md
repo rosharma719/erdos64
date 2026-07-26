@@ -874,3 +874,17 @@ For J=B+xy:
 The order-nine census keeps these classes separate. For the rigid-forced
 class it records every R-node, every real R-edge with its T8R annotation,
 and every skeleton-vertex degree profile.
+
+## 19. Order-nine outcome [COMPUTATIONALLY VERIFIED]
+
+The complete rooted oriented census is experiments.md E23b, with canonical
+provenance in `manifests/E23_order9_manifest.json`. From 193,510 unlabeled
+biconnected closures, 129,040 rooted oriented Type-A isomorphism classes
+remain. They split into 4,214 SP-eligible and 124,826 rigid-forced closures;
+none of the SP-eligible class is actually series-parallel.
+
+Every one of the 129,040 bridges already contains an internal C4 or C8:
+5,980 have only C4 among those lengths, one has only C8, and 123,059 have
+both. Thus no bridge reaches the self-sum/overlap stage, no three-copy lift is
+power-cycle-free, and T7 remains empirically uninstantiated. This is a
+complete order-9 negative computation, not a general nonexistence theorem.

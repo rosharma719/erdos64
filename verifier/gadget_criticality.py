@@ -296,7 +296,14 @@ def expansion_preserves_2connectivity(
     return expanded
 
 
-def spqr_decomposition_record(graph_j: nx.Graph, graph_b: nx.Graph, x, y) -> dict:
+def spqr_decomposition_record(
+    graph_j: nx.Graph,
+    graph_b: nx.Graph,
+    x,
+    y,
+    *,
+    cross_check_package: bool = True,
+) -> dict:
     """Serialize the reduced decomposition and its exact T8R annotations."""
     decomposition = brute_spqr_decompose(graph_j)
     # Root the otherwise-unrooted reduced tree at the unique skeleton holding
@@ -325,20 +332,21 @@ def spqr_decomposition_record(graph_j: nx.Graph, graph_b: nx.Graph, x, y) -> dic
     output_index = {source: index for index, source in enumerate(order)}
 
     package_cross_check = None
-    try:
-        package_tree, package_validation = validated_spqr_tree(graph_j)
-        package_cross_check = {
-            **package_validation,
-            "node_type_counts": dict(sorted(Counter(
-                node.type.value for node in package_tree.nodes()
-            ).items())),
-        }
-    except RuntimeError as error:
-        package_cross_check = {
-            "package": "spqrtree==0.1.2",
-            "validated": False,
-            "error": str(error),
-        }
+    if cross_check_package:
+        try:
+            package_tree, package_validation = validated_spqr_tree(graph_j)
+            package_cross_check = {
+                **package_validation,
+                "node_type_counts": dict(sorted(Counter(
+                    node.type.value for node in package_tree.nodes()
+                ).items())),
+            }
+        except RuntimeError as error:
+            package_cross_check = {
+                "package": "spqrtree==0.1.2",
+                "validated": False,
+                "error": str(error)[:500],
+            }
 
     records = []
     for index, source_index in enumerate(order):

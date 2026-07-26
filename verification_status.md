@@ -39,9 +39,9 @@ it must not be paraphrased as formally verified.
 | E19 bridge signatures | `COMPUTATIONALLY_REPRODUCED`, `INCOMPLETE_RANGE`, `IMPLEMENTATION_FIXED` | Empty through n=7; n=8 unfinished. Direct terminal edge is rejected and C_F is named as dyadic-only. |
 | E20 bridge compatibility | `IMPLEMENTATION_FIXED` | Exact Type A/B/C search; real n≤7 run is vacuous, while synthetic tests exercise every path nonvacuously. |
 | E21 abstract reconciliation | `COMPUTATIONALLY_REPRODUCED`, `IMPLEMENTATION_FIXED` | Old strict count 318; corrected tied count 547; exact 229-gap regression. Abstract conditions are insufficient; neither count is evidence toward the conjecture. |
-| E22 bridge closure | `COMPUTATIONALLY_REPRODUCED`, `INCOMPLETE_RANGE` | 5,212 candidates through n=8; n=9+ unfinished. |
-| Bridge order 9 | `INCOMPLETE_RANGE` | Generator and verification pipeline are the next step of the current phase; no completed-range claim yet. |
-| Three-copy lift verification | `INCOMPLETE_RANGE` | Direct dual-detector census pending the complete order-nine rooted population. |
+| E22 bridge closure | `COMPUTATIONALLY_REPRODUCED`, `INCOMPLETE_RANGE` | 5,212 candidates through n=8. Its broader range stops there; E23b separately completes the targeted Type-A order-9 census. |
+| Bridge order 9 | `COMPUTATIONALLY_REPRODUCED` | Complete 1/1 residue: 193,510 closures, 129,040 rooted oriented classes, zero internally clean bridges. |
+| Three-copy lift verification | `COMPUTATIONALLY_REPRODUCED` | All 129,040 lifts directly checked for C4/C8/C16 by Python and independent C detectors; zero survivors and 129,040 equivalence agreements. |
 | T7 | `CONJECTURAL` | T7 remains gated on finding at least one internally clean bridge. |
 
 ## Integrity-pass execution record
@@ -65,3 +65,20 @@ E5(a) was not rerun: its eight external McKay `.s6` inputs are absent from
 the checkout. Their authoritative URLs, line counts, and SHA-256 checksums
 are recorded in `manifests/external_s6_manifest.json`; the local status of
 each remains `MISSING`.
+
+## T8/order-9 execution record
+
+The following final integrity checks were run from the repository root on
+2026-07-25 EDT with Python 3.14.6. The definitive order-9 run itself is
+recorded in `manifests/E23_order9_manifest.json`: it completed exit 0 in one
+complete residue, and both independent detector batches completed exit 0.
+
+| Command | Exit | Result |
+|---|---:|---|
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q` | 0 | 35 passed in 5.24 s; no failures, skips, or xfails. |
+| `.venv/bin/python -m compileall -q .` | 0 | All Python sources compiled. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/gadget_criticality.py --nmin 5 --nmax 8` | 0 | 5,212 closures and 64,596 real R-edges; zero R1 violations; 25,914 T8R incidences and 38,682 noncritical deletion certificates. |
+| `cc -O3 -std=c11 -Wall -Wextra -pedantic verifier/check_power_masks.c ...` | 0 | Warning-clean compile; C4 and empty synthetic records returned the expected masks 1 and 0. |
+| `gzip -t data/E23_order9_candidates.jsonl.gz` | 0 | Complete compressed artifact passes integrity check. |
+| `shasum -a 256 data/E23_order9_candidates.jsonl.gz` | 0 | `9f530d95918406bec166cc3e09fa5edf0d7b8f8ff58613b9ffae83c85851e446`, matching the manifest. |
+| streamed JSONL field/count audit with `jq` and `awk` | 0 | 129,040 records; 4,214 SP-eligible; 124,826 rigid-forced; zero internal/lift-clean; 129,040 equivalence agreements; zero Python/C mask disagreements. |
