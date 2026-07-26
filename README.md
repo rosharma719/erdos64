@@ -40,6 +40,15 @@ work in the sibling `erdos/` directory — no shared code.
   Part III's algebraic compression (projection-type classification,
   full-space hyperplane coverage, compact standalone certificate) and
   Part IV's Z3-vs-Z5/order-26 feasibility comparison.
+- `contraction.md` — **contraction-criticality endgame (2026-07-26,
+  current top priority):** the near-power edge lemma (every nontriangle
+  edge of a minimal counterexample lies on a `2^k+1`-cycle), the
+  safe-contraction obstruction (no safe nontriangle edge ever exists —
+  the naive "safe edge" target is logically equivalent to the conjecture
+  itself, not an easier sub-target), the exact `{1,3}` nontriangle-edge
+  count at every cubic vertex, and one proved-forbidden clean near-power-
+  cycle overlap configuration. Chord/bridge classification of a fixed
+  near-power cycle (Task E) remains open.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -129,6 +138,11 @@ work in the sibling `erdos/` directory — no shared code.
   - `separator_defect_map.py` — q(G) formulas for the S5 cut-vertex and
     Type A/B/C 2-cut cases in terms of piece defects, validated on
     synthetic constructions (two_cut.md §26, Part V).
+  - `contraction_lift.py` — mechanical cross-check of the near-power edge
+    lemma's contraction/lifting arithmetic, the cubic-vertex `{1,3}`
+    nontriangle-edge count, and the clean same-length merge lemma
+    (contraction.md Parts I, III, IV); does not and cannot test claims
+    that presuppose a minimal counterexample exists.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
