@@ -35,6 +35,11 @@ work in the sibling `erdos/` directory — no shared code.
   CONJECTURAL). T1–T3, the global bridge-spectrum identity, and a
   balanced 2-cut census (S5-analogue) are proved for the 2-connected
   case.
+- `s6_case_tree.md` — exact Type A/B/C dependency tree, the proved
+  spectrum-safe replacement principle, its scope boundary, and the first
+  unseen genuine leaf-R configuration.
+- `z3_lifts.md` — normalization, completeness, implementation, and exact
+  elimination statement for cyclic Z3 lifts of the four certified bases.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -88,6 +93,13 @@ work in the sibling `erdos/` directory — no shared code.
     over the graph atlas and relaxed closures (E24c).
   - `order9_spqr_obstructions.py` — shortest forbidden-cycle projection and
     leaf-R structural dataset mined from the existing E23 artifact (E24d).
+  - `leaf_r_patterns.py` — exact dihedral witness-pattern mining over the
+    preserved E23/E24 records, including original-vs-suppression-exposed leaf
+    orientation.
+  - `leaf_r_replacement_search.py` — targeted edge-rooted R-skeleton audit
+    through order nine; not a new SPQR census.
+  - `z3_lift_search.cpp` / `independent_z3_verify.py` — exhaustive staged
+    cyclic-lift engine and independent full-survivor audit.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

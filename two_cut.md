@@ -185,15 +185,11 @@ T4.** So t≥4 is impossible.
 always, by definition of a disconnecting 2-cut).
 
 **Type A (t=3).** All 3 share a common coordinate =1; WLOG (swap x,y)
-**a₁=a₂=a₃=1**. Then deg_G(x)=Σaᵢ+s=3+0=**3** (s=0, since t=3 already
-saturates T4's pairwise dichotomy without needing an edge — if xy∈E(G)
-too, deg_G(x) would be 4, but then the pairwise argument's "<3" bound
-aᵢ+aⱼ<3 would need to be checked against 2, still fine numerically, but
-turning to the "if xy∈E(G)" consequence above, deg_G(x)=3 or deg_G(y)=3
-would be needed *in addition* — consistent only if s=0 here, since
-deg_G(x)=3 exactly with 3 unit contributions from the bridges leaves no
-room for a 4th unit from an edge; **so Type A has xy∉E(G)** exactly as
-stated). qᵢ=max(⌈3/1⌉,⌈3/bᵢ⌉)=max(3,·)=**3** for all i (the aᵢ=1 term
+**a₁=a₂=a₃=1**. If `xy` were present, choose any two bridges and
+retain the edge. This is a proper sub-selection, but its degree at `x` is
+`1+1+1=3` and its degree at `y` is at least `1+1+1=3`, contradicting T4.
+Thus `s=0`, so deg_G(x)=Σaᵢ=**3** and **Type A has xy∉E(G)**. Finally
+qᵢ=max(⌈3/1⌉,⌈3/bᵢ⌉)=max(3,·)=**3** for all i (the aᵢ=1 term
 dominates regardless of bᵢ). **Type A: t=3, xy∉E(G), a₁=a₂=a₃=1,
 deg_G(x)=3, q₁=q₂=q₃=3.**
 
@@ -1030,8 +1026,11 @@ included in this rigid statement.
 For every mined core leaf R-node, E24d records its parent virtual edge,
 skeleton order/size, real-edge count, tight-degree vertex cover, internal
 C4/C8 spectrum, and parent-pole path spectrum. There are 75,745 such records;
-every one already has internal C4 or C8, and only 6,325 have a tight-vertex
-cover of all real B-edges.
+every transformed core orientation has a contracted C4 or C8, and only 6,325
+have a tight-vertex cover of all real B-edges. Section 25 refines the word
+"transformed": 72,927 genuine original remote leaves have a real-edge witness,
+whereas some root-side orientations use a terminal-S element inserted only
+after suppression.
 
 ## 24. Order-nine shortest-cycle SPQR support [COMPUTATIONALLY VERIFIED]
 
@@ -1052,3 +1051,31 @@ a C8. The repeated local targets are therefore a cycle wholly supported by
 one rigid skeleton and a cycle formed by two P expansions—not an S-node or
 terminal-subdivision phenomenon. Full per-candidate records and checksums are
 in `data/E24_order9_spqr_obstructions.jsonl.gz` and its manifest.
+
+## 25. S6/LR dependency audit [2026-07-25]
+
+The exact Type A/B/C dependency tree, the formally safe replacement principle,
+the refined LR* target, and the first unproved implication on every branch are
+frozen in `s6_case_tree.md`. The audit finds that LR* is not yet sufficient for
+S6: S5's exceptional articulation case, the intentionally deferred T7 overlap
+gate, and extension of the scoped rigid-leaf theorem to all Type B/C bridges
+occur earlier. This corrects the tempting but unjustified claim that every
+2-cut has already been reduced to a remote R-leaf.
+
+Mining—not regenerating—the 75,745 E24 leaf records gives 42 exact dihedral
+witness patterns. Real R-edges already supply a C4/C8 in 75,137 records. More
+importantly, all 72,927 genuine original remote R-leaves have such a real
+witness. The remaining 2,818 orientations are root-side R-nodes exposed only
+after suppressing a terminal-local S-leaf; 608 of these are real-edge-clean
+and their contracted C4 uses the suppressed-S element. They form 15 exact
+patterns, but are closure-orientation warnings rather than LR counterexamples.
+The checksummed pattern manifest and representatives are
+`manifests/leaf_r_patterns_manifest.json`.
+
+A separate targeted abstract search (not an SPQR census) checks all 1,802,018
+edge-rooted connected minimum-degree-three skeletons through order nine. Every
+unexpanded pertinent graph has C4 or C8; no clean example reaches the
+replacement test. The first unseen LR configuration is consequently a genuine
+original remote R-leaf of larger order whose `R-ab` is C4/C8-clean and must
+either be spectrum-safely replaced or exhibited as a counterexample to LR*.
+See `manifests/leaf_r_replacement_small_manifest.json`.

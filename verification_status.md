@@ -14,6 +14,9 @@ it must not be paraphrased as formally verified.
 | Four 24-vertex lift bases | `SOURCE_CERTIFIED`, `COMPUTATIONALLY_REPRODUCED` | Hegde--Sandeep--Shashank `special-graphs` at frozen commit; graph6/sparse6/edge checksums, automorphisms, rank, and two-detector C4/C8/C16 certificates in `z3_bases_manifest.json`. |
 | Normalized cyclic Z3 framework | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Exact 13-coordinate gauge normalization and connectivity proof; Python fixtures cover zero and nonzero lifts; C++ staged exact engine covers 4/8/16/32/64. |
 | Cyclic Z3 lift enumeration | `COMPUTATIONAL_ELIMINATION`, `INDEPENDENTLY_REPRODUCED` | All 6,377,288 nonzero assignments: 1,545,746 survive C8 and zero survive C16. Python checked every post-C4 and post-C8 survivor, 1,024 random assignments, and every stored witness with zero disagreements. Scope is only these four bases. |
+| S6 Type A/B/C case tree | `PROVED_DEPENDENCIES_IN_MARKDOWN`, `OPEN_CONCLUSION`, `NOT_FORMALLY_VERIFIED` | Exact T1--T5 consequences and first unproved implication per branch in `s6_case_tree.md`. The audit proves LR is not yet the sole S6 gate. |
+| LR replacement principle / LR* | `PRINCIPLE_PROVED_IN_MARKDOWN`, `EXISTENCE_TARGET_CONJECTURAL`, `NOT_FORMALLY_VERIFIED` | Spectrum-safe replacement implication is proved; existence is open for the first unseen genuine remote leaf with C4/C8-clean `R-ab`. Root-side nodes exposed by S suppression are explicitly excluded from this inference. |
+| Leaf-R pattern mining | `COMPUTATIONALLY_REPRODUCED` | Existing E23/E24 only, no census rerun: 75,745 leaves, 42 exact patterns; all 72,927 genuine original remote leaves have real-edge witnesses. Of 2,818 root-side exposed orientations, 608 need one suppressed-S element in the contracted witness (15 exact patterns). |
 | S4 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Bridgelessness proof in `lemmas.md`; novelty supported by limited search. |
 | S5 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Cut-vertex classification in `lemmas.md`; novelty supported by limited search. |
 | O1 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Master-minimal one-pole graph is bridgeless. |
@@ -111,3 +114,24 @@ Python 3.14.6 and nauty 2.9.3.
 | independent streamed E24d JSONL audit with `jq` and `awk` | 0 | Exact class/support/leaf totals reproduced; zero malformed records. |
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q` | 0 | 45 passed in 7.65 s; no failures, skips, or xfails. |
 | `.venv/bin/python -m compileall -q .` | 0 | All Python sources compiled. |
+
+## Global-core/Z3/S6 phase execution record
+
+The exhaustive lift run and both full independent audits are frozen in their
+checksummed manifests. The following final integrity commands were run from the
+repository root on 2026-07-25/26 EDT with Python 3.14.6 and nauty 2.9.3.
+
+| Command | Exit | Result |
+|---|---:|---|
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/global_core_check.py` | 0 | 12 inclusion-minimal atlas graphs, six equality cases, zero failures. |
+| `c++ -O3 -std=c++17 -Wall -Wextra -pedantic verifier/z3_lift_search.cpp -o verifier/z3_lift_search` | 0 | Warning-clean exact-engine build. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/z3_lifts.py --certify-bases` plus SHA-256 comparison | 0 | Reproduced `z3_bases_manifest.json` byte-for-byte (`352a0a...72cc`). |
+| full four-shard C++ enumeration recorded in `z3_lift_run_manifest.json` | 0 | 6,377,288 nonzero assignments; 1,545,746 after C8; zero after C16. |
+| `independent_z3_c4_verify.py` full audit | 0 | 6,377,288 assignments checked; zero disagreements. |
+| `independent_z3_verify.py` full audit | 0 | 1,545,746 C8 survivors, 1,024 random assignments, and eight witnesses checked; zero disagreements. |
+| independent SHA/row-count audit of all Z3 artifacts | 0 | 12 base files, four shard summaries, 1,545,746 survivor rows, sources, and independent manifests match. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/leaf_r_patterns.py --output manifests/leaf_r_patterns_manifest.json` | 0 | 75,745 leaves; 42 exact patterns; all 72,927 genuine original remote leaves real-edge positive. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/leaf_r_replacement_search.py --output manifests/leaf_r_replacement_small_manifest.json` | 0 | 87,004 skeletons; 1,802,018 rooted pairs; ten C4-free and zero C4/C8-free. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/test_detector.py` | 0 | Known graphs and 2,107 randomized comparisons pass with zero disagreements. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q` | 0 | 81 passed in 4.53 s; no failures, skips, or xfails. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m compileall -q .` | 0 | All Python sources compiled. |

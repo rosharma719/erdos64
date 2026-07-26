@@ -498,7 +498,12 @@ free edge layers and finish the P/S/R leaf consequences of T8.
 - **Order-9 support mining [COMPUTATIONALLY VERIFIED]**: reused, never
   regenerated, all 129,040 E23 records. Canonical shortest witnesses split as
   98,990 one-R-local, 29,581 two-P-expansion, 469 multi-node, and zero S/root-
-  local. The 75,745-record leaf-R dataset has no internally C4/C8-clean leaf.
+  local. A later orientation audit refines the 75,745-record leaf-R statement:
+  all 72,927 genuine original remote leaves contain a real-edge C4/C8; 608
+  root-side nodes exposed only after terminal-S suppression are clean on real
+  R-edges, and their contracted C4 uses the suppressed-S element. Those 608
+  are closure-orientation warnings, not counterexamples to the remote-leaf LR
+  target (see `s6_case_tree.md`).
 
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table

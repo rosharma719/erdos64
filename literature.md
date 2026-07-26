@@ -140,35 +140,24 @@ Searched for prior publication of S4/S5 (lemmas.md) before labeling them
   cut-vertex refinements (S5 claims 2–5) were found anywhere.
 - arXiv:2410.22842 (P13-free) and arXiv:2508.19302 (diameter-2, also Carr)
   abstracts: no connectivity content found.
-- **Access caveat**: direct WebFetch to arxiv.org (abs/html/pdf) and
-  export.arxiv.org returned HTTP 403 (proxy policy denial, confirmed via
-  `$HTTPS_PROXY/__agentproxy/status` — `connect_rejected` to
-  `arxiv.org:443`), and WebFetch failed broadly (also ar5iv.org,
-  semanticscholar.org, en.wikipedia.org) in this session. Only
-  WebSearch-returned abstract/snippet text was checked, **not** the full
-  body of Carr 2026 or any other paper. A body-text bridgelessness/
-  2-connectivity lemma buried in Carr's proof (not advertised in the
-  abstract) cannot be ruled out from here.
+- **Access caveat for this historical pass**: direct WebFetch returned HTTP
+  403, so only search-returned abstract/snippet text was checked at this
+  stage. L18 later obtained Carr's full text, but did not redo the targeted
+  S4/S5 search against every candidate source.
 
-**Conclusion:** no prior published statement of S4 or S5 found in
-accessible sources; label stands as **PROVED IN WORKSPACE, NOVELTY
-UNCHECKED (full-text access to arXiv:2605.22844 blocked here — re-verify
-the paper body when access is available)**, not upgraded to a novelty
-claim.
+**Conclusion:** no prior published statement of S4 or S5 was found in the
+sources accessible to that pass. L17 records the follow-up assessment; this
+is not upgraded to a priority claim.
 
 ### L17 — Second-pass targeted novelty search for S4/S5 [2026-07-25]
 
-**Access status confirmed as a hard platform-level block, not a transient
-proxy issue.** WebFetch to arxiv.org, arxiv.org/html, arxiv.org/pdf,
-ar5iv.org, alphaxiv.org, export.arxiv.org, an r.jina.ai reader-proxy of the
-arXiv abstract page, en.wikipedia.org, and dwest.web.illinois.edu all
-returned HTTP 403. A direct `curl` against arxiv.org/wikipedia.org through
-the session's egress proxy also failed (`CONNECT tunnel failed, 403`),
-confirmed via the proxy's own status endpoint as an organization egress
-policy block, not a per-tool or per-host glitch. **No full paper body text
-has been read for any source in this project, ever** — every literature
-claim here rests on WebSearch snippets only. This is a standing limitation,
-not something to keep re-attempting.
+**Historical access note.** During L17, direct fetches to arXiv and its
+mirrors returned platform-level HTTP 403 responses, so that pass relied on
+search metadata and snippets. This is not a current blanket limitation: the
+later L18 and L19 audits obtained and read Carr's full HTML text and the EFGS
+paper PDF through the web research tool. L17's S4/S5 assessment remains
+limited to its targeted metadata search; the stronger literature claims in
+L18/L19 use the full texts named there.
 
 **Targeted search results (specific phrase combinations: "minimal
 counterexample" × connectivity/bridge/cut-vertex/block-decomposition;
@@ -194,16 +183,12 @@ Hegde–Sandeep–Shashank):**
   prior instance of S4/S5 themselves.
 
 **Conclusion:** S4 and S5 (and by the same search, O1/O3 in one_pole.md,
-which use the identical technique) appear **novel within the EGC
-literature as it can be searched from here** — no equal-or-stronger
-published statement found after two independent targeted passes. Labels
-stand as **PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH BUT UNVERIFIED
-AGAINST FULL TEXT** (full-text arXiv/mirror access is confirmed blocked at
-the platform level in this environment, not just unlucky this session) —
-this is the most confident label the project's no-overclaim discipline
-allows without ever having read a full paper body. Dirac 1953 is the
-correct citation for "this proof pattern is a classical technique," to be
-used if S4/S5 are ever written up formally.
+which use the identical technique) appear **novel within the EGC literature
+covered by those searches** — no equal-or-stronger published statement was
+found after two targeted passes. Labels stand as **PROVED IN WORKSPACE,
+NOVELTY SUPPORTED BY SEARCH BUT UNVERIFIED AGAINST THE FULL TEXT OF EVERY
+POSSIBLE SOURCE**. Dirac 1953 is the correct citation for "this proof pattern
+is a classical technique," to be used if S4/S5 are ever written up formally.
 
 ### L18 — Two-thirds cubic strengthening [audited 2026-07-25]
 

@@ -198,6 +198,39 @@ disagreements. See `manifests/z3_lift_run_manifest.json` for checksums and
 Conclusion, with exact scope: no connected cyclic Z3-lift of these four
 specific bases is an Erdős--Gyárfás counterexample.
 
+## E26. Leaf-R pattern and smallest-case replacement audit (2026-07-25)
+[COMPUTATIONALLY REPRODUCED; diagnostic evidence, not proof of LR]
+
+`verifier/leaf_r_patterns.py` streamed the checksummed E23/E24 artifacts in
+their preserved common order; it generated no graph and recomputed no SPQR
+tree. The 75,745 leaf records split as follows:
+
+| orientation / witness | records |
+|---|---:|
+| genuine original remote R-leaf, real-edge C4/C8 | 72,927 |
+| root-side R exposed after terminal-S suppression | 2,818 |
+| exposed root-side records still having a real-edge C4/C8 | 2,210 |
+| exposed root-side records needing the suppressed-S element in a contracted C4 | 608 |
+
+The canonical dihedral word records pole/internal status, B-degree 3/higher,
+and real/converted-suppressed-S edges. Exactly 42 nonempty equivalence classes
+cover all records by definition; the 608 warning records occupy 15 exact and
+seven coarse classes (562 rigid-forced and 46 SP-eligible). They are not LR
+counterexamples because that R-node is not an original leaf in the pertinent
+orientation and its suppressed side can contain the artificial closure edge
+`xy`.
+
+Independently, `verifier/leaf_r_replacement_search.py` ran
+`geng -q -c -d3 n` for every `4<=n<=9` and tested all parent edges. Among
+87,004 connected minimum-degree-three skeletons and 1,802,018 edge-rooted
+pairs, ten parent deletions are C4-free and all ten contain C8. Hence every
+unexpanded genuine leaf-R pertinent graph through skeleton order nine meets
+LR* alternative 1; no clean case reaches the replacement test. This search is
+a superset check for 3-connected R-skeletons, not an SPQR census or a proof at
+arbitrary order. Reproducible records are
+`manifests/leaf_r_patterns_manifest.json` and
+`manifests/leaf_r_replacement_small_manifest.json`.
+
 ## E-struct. (planned) computational spot-check of B3/M3 on edge-minimal
 C4∧C8-free graphs (validates the deletion-minimality reduction on real graphs).
 ## E2. (pending) Cubic exhaustive `geng -c -d3 -D3` (reproduce L11 cubic ≥30).
@@ -805,5 +838,7 @@ The 129,040 output records occupy 3,456,437 compressed bytes with SHA-256
 Shortest-cycle support counts are: 98,990 contained in one R-node, 29,581
 created by two P expansions, 469 genuinely multi-node, and zero S-cycle or
 root-local cases. Among the 411 R/P-tight candidates the corresponding counts
-are 307, 70, and 34. The leaf-R dataset contains 75,745 records; all contain
-an internal C4 or C8 and 6,325 have a tight-degree cover of every real B-edge.
+are 307, 70, and 34. The leaf-R dataset contains 75,745 transformed core
+orientations; all contain a contracted C4 or C8 and 6,325 have a tight-degree
+cover of every real B-edge. E26 separates genuine original remote leaves from
+root-side nodes exposed by terminal-S suppression.
