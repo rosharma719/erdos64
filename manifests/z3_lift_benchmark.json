@@ -1,0 +1,38 @@
+{
+  "schema": "erdos64-z3-lift-benchmark-v1",
+  "date": "2026-07-25",
+  "compiler": "Apple clang++ C++17 -O3",
+  "sample": "assignment indices [1,10000] for each base",
+  "assignments_per_base": 10000,
+  "conclusion": "The exact C8 stage dominates runtime on every base; no sampled assignment survived the exact C16 stage.",
+  "bases": [
+    {
+      "base_index": 0,
+      "survivors": {"4": 10000, "8": 1800, "16": 0, "32": 0, "64": 0},
+      "stage_seconds": {"4": 0.062078, "8": 0.093551, "16": 0.002939, "32": 0.0, "64": 0.0},
+      "elapsed_seconds": 0.164372,
+      "assignments_per_second": 60837.504170
+    },
+    {
+      "base_index": 1,
+      "survivors": {"4": 10000, "8": 10000, "16": 0, "32": 0, "64": 0},
+      "stage_seconds": {"4": 0.058185, "8": 0.158346, "16": 0.003696, "32": 0.0, "64": 0.0},
+      "elapsed_seconds": 0.226144,
+      "assignments_per_second": 44219.644937
+    },
+    {
+      "base_index": 2,
+      "survivors": {"4": 10000, "8": 7777, "16": 0, "32": 0, "64": 0},
+      "stage_seconds": {"4": 0.058385, "8": 0.136901, "16": 0.003831, "32": 0.0, "64": 0.0},
+      "elapsed_seconds": 0.204862,
+      "assignments_per_second": 48813.446882
+    },
+    {
+      "base_index": 3,
+      "survivors": {"4": 10000, "8": 6085, "16": 0, "32": 0, "64": 0},
+      "stage_seconds": {"4": 0.057960, "8": 0.127232, "16": 0.002566, "32": 0.0, "64": 0.0},
+      "elapsed_seconds": 0.193450,
+      "assignments_per_second": 51693.033163
+    }
+  ]
+}
