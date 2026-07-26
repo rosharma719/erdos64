@@ -2,6 +2,13 @@
 
 **Draft — 2026-07-25. Working paper, not for external circulation without review.**
 
+**§§1–3 (S4, S5, O1–O7, the one-pole theory) are FROZEN as of the end of
+the fourth redirection pass — edit only for corrections or external
+expert feedback.** The project's current top priority is `two_cut.md`
+(toward 3-connectivity of a minimal counterexample); a corresponding
+manuscript section will be added there in a future pass, not folded into
+this frozen section.
+
 ## Status of this manuscript
 
 This is a structural note, not a resolution. The Erdős–Gyárfás conjecture

@@ -307,6 +307,42 @@ Full detail: one_pole.md, manuscript.md.
   mechanism entirely. Diagnosed honestly: O6+O7 are demonstrably
   insufficient alone; the missing condition is unidentified.
 
+## Sixth pass 2026-07-25: redirect to 3-connectivity; freeze one-pole work
+Per explicit instruction: `one_pole.md` and manuscript.md's one-pole
+sections are **FROZEN** except for corrections/external feedback. New
+top-priority target, in new file `two_cut.md`: *every lexicographically
+minimal counterexample is 3-connected* (kept CONJECTURAL). Scoped
+honestly: this works in the case G is already 2-connected (S5's
+non-cut-vertex surviving case / one_pole.md's "logical scope" item 3),
+not a claim that 2-connectivity is now unconditionally established.
+Summary (full detail: two_cut.md):
+- **T1 [PROVED]**: every nontrivial xy-bridge Bᵢ has Bᵢ+xy 2-connected —
+  same doubling/case-check technique as S4/S5/O1/O3, now for a 2-cut in
+  G itself.
+- **T2 [PROVED, citing Gao–Huo–Liu–Ma]**: every Λᵢ contains 2 values
+  differing by 1 or 2 — the internal-degree-3 hypothesis is now automatic
+  from G's own δ≥3 (simpler than the one-pole case).
+- **Global bridge-spectrum identity [PROVED]**: (Λᵢ+Λⱼ)∩F=∅ for i≠j
+  (cross-bridge cycles), internal cycles safe by inheritance, and the
+  Mersenne-style corollary Λᵢ∩{2^k−1}=∅ when xy∈E(G).
+- **T3 [PROVED]**: the qᵢ-fold gluing construction and its exact
+  order/edge parameters; qᵢ=1 impossible by minimality; tied/non-smaller
+  cases handled explicitly (no contradiction claimed there).
+- **Balanced 2-cut census [PROVED where forced, honestly incomplete
+  where not]**: at most 3 bridges can simultaneously evade T3's order
+  part; the k=3-all-q=3 and k=2-both-q=2 cases are pinned down exactly
+  (the latter directly analogous to S5's equal-lobe result: xy∉E(G),
+  e₁=e₂ exactly); mixed/partial-evasion cases are recorded as genuinely
+  open, not forced into a false unique classification.
+- **Bridge-signature library + compatibility search built** (E19, E20)
+  but **empty through n=7** — investigated directly (a natural small
+  candidate fails via an internal C4), matching the project's broader
+  small-order pattern. n=8 attempted, did not complete; not claimed.
+- **§7 candidate-cause clustering recorded, target kept CONJECTURAL** —
+  no finite exclusion theorem established.
+- K4 census **not extended** this pass, per instruction (retained as
+  supporting data only).
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

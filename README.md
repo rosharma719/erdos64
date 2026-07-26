@@ -25,10 +25,14 @@ work in the sibling `erdos/` directory — no shared code.
   the terminal-spectrum identity give the exact failure structure and
   two-terminal doubling criterion; the suppressed-edge reformulation gives
   an exact edge-rooted equivalent search target.
-- `manuscript.md` — **structural manuscript draft (2026-07-25):** pulls
-  together S4, S5, O1, O3, O4a, O4′, O5, and the suppressed-edge
-  equivalence into a single citable write-up with full novelty/reference
-  bookkeeping.
+- `manuscript.md` — **structural manuscript draft (2026-07-25, one-pole
+  sections FROZEN):** pulls together S4, S5, O1, O3, O4a, O4′, O5, O6, O7,
+  and the suppressed-edge equivalence into a single citable write-up.
+- `two_cut.md` — **current top priority (2026-07-25):** toward proving a
+  lexicographically minimal counterexample is 3-connected (kept
+  CONJECTURAL). T1–T3, the global bridge-spectrum identity, and a
+  balanced 2-cut census (S5-analogue) are proved for the 2-connected
+  case.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -53,7 +57,12 @@ work in the sibling `erdos/` directory — no shared code.
   - `spqr_signature.py` — series/parallel Σ(P) composition rules,
     independently verified against brute-force enumeration (E15).
   - `spqr_k4_skeleton.py` — K4 rigid-skeleton triangle/quadrilateral
-    spectrum analysis and reducible-configuration search (E16).
+    spectrum analysis and reducible-configuration search (E16, E17).
+  - `multi_r_search.py` — one-R-node target search (E18).
+  - `bridge_signature.py` — two-terminal bridge-signature library for the
+    2-cut decomposition (E19).
+  - `bridge_compatibility.py` — compatible-bridge-family search, with
+    independent re-verification of every assembled candidate (E20).
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment

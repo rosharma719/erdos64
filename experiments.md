@@ -466,3 +466,46 @@ here** — the data shows O6+O7 are demonstrably insufficient on their own
 "additional condition" that would close the gap is not yet identified.
 Recorded as the honest open state, not papered over with a false
 conjecture.
+
+## E19. Bridge-signature library (redirection 2026-07-25, fifth pass, task Part 5)  [COMPUTATIONALLY VERIFIED, empty at this scale]
+`verifier/bridge_signature.py`: enumerates two-terminal graphs B
+(terminals x,y) satisfying T1's exact hypothesis (B+xy 2-connected,
+internal min degree >=3, internal cycles F-clean), with path/cycle
+spectra computed by two independent methods (DFS backtracking, networkx
+enumeration) and cross-checked to agree before being trusted.
+
+Command: `python3 verifier/bridge_signature.py --nmin 3 --nmax 7`
+
+| n range | (graph,x,y) candidates checked | qualifying bridges | distinct signatures |
+|---|---|---|---|
+| 3-7 | 19,845 | 0 | 0 |
+
+**0 qualifying bridges found through n=7.** Investigated directly: a
+natural small candidate (x, y, 3 internal vertices forming a triangle,
+each internal vertex getting one extra edge to x or y) passes T1's
+2-connectivity requirement and the degree requirement, but contains an
+internal C4 (verified: vertices x,v1,v3,v2 form a 4-cycle) — an explicit
+illustration of why the library is empty this small, not just an
+unexplained gap. n=8 attempted, did not complete in the time budget used
+(O(n^2) candidate pairs x expensive per-pair 2-connectivity + full path
+enumeration). **Do not claim n=8.** Matches the project's broader pattern
+that avoiding even a single C4 is already restrictive at small n
+(consistent with B0/M1/L15-style small-order results elsewhere).
+
+## E20. Bridge compatibility search (redirection 2026-07-25, fifth pass, task Part 6)  [COMPUTATIONALLY VERIFIED, empty at this scale — consistent with E19]
+`verifier/bridge_compatibility.py`: builds on E19's library; would search
+for pairwise-compatible bridge families ((Λᵢ+Λⱼ)∩F=∅) with
+Σdᵢ(x),Σdᵢ(y)≥3, applying T2/self-forcing filters before the
+compatibility search, and independently re-verifying (dual detector) any
+assembled family from scratch before reporting.
+
+Command: `python3 verifier/bridge_compatibility.py --nmin 3 --nmax 7`
+
+With E19's library empty at this order range, there is nothing to search
+over — 0 compatible families, 0 assembled graphs, compatibility-graph
+density undefined (0/0). **This is not a separate negative result**; it
+follows directly from E19. The search infrastructure (family enumeration,
+T2/self-forcing pre-filtering, independent assembly verification) is
+complete and ready to run once the library is extended to an order range
+where qualifying bridges exist — reported honestly as not yet reached,
+rather than papered over with a fabricated density number.

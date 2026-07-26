@@ -1,5 +1,14 @@
 # one_pole.md — the rooted one-pole gadget theory
 
+**FROZEN as of 2026-07-25 (end of fourth pass).** Per explicit instruction,
+this file (and manuscript.md's one-pole sections) are frozen except for
+corrections and external expert feedback. The main project has redirected
+to proving 3-connectivity of a lexicographically minimal counterexample —
+see `two_cut.md` (new). This file's content remains valid and is reused
+there (the S4/S5 doubling technique, the master-minimality framing, and
+Gao–Huo–Liu–Ma's admissible-path theorem all carry over directly to the
+2-cut setting).
+
 **Status as of 2026-07-25.** Formalizes the "induction gadget" direction:
 instead of searching cubic graphs directly, study **one-pole graphs** —
 graphs with one distinguished root r of degree 2 and every other vertex of
