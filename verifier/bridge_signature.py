@@ -3,14 +3,16 @@ Bridge-signature library (task Part 5, 2026-07-25, fifth redirection pass).
 
 Enumerates two-terminal graphs B (terminals x,y) satisfying T1's exact
 hypothesis:
+  - xy is absent from B, as required by the simple T6 copy-gadget;
   - B+xy is 2-connected (checked directly, not assumed);
   - every internal (non-x,y) vertex has degree >= 3 in B;
   - internal cycles of B avoid F = {2^k : k>=2}.
 
 For each qualifying B, stores
-  Sigma(B) = (|V(B)|-2, |E(B)|, d_B(x), d_B(y), Lambda(B), C(B))
-where Lambda(B) is the x-y path length spectrum and C(B) is the internal
-cycle length spectrum -- both computed with TWO independent
+  Sigma(B) = (|V(B)|-2, |E(B)|, d_B(x), d_B(y), Lambda(B), C_F(B))
+where Lambda(B) is the x-y path-length spectrum and
+C_F(B)=C(B) intersect {4,8,16,...} is the dyadic internal-cycle spectrum.
+Lambda and C_F are computed with TWO independent
 implementations (DFS backtracking and networkx-based simple_cycles/
 all_simple_paths enumeration -- the same dual-detector discipline used
 since E0) and cross-checked to agree before being trusted.
@@ -22,7 +24,6 @@ from __future__ import annotations
 import subprocess
 import sys
 import itertools
-from collections import defaultdict
 
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
 from cycle_detect import from_edges, powers_of_two_up_to, has_cycle_len_dfs, has_cycle_len_nx
@@ -71,6 +72,11 @@ def all_simple_path_lengths_nx(nxG, s, t):
 def is_valid_bridge_candidate(nxG, x, y):
     if x == y or not nxG.has_node(x) or not nxG.has_node(y):
         return False
+    # The direct terminal edge is a separate Type-B assembly choice.  It is
+    # never part of a nontrivial bridge B, and T6 explicitly requires its
+    # absence so copy-gluing cannot silently create parallel edges.
+    if nxG.has_edge(x, y):
+        return False
     for v in nxG.nodes():
         if v in (x, y):
             continue
@@ -80,15 +86,18 @@ def is_valid_bridge_candidate(nxG, x, y):
 
 
 def bridge_plus_xy_is_2connected(nxG, x, y):
+    if nxG.has_edge(x, y):
+        return False
     H = nxG.copy()
-    if not H.has_edge(x, y):
-        H.add_edge(x, y)
+    H.add_edge(x, y)
     if H.number_of_nodes() < 3:
         return H.number_of_nodes() == 2  # trivial K2 edge case
     return nx.node_connectivity(H) >= 2
 
 
 def signature_of(nxG, x, y, n):
+    if nxG.has_edge(x, y):
+        raise ValueError("B must exclude the direct terminal edge xy")
     lam_dfs = all_simple_path_lengths_dfs(nxG, x, y)
     lam_nx = all_simple_path_lengths_nx(nxG, x, y)
     assert lam_dfs == lam_nx, f"Lambda mismatch: dfs={lam_dfs} nx={lam_nx}"
@@ -96,13 +105,19 @@ def signature_of(nxG, x, y, n):
     verts = sorted(nxG.nodes())
     remap = {v: i for i, v in enumerate(verts)}
     g = from_edges(n, [(remap[u], remap[v]) for u, v in nxG.edges()])
-    c_dfs = {L for L in powers_of_two_up_to(n) if has_cycle_len_dfs(g, L)}
-    c_nx = {L for L in powers_of_two_up_to(n) if has_cycle_len_nx(g, L)}
-    assert c_dfs == c_nx, f"C mismatch: dfs={c_dfs} nx={c_nx}"
+    dyadic_c_dfs = {
+        L for L in powers_of_two_up_to(n) if has_cycle_len_dfs(g, L)
+    }
+    dyadic_c_nx = {
+        L for L in powers_of_two_up_to(n) if has_cycle_len_nx(g, L)
+    }
+    assert dyadic_c_dfs == dyadic_c_nx, (
+        f"dyadic internal-cycle mismatch: dfs={dyadic_c_dfs} nx={dyadic_c_nx}"
+    )
 
-    internal_ok = not c_dfs  # internal cycles must avoid F entirely
+    internal_ok = not dyadic_c_dfs
     sig = (n - 2, nxG.number_of_edges(), nxG.degree(x), nxG.degree(y),
-           frozenset(lam_dfs), frozenset(c_dfs))
+           frozenset(lam_dfs), frozenset(dyadic_c_dfs))
     return sig, internal_ok
 
 
@@ -149,10 +164,11 @@ def main():
 
     print("\nsample signatures (up to 15):")
     for sig, reals in list(library.items())[:15]:
-        c_internal, m, dx, dy, lam, c = sig
+        c_internal, m, dx, dy, lam, dyadic_cycles = sig
         n, g6, x, y = reals[0]
         print(f"  internal_verts={c_internal} edges={m} d(x)={dx} d(y)={dy} "
-              f"Lambda={sorted(lam)} C_internal={sorted(c)} "
+              f"Lambda={sorted(lam)} "
+              f"dyadic_internal_cycle_spectrum={sorted(dyadic_cycles)} "
               f"| example: n={n} g6={g6} x={x} y={y} (#realizations={len(reals)})")
 
     return library

@@ -103,6 +103,13 @@ confirmed via `geng -help`), Python 3.14 venv networkx 3.6.1, trusted detector
 **(a) Extremal-file min-degree (downloaded `c48_nNeE.s6` from McKay).** For every
 non-isomorphic {C4,C8}-free extremal graph, min-degree distribution:
 
+**Current artifact status:** the eight `.s6` inputs are absent from this
+checkout and their checksums were not recorded by the original run. The
+integrity pass recorded checksums from temporary authoritative downloads in
+`manifests/external_s6_manifest.json`, but did not restore the artifacts. The
+historical results below remain `EXTERNAL_DATA_MISSING` and are **not currently
+locally reproducible from this checkout alone**.
+
 | n | e=ex | #graphs | min-deg distribution | #(δ≥3) |
 |---|------|---------|----------------------|--------|
 | 16 | 23 | 9473  | {1:1858, 2:7615} | 0 |
@@ -469,10 +476,12 @@ conjecture.
 
 ## E19. Bridge-signature library (redirection 2026-07-25, fifth pass, task Part 5)  [COMPUTATIONALLY VERIFIED, empty at this scale]
 `verifier/bridge_signature.py`: enumerates two-terminal graphs B
-(terminals x,y) satisfying T1's exact hypothesis (B+xy 2-connected,
-internal min degree >=3, internal cycles F-clean), with path/cycle
-spectra computed by two independent methods (DFS backtracking, networkx
-enumeration) and cross-checked to agree before being trusted.
+(terminals x,y) satisfying T1's exact hypothesis (xy absent from B and
+modeled separately, B+xy 2-connected, internal min degree >=3, internal
+cycles F-clean). The complete path spectrum Λ(B) and the explicitly named
+**dyadic internal-cycle spectrum** C_F(B)=C(B)∩F are computed by two
+independent methods and cross-checked. C_F is not described as the full
+cycle spectrum.
 
 Command: `python3 verifier/bridge_signature.py --nmin 3 --nmax 7`
 
@@ -493,22 +502,22 @@ that avoiding even a single C4 is already restrictive at small n
 (consistent with B0/M1/L15-style small-order results elsewhere).
 
 ## E20. Bridge compatibility search (redirection 2026-07-25, fifth pass, task Part 6)  [COMPUTATIONALLY VERIFIED, empty at this scale — consistent with E19]
-`verifier/bridge_compatibility.py`: builds on E19's library; would search
-for pairwise-compatible bridge families ((Λᵢ+Λⱼ)∩F=∅) with
-Σdᵢ(x),Σdᵢ(y)≥3, applying T2/self-forcing filters before the
-compatibility search, and independently re-verifying (dual detector) any
-assembled family from scratch before reporting.
+`verifier/bridge_compatibility.py`: builds on E19's library and now searches
+**only** T4's exact Type A/B/C families. Types A/B apply T5 before the
+pairwise cross-spectrum check; Type C enforces its exact no-edge terminal
+coverage conditions. Every candidate record includes the bridge type,
+terminal degree profile, (cᵢ,eᵢ), self-sum/internal cleanliness, T5,
+cross-compatibility, and abstract/graph-realizable status. Accepted graph-
+realizable candidates are independently rechecked with both detectors.
 
 Command: `python3 verifier/bridge_compatibility.py --nmin 3 --nmax 7`
 
 With E19's library empty at this order range, there is nothing to search
-over — 0 compatible families, 0 assembled graphs, compatibility-graph
-density undefined (0/0). **This is not a separate negative result**; it
-follows directly from E19. The search infrastructure (family enumeration,
-T2/self-forcing pre-filtering, independent assembly verification) is
-complete and ready to run once the library is extended to an order range
-where qualifying bridges exist — reported honestly as not yet reached,
-rather than papered over with a fabricated density number.
+over — 0 typed candidates and 0 assembled graphs. **This is vacuous and
+not a separate negative result.** Nonvacuous synthetic regression fixtures
+exercise valid and rejected Type A/B/C paths, including equal and partially
+tied T5 cases, even when the real library is empty. The graph-realizable
+pipeline remains ready for a nonempty library.
 
 ## E21. Abstract additive conditions proved insufficient (redirection 2026-07-25, seventh pass, corrects the sixth-pass entry)  [PROVED + COMPUTATIONALLY VERIFIED]
 **Correction to the sixth-pass E21 entry.** The earlier "tie modeling
@@ -516,12 +525,12 @@ limitation" caveat undersold what's actually true: two_cut.md §7 now
 **proves** (not just notes as a gap) that T2+T4+T5+pairwise
 cross-compatibility are jointly insufficient to exclude Type A
 abstractly, via an explicit infinite family. `verifier/
-three_bridge_search.py` is corrected accordingly: `check_T5_consistency`
-(strict permutations only) is replaced by
-`check_T5_consistency_with_ties` (always trivially satisfiable once ties
-are modeled correctly — kept as an explicit, checkable confirmation, not
-silently dropped), and a new `verify_infinite_equal_signature_family`
-function directly checks the Λ₁=Λ₂=Λ₃={m,m+1} family.
+three_bridge_search.py` is corrected accordingly: the old strict-permutation
+check is retained under an explicitly historical model name solely to
+reproduce 318, while `check_T5_consistency_with_ties` supplies the corrected
+semantics (always satisfiable abstractly once ties are allowed). A new
+`verify_infinite_equal_signature_family` function directly checks the
+Λ₁=Λ₂=Λ₃={m,m+1} family.
 
 Command: `python3 verifier/three_bridge_search.py`
 
@@ -530,17 +539,27 @@ m give Λ₁=Λ₂=Λ₃={m,m+1} with (Λᵢ+Λⱼ)∩F=∅ for every i,j (inclu
 self-sums) — e.g. m=5,6,9,10,11. This alone proves the insufficiency
 claim; no search is needed to establish it.
 
-| candidate Λ sets (pass T2, regression-only) | ties-corrected abstract survivors | all-3-self-sum-clean | realizable survivors |
-|---|---|---|---|
-| 65 | 547 | 26 | 0 |
+| stage/model | count | interpretation |
+|---|---:|---|
+| size-2/3 subsets of {1,…,8} | 84 | deterministic generated input |
+| spectra passing T2 | 65 | input to triple enumeration |
+| triples with replacement | 47,905 | before cross-spectrum filtering |
+| pairwise cross-compatible | 547 | abstract additive survivors |
+| old strict-order model | 318 | **incomplete historical model**; ties were unrepresentable |
+| corrected tied-signature model | 547 | current regression count |
+| newly represented | 229 | exactly 203 with two clean bridges + 26 with three clean bridges |
+| graph-realizable | 0 | vacuous consequence of E19's empty n≤7 library |
 
-The 547/26 counts (up from 318/0 in the uncorrected sixth-pass version —
-the tie fix alone finds 26 genuine all-3-clean triples the old strict-
-permutation check structurally could not see) are **regression data
-only**, confirming the search code agrees with the proved insufficiency
-result — **not reported as progress toward the three-bridge exclusion**,
-per instruction. 0 realizable, inherited directly from E19's still-empty
-library, not new evidence.
+The direct set-difference regression proves that the 229 restored triples
+are **exactly** the cross-compatible triples with at least two self-sum-clean
+bridges, i.e. precisely the cases that need a partial or three-way maximum
+tie and therefore could not be represented by the old strict permutation.
+Canonical provenance is recorded in `manifests/E21_manifest.json`.
+
+Both 318 and 547 are **regression data only**. The first is an incomplete
+model count; the second is the corrected abstract count. Neither is evidence
+toward resolving Erdős–Gyárfás or excluding Type A. Likewise, “0 realizable”
+is explicitly vacuous at this range because the real bridge library is empty.
 
 **Recorded conclusion, per instruction:** abstract additive conditions
 are insufficient; the remaining problem is realizability by degree-

@@ -164,14 +164,15 @@ def search_reducible_configurations(candidate_spectra):
                 forced_other_dyadic=forced_other_dyadic, options=options)
 
 
-def main():
+def main(candidates=None):
     print("=== C4-freeness first (as instructed) ===")
     real_only_c4_check()
     report_real_edge_count_restriction()
 
     print("\n=== Bounded search over small virtual-edge spectra ===")
     # Candidate small virtual spectra to try for each edge (beyond {1}=real)
-    candidates = [{2}, {3}, {2, 3}, {3, 4}, {2, 4}, {5}]
+    if candidates is None:
+        candidates = [{2}, {3}, {2, 3}, {3, 4}, {2, 4}, {5}]
     res = search_reducible_configurations(candidates)
     print(f"total configurations tested: {res['total']}")
     print(f"forced a C4: {res['forced_c4']}")
@@ -190,10 +191,7 @@ def main():
               "of each gadget (not tracked at this skeleton level) must "
               "ALSO avoid F. Reported as a candidate for further work, not "
               "a proved reducible configuration or a counterexample.")
-
-
-if __name__ == "__main__":
-    main()
+    return res
 
 
 # ---------------------------------------------------------------------------
@@ -259,8 +257,9 @@ def canonical_pattern(pattern):
     return best
 
 
-def o7_refilter_report(candidates):
-    res = search_reducible_configurations(candidates)
+def o7_refilter_report(candidates, base_result=None):
+    res = (base_result if base_result is not None
+           else search_reducible_configurations(candidates))
     clean = res["clean"]
     survivors = [(combo, assignment, lengths) for (combo, assignment, lengths) in clean
                  if o7_survives(assignment)]
@@ -300,7 +299,13 @@ def o7_refilter_report(candidates):
                 distinct_patterns=len(by_real_pattern), distinct_orbits=len(orbits))
 
 
-if __name__ == "__main__":
-    main()
+def run_all():
+    """Run E16/E17 once each while sharing the single bounded census."""
     candidates = [{2}, {3}, {2, 3}, {3, 4}, {2, 4}, {5}]
-    o7_refilter_report(candidates)
+    base_result = main(candidates)
+    o7_result = o7_refilter_report(candidates, base_result=base_result)
+    return {"base": base_result, "o7": o7_result}
+
+
+if __name__ == "__main__":
+    run_all()

@@ -1,6 +1,4 @@
-"""
-Three-bridge (Type A) abstract + realizable search (task Part 6, 2026-07-25,
-sixth redirection pass).
+"""E21 Type-A abstract-model reconciliation and regression search.
 
 Type A (two_cut.md Sec.2c): t=3, xy not an edge, a1=a2=a3=1 (all bridges
 share a degree-1 terminal), deg_G(x)=3, q1=q2=q3=3 -- forced exactly by
@@ -15,10 +13,10 @@ be realized by an actual graph yet), form triples, and check:
     every i!=j (the global bridge-spectrum identity, Sec.2);
   - self-sum status of each Lambda_i: is (Lambda_i+Lambda_i) & F empty
     (self-sum-clean) or not (dyadic self-sum)?
-  - T5's corollary, checked directly (not assumed): if a bridge is
-    self-sum-clean, is it consistent for it to be lexicographically
-    maximal among the triple (using an ASSUMED (c_i,e_i) ordering swept
-    over all 6 permutations, since Lambda alone doesn't fix c,e)?
+  - the OLD strict-order model, retained only to reproduce the incomplete
+    318 count from the sixth pass;
+  - the CORRECTED tied-signature model, which returns 547 survivors and
+    restores exactly 229 triples having at least two self-sum-clean bridges.
 
 REALIZABLE filter: cross-reference against the bridge-signature library
 (verifier/bridge_signature.py) -- currently empty through n=7 (E19) --
@@ -27,6 +25,7 @@ so the realizable count is reported honestly as 0, not fabricated.
 from __future__ import annotations
 import itertools
 import sys
+from dataclasses import dataclass
 
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
 from bridge_signature import build_library
@@ -51,7 +50,7 @@ def is_self_sum_clean(lam):
     return not (sumset(lam, lam) & F)
 
 
-def candidate_lambdas(max_len=6, universe=range(1, 9)):
+def candidate_lambdas(universe=range(1, 9)):
     """Small candidate Lambda sets (subsets of 1..8, size 2-3, passing T2)."""
     out = []
     for size in (2, 3):
@@ -61,21 +60,49 @@ def candidate_lambdas(max_len=6, universe=range(1, 9)):
     return out
 
 
+def check_T5_consistency_strict_order(triple_lambdas):
+    """Reproduce the OLD, incomplete strict-permutation representation.
+
+    A strict ordering has one unique maximum.  Therefore it can represent
+    T5 only when at most one bridge is self-sum-clean.  This function keeps
+    the old enumeration explicit rather than replacing it with that shortcut.
+    """
+    clean = [is_self_sum_clean(lam) for lam in triple_lambdas]
+    for order in itertools.permutations(range(3)):
+        unique_maximum = order[-1]
+        if all(not status or i == unique_maximum
+               for i, status in enumerate(clean)):
+            return True
+    return False
+
+
 def check_T5_consistency_with_ties(triple_lambdas):
-    """CORRECTED per the seventh-pass instruction: the previous version of
-    this check only tested STRICT (c,e) permutations, which cannot express
-    a genuine 3-way tie -- and T5's corollary only requires each self-sum-
-    clean bridge to be WEAKLY maximal (>= every other, ties allowed), not
-    uniquely maximal. Any subset S of self-sum-clean bridges can ALWAYS be
-    made consistent by simply setting (c,e) equal for every bridge in S at
-    the maximum value, with the rest <= that value -- so this check is now
-    (correctly) trivially satisfiable for ANY clean/non-clean pattern.
-    This triviality is not a bug: it IS the seventh-pass finding (Sec.7 of
-    two_cut.md) that T5, once ties are modeled correctly, imposes no
-    additional exclusionary power beyond what T2 + pairwise compatibility
-    already give -- kept here as an explicit, checkable confirmation of
-    that finding rather than silently dropped."""
-    return True  # always consistent once ties are properly allowed -- see docstring
+    """Implement the corrected tied-signature representation.
+
+    T5 requires each self-sum-clean bridge to be weakly maximal.  Any clean
+    subset can tie at the maximum signature, while non-clean bridges may be
+    below or tied.  Consequently every clean/non-clean pattern is representable.
+    """
+    return True
+
+
+def triple_key(triple_lambdas):
+    """Stable JSON-friendly key for a combinations-with-replacement triple."""
+    return tuple(tuple(sorted(lam)) for lam in triple_lambdas)
+
+
+@dataclass(frozen=True)
+class ModelReconciliation:
+    input_spectra: int
+    spectra_after_T2: int
+    triple_candidates: int
+    pairwise_cross_compatible: int
+    old_strict_survivors: int
+    corrected_tied_survivors: int
+    newly_represented: int
+    newly_with_exactly_two_clean: int
+    newly_with_three_clean: int
+    delta_exactly_old_representation_gap: bool
 
 
 def verify_infinite_equal_signature_family(max_m=2000):
@@ -92,10 +119,9 @@ def verify_infinite_equal_signature_family(max_m=2000):
     return qualifying
 
 
-def abstract_search():
+def abstract_search(model="corrected_tied"):
+    """Return pairwise-compatible survivors under the selected E21 model."""
     lambdas = candidate_lambdas()
-    print(f"{len(lambdas)} candidate Lambda sets pass T2 (universe 1..8, size 2-3)")
-
     survivors = []
     for combo in itertools.combinations_with_replacement(range(len(lambdas)), 3):
         tri = [lambdas[i] for i in combo]
@@ -107,14 +133,48 @@ def abstract_search():
                 break
         if not ok:
             continue
-        clean = [is_self_sum_clean(tri[i]) for i in range(3)]
-        # T5 with ties properly modeled: always consistent (see docstring
-        # of check_T5_consistency_with_ties) -- kept as an explicit call,
-        # not silently dropped, to make the triviality checkable in code.
-        if check_T5_consistency_with_ties(tri):
+        clean = [is_self_sum_clean(lam) for lam in tri]
+        if model == "old_strict_order":
+            accepted = check_T5_consistency_strict_order(tri)
+        elif model == "corrected_tied_signature":
+            accepted = check_T5_consistency_with_ties(tri)
+        else:
+            raise ValueError(f"unknown E21 model: {model}")
+        if accepted:
             survivors.append((tri, clean))
 
     return survivors, lambdas
+
+
+def reconcile_models():
+    """Compute and directly prove the exact 318/547/229 relationship."""
+    all_input = [frozenset(combo) for size in (2, 3)
+                 for combo in itertools.combinations(range(1, 9), size)]
+    t2_spectra = candidate_lambdas()
+    triple_candidates = sum(
+        1 for _ in itertools.combinations_with_replacement(t2_spectra, 3))
+    corrected, _ = abstract_search("corrected_tied_signature")
+    old, _ = abstract_search("old_strict_order")
+    corrected_by_key = {triple_key(tri): clean for tri, clean in corrected}
+    old_keys = {triple_key(tri) for tri, _ in old}
+    delta = set(corrected_by_key) - old_keys
+    expected_delta = {
+        key for key, clean in corrected_by_key.items() if sum(clean) >= 2
+    }
+    return ModelReconciliation(
+        input_spectra=len(all_input),
+        spectra_after_T2=len(t2_spectra),
+        triple_candidates=triple_candidates,
+        pairwise_cross_compatible=len(corrected),
+        old_strict_survivors=len(old),
+        corrected_tied_survivors=len(corrected),
+        newly_represented=len(delta),
+        newly_with_exactly_two_clean=sum(
+            sum(corrected_by_key[key]) == 2 for key in delta),
+        newly_with_three_clean=sum(
+            sum(corrected_by_key[key]) == 3 for key in delta),
+        delta_exactly_old_representation_gap=(delta == expected_delta),
+    )
 
 
 def main():
@@ -136,7 +196,27 @@ def main():
           f"This alone proves T2+T4+T5+pairwise-compatibility cannot exclude "
           f"Type A abstractly: infinitely many valid tied signatures survive.")
 
-    survivors, lambdas = abstract_search()
+    reconciliation = reconcile_models()
+    print("\n=== Canonical E21 model reconciliation ===")
+    print(f"input spectra (all size-2/3 subsets of 1..8): "
+          f"{reconciliation.input_spectra}")
+    print(f"spectra after T2: {reconciliation.spectra_after_T2}")
+    print(f"triple candidates with replacement: "
+          f"{reconciliation.triple_candidates}")
+    print(f"after pairwise cross-compatibility: "
+          f"{reconciliation.pairwise_cross_compatible}")
+    print(f"old strict-order survivors (INCOMPLETE MODEL): "
+          f"{reconciliation.old_strict_survivors}")
+    print(f"corrected tied-signature survivors: "
+          f"{reconciliation.corrected_tied_survivors}")
+    print(f"newly represented: {reconciliation.newly_represented} "
+          f"(exactly-two-clean={reconciliation.newly_with_exactly_two_clean}, "
+          f"three-clean={reconciliation.newly_with_three_clean})")
+    print("direct delta check (new survivors are exactly the old "
+          "strict-order representation gap): "
+          f"{reconciliation.delta_exactly_old_representation_gap}")
+
+    survivors, lambdas = abstract_search("corrected_tied_signature")
     print(f"\n(regression only, small finite universe 1..8) abstract "
           f"signature triples pairwise-compatible + T5-with-ties-consistent: "
           f"{len(survivors)} -- NOT reported as progress toward exclusion; "

@@ -14,6 +14,8 @@ work in the sibling `erdos/` directory — no shared code.
   counterexample structure, Royle–Markström bounds), with a master table.
 - `lemmas.md` — candidate lemmas with status labels; Track-B/Track-C results.
 - `experiments.md` — every run: command, params, output, interpretation.
+- `verification_status.md` — theorem/experiment verification matrix, including
+  explicit `NOT_FORMALLY_VERIFIED`, missing-data, and incomplete-range labels.
 - `proof.md` — current rigorously-established progress vs. conjectural notes.
 - `defect.md` — **arbitrary-order redirection (2026-07-25):** the
   ordering-defect parameter D, S4/S5 bridge/cut-vertex proofs summary,
@@ -59,10 +61,10 @@ work in the sibling `erdos/` directory — no shared code.
   - `spqr_k4_skeleton.py` — K4 rigid-skeleton triangle/quadrilateral
     spectrum analysis and reducible-configuration search (E16, E17).
   - `multi_r_search.py` — one-R-node target search (E18).
-  - `bridge_signature.py` — two-terminal bridge-signature library for the
-    2-cut decomposition (E19).
-  - `bridge_compatibility.py` — compatible-bridge-family search, with
-    independent re-verification of every assembled candidate (E20).
+  - `bridge_signature.py` — terminal-edge-free two-terminal signatures,
+    with Λ(B) and the explicitly dyadic internal-cycle spectrum C_F(B) (E19).
+  - `bridge_compatibility.py` — exact Type A/B/C search with T5-before-cross
+    filtering and independent re-verification of realizable candidates (E20).
   - `three_bridge_search.py` — proves T2/T4/T5/pairwise-compatibility are
     jointly insufficient to exclude Type A abstractly (infinite
     equal-signature family); regression-only abstract search (E21).
@@ -71,6 +73,7 @@ work in the sibling `erdos/` directory — no shared code.
   - `bridge_closure_search.py` — generates bridge closures J=B+xy (reusing
     the one-pole search structure), computes Λ(B)/h(B)/𝒟(B)/SPQR, ranks
     near-gadgets by h(B) (E22).
+- `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment

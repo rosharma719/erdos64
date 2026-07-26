@@ -434,14 +434,16 @@ conclusion, derived independently of §4's direct route.
 
 ## 5. Bridge-signature library [see verifier/bridge_signature.py, experiments.md E19]
 
-Σ(B) = (|V(B)|−2, |E(B)|, d_B(x), d_B(y), Λ(B), C(B)) for two-terminal
-graphs B with: B+xy 2-connected (T1's requirement); internal min degree
-≥3; internal cycles avoiding F. Path spectra Λ(B) and cycle spectra C(B)
-are computed with two independent implementations (DFS backtracking and
-networkx-based enumeration, the same dual-detector discipline used
-throughout this project since E0) and cross-checked. Deduplicated by
-signature, retaining ≥1 concrete realizing graph per signature. Results:
-experiments.md E19.
+Σ(B) = (|V(B)|−2, |E(B)|, d_B(x), d_B(y), Λ(B), C_F(B)) for
+two-terminal graphs B with: **xy∉E(B)** (the direct terminal edge is
+modeled separately); B+xy 2-connected (T1's requirement); internal
+minimum degree ≥3; and internal cycles avoiding F. Here C_F(B):=
+C(B)∩F is the **dyadic internal-cycle spectrum**, not the complete cycle
+spectrum. Both Λ(B) and C_F(B) are computed with two independent
+implementations (DFS backtracking and networkx-based enumeration, the
+same dual-detector discipline used throughout this project since E0) and
+cross-checked. Deduplicated by signature, retaining ≥1 concrete realizing
+graph per signature. Results: experiments.md E19.
 
 ## 6. Compatibility search, refactored to the 3 exact types [see verifier/bridge_compatibility.py, experiments.md E20]
 
@@ -473,6 +475,14 @@ verified per bridge). Every surviving family is additionally saved and
 independently re-verified as an actual assembled graph immediately upon
 discovery (not just certified via the signature arithmetic alone).
 Results: experiments.md E20.
+
+**Integrity status.** `verifier/bridge_compatibility.py` now implements
+only these three types. For Types A/B it evaluates T5 before computing
+cross-spectra; Type C uses its exact T4 coverage conditions. Each candidate
+record includes terminal degrees, (cᵢ,eᵢ), self-sum and internal cleanliness,
+T5, cross-compatibility, and abstract/realizable provenance. Because E19's
+real library is empty through n=7, nonvacuous synthetic fixtures exercise
+all three accepted paths and their structural/T5/cross-sum rejection paths.
 
 ## 7. Abstract additive conditions are insufficient [PROVED — 2026-07-25, seventh pass; corrects the previous framing]
 
@@ -517,6 +527,15 @@ E21 is corrected accordingly (experiments.md) to (a) support tied
 signatures explicitly rather than only strict permutations, and (b) state
 this insufficiency proposition rather than continue tallying finite-range
 abstract counts as progress.
+
+**Exact E21 reconciliation (regression only).** The old strict-order model
+kept 318 triples; the corrected tied-signature model keeps 547. Their
+difference is 229, consisting exactly of 203 triples with two self-sum-clean
+bridges and 26 with three. These are precisely the cases requiring partial
+or full maximum ties, which a strict permutation cannot encode. Neither
+count is evidence toward resolving the conjecture; the mathematical result
+is that the abstract conditions are insufficient. Canonical provenance:
+`manifests/E21_manifest.json`.
 
 **Candidate incompatibility causes**, still useful as a checklist for
 *realizable* candidates once found (not for the abstract program, which

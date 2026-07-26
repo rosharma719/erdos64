@@ -60,6 +60,10 @@ argument). New ranking by (probability of *genuinely new* progress) × verifiabi
     2. n=22, m=33, cubic 3²²
     3. n=21, m=32, one deg-4 (4,3²⁰)
     4. n=23, m=35, one deg-4 (4,3²²)
+  **Integrity note:** the external `.s6` files underlying the historical
+  extremal-layer degree checks are absent locally. Treat that part as
+  `EXTERNAL_DATA_MISSING`, not locally reproducible, until the artifacts in
+  `manifests/external_s6_manifest.json` are restored and checksummed.
   Method (validated at n=18: 2761 graphs, 0 C8-free survivors, detectors agree):
   `geng -c -f -d3 -D<maxdeg> N M:M res/mod` (−c connected [safe: n≤19 theorem makes
   every component a smaller δ≥3 {C4,C8}-free graph; −f = C4-free, confirmed by geng
@@ -379,13 +383,13 @@ the bridge-signature enumeration. Full detail: two_cut.md.
 - **Compatibility search refactored** to the 3 exact types only (no
   arbitrary signature cliques), with T5 applied before cross-spectrum
   checks; new targeted Type-A abstract+realizable search
-  (`verifier/three_bridge_search.py`): 318 abstract signature triples
-  satisfy every proved condition (T2+T4+T5), 0 realizable — inherited
-  directly from the still-empty bridge-signature library (n≤7, now
-  explicitly relabeled PIPELINE VALIDATION per instruction, not evidence
-  of nonexistence). Smallest identified obstruction to a three-bridge
-  exclusion theorem: realizability, not the T2/T4/T5 combinatorics
-  themselves (already numerically satisfiable).
+  (`verifier/three_bridge_search.py`): the historical strict-order model
+  reported 318 abstract triples, but this count was incomplete because
+  the model could not encode ties. The corrected tied-signature count is
+  547; the restored 229 are exactly the triples with at least two
+  self-sum-clean bridges. Both counts are regression-only, not evidence
+  toward exclusion. 0 realizable is inherited from the empty n≤7 bridge
+  library and is therefore vacuous, not evidence of nonexistence.
 - **Main target reprioritized**: excluding Type A (three-bridge 2-cuts)
   specifically, ahead of the full 3-connectivity target — kept
   CONJECTURAL, no exclusion theorem claimed.
@@ -403,6 +407,11 @@ program. Full detail: two_cut.md §7-15.
   as an explicit checkable confirmation, not silently dropped) and a new
   function verifies the infinite family directly. Abstract survivor
   counts are retired as a route to the three-bridge exclusion.
+- **E21 integrity reconciliation**: old strict-order count 318; corrected
+  tied-signature count 547; exact delta 229 = 203 exactly-two-clean + 26
+  three-clean triples. Regression tests preserve equal and partially tied
+  cases. Neither count bears on realizability or resolves a conjectural
+  case.
 - **T6 [PROVED]**: a standalone, unconditional copy-gadget criterion — no
   minimal-G context needed. Any two-terminal B satisfying 5 structural
   conditions (q(B)∈{2,3}, internal degree≥3, B itself F-clean, B+xy
