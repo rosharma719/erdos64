@@ -216,11 +216,32 @@ count is just `h`). Applied per row (using II.0's now-established
 - **Rows 5–6** (`h=3`): if `κ\ge2`, every component needs `\ge2` distinct
   `H`-neighbours out of `H=\{a,b,c\}` (used in Part VII.1).
 
-**Computational validation:** the per-row `(h,c_1,c_3)` values, the
-leaf-graph shape claims, and the component-incidence distinct-neighbour
-requirements are all checked against the same `q(G)=3` filtered
-population used in `verifier/branching_kernel.py`'s validation run —
-see `manifests/defect_three_table_manifest.json` (Part III below).
+**Computational cross-check, honestly reported.**
+`verifier/q3_table_check.py` exhaustively generates every `\delta\ge3`
+graph at `n=10,\ldots,13` (via `geng`, no artificial max-degree cap, so
+`h\ge1` structures are reachable), filters to `q(G)=3`, and restricts
+the row-membership check to the `C_4`-and-`C_8`-free scope (the
+project's standard necessary proxy for genuine F-cleanness — see
+`verifier/branching_kernel.py`'s `is_c4_free`). **Result: 0 of the
+25,183 matching-signature graphs at these orders are `C_4`-and-`C_8`-
+free.** This is *not* a vacuous or broken check — it is the expected
+outcome given what's already proved: every one of these small orders
+realizes only the `h=0` (`n=10`) or `h=1` (`n=11,12,13`) rows (the only
+rows reachable at bounded `n` without further structural input), and
+Part III.1–III.2 *already proved* every such graph contains a C4 or C8.
+**The `h\ge2` rows are not eliminated by a small-`n` sweep at all** (`n`
+is unbounded there until the colored-path bounds of Part IV pin
+component sizes); their row data is validated directly by reconstruction
+in Parts VI–VII below, not by this sweep. That said, all **six** table
+rows *do* occur among these small graphs before the scope filter is
+applied (`(0,0,10)`:19, `(1,0,6)`:2317, `(2,0,2)`:2044, `(2,1,3)`:6064,
+`(3,2,0)`:951, `(3,3,1)`:3340 — a further, independent confirmation that
+the table's six `(h,c_1,c_3)` triples are exactly realized, not merely
+algebraically consistent), alongside exactly the previously-documented
+off-table signatures that satisfy the leaf-count identity but violate
+the minimality-dependent strong inequality (the same scope pitfall
+caught earlier in `branching_kernel.py`'s validation). See
+`manifests/defect_three_table_manifest.json`.
 
 ## Part III: eliminating `h=0` and `h=1`
 
@@ -497,3 +518,70 @@ length in each case).
 **Conclusion.** The colored-path lemma (`t\le2,5,8` for `h=1,2,3`) is
 proved by hand (IV.2) and independently confirmed by two disagreeing-by-
 construction computational methods that reach exact agreement (IV.1).
+
+## Part V: colored cycle components
+
+**Setup.** A pure-`C_2` `F`-component is a cycle `v_1\ldots v_s`
+(`s\ge3`, indices mod `s`) of degree-2 `C`-vertices, none of which is a
+kernel (`C_1\cup C_3`) vertex, each `v_i` attached to a unique
+`H`-neighbour `\chi(i)`. Two independent necessary conditions for such a
+component to survive in a genuinely F-clean `G`:
+
+- **(0)** `s` itself must not be a power of two — the cycle is *already*
+  a length-`s` cycle entirely inside `G` (via `F\subseteq G`), regardless
+  of any `H`-attachment.
+- **(1)** the cycle-plus-`H` graph must contain no C4/C8, via the *same*
+  two mechanisms as Part IV — but now **computed cyclically** (distance
+  and sub-arcs wrap around at `s`), exactly the wraparound subtlety the
+  task warns must be checked, not inferred from the linear automaton.
+
+**Key corollary of the linear lemma, closing the search rigorously
+[PROVED].** Delete the single wraparound path edge `(v_s,v_1)` from the
+cycle-plus-`H` graph. Deleting an edge cannot create a new cycle, so if
+the original (cyclic) graph is C4/C8-free, the resulting graph — the
+cycle's remaining `s-1` path edges plus all `s` spoke edges — is
+*also* C4/C8-free. But that remaining graph is *exactly* a length-`s`
+instance of Part IV's colored-path setup (`s` positions, the same
+colours, path edges between consecutive positions, one spoke each — the
+lemma never used anything about what sits beyond the two endpoints).
+**Hence any valid cyclic `s`-component's colouring, read linearly, must
+itself respect the Part IV bound: `s\le2` (`h=1`), `s\le5` (`h=2`),
+`s\le8` (`h=3`).** Combined with `s\ge3` and (0) (excluding the powers
+of two `4,8` from the candidate range), the *entire* search space
+collapses to a **finite, already-tiny** set of candidates:
+`h=1`: none (`s\ge3>2`, empty by the corollary alone — no cyclic
+component is even possible in principle);
+`h=2`: `s\in\{3,5\}` (excluding `s=4`);
+`h=3`: `s\in\{3,5,6,7\}` (excluding `s=4,8`).
+
+**Exhaustive check of every candidate [verified].**
+`verifier/colored_cycle_search.py` builds the actual cycle-plus-`H`
+graph and checks C4/C8 with the same dual detector used throughout,
+over *every* colouring of every candidate `s` (up to the colour-`0`
+symmetry-breaking `\chi(1)=0`, since a global colour relabelling and a
+cyclic rotation are both graph isomorphisms) — and, for redundancy, over
+every `s` up to 13, far beyond every candidate range above. **Result:**
+
+\[
+\boxed{h=1:\ \text{no valid component};\quad h=2:\ \text{no valid
+component};\quad h=3:\ \text{exactly } s\in\{3,5\}.}
+\]
+
+`h=1` and `h=2` have **no** surviving cyclic component at any tested
+`s\le13` (in particular at every one of their few candidates from the
+corollary above) — **refuting** the possibility of any such component
+outright. `h=3` has **exactly two** surviving cyclic component types,
+`s=3` (2 colourings up to symmetry) and `s=5` (10 colourings up to
+symmetry) — witnesses `(0,1,2)` and `(0,0,1,1,2)` respectively — and
+**no** larger `s` (checked up to `13`, five past the corollary's already-
+proved hard ceiling of `8`). This is the "only finitely many types for
+`h=3`" the task asks to prove or refute: **proved, with the complete
+list exhibited.** See `manifests/colored_cycle_search_manifest.json`.
+
+**Independent hand confirmation for `h=1`.** With only 1 colour, every
+`\chi(i)=\chi(i+2)` trivially (single colour), and for `s\ge3` there
+always exist 3 cyclically-consecutive distinct positions `i,i+1,i+2`
+(mod `s`), giving an immediate C4 `z\text{-}v_i\text{-}v_{i+1}
+\text{-}v_{i+2}\text{-}z` — a second, independent proof that `h=1` has
+no valid pure-cycle component at all, agreeing with the corollary/search
+above.
