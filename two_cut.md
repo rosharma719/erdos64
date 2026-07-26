@@ -474,57 +474,259 @@ independently re-verified as an actual assembled graph immediately upon
 discovery (not just certified via the signature arithmetic alone).
 Results: experiments.md E20.
 
-## 7. Toward the three-bridge exclusion target [CONJECTURAL]
+## 7. Abstract additive conditions are insufficient [PROVED — 2026-07-25, seventh pass; corrects the previous framing]
 
-**Reprioritized main target (kept CONJECTURAL, not claimed):** *A
-lexicographically minimal Erdős–Gyárfás counterexample has no 2-cut with
-three nontrivial bridges (Type A).* This is now pursued ahead of the full
-3-connectivity target (which would additionally need Types B and C
-excluded) since Type A is the most rigid of the 3 (T4/T5 pin its
-structure down completely: a₁=a₂=a₃=1, q₁=q₂=q₃=3, deg_G(x)=3,
-xy∉E(G) — leaving only the Λᵢ spectra and the c,e signatures free).
+**The abstract program (searching signature triples under T2+T4+T5+
+pairwise compatibility alone, previous pass) is retired as a route to
+excluding Type A.** It cannot work, provably:
 
-**Search protocol, per instruction:** first search **abstract** signature
-triples (cᵢ,eᵢ,Λᵢ,internal-C) satisfying every proved condition (T2, T4's
-degree pins, T5's maximality corollaries, pairwise cross-spectrum
-compatibility) with no requirement that a real graph realizes each
-signature; only then filter to **realizable** triples (drawn from the
-actual bridge-signature library, §5). If abstract survivors exist but no
-realizable one does, the gap between them is itself the object of study
-— **the smallest such obstruction**, not an immediate exclusion proof.
+**Proposition (infinite equal-signature family) [PROVED].** *For
+infinitely many integers m, setting Λ₁=Λ₂=Λ₃={m,m+1} (all three
+signatures literally equal) satisfies (Λᵢ+Λⱼ)∩F=∅ for every i,j
+(including i=j), provided neither 2m nor 2m+2 is a power of two.*
 
-**Status this pass:** the bridge-signature library (§5) is empty through
-n=7 — **relabeled PIPELINE VALIDATION, not evidence for a general
-nonexistence pattern**, per instruction. With the library empty, both the
-abstract-triple and realizable-triple counts are reported honestly in
-experiments.md E20/E21 as "0 realizable (library empty); abstract search
-run separately over signature *parameters* directly (not requiring a
-concrete realizing graph) to test whether the proved conditions
-(T2+T4+T5) are even *numerically* satisfiable before asking about
-realizability" — see experiments.md for the exact abstract-search results
-and the smallest identified obstruction (if any) to promoting the
-three-bridge exclusion to a theorem.
+*Proof.* {m,m+1}+{m,m+1} = {2m, 2m+1, 2m+2} regardless of which two
+(possibly equal) indices are summed — the sum is symmetric since all
+three Λᵢ coincide. 2m+1 is odd, hence never in F={4,8,16,…} (all
+even) automatically. So the sumset avoids F exactly when 2m∉F and
+2m+2∉F. Since F is sparse (density 0), this holds for all but finitely
+many m in any bounded range and for **infinitely many m overall** —
+verified computationally (`verifier/three_bridge_search.py`,
+experiments.md E21: 1,979 of the first 1,999 integers m qualify). ∎
 
-**Candidate incompatibility causes**, clustered for a future finite-case
-theorem (broader than just Type A — see experiments.md E20 for which
-causes actually fire on the searched population):
+**Consequence for T5.** With all three signatures literally *equal*
+((c₁,e₁)=(c₂,e₂)=(c₃,e₃) trivially, by construction — nothing forces
+them apart), T5's corollary ("a self-sum-clean bridge is lex-maximal")
+imposes **no constraint at all**: every bridge ties for maximal, and a
+tie is never a strict inequality, so T5's hypothesis (cᵢ,eᵢ)<_lex(cₖ,eₖ)
+never fires. **T5 does not exclude the equal-signature family either.**
+
+**Recorded conclusion.** T2, T4, T5, and pairwise sumset compatibility —
+every currently-proved additive/combinatorial condition — are jointly
+**insufficient** to exclude Type A abstractly: an explicit infinite
+family of signatures survives all of them simultaneously. **The
+remaining problem is realizability by degree-constrained two-terminal
+graphs** — does some *actual graph* B realize a signature of this shape
+(or any other surviving shape) while also satisfying T1 (B+xy
+2-connected), internal min-degree-3, and internal F-cleanness? Per
+instruction: **abstract survivor counts are no longer reported as if they
+could establish the three-bridge exclusion** — §9 onward replaces the
+abstract program with a direct construction/search over real two-terminal
+graphs (T6's copy-gadget criterion and the bridge-closure generator).
+E21 is corrected accordingly (experiments.md) to (a) support tied
+signatures explicitly rather than only strict permutations, and (b) state
+this insufficiency proposition rather than continue tallying finite-range
+abstract counts as progress.
+
+**Candidate incompatibility causes**, still useful as a checklist for
+*realizable* candidates once found (not for the abstract program, which
+is now known insufficient on its own):
 1. cross-sum (Λᵢ+Λⱼ) hits a power of two;
 2. a bridge's own closure (Bᵢ+xy, or its qᵢ-fold gluing) is already a
-   smaller counterexample (T1/§3's direct route, not needing
-   compatibility at all);
+   smaller counterexample (T1/§3's direct route);
 3. terminal degrees fail to reach 3 when summed;
 4. a balanced (§4) order case fails its derived edge inequality;
-5. an internal cycle of some Bᵢ already hits a power of two (ruled out
-   automatically by construction if drawn from the library of §5, but a
-   live failure mode for arbitrarily-assembled candidates);
+5. an internal cycle of some Bᵢ already hits a power of two;
 6. a direct-edge/Mersenne conflict (§2's Λᵢ∩{2ᵏ−1}≠∅ when xy∈E(G)).
 
-No finite theorem excluding every compatible family is established here.
-This is the honest state of the target: a conjecture with a precise
-combinatorial decomposition (§1–4) and a search infrastructure (§5–6)
-built to test it, not a proof.
+## 9. T6: the copy-gadget criterion [PROVED — 2026-07-25, seventh pass]
 
-## 8. Scope note on the K4 census
+A **standalone, unconditional** construction — no minimal G assumed to
+exist at all. Let B be a two-terminal graph, terminals x,y, with:
+(i) q(B):=max(⌈3/d_B(x)⌉,⌈3/d_B(y)⌉) ∈{2,3}; (ii) every internal vertex
+has degree ≥3; (iii) B has no power-of-two cycle; (iv) B+xy is
+2-connected; (v) (Λ(B)+Λ(B))∩F=∅; **and (implicit, needed for
+simplicity, stated explicitly here) xy∉E(B)** — B does not itself
+contain the direct terminal edge (else gluing ≥2 copies would create
+parallel x\*–y\* edges).
+
+**T6.** *Gluing q(B) disjoint copies of B at both terminals (identifying
+all copies' x's into x\*, all copies' y's into y\*) produces a genuine
+Erdős–Gyárfás counterexample.*
+
+*Proof.*
+- **Simplicity [verified explicitly].** Distinct copies share only
+  x\*,y\*; internal vertices are fresh per copy, so no edge is
+  duplicated across copies — **except** a copy's own would-be xy edge,
+  which is excluded by hypothesis (v)'s addendum above. So the glued
+  graph is simple.
+- **δ≥3 everywhere [verified explicitly].** Internal (copy-local)
+  vertices: unchanged B-degree ≥3. deg(x\*)=q(B)·d_B(x) ≥
+  d_B(x)·⌈3/d_B(x)⌉ ≥3 (standard ceiling inequality, using
+  q(B)≥⌈3/d_B(x)⌉). Symmetrically deg(y\*)=q(B)·d_B(y)≥3.
+- **Cycle classification, exhaustive [verified explicitly].** Every
+  simple cycle either (a) lies entirely within one copy — inheriting
+  B's own F-clean spectrum (hypothesis iii), safe — or (b) crosses
+  between exactly 2 of the q(B) copies (a simple cycle visits x\*,y\*
+  each at most once; copies share only these two vertices, so between
+  consecutive visits it stays in one copy — same mechanism used
+  throughout this project). Since every copy is a literal replica of
+  B, case (b) always has length ℓ+ℓ′ for ℓ,ℓ′∈Λ(B) — **exactly**
+  Λ(B)+Λ(B), regardless of which 2 of the q(B) copies are used. This
+  is exhaustive: no other cycle type is possible.
+- **F-cleanness.** Case (a) safe by (iii); case (b) safe by (v)
+  ((Λ(B)+Λ(B))∩F=∅). **The glued graph has δ≥3 and no cycle of length in
+  F: a genuine Erdős–Gyárfás counterexample, unconditionally.** ∎
+
+**Type-A case, stated separately.** If d_B(x)=1, then
+q(B)=max(⌈3/1⌉,·)=max(3,·)=**3** exactly (⌈3/1⌉=3 is already the largest
+possible ceiling value, dominating regardless of d_B(y)) — matching Type
+A's earlier characterization. **A single B satisfying T6's hypotheses
+with d_B(x)=1 resolves the full Erdős–Gyárfás conjecture negatively**:
+no minimal-counterexample context, no lexicographic comparison, no
+master-minimality trick is needed — T6 is a direct, checkable
+construction recipe.
+
+## 10. The focused positive conjecture [CONJECTURAL]
+
+> **Conjecture.** *Every Type-A bridge B (d_B(x)=1, B+xy 2-connected,
+> every internal vertex degree ≥3, B internally power-of-two-cycle-free,
+> xy∉E(B)) has (Λ(B)+Λ(B))∩F≠∅.*
+
+This is the exact negation of T6's self-sum hypothesis, restricted to
+Type A. The dichotomy is sharp: **if TRUE**, T6 can never fire on a
+Type-A bridge, eliminating the entire "fully-balanced three-identical-
+bridge" route (§4/§4b's k=3 case, and more generally any Type-A
+construction attempt) from ever producing a survivor — a genuine
+structural theorem toward 3-connectivity. **If FALSE** — i.e. some
+Type-A bridge is self-sum-clean — T6 immediately manufactures a full
+counterexample via the single-B construction above. **Labeled
+CONJECTURAL**; not claimed either way here.
+
+## 11. Linkage data: disjoint-pair spectra and the symmetric-difference identity [PROVED — 2026-07-25]
+
+For a two-terminal graph B (terminals x,y), beyond the plain path
+spectrum Λ(B)={|P| : P an x–y path}, define:
+- **𝒟(B) := {(|P|,|Q|) : P,Q internally vertex-disjoint x–y paths}**
+  (ordered or unordered pairs of genuinely disjoint paths);
+- **ω(P,Q) := |E(P)∩E(Q)|** for any two x–y paths P,Q (not necessarily
+  disjoint) — their shared-edge count.
+
+**Every pair in 𝒟(B) gives a cycle of length |P|+|Q| [PROVED,
+immediate].** P,Q share only the endpoints x,y (internal disjointness),
+so P∪Q is a genuine simple cycle of that length.
+
+**No pair in 𝒟(B) has dyadic sum [PROVED, immediate corollary].** Since
+B has no power-of-two cycle (standing hypothesis throughout this
+section), every cycle P∪Q from a disjoint pair has length ∉F: for every
+(ℓ,ℓ′)∈𝒟(B), ℓ+ℓ′∉F.
+
+**Every dyadic self-sum witness must involve overlapping paths [PROVED,
+immediate contrapositive].** If ℓ,ℓ′∈Λ(B) with ℓ+ℓ′∈F, witnessed by
+paths P (length ℓ), Q (length ℓ′): if P,Q were internally disjoint,
+(ℓ,ℓ′)∈𝒟(B), contradicting the previous fact. So **P,Q share at least
+one internal vertex** — not necessarily an edge (ω(P,Q) could still be
+0 if they cross at a shared vertex via different edge pairs); the
+precise overlap is measured next.
+
+**The symmetric-difference identity [PROVED].** *For any two x–y paths
+P,Q:*
+[
+|P|+|Q| = 2\,\omega(P,Q) + \sum_C |C|,
+]
+*where the sum ranges over the cycles in the edge-disjoint cycle
+decomposition of the symmetric difference E(P)△E(Q).*
+
+*Proof.* Standard inclusion–exclusion on edge sets: |E(P)|+|E(Q)| =
+|E(P)∩E(Q)| + |E(P)∪E(Q)| = |E(P)∩E(Q)| + (|E(P)∩E(Q)|+|E(P)△E(Q)|) =
+2ω(P,Q) + |E(P)△E(Q)|. It remains to show E(P)△E(Q) decomposes into
+edge-disjoint cycles, i.e. every vertex has even degree in the symmetric
+difference. At any vertex v, writing e₁=deg among P's edges at v,
+e₂=deg among Q's edges at v, and c=edges at v common to both: degree in
+the symmetric difference = e₁+e₂−2c ≡ e₁+e₂ (mod 2). For v∉{x,y}:
+e₁∈{0,2} (v is either off P entirely, or P-internal with degree 2) and
+likewise e₂∈{0,2} — sum always even. For v=x (symmetrically y): e₁=1
+(x is P's own endpoint, path-degree 1) and e₂=1 (x is also Q's
+endpoint) — sum=2, even. **Every vertex has even symmetric-difference
+degree**, so E(P)△E(Q) is a disjoint union of edge-disjoint cycles
+(standard fact: an all-even-degree graph decomposes into edge-disjoint
+cycles). ∎
+
+**Cross-checked with two independent implementations**
+(`verifier/linkage_data.py`) — a direct combinatorial computation of
+ω(P,Q) and the cycle decomposition of the symmetric difference via
+connected-component/Eulerian-subgraph extraction, versus a brute-force
+recomputation of |P|+|Q| from the path lengths directly — tested on every
+bridge example generated in this pass (experiments.md E22).
+
+## 12. Type-A suppression: the canonical representation [PROVED]
+
+For a Type-A bridge B (d_B(x)=1), let u be x's unique neighbor and
+K:=B−x (terminals u,y). Define **M(B) := {lengths of simple u–y paths in
+K}**.
+
+**Λ(B) = 1+M(B) [PROVED].** Every x–y path in B must begin with x's
+unique edge (to u), then continue as a u–y path in K=B−x (which
+automatically avoids x, since x is removed) — a bijection between x–y
+paths of B and u–y paths of K, shifting length by exactly 1.
+
+**Equivalence [PROVED, corollary].** (Λ(B)+Λ(B))∩F=∅ ⟺
+((1+M(B))+(1+M(B)))∩F=∅ ⟺ (2+M(B)+M(B))∩F=∅ ⟺ for every m,m′∈M(B):
+m+m′∉F−2={2ᵏ−2 : k≥2}, i.e.
+[
+(M(B)+M(B)) \cap \{2^k-2 : k\ge2\} = \varnothing.
+]
+
+This is the **canonical Type-A representation** used throughout §13–14:
+K (one vertex smaller than B, terminals u,y) replaces B entirely, and
+the target set shifts from F={4,8,16,…} to {2ᵏ−2}={2,6,14,30,…}.
+
+## 13. Bridge-closure generation and near-gadget ranking [see verifier/bridge_closure_search.py, experiments.md E22]
+
+**Generation, matching the one-pole search structure exactly.** J:=B+xy
+is precisely a **one-pole graph** with root x (degree exactly 2, per
+T6's Type-A case) — reusing the frozen one-pole search machinery
+directly, relaxed only in that y is allowed degree ≥2 (not required ≥3,
+since y is B's *other* terminal, not a generic internal vertex).
+Generated via `geng -c -d2` (connected, min degree ≥2), filtering to:
+exactly one degree-2 vertex x; every vertex other than x,y has degree
+≥3; d_J(y)≥2. B is recovered by deleting the distinguished edge xy (one
+of x's two incident edges — both choices of "which neighbor is y" are
+tried). Deduplicated by edge-rooted isomorphism class (not just graph
+isomorphism — the same graph with a different edge distinguished counts
+separately, since B differs).
+
+**Per B, computed and independently cross-checked (two
+implementations):** internal power-of-two-cycle cleanliness; Λ(B); self-
+sum dyadic hits (Λ(B)+Λ(B))∩F; the disjoint-pair spectrum 𝒟(B); the
+minimum ω(P,Q) among any dyadic-self-sum-witnessing pair (§11); and the
+SPQR node type at the divergence/reconvergence structure (via the same
+`spqrtree` package used throughout this project). Results:
+experiments.md E22.
+
+**Ranking function.** h(B) := |(Λ(B)+Λ(B))∩F|. Priority order, exactly
+as specified: (1) h(B)=0 — an outright T6 gadget (escalate and
+independently re-verify **immediately**, not just log it); (2) h(B)=1;
+(3) minimum overlap ω among the dyadic witnesses; (4) witness pairs
+whose symmetric difference is a single cycle (the simplest possible
+"near-miss" structure per §11's identity); (5) witnesses confined to
+one rigid SPQR component. For every h(B)=1 bridge found, the exact
+witness pair (P,Q) producing the unique dyadic hit is preserved (not
+just its existence).
+
+## 14. Toward T7: the minimum-overlap reduction [CONJECTURAL, searched not proved]
+
+For a Type-A bridge, among all dyadic-self-sum-witnessing pairs (P,Q),
+select one minimizing, in order: (1) ω(P,Q); (2) |V(P)∪V(Q)|; (3) the
+number of cycles in the symmetric-difference decomposition (§11).
+
+> **Target T7 (searched, not proved or disproved here).** *Such a
+> minimum-overlap pair either (a) directly exhibits an internal
+> power-of-two cycle (one of the symmetric-difference cycles itself hits
+> F), or (b) identifies a proper two-terminal subpiece of B whose
+> qᵢ-fold copy-closure is a lexicographically smaller gadget than B
+> itself* (a T3/T5-style replacement, now applied recursively within a
+> single bridge rather than across bridges of a 2-cut).
+
+Searched for the smallest counterexample to T7 before any proof attempt,
+per instruction — see experiments.md E22 for what the bridge-closure
+generator actually finds at the sizes reached. **Status: neither proved
+nor refuted this pass** — the generator's population at the sizes
+reached (see E22) did not yet produce a genuine dyadic-self-sum witness
+to test T7 against directly; the target is recorded precisely so it can
+be tested the moment one appears, rather than left vague.
+
+## 15. Scope note on the K4 census
 
 Per instruction, the O7-filtered K4 census (one_pole.md, experiments.md
 E16/E17) is retained as supporting data and **not extended this pass** —

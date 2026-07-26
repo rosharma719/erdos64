@@ -390,6 +390,46 @@ the bridge-signature enumeration. Full detail: two_cut.md.
   specifically, ahead of the full 3-connectivity target — kept
   CONJECTURAL, no exclusion theorem claimed.
 
+## Eighth pass 2026-07-25: abstract insufficiency proved, T6 copy-gadget, linkage data
+Per instruction: stop investing in unrestricted abstract signature
+triples; replace with a direct two-terminal counterexample-gadget
+program. Full detail: two_cut.md §7-15.
+- **Abstract insufficiency [PROVED]**: an explicit infinite family
+  (Λ₁=Λ₂=Λ₃={m,m+1}, valid for 1,979/1,999 tested m) satisfies T2, every
+  pairwise cross-compatibility check, and (trivially, once ties are
+  modeled correctly) T5's maximality corollary. `three_bridge_search.py`
+  corrected: the old strict-permutation T5 check is replaced with a
+  ties-aware one (always trivially consistent — the finding itself, kept
+  as an explicit checkable confirmation, not silently dropped) and a new
+  function verifies the infinite family directly. Abstract survivor
+  counts are retired as a route to the three-bridge exclusion.
+- **T6 [PROVED]**: a standalone, unconditional copy-gadget criterion — no
+  minimal-G context needed. Any two-terminal B satisfying 5 structural
+  conditions (q(B)∈{2,3}, internal degree≥3, B itself F-clean, B+xy
+  2-connected, (Λ(B)+Λ(B))∩F=∅, plus the necessary xy∉E(B) for
+  simplicity, made explicit), glued q(B)-fold at both terminals, is a
+  genuine Erdős–Gyárfás counterexample outright. Type-A case (d_B(x)=1)
+  forces q(B)=3 — a single such B resolves the whole conjecture.
+- **Focused conjecture stated [CONJECTURAL]**: every structurally-valid
+  Type-A bridge has a dyadic self-sum — proving it closes the balanced
+  three-identical-bridge route; disproving it (via T6) ends the project.
+- **Linkage data [PROVED]**: the disjoint-pair spectrum 𝒟(B) is always
+  dyadic-clean (its cycles are genuine B-cycles); every dyadic self-sum
+  witness must therefore involve overlapping paths; the exact
+  symmetric-difference identity |P|+|Q|=2ω(P,Q)+Σ(cycle lengths)
+  proved and independently verified two ways (E22, 7/7 tests pass).
+- **Type-A canonical form [PROVED]**: Λ(B)=1+M(B) (M(B) = path spectrum
+  of B minus its degree-1 terminal), reducing the self-sum condition to
+  (M(B)+M(B))∩{2^k−2}=∅ on a one-smaller graph.
+- **Generator + ranking built**: `bridge_closure_search.py` reuses the
+  frozen one-pole search structure directly (x at degree 2 = a one-pole
+  root); 5,212 candidates through n=8, 0 internally-clean yet (matches
+  the established small-order pattern, not evidence of nonexistence).
+  h(B) ranking implemented per the specified priority order; no h(B)=0
+  or h(B)=1 qualifying candidate found this pass.
+- **T7 (minimum-overlap reduction)**: stated precisely, neither proved
+  nor refuted — no genuine witness pair yet exists to test it against.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

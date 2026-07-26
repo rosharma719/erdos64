@@ -510,38 +510,83 @@ complete and ready to run once the library is extended to an order range
 where qualifying bridges exist — reported honestly as not yet reached,
 rather than papered over with a fabricated density number.
 
-## E21. Type-A abstract + realizable three-bridge search (redirection 2026-07-25, sixth pass, task Part 6)  [COMPUTATIONALLY VERIFIED]
-`verifier/three_bridge_search.py`: for Type A (T4's exact pin: t=3,
-xy∉E(G), a₁=a₂=a₃=1), enumerates small candidate Λ sets passing T2 (65
-sets, universe 1..8, size 2-3), forms triples, and checks pairwise
-cross-compatibility ((Λᵢ+Λⱼ)∩F=∅, the global bridge-spectrum identity)
-and T5's maximality corollary (self-sum-clean bridges must be
-lex-maximal, checked against every possible (c,e) ordering).
+## E21. Abstract additive conditions proved insufficient (redirection 2026-07-25, seventh pass, corrects the sixth-pass entry)  [PROVED + COMPUTATIONALLY VERIFIED]
+**Correction to the sixth-pass E21 entry.** The earlier "tie modeling
+limitation" caveat undersold what's actually true: two_cut.md §7 now
+**proves** (not just notes as a gap) that T2+T4+T5+pairwise
+cross-compatibility are jointly insufficient to exclude Type A
+abstractly, via an explicit infinite family. `verifier/
+three_bridge_search.py` is corrected accordingly: `check_T5_consistency`
+(strict permutations only) is replaced by
+`check_T5_consistency_with_ties` (always trivially satisfiable once ties
+are modeled correctly — kept as an explicit, checkable confirmation, not
+silently dropped), and a new `verify_infinite_equal_signature_family`
+function directly checks the Λ₁=Λ₂=Λ₃={m,m+1} family.
 
 Command: `python3 verifier/three_bridge_search.py`
 
-| candidate Λ sets (pass T2) | abstract survivor triples | all-3-self-sum-clean | ≥1 dyadic self-sum | realizable survivors |
+**Infinite family, verified directly:** 1,979 of the first 1,999 integers
+m give Λ₁=Λ₂=Λ₃={m,m+1} with (Λᵢ+Λⱼ)∩F=∅ for every i,j (including
+self-sums) — e.g. m=5,6,9,10,11. This alone proves the insufficiency
+claim; no search is needed to establish it.
+
+| candidate Λ sets (pass T2, regression-only) | ties-corrected abstract survivors | all-3-self-sum-clean | realizable survivors |
+|---|---|---|---|
+| 65 | 547 | 26 | 0 |
+
+The 547/26 counts (up from 318/0 in the uncorrected sixth-pass version —
+the tie fix alone finds 26 genuine all-3-clean triples the old strict-
+permutation check structurally could not see) are **regression data
+only**, confirming the search code agrees with the proved insufficiency
+result — **not reported as progress toward the three-bridge exclusion**,
+per instruction. 0 realizable, inherited directly from E19's still-empty
+library, not new evidence.
+
+**Recorded conclusion, per instruction:** abstract additive conditions
+are insufficient; the remaining problem is realizability by degree-
+constrained two-terminal graphs. The project's live search is now
+`verifier/bridge_closure_search.py` (E22), not this script.
+
+## E22. Bridge-closure generation, linkage-data identity, and near-gadget ranking (redirection 2026-07-25, seventh pass, task Parts 4, 6-8)  [PROVED + COMPUTATIONALLY VERIFIED]
+
+**Symmetric-difference identity** (`verifier/linkage_data.py`,
+two_cut.md §11): |P|+|Q| = 2ω(P,Q) + Σ(cycle lengths in the edge-disjoint
+decomposition of the symmetric difference), verified via two independent
+computations (direct edge-set arithmetic for ω, greedy cycle-peeling for
+the decomposition) on a battery of 7 hand-built path pairs (disjoint,
+overlapping, identical, diverge-immediately cases). Command:
+`python3 verifier/linkage_data.py` → "ALL IDENTITY TESTS PASSED".
+
+**Bridge-closure generation** (`verifier/bridge_closure_search.py`,
+two_cut.md §13): generates J=B+xy by reusing the (frozen) one-pole search
+structure directly — x at degree exactly 2 is precisely a one-pole root,
+relaxed to allow d_J(y)≥2 rather than ≥3. Deletes the distinguished edge
+to recover B; computes Λ(B), h(B), the disjoint-pair spectrum 𝒟(B),
+minimum witness overlap, and SPQR type, cross-checked via the dual-
+detector discipline used since E0.
+
+Command: `python3 verifier/bridge_closure_search.py --nmin 5 --nmax 8`
+
+| n range | (J,x,y) candidates | distinct edge-rooted B | Type-A (d_B(x)=1) | internally-clean Type-A |
 |---|---|---|---|---|
-| 65 | 318 | 0 | 318 | 0 |
+| 5-8 | 5,212 | 5,212 | 5,212 (100%) | 0 |
 
-**318 abstract signature triples satisfy every currently-proved
-numerical condition (T2 + pairwise cross-compatibility + T5's maximality
-consistency) — the theoretical machinery alone does NOT exclude Type A.**
-0 are realizable, but this is directly inherited from E19's empty
-library (n≤7), not new negative evidence. **Modeling caveat, noted
-honestly:** T5's maximality check here uses strict (c,e) *permutations*
-(no tie representation), so "all 3 simultaneously self-sum-clean"
-correctly registers 0 in this model (a genuine 3-way tie in (c,e), which
-T5's corollary *does* allow, isn't expressible as a strict ordering) —
-this is a modeling limitation of the abstract search, not a mathematical
-claim that 3-way-clean triples are impossible; two_cut.md's own T5
-corollary proves exact equality is exactly how 3-way self-sum-clean
-triples *would* have to look, if realizable.
+**Every candidate at this scale has d_B(x)=1 automatically** (deleting
+one of a degree-2 vertex's two edges always leaves degree 1 — this is
+structural, not a search artifact). **0 internally-clean candidates** —
+matches the established small-order pattern (B0/M1/L15-style; also
+directly confirmed here on a live example: g6 `DV{`, x=1, y=3, has
+Λ(B)=[2,3,4], h(B)=2, but internal_clean=False). h(B) distribution among
+internally-clean candidates is therefore empty at this scale — **not
+evidence of nonexistence**, consistent with every other search in this
+project reaching n≤8 or n≤9. No h(B)=0 gadget found (would have triggered
+immediate escalation per protocol). No h(B)=1 candidate qualifies either
+(internal cleanliness gates first). n=9+ not attempted this pass —
+generation cost scales the same as the earlier one-pole search (E9),
+already documented as slow past n≈9 without a streaming rewrite.
 
-**Smallest identified obstruction to the three-bridge exclusion
-theorem:** realizability, not combinatorics — no concrete bridge graph
-is yet known (searched through n=7) matching any of the 318 abstract
-Λ-triples while also satisfying T1 + internal min-degree-3 + internal
-F-cleanness. Recorded as the honest state, matching the task's framing
-(search abstract first, then realizable; report the gap, not a false
-exclusion).
+**T7 (minimum-overlap reduction target, two_cut.md §14): neither proved
+nor refuted.** The generator has not yet produced a genuine (internally-
+clean, dyadic-self-sum-witnessing) Type-A candidate to test T7 against.
+Recorded as open, with the exact target statement preserved for when one
+appears.

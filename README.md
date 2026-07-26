@@ -63,8 +63,14 @@ work in the sibling `erdos/` directory — no shared code.
     2-cut decomposition (E19).
   - `bridge_compatibility.py` — compatible-bridge-family search, with
     independent re-verification of every assembled candidate (E20).
-  - `three_bridge_search.py` — Type-A (three-bridge) abstract + realizable
-    signature-triple search, testing T2/T5 before realizability (E21).
+  - `three_bridge_search.py` — proves T2/T4/T5/pairwise-compatibility are
+    jointly insufficient to exclude Type A abstractly (infinite
+    equal-signature family); regression-only abstract search (E21).
+  - `linkage_data.py` — the symmetric-difference identity
+    |P|+|Q|=2ω(P,Q)+Σ(cycle lengths), independently verified (E22).
+  - `bridge_closure_search.py` — generates bridge closures J=B+xy (reusing
+    the one-pole search structure), computes Λ(B)/h(B)/𝒟(B)/SPQR, ranks
+    near-gadgets by h(B) (E22).
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment

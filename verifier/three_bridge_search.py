@@ -61,22 +61,35 @@ def candidate_lambdas(max_len=6, universe=range(1, 9)):
     return out
 
 
-def check_T5_consistency(triple_lambdas, perm_ce_order):
-    """Given an assumed lex order among the 3 bridges' (c,e) (a permutation
-    0<1<2 meaning bridge perm[0] has smallest (c,e), perm[2] largest),
-    check: every self-sum-clean bridge must be the (unique, or tied-max)
-    lex-maximal one, i.e. index perm[2] (or tied with it) -- else T5's
-    corollary is violated for this assumed ordering."""
-    clean = [is_self_sum_clean(triple_lambdas[i]) for i in range(3)]
-    max_idx = perm_ce_order[2]
-    for i in range(3):
-        if clean[i] and i != max_idx:
-            # i is self-sum-clean but NOT the assumed lex-maximal bridge --
-            # only consistent if i is tied with max_idx, which we can't
-            # express in a strict order; treat strict orderings as requiring
-            # i == max_idx exactly.
-            return False
-    return True
+def check_T5_consistency_with_ties(triple_lambdas):
+    """CORRECTED per the seventh-pass instruction: the previous version of
+    this check only tested STRICT (c,e) permutations, which cannot express
+    a genuine 3-way tie -- and T5's corollary only requires each self-sum-
+    clean bridge to be WEAKLY maximal (>= every other, ties allowed), not
+    uniquely maximal. Any subset S of self-sum-clean bridges can ALWAYS be
+    made consistent by simply setting (c,e) equal for every bridge in S at
+    the maximum value, with the rest <= that value -- so this check is now
+    (correctly) trivially satisfiable for ANY clean/non-clean pattern.
+    This triviality is not a bug: it IS the seventh-pass finding (Sec.7 of
+    two_cut.md) that T5, once ties are modeled correctly, imposes no
+    additional exclusionary power beyond what T2 + pairwise compatibility
+    already give -- kept here as an explicit, checkable confirmation of
+    that finding rather than silently dropped."""
+    return True  # always consistent once ties are properly allowed -- see docstring
+
+
+def verify_infinite_equal_signature_family(max_m=2000):
+    """two_cut.md Sec.7's Proposition: Lambda_1=Lambda_2=Lambda_3={m,m+1}
+    survives every pairwise/self-sum check for infinitely many m (all m
+    with neither 2m nor 2m+2 in F). Verified computationally here, not
+    just asserted."""
+    qualifying = []
+    for m in range(1, max_m):
+        lam = frozenset((m, m + 1))
+        s = sumset(lam, lam)  # same as Lambda_i+Lambda_j for any i,j here
+        if not (s & F):
+            qualifying.append(m)
+    return qualifying
 
 
 def abstract_search():
@@ -95,35 +108,49 @@ def abstract_search():
         if not ok:
             continue
         clean = [is_self_sum_clean(tri[i]) for i in range(3)]
-        # does SOME assumed (c,e) ordering make T5 consistent?
-        consistent_orderings = 0
-        for perm in itertools.permutations(range(3)):
-            if check_T5_consistency(tri, perm):
-                consistent_orderings += 1
-        if consistent_orderings > 0:
-            survivors.append((tri, clean, consistent_orderings))
+        # T5 with ties properly modeled: always consistent (see docstring
+        # of check_T5_consistency_with_ties) -- kept as an explicit call,
+        # not silently dropped, to make the triviality checkable in code.
+        if check_T5_consistency_with_ties(tri):
+            survivors.append((tri, clean))
 
     return survivors, lambdas
 
 
 def main():
+    print("=== SCOPE NOTE (seventh pass): this script is retained for the "
+          "regression battery below, NOT as a route to excluding Type A. "
+          "two_cut.md Sec.7 PROVES T2+T4+T5+pairwise-compatibility are "
+          "jointly insufficient (an explicit infinite equal-signature "
+          "family survives all of them). Abstract survivor counts are no "
+          "longer reported as if they could establish the three-bridge "
+          "exclusion -- see verifier/bridge_closure_search.py for the "
+          "actual current program (direct construction/search over real "
+          "two-terminal graphs, T6's copy-gadget criterion). ===\n")
+
+    print("=== Verifying the infinite equal-signature family explicitly ===")
+    qualifying_m = verify_infinite_equal_signature_family(max_m=2000)
+    print(f"Lambda_1=Lambda_2=Lambda_3={{m,m+1}}: {len(qualifying_m)} of the "
+          f"first 1999 integers m give a fully pairwise+self-sum-clean equal "
+          f"triple (neither 2m nor 2m+2 in F) -- e.g. m={qualifying_m[:5]}. "
+          f"This alone proves T2+T4+T5+pairwise-compatibility cannot exclude "
+          f"Type A abstractly: infinitely many valid tied signatures survive.")
+
     survivors, lambdas = abstract_search()
-    print(f"\nabstract signature triples (pairwise cross-compatible under the "
-          f"global bridge-spectrum identity): {len(survivors)}")
+    print(f"\n(regression only, small finite universe 1..8) abstract "
+          f"signature triples pairwise-compatible + T5-with-ties-consistent: "
+          f"{len(survivors)} -- NOT reported as progress toward exclusion; "
+          f"kept solely to confirm the search code agrees with the proved "
+          f"insufficiency result above (every one of these ties are trivially "
+          f"realizable in the abstract sense per the tie-argument, consistent "
+          f"with Sec.7, not a new finding).")
 
-    n_all_clean = sum(1 for tri, clean, _ in survivors if all(clean))
-    n_some_dyadic_self = sum(1 for tri, clean, _ in survivors if not all(clean))
-    print(f"  of which all 3 bridges self-sum-clean: {n_all_clean}")
-    print(f"  of which >=1 bridge has a dyadic self-sum: {n_some_dyadic_self}")
+    n_all_clean = sum(1 for tri, clean in survivors if all(clean))
+    print(f"  of which all 3 bridges self-sum-clean (matches the infinite "
+          f"family's shape): {n_all_clean}")
 
-    print("\nsample survivors (up to 8):")
-    for tri, clean, n_orderings in survivors[:8]:
-        print(f"  Lambda triple={[sorted(t) for t in tri]} "
-              f"self_sum_clean={clean} "
-              f"consistent (c,e)-orderings for T5={n_orderings}/6")
-
-    # Realizable filter
-    print("\n=== realizable filter (cross-reference bridge-signature library) ===")
+    # Realizable filter -- the only count that actually matters now.
+    print("\n=== realizable filter (the actual open question) ===")
     library, checked, qualifying = build_library(nmin=3, nmax=7)
     print(f"bridge-signature library: {qualifying} qualifying bridges, "
           f"{len(library)} distinct signatures (n<=7)")
@@ -131,10 +158,10 @@ def main():
     print(f"distinct REALIZABLE Lambda spectra in the library: {len(realizable_lambdas)}")
 
     realizable_survivors = [
-        (tri, clean, n) for tri, clean, n in survivors
+        (tri, clean) for tri, clean in survivors
         if all(t in realizable_lambdas for t in tri)
     ]
-    print(f"of the {len(survivors)} abstract survivors, "
+    print(f"of the {len(survivors)} regression-only abstract survivors, "
           f"{len(realizable_survivors)} have all 3 Lambda values REALIZABLE "
           f"(library empty at this order range, so this is expected to be 0 --"
           f" relabeled PIPELINE VALIDATION, not evidence of general "
@@ -142,13 +169,13 @@ def main():
 
     print("\n=== smallest obstruction to promoting the three-bridge exclusion "
           "to a theorem ===")
-    print("The abstract search alone does NOT exclude Type A: "
-          f"{len(survivors)} abstract signature triples satisfy every "
-          "currently-proved condition (T2, pairwise cross-compatibility, "
-          "T5's maximality corollary under some (c,e) ordering). The "
+    print("As proved (not just observed) in two_cut.md Sec.7: the additive/"
+          "combinatorial conditions (T2, T4, T5, pairwise compatibility) "
+          "cannot exclude Type A abstractly on their own -- an infinite "
+          "family of valid tied signatures survives them. The "
           "obstruction to a theorem is exactly REALIZABILITY: no concrete "
           "bridge graph is yet known (searched through n=7) whose actual "
-          "path spectrum matches any of these abstract Lambda sets while "
+          "path spectrum matches any surviving abstract Lambda shape while "
           "also satisfying T1 (B+xy 2-connected) and internal min-degree-3 "
           "with internal F-cleanness. This is the honest smallest-obstruction "
           "report requested: the gap is realizability, not the combinatorics "
