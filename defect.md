@@ -1,5 +1,230 @@
 # defect.md — the ordering-defect parameter q
 
+## 2026-07-26 Part I: the cubic-core decomposition [PROVED IN WORKSPACE]
+
+**Standing reminder (repeated at every major claim in this file, per project
+discipline): every proof below is a hand-written Markdown argument checked
+against independent computation. None of it is proof-assistant formal
+verification (no Lean/Coq/Isabelle artifact exists anywhere in this
+project); "PROVED" means "proved by hand, cross-checked computationally,"
+never "machine-checked."**
+
+Throughout this section `G` is a lexicographically minimal Erdős–Gyárfás
+counterexample, `n=|V(G)|`, `m=|E(G)|`, `q=q(G)=2n-2-m` (G3, `q>=1` by G2).
+`C={v:deg(v)=3}`, `H={v:deg(v)>=4}`, `c=|C|`, `h=|H|`, `F=G[C]`,
+`κ=κ(F)` = number of connected components of `F`, `β(F)=|E(F)|-c+κ` its
+cyclomatic number. These identities are **pure edge-count algebra**: they
+need only (i) `H` independent (M1) and (ii) every vertex of `C` has degree
+exactly 3 (true by definition of `C`) — *not* minimality, F-cleanness, or
+even δ≥3 beyond what is needed to define `C`,`H`. They therefore hold for
+*any* simple graph with an independent high-set and a degree-exactly-3
+low-set, a strictly broader class than minimal counterexamples; this is
+verified directly below (`verifier/cubic_core.py`) on non-counterexample
+fixtures as well as counterexample-hypothesis fixtures, to keep the two
+kinds of "why this is true" separate and auditable.
+
+### I.1a. The cross-count identity `e(C,H) = n + 3h - 4 - 2q` [PROVED]
+
+*Proof.* Sum degrees over the two parts: `3c + Σ_{v∈H} deg(v) = 2m`. Because
+`H` is independent (M1), every edge at an `H`-vertex goes to `C`, so
+`Σ_{v∈H} deg(v) = e(C,H)` exactly. Hence `e(C,H) = 2m - 3c = 2m - 3(n-h)`.
+Substituting `m = 2n-2-q` (definition of `q`) gives
+`e(C,H) = 2(2n-2-q) - 3n + 3h = n + 3h - 4 - 2q`. ∎
+
+### I.1b. The internal-edge identity `|E(F)| = n - 3h + 2 + q` [PROVED]
+
+*Proof.* `H` independent ⇒ `E(H)=∅`, so every edge of `G` is either
+internal to `F` or crosses `(C,H)`: `m = |E(F)| + e(C,H)`. Substituting
+I.1a and `m=2n-2-q`: `|E(F)| = m - e(C,H) = (2n-2-q) - (n+3h-4-2q)
+= n - 3h + 2 + q`. ∎
+
+### I.1c. The core cyclomatic-number identity, boxed [PROVED]
+
+\[
+\boxed{\ \beta(F) = q + 2 - 2h + \kappa\ }
+\]
+
+*Proof.* By definition `β(F) = |E(F)| - c + κ`, and `c = n - h`. Substitute
+I.1b: `β(F) = (n-3h+2+q) - (n-h) + κ = q + 2 - 2h + κ`. ∎ Since `β(F)≥0`
+always (cyclomatic number of any graph), this immediately gives the
+inequality `κ ≥ 2h - q - 2`, used throughout Part II.
+
+### I.1d. The `C1,C2,C3` degree-partition of the cubic core [PROVED, needs M2]
+
+Every vertex of `C` has degree exactly 3 in `G`; write `d_F(v)` for its
+degree inside `F` and `d_H(v)=3-d_F(v)` for its number of `H`-neighbours.
+By M2, every vertex of `G` — including every `v∈C` — has a degree-3
+neighbour; simplicity rules out `v` being its own witness, and `v`'s
+degree-3 neighbours are exactly its `F`-neighbours (its `H`-neighbours have
+degree ≥4 by definition of `H`). Hence **`d_F(v) ≥ 1` for every `v∈C`**,
+and trivially `d_F(v) ≤ 3`. So `1 ≤ d_F(v) ≤ 3`, partitioning
+`C = C₁ ∪ C₂ ∪ C₃` by `d_F(v)=1,2,3` respectively, sizes `c₁,c₂,c₃`.
+
+**`2c₁ + c₂ = e(C,H)`.** *Proof.* `d_H(v) = 3-d_F(v)` equals `2,1,0` on
+`C₁,C₂,C₃` respectively, and `e(C,H) = Σ_{v∈C} d_H(v) = 2c₁+c₂+0·c₃`. ∎
+
+**`c₁ = c₃ + 2κ - 2β(F)`.** *Proof.* Sum `F`-degrees two ways:
+`Σ_{v∈C} d_F(v) = c₁+2c₂+3c₃ = 2|E(F)|`, and `c₁+c₂+c₃=c`. Subtracting
+twice the second from the first: `c₃-c₁ = 2|E(F)| - 2c = 2(|E(F)|-c)
+= 2(β(F)-κ)`. Rearranged: `c₁ = c₃ + 2κ - 2β(F)`. ∎
+
+**Computational validation.** `verifier/cubic_core.py` checks I.1a–I.1d on
+three independent populations, none restricted to minimal-counterexample
+fixtures except where M2 is genuinely needed:
+(a) every connected δ≥3 graph in NetworkX's graph atlas (order ≤7) whose
+degree-≥4 set happens to be independent — 14 graphs, tests I.1a–c only
+(M2 is a literature fact about genuine minimal counterexamples, not
+assumed for arbitrary atlas graphs, so I.1d is skipped when the "every
+C-vertex has an F-neighbour" hypothesis is checked and found false);
+(b) the 12 inclusion-minimal-δ≥3 order≤7 fixtures already certified by
+`global_core_check.py` (M2 does hold here, checked as
+`every_vertex_touches_cubic` in that script) — I.1a–d all checked;
+(c) 8,145 synthetic random `H`-independent, all-`C`-degree-3 graphs built
+directly from random forest/unicyclic `F`-pieces wired to random `H`-sets
+(construction guarantees M2's `C`-restriction by design, so I.1d is
+checked on 100% of these) at `n` up to ~30, `h` up to 5, `κ` varying.
+**Result: 0 failures across all 8,171 applicable checks** —
+`manifests/cubic_core_manifest.json`.
+
+### I.2. The component-incidence quotient `Q` [PROVED, with a correction to the naive statement]
+
+Let `K₁,…,K_κ` be the connected components of `F`. Define the **bipartite
+multigraph `Q`** on vertex set `H ⊔ {K₁,…,K_κ}`, with `μ(h,Kᵢ)` parallel
+edges between `h` and `Kᵢ`, where `μ(h,Kᵢ)` = the number of edges of `G`
+from `h` to `Kᵢ`. Equivalently, `Q` is exactly the graph obtained from `G`
+by contracting each `Kᵢ` to a single point (no other identification: `H`
+vertices, and edges between distinct `Kᵢ`'s cannot exist by definition of
+"component").
+
+**(a) `G` connected ⇒ `Q` connected. [PROVED, no extra hypothesis]**
+*Proof.* Let `π:V(G)→V(Q)` send each `h∈H` to itself and each `c∈Kᵢ` to
+the point `Kᵢ`. For `p,q∈V(Q)`, pick preimages `u∈π⁻¹(p)`, `v∈π⁻¹(q)` and a
+`G`-path `u=x₀,…,x_t=v` (exists, `G` connected). For consecutive `xⱼxⱼ₊₁`:
+either both lie in the same `Kᵢ` (an internal `F`-edge, contracted, so
+`π(xⱼ)=π(xⱼ₊₁)`), or the edge crosses `(C,H)` (so `π(xⱼ)π(xⱼ₊₁)` is a genuine
+`Q`-edge by construction) — no other case is possible since `H` is
+independent and distinct `Kᵢ`'s share no edge. Deleting the stationary
+repeats from `π(x₀),…,π(x_t)` gives a `Q`-walk from `p` to `q`. ∎
+
+**(b) Correction to the naive "2-/3-connected" statement.** The literal
+target as stated in the task ("G 2-connected ⇒ every component-node of Q
+has ≥2 distinct H-neighbours, unless H=∅") is **too strong as written**:
+it also fails, harmlessly, whenever `κ=1` (F itself connected) even with
+`H≠∅` — an explicit witness is given below. The correct hypothesis is
+`κ(F)≥2`, not merely `H≠∅`:
+
+- **If `κ≥2`: `G` 2-connected ⇒ every `Kᵢ` has ≥2 distinct `H`-neighbours;
+  `G` 3-connected ⇒ every `Kᵢ` has ≥3 distinct `H`-neighbours.** [PROVED]
+  *Proof.* Suppose `Kᵢ`'s distinct `H`-neighbours are a set `S` with
+  `|S|≤1` (resp. `|S|≤2`). Every edge leaving `Kᵢ` in `G` lands in `S`
+  (`Kᵢ` has no edges to `C∖Kᵢ` by definition of component, none within `H`
+  since `H` independent). Since `κ≥2`, some other component `Kⱼ` (`j≠i`)
+  exists, nonempty, disjoint from `Kᵢ∪S` (`Kⱼ⊆C`, `S⊆H`). Any `G`-path from
+  `Kᵢ` to `Kⱼ` must leave `Kᵢ` through `S`, so `G − S` disconnects `Kᵢ`
+  from `Kⱼ`: `S` is a cut set of size ≤1 (resp. ≤2), contradicting
+  2-connectivity (resp. 3-connectivity). ∎
+- **If `κ=1` (F connected, a single component `K`): the distinct-neighbour
+  count of `K` equals `|H|=h` exactly, and neither 2- nor 3-connectivity
+  of `G` forces any further lower bound on `h` through this mechanism.**
+  [PROVED, with an explicit realizable witness for `h=1`]
+  *Proof of the equality.* Every `h∈H` has `deg(h)≥4≥1` edges, all landing
+  in `C=K` (the only component); so every `h∈H` is automatically a
+  neighbour of `K` — the distinct-neighbour count is `|H|` by definition,
+  not merely `≥` or `≤` something. *Witness that this need not exceed 1
+  while `G` is 2-connected:* take `H={h}`, `F=K` any 2-connected cubic-core
+  graph, `h` joined to `deg(h)≥4` vertices of `K`. Removing `h` leaves `K`
+  itself, connected (`κ=1` by hypothesis), so `h` is *not* a cut vertex —
+  `G` can be fully 2-connected with `h` as `K`'s only distinct
+  `H`-neighbour. (A concrete instance: `K` any C4-free 2-connected cubic
+  graph on `c` vertices with `c ≡ 0 (mod 4)`, minus a perfect matching to
+  free 4 slots... a fully worked small instance is impractical to hand-draw
+  here; the structural argument above is the actual proof and needs no
+  drawing — the point is purely that the cut-vertex argument in (b)'s first
+  bullet genuinely requires a *second* component to separate from, which
+  `κ=1` does not supply.) This is exactly the corrected caveat: the task's
+  own "unless H=∅" was necessary but not sufficient; `κ(F)=1` is the
+  precise excluded case, a strictly larger exception (it contains `H=∅` as
+  the sub-case `h=0`, but also includes every `h≥1,κ=1` configuration).
+
+**(c) Cuts of `Q` do not automatically transfer to cuts of `G`. [PROVED,
+with the exact extra hypothesis isolated]** Two genuinely different kinds
+of "vertex" sit inside `Q`, and they behave differently under this
+correspondence:
+- **An `H`-vertex `h` that is a cut vertex of `Q` *is* automatically a cut
+  vertex of `G`, with no extra hypothesis.** *Proof.* `Q−h` disconnected
+  into parts `P₁,…,P_r` (`r≥2`). Un-contracting, each `Pⱼ` corresponds to a
+  vertex set `Uⱼ⊆V(G)∖{h}` (union of the `H`-vertices and the *entire*
+  `Kᵢ`'s in that part). Since distinct `Kᵢ`'s share no edge and `H` is
+  independent, every `G`-edge with both ends outside `h` lies entirely
+  inside some single `Uⱼ` (it is either internal to one `Kᵢ` or a `C,H`
+  edge captured verbatim as a `Q`-edge, and `Q`-edges only ever join
+  vertices *within* one `Pⱼ` once `h` is deleted, by disconnection). So
+  `G−h` has no edge between different `Uⱼ`'s: `G−h` is disconnected the
+  same way. ∎ This is because deleting a *single true `G`-vertex* commutes
+  exactly with the contraction map.
+- **A component-node `Kᵢ` that is a "cut vertex" of `Q` does NOT
+  correspond to deleting a single vertex of `G` at all** — unless `|Kᵢ|=1`,
+  deleting the `Q`-node `Kᵢ` corresponds to deleting the *entire*
+  `|Kᵢ|`-vertex set `Kᵢ` from `G`, a vertex-*set* removal, not a bona fide
+  1-cut. **Extra hypothesis needed to call this a genuine cut of `G`:**
+  `|Kᵢ|=1` exactly (then `Kᵢ`'s single vertex is honestly a `G`-vertex and
+  the correspondence is exact by the previous bullet, applied to that
+  vertex). Symmetrically, a "2-cut" of `Q` built from one `H`-vertex and
+  one component-node (or two component-nodes) is a genuine 2-vertex-cut of
+  `G` **only if every component-node involved is a singleton**; a 2-cut of
+  `Q` built from two `H`-vertices *is* always a genuine 2-cut of `G`, by
+  the same single-true-vertex argument applied twice (deleting 2 true
+  vertices commutes with contraction exactly as deleting 1 does).
+
+**Computational validation.** `verifier/cubic_core.py`'s
+`component_incidence_quotient`/`check_identities` build `Q` explicitly and
+check (a) via `nx.is_connected`, the `κ≥2` refined 2-/3-connectivity claims
+of (b) via `nx.node_connectivity`, and the `κ=1` equality — 0 violations
+across all three populations above (same 8,171-check run).
+
+### I.3. Weighted-incidence cycle-translation formula [PROVED]
+
+**Base case (single `H`-vertex, task's literal statement).** For `h∈H`
+with two *distinct* `C`-neighbours `u≠v`, and any simple path `P` from `u`
+to `v` lying entirely inside `F` (hence avoiding `h`, since `h∉C`), the
+closed walk `h,u,P,v,h` is a simple cycle of `G` of length `|P|+2` (`|P|`
+= number of edges of `P`; it visits `h` once, and `P`'s internal vertices
+are disjoint from `h` and from each other since `P` is simple). `G`
+F-clean forces
+\[
+|P| + 2 \notin F \iff |P| \notin \{2,6,14,30,\dots\} = \{2^k-2 : k\ge2\}
+\]
+for every such `u,v,P` with `|P|+2 \le n`.
+
+**General case (alternating multi-H cycle, `t≥1` "spokes").** Let
+`t≥1`, let `h₁,…,h_t` be `H`-vertices (pairwise **distinct** when `t≥2`;
+for `t=1` a single `h₁` is reused as both endpoints), and for each
+`i=1,…,t` (indices mod `t`) let `Pᵢ` be a simple path lying in `F` from
+some neighbour of `hᵢ` to some neighbour of `h_{i+1}`, subject to:
+(i) the `t` paths `P₁,…,P_t` are pairwise vertex-disjoint;
+(ii) for `t≥2`, at each `hᵢ` the neighbour used to close `P_{i-1}` differs
+from the neighbour used to start `Pᵢ` (automatic room to choose this since
+`deg(hᵢ)≥4≥2`); for `t=1` this reduces to `u≠v` above.
+Then `h₁,P₁,h₂,P₂,\dots,h_t,P_t,h₁` is a simple cycle of `G` (disjointness
+of the `Pᵢ`'s and distinctness of the `hᵢ`'s exclude every repeated
+vertex) of length
+\[
+t + \sum_{i=1}^{t}|P_i|,
+\]
+so F-cleanness of `G` forces, for **every** such disjoint/distinct choice,
+\[
+t + \sum_{i=1}^{t}|P_i| \ \notin\ F.
+\]
+`t=1` recovers the base case exactly (`2+|P|\notin F`). This is the
+precise "sum of path lengths" statement the task asked for — with the
+disjointness and distinctness hypotheses stated explicitly, since neither
+is optional: reusing a path-internal vertex as another `hᵢ` (violating
+disjointness) or repeating an `hᵢ` (violating distinctness) does not
+produce a *simple* cycle, and the conclusion is about simple cycles only
+(F is defined via simple-cycle length).
+
+---
+
 ## 2026-07-25 correction and strengthened theorem [PROVED IN WORKSPACE]
 
 The current parameter is

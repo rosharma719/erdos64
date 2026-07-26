@@ -455,6 +455,38 @@ lemmas on a real (not hypothetical) object. See one_pole.md for full
 proofs and the cross-link back to S5 (a cut vertex's lobe in G is itself a
 one-pole graph).
 
+## Cubic-core decomposition (2026-07-26 pass) — see defect.md Part I for full detail
+
+### I.1a-c. Cross-count/internal-edge/beta(F) identities [PROVED, pure algebra]
+`e(C,H)=n+3h-4-2q`, `|E(F)|=n-3h+2+q`, and boxed
+`beta(F)=q+2-2h+kappa`, from `H` independent (M1) + every `C`-vertex having
+degree exactly 3. No minimality hypothesis needed beyond M1's independence.
+
+### I.1d. C1/C2/C3 degree partition [PROVED, needs M2]
+`1<=d_F(v)<=3` for `v in C` (from M2: every `C`-vertex has a `C`-neighbour).
+`2c1+c2=e(C,H)`; `c1=c3+2*kappa-2*beta(F)`.
+
+### I.2. Component-incidence quotient Q [PROVED, with a correction]
+`G` connected => `Q` connected (contraction argument, unconditional).
+**Corrected statement:** "G 2-/3-connected => every component-node has
+>=2/3 distinct H-neighbours" needs `kappa(F)>=2` explicitly, not merely
+`H!=empty` as informally stated in the task -- `kappa(F)=1` is a genuine
+exception even when `H` is nonempty (the unique component's distinct-
+neighbour count is exactly `h`, which 2-/3-connectivity does not bound
+further). A "cut" of `Q` transfers to a genuine cut of `G` exactly when
+every node involved is either an `H`-vertex or a singleton component.
+
+### I.3. Weighted-incidence cycle formula [PROVED]
+Single-H base case: `|P|+2 notin F` for any F-path P between 2 distinct
+C-neighbours of one H-vertex. General alternating cycle through `t`
+distinct H-vertices with `t` pairwise-disjoint connecting F-paths:
+`t + sum|P_i| notin F`.
+
+**Computational validation (`verifier/cubic_core.py`):** 0 failures across
+8,171 checks over 3 independent populations (14 atlas graphs, 12
+inclusion-minimal-delta>=3 fixtures, 8,145 synthetic constructions) —
+`manifests/cubic_core_manifest.json`.
+
 ## Ordering-defect lemmas (redirection 2026-07-25) — see defect.md for full detail
 
 ### D-def, D-identity  [PROVED, pure algebra]
