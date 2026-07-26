@@ -61,6 +61,36 @@ ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "data" / "z3_lifts" / "results"
 
 
+def compact_json(obj, indent: int = 2, _level: int = 0) -> str:
+    """Pretty-print like json.dumps(indent=2), EXCEPT a list whose elements
+    are all scalars (int/float/str/bool/None, no nested containers) is
+    rendered on one line instead of one element per line. Vanilla
+    json.dumps(indent=2) explodes every element of every nested numeric
+    array onto its own line, which is fine for a handful of short lists
+    but inflates a manifest holding hundreds of 13-16-element vectors into
+    tens of thousands of lines for no informational gain -- this keeps the
+    exact same JSON content and byte-for-byte-parseable structure, just
+    formatted compactly for scalar leaf arrays."""
+    pad = " " * (indent * _level)
+    pad_in = " " * (indent * (_level + 1))
+    if isinstance(obj, dict):
+        if not obj:
+            return "{}"
+        items = []
+        for k in sorted(obj, key=str):
+            v = compact_json(obj[k], indent, _level + 1)
+            items.append(f'{pad_in}{json.dumps(str(k))}: {v}')
+        return "{\n" + ",\n".join(items) + f"\n{pad}}}"
+    if isinstance(obj, (list, tuple)):
+        if not obj:
+            return "[]"
+        if all(not isinstance(x, (list, tuple, dict)) for x in obj):
+            return json.dumps(list(obj), default=str)
+        items = [f"{pad_in}{compact_json(x, indent, _level + 1)}" for x in obj]
+        return "[\n" + ",\n".join(items) + f"\n{pad}]"
+    return json.dumps(obj, default=str)
+
+
 def enumerate_simple_c16(base: Base) -> list[list[int]]:
     """Every simple 16-cycle of the base, as ordered vertex lists (one
     canonical rotation/direction per cycle, deduplicated)."""
@@ -206,12 +236,26 @@ def process_base(base_index: int, verify_sample: int) -> dict[str, Any]:
     for rec in uncovered_records:
         type_counts[rec["projection_type"]] = type_counts.get(rec["projection_type"], 0) + 1
 
+    # `homologies` (per-cycle, cycle order) and `Z_unique` (deduplicated,
+    # sorted) are IDENTICAL as multisets whenever no two simple C16's share
+    # a homology vector -- verified true for all four bases
+    # (distinct_homology_vectors == simple_c16_count exactly, checked
+    # below). Storing both would be pure redundancy: `distinct_homology_
+    # vector_list` alone is complete evidence, and the per-cycle mapping is
+    # exactly reproducible by calling `homology_vector(base, cycle)` on
+    # each entry of `simple_c16_cycles` with the committed, tested code --
+    # so only the deduplicated list is kept in the manifest.
+    assert len(Z_unique) == len(homologies), (
+        f"base {base_index}: {len(homologies)-len(Z_unique)} duplicate "
+        "homology vectors -- the redundancy assumption above is violated; "
+        "store homology_vectors explicitly instead of relying on replay"
+    )
+
     return {
         "base_index": base_index,
         "name": BASE_NAMES[base_index],
         "simple_c16_count": len(cycles),
         "simple_c16_cycles": cycles,
-        "homology_vectors": [list(v) for v in homologies],
         "distinct_homology_vectors": len(Z_unique),
         "distinct_homology_vector_list": [list(v) for v in Z_unique],
         "c8_survivors": int(len(idx)),
@@ -243,10 +287,10 @@ def main() -> int:
             f"types={rec['projection_type_distribution']}"
         )
 
-    encoded = json.dumps(report, indent=2, sort_keys=True, default=str)
+    encoded = compact_json(report)
     report["records_sha256"] = hashlib.sha256(encoded.encode()).hexdigest()
     if args.output:
-        args.output.write_text(json.dumps(report, indent=2, sort_keys=True, default=str) + "\n")
+        args.output.write_text(compact_json(report) + "\n")
     return 0
 
 

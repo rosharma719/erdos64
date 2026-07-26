@@ -48,6 +48,7 @@ import networkx as nx
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from verifier.cycle_detect import from_edges, has_cycle_len_dfs, has_cycle_len_nx  # noqa: E402
 from verifier.global_core_check import is_two_degenerate_with_order  # noqa: E402
+from verifier.z3_certificate import compact_json  # noqa: E402
 
 
 # ---------------------------------------------------------------------
@@ -354,10 +355,10 @@ def main() -> int:
     print(f"D1C failures: {len(result['d1c_failures'])}")
 
     report = {"cross_validation": cv, "d1_test": result}
-    encoded = json.dumps(report, indent=2, sort_keys=True, default=str) + "\n"
+    encoded = compact_json(report) + "\n"
     report["records_sha256"] = hashlib.sha256(encoded.encode()).hexdigest()
     if args.output:
-        args.output.write_text(json.dumps(report, indent=2, sort_keys=True, default=str) + "\n")
+        args.output.write_text(compact_json(report) + "\n")
 
     return 1 if (result["counterexamples_to_d1"]) else 0
 

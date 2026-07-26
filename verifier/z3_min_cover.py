@@ -23,7 +23,7 @@ from typing import Any
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from verifier.z3_certificate import enumerate_simple_c16, homology_vector  # noqa: E402
+from verifier.z3_certificate import compact_json, enumerate_simple_c16, homology_vector  # noqa: E402
 from verifier.z3_lifts import load_base  # noqa: E402
 
 
@@ -165,10 +165,10 @@ def main() -> int:
               f"greedy cover size {rec['greedy_cover_size']}, "
               f"full coverage verified={rec['full_nonzero_space_covered_by_subset']}, "
               f"scalar-pair count={rec['scalar_multiple_pairs_in_cover']}")
-    encoded = json.dumps(report, indent=2, sort_keys=True, default=str)
+    encoded = compact_json(report)
     report["records_sha256"] = hashlib.sha256(encoded.encode()).hexdigest()
     if args.output:
-        args.output.write_text(json.dumps(report, indent=2, sort_keys=True, default=str) + "\n")
+        args.output.write_text(compact_json(report) + "\n")
     return 0
 
 
