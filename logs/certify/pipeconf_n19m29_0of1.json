@@ -1,7 +1,0 @@
-{
-  "label":"pipeconf","n":19,"m":29,"maxdeg":4,"res":0,"mod":1,
-  "command":"geng -c -f -d3 -D4 19 29:29 0/1","nauty_geng":">E Usage: geng [-cCmtfkbd#D#] [-kTSPF] [-uygsnh] [-lvq] ","checker":"check_c8.c","checker_src_sha256":"48a63d29f702d70e39cfdf5126df8f50817abf6175da360d845d28bc39cde3c8",
-  "start":"2026-07-25T13:19:27Z","end":"2026-07-25T14:42:10Z","geng_exit":143,"check_exit":0,
-  "raw_count":null,"checked_count":2643,"c4_seen":0,
-  "c8free_survivors":0,"reconcile":"FAIL","stream_sha256":"cdbce82f6f18ecc6860b6cfe680fea1f3f870ba2946c22455f4e2f6701c391b8"
-}

@@ -1,4 +1,0 @@
-verifier/certify_shard.sh: line 21: 63453 Terminated: 15          $CMD 2> "$STEM.geng.err"
-     63454 Done                    | tee >(shasum -a 256 | awk '{print $1}' > "$STEM.sha")
-     63455 Done                    | "$CHK" > "$STEM.surv" 2> "$STEM.chk.err"
-[shard 0/1] geng_exit=143 check_exit=0 raw= checked=2643 c4_seen=0 survivors=0 reconcile=FAIL sha=cdbce82f6f18

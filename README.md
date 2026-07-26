@@ -30,11 +30,8 @@ work in the sibling `erdos/` directory — no shared code.
 - `manuscript.md` — **structural manuscript draft (2026-07-25, one-pole
   sections FROZEN):** pulls together S4, S5, O1, O3, O4a, O4′, O5, O6, O7,
   and the suppressed-edge equivalence into a single citable write-up.
-- `two_cut.md` — **current top priority (2026-07-25):** toward proving a
-  lexicographically minimal counterexample is 3-connected (kept
-  CONJECTURAL). T1–T3, the global bridge-spectrum identity, and a
-  balanced 2-cut census (S5-analogue) are proved for the 2-connected
-  case.
+- `two_cut.md` — Type A/B/C two-cut theory through T1–T6 and the exact
+  remaining SPQR/replacement boundary; 3-connectivity remains conjectural.
 - `s6_case_tree.md` — exact Type A/B/C dependency tree, the proved
   spectrum-safe replacement principle, its scope boundary, and the first
   unseen genuine leaf-R configuration.
@@ -104,15 +101,24 @@ work in the sibling `erdos/` directory — no shared code.
 - `logs/`, `data/` — run outputs and artifacts.
 
 ## Environment
-Python venv in `.venv` (networkx, numpy, OR-Tools CP-SAT, PySAT); nauty
-`geng`; `spqrtree` (pure-Python Gutwenger–Mutzel SPQR-tree algorithm, used
-by `verifier/spqr_analysis.py`).
+
+Python 3.14.6 is recorded in `.python-version`; direct runtime and development
+dependencies are pinned in `requirements.txt` and `requirements-dev.txt`.
+The exhaustive generators additionally require nauty 2.9.3 (`geng`, `labelg`,
+and `countg`). Native verification binaries are build products and belong in
+`.build/`, never under `verifier/`.
+
+```bash
+make setup                         # create .venv and install pinned dependencies
+make check                         # build checkers, parse Python, run all tests
+geng -c -d3 10 | .build/check_g6  # example exhaustive stream
 ```
-. .venv/bin/activate
-cd verifier && python test_detector.py          # validate the detector
-cc -O3 -o check_g6 check_g6.c                    # build the C checker
-geng -c -d3 10 | ./check_g6                      # exhaustive n=10 check
-```
+
+`make clean` removes only disposable build and test caches. Checksummed files
+under `data/`, `logs/`, and `manifests/` are research certificates and are not
+cleaned automatically. Frozen manifests may retain execution-time paths for
+provenance; they are records, not current setup instructions. The test suite
+also rejects newly tracked bytecode, local-agent state, and native binaries.
 
 ## Discipline
 Every mathematical assertion is labeled PROVED / COMPUTATIONALLY VERIFIED /

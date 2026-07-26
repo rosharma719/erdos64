@@ -1,3 +1,37 @@
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Python caches and tooling state
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Native build products
+.build/
+build/
+dist/
+*.o
+*.so
+*.dylib
+
+# Editors, operating systems, and local agents
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.claude/
+.codex/
+
+# Deliberately local experiment output
 verifier/one_pole_survivors.json
