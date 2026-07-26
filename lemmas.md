@@ -484,6 +484,36 @@ a non-simple projection). 0 counterexample candidates found. A larger
 50M-sample confirmatory run did not complete in budget; not used in any
 conclusion.
 
+## q(G)>=3 for genuine minimal counterexamples (2026-07-27 pass) — see defect.md Leaf-compression Part III for full detail
+
+**Theorem [PROVED IN WORKSPACE, novelty supported by search]:** no
+minimal Erdos-Gyarfas counterexample has `q(G)=2`. `h<=q=2` restricts to
+`h in {0,1,2}`, all three eliminated:
+- `h=0`: forces `n=8`; cites `ex(8;{C4,C8})=11 < 12` (McKay data, P4/L15,
+  already established) to force C4 or C8, cross-checked by exhaustive
+  geng (5 graphs, all confirmed).
+- `h=1`: forces `c3=4`; a genuine CASE SPLIT (not one mechanism) --
+  either some C3 vertex has >=2 C2-neighbours (direct C4 via
+  z-a-u-b-z) or every C3 vertex has <=1 (hence F[C3] has min-degree>=2
+  on 4 vertices, forcing C4 via an exhaustively-checked 4-vertex lemma).
+  Verified on 384 property-(2) graphs, n=8..12: 0 in neither branch.
+- `h=2`: `c1=c3<=1` from the leaf-graph inequality. `c1=c3=0`: F is a
+  union of cycles; C4-freeness forces a period-4 a/b coloring, forcing
+  cycle length divisible by 4 (else forced C4 immediately); L=4,8 give
+  the F-cycle itself as the forbidden cycle; L>=12 gives an explicit C8
+  via 2 arcs + a,b. `c1=c3=1`: handshake-lemma parity forces the unique
+  leaf x and unique C3-vertex y into the same F-component, which is a
+  cycle+pendant-path (lollipop, independently confirmed the ONLY such
+  shape via atlas enumeration); 3 sub-cases on pendant length t=1,2,>=3
+  each force a C4 (all exhaustively coloring-checked, 0 escapes across
+  35 configurations).
+
+**Conclusion: `q(G)>=3`, hence `|E(G)|<=2|V(G)|-5`** -- strictly
+improves the previous q(G)>=2 result. **Errata:** caught and fixed an
+arithmetic error in the previous phase's general weighted-incidence
+formula (coefficient of t was t, corrected to 2t) while deriving this
+result -- see defect.md's I.3 correction note.
+
 ## q(G)>=2 for genuine minimal counterexamples (2026-07-27 pass) — see defect.md Leaf-compression Part II for full detail
 
 **Theorem [PROVED IN WORKSPACE, novelty supported by search]:** no
@@ -553,11 +583,14 @@ neighbour count is exactly `h`, which 2-/3-connectivity does not bound
 further). A "cut" of `Q` transfers to a genuine cut of `G` exactly when
 every node involved is either an `H`-vertex or a singleton component.
 
-### I.3. Weighted-incidence cycle formula [PROVED]
+### I.3. Weighted-incidence cycle formula [PROVED, corrected 2026-07-27]
 Single-H base case: `|P|+2 notin F` for any F-path P between 2 distinct
 C-neighbours of one H-vertex. General alternating cycle through `t`
 distinct H-vertices with `t` pairwise-disjoint connecting F-paths:
-`t + sum|P_i| notin F`.
+`2t + sum|P_i| notin F` (corrected coefficient of `t`; the original
+`t + sum|P_i|` was an arithmetic error, caught while reusing the formula
+in the leaf-compression phase's Part III.3.a -- see defect.md's inline
+correction note for the vertex-count re-derivation and t=1/t=2 checks).
 
 **Computational validation (`verifier/cubic_core.py`):** 0 failures across
 8,171 checks over 3 independent populations (14 atlas graphs, 12

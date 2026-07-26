@@ -113,6 +113,18 @@ exhaustive geng); h=1 forces c3=2, giving a direct C4
 **q(G)>=2, |E(G)|<=2|V(G)|-4** -- strictly improves G2. Full detail:
 defect.md leaf-compression Part II, lemmas.md.
 
+### P10 [PROVED IN WORKSPACE, novelty supported by search] q(G)>=3 for genuine minimal counterexamples
+Extends P9: no minimal counterexample has q(G)=2 either. h<=2 (from
+h<=q), all 3 cases (h=0 forces n=8, extremal-bound cite + exhaustive
+geng; h=1 forces c3=4, case-split forces C4, verified on 384 graphs;
+h=2 forces c1=c3<=1, two sub-cases -- cycle-coloring mod-4 argument, and
+handshake-lemma lollipop pendant-path argument -- both exhaustively
+verified) eliminated. **Conclusion: q(G)>=3, |E(G)|<=2|V(G)|-5.**
+Caught and fixed a real arithmetic error in the previous phase's general
+weighted-incidence cycle formula while deriving this (t -> 2t
+coefficient correction). Full detail: defect.md leaf-compression Part
+III, lemmas.md.
+
 ## Conjectural / directional (NOT proved)
 - Whether δ≥3 forces a u–v path system spanning ≥2 dyadic scales (would revive an
   additive route). Open.

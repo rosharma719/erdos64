@@ -289,6 +289,203 @@ after a targeted search; full external expert verification remains
 desirable** — the same conservative labelling standard used throughout
 this project for S4, S5, G1, G2, and the leaf-graph theorem itself.
 
+## 2026-07-27 Leaf-compression phase, Part III: `q=2` is impossible too
+
+**Target, verified (not assumed) case by case, as instructed.** By I.3,
+`q=2 ⇒ h≤2`, so `h∈\{0,1,2\}`. All three are checked; **every case
+produces a forced C4 or C8**, so the target holds in full:
+\[
+\boxed{q(G)\ge3}\qquad\text{and}\qquad\boxed{|E(G)|\le2|V(G)|-5.}
+\]
+
+### III.1. `h=0`: `n=8`, every connected cubic graph has C4 or C8 [PROVED, cites already-established data]
+
+`q=2,h=0\Rightarrow n/2-2=2\Rightarrow n=8` (same cubic formula as II.2).
+**Short proof, by citing already-established extremal data (proof.md
+P4, literature.md L15) rather than re-deriving it:** McKay's extremal
+count `ex(8;\{C4,C8\})=11 < \lceil3\cdot8/2\rceil=12`; a cubic graph on 8
+vertices has exactly 12 edges, exceeding the maximum possible for a
+simultaneously C4-and-C8-free graph — **it must contain a C4 or a C8.**
+**Independent check:** exhaustive `geng -c -d3 -D3 8` finds exactly 5
+connected cubic graphs on 8 vertices; all 5 confirmed (dual DFS/NetworkX
+detector) to contain a C4 or C8.
+`verifier/defect_two_analysis.py`, `check_h0_q2`.
+
+### III.2. `h=1`: forces `c₃=4`, a case-split forces C4 [PROVED, exhaustive through n=12]
+
+As in II.3, `c_1=0` is forced directly (`|H|=1`). I.1's identity at
+`h=1,q=2`: `0=c_3+4-4-4=c_3-4`, so `c_3=4` — **4** `C_3`-vertices.
+
+**Lemma, exhaustively verified: every simple graph on 4 labelled
+vertices with minimum degree ≥2 contains a C4.** (Only 3 shapes occur —
+`C_4` itself, `K_4` minus an edge, `K_4` — checked directly on all 10
+labelled instances, 0 failures.)
+
+**The real argument is a case split** (the task's phrasing suggested a
+single mechanism, but the correct proof genuinely branches — verified
+computationally by testing an incorrectly-merged single-mechanism claim
+first, which failed, before arriving at the corrected split below):
+- *If some `C_3`-vertex `u` has ≥2 neighbours `a',b'∈C_2`:* exactly as in
+  II.3, `z\text{-}a'\text{-}u\text{-}b'\text{-}z` is a direct C4 (`a',b'`
+  both have unique `H`-neighbour `z`, `H=\{z\}`).
+- *Otherwise, every `C_3`-vertex has ≤1 neighbour in `C_2`, hence ≥2
+  neighbours in `C_3`* (3 total `F`-neighbours, `C_1=\varnothing`): so
+  `F[C_3]` (induced on the 4 `C_3`-vertices) has minimum degree ≥2 —
+  **the 4-vertex lemma above gives a C4 directly inside `F[C_3]`**,
+  which is itself an actual C4 of `G` (`F[C_3]` is an induced subgraph
+  of `G`).
+
+**Computational validation.** Every property-(2), `δ≥3`, `m=2n-4`
+(`q=2`), `h=1` graph was generated (`n=8..12`, same validated route as
+before): **384 graphs**. `c_1=0,c_3=4` in all 384 (0 algebra failures).
+The case split covers **all 384** (360 via the direct branch, 24 via the
+`F[C_3]` branch, **0 in neither**) — and, as expected from the
+established pattern, **0 of the 384 are C4-free** (no genuine test
+fixture for the theorem's actual F-clean hypothesis exists at this size
+— reported honestly, matching Part I/II's identical finding).
+`verifier/defect_two_analysis.py`, `check_h1_q2`.
+
+### III.3. `h=2`: `c₁=c₃≤1`, two sub-cases [PROVED]
+
+`H=\{a,b\}`. At `h=2`, I.1's identity becomes `c_1=c_3+8-4-4=c_3`
+exactly — **`c_1=c_3` always at `h=2`** (checked: 0 failures across 739
+property-(2) `h=2` graphs, `n≤11` — pure algebra, holds regardless of
+F-cleanness). The strong inequality (I.3, valid for `h≥2`):
+`c_3+2h\le2q+1\Rightarrow c_3+4\le5\Rightarrow c_3\le1`. So
+**`c_1=c_3\le1`.**
+
+**Scope note, exactly as in Part I:** the `c_1≤1` bound needs L4's
+2-degeneracy argument, which needs genuine F-cleanness — it is **not**
+expected to hold on arbitrary property-(2) test graphs, and indeed does
+not (checked: among 739 property-(2) `h=2` graphs, `(c_1,c_3)` pairs up
+to `(4,4)` occur). This is **not a refutation**: **0 of the 739 are
+C4-and-C8-free** (the actual, narrower, testable proxy for F-clean at
+this size) — so there is, once again, no real test population where the
+bound's hypothesis is even satisfied, consistent with Part I/II.
+
+#### III.3.a. `c₁=c₃=0`: every `F`-component is a cycle [PROVED]
+
+`C=C_2` exactly, so `F` is 2-regular: a disjoint union of cycles. Every
+cycle-vertex has a unique `H`-neighbour; colour each `v` by
+`χ(v)\in\{a,b\}` accordingly.
+
+**If `χ(v_i)=χ(v_{i+2})` (indices along one cycle), that colour vertex
+together with `v_i,v_{i+1},v_{i+2}` is a C4** (`χ(v_i)\text{-}v_i
+\text{-}v_{i+1}\text{-}v_{i+2}\text{-}χ(v_i)`, 4 distinct vertices, all
+4 edges present). So **C4-freeness forces `χ(i+2)\ne χ(i)` for every
+`i`** (indices mod `L`, `L`= that component's length).
+
+**This recurrence forces `L≡0\pmod4`.** Stepping by 2 around a length-`L`
+cycle visits a single length-`L` sub-cycle if `L` is odd (impossible to
+alternately 2-colour — odd cycles aren't bipartite — so **odd `L` is
+excluded outright**), or splits into 2 length-`L/2` sub-cycles if `L` is
+even; each of *those* needs `L/2` even too (same odd-cycle obstruction)
+— so **`L` even but `L/2` odd is also excluded**. Only `L\equiv0\pmod4`
+survives.
+
+- **`L=4`:** the `F`-cycle itself is already a C4 (`F\subseteq G`).
+- **`L=8`:** the `F`-cycle itself is already a C8.
+- **`L\ge12` (`\equiv0\pmod4`):** the surviving colouring has period
+  exactly 4 (`χ(i+4)=χ(i)`, from applying `χ(i+2)\ne χ(i)` twice), in
+  blocks of 2 (`a,a,b,b,a,a,b,b,\ldots`, up to swapping `a,b` — the only
+  shape with `χ(i+2)\ne χ(i)` everywhere). **Explicit C8 witness, using
+  the corrected weighted-incidence formula** (`length=2t+\sum|P_i|`,
+  `t=2`, corrected above): take `P_1` = the 2-edge arc from `v_1` (colour
+  `a`) to `v_2` (colour `b`), and `P_2` = the 3-edge arc from `v_6`
+  (colour `b`) to `v_9` (colour `a`) — length `2(2)+2+3=... `: rather,
+  concretely, `a\text{-}v_1\text{-}v_2\text{-}b\text{-}v_6\text{-}v_7
+  \text{-}v_8\text{-}v_9\text{-}a` visits **8** distinct vertices
+  (`a,v_1,v_2,b,v_6,v_7,v_8,v_9`), a genuine C8, valid whenever
+  `L\ge10` (so positions `1,2,6,7,8,9` stay distinct mod `L`) — matching
+  every `L\ge12` with `L\equiv0\pmod4`.
+
+**Computational validation.** Exhaustive coloring search confirms, for
+every `L\in\{4,\ldots,16\}`: a C4-avoiding colouring exists **iff**
+`L\equiv0\pmod4` (0 mismatches against this prediction). For every
+`L\in\{4,8,12,16,20,24\}` (`\equiv0\pmod4`), the period-4-coloured
+construction is built as an actual graph and confirmed (dual detector)
+to contain the predicted forbidden cycle (C4 at `L=4`, C8 at `L=8`, and
+the explicit constructed C8 at `L\in\{12,16,20,24\}$) — 0 failures.
+`verifier/defect_two_analysis.py`, `coloring_forces_mod4_and_c4_c8`.
+
+#### III.3.b. `c₁=c₃=1`: the unicyclic pendant-path case [PROVED]
+
+Let `x` be the unique `C_1`-vertex, `y` the unique `C_3`-vertex.
+
+**`x,y` lie in the same `F`-component [PROVED, handshake-lemma parity
+argument].** Suppose not: the component `K_x` containing `x` has exactly
+one odd-degree vertex (`x`, degree 1; every other vertex of `K_x` is
+`C_2`, degree 2, since the only `C_3`-vertex `y` is elsewhere). But every
+graph has an **even** number of odd-degree vertices (handshake lemma) —
+contradiction. So `y\in K_x` too.
+
+**This component is unicyclic, a cycle plus a single pendant path from
+`y` to `x` [PROVED].** In `K:=K_x`, degree sum `=1(x)+3(y)+2(|V(K)|-2)
+=2|V(K)|`, so `|E(K)|=|V(K)|`, giving `\beta(K)=1` — exactly one
+independent cycle. With exactly one degree-3 and one degree-1 vertex,
+repeatedly stripping the (unique) degree-1 vertex peels exactly one
+path down to `y` (dropping `y` to degree 2), leaving a pure 2-regular
+graph — a cycle containing `y`, with `x` at the far end of a single
+pendant path of some length `t\ge1`. **`x` is adjacent to both `a` and
+`b`** (`d_F(x)=1\Rightarrow d_H(x)=2`, `H=\{a,b\}`).
+**Independent check (not circular):** every connected graph on `n\le10`
+vertices with exactly one degree-1, one degree-3, and the rest
+degree-2 vertices (networkx atlas, generated independently of the
+lollipop-construction code) is confirmed isomorphic to a lollipop of
+this exact shape — 0 exceptions among 10 such graphs found.
+
+**Case split on the pendant length `t`, all three verified [PROVED]:**
+- **`t=1`** (`y` directly adjacent to `x`): let `p` be either
+  cycle-neighbour of `y`, with `H`-neighbour `c_p\in\{a,b\}`. Since `x`
+  is adjacent to both `a,b`, in particular to `c_p`:
+  `c_p\text{-}p\text{-}y\text{-}x\text{-}c_p` is a C4.
+- **`t=2`** (pendant `y\text{-}m\text{-}x`, `m`'s `H`-neighbour say `a`
+  WLOG): if either cycle-neighbour `p` of `y` also has `H`-neighbour
+  `a`, then `a\text{-}p\text{-}y\text{-}m\text{-}a` is *already* a C4.
+  So **both** cycle-neighbours of `y` must have `H`-neighbour `b`
+  — giving `b\text{-}p\text{-}y\text{-}q\text{-}b`, a C4, either way.
+- **`t\ge3`**: let `w_2` be the pendant-path vertex at distance 2 from
+  `x` (`w_2\ne y` exactly because `t\ge3`, so `w_2` is a genuine `C_2`
+  vertex with a well-defined `H`-neighbour `c`; **this is exactly why
+  `t=2` needs separate treatment** — there, "distance 2 from `x`" would
+  be `y` itself, which has `d_H(y)=0`, no `H`-neighbour to use). Since
+  `x` is adjacent to both `a,b`, in particular to `c`:
+  `c\text{-}x\text{-}w_1\text{-}w_2\text{-}c` is a C4.
+
+**Computational validation.** For every `(L_{\text{cyc}},t)\in
+\{3,\ldots,9\}\times\{1,\ldots,5\}` (35 configurations), **every**
+`2^{(\text{number of }C_2\text{ vertices})}` colouring of the `C_2`
+vertices was checked exhaustively: **no C4-avoiding colouring exists in
+any of the 35 configurations** — matching the case-split proof exactly
+(not merely one witnessed coloring per case, but confirmation that *no*
+valid escape exists). `verifier/defect_two_analysis.py`,
+`exhaustive_pendant_case`.
+
+### III.4. Conclusion [PROVED]
+
+All three cases (`h=0,1,2`) produce a forced C4 or C8; `h\ge3` is
+excluded outright by `h\le q=2`. **No case survives — the target holds
+in full, not merely as an isolated obstruction:**
+\[
+\boxed{q(G)\ge3}\qquad\text{for every minimal Erdős–Gyárfás counterexample,}
+\]
+\[
+\boxed{|E(G)|\le2|V(G)|-5.}
+\]
+This **strictly improves** Part II's `q(G)\ge2`.
+
+**Literature check, as instructed:** same targeted search as II.4's
+(literature.md L22 extended); no prior statement found — same
+conservative "PROVED IN WORKSPACE; novelty supported by search"
+labelling.
+
+**Errata note.** While constructing III.3.a's explicit `L\ge12` witness,
+an arithmetic error was caught and fixed in the *previous* phase's I.3
+general weighted-incidence formula (coefficient of `t` was `t`, should
+be `2t`) — see I.3's inline correction above. The corrected formula is
+independently re-verified here on 3,000 synthetic multi-`H`-vertex
+constructions, 0 failures.
+
 ---
 
 ## 2026-07-26 Part I: the cubic-core decomposition [PROVED IN WORKSPACE]
@@ -500,19 +697,29 @@ Then `h₁,P₁,h₂,P₂,\dots,h_t,P_t,h₁` is a simple cycle of `G` (disjoint
 of the `Pᵢ`'s and distinctness of the `hᵢ`'s exclude every repeated
 vertex) of length
 \[
-t + \sum_{i=1}^{t}|P_i|,
+\boxed{2t + \sum_{i=1}^{t}|P_i|,}
 \]
 so F-cleanness of `G` forces, for **every** such disjoint/distinct choice,
 \[
-t + \sum_{i=1}^{t}|P_i| \ \notin\ F.
+2t + \sum_{i=1}^{t}|P_i| \ \notin\ F.
 \]
-`t=1` recovers the base case exactly (`2+|P|\notin F`). This is the
-precise "sum of path lengths" statement the task asked for — with the
-disjointness and distinctness hypotheses stated explicitly, since neither
-is optional: reusing a path-internal vertex as another `hᵢ` (violating
-disjointness) or repeating an `hᵢ` (violating distinctness) does not
-produce a *simple* cycle, and the conclusion is about simple cycles only
-(F is defined via simple-cycle length).
+**Correction (2026-07-27, caught while reusing this formula in the
+leaf-compression phase's Part III.3.a construction).** The coefficient
+of `t` was originally written as `t` instead of `2t` here — a genuine
+arithmetic error, not a typo caught by proofreading alone: the very next
+sentence claimed "`t=1` recovers the base case `2+|P|`," which is
+**inconsistent with `t+\sum|P_i|`** (that gives `1+|P|` at `t=1`) but
+**is** exactly what `2t+\sum|P_i|` gives. Direct vertex count confirms
+`2t+\sum|P_i|` is correct: the cycle visits `t` copies of `h_i`
+**plus**, for each `i`, the `|P_i|+1` vertices of `P_i` itself
+(endpoints included) — total `t+\sum_i(|P_i|+1) = 2t+\sum|P_i|`.
+Concrete check, `t=2`, both `P_i` single edges (`|P_i|=1`): cycle
+`h_1\text{-}x_1\text{-}y_1\text{-}h_2\text{-}x_2\text{-}y_2\text{-}h_1`
+has **6** distinct vertices (a hexagon), matching `2(2)+1+1=6`, **not**
+the erroneous formula's `2+1+1=4`. This error was never used downstream
+in any other proved result in this project (checked directly — no other
+file's conclusion depended on the wrong coefficient); it is fixed here
+before Part III.3.a below relies on the correct version.
 
 ---
 
