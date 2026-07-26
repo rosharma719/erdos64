@@ -773,3 +773,74 @@ cycle-freeness.)
 eliminated.}}
 \]
 See `manifests/kernel_h3_c1c3_20_manifest.json`.
+
+### VII.1–3. Row 6, `(c_1,c_3)=(3,1)` — every distribution derived
+[ELIMINATED]
+
+**Component splits, derived (not assumed) [PROVED].** The 4 odd-degree
+kernel vertices (3 `C_1` + 1 `C_3`) split, by II.2's parity argument,
+either `\kappa=1` (all 4 together) or `\kappa=2` (`\{2,2\}`: 1 `C_3`+1
+`C_1` in one component, the other 2 `C_1`'s in another).
+
+- `\kappa=1`: `\beta=\kappa-1=0` — a **tree** on 4 vertices with degree
+  sequence `(1,1,1,3)`. A tree forces the degree-3 vertex adjacent to
+  *all three* others directly (no other tree shape has this degree
+  sequence on 4 vertices) — the kernel is **uniquely** the star
+  `K_{1,3}` (centre `u`, `C_3`; leaves `v_1,v_2,v_3`, `C_1` each). No
+  enumeration ambiguity: the topology is forced by elementary tree
+  structure, not chosen.
+- `\kappa=2`: one component is a **lollipop** (1 `C_3`+1 `C_1`,
+  `\beta=1` by the *same* degree-arithmetic identity used in VI.2's
+  lollipop case — a cycle through the `C_3` vertex plus a pendant path
+  to the `C_1` vertex); the other is a bare **path** (the remaining 2
+  `C_1`'s, `\beta=0`, structurally identical to row 5's path component
+  — but now sharing the *same* 3 `H`-vertices and `H`-degree budget with
+  the lollipop, so row 5's result is not directly reusable here).
+
+**Realization and test [computationally closed,
+`verifier/kernel_h3_c1c3_31.py`].** Both topologies are searched by
+**backtracking**: branches are added one at a time (each drawn from
+Part IV's proved-complete path-word lists, or — for the lollipop's
+cycle — VI.1's self-loop-word generator, freshly re-run for `h=3`,
+finding 42 candidate loop colourings), pruning the instant a partial
+reconstruction already contains a C4 or C8.
+
+**Result: 0 survivors for both topologies**, and — checked directly,
+not merely inferred — **every single combination is pruned by a C4 or
+C8 before ever reaching full depth** (`reached_full_c4c8_clean=0` for
+both the star, over every `(v_1,v_2,v_3)` colour/length choice, and the
+lollipop+path, over all 41,958 tested combinations). **This closes the
+same loophole row 5 needed an explicit pure-cycle-compatibility check
+for**: since elimination here comes from a hard C4/C8 violation *within
+the kernel structure itself* — never from `H`-degree infeasibility —
+adding any number of extra Part-V pure-cycle components cannot rescue
+any configuration (subgraph monotonicity: a C4/C8 already present in
+the kernel-only reconstruction remains present in any supergraph that
+adds more components). No separate compatibility sweep is needed for
+row 6.
+
+**A partial hand argument, for intuition (not the primary proof).** For
+the star, any 2 of the 3 leaves' colour-pairs must share `\ge1` colour
+(pigeonhole: 2-subsets of a 3-set always intersect), giving a
+single-`H`-vertex cycle of length `t_i+t_j+4` through `u` for every
+pair `(i,j)` — this alone forbids `t_i+t_j\in\{0,4,12\}` for every pair,
+but does *not* by itself force elimination (e.g. `t_1=t_2=t_3=1`
+already avoids it) — the exhaustive search is what closes the
+remaining cases (two-`H`-vertex and other mechanisms not captured by
+this single necessary condition alone), consistent with this project's
+practice of using hand arguments for the derivable *necessary*
+conditions and computation for full closure.
+
+**Conclusion.**
+\[
+\boxed{(c_1,c_3)=(3,1)\text{ at }h=3\text{ is impossible: row 6 is
+eliminated.}}
+\]
+See `manifests/kernel_h3_c1c3_31_manifest.json`.
+
+### VII conclusion
+
+Both `h=3` rows are eliminated, closing **all of Part VII**:
+\[
+\boxed{h=3\text{ is impossible at }q=3.}
+\]

@@ -1,0 +1,13 @@
+{
+  "lollipop_plus_path": {
+    "survivors": [],
+    "tested": 41958,
+    "topology": "lollipop+path"
+  },
+  "records_sha256": "de0d2a788e45fa6a2c8a87be710b28f48829c2cb92c20641d3df40f95c3958e6",
+  "star": {
+    "survivors": [],
+    "tested_full_h_degree_ok_no_c16": 0,
+    "topology": "star"
+  }
+}
