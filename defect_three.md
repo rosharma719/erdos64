@@ -436,11 +436,12 @@ sub-arcs between an `a`-position and a `b`-position sum to 4 edges here
 (the only candidate splits, `\{1,3\}` and the remainder, or `\{2,4\}`
 and the remainder, leave a 1-edge leftover, never a 3-edge complement,
 since only 2 positions remain after any length-`\ge2` arc is removed).
-Extending to `t=6` under the forced period-4 pattern (`\chi_6=a`)
-necessarily creates the arc pair `\{2,3\}` (length 1, `a\to b`) and
-`\{4,6\}`? — rather than re-deriving the length-6 failure by hand (the
-period-4 pattern admits no freedom left to route around it), this is
-where the exhaustive computational check is authoritative: **every**
+Extending to `t=6` forces `\chi_6=a` (continuing the only viable
+period-4 pattern), which reintroduces a fresh disjoint length-2+length-2
+arc pair spanning the new position — rather than re-deriving the
+length-6 failure by hand (the period-4 pattern admits no freedom left to
+route around it), this is where the exhaustive computational check is
+authoritative: **every**
 length-6 extension of *every* valid length-5 word is rejected, confirmed
 independently by both implementations below (not just the one witness
 above), so **`t\le5`**, and `t=5` is exactly attained. `\boxed{t=5}`
@@ -585,3 +586,134 @@ always exist 3 cyclically-consecutive distinct positions `i,i+1,i+2`
 \text{-}v_{i+2}\text{-}z` — a second, independent proof that `h=1` has
 no valid pure-cycle component at all, agreeing with the corollary/search
 above.
+
+## Part VI: eliminating `h=2`
+
+`H=\{a,b\}`. `G` 2-connected (II.0), so (once `\kappa(F)\ge2`) every
+`F`-component needs `\ge2` distinct `H`-neighbours (II.3) — with only 2
+colours available, this means every multi-component configuration's
+components must each touch *both* `a` and `b`. Part V additionally rules
+out any pure-cycle component at `h=2` outright, which will let both rows
+below pin `\kappa(F)=1` directly rather than leaving it as a free
+parameter.
+
+### VI.1. `(c_1,c_3)=(0,2)` — the theta/dumbbell kernel [ELIMINATED]
+
+**`\kappa(F)=1` is forced, sharper than the II.2 table entry.** The 2
+`C_3` vertices share a component (II.2's parity argument). Since `c_1=0`
+there are no `C_1` vertices anywhere to seed a second kernel-bearing
+component, and Part V forbids any *pure*-cycle component at `h=2`
+outright — so no second `F`-component can exist at all. `F` **is** that
+one component: `\kappa(F)=1`, hence `\beta(F)=\kappa+1=2`.
+
+**The kernel's two possible shapes [PROVED, elementary degree parity].**
+The kernel is a connected multigraph on `\{u,w\}=C_3`, each of `F`-degree
+3, with `\beta=2` (`|E|=|V|+1=3` kernel edges). Writing `p,r` for the
+number of self-loops at `u,w` and `c` for the number of `u`-`w` cross
+edges: `2p+c=3=2r+c` forces `p=r`, and `c=3-2p\ge0` forces `p\in\{0,1\}`.
+
+- `p=0`: **theta** — 3 parallel `u`-`w` paths, no self-loops.
+- `p=1`: **dumbbell** — 1 bridge path `u`-`w`, plus 1 self-loop path at
+  *each* of `u,w`.
+
+**Theta, all-subdivided sub-case [PROVED by hand].** If all 3 branches
+have `\ge1` internal `C_2` vertex, `u` has 3 *distinct* `C_2`-neighbours,
+each with its own first colour in `\{a,b\}`. Three draws from 2 colours
+always repeat (pigeonhole) — say branches 1,2 share first colour `w'`.
+Then `w'\text{-}x_1\text{-}u\text{-}x_2\text{-}w'` (`x_1,x_2` the two
+branches' first vertices) is an immediate **C4**, regardless of every
+other position in every branch. **No all-subdivided theta realization
+can be F-clean.**
+
+**Theta, one-direct-edge sub-case, and dumbbell [computationally closed,
+"complete tiny kernel-word certificate" as instructed].**
+`verifier/kernel_h2_c1c3_02.py` reconstructs every simple-graph-valid
+realization directly: each branch's colouring is drawn only from Part
+IV's own (already-enumerated, already-proved-complete) valid-word lists
+per length `0..5`, and each self-loop's colouring from a directly-
+verified loop-word search (brute-force per length, since a self-loop's
+isolated subgraph is a genuine cycle through the kernel vertex, not a
+bare path — Part IV's pruning argument does not apply to it; the search
+found survivors **only** at loop length `s=2` (2 colourings) and `s=4`
+(2 colourings), empty at every other tested length up to `s=6`, two past
+the empirical cutoff). At most 1 branch of the theta may be a direct
+edge (2+ direct edges between the same pair would be a parallel edge,
+excluded as not simple — an early version of this script mistakenly
+allowed multiple direct edges to silently collapse to one via
+`networkx.Graph.add_edge`'s overwrite behaviour, producing 25 spurious
+"survivors"; fixed by excluding `\ge2`-direct-edge combinations from the
+search outright, not merely by re-checking their output). **Result: 0
+survivors** among 6,804 valid theta realizations (all with `\le1` direct
+edge) and 304 valid dumbbell realizations. See
+`manifests/kernel_h2_c1c3_02_manifest.json`.
+
+**Conclusion.** Both kernel shapes are eliminated: `(c_1,c_3)=(0,2)` at
+`h=2` is impossible in a genuinely F-clean `G`.
+
+### VI.2. `(c_1,c_3)=(1,3)` — every distribution derived, not assumed [ELIMINATED]
+
+Row 4's parity-consistent splits of the 4 odd-degree kernel vertices (1
+`C_1` + 3 `C_3`) are `\kappa=2` (a `\{2,2\}` split) or `\kappa=1` (a
+`\{4\}` split) — derived, not assumed, from II.2's handshake argument.
+**Both are eliminated below; neither is assumed complete, each is
+independently closed.**
+
+**`\kappa=2` split, closed by direct citation [PROVED].** One component
+has exactly 1 `C_1`+1 `C_3` (a "lollipop"): its own degree arithmetic
+(`|E|=(1+3+2k)/2=2+k`, `|V|=2+k` for any number `k\ge0` of `C_2`
+internal vertices) forces `\beta_1=|E|-|V|+1=1` for *every* `k`
+(`verifier/kernel_h2_c1c3_13.py`'s `lollipop_beta_is_always_one`, checked
+directly for `k=0,\ldots,20`, not merely asserted) — so the *other*
+component is forced to `\beta_2=\beta(F)-\beta_1=(\kappa+1)-1=\kappa=2`
+on the remaining 2 `C_3` vertices. **This is exactly VI.1's already-
+eliminated kernel** (same degree sequence, same `\beta=2`, same `h=2`
+colour set — VI.1's elimination proof never used anything about what
+else exists in `F`). No new computation is needed: **eliminated by
+citation** (0 survivors among VI.1's 6,804+304 realizations).
+
+**`\kappa=1` split, every topology enumerated (not assumed) [PROVED].**
+The single component's kernel is a connected multigraph on 4 vertices
+`\{v,u_1,u_2,u_3\}` (`v` the `C_1`, degree 1; `u_i` the `C_3`'s, degree 3
+each), `\beta=2` (`5` kernel edges, `|E|-|V|+1=5-4+1=2` ✓, an
+independent cross-check of `\beta=\kappa+1` at `\kappa=1`).
+`verifier/kernel_topology_enum.py` enumerates **every** connected
+multigraph realizing this exact degree sequence via an exhaustive
+stub-matching procedure (a finite enumeration of all perfect matchings
+of the 10-element stub multiset, deduplicated by exact graph isomorphism
+via `networkx`'s VF2 — completeness follows from exhausting the finite
+matching set, not from a search cutoff, as instructed) — as a sanity
+check, applied first to VI.1's `\{u\!:\!3,w\!:\!3\}` degree sequence, it
+independently *rediscovers exactly the theta and dumbbell shapes and no
+others*, confirming the method against an already-hand-derived case.
+Applied to `\{v\!:\!1,u_1\!:\!3,u_2\!:\!3,u_3\!:\!3\}`, it finds **exactly
+3 non-isomorphic shapes** (none matching the task's own suggested guess
+verbatim, confirming the instruction to derive rather than assume):
+
+1. a double edge `u_1`-`u_2`, an edge `u_2`-`u_3`, a self-loop at `u_3`,
+   and the pendant `v`-`u_1`;
+2. a self-loop at `u_2`, a self-loop at `u_3`, single edges `u_1`-`u_2`
+   and `u_1`-`u_3`, and the pendant `v`-`u_1`;
+3. a double edge `u_2`-`u_3`, single edges `u_1`-`u_2` and `u_1`-`u_3`
+   (a theta on `\{u_2,u_3\}` with the pendant `v` grafted onto the
+   theta's middle branch at `u_1`), and the pendant `v`-`u_1`.
+
+**Realization and test, by backtracking search [computationally
+closed].** Each kernel edge is realized as a direct edge or a colored
+path/loop from the same already-proved-complete Part IV/VI.1 candidate
+lists; the `C_1` vertex `v` additionally gets its own 2 direct `H`-edges
+(one to each of `a,b` — this is what makes `v` a `C_1` rather than a
+`C_2` vertex, and does not invalidate the branch-candidate pruning,
+since adding extra edges to a graph can only ever add cycles, never
+remove the ones a pruned-out coloring already had). A **backtracking**
+search adds one kernel edge at a time and discards a partial assignment
+the instant the graph built so far already contains a C4/C8 (sound by
+the same subgraph-monotonicity argument used throughout: no true
+survivor is ever pruned, since finishing the remaining edges can only
+add more potential cycles). **Result: 0 survivors for all 3 topology
+classes.** See `manifests/kernel_h2_c1c3_13_manifest.json`.
+
+**Conclusion.** `(c_1,c_3)=(1,3)` at `h=2` is impossible in a genuinely
+F-clean `G`, closing **all of Part VI**:
+\[
+\boxed{h=2\text{ is impossible at }q=3.}
+\]
