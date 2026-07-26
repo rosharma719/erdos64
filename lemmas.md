@@ -455,6 +455,19 @@ lemmas on a real (not hypothetical) object. See one_pole.md for full
 proofs and the cross-link back to S5 (a cut vertex's lobe in G is itself a
 one-pole graph).
 
+## Z3 lift elimination, algebraically compressed (2026-07-26 pass) — see z3_lifts.md Part III for full detail
+
+Every one of the 1,545,746 C8-survivor voltage assignments across the 4
+certified order-24 bases is eliminated by a **Type-1** projection (a
+simple base 16-cycle with trivial holonomy) -- exhaustively verified, 0
+instances of the other 3 projection types. Stronger: the union of
+simple-C16 hyperplanes covers the **entire** nonzero `F3^13` space per
+base (not just C8-survivors), reducible to a 24-27-vector covering subset
+per base (down from 207-330 distinct homology vectors), independently
+verified against real lift reconstruction (300 random cross-checks per
+base, 0 disagreements). `verifier/z3_certificate.py`,
+`verifier/z3_min_cover.py`, `verifier/z3_standalone_verifier.py`.
+
 ## Cubic-core decomposition (2026-07-26 pass) — see defect.md Part I for full detail
 
 ### I.1a-c. Cross-count/internal-edge/beta(F) identities [PROVED, pure algebra]
