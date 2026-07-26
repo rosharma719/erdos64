@@ -40,17 +40,15 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import itertools
 import json
 import sys
 from pathlib import Path
 from typing import Any
 
-import networkx as nx
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from verifier.cycle_detect import from_edges, has_cycle_len_dfs, find_cycle_len_dfs  # noqa: E402
+from verifier.cycle_detect import find_cycle_len_dfs  # noqa: E402
 from verifier.z3_lifts import (  # noqa: E402
     BASE_NAMES,
     Base,

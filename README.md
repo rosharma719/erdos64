@@ -98,8 +98,17 @@ work in the sibling `erdos/` directory — no shared code.
     orientation.
   - `leaf_r_replacement_search.py` — targeted edge-rooted R-skeleton audit
     through order nine; not a new SPQR census.
-  - `z3_lift_search.cpp` / `independent_z3_verify.py` — exhaustive staged
-    cyclic-lift engine and independent full-survivor audit.
+  - `z3_lift_search.cpp` / `independent_z3_verify.py` /
+    `independent_z3_c4_verify.py` — exhaustive staged cyclic-lift engine and
+    the independent full-survivor / full-C4-stage audits.
+  - `z3_lifts.py` — reference Z3 lift construction, base certification, and
+    voltage/assignment-index helpers reused throughout Part III/IV.
+  - `global_core_check.py` — 2-degeneracy peeling order, inclusion-minimal-
+    delta>=3 atlas certification, reused by `cubic_core.py`/`d1_search.py`.
+  - `survivor_analyze.py` — standalone diagnostic for any future 4-or-8
+    survivor (degree sequence, C4/C8/C16 status, girth, diameter, |Aut|,
+    full cycle spectrum); part of the survivor-handling protocol, not tied
+    to a specific experiment.
   - `cubic_core.py` — cubic-core decomposition identities (C/H/F/beta(F),
     the component-incidence quotient Q), validated on 3 independent
     populations (defect.md Part I).

@@ -48,10 +48,7 @@ from typing import Any
 import networkx as nx
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from verifier.global_core_check import (  # noqa: E402
-    is_inclusion_minimal_delta_three,
-    is_two_degenerate_with_order,
-)
+from verifier.global_core_check import is_inclusion_minimal_delta_three  # noqa: E402
 
 
 def cubic_core_partition(graph: nx.Graph) -> tuple[list[int], list[int]]:
