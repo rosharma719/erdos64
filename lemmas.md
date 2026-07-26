@@ -474,9 +474,12 @@ base, 0 disagreements). `verifier/z3_certificate.py`,
 (non-sampled) scan of all `4x1,220,703,124=4,882,812,496` nonzero cyclic
 Z5-voltage assignments across the 4 certified order-24 bases against the
 mod-5 simple-C16 hyperplanes: base 1 has EXACT 100% coverage (0
-uncovered -- a genuine UNSAT/hyperplane-cover result, compressed to a
-48-vector certificate, exactly re-verified against the full space);
-bases 0, 2, 3 have exactly 444, 72, 48 uncovered assignments
+uncovered -- a genuine UNSAT/hyperplane-cover result, certified by the
+full 315-vector hyperplane list; a candidate 48-vector *compression* of
+this, found via the same sample-then-verify method that worked for Z3,
+FAILED exact verification with 21,156 exceptions -- caught and corrected,
+not silently patched, the same sampling-trap shape already caught once
+this session); bases 0, 2, 3 have exactly 444, 72, 48 uncovered assignments
 respectively (corrects the previous phase's sampled "~0 for bases
 0,1,3" claim, which undershot -- an exact scan of just the first 1M
 sequential indices for base 0 alone already found 124 uncovered).

@@ -473,16 +473,33 @@ only base 2 was exceptional** (Part IV.1 correction above); the true
 picture is base 1 alone is 100%-covered, and bases 0, 2, 3 all have
 genuine (if sparse) exceptions.
 
-**Compact hyperplane-cover certificate for base 1.** A near-minimal
-covering subset was found by greedy selection on a 2,000,000-point random
-sample (fast candidate search, matching III.2's method), then **verified
-exactly against the full `1{,}220{,}703{,}124`-point space** (not the
-sample): **48 vectors** (down from 315) achieve the identical exact 100%
-coverage — `manifests/z5_exact/base1_min_cover.json`. This is the
-"compact, independently checkable hyperplane-cover certificate" the task
-requires for the zero-survivor case: any party can re-verify base 1's
-elimination by checking only these 48 dot-product conditions against
-every assignment, rather than replaying the full derivation.
+**Compact hyperplane-cover attempt for base 1 — FAILED exact
+verification, corrected here rather than silently fixed.** A candidate
+covering subset was found by the same greedy-on-a-2,000,000-point-
+random-sample method that worked cleanly for the Z3 case (III.2): 48
+vectors, achieving 100% coverage **on that sample**. Exact verification
+against the full `1{,}220{,}703{,}124`-point space (not the sample)
+shows **this candidate does NOT actually achieve full coverage: 21,156
+exceptions found** (`manifests/z5_exact/base1_min_cover.json`,
+`uncovered=21156`) — the same *shape* of error already caught once this
+session (a sample-based selection missing a sparse residual), now
+caught again at the certificate-compression step specifically, and
+**not** silently patched: the false "48 vectors, exact 100%" claim
+originally written here has been corrected, not deleted.
+
+**The exact, independently checkable certificate for base 1 is
+therefore the full 315-vector hyperplane list** (`verifier/z5_exact_
+solve.py`'s `base_hyperplanes_mod5(1)`), which **was** exactly verified
+against the complete space (0 uncovered, IV.2's table above) — not a
+compressed subset. Further compression (an exact top-up cycle: identify
+every one of the 21,156 exceptions exactly, add hyperplanes to cover
+them, re-verify against the full space, repeat) is **not attempted
+here** — each exact-verification round costs roughly 800 seconds, and
+the number of rounds needed is unknown; this is recorded as unstarted
+future work, not as a claimed result. **Bases 0, 2, 3 need no such
+compression attempt** — their exact hyperplane-uncovered lists (444, 72,
+48 assignments, none truncated) are already small and exact by
+construction, requiring no post-hoc greedy search at all.
 
 **Projective count under `F5^×`, with the required isomorphism proof
 first.** *Claim:* for `λ∈F5^×=\{1,2,3,4\}`, the derived lift for voltage
@@ -580,9 +597,12 @@ four bases were checked — the overwhelming majority (`4{,}882{,}812{,}
 the remaining exactly-determined 564 via direct exact-lift construction
 and staged C4/C8/C16/C32/C64 testing. **Compact exact certificates,
 per the task's requirement:**
-- **Base 1** (fully eliminated by hyperplanes alone): the 48-vector
-  compact cover, exactly verified against the full space
-  (`manifests/z5_exact/base1_min_cover.json`).
+- **Base 1** (fully eliminated by hyperplanes alone): the full 315-
+  vector hyperplane list, exactly verified against the complete space
+  (0 uncovered). A candidate 48-vector *compression* of this was
+  attempted and **failed** exact verification (21,156 exceptions found
+  — see the correction above); the 315-vector list is therefore the
+  certificate actually in hand, not a compressed one.
 - **Bases 0, 2, 3** (partially eliminated by hyperplanes, the rest by
   non-simple-C16 walks): the exact uncovered-index lists (444/72/48,
   all recorded in full, none truncated) plus the corresponding
