@@ -1,0 +1,25 @@
+{
+  "atlas": {
+    "by_case": {
+      "h=0": 3,
+      "h=1": 8,
+      "h>=2": 2
+    },
+    "checked": 13,
+    "failures": [],
+    "h>=2_c4_free_population": 0,
+    "population": "atlas order<=7"
+  },
+  "records_sha256": "78faebf9e4e38a8d98c57c98642c0378f971714d4c93bd5df12d6608a1576ca1",
+  "synthetic": {
+    "by_case": {
+      "h=0": 81107,
+      "h=1": 11741,
+      "h>=2": 137100
+    },
+    "checked": 229948,
+    "failures": [],
+    "h>=2_c4_free_population": 0,
+    "population": "synthetic, 500000 trials"
+  }
+}
