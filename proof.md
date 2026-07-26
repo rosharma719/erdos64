@@ -100,6 +100,19 @@ generation routes agreeing exactly at n=6,7; n=13 attempted, incomplete.
 G2's q(G)>=1 remains the global bound. Full detail: defect.md Part II,
 lemmas.md, `verifier/d1_search.py`, `manifests/d1_search_manifest.json`.
 
+### P9 [PROVED IN WORKSPACE, novelty supported by search] q(G)>=2 for genuine minimal counterexamples
+Via the derived leaf graph L(G) (vertex set H, edges labelled by C1,
+proved simple/cycle-lifting/power-cycle-clean/2-degenerate -- see
+defect.md leaf-compression Part I), proves **no lexicographically
+minimal Erdos-Gyarfas counterexample has q(G)=1**. Narrower than the
+still-open abstract D1 (P8): D1 concerns any property-(2) graph, not a
+genuine F-clean minimal counterexample. h>=2 excluded by h<=q; h=0
+forces n=6 (both cubic 6-vertex graphs have C4, complement argument +
+exhaustive geng); h=1 forces c3=2, giving a direct C4
+(z-a-u-b-z), verified exhaustively on 74 graphs n=7..12. Conclusion:
+**q(G)>=2, |E(G)|<=2|V(G)|-4** -- strictly improves G2. Full detail:
+defect.md leaf-compression Part II, lemmas.md.
+
 ## Conjectural / directional (NOT proved)
 - Whether δ≥3 forces a u–v path system spanning ≥2 dyadic scales (would revive an
   additive route). Open.

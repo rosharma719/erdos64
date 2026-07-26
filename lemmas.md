@@ -484,6 +484,23 @@ a non-simple projection). 0 counterexample candidates found. A larger
 50M-sample confirmatory run did not complete in budget; not used in any
 conclusion.
 
+## q(G)>=2 for genuine minimal counterexamples (2026-07-27 pass) — see defect.md Leaf-compression Part II for full detail
+
+**Theorem [PROVED IN WORKSPACE, novelty supported by search]:** no
+lexicographically minimal Erdos-Gyarfas counterexample has `q(G)=1`.
+Narrower than the previous phase's abstract D1 (which used property (2)
+alone, not genuine F-cleanness) -- D1 itself remains open, not
+re-attempted here. `h>=2` excluded immediately by `h<=q`. `h=0` forces
+`n=6`; both connected cubic 6-vertex graphs (via the 2-regular
+complement: C6 or 2*C3) contain a C4, cross-checked by exhaustive geng
+(exactly 2 graphs). `h=1` forces `c1=0` (needs 2 distinct H-neighbours,
+impossible with |H|=1) hence `c3=2` (from the leaf-count identity); the
+two C3 vertices force a C4 through the unique H-vertex via
+`z-a-u-b-z`. Exhaustively verified on 74 h=1,q=1 property-(2) graphs
+(n=7..12, same range as the prior D1 search), 0 algebra/mechanism
+failures. **Conclusion: `q(G)>=2`, hence `|E(G)|<=2|V(G)|-4`** --
+strictly improves G2's `q(G)>=1`/`m<=2n-3`.
+
 ## Derived leaf graph L(G) (2026-07-27 pass) — see defect.md Leaf-compression Part I for full detail
 
 ### I.1 (new). Leaf-count identity [PROVED, pure algebra]

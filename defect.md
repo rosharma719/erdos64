@@ -183,6 +183,112 @@ checked computationally; the minimality step itself is unavoidably a pure
 logical argument, exactly as with every other minimality-based lemma in
 this project (S4, S5, O1, O3, G2 itself).
 
+## 2026-07-27 Leaf-compression phase, Part II: `q=1` is impossible
+
+**Theorem (defect-one elimination for a genuine minimal counterexample).**
+*No lexicographically minimal Erdős–Gyárfás counterexample has `q(G)=1`.*
+This is **narrower** than the previous phase's abstract "D1" statement
+(which concerned *any* graph satisfying property (2) alone, with no
+actual F-cleanness beyond that): here we use the full strength of `G`
+being order-minimal AND genuinely F-clean, via the leaf-graph theorem
+(Part I above). **The broader D1 statement (does property (2) + `δ≥3` +
+`m=2n-3` alone force a C4/C8, for arbitrary such graphs) is explicitly
+NOT re-attempted here** — it remains at its previous-phase status
+(outcome (4), open configuration).
+
+By I.3, `q=1 ⇒ h≤q=1`, so `h∈\{0,1\}` — the `h≥2` case is **excluded
+immediately** and needs no further argument. Two cases remain.
+
+### II.2. `h=0`: forces `n=6`, both graphs have a C4 [PROVED, exhaustive]
+
+`H=\varnothing` means every vertex has degree exactly 3 (`G` is
+3-regular). Then `q = 2n-2-m = 2n-2-\tfrac{3n}{2} = \tfrac n2-2`; setting
+`q=1` gives **`n=6`** exactly.
+
+**Every simple connected cubic graph on 6 vertices contains a C4.**
+*Proof via the 2-regular complement.* In `K_6`, a cubic graph `G`'s
+complement `\bar G` is `(6-1-3)=2`-regular; a 2-regular simple graph on 6
+vertices is a disjoint union of cycles of length `≥3` summing to 6, so
+`\bar G` is either a single `C_6` or two disjoint `C_3`'s (no other
+partition of 6 into parts `≥3` exists). Check both:
+- **`\bar G = C_6`:** `G = \overline{C_6}` is the circulant graph on
+  `\{0,\ldots,5\}` joining vertices at distance 2 or 3. Direct witness:
+  `0,2,5,3` form a 4-cycle (`0\text{–}2` distance 2, `2\text{–}5`
+  distance 3, `5\text{–}3` distance 2, `3\text{–}0` distance 3 — all
+  present). (`G` is in fact the triangular prism: `\{0,2,4\}` and
+  `\{1,3,5\}` are its two triangles, joined by the distance-3 matching.)
+- **`\bar G = C_3\sqcup C_3`** (say on `\{0,1,2\}` and `\{3,4,5\}`):
+  `G` keeps every edge except the two triangles', i.e. `G` is exactly
+  the complete bipartite graph `K_{3,3}` between `\{0,1,2\}` and
+  `\{3,4,5\}` — visibly full of 4-cycles (e.g. `0\text{–}3\text{–}1\text{–}4\text{–}0`).
+
+Both cases give a C4. **Independent check:** exhaustive `geng -c -d3 -D3
+6 9:9` finds exactly 2 connected cubic graphs on 6 vertices (matching
+the 2 complement cases above exactly, confirmed isomorphic pairwise);
+both are confirmed to contain a C4 by the dual DFS/NetworkX detector.
+`verifier/defect_one_elimination.py`, `check_h0_case`.
+
+### II.3. `h=1`: forces `c₃=2`, and the two `C₃` vertices force a C4 [PROVED, exhaustive through n=12]
+
+`H=\{z\}`. A `C₁`-vertex needs 2 *distinct* `H`-neighbours (I.1's audit)
+— impossible with `|H|=1`. So **`c_1=0`**, forced directly (not via any
+edge-count bound). Substituting `h=1,q=1,c_1=0` into I.1's identity
+(`c_1=c_3+4h-2q-4`): `0=c_3+4-2-4=c_3-2`, so **`c_3=2`**.
+
+Let `u,v` be the two `C_3` vertices (`d_F(u)=d_F(v)=3`, i.e. all 3
+`G`-neighbours of `u` lie in `C`). At most one of `u`'s 3 `F`-neighbours
+is `v` itself (simple graph). Since `c_1=0`, `C=C_2\cup C_3` — so `u`'s
+`F`-neighbours other than (possibly) `v` lie in `C_2`: **`u` has at
+least 2 distinct `F`-neighbours `a,b\in C_2`.** Every `C_2`-vertex has
+exactly 1 `H`-neighbour (`d_F=2\Rightarrow d_H=1`), necessarily `z`
+(`H=\{z\}`). So `a,b` are both adjacent to `z`. Then `z,a,u,b` are 4
+pairwise-distinct vertices (`z\in H`; `a,b\in C_2`, `a\neq b`; `u\in C_3`,
+disjoint from `C_2`) with all 4 edges `za, au, ub, bz` present:
+\[
+z-a-u-b-z
+\]
+is a genuine C4 — contradicting F-cleanness. **So `h=1,q=1` is
+impossible.**
+
+**Computational validation, exhaustive through `n=12`.** Every graph
+satisfying property (2), `δ≥3`, `m=2n-3` (`q=1`), **and** `h=1` was
+generated via the same validated `geng` route as the previous phase's
+D1 search (`n=7..12`, matching that search's own already-exhaustive
+range exactly, not restarted at higher orders): **74 such graphs**, all
+with `c_1=0,c_3=2` exactly as derived, and all confirmed to contain a C4
+via the *precise* `z\text{-}a\text{-}u\text{-}b\text{-}z` mechanism
+above (not merely "some forbidden cycle exists" — the specific 4 edges
+used by the proof are checked to exist for each instance). **0 algebra
+failures, 0 mechanism failures across 74/74.**
+`manifests/defect_one_elimination_manifest.json`.
+
+### II.4. Conclusion [PROVED]
+
+`h≥2` excluded by I.3; `h=0` and `h=1` both force a C4, contradicting
+F-cleanness. **No case survives.** Hence
+\[
+\boxed{q(G)\ge2}\quad\text{for every minimal Erdős–Gyárfás counterexample},
+\]
+and therefore
+\[
+\boxed{|E(G)|\le2|V(G)|-4}.
+\]
+This **strictly improves** G2's `q(G)≥1` / `|E(G)|≤2|V(G)|-3`.
+
+**Literature check before the novelty claim, as instructed.** Targeted
+search ("Erdős-Gyárfás minimal counterexample defect one", "q=1", "2n-3
+edges", "cubic-core high degree vertices") found Carr 2026's M1–M4,
+Royle–Markström's order/cubic-order bounds, and general survey material
+— **no prior statement of a "defect" or "`q`" parameter, or of any
+`q(G)≥2`-type bound, for Erdős–Gyárfás minimal counterexamples**. Since
+`q` and the cubic-core decomposition (`C,H,F,β(F)`) are this project's
+own constructions (not found in any literature source, here or in the
+previous phase's L18–L20 audits), this is unsurprising and is recorded
+**conservatively**: **PROVED IN WORKSPACE; no prior statement found
+after a targeted search; full external expert verification remains
+desirable** — the same conservative labelling standard used throughout
+this project for S4, S5, G1, G2, and the leaf-graph theorem itself.
+
 ---
 
 ## 2026-07-26 Part I: the cubic-core decomposition [PROVED IN WORKSPACE]

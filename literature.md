@@ -286,6 +286,22 @@ from a fixed small set of extremal near-miss bases, or the algebraic
 compression technique of III.2/III.3 (reducing an exhaustive lift search
 to a small covering set of cycle-space hyperplanes).
 
+### L22 — Novelty check on q(G)>=2 / the leaf-graph theorem [2026-07-27]
+
+Targeted search ("Erdos-Gyarfas minimal counterexample defect one",
+"q=1", "2n-3 edges", "cubic-core high degree vertices") found Carr 2026's
+M1-M4, Royle-Markstrom's order bounds, and general survey material --
+**no prior statement of a "defect"/`q` parameter, the cubic-core
+decomposition (C,H,F,beta(F)), the derived leaf graph L(G), or any
+q(G)>=2-type bound** for Erdos-Gyarfas minimal counterexamples. Since `q`
+and the cubic-core decomposition are this project's own constructions
+(introduced in the 2026-07-26 pass, not found in any external source
+across this project's entire literature audit L1-L21), this negative
+result is unsurprising and is recorded conservatively, at the same
+"novelty supported by search, full external verification desirable"
+ceiling used throughout this project (S4, S5, G1, G2) -- not a priority
+claim.
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +
