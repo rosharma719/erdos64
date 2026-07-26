@@ -125,6 +125,49 @@ weighted-incidence cycle formula while deriving this (t -> 2t
 coefficient correction). Full detail: defect.md leaf-compression Part
 III, lemmas.md.
 
+### P11 [mixed — exact vs. sampled, deliberately distinguished] Exact Z5-lift elimination for the same four bases
+Full exact (non-sampled) computation, superseding the previous phase's
+Monte Carlo Z5 report. **[COMPUTATIONAL_ELIMINATION, EXACT, EXHAUSTIVE]**
+No connected cyclic Z5-lift of the four certified order-24 bases (III's
+bases) is an Erdős–Gyárfás counterexample — all
+`4x1,220,703,124=4,882,812,496` nonzero assignments checked exactly:
+base 1 has exact 100% simple-C16-hyperplane coverage (certified by its
+full 315-vector list — a sample-based 48-vector compression attempt
+FAILED exact verification, 21,156 exceptions, corrected not hidden);
+bases 0, 2, 3 have exactly 444, 72, 48 hyperplane-uncovered assignments,
+every one independently lift-constructed and exactly resolved (148 at
+C8, 400 at C16 — all genuine non-simple projections — 16 at C32, zero
+survivors). Full detail: z3_lifts.md "Part IV, completed exactly".
+
+## Five-way distinction, required to be stated explicitly (per instruction)
+Do not conflate these — each has a different logical status:
+1. **The broad D1 statement** ("does `δ≥3` + Carr's property (2) alone +
+   `m=2n-3` force a C4/C8, for *any* such graph") — **remains OPEN**,
+   `[outcome (4)]`, not proved, not refuted (see P8 above). Not
+   re-attempted in the leaf-compression phase.
+2. **The defect-one theorem for a genuine minimal counterexample**
+   (`q(G)≥2`) — **PROVED** (P9), strictly narrower hypothesis than D1
+   (uses full F-cleanness via the leaf-graph theorem, not just property
+   (2)).
+3. **The derived leaf-graph theorem** (L1–L4, the `c1=c3+4h-2q-4`
+   identity, `h≤q`) — **PROVED**, the structural engine behind both P9
+   and P10; L1/L2 are mechanically checkable, L3/L4 are minimality
+   arguments not empirically testable on any concrete small graph (no
+   genuine C4-free fixture exists at any size reached so far).
+4. **The (initially "proposed", now resolved) defect-two theorem**
+   (`q(G)≥3`) — **PROVED**, not merely "isolated as an obstruction" (P10):
+   every one of the `h∈\{0,1,2\}` cases was verified, not assumed, and
+   all three failed (forced a C4 or C8), so the full target holds.
+5. **Exact vs. sampled Z5 voltage results** — the *only* exact
+   conclusions are P11's: base 1 exact 100% coverage (full 315-vector
+   list, NOT a compressed one — the compression attempt is a recorded
+   failure); bases 0/2/3 exact uncovered counts 444/72/48; all 564
+   exactly lift-tested with zero survivors. Every earlier *sampled*
+   Z5 number (the original Monte Carlo pass) is **superseded**, not
+   merely supplemented — in particular its "≈0 coverage" claim for
+   bases 0, 1, 3 was **wrong** (undershot), corrected in z3_lifts.md's
+   Part IV.1 correction note.
+
 ## Conjectural / directional (NOT proved)
 - Whether δ≥3 forces a u–v path system spanning ≥2 dyadic scales (would revive an
   additive route). Open.
