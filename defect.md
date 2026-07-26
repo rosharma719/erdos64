@@ -1,4 +1,52 @@
-# defect.md — the ordering-defect parameter D (arbitrary-order redirection)
+# defect.md — the ordering-defect parameter q
+
+## 2026-07-25 correction and strengthened theorem [PROVED IN WORKSPACE]
+
+The current parameter is
+\[
+q(G)=2|V(G)|-2-|E(G)|.
+\]
+It is the same algebraic quantity called `D` in the historical audit below.
+That audit left the 2-degeneracy of `G-v` open because it used only the local
+edge statement B3. The missing input is now explicit: Carr's Lemma 0.1 says
+that **every proper subgraph** of a lexicographically minimal counterexample has
+minimum degree at most two. Therefore, for every cubic `v`, every nonempty
+subgraph of `G-v` has a vertex of degree at most two; equivalently `G-v` is
+2-degenerate.
+
+Let `x_1,...,x_{n-1}` be any 2-degeneracy ordering of `G-v`, with forward
+degrees `a_i`. Against the coordinatewise maximal sequence
+\[
+(2,2,\ldots,2,1,0),
+\]
+the nonnegative total deficit is
+\[
+\sum_{i=1}^{n-1}(\min(2,n-1-i)-a_i)
+=(2n-5)-(m-3)=2n-2-m=q(G).
+\]
+The same argument gives `m<=2n-2`. Equality would make `G` degree-3-critical
+in the exact modern sense (it has `n` vertices, `2n-2` edges, and no proper
+induced subgraph of minimum degree at least three). The EFGS theorem then
+forces a 4-cycle, so in fact
+\[
+m\le2n-3,\qquad q(G)\ge1.
+\]
+Finally,
+\[
+\sum_{u\in V(G)}(d(u)-3)=2m-3n=n-4-2q(G)\le n-6.
+\]
+See G2--G3 in `lemmas.md` for the complete proof and literature boundary.
+
+The remainder of this file is retained as a historical adversarial audit. Its
+claim that 2-degeneracy was unproved is **superseded only for a genuine
+lexicographically minimal counterexample**, where the full proper-subgraph
+lemma applies. Its counterexamples among arbitrary C4-free minimum-degree-3
+graphs remain valid and useful: those graphs need not have the required
+proper-subgraph minimality.
+
+---
+
+# Historical audit — the ordering-defect parameter D (superseded as noted)
 
 **Status as of 2026-07-25.** This file is new (redirection of the main project
 toward structures that apply to arbitrary order, per the 2026-07-25 task).

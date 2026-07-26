@@ -27,10 +27,19 @@ Let G minimize (|V|,|E|) among δ≥3 graphs with no power-of-two cycle.
 - **B3 = M1.** Every edge has a degree-3 endpoint ⇒ degree-≥4 vertices form an
   independent set; ≥1 degree-3 vertex exists. (Deletion-minimality.)
 - **B4.** Every neighbor of a degree-≥4 vertex has degree exactly 3.
-- **M3.** n₃ ≥ (4/7)n. (Double count high–low edges: 4n₊ ≤ Σ_high deg ≤ 3n₃.)
+- **M3.** n₃ ≥ (4/7)n. (Carr's original double count.)
+- **G1.** n₃ ≥ (2/3)n. (M2 applied also to cubic vertices improves the
+  high–low upper bound from `3n₃` to `2n₃`.)
+- **G2.** m ≤ 2n−3. (Delete a cubic vertex; the remainder is 2-degenerate.
+  Equality at `2n−2` would be degree-3-critical and hence contain a C4.)
+- **G3.** q=2n−2−m≥1 is the exact nonnegative deficit of a 2-degeneracy
+  ordering of `G-v` from `2,...,2,1,0`; hence `Σ(d−3)≤n−6`.
 - **M4.** A regular minimal counterexample is cubic.
 These independently reproduce Carr 2026 (arXiv:2605.22844) M1/M3/M4 from scratch,
 confirming the literature. M2 for degree-3 vertices remains Carr's (not re-derived).
+G1 is an immediate strengthening of Carr's own two preceding corollaries; G2
+combines Carr's proper-subgraph lemma with the classical EFGS theorem. See the
+full proofs and novelty audit in `lemmas.md` G1--G3 and `literature.md` L18--L19.
 
 ### P3 [PARTIALLY RETRACTED — 2026-07-24] Single-scale distinct-sum forcing is insufficient
 **Correction.** The earlier [PROVED] version overclaimed. Precisely:

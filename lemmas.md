@@ -73,11 +73,106 @@ deg(v) ≥ 4·n₊. Each degree-3 vertex meets ≤3 such edges, so that same cou
 If G is r-regular, r≥4 ⇒ no degree-3 vertex, contradicting B3's corollary
 (degree-3 set nonempty). δ≥3 rules out r<3. So r=3. ∎
 
-## M2. Every vertex is adjacent to a degree-3 vertex  [PARTIAL]
+## M2. Every vertex is adjacent to a degree-3 vertex  [KNOWN FROM LITERATURE;
+## partial workspace re-derivation]
 - For deg(v)≥4: immediate from B4 (all its neighbors are degree-3). [PROVED]
 - For deg(v)=3: NOT implied by B3/B4 (v is itself the degree-3 endpoint of its
   edges, so no constraint forces a degree-3 neighbor). This is the nontrivial
   case; proved by Carr 2026. [KNOWN FROM LITERATURE]
+
+## G1. At least two-thirds of the vertices are cubic  [PROVED IN WORKSPACE;
+## immediate but apparently unpublished strengthening of Carr 2026]
+Let
+\[
+C=\{v:d_G(v)=3\},\qquad H=\{v:d_G(v)\ge4\}.
+\]
+By M2, each vertex of `C` has a neighbor in `C`. Because it has degree three,
+it therefore has at most two neighbors in `H`, and hence
+\[
+e(C,H)\le 2|C|.
+\]
+By M1, `H` is independent. Thus every edge incident with a vertex of `H`
+goes to `C`, and
+\[
+e(C,H)=\sum_{h\in H}d_G(h)\ge4|H|.
+\]
+Consequently `4|H| <= 2|C|`, so `|C| >= 2|H|`. Since
+`|V(G)|=|C|+|H|`,
+\[
+\boxed{|C|\ge \frac23|V(G)|}.
+\]
+
+**Audit.** The application of M2 to a cubic vertex is legitimate: M2 says
+that *every* vertex has a degree-three neighbor, not merely that every high
+vertex does. Simplicity rules out the vertex itself serving as that neighbor.
+The equality for `e(C,H)` uses both the independence of `H` and the partition
+`V(G)=C union H`, which follows from `delta(G)>=3`.
+
+Carr's Theorem 0.1 instead bounds `e(C,H)` above by `3|C|` and obtains `4/7`.
+The full Carr paper and targeted searches for this `2/3` statement and its
+double count revealed no earlier occurrence. The deliberately conservative
+status is therefore **immediate but apparently unpublished strengthening**,
+not a claim of priority; see `literature.md` L18.
+
+## G2. Global edge bound  [PROVED IN WORKSPACE]
+Write `n=|V(G)|` and `m=|E(G)|`, and choose any `v in C`. Every nonempty
+subgraph of `G-v` is a proper subgraph of `G`, so Carr's Lemma 0.1 gives it a
+vertex of degree at most two. This is exactly the hereditary definition that
+`G-v` is 2-degenerate. A 2-degenerate simple graph on `N>=2` vertices has at
+most
+\[
+2(N-2)+1=2N-3
+\]
+edges: repeatedly remove a vertex of degree at most two and read the removals
+as a forward-degree ordering, whose caps are `2,...,2,1,0`. Taking `N=n-1`
+and using `d_G(v)=3` gives
+\[
+m-3=|E(G-v)|\le2(n-1)-3,
+\]
+and hence `m<=2n-2`.
+
+Suppose equality holds. Then `G` has `n` vertices and `2n-2` edges. Moreover
+Carr's Lemma 0.1 says more than is required here: *every* proper subgraph has
+minimum degree at most two, so in particular no proper **induced** subgraph has
+minimum degree at least three. This is the modern literature definition of a
+degree-3-critical graph. Erdős--Faudree--Gyárfás--Schelp proved that every
+such graph on at least five vertices has cycles of lengths 3, 4, and 5. The
+hypothetical `G` has order at least five and is `C4`-free, a contradiction.
+Therefore
+\[
+\boxed{|E(G)|\le2|V(G)|-3}.
+\]
+
+This is degree-criticality, not chromatic-criticality or edge-chromatic
+criticality. The ingredients are Carr's proper-subgraph lemma, the standard
+2-degenerate edge bound, and the classical EFGS theorem; see `literature.md`
+L19.
+
+## G3. Nonnegative ordering defect  [PROVED IN WORKSPACE]
+Define
+\[
+q(G)=2|V(G)|-2-|E(G)|.
+\]
+G2 gives `q(G)>=1`. Fix any cubic vertex `v` and let
+`x_1,...,x_{n-1}` be a 2-degeneracy ordering of `G-v`. Put
+`a_i=|N(x_i) intersect {x_{i+1},...,x_{n-1}}|`. Then
+\[
+a_i\le b_i:=\min(2,n-1-i),\qquad
+(b_1,...,b_{n-1})=(2,...,2,1,0).
+\]
+Every edge of `G-v` is counted once by the forward degrees, so
+\[
+\sum_i(b_i-a_i)
+=(2(n-1)-3)-(m-3)=2n-2-m=q(G).
+\]
+Thus `q` is the total of nonnegative local deficits from the maximal
+2-degenerate sequence, for every choice of cubic `v` and every such peeling
+order. Also
+\[
+\sum_{u\in V(G)}(d_G(u)-3)=2m-3n
+=n-4-2q(G)\le n-6.
+\]
+No classification of the `q=1` case is asserted.
 
 ---
 

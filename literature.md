@@ -205,6 +205,41 @@ allows without ever having read a full paper body. Dirac 1953 is the
 correct citation for "this proof pattern is a classical technique," to be
 used if S4/S5 are ever written up formally.
 
+### L18 — Two-thirds cubic strengthening [audited 2026-07-25]
+
+Carr's full four-page preprint (arXiv:2605.22844) was read, not merely its
+abstract. Corollary 0.1 proves both inputs used here: every vertex is adjacent
+to a degree-three vertex, and the degree-at-least-four vertices are independent.
+In Theorem 0.1 Carr then uses the upper bound `e(C,H)<=3|C|`, obtaining
+`|C|>=4|V|/7`. Applying Corollary 0.1 to the vertices of `C` themselves shows
+that each has at least one neighbor in `C`, sharpening the same line to
+`e(C,H)<=2|C|` and hence `|C|>=2|V|/3`.
+
+Targeted searches used the exact fractions, the phrases "predominantly cubic"
+and "degree exactly 3", the Carr title, and minimal-counterexample terminology.
+They found Carr's `4/7` theorem and unrelated `2/3` graph results, but no prior
+statement of this sharpening. Status: **PROVED IN WORKSPACE; IMMEDIATE BUT
+APPARENTLY UNPUBLISHED STRENGTHENING**. This is deliberately not a priority or
+novelty claim.
+
+### L19 — Degree-3-critical boundary and the edge bound [literature + workspace]
+
+The modern definition is documented by Narins--Pokrovskiy--Szabó (2015) and
+Di Braccio--Katsamaktsis--Ma--Malekshahian--Zhao (2025/2026): an `n`-vertex
+graph with `2n-2` edges and no proper induced subgraph of minimum degree at
+least three. Narins et al. explicitly explain that the 1988 paper's phrase
+"proper subgraph" is interpreted as "proper induced subgraph" for this class.
+They also record the theorem of Erdős--Faudree--Gyárfás--Schelp that every
+degree-3-critical graph on `n>=5` contains cycles of lengths 3, 4, and 5.
+
+Combining this classical theorem with Carr's proper-subgraph lemma and the
+standard extremal edge count for a 2-degenerate graph yields the workspace
+bound `m<=2n-3` (G2 in `lemmas.md`). Targeted searches found the ingredients
+but no prior EGC-specific statement of this exact bound. Status:
+**PROVED IN WORKSPACE FROM KNOWN LITERATURE INGREDIENTS; APPARENTLY UNPUBLISHED
+AS AN EGC MINIMAL-COUNTEREXAMPLE COROLLARY**. The associated `q` identity is
+elementary bookkeeping, not treated as a novelty claim.
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +

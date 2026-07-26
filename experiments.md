@@ -149,6 +149,31 @@ stronger 4-or-8 theorem** — save in g6+s6+edgelist immediately (c8filter `--sa
 UNSAT: reduce to CNF (edge vars, exact degree-seq constraints, C4- and C8-exclusion
 clauses, sound symmetry-breaking), run a proof-producing SAT solver, and check the
 DRAT/LRAT certificate independently. A CP-SAT "UNSAT" status line is NOT a proof.
+## E-global. Global-core adversarial atlas check (2026-07-25)
+[COMPUTATIONALLY REPRODUCED; validation, not proof]
+
+`verifier/global_core_check.py` exhausts `networkx.graph_atlas_g()` and selects
+the connected graphs through order seven for which every proper subgraph has
+minimum degree at most two. It found 12 such graphs. On all 12 it checked:
+
+- the high-degree set is independent and every vertex touches a cubic vertex;
+- `3|C|>=2n`;
+- deletion of **every** cubic vertex leaves a 2-degenerate graph;
+- `m<=2n-2` and the exact forward-deficit identity equals `q=2n-2-m`;
+- every equality case `m=2n-2` has a C4;
+- conditionally on C4-freeness, `m<=2n-3`, `q>=1`, and
+  `sum(d-3)<=n-6`.
+
+Counts: 12 selected, 6 equality cases, 0 C4-free cases, 0 failures. The C4-free
+implications are therefore logically checked but vacuous in this very small
+range; the equality boundary is exercised nonvacuously. Adversarial fixtures
+also verify that `K4` realizes equality and contains a C4, `K5` is rejected as
+nonminimal, and a nonempty 3-core is rejected by the 2-degeneracy peeler.
+
+Reproduction:
+`PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q tests/test_global_core_check.py`
+and `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/global_core_check.py`.
+
 ## E-struct. (planned) computational spot-check of B3/M3 on edge-minimal
 C4∧C8-free graphs (validates the deletion-minimality reduction on real graphs).
 ## E2. (pending) Cubic exhaustive `geng -c -d3 -D3` (reproduce L11 cubic ≥30).

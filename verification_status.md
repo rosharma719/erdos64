@@ -8,6 +8,9 @@ it must not be paraphrased as formally verified.
 
 | Item | Status | Scope and evidence |
 |---|---|---|
+| Two-thirds cubic lemma (G1) | `PROVED_IN_MARKDOWN`, `NOVELTY_SUPPORTED_BY_SEARCH`, `NOT_FORMALLY_VERIFIED` | Carr's two proved local facts sharpen his `4/7` count to `2/3`; full preprint and targeted search audited in L18. |
+| Edge bound `m<=2n-3` (G2) | `PROVED_IN_MARKDOWN`, `KNOWN_INGREDIENTS`, `NOT_FORMALLY_VERIFIED` | `G-v` is 2-degenerate; equality is degree-3-critical and EFGS forces a C4. |
+| Defect framework (G3) | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | `q>=1`, exact forward-degree deficit identity, and degree-excess bound; small inclusion-minimal graphs checked adversarially. |
 | S4 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Bridgelessness proof in `lemmas.md`; novelty supported by limited search. |
 | S5 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Cut-vertex classification in `lemmas.md`; novelty supported by limited search. |
 | O1 | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Master-minimal one-pole graph is bridgeless. |
