@@ -60,6 +60,20 @@ it must not be paraphrased as formally verified.
 | Three-copy lift verification | `COMPUTATIONALLY_REPRODUCED` | All 129,040 lifts directly checked for C4/C8/C16 by Python and independent C detectors; zero survivors and 129,040 equivalence agreements. |
 | Order-9 SPQR obstruction support | `COMPUTATIONALLY_REPRODUCED` | Existing E23 artifact mined without regeneration: 98,990 R-local, 29,581 P-created, 469 multi-node shortest witnesses. |
 | T7 | `CONJECTURAL` | T7 remains gated on finding at least one internally clean bridge. |
+| I.1a-c cubic-core identities | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | `e(C,H)`, `\|E(F)\|`, `beta(F)` identities; 0 failures across 8,171 checks (atlas, inclusion-minimal fixtures, synthetic constructions). |
+| I.1d C1/C2/C3 partition | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Needs M2; checked on the M2-satisfying populations only. |
+| I.2 component-incidence quotient Q | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Corrects the naive "H!=empty" exception to the precise kappa(F)>=2 requirement, with an explicit kappa=1 witness. |
+| I.3 weighted-incidence cycle formula | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Single- and multi-H alternating cycle length formula, explicit disjointness/distinctness hypotheses. |
+| II.0 fast property-(2) equivalent | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | O(n(n+m)) replaces O(2^n); 0 mismatches over 1,865 cross-validation graphs. |
+| D1 (h=0 case) | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | q=1,h=0 forces n=6 exactly; both connected cubic 6-vertex graphs contain C4. |
+| D1 (general case) | `COMPUTATIONALLY_VERIFIED`, `INCOMPLETE_RANGE` | 0 counterexamples among 1,128 property-(2) graphs, n=6..12 exhaustive (two independent generation routes agree at n=6,7); n=13 (17.4M raw graphs) attempted, did not complete. Not proved in general. |
+| D1C completion lemma | `DISPROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED` | Fails starting n=9 (3 witnesses); 172 further failures by n=12. |
+| III.1 C16 projection classification | `COMPUTATIONALLY_REPRODUCED`, exhaustive | All 1,545,746 C8-survivors across 4 bases are Type-1 (simple base C16, trivial holonomy); 0 instances of types 2-4. |
+| III.2 full-space hyperplane coverage | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, exhaustive over `3^13` per base | Union of simple-C16 hyperplanes covers ALL of `F3^13\{0}`, not just C8-survivors, for all 4 bases. |
+| III.3 standalone certificate | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | 24-27-vector covering subset per base; cross-checked against 1,200 real lift reconstructions (300/base), 0 disagreements. |
+| V separator-defect formulas | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | q(G)=2d(lobe) for S5 (=> q=1 excludes cut vertex); q(G)=Sum(d(Bi))-{4,3,2} for Type A/B/C; 0 failures across 2,000 synthetic checks. |
+| IV.A Z5 feasibility study | `COMPUTATIONALLY_VERIFIED`, `INCOMPLETE_RANGE` (Monte Carlo estimate + exact real-lift sample, not exhaustive) | 3/4 bases exact 100% coverage (0/2,000,000 uncovered); base 2 measurable ~5x10^-7 uncovered fraction with a confirmed non-simple-projection C16 witness. 4,000 real-lift samples: 0 counterexample candidates. A 50M/5000-sample confirmatory run did not complete in budget; not used in any conclusion. |
+| IV.B order-26 feasibility | `INFEASIBLE` (benchmark-based, no generation launched) | n=22 raw C4-free cubic generation did not complete in 400s; n=16/18/20 calibration (269/2,761/36,101 graphs) extrapolates to ~6 days for n=26 raw generation alone. |
 
 ## Integrity-pass execution record
 

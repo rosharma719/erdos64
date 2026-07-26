@@ -1,0 +1,131 @@
+{
+  "bases": [
+    {
+      "base_index": 0,
+      "distinct_homology_vectors_mod_p": 228,
+      "exact_lift_sample": {
+        "c4_c8_c16_survivor_count": 0,
+        "counterexample_candidates": [],
+        "counterexample_candidates_found": 0,
+        "hit_counts": {
+          "4": 0,
+          "8": 943,
+          "16": 1000,
+          "32": 0,
+          "64": 0
+        },
+        "samples": 1000
+      },
+      "monte_carlo": {
+        "covered_fraction_estimate": 1.0,
+        "estimated_total_covered": 1220703124.0,
+        "estimated_total_uncovered": 0.0,
+        "samples": 2000000,
+        "stderr": 0.0,
+        "uncovered_sample_assignments": []
+      },
+      "p": 5,
+      "simple_c16_count": 228
+    },
+    {
+      "base_index": 1,
+      "distinct_homology_vectors_mod_p": 315,
+      "exact_lift_sample": {
+        "c4_c8_c16_survivor_count": 0,
+        "counterexample_candidates": [],
+        "counterexample_candidates_found": 0,
+        "hit_counts": {
+          "4": 0,
+          "8": 621,
+          "16": 1000,
+          "32": 0,
+          "64": 0
+        },
+        "samples": 1000
+      },
+      "monte_carlo": {
+        "covered_fraction_estimate": 1.0,
+        "estimated_total_covered": 1220703124.0,
+        "estimated_total_uncovered": 0.0,
+        "samples": 2000000,
+        "stderr": 0.0,
+        "uncovered_sample_assignments": []
+      },
+      "p": 5,
+      "simple_c16_count": 315
+    },
+    {
+      "base_index": 2,
+      "distinct_homology_vectors_mod_p": 330,
+      "exact_lift_sample": {
+        "c4_c8_c16_survivor_count": 0,
+        "counterexample_candidates": [],
+        "counterexample_candidates_found": 0,
+        "hit_counts": {
+          "4": 0,
+          "8": 406,
+          "16": 1000,
+          "32": 0,
+          "64": 0
+        },
+        "samples": 1000
+      },
+      "monte_carlo": {
+        "covered_fraction_estimate": 0.9999995,
+        "estimated_total_covered": 1220702513.648438,
+        "estimated_total_uncovered": 610.3515619497884,
+        "samples": 2000000,
+        "stderr": 4.999998749794177e-07,
+        "uncovered_sample_assignments": [
+          [
+            1,
+            2,
+            4,
+            3,
+            3,
+            1,
+            0,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0
+          ]
+        ]
+      },
+      "p": 5,
+      "simple_c16_count": 330
+    },
+    {
+      "base_index": 3,
+      "distinct_homology_vectors_mod_p": 207,
+      "exact_lift_sample": {
+        "c4_c8_c16_survivor_count": 0,
+        "counterexample_candidates": [],
+        "counterexample_candidates_found": 0,
+        "hit_counts": {
+          "4": 0,
+          "8": 856,
+          "16": 1000,
+          "32": 0,
+          "64": 0
+        },
+        "samples": 1000
+      },
+      "monte_carlo": {
+        "covered_fraction_estimate": 1.0,
+        "estimated_total_covered": 1220703124.0,
+        "estimated_total_uncovered": 0.0,
+        "samples": 2000000,
+        "stderr": 0.0,
+        "uncovered_sample_assignments": []
+      },
+      "p": 5,
+      "simple_c16_count": 207
+    }
+  ],
+  "p": 5,
+  "records_sha256": "bafc1701ded0ebe3a2b286d6fa98f9d1faa75494c6324b531d5b9a2b5a101675",
+  "schema": "erdos64-z5-lift-feasibility-v1"
+}

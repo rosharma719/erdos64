@@ -36,7 +36,10 @@ work in the sibling `erdos/` directory — no shared code.
   spectrum-safe replacement principle, its scope boundary, and the first
   unseen genuine leaf-R configuration.
 - `z3_lifts.md` — normalization, completeness, implementation, and exact
-  elimination statement for cyclic Z3 lifts of the four certified bases.
+  elimination statement for cyclic Z3 lifts of the four certified bases;
+  Part III's algebraic compression (projection-type classification,
+  full-space hyperplane coverage, compact standalone certificate) and
+  Part IV's Z3-vs-Z5/order-26 feasibility comparison.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -97,6 +100,26 @@ work in the sibling `erdos/` directory — no shared code.
     through order nine; not a new SPQR census.
   - `z3_lift_search.cpp` / `independent_z3_verify.py` — exhaustive staged
     cyclic-lift engine and independent full-survivor audit.
+  - `cubic_core.py` — cubic-core decomposition identities (C/H/F/beta(F),
+    the component-incidence quotient Q), validated on 3 independent
+    populations (defect.md Part I).
+  - `d1_search.py` — defect-one theorem D1: fast property-(2) equivalent,
+    two independent D1-hypothesis generators (direct ordering + geng),
+    D1C completion-lemma test (defect.md Part II).
+  - `z3_certificate.py` — exhaustive simple-C16 projection-type
+    classification and full-nonzero-space hyperplane coverage per base
+    (z3_lifts.md Part III.1-III.2).
+  - `z3_min_cover.py` — near-minimal covering-subset search (greedy set
+    cover) for the simple-C16 hyperplanes (z3_lifts.md Part III.2).
+  - `z3_standalone_verifier.py` — self-contained certificate checker using
+    only the covering subset, cross-validated against real lift
+    reconstruction (z3_lifts.md Part III.3).
+  - `z5_lift_feasibility.py` — algebraic-feasibility study for cyclic Z5
+    lifts of the same four bases, Monte Carlo coverage estimate plus
+    real-lift sampling, no full `5^13` enumeration (z3_lifts.md Part IV.A).
+  - `separator_defect_map.py` — q(G) formulas for the S5 cut-vertex and
+    Type A/B/C 2-cut cases in terms of piece defects, validated on
+    synthetic constructions (two_cut.md §26, Part V).
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

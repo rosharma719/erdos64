@@ -1079,3 +1079,75 @@ replacement test. The first unseen LR configuration is consequently a genuine
 original remote R-leaf of larger order whose `R-ab` is C4/C8-clean and must
 either be spectrum-safely replaced or exhibited as a counterexample to LR*.
 See `manifests/leaf_r_replacement_small_manifest.json`.
+
+## 26. Defect contribution of each separator case [2026-07-26, Part V]
+
+**Standing reminder:** hand-checked proofs, cross-validated by independent
+computation (`verifier/separator_defect_map.py`); not proof-assistant
+formal verification.
+
+Per the redirection's Part V, this section maps every remaining separator
+case (S5's cut vertex; Type A/B/C 2-cuts) to `q(G)=2n-2-m` in terms of
+piece parameters, using the SAME defect quantity applied to a piece `P`
+as its own standalone graph: `d(P) := 2|V(P)|-2-|E(P)|` (pure bookkeeping
+-- a piece's terminal vertices need not have degree `≥3` inside the piece
+alone, so `d(P)≥1` is **not** asserted the way G2 asserts `q(G)≥1` for a
+genuine minimal counterexample; `d(P)` is just an integer computed from
+the piece's own `(|V|,|E|)`).
+
+**S5 (cut vertex `v`, two equal-order equal-edge-count lobes `A₁,A₂`,
+per lemmas.md S5 Steps 2-5): `q(G) = 2·d(A₁) = 2·d(A₂)`.** *Proof.* With
+`|C₁|=|C₂|=(n-1)/2` and `|E(A₁)|=|E(A₂)|=a` (S5), `m(G)=|E(A₁)|+|E(A₂)|=2a`
+(S5 Step 5's derivation). So `q(G)=2n-2-2a`. Writing `d(A₁)=2|A₁|-2-a`
+with `|A₁|=(n+1)/2`: `d(A₁)=(n+1)-2-a=n-1-a`, so `2·d(A₁)=2n-2-2a=q(G)`. ∎
+**Consequence: `q(G)` is always EVEN whenever `G` has a cut vertex.**
+Since G2 gives `q(G)≥1` unconditionally, the smallest value compatible
+with a cut vertex is `q(G)=2`, never `1`. **Hence: `q(G)=1 ⇒ G` has no cut
+vertex — every `q=1` minimal counterexample (if one exists) is
+2-connected**, a clean, definite exclusion, independently verified by
+constructing 500 random synthetic cut-vertex configurations and checking
+`q(G)` against the formula directly (0 failures).
+
+**Type A (`t=3` bridges, `xy∉E(G)`, per two_cut.md's exact classification):
+`q(G) = d(B₁)+d(B₂)+d(B₃) - 4`.** *Proof.* The 3 bridges share only the 2
+terminals `x,y` (no other shared vertex, no shared edge — `xy∉E(G)` so no
+separate edge piece either): `n(G)=Σnᵢ-4` (3 bridges, each beyond the
+first double-counts the 2 shared terminals: `Σnᵢ-(3-1)·2`), `m(G)=Σmᵢ`.
+So `q(G)=2(Σnᵢ-4)-2-Σmᵢ=Σ(2nᵢ-mᵢ)-10`. And `Σd(Bᵢ)=Σ(2nᵢ-2-mᵢ)
+=Σ(2nᵢ-mᵢ)-6`, so `Σ(2nᵢ-mᵢ)=Σd(Bᵢ)+6`, giving `q(G)=Σd(Bᵢ)+6-10
+=Σd(Bᵢ)-4`. ∎ **For `q(G)=1`: `d(B₁)+d(B₂)+d(B₃)=5`.**
+
+**Type B (`t=2`, `xy∈E(G)`): `q(G) = d(B₁)+d(B₂) - 3`.** *Proof.* Same
+sharing structure with `t=2` plus one extra edge `xy`: `n(G)=n₁+n₂-2`,
+`m(G)=m₁+m₂+1`. `q(G)=2(n₁+n₂-2)-2-(m₁+m₂+1)=Σ(2nᵢ-mᵢ)-7`, and
+`Σd(Bᵢ)=Σ(2nᵢ-mᵢ)-4`, so `q(G)=Σd(Bᵢ)+4-7=Σd(Bᵢ)-3`. ∎ **For `q(G)=1`:
+`d(B₁)+d(B₂)=4`.**
+
+**Type C (`t=2`, `xy∉E(G)`): `q(G) = d(B₁)+d(B₂) - 2`.** *Proof.* Same as
+Type B without the extra edge: `n(G)=n₁+n₂-2`, `m(G)=m₁+m₂`, giving
+`q(G)=Σ(2nᵢ-mᵢ)-6=Σd(Bᵢ)+4-6=Σd(Bᵢ)-2`. ∎ **For `q(G)=1`:
+`d(B₁)+d(B₂)=3`.**
+
+**Computational validation** (`verifier/separator_defect_map.py`): 500
+random synthetic instances of each of the 4 configurations (random
+spanning-tree-plus-extra-edges pieces, glued at shared terminals exactly
+per each type's sharing rule, taking care that no piece internally
+duplicates the separately-modelled `xy` edge), `q(G)` computed two ways
+(directly on the assembled graph, and via the closed-form above) — **0
+disagreements across 2,000 checks total.**
+
+**Does `q(G)=1` exclude any separator type? Answer: only S5 (the
+cut-vertex case), unconditionally, by the parity argument above. Type
+A/B/C are NOT excluded by this analysis alone** — the formulas only
+constrain the SUM of bridge-defects (`5`, `4`, `3` respectively), and no
+lower bound on an *individual* `d(Bᵢ)` is established here (unlike `q(G)`
+itself, a bridge's own defect is not backed by a G2-style argument, since
+a bridge's terminal vertices need not have internal degree `≥3`). A
+genuine per-bridge lower bound would need to close each bridge into an
+EG-hypothesis-worthy object first (e.g. via `Bᵢ+xy`, degree-completing the
+terminals) and re-run a G2-style 2-degenerate argument on THAT closure —
+not attempted here, flagged as the natural next step but explicitly out
+of scope for this pass (the task's instruction not to attempt a new LR*
+proof unless D1 specifically reduces to it; D1's outcome (II.5) did not
+reduce to the separator program this pass, so no such extension is
+pursued here).

@@ -268,6 +268,24 @@ same permanent limitation as L16/L17)**; no priority or novelty claim is
 made about any connection drawn here between NPS's construction and the
 `β(F)=0` case, which is original observation, not a literature claim.
 
+### L21 — Novelty check on the voltage-graph/lift methodology (Part III/IV) [2026-07-26]
+
+Targeted search ("Erdos-Gyarfas voltage graph", "graph lift cycle avoidance
+cubic", "cyclic Z_p lift power of two cycle") found substantial general
+voltage-graph/graph-cover literature (LDPC-code cycle-distribution
+analysis, cage constructions via voltage graphs, pseudo-Loupekine snarks
+as Zm lifts, isomorphism criteria for abelian-group voltage assignments)
+but **no prior application of voltage-graph lifts to Erdős–Gyárfás
+counterexample search specifically**. Status: **novelty supported by
+search only** (same permanent access-limited ceiling as L16/L17/L20 — no
+arXiv full text reachable from this environment); not a priority claim.
+The general technique (cyclic lifts, voltage assignments, holonomy) is of
+course long-classical (Gross–Tucker); what is not found elsewhere is its
+application to systematically eliminate candidate EGC counterexamples
+from a fixed small set of extremal near-miss bases, or the algebraic
+compression technique of III.2/III.3 (reducing an exhaustive lift search
+to a small covering set of cycle-space hyperplanes).
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +

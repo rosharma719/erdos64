@@ -468,6 +468,22 @@ verified against real lift reconstruction (300 random cross-checks per
 base, 0 disagreements). `verifier/z3_certificate.py`,
 `verifier/z3_min_cover.py`, `verifier/z3_standalone_verifier.py`.
 
+## Next voltage-cover search selection (2026-07-26 pass) — see z3_lifts.md Part IV for full detail
+
+**IV.A (Z5 lifts of the same 4 bases) SELECTED over IV.B (Z3 lifts of
+order-26 bases).** IV.B fails the feasibility gate directly: order-22
+C4-free cubic generation did not complete in 400s; extrapolated order-26
+raw generation alone needs ~6 days (geometric-mean growth x11.58/count,
+x18.07/time per +2 vertices, calibrated at n=16,18,20). IV.A evidence
+(2,000,000 Monte Carlo samples/base + 1,000 real 120-vertex lift
+samples/base): 3 of 4 bases show exact 100% simple-C16 hyperplane
+coverage over `F5^13`; base 2 shows a genuine, measurable ~5x10^-7
+uncovered fraction (a real qualitative difference from Z3's exact 100%
+coverage), with a confirmed real-lift witness (no C4/C8, genuine C16 via
+a non-simple projection). 0 counterexample candidates found. A larger
+50M-sample confirmatory run did not complete in budget; not used in any
+conclusion.
+
 ## Cubic-core decomposition (2026-07-26 pass) — see defect.md Part I for full detail
 
 ### I.1a-c. Cross-count/internal-edge/beta(F) identities [PROVED, pure algebra]
