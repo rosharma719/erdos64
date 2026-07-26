@@ -1,4 +1,4 @@
-"""T8/R1/T8R helpers and finite relaxed-closure verification.
+"""T8/R1/R2/SPQR-leaf helpers and finite relaxed-closure verification.
 
 The mathematical proofs live in ``two_cut.md``.  This module makes their
 local conclusions executable:
@@ -6,8 +6,10 @@ local conclusions executable:
 * edge deletion only shrinks cycle and terminal-path spectra;
 * a real edge in an R-skeleton may be deleted without destroying the
   closure's 2-connectivity (R1);
+* a real edge in a P-skeleton may likewise be deleted (R2);
 * therefore an R-real edge of a minimal Type-A gadget must meet one of the
-  exact degree-critical locations in T8R.
+  exact degree-critical locations in T8R, and the same holds for P-real edges;
+* reduced Q-suppressed S/P leaves have the exact forms stated in T9--T11.
 
 The SPQR convention matches ``one_pole.md`` and the installed ``spqrtree``
 package: Q nodes are suppressed where possible; skeleton edges are marked
@@ -250,10 +252,194 @@ def real_r_edges(graph: nx.Graph) -> list[tuple]:
     return brute_spqr_decompose(graph).real_r_edges()
 
 
+def real_p_edges(graph: nx.Graph) -> list[tuple]:
+    """Return real edges in definition-validated P-node skeletons."""
+    return brute_spqr_decompose(graph).real_p_edges()
+
+
 def r1_holds_for_edge(graph: nx.Graph, edge) -> bool:
     smaller = graph.copy()
     smaller.remove_edge(*edge)
     return is_2connected(smaller)
+
+
+def r2_holds_for_edge(graph: nx.Graph, edge) -> bool:
+    """Definition-level R2 conclusion for a validated real P edge."""
+    smaller = graph.copy()
+    smaller.remove_edge(*edge)
+    return is_2connected(smaller)
+
+
+def parallel_union_preserves_2connectivity(pieces, x, y) -> nx.Graph:
+    """Identify the poles of at least two closed-2-connected expansions.
+
+    Every piece omits ``xy``, its closure by ``xy`` is 2-connected, and its
+    internal vertices are disjoint from the other pieces.  This is the direct
+    expansion lemma needed by R2 after the unique real P element is deleted.
+    """
+    pieces = [piece.copy() for piece in pieces]
+    if len(pieces) < 2:
+        raise ValueError("R2 requires at least two surviving expansions")
+    used_internal = set()
+    union = nx.Graph()
+    union.add_nodes_from([x, y])
+    for piece in pieces:
+        if x not in piece or y not in piece:
+            raise ValueError("each expansion must contain both poles")
+        if piece.has_edge(x, y):
+            raise ValueError("an expansion must omit its pole edge")
+        closure = piece.copy()
+        closure.add_edge(x, y)
+        if not is_2connected(closure):
+            raise ValueError("each expansion closure must be 2-connected")
+        internal = set(piece) - {x, y}
+        if internal & used_internal:
+            raise ValueError("expansion internal vertices must be disjoint")
+        used_internal |= internal
+        union = nx.compose(union, piece)
+    if not is_2connected(union):
+        raise AssertionError("R2 parallel-union lemma failed")
+    return union
+
+
+def leaf_spqr_classification(
+    graph_j: nx.Graph,
+    graph_b: nx.Graph,
+    x,
+    y,
+    *,
+    decomposition=None,
+) -> dict:
+    """Classify every leaf S/P node in the validated reduced decomposition.
+
+    For a nontrivial tree a leaf S-node has one parent virtual edge.  Its
+    remaining real edges form a path whose internal vertices are local and
+    therefore have true J-degree two.  In a Type-A closure those vertices can
+    only be x, or additionally y when d_B(y)=1.
+    """
+    if decomposition is None:
+        decomposition = brute_spqr_decompose(graph_j)
+    s_leaves = []
+    p_leaves = []
+    for index, node in enumerate(decomposition.nodes):
+        tree_degree = len(decomposition.adjacency[index])
+        is_leaf = (len(decomposition.nodes) > 1 and tree_degree == 1)
+        if node.type == "P" and (is_leaf or len(decomposition.nodes) == 1):
+            p_leaves.append(index)
+        if node.type != "S" or not is_leaf:
+            continue
+        virtual = [edge for edge in node.edges if edge.virtual]
+        real = [edge for edge in node.edges if not edge.virtual]
+        if len(virtual) != 1:
+            raise AssertionError("a leaf S-node must have one parent edge")
+        parent_edge = virtual[0]
+        real_path = nx.Graph()
+        real_path.add_edges_from((edge.u, edge.v) for edge in real)
+        poles = set(parent_edge.endpoints)
+        internal_vertices = sorted(set(real_path) - poles)
+        if (not nx.is_tree(real_path)
+                or set(vertex for vertex, degree in real_path.degree()
+                       if degree == 1) != poles
+                or any(graph_j.degree(vertex) != 2
+                       for vertex in internal_vertices)):
+            raise AssertionError("leaf S real edges are not the required path")
+
+        if graph_b.degree(y) == 1:
+            if internal_vertices == [x]:
+                kind = "SP_triangle_x"
+            elif internal_vertices == [y]:
+                kind = "SP_triangle_y"
+            elif set(internal_vertices) == {x, y} and len(internal_vertices) == 2:
+                kind = "SP_quadrilateral_xy"
+            else:
+                kind = "forbidden_remote_or_large_S_leaf"
+        else:
+            kind = (
+                "rigid_root_triangle_x" if internal_vertices == [x]
+                else "forbidden_remote_or_large_S_leaf"
+            )
+        s_leaves.append({
+            "node": index,
+            "skeleton_order": len(node.vertices),
+            "parent_virtual_edge": list(parent_edge.endpoints),
+            "real_path_edges": [list(edge.endpoints) for edge in real],
+            "internal_real_path_vertices": internal_vertices,
+            "classification": kind,
+        })
+    return {
+        "node_count": len(decomposition.nodes),
+        "node_types": [node.type for node in decomposition.nodes],
+        "S_leaves": s_leaves,
+        "P_leaves": p_leaves,
+        "valid_Type_A_leaf_classification": (
+            not p_leaves
+            and all(leaf["classification"]
+                    != "forbidden_remote_or_large_S_leaf"
+                    for leaf in s_leaves)
+        ),
+    }
+
+
+def rigid_leaf_dichotomy(
+    graph_j: nx.Graph,
+    graph_b: nx.Graph,
+    x,
+    y,
+    *,
+    decomposition=None,
+) -> dict:
+    """Suppress allowed terminal-local S leaves and inspect the remaining tree.
+
+    Suppression here is the exact SPQR-tree operation replacing a terminal-
+    local leaf S path by its parent skeleton edge.  The returned ``holds`` is
+    only a tree-shape predicate.  Promoting it to the rigid-leaf theorem also
+    requires the rigid-forced class, T8R/T8P tightness, and Type-A self-sum
+    cleanliness; relaxed fixtures show that dropping those hypotheses can
+    expose a P leaf after suppression.
+    """
+    if decomposition is None:
+        decomposition = brute_spqr_decompose(graph_j)
+    leaf_report = leaf_spqr_classification(
+        graph_j, graph_b, x, y, decomposition=decomposition
+    )
+    suppressed = {
+        leaf["node"] for leaf in leaf_report["S_leaves"]
+        if leaf["classification"] != "forbidden_remote_or_large_S_leaf"
+    }
+    core = set(range(len(decomposition.nodes))) - suppressed
+    if not core:
+        return {
+            "holds": False,
+            "case": "empty_core",
+            "suppressed_S_nodes": sorted(suppressed),
+        }
+    core_graph = nx.Graph()
+    core_graph.add_nodes_from(core)
+    for node in core:
+        for neighbor, _ in decomposition.adjacency[node]:
+            if neighbor in core:
+                core_graph.add_edge(node, neighbor)
+    if len(core) == 1:
+        only = next(iter(core))
+        kind = decomposition.nodes[only].type
+        return {
+            "holds": kind == "R",
+            "case": "single_R" if kind == "R" else f"single_{kind}_failure",
+            "core_nodes": [only],
+            "core_leaf_nodes": [only],
+            "suppressed_S_nodes": sorted(suppressed),
+        }
+    leaves = sorted(node for node, degree in core_graph.degree() if degree == 1)
+    leaf_types = [decomposition.nodes[node].type for node in leaves]
+    return {
+        "holds": nx.is_tree(core_graph) and len(leaves) >= 2
+        and all(kind == "R" for kind in leaf_types),
+        "case": "multi_R_leaves",
+        "core_nodes": sorted(core),
+        "core_leaf_nodes": leaves,
+        "core_leaf_types": leaf_types,
+        "suppressed_S_nodes": sorted(suppressed),
+    }
 
 
 def expansion_preserves_2connectivity(
@@ -304,7 +490,7 @@ def spqr_decomposition_record(
     *,
     cross_check_package: bool = True,
 ) -> dict:
-    """Serialize the reduced decomposition and its exact T8R annotations."""
+    """Serialize the reduced decomposition and exact T8R/T8P annotations."""
     decomposition = brute_spqr_decompose(graph_j)
     # Root the otherwise-unrooted reduced tree at the unique skeleton holding
     # the distinguished real closure edge xy.
@@ -374,9 +560,18 @@ def spqr_decomposition_record(
                     if node.type == "R" and set(edge) != {x, y}
                     else None
                 ),
+                "r2_2connected_after_deletion": (
+                    r2_holds_for_edge(graph_j, edge)
+                    if node.type == "P" and set(edge) != {x, y}
+                    else None
+                ),
                 "t8r_degree_critical": (
                     t8r_edge_is_degree_critical(graph_b, x, y, edge)
                     if node.type == "R" and in_b else None
+                ),
+                "t8p_degree_critical": (
+                    t8r_edge_is_degree_critical(graph_b, x, y, edge)
+                    if node.type == "P" and in_b else None
                 ),
             })
         degree_profile = []

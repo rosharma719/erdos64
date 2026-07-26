@@ -697,3 +697,64 @@ The complete 12,795,230-byte compressed record set is
 `data/E23_order9_candidates.jsonl.gz`, SHA-256
 `9f530d95918406bec166cc3e09fa5edf0d7b8f8ff58613b9ffae83c85851e446`.
 The manifest records all generator/detector stream checksums and exit codes.
+
+## E24a. Compact order-9/order-11 extremal certificates (2026-07-25) [COMPUTATIONALLY VERIFIED]
+
+The authoritative McKay–Afzaly `{C4,C8}` table and sparse6 files were restored
+from `https://users.cecs.anu.edu.au/~bdm/data/extremal.html`:
+
+| n | ex(n,{C4,C8}) | records | SHA-256 | ordered (x,y) choices | survivors |
+|---:|---:|---:|---|---:|---:|
+| 9 | 12 | 33 | `ab93fb789a63defcb189f69f6e7f8a3bcac1057c77837dfd20211d644416ca98` | 2,376 | 0 |
+| 11 | 15 | 245 | `fa5c5158ad641d1f2124feea75255e8077144fcdaeb7b051cd45f32470bbe0f2` | 26,950 | 0 |
+
+Both the cycle conditions and every terminal choice were checked twice, using
+NetworkX and direct connectivity after every vertex deletion. The exact
+provenance record is `manifests/E24_extremal_manifest.json`.
+
+## E24b. Direct order-10 Type-A edge layers (2026-07-25) [COMPUTATIONALLY VERIFIED]
+
+The Type-A degree sum gives m≥13, while the exact Turán value is 14. The
+complete manifest was frozen before running these direct-B commands:
+
+- `geng -c -f -d1 -D3 10 13:13 0/1`
+- `geng -c -f -d1 -D5 10 14:14 0/1`
+
+The `-f` meaning was confirmed from installed nauty 2.9.3 help. The degree
+caps are exact consequences of the 26 lower-bound degree sum: no excess at
+m=13 and only two excess units at m=14.
+
+| m | raw C4-free B | C8-free | degree-1 x pairs | rooted Type-A classes | internally clean | self-sum clean | lift survivors |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 13 | 57 | 4 | 0 | 0 | 0 | 0 | 0 |
+| 14 | 216 | 12 | 0 | 0 | 0 | 0 | 0 |
+
+Python and independent C masks agree on all 273 generated graphs. No lift
+exists to test after the degree-1 filter, so the zero lift batches are
+correctly recorded as vacuous rather than positive evidence from a detector.
+
+## E24c. R2 and SPQR leaf adversarial audit (2026-07-25) [PROVED + COMPUTATIONALLY VERIFIED]
+
+R2 has zero failures on 388 real P-edges in the 538 biconnected graph-atlas
+graphs and 3,498/3,498 real P-edge instances in 5,212 relaxed closures. A
+synthetic three-element P-bond exercises the direct parallel-union proof.
+There are zero original P-leaves and zero invalid S-leaves.
+
+The audit also prevented an overclaim: simply pruning the terminal S-leaf
+exposes 2,872 P core-leaves in relaxed nonminimal fixtures. Even R/P tightness
+alone leaves 35; all have self-sum hit 4. With the exact rigid-forced,
+tight-edge, and self-sum-clean hypotheses used by the proof, both applicable
+fixtures satisfy the R-leaf dichotomy and there are zero failures.
+
+## E24d. Existing order-9 obstruction-support census (2026-07-25) [COMPUTATIONALLY VERIFIED]
+
+No graph generation was run. The checksummed E23 gzip was streamed through
+`verifier/order9_spqr_obstructions.py` using eight workers in 328.044 seconds.
+The 129,040 output records occupy 3,456,437 compressed bytes with SHA-256
+`e6723280ec82e02f125730958279e219b61d5939ecd8b8dba8cce1732684ca0e`.
+
+Shortest-cycle support counts are: 98,990 contained in one R-node, 29,581
+created by two P expansions, 469 genuinely multi-node, and zero S-cycle or
+root-local cases. Among the 411 R/P-tight candidates the corresponding counts
+are 307, 70, and 34. The leaf-R dataset contains 75,745 records; all contain
+an internal C4 or C8 and 6,325 have a tight-degree cover of every real B-edge.

@@ -70,6 +70,17 @@ class BruteSPQR:
             key=lambda edge: tuple(_vertex_key(v) for v in edge),
         )
 
+    def real_p_edges(self):
+        """Real host edges represented directly in reduced P skeletons."""
+        return sorted(
+            {
+                edge.endpoints
+                for node in self.nodes if node.type == "P"
+                for edge in node.edges if not edge.virtual
+            },
+            key=lambda edge: tuple(_vertex_key(v) for v in edge),
+        )
+
 
 def _simple_graph(edges):
     graph = nx.Graph()

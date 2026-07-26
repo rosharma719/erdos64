@@ -26,6 +26,9 @@ it must not be paraphrased as formally verified.
 | T8 | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Minimal Type-A gadget edge-criticality; deletion monotonicity and exact degree cases have adversarial fixtures. |
 | R1/R1b | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `IMPLEMENTATION_FIXED`, `NOT_FORMALLY_VERIFIED` | Real R-skeleton edge deletion and expansion preservation. Zero violations across 64,596 validated R-real edge instances; invalid package R labels are rejected. |
 | T8R | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | T8+R1 incidence rule; 25,914 critical incidences and 38,682 nonminimality certificates in relaxed fixtures. |
+| R2/T8P | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Real P-edge deletion and tight-degree corollary; zero violations on 388 atlas and 3,498 relaxed-closure P-edge instances. |
+| S/P leaf classification | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Exact finite S-leaf forms and impossibility of original P-leaves; zero classification violations across 5,212 relaxed closures. |
+| Rigid-leaf dichotomy | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Proved for minimal rigid-forced gadgets after terminal-S suppression. Relaxed failures document why tightness and self-sum cleanliness are necessary. |
 | E0 detector cross-check | `COMPUTATIONALLY_REPRODUCED` | 2,107 Python checks and independent C/Python checks reproduced without disagreement. |
 | E1 order 10 | `COMPUTATIONALLY_REPRODUCED` | Python and C checked 5,203,110 connected minimum-degree-3 graphs; zero survivors. |
 | E1 order 11 | `COMPUTATIONALLY_REPRODUCED` | C checked 577,076,528 graphs; zero survivors. |
@@ -41,7 +44,12 @@ it must not be paraphrased as formally verified.
 | E21 abstract reconciliation | `COMPUTATIONALLY_REPRODUCED`, `IMPLEMENTATION_FIXED` | Old strict count 318; corrected tied count 547; exact 229-gap regression. Abstract conditions are insufficient; neither count is evidence toward the conjecture. |
 | E22 bridge closure | `COMPUTATIONALLY_REPRODUCED`, `INCOMPLETE_RANGE` | 5,212 candidates through n=8. Its broader range stops there; E23b separately completes the targeted Type-A order-9 census. |
 | Bridge order 9 | `COMPUTATIONALLY_REPRODUCED` | Complete 1/1 residue: 193,510 closures, 129,040 rooted oriented classes, zero internally clean bridges. |
+| Compact Type-A order 9 | `COMPUTATIONALLY_REPRODUCED` | All 33 exact `{C4,C8}`-free extremal graphs and 2,376 ordered terminal choices checked twice; zero Type-A choices. |
+| Direct Type-A order 10 | `COMPUTATIONALLY_REPRODUCED` | Complete m=13,14 C4-free layers: 57+216 raw, 4+12 C8-free, zero degree-1 roots. |
+| Exact Type-A order 11 | `COMPUTATIONALLY_REPRODUCED` | All 245 exact extremal graphs and 26,950 ordered terminal choices checked twice; zero Type-A choices. |
+| Type-A finite bound through 11 | `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | Every structural Type-A bridge through order 11 has C4 or C8; identical-copy T6 constructions therefore have order at least 32. |
 | Three-copy lift verification | `COMPUTATIONALLY_REPRODUCED` | All 129,040 lifts directly checked for C4/C8/C16 by Python and independent C detectors; zero survivors and 129,040 equivalence agreements. |
+| Order-9 SPQR obstruction support | `COMPUTATIONALLY_REPRODUCED` | Existing E23 artifact mined without regeneration: 98,990 R-local, 29,581 P-created, 469 multi-node shortest witnesses. |
 | T7 | `CONJECTURAL` | T7 remains gated on finding at least one internally clean bridge. |
 
 ## Integrity-pass execution record
@@ -82,3 +90,18 @@ complete residue, and both independent detector batches completed exit 0.
 | `gzip -t data/E23_order9_candidates.jsonl.gz` | 0 | Complete compressed artifact passes integrity check. |
 | `shasum -a 256 data/E23_order9_candidates.jsonl.gz` | 0 | `9f530d95918406bec166cc3e09fa5edf0d7b8f8ff58613b9ffae83c85851e446`, matching the manifest. |
 | streamed JSONL field/count audit with `jq` and `awk` | 0 | 129,040 records; 4,214 SP-eligible; 124,826 rigid-forced; zero internal/lift-clean; 129,040 equivalence agreements; zero Python/C mask disagreements. |
+
+## Extremal/SPQR phase execution record
+
+All commands were run from the repository root on 2026-07-25 EDT with
+Python 3.14.6 and nauty 2.9.3.
+
+| Command | Exit | Result |
+|---|---:|---|
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_a_extremal_check.py --output manifests/E24_extremal_manifest.json` | 0 | 33 order-9 and 245 order-11 extremal graphs; 29,326 ordered terminal choices; zero survivors and zero checker disagreements. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_a_order10_direct.py --run ...` | 0 | Complete m=13,14 plans; 57+216 raw C4-free, 4+12 C8-free, zero degree-1 roots. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/spqr_extremal_audit.py ...` | 0 | R2, S/P leaves, and scoped rigid-leaf audit complete; zero in-scope failures. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/order9_spqr_obstructions.py --workers 8 ...` | 0 | Reused 129,040 E23 records; completed in 328.044 s without graph generation. |
+| independent streamed E24d JSONL audit with `jq` and `awk` | 0 | Exact class/support/leaf totals reproduced; zero malformed records. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q` | 0 | 45 passed in 7.65 s; no failures, skips, or xfails. |
+| `.venv/bin/python -m compileall -q .` | 0 | All Python sources compiled. |

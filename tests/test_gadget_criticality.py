@@ -6,8 +6,13 @@ from verifier.gadget_criticality import (
     edge_deletion_audit,
     expansion_preserves_2connectivity,
     is_2connected,
+    leaf_spqr_classification,
+    parallel_union_preserves_2connectivity,
     r1_holds_for_edge,
+    r2_holds_for_edge,
+    real_p_edges,
     real_r_edges,
+    rigid_leaf_dichotomy,
     spqr_validation_errors,
     spqr_decomposition_record,
     t8r_edge_is_degree_critical,
@@ -114,6 +119,57 @@ def test_r1b_expanding_skeleton_edges_preserves_2connectivity():
         expanded, filter_node=lambda candidate, removed=removed:
         candidate != removed
     )) for removed in expanded)
+
+
+def test_r2_parallel_union_and_real_p_edge_deletion():
+    left = nx.path_graph([0, 2, 1])
+    right = nx.path_graph([0, 3, 4, 1])
+    union = parallel_union_preserves_2connectivity([left, right], 0, 1)
+    assert nx.is_biconnected(union)
+
+    # A direct pole edge plus the two expansions is a simple P-node fixture.
+    theta = union.copy()
+    theta.add_edge(0, 1)
+    assert (0, 1) in real_p_edges(theta)
+    assert r2_holds_for_edge(theta, (0, 1))
+
+
+def test_r2_on_every_validated_graph_atlas_p_edge():
+    checked = 0
+    for graph in nx.graph_atlas_g():
+        if graph.number_of_nodes() < 3 or not nx.is_biconnected(graph):
+            continue
+        for edge in real_p_edges(graph):
+            checked += 1
+            assert r2_holds_for_edge(graph, edge)
+    assert checked > 0
+
+
+def test_leaf_s_and_p_classification_on_rigid_and_sp_eligible_fixtures():
+    rigid_j, rigid_b, x, y = subdivided_clique(4)
+    rigid = leaf_spqr_classification(rigid_j, rigid_b, x, y)
+    assert rigid["valid_Type_A_leaf_classification"]
+    assert not rigid["P_leaves"]
+    assert [leaf["classification"] for leaf in rigid["S_leaves"]] == [
+        "rigid_root_triangle_x"
+    ]
+    assert rigid_leaf_dichotomy(rigid_j, rigid_b, x, y)["case"] == "single_R"
+
+    # Replace one K4 edge a-b by a-x-y-b.  Dropping xy leaves both terminals
+    # degree one while the four K4 vertices retain internal degree three.
+    sp_j = nx.complete_graph(4)
+    sp_j.remove_edge(0, 1)
+    sp_j.add_nodes_from([4, 5])
+    sp_j.add_edges_from([(0, 4), (4, 5), (5, 1)])
+    sp_b = sp_j.copy()
+    sp_b.remove_edge(4, 5)
+    sp = leaf_spqr_classification(sp_j, sp_b, 4, 5)
+    assert sp["valid_Type_A_leaf_classification"]
+    assert not sp["P_leaves"]
+    assert [leaf["classification"] for leaf in sp["S_leaves"]] == [
+        "SP_quadrilateral_xy"
+    ]
+    assert rigid_leaf_dichotomy(sp_j, sp_b, 4, 5)["case"] == "single_R"
 
 
 def test_sp_eligible_and_rigid_forced_structural_fixtures():

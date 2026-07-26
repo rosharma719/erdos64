@@ -24,3 +24,13 @@ def test_crossing_separation_pairs_are_fully_split():
     assert sum(len(neighbors) for neighbors in result.adjacency.values()) == 4
     assert all(nx.node_connectivity(node.simple_graph()) >= 3
                for node in result.nodes if node.type == "R")
+
+
+def test_simple_parallel_fixture_has_no_leaf_p_node():
+    graph = nx.Graph([(0, 1), (0, 2), (2, 1), (0, 3), (3, 4), (4, 1)])
+    result = decompose(graph)
+    p_nodes = [index for index, node in enumerate(result.nodes)
+               if node.type == "P"]
+    assert len(p_nodes) == 1
+    assert len(result.adjacency[p_nodes[0]]) == 2
+    assert result.real_p_edges() == [(0, 1)]

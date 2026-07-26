@@ -470,6 +470,36 @@ order 9 and directly verify every three-copy lift. Full detail: two_cut.md
   to develop T7. The run manifest and complete per-candidate compressed records
   are preserved under `manifests/` and `data/`.
 
+## Tenth pass 2026-07-25: extremal compression, order 10–11, and SPQR leaves
+Per instruction, replace unrestricted closure growth with exact `{C4,C8}`-
+free edge layers and finish the P/S/R leaf consequences of T8.
+- **Finite Type-A theorem [COMPUTATIONALLY VERIFIED]**: the existing E22/E23
+  certificates prove every structural Type-A bridge through order 9 contains
+  C4 or C8. The identical-three-copy T6 construction therefore starts at
+  order 26, without implying any general Erdős–Gyárfás lower bound.
+- **Extremal compression [COMPUTATIONALLY VERIFIED]**: restored the exact
+  McKay–Afzaly order-9 (33 graphs, ex=12) and order-11 (245 graphs, ex=15)
+  files. Two independent checkers found zero valid ordered terminal choices.
+- **Direct order 10 [COMPUTATIONALLY VERIFIED]**: only m=13,14 are possible
+  for a clean Type-A bridge. Exact C4-free generation produced 57 and 216
+  graphs; 4 and 12 respectively survive C8, but none has a degree-1 root.
+  Combined with order 11, the identical-copy floor strengthens to order 32.
+- **R2/T8P [PROVED]**: a real P-element is deletable because at least two
+  closed-2-connected expansions remain in parallel. Zero failures occur on
+  388 atlas P-edges and 3,498 relaxed-closure instances.
+- **S/P leaves [PROVED]**: leaf S real edges form a path whose internal
+  vertices are exactly x, y, or both in four finite terminal-local forms;
+  no remote/larger S leaf and no original P leaf is possible.
+- **Rigid-leaf dichotomy [PROVED WITH CORRECTED SCOPE]**: after suppressing
+  the x-triangle in a minimal rigid-forced gadget, the core is one R-node or
+  has only R leaves. The relaxed audit found why self-sum cleanliness is
+  essential: 35 R/P-tight pseudo-failures all expose a length-2 terminal path
+  and hence the forbidden self-sum 2+2=4.
+- **Order-9 support mining [COMPUTATIONALLY VERIFIED]**: reused, never
+  regenerated, all 129,040 E23 records. Canonical shortest witnesses split as
+  98,990 one-R-local, 29,581 two-P-expansion, 469 multi-node, and zero S/root-
+  local. The 75,745-record leaf-R dataset has no internally C4/C8-clean leaf.
+
 ## Status log (newest first)
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.

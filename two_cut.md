@@ -888,3 +888,167 @@ Every one of the 129,040 bridges already contains an internal C4 or C8:
 both. Thus no bridge reaches the self-sum/overlap stage, no three-copy lift is
 power-cycle-free, and T7 remains empirically uninstantiated. This is a
 complete order-9 negative computation, not a general nonexistence theorem.
+
+## 20. Finite Type-A proposition and edge bound [COMPUTATIONALLY VERIFIED]
+
+**F9 (finite Type-A proposition).** *Every simple two-terminal graph B with
+|V(B)|≤9 satisfying*
+
+- *d_B(x)=1 and d_B(y)≥1;*
+- *xy∉E(B);*
+- *d_B(v)≥3 for every v∉{x,y}; and*
+- *B+xy simple and 2-connected*
+
+*contains a C4 or C8.* Orders below 5 are impossible directly from the degree
+conditions. For orders 5–8 the complete E22 closure population has 5,212
+rooted instances, none internally {C4,C8}-free. At order 9 the checksummed
+E23 artifact contains all 129,040 rooted oriented classes, again with none
+internally clean. This is a formal finite computational proposition: the
+certificate is exhaustive and reproducible, but not proof-assistant formal.
+
+Consequently an identical-three-copy T6 counterexample has |V(B)|≥10 and
+
+[
+  |V(G_B)|=3(|V(B)|-2)+2\ge 26.
+]
+
+This is **not** a lower bound for arbitrary Erdős–Gyárfás counterexamples,
+does not exclude every three-bridge 2-cut, and does not treat constructions
+using three nonisomorphic bridges.
+
+**Type-A edge bound [PROVED].** The degree hypotheses give
+
+[
+  2|E(B)|=\sum_v d_B(v)\ge 1+1+3(n-2)=3n-4,
+]
+
+so |E(B)|≥⌈(3n−4)/2⌉. In particular the bound is 12, 13, and 15 at
+n=9,10,11 respectively.
+
+**Compact extremal certificates [COMPUTATIONALLY VERIFIED].** The exact
+McKay–Afzaly table gives ex(9,{C4,C8})=12 and ex(11,{C4,C8})=15. Thus a clean
+Type-A bridge at either order would have to be one of the extremal graphs.
+Both restored authoritative sparse6 files were checked by independent
+NetworkX and direct vertex-deletion-connectivity implementations:
+
+| order | extremal graphs | ordered terminal pairs checked | Type-A choices |
+|---:|---:|---:|---:|
+| 9 | 33 | 2,376 | 0 |
+| 11 | 245 | 26,950 | 0 |
+
+The source URLs, checksums, record counts, exact Turán values, and download
+date are in `manifests/E24_extremal_manifest.json`.
+
+At order 10, ex(10,{C4,C8})=14 and the lower bound is 13, so only m=13,14
+can be clean. The complete direct E24b search generated B rather than J and
+found 4 C8-free graphs among 57 C4-free m=13 graphs and 12 among 216 C4-free
+m=14 graphs. None has a degree-1 vertex, so no oriented Type-A root survives.
+Together these computations strengthen F9 to **F11: every Type-A B of order
+at most 11 contains C4 or C8**, and raise the corresponding identical-copy
+T6 order floor to 3(12−2)+2=32. This remains a bound only for that gadget
+construction.
+
+## 21. R2: deletion of a real P-skeleton edge [PROVED]
+
+Use the same simple, definition-validated, reduced, Q-suppressed convention
+as R1. A P-skeleton is a bond of at least three parallel elements. Simplicity
+of J permits at most one of them to be a real edge. Therefore, after deleting
+a real P-edge e, at least two virtual pole-to-pole expansions remain.
+
+**Parallel-union lemma [PROVED].** Let P and Q be internally disjoint
+two-terminal graphs sharing only poles u,v, with P+uv and Q+uv
+2-connected. Their union is 2-connected. Delete a vertex z. If z is internal
+to P, every component of P−z contains u or v (otherwise (P+uv)−z would be
+disconnected), while Q supplies a surviving u–v connection. The same holds
+with P,Q exchanged. If z is a pole, each expansion minus that pole is
+connected and all remaining pieces meet at the other pole. Thus deletion of
+any vertex leaves the union connected. The proof is unchanged for more than
+two expansions.
+
+**R2 [PROVED].** Expand every surviving virtual P-element by its full
+pertinent graph. The parallel-union lemma makes their union 2-connected;
+these expansions already include the rest of the SPQR tree. Hence J−e is
+2-connected. Combining R2 with T8 gives **T8P**: every real B-edge in a
+P-node of a minimal Type-A gadget meets x, an internal degree-3 vertex, or y
+when d_B(y)=1.
+
+The definition-first audit found zero violations on 388 real P-edges in all
+538 biconnected graph-atlas graphs and on 3,498 real P-edge instances in the
+5,212 relaxed closures. Only 380 relaxed incidences satisfy T8P; the other
+3,118 are explicit nonminimality certificates.
+
+## 22. Exact S/P leaf classification [PROVED]
+
+In a nontrivial reduced SPQR tree, a leaf S-node has exactly one virtual
+parent edge. Every other edge of its cycle skeleton is real, so deleting the
+parent edge leaves a real path between the parent poles. Its k−2 internal
+path vertices occur in no other skeleton and consequently have degree exactly
+2 in J.
+
+For a Type-A closure the only degree-2 vertex is x when d_B(y)≥2, and the
+only two are x,y when d_B(y)=1. Therefore the complete possibilities are:
+
+- rigid-forced: one triangle whose real path has unique internal vertex x;
+- SP-eligible: a triangle with internal vertex x;
+- SP-eligible: a triangle with internal vertex y; or
+- SP-eligible: a quadrilateral whose two internal real-path vertices are
+  x and y.
+
+No remote or larger S-leaf is possible. Across all relaxed fixtures the
+actual population consists of 4,894 rigid x-triangles and 312 SP-eligible
+x,y-quadrilaterals; the other allowed finite forms simply do not occur there.
+
+**No leaf P-node [PROVED].** A leaf P-node would have exactly one virtual
+parent element. Since a P-bond has at least three elements, at least two would
+then be real parallel pole edges, contradicting that J is simple. This uses
+all three convention assumptions—simple host, reduced tree, Q suppression—
+and is false as stated in multigraph categories. The atlas and all relaxed
+closures contain zero leaf P-nodes.
+
+## 23. Rigid-leaf dichotomy [PROVED WITH EXACT SCOPE]
+
+For a minimal **rigid-forced** Type-A gadget, suppress the unique root-local
+S-triangle through x. The remaining SPQR core is either one R-node, or every
+leaf is R and there are at least two leaf R-nodes.
+
+Indeed every original non-root S-leaf is impossible by §22 and every original
+P-leaf is impossible. Only the parent of the suppressed S-leaf can newly
+become a leaf. If that parent were P, it originally had exactly two virtual
+elements and, by the bond-size and simplicity conditions, exactly one real
+pole edge. Together with the real x-path in the suppressed triangle this
+gives an x–y path of length 2 in B, contradicting
+(Λ(B)+Λ(B))∩F=∅ because 2+2=4. Thus the new leaf is R. If only one core node
+remains, the same no-P/no-adjacent-S argument makes it R.
+
+The self-sum hypothesis is essential. Naïvely pruning S-leaves in the relaxed
+population exposes a P core-leaf 2,872 times; 35 remain even after imposing
+the R/P tight-edge conditions, and each has the length-2 self-sum obstruction.
+The scoped theorem has zero failures in the finite audit. The SP-eligible
+class retains the finite S-leaf exceptions from §22 and is not silently
+included in this rigid statement.
+
+For every mined core leaf R-node, E24d records its parent virtual edge,
+skeleton order/size, real-edge count, tight-degree vertex cover, internal
+C4/C8 spectrum, and parent-pole path spectrum. There are 75,745 such records;
+every one already has internal C4 or C8, and only 6,325 have a tight-vertex
+cover of all real B-edges.
+
+## 24. Order-nine shortest-cycle SPQR support [COMPUTATIONALLY VERIFIED]
+
+E24d streamed the existing E23 artifact without regenerating any candidate.
+For each B it chose the lexicographically canonical shortest forbidden cycle,
+preferring C4 to C8, and projected its real edges onto the validated
+definition-first decomposition.
+
+| population | candidates | one R-node | two P-expansions | S-cycle | multi-node | root-local |
+|---|---:|---:|---:|---:|---:|---:|
+| all | 129,040 | 98,990 | 29,581 | 0 | 469 | 0 |
+| SP-eligible | 4,214 | 3,670 | 504 | 0 | 40 | 0 |
+| rigid-forced | 124,826 | 95,320 | 29,077 | 0 | 429 | 0 |
+| R/P-tight | 411 | 307 | 70 | 0 | 34 | 0 |
+
+Exactly 129,039 canonical witnesses are C4s; the unique remaining witness is
+a C8. The repeated local targets are therefore a cycle wholly supported by
+one rigid skeleton and a cycle formed by two P expansions—not an S-node or
+terminal-subdivision phenomenon. Full per-candidate records and checksums are
+in `data/E24_order9_spqr_obstructions.jsonl.gz` and its manifest.

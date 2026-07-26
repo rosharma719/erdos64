@@ -80,6 +80,14 @@ work in the sibling `erdos/` directory — no shared code.
   - `type_a_order9_search.py` / `check_power_masks.c` — manifest-driven
     rooted order-9 closure census and independent direct three-copy detector
     (E23b).
+  - `type_a_extremal_check.py` — independent terminal-choice checks on the
+    exact order-9 and order-11 McKay–Afzaly extremal files (E24a).
+  - `type_a_order10_direct.py` — manifest-frozen direct Type-A search in the
+    only possible clean order-10 edge layers, m=13,14 (E24b).
+  - `spqr_extremal_audit.py` — R2 and exact S/P/rigid-leaf adversarial census
+    over the graph atlas and relaxed closures (E24c).
+  - `order9_spqr_obstructions.py` — shortest forbidden-cycle projection and
+    leaf-R structural dataset mined from the existing E23 artifact (E24d).
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
