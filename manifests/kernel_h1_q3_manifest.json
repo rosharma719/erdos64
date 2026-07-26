@@ -1,0 +1,12 @@
+{
+  "c2_failures": [],
+  "c4c8_failures": [],
+  "per_n_matching": {
+    "11": 208,
+    "12": 581,
+    "13": 1528
+  },
+  "q_target": 3,
+  "records_sha256": "95381a04f0caadb1152bbf5f40d1acb28d22506e1aa7c85e938eadf42b32404a",
+  "total_matching": 2317
+}
