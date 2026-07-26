@@ -510,6 +510,62 @@ a non-simple projection). 0 counterexample candidates found. A larger
 50M-sample confirmatory run did not complete in budget; not used in any
 conclusion.
 
+## q(G)>=4 for genuine minimal counterexamples (2026-07-27 defect-three pass) — see defect_three.md for full detail
+
+**Theorem [PROVED IN WORKSPACE, novelty supported by search]:** no
+minimal Erdos-Gyarfas counterexample has `q(G)=3`. Since `q=3` is odd,
+the separator-defect mapping (even `q` for any cut-vertex counterexample)
+forces `G` 2-connected. `h<=q=3` and the leaf-count identity/strong
+inequality pin the case table to exactly 6 `(h,c1,c3)` rows over
+`h in {0,1,2,3}`, all eliminated:
+- `h=0` (n=10): 4-or-8 dichotomy (n<=19, P4/L15) + independent geng
+  certificate, 19/19 cubic graphs on 10 vertices confirmed.
+- `h=1` (c1=0,c3=6): branch-incidence + chain-length bounds force
+  n<=13, then the P13-free theorem (L7) applies exactly within its
+  hypotheses; independently verified via exhaustive geng at n=11,12,13
+  filtered to the forced signature (2317 graphs, 0 escapes).
+- `h=2`, (c1,c3)=(0,2): Part V's elimination of pure-cycle F-components
+  at h=2 forces kappa(F)=1 directly, pinning the kernel to a theta or
+  dumbbell shape (elementary degree parity); the all-subdivided theta
+  falls to a 2-line pigeonhole argument, everything else (one-direct-
+  edge theta, every dumbbell) to exhaustive reconstruction (6,804+304
+  realizations, 0 survivors).
+- `h=2`, (c1,c3)=(1,3): the kappa=2 split reduces algebraically to the
+  already-eliminated (0,2) kernel (a lollipop component's cyclomatic
+  number is forced to 1 for any internal length); the kappa=1 split's
+  kernel topology is enumerated exhaustively (a general stub-matching
+  multigraph enumerator, not assumed) into exactly 3 non-isomorphic
+  shapes, each eliminated by backtracking reconstruction.
+- `h=3`, (c1,c3)=(2,0): a new H-degree-feasibility argument (every
+  H-vertex needs G-degree>=4, forcing the lone path component's
+  internal-C2 count to be exactly 8, the same value the colored-path
+  lemma already caps it at) combined with an exhaustive t=8 sweep (0
+  valid colourings) eliminates this row; a 144-pair pure-cycle-
+  compatibility check confirms no Part V pure cycle can rescue it.
+- `h=3`, (c1,c3)=(3,1): the kappa=1 split's kernel is uniquely forced
+  (elementary tree structure) to be the star K_{1,3}; kappa=2 splits
+  into a lollipop (cyclomatic number 1, same identity as above) plus a
+  bare path. Backtracking search over both topologies (41,958+
+  realizations) finds 0 survivors, confirmed via a hard C4/C8
+  violation in every case (never H-degree infeasibility, so no
+  pure-cycle addition could rescue any configuration).
+
+New machinery introduced this phase and reused throughout: the bounded
+branching-kernel lemma (kernel vertex count bounded by q after
+suppressing degree-2 chains); the colored degree-2 path lemma (exact
+bounds t<=2,5,8 for h=1,2,3, proved by two independent implementations
+-- a prefix-closed direct-construction search and a minimal finite-
+state automaton with a proved-finite saturating-counter state space);
+the colored cyclic-word classification (h=1,2: no valid pure-cycle
+component; h=3: exactly s=3,5, closed via a corollary of the linear
+lemma); and a general stub-matching topological-kernel enumerator
+(exhaustively lists every multigraph realizing a prescribed degree
+sequence up to isomorphism, validated by rediscovering the theta/
+dumbbell pair independently before being trusted on new cases).
+
+**Conclusion: `q(G)>=4`, hence `|E(G)|<=2|V(G)|-6`** -- strictly
+improves the previous `q(G)>=3` result.
+
 ## q(G)>=3 for genuine minimal counterexamples (2026-07-27 pass) — see defect.md Leaf-compression Part III for full detail
 
 **Theorem [PROVED IN WORKSPACE, novelty supported by search]:** no

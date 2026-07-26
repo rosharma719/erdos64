@@ -844,3 +844,114 @@ Both `h=3` rows are eliminated, closing **all of Part VII**:
 \[
 \boxed{h=3\text{ is impossible at }q=3.}
 \]
+
+## Part VIII: the required outcome
+
+Every one of the six `q=3` case-table rows is eliminated:
+
+| row | `h` | `c_1` | `c_3` | status | where |
+|---|---|---|---|---|---|
+| 1 | 0 | 0 | 10 | eliminated | Part III.1 |
+| 2 | 1 | 0 | 6  | eliminated | Part III.2 |
+| 3 | 2 | 0 | 2  | eliminated | Part VI.1 |
+| 4 | 2 | 1 | 3  | eliminated | Part VI.2 |
+| 5 | 3 | 2 | 0  | eliminated | Part VII.1–2 |
+| 6 | 3 | 3 | 1  | eliminated | Part VII.1–3 |
+
+Since II.1 proved these six rows are the *only* `(h,c_1,c_3)` triples
+consistent with `q=3` (not a search — every `h\in\{0,1,2,3\}` is forced
+by `h\le q`, and each `h`'s `(c_1,c_3)` is pinned exactly or narrowed to
+2 alternatives by I.1's identity/inequality), eliminating all six is
+**outcome (1) of Part VIII**: `q(G)=3` is impossible for a
+lexicographically minimal Erdős–Gyárfás counterexample. **Not** outcome
+(2) (a surviving finite certificate), **not** (3) (a counterexample to
+the proposed theorem), **not** (4) (an isolated surviving
+configuration) — every row is fully closed, several ((0,2) theta,
+(1,3)'s three topologies, both `h=3` rows) by exhaustive computational
+reconstruction with 0 survivors, not by an unresolved gap.
+
+\[
+\boxed{q(G)\ge4,\qquad |E(G)|\le2|V(G)|-6.}
+\]
+
+*(Derivation of the edge bound: `q=2n-2-m\ge4\Rightarrow m\le2n-6`,
+exactly the same bookkeeping step used at `q\ge2` and `q\ge3` in the
+leaf-compression phase.)*
+
+## Part IX: literature audit
+
+See `literature.md` L23 (new entry, this phase) for the full audit.
+Summary:
+- **Carr 2026 (M1/M2)**: reused via L18's already-established
+  `e(C,H)\le2|C|` sharpening; nothing further from Carr is needed.
+- **The `P_{13}`-free theorem (L7)**: used once, exactly within its
+  hypotheses (Part III.2's `h=1` elimination, `n\le13`).
+- **Choi–Chu–Kim–Park (arXiv:2605.02731)**: located, but full text
+  inaccessible (HTTP 403, the same permanent ceiling as L16/L17/L20/L21
+  — search-snippet only). **Not used anywhere in this phase's proofs**,
+  precisely because "divisible by 4" is not "a power of two" (a C12 is
+  divisible by 4 but is not itself Erdős–Gyárfás-forbidden) — exactly
+  the caution the task raised, honored by non-use rather than a
+  stretched citation. A discrepancy between the task's phrasing (`\le3`
+  degree-2 vertices) and the found abstract text (`\le k-2=2` for
+  `k=4`) is recorded, not silently resolved.
+- **Classical topological-kernel/suppression results**: standard,
+  classical graph theory (subdivision/homeomorphic reduction); no
+  specific citation claimed, the *application* here is original.
+- **Novelty posture**: consistent with L21/L22 — this phase's results
+  (bounded branching-kernel lemma, the exact `q=3` table, the
+  colored-path/cycle lemmas and their automaton/stub-matching
+  machinery, and the full topological-kernel eliminations) are this
+  project's own construction, not found stated in the literature
+  searched. Recorded at the same "novelty supported by search only"
+  ceiling used throughout — not a priority claim.
+
+## Part X: validation summary and stop point
+
+**Independent tests performed, by claim:**
+
+| claim | test(s) | file(s) |
+|---|---|---|
+| branching-kernel bound (h=0,1,2) | atlas + 229,948 synthetic graphs, 0 failures | `branching_kernel.py` |
+| q=3 case table (6 rows) | exhaustive geng n=10–13, C4/C8-free-scoped, all 6 rows realized, 0 off-table | `q3_table_check.py` |
+| h=0 elimination (n=10) | exhaustive geng, 19/19 have C4/C8 | `defect_three_h0.py` |
+| h=1 elimination (n≤13) | exhaustive geng, 2317/2317 have C4/C8, c2≤6 confirmed | `kernel_h1_q3.py` |
+| colored-path bounds (t≤2,5,8) | 2 independent implementations (direct search + finite automaton), 0 mismatches over 29,655 words | `colored_path_search.py`, `colored_path_automaton.py` |
+| colored-cycle classification | exhaustive s≤13 (far past the proved s≤8 corollary ceiling) | `colored_cycle_search.py` |
+| h=2 row (0,2) | exhaustive theta (6,804) + dumbbell (304) reconstructions, 0 survivors | `kernel_h2_c1c3_02.py` |
+| h=2 row (1,3) | citation (κ=2) + exhaustive 3-topology backtracking (κ=1), 0 survivors | `kernel_h2_c1c3_13.py` |
+| h=3 row (2,0) | H-degree feasibility argument + exhaustive t=8 sweep + 144-pair pure-cycle compatibility, 0 survivors | `kernel_h3_c1c3_20.py` |
+| h=3 row (3,1) | exhaustive star + lollipop+path backtracking (41,958+ realizations), 0 survivors, confirmed C4/C8-driven not degree-driven | `kernel_h3_c1c3_31.py` |
+
+**Rigor-level distinctions (repeated, per project discipline):**
+- **Human-readable proof**: the branching-kernel case split (I.1), the
+  `q=3` table derivation (II.1–II.3), the `h=0`/`h=1` eliminations
+  (III.1–III.2), the colored-path mechanism classification and `h=1`/
+  partial `h=2` bounds (IV.2), the pigeonhole theta argument (VI.1), the
+  lollipop-`\beta=1` identity (VI.2/VII), the tree-forces-star argument
+  (VII.1), and the `H`-degree feasibility argument (VII.1–2) are all
+  hand proofs, independently cross-checked by computation but not
+  *dependent* on it for their logical validity.
+- **Computer-assisted finite certificate**: the colored-path/cycle exact
+  bounds (`t\le5,8`; cyclic `s\le5,8` corollary), the finite-state
+  automaton's reachable-state enumeration, the stub-matching kernel-
+  topology enumeration (proved complete by exhausting a finite matching
+  set), and every kernel reconstruction-and-test search (VI.1, VI.2,
+  VII.1–3) — each is a *finite, exhaustive* procedure over a
+  provably-bounded search space, not a sampled or cutoff search.
+- **Exhaustive computation without an independent finite-certificate
+  argument**: the `q3_table_check.py` cross-check (bounded by `n\le13`,
+  not a completeness proof for `h\ge2`) and the redundant `s\le13`
+  cyclic-word sweep (redundant *because* the `s\le8` corollary already
+  proves completeness by hand).
+- **Proof-assistant formal verification**: **none exists anywhere in
+  this project.** Every result above is a hand-written argument
+  cross-checked by independent Python implementations (typically two
+  per claim: a direct construction plus an independent detector or
+  automaton), never a Lean/Coq/Isabelle machine-checked proof.
+
+**Stop point, as instructed.** `q=3` is fully resolved (eliminated).
+This phase does **not** begin `q=4`, another voltage group, additional
+Type-A bridge orders, unrestricted enumeration, new SPQR censuses, or
+proof-assistant formalization — all explicitly out of scope for this
+phase.

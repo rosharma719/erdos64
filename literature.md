@@ -302,6 +302,67 @@ result is unsurprising and is recorded conservatively, at the same
 ceiling used throughout this project (S4, S5, G1, G2) -- not a priority
 claim.
 
+### L23 — Defect-three (q=3) literature audit [2026-07-26]
+
+**Carr 2026 (M1–M4, L14/L18).** No content beyond what L18 already
+extracted (independence of `H`, `e(C,H)<=2|C|`) is used or needed by the
+defect-three phase; nothing in Carr's four pages addresses `q`,
+branching kernels, or colored-path structure (these remain this
+project's own constructions, per L22).
+
+**The P13-free theorem (Hegde–Sandeep–Shashank, L7).** Used exactly
+once, precisely within its stated hypotheses: `defect_three.md` Part
+III.2's `h=1` elimination shows `n<=13` and that `G` cannot itself equal
+a `P_{13}` (a path has degree-1 endpoints, contradicting `δ(G)\ge3`),
+so `G` is `P_{13}`-free at every reachable order — the theorem's
+hypothesis is met exactly, not stretched.
+
+**Choi–Chu–Kim–Park, arXiv:2605.02731 (May 2026), "Existence of cycles
+of length divisible by 3 or 4."** Located via targeted search; **direct
+fetch of both the abstract page and the HTML mirror returned HTTP 403**
+(the same permanent access-limited ceiling recorded at L16/L17/L20/L21
+— this project has never obtained full-text access to an arXiv page
+returning this error). Per the search-engine-returned abstract text
+only: for `k\in\{3,4\}`, every graph with minimum degree `\ge2` and at
+most `k-2` vertices of degree 2 has a cycle of length divisible by `k`,
+and the authors characterize the exceptional graphs at the boundary.
+**Read literally, the `k=4` case bounds the degree-2-vertex count by
+`k-2=2`, not `3`** — the task's own phrasing ("min-degree-2-with-
+`\le3`-degree-2-vertices characterization") does not exactly match the
+abstract snippet found here; this discrepancy is recorded rather than
+silently resolved, since the primary source could not be read. **This
+theorem is NOT used anywhere in this project's `q=3` elimination**
+(Parts I–VIII above), consistent with the task's explicit warning: "a
+cycle length divisible by four is not automatically a power-of-two
+cycle" — none of this project's forbidden-cycle checks (C4, C8, C16)
+would be satisfied merely by *divisibility* by 4 (e.g. a C12 is
+divisible by 4 but is not itself forbidden by Erdős–Gyárfás). Recorded
+for completeness only; no reliance, no novelty claim either way.
+
+**Classical subcubic suppression / topological-kernel results.** The
+"kernel suppression" operation used throughout Parts I, VI, VII
+(replacing maximal degree-2 paths by single edges to expose a
+multigraph on the odd-degree vertices) is standard, classical graph
+theory — sometimes called the *topological reduction* or
+*homeomorphic reduction* of a graph, going back to Whitney-era
+structural graph theory (subdivisions, topological minors). No specific
+citation is claimed as novel; this project's contribution is the
+application (bounding kernel size by `q`, then exhaustively enumerating
+and reconstructing kernels under the colored-path/cycle constraints),
+not the suppression operation itself.
+
+**Overall novelty posture, consistent with L21/L22.** The q=3
+elimination (bounded branching-kernel lemma, the exact case table, the
+colored-path/cycle lemmas and their finite-state-automaton/stub-
+matching computational machinery, and the full kappa=1/kappa=2
+topological-kernel enumerations for both `h=2` rows and both `h=3`
+rows) is, like the leaf-graph/q>=2/q>=3 results before it, **this
+project's own construction**, built on Carr's M1/M2 and the classical
+`P_{13}`-free citation but not found stated anywhere in the literature
+searched across L1–L23. Recorded at the same **novelty supported by
+search only, full external verification desirable** ceiling used
+throughout — not a priority claim.
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +
@@ -317,3 +378,4 @@ claim.
 - D. West, Open Problems Graph Theory (2powcyc): Daniel–Shauger, Shauger K₁,ₘ-free.
 - ScienceDirect/Discrete Math (Hu & Shen, P₁₀-free 2024; Gao & Shan, P₈-free 2022).
 - MathWorld "Markström Graph."
+- arXiv:2605.02731 — Choi, Chu, Kim, Park, "Existence of cycles of length divisible by 3 or 4" (abstract snippet only; full text inaccessible, see L23).

@@ -139,7 +139,27 @@ every one independently lift-constructed and exactly resolved (148 at
 C8, 400 at C16 — all genuine non-simple projections — 16 at C32, zero
 survivors). Full detail: z3_lifts.md "Part IV, completed exactly".
 
-## Five-way distinction, required to be stated explicitly (per instruction)
+### P12 [PROVED IN WORKSPACE, novelty supported by search] q(G)>=4 for genuine minimal counterexamples
+Extends P10: no minimal counterexample has q(G)=3 either. Since q=3 is
+odd, the separator-defect mapping (P5/S5: cut vertex forces even q)
+forces G 2-connected. h<=3 (from h<=q), all six (h,c1,c3) rows of the
+exact q=3 case table (derived symbolically, not searched, from the
+same I.1 identities used by P9/P10) are eliminated: h=0 (n=10, 4-or-8
+dichotomy + exhaustive geng); h=1 (n<=13 via a branch-incidence/chain-
+length argument, then the P13-free theorem, L7); h=2's two rows (a
+theta/dumbbell kernel pigeonhole argument plus exhaustive reconstruction
+for (0,2); an algebraic reduction to (0,2) plus a 3-topology exhaustive
+enumeration for (1,3)); h=3's two rows (a new H-degree-feasibility
+argument pinning the path length to exactly 8 for (2,0), where it has
+zero valid colorings; a uniquely-forced star plus lollipop+path
+backtracking search for (3,1)). New machinery: the bounded branching-
+kernel lemma, the exact colored degree-2 path lemma (t<=2,5,8 for
+h=1,2,3, two independent implementations), the colored cyclic-word
+classification, and a general stub-matching topological-kernel
+enumerator. **Conclusion: q(G)>=4, |E(G)|<=2|V(G)|-6.** Full detail:
+defect_three.md, lemmas.md.
+
+## Six-way distinction, required to be stated explicitly (per instruction)
 Do not conflate these — each has a different logical status:
 1. **The broad D1 statement** ("does `δ≥3` + Carr's property (2) alone +
    `m=2n-3` force a C4/C8, for *any* such graph") — **remains OPEN**,
@@ -167,6 +187,12 @@ Do not conflate these — each has a different logical status:
    merely supplemented — in particular its "≈0 coverage" claim for
    bases 0, 1, 3 was **wrong** (undershot), corrected in z3_lifts.md's
    Part IV.1 correction note.
+6. **The defect-three theorem** (`q(G)≥4`) — **PROVED** (P12): every
+   one of the six `(h,c1,c3)` rows of the exact `q=3` case table was
+   verified eliminated, several by exhaustive computational
+   reconstruction with zero survivors (not by an unresolved gap or an
+   order-bounded census) — the strongest of Part VIII's four possible
+   outcomes.
 
 ## Conjectural / directional (NOT proved)
 - Whether δ≥3 forces a u–v path system spanning ≥2 dyadic scales (would revive an
