@@ -17,10 +17,12 @@ from __future__ import annotations
 def check_terminal_pair_exhaustion() -> dict:
     x, y, z0 = "x", "y", "z0"
     T = {x, y, z0}
+    x_choices = (y, z0)
+    y_choices = (x, z0)
 
     rows = []
-    for X_x in T - {x}:
-        for X_y in T - {y}:
+    for X_x in x_choices:
+        for X_y in y_choices:
             pair1 = frozenset({x, X_x})
             pair2 = frozenset({y, X_y})
             shared = pair1 & pair2

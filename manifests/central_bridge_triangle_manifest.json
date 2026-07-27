@@ -1,13 +1,13 @@
 {
-  "description": "Mechanical cross-check of central_bridge_triangle.md Parts II and IV: (1) the shared-external-neighbour configuration (a'=b'=w) genuinely forces a 4-cycle on an explicit gadget, confirming Lemma NE's mechanism independently of the hand proof; (2) a triangle-anchored central bridge B_x, built explicitly with an NPT theta Theta_x (poles {X_x, x'}) and a bridge component attached via the triangle's own edges, has attachment set exactly {x, X_x} and its shortest x-X_x path inside B_x is exactly length 2, with a genuine second path of length 3 or 4 (here 4) -- confirming Part IV.2's concrete ell=2 sharpening.",
-  "scope_note": "Does not re-derive Gao-Huo-Liu-Ma, CB1, or CB3' (all cited by name). What is checked: the 4-cycle's existence on the shared-external-neighbour gadget, and, on the triangle-theta-bridge gadget, the attachment set (via networkx component/boundary computation on G minus Theta_x's vertex set) and the exact multiset of simple x-X_x path lengths inside the explicitly-constructed B_x subgraph (excluding Theta_x's own x-X_x edge, which is part of P0 and not of B_x) via networkx.all_simple_paths -- a fully independent mechanism from the hand derivation in the markdown file.",
+  "description": "Mechanical cross-check of central_bridge_triangle.md Parts II and IV: (1) the shared-external-neighbour configuration forces a C4; (2) the former length-4 supporting fixture has the claimed exact bridge attachments and paths but also contains the forced C4 found by the recovery audit.",
+  "scope_note": "Does not re-derive Gao-Huo-Liu-Ma, CB1, or CB3'. The triangle-theta-bridge gadget is now explicitly a negative, non-F-clean fixture: NetworkX recomputes its attachment set and paths, then checks the forced C4. It is not evidence that the length-4 detour survives.",
   "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/central_bridge_triangle.py",
-  "source_commit": "70144309589e2d99f5593a174e1341ffa7d8384a",
-  "script_sha256": "144d879b5d235e8e36daa1e281585a58458ca0e90cae29216c5ca1c92fcf52c1",
-  "stdout_sha256": "448f2a50c3c00de2ff944375ffe216eb3e6477e97991f4eb27df71702d70092c",
-  "python_version": "3.13.12",
+  "source_parent_commit": "d00fdac45cf85913f637c119d7a8a989aec0a8ee",
+  "script_sha256": "fdd4f03e54e36c4da4997dd87614c57b57350e200736968737cec594825b2079",
+  "stdout_sha256": "3d70ca9653660ed22bf5d6cad96ac16fe301aa8ceed881f7a07450b2e49385f2",
+  "python_version": "3.14.6",
   "networkx_version": "3.6.1",
-  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "note_on_python_version": "Matches the repository's .python-version pin; networkx==3.6.1 matches requirements.txt.",
   "exit_status": 0,
   "results": {
     "shared_external_neighbor_c4": {"predicted_cycle_present": true, "four_distinct_vertices": true, "is_c4": true},
@@ -17,11 +17,14 @@
       "all_a_b_path_lengths_in_B_a": [2, 4],
       "shortest_is_2": true,
       "second_path_exists_len_3_or_4": true,
+      "forced_c4": ["c", "tail_0", "tail_1", "b"],
+      "forced_c4_present": true,
+      "fixture_is_f_clean": false,
       "predicted_ell": 2,
       "predicted_ell_prime_in": [3, 4]
     },
     "assertion_failures": 0
   },
-  "detector_agreement": "Both checks use networkx directly (node_connected_component/neighbors for the attachment-set computation, all_simple_paths for the exact path-length multiset), independent of this project's hand-rolled cycle checkers used elsewhere. 0 disagreements with the hand-derived predictions.",
+  "detector_agreement": "NetworkX independently computes the component boundary, all simple terminal paths, and the explicit C4 incidence. Zero disagreements with the corrected hand proof.",
   "completed_range": "Two small, deterministic illustrative gadgets (one per claim), not a search or census -- consistent with the phase's explicit decision not to launch broad computation."
 }

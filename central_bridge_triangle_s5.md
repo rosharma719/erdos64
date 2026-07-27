@@ -56,9 +56,12 @@ sharper than either single-vertex analysis alone, since it pins the
 *relative* position of the two leaves, not just each one's position
 relative to its own theta.
 
-**Whether `L=L'`.** Not forced either way by the argument above: both
-are sub-blocks of the single lobe `G_1`, but nothing here identifies
-them as the same block. Recorded as open, honestly, rather than assumed.
+**Recovery/addendum correction: `L=L'`.** The argument above originally stopped
+at the common lobe. `central_bridge_triangle_addendum.md` observes that the S
+output defines that lobe as the attachment-free component's closure itself.
+Since both analyses use the same cut vertex and the same component of `G-z`
+opposite `T`, their leaves are literally the same connected component, not two
+unidentified sub-blocks.
 
 **The excluded degenerate case, honestly flagged.** If `z\in T` (i.e.
 `z\in\{x,y,z_0\}`), the "triangle can't be split" argument above does not
@@ -67,11 +70,11 @@ separate analysis would be needed. **Not resolved in this pass** —
 recorded as a precise, narrow open item, not folded silently into the
 generic case above.
 
-**Computational cross-check, planned for the manifest below.** A direct
-gadget with two independent central-bridge S5 analyses sharing a forced
-common cut vertex, confirming via `networkx.articulation_points` that
-only one cut vertex exists and that both `L,L'` fall in the same
-component of `G-z`.
+**Computational cross-check, implemented.**
+`verifier/central_bridge_triangle_s5.py` constructs a double-S5 gadget with a
+shared cut vertex and confirms via `networkx.articulation_points` and connected
+components that the triangle and leaf occupy the two forced lobes. The sharper
+literal equality `L=L'` is checked separately by the addendum verifier.
 
 ### VI.2. One `\tau=S`, the other `\in\{A,P\}` [PROVED where stated]
 
@@ -150,21 +153,19 @@ already established, none independent of the others:
   again not independent new content, but worth naming explicitly since
   the task requires it be recorded rather than silently absorbed.
 - **The A/P bridge paths and theta routes**: `central_bridge_templates.md`'s
-  frozen templates, instantiated per vertex — concretely `\ell_x=2,
-  \ell_x'\in\{3,4\}` when `\tau_x=A` arises via the clean case (i) of
-  `central_bridge_triangle.md` IV.1/IV.2 (the only case this sequence has
-  pinned down concretely).
+  frozen templates, instantiated per vertex. The formerly concrete
+  instantiation `\ell_x=2,\ell_x'\in\{3,4\}` was not licensed by T2;
+  surviving A data remain symbolic.
 
-**Scoping fact, stated once here rather than re-derived per combination
-[PROVED].** Part IV.2 showed: when `\operatorname{att}(B_x)` is *exactly*
-`\{x,X_x\}` (forced by the triangle's own edges, case (i)), the outcome
-is **always `\tau_x=A`**, with the concrete `\ell_x=2`. **`\tau_x\in
-\{P,S\}` can only arise for a triangle vertex when `B_x` has a *further*
-attachment beyond `\{x,X_x\}`** — a configuration Part IV.2 left open
-(neither its geometry nor its shared port's location is pinned down by
-the triangle structure alone). **So the `(A,A)` combination is the one
-this sequence has earned the most concrete content for; `(P,P)` and
-`(A,P)` inherit that extra, unresolved layer at whichever vertex is `P`.**
+**Scoping fact, corrected by the interrupted-session recovery.** When
+`\operatorname{att}(B_x)` is exactly `\{x,X_x\}`, Part IV.2 gives the
+length-2 path `x-Y_x-X_x`. The original text also asserted a second path of
+length 3 or 4, but that inference was invalid: T2 supplies some admissible
+pair, not necessarily one containing the length-2 path. The conditional
+anchored-detour lemma excludes lengths 3 and 4, but **exact-two-attachment A
+remains possible with an unspecified larger admissible pair**. P and S still
+require further attachment structure. The pinned `(A,A)` and pinned side of
+`(A,P)` analysed below are historical, unproved specializations.
 
 ## Part VIII: the `(P,P)` case
 
@@ -200,11 +201,15 @@ underdetermined configuration.
 
 ## Part IX: the `(A,P)` case
 
-`\tau_x=A` (clean, `\ell_x=2,\ell_x'\in\{3,4\}`, terminals `\{x,X_x\}`,
-concrete per Part IV.2); `\tau_y=P` (shared port `u_y`, terminals
-`y_1,y_2\in A(B_y)`, extra attachment as in Part VIII).
+The formerly analysed anchored `\tau_x=A` path list
+(`\ell_x=2,\ell_x'\in\{3,4\}`, terminals `\{x,X_x\}`) is invalid: the
+short mate was never supplied by T2 and would force a C4 if present.
+Exact-two-attachment A and multi-attachment A can both survive, but their
+admissible-pair lengths are not pinned by Part IV.2.
+Let `\tau_y=P` have shared port `u_y` and terminals
+`y_1,y_2\in A(B_y)`, with extra attachment as in Part VIII.
 
-**Endpoint relationship, classified.** The two terminal *sets*
+**Historical pinned endpoint relationship (now vacuous).** The two terminal *sets*
 `\{x,X_x\}` and `\{y_1,y_2\}` live on different theta systems
 (`\Theta_x`, `\Theta_y`) in general — the only way they can coincide or
 overlap is through the shared triangle vertices themselves: `X_x\in T`,
@@ -224,12 +229,10 @@ two paths via Lemma C/D of `contraction_atoms.md`'s toolkit exactly as
 in the generic (non-triangle) leaf-block setting — no new lemma is
 needed, only the bookkeeping of which vertex contributes which path,
 not carried out exhaustively here since (per Part VII) `\tau_y=P`'s own
-extra-attachment geometry is not pinned down first.
+extra-attachment geometry is not pinned down first.  None of this concrete
+`\ell_x=2` arithmetic applies to a surviving multi-attachment A.
 
-**Required outcome.** **Not eliminated.** The same-pair sub-case is the
-only one where `A`'s concrete `\ell_x=2` gives fully explicit arithmetic;
-it produces no contradiction (both templates' exclusions are of the
-same `d_i\ne2^m-2}`/`\ell+d_i\ne2^t,2^t-\delta` shape and are jointly
-satisfiable). The other endpoint-relationship sub-cases inherit Part
-VIII's open geometry question at the `P` vertex.
-
+**Corrected outcome.** The same-pair, concretely pinned A/P calculation is
+withdrawn because its A path list was unproved. Exact-two-attachment and
+multi-attachment A/P families remain open with underdetermined admissible-pair
+lengths; no paired `\ell_x=2` arithmetic may be carried into them.

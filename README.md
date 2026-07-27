@@ -209,8 +209,10 @@ work in the sibling `erdos/` directory — no shared code.
   central bridge `B_x` attaches directly at `\{x,X_x\}` (`X_x` a pole of
   its own canonical theta `\Theta_x`) via the triangle's own edges alone
   — no S5 argument needed — with the shorter admissible-pair path pinned
-  to exactly length 2 (not symbolic), sharpening `central_bridge_templates.md`'s
-  **A** output concretely in this setting. Classifies the four
+  to exactly length 2. The recovery audit shows the claimed length-3/4
+  mate was not supplied by T2; either such short mate would force a `C_4`,
+  while exact-two-attachment **A** remains open with a larger unspecified
+  admissible pair. Classifies the four
   `(X_x,X_y)` configurations between two triangle vertices exactly, and
   honestly resolves 3 of the task's 6 component-sharing possibilities
   from local data alone, leaving the rest open (external-structure
@@ -227,9 +229,9 @@ work in the sibling `erdos/` directory — no shared code.
   sub-case (a bridge path detouring through the leaf side) as needing
   the same unresolved internal-cycle-spectrum information already
   flagged upstream. Sets up the non-S5 `(A,A)/(A,P)/(P,P)` matrix (Part
-  VII), noting that `\tau=P` or `S` at a triangle vertex requires
-  attachment structure beyond `\{x,X_x\}` that this sequence has not
-  pinned down — the `(P,P)` case (Part VIII) is therefore left open
+  VII), now correcting the pinned A path lengths. Exact-two-attachment A
+  remains with an unspecified larger admissible pair; `P` and `S` require
+  structure beyond `\{x,X_x\}`, while `(P,P)` remains open
   honestly rather than forced to a false arithmetic conclusion; `(A,P)`
   (Part IX) is resolved concretely in its same-terminal-pair sub-case.
 - `central_bridge_triangle_final.md` — **the (A,A) case, T3
@@ -241,15 +243,16 @@ work in the sibling `erdos/` directory — no shared code.
   flagged incomplete in the prior path-cell work, is arithmetically
   impossible in this anchored setting, resolved rather than left open.**
   Classifies the identical-terminal (X.1) and one-common-terminal (X.2)
-  sub-cases exactly, finding every natural path combination either adds
-  no new information, is blocked by a forced shared gateway vertex, or
-  gives one concrete candidate cycle length (`1+\ell_x'+\ell_y'`)
-  conditional on an internal-disjointness fact not yet pinned down. Part
+  sub-cases exactly. The recovery audit supersedes their survivor status:
+  the former `1+\ell_x'+\ell_y'` object repeats `x,y,xy`, and either
+  anchored detour alone already forces a `C_4`. Part
   XI confirms T3's three pairwise analyses combine without any
-  three-way inconsistency. Closes the sequence: **outcome 4** — every
-  case reduces to the frozen A/P/S templates, concretely instantiated at
-  triangle vertices, with exactly two named open items remaining;
-  neither Type N nor Type T eliminated.
+  three-way inconsistency. The historical close selected **outcome 4** — every
+  case was reduced to the frozen A/P/S templates — but the current corrected
+  outcome refutes the interrupted R2/S2 claim and restores the unpinned
+  exact-two-attachment A survivor. Multi-attachment A/P/S, chord,
+  S5-incidence, and component-sharing cases also remain; neither
+  Type N nor Type T is eliminated.
 - `central_bridge_triangle_addendum.md` — **two sharpenings after the
   Part XIII close (2026-07-27):** does not reopen the closed sequence or
   add a new part number; records two narrow corrections found while
@@ -259,11 +262,14 @@ work in the sibling `erdos/` directory — no shared code.
   containing `L`), the two attachment-free leaves are not just "on the
   same side" but **the same connected component of `G`**, sharper than
   VI.1's own "not forced either way." (2) `central_bridge_triangle_final.md`
-  Part X.2's `\ell_x'\in\{3,4\}`: citing `two_cut.md` section 2's own
-  bridge-spectrum identity directly against `B_x`'s three bridges at the
-  `\{x,X_x\}` cut proves **`3` is excluded outright** (pinning
-  `\ell_x'=4`) and, when `4\in\Lambda_x`, that **`\rho_x\ne2`** is
-  forced. Neither sharpening changes Part XIII's outcome-4 assessment.
+  Part X.2's `\ell_x'\in\{3,4\}`: the original addendum excluded `3`;
+  the recovery supplies the missed triangle-edge closure and excludes `4`
+  too. The old conditional `4\in\Lambda_x => \rho_x\ne2` is vacuous in
+  this anchored setting.
+- `type_t_recovery_audit.md` — forensic state recovery, exact R2/S2
+  definitions, theorem dependency graph, degree/simplicity audit, independent
+  symbolic and NetworkX checks, an explicit T2-inference counterexample, and
+  the corrected residual Type-T table.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -423,7 +429,8 @@ work in the sibling `erdos/` directory — no shared code.
     bridge `B_x` (built with an explicit NPT theta `\Theta_x` and a
     bridge component attached via the triangle's own edges) has
     attachment set exactly `\{x,X_x\}` with shortest `x`-`X_x` path
-    length exactly 2 and a genuine second path of length 3 or 4
+    length exactly 2; its former length-4 supporting fixture is now correctly
+    identified as a negative fixture containing the forced `C_4`
     (central_bridge_triangle.md Parts II, IV); kept separate from the ten
     prior contraction verifiers, none of which it touches.
   - `central_bridge_triangle_s5.py` — mechanical cross-check that on an
@@ -444,11 +451,16 @@ work in the sibling `erdos/` directory — no shared code.
     both sharpenings: an explicit double-S gadget confirming both
     vertices' "leaf-side" computation identifies the identical
     component, not merely components on the same side; and two gadgets
-    confirming a length-3 `x`-`X_x` detour closes into a literal `C_4`
-    while a length-4 detour combined with `\rho_x=2` closes into a
-    literal `C_8` (safe at `\rho_x=3`) (central_bridge_triangle_addendum.md);
+    confirming both length-3 and length-4 anchored detours close into a
+    literal `C_4`; retains the older length-4/`\rho_x` sum only as a
+    conditional arithmetic check (central_bridge_triangle_addendum.md);
     kept separate from the thirteen prior contraction verifiers, none of
     which it touches.
+  - `type_t_r2_s2_audit.py` — definition-first symbolic incidence and an
+    independent NetworkX joint two-theta realization of the recovered R2/S2
+    candidate; verifies the forced `C_4`s and that the claimed length-9 object
+    is not simple, plus a Heawood-based regression showing T2's admissible pair
+    need not contain the shortest terminal path.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

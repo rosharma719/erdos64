@@ -3,8 +3,9 @@
 the L=L' correction to central_bridge_triangle_s5.md VI.1 (both
 attachment-free leaves are the SAME component of G-z, not merely two
 components on the same side); (2) the bridge-spectrum-identity
-sharpening of central_bridge_triangle_final.md Part X.2's ell_x' (3 is
-excluded outright; 4 forces rho_x != 2).
+sharpening of central_bridge_triangle_final.md Part X.2's ell_x': both 3
+and 4 are excluded.  The older conditional arithmetic (4 plus rho=2 gives
+C8) is retained and explicitly distinguished from realizability.
 
 Scope, same discipline as the rest of this project's verifiers: nothing
 here re-derives S5, the triangle-pair lemma, or two_cut.md's
@@ -115,6 +116,7 @@ def build_theta_with_bridge_detour(rho: int, s: int, detour_len: int, prefix: st
     edges.append((prev, xprime))
 
     edges.append((x, Yx))
+    edges.append((Yx, Xx))  # the other triangle edge, omitted by the old fixture
     prev = Yx
     for i in range(detour_len - 2):
         node = f"{prefix}d_{i}"
@@ -157,17 +159,39 @@ def check_lambda_x_four_excludes_rho_two() -> dict:
         total = len(cyc)
         expected = 4 + 2 ** rho
         assert total == expected, (total, expected)
-        results[rho] = {"cycle_length": total, "is_forbidden": is_power_of_two(total)}
+        forced_c4 = [Yx, "d_0", "d_1", Xx]
+        assert verify_cycle(g, forced_c4) and verify_cycle_nx(g, forced_c4)
+        results[rho] = {
+            "conditional_cycle_length": total,
+            "conditional_cycle_is_forbidden": is_power_of_two(total),
+            "anchored_fixture_has_c4": True,
+        }
 
-    assert results[2]["is_forbidden"] is True
-    assert results[3]["is_forbidden"] is False
+    assert results[2]["conditional_cycle_is_forbidden"] is True
+    assert results[3]["conditional_cycle_is_forbidden"] is False
     return results
+
+
+def check_lambda_x_excludes_four(rho: int = 3, s: int = 3) -> dict:
+    edges, _x, Xx, _xprime, Yx = build_theta_with_bridge_detour(
+        rho, s, detour_len=4
+    )
+    g = from_edges(edges)
+    forced_c4 = [Yx, "d_0", "d_1", Xx]
+    assert verify_cycle(g, forced_c4) and verify_cycle_nx(g, forced_c4)
+    return {
+        "detour_length": 4,
+        "forced_suffix_cycle": forced_c4,
+        "forced_cycle_length": len(forced_c4),
+        "confirms_lambda_x_excludes_four": True,
+    }
 
 
 def main():
     summary = {}
     summary["l_equals_lprime"] = check_l_equals_lprime()
     summary["lambda_x_excludes_three"] = check_lambda_x_excludes_three()
+    summary["lambda_x_excludes_four"] = check_lambda_x_excludes_four()
     summary["lambda_x_four_excludes_rho_two"] = check_lambda_x_four_excludes_rho_two()
 
     print("=== central_bridge_triangle_addendum.py: mechanical cross-check summary ===")

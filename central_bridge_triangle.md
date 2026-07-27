@@ -70,10 +70,10 @@ external neighbour — is now eliminated in every case, T2 and T3 alike.
 No other equality among `\{a',b',c'\}` (or between them and `T`) remains
 to audit.
 
-**Computational cross-check, planned for the manifest below.** A direct
-`networkx` construction: build the smallest possible gadget with
-`a'=b'=w` forced and confirm `simple_cycles`/`girth` reports a 4-cycle,
-independent of the hand proof above.
+**Computational cross-check, implemented.**
+`verifier/central_bridge_triangle.py` constructs the smallest gadget with
+`a'=b'=w` forced and confirms by NetworkX cycle enumeration that the predicted
+4-cycle is present, independently of the hand proof above.
 
 ## Part III: shared triangle-contraction witness
 
@@ -181,22 +181,33 @@ Gao–Huo–Liu–Ma, cited): two simple `x`-`X_x` paths inside `B_x`, lengths
 `Y_xX_x`) has length exactly `2`, and no shorter `x`-`X_x` path inside
 `B_x` can exist (any such path needs `\ge1` edge to leave `x` and `\ge1`
 more to reach `X_x`, with equality realized by exactly this route).
-**So `\ell=2` exactly** (not symbolic), and **`\ell'\in\{3,4\}` exactly**.
+**The shortest path length is `2` exactly**, but the original next inference
+was invalid: T2 supplies *some* two paths whose lengths differ by 1 or 2; it
+does not say that a globally shortest terminal path belongs to that pair.
+Thus T2 does **not** license a second path of length `3` or `4` from the mere
+existence of `x-Y_x-X_x`.
 
-**These two paths are not internally disjoint**: since every `x`-`X_x`
-path in `B_x` starts `x\text{-}Y_x`, both `\ell`'s path and `\ell'`'s
-path pass through `Y_x`. So `contraction_separator_integration.md`
-VII.1's clean "`\ell+\ell'`" union-cycle shortcut (which requires internal
-disjointness) **does not apply here** — recorded honestly rather than
-misapplied. The genuine arithmetic content is `central_bridge_templates.md`'s
-**A output**, with `\ell=2` substituted concretely: paired cycles
-`2+d_i` and `\ell'+d_i` for every theta `x`-`X_x` route `d_i` (VI.1's
-census), excluded residues
-\[
-2+d_i\ne2^t,\qquad 2+d_i\ne2^t-\delta\quad(\delta=\ell'-2\in\{1,2\}).
-\]
+**Conditional anchored-detour lemma [PROVED, 2026-07-27 recovery].** Every
+`x`-`X_x` path in `B_x` begins with the unique bridge edge
+`xY_x`.  If the second path has length `3`, closing it with the triangle
+edge `xX_x` gives a simple `C_4`.  If it has length `4`, delete its first
+edge `xY_x`; the remaining simple `Y_x`-`X_x` suffix has length `3`, and
+closing that suffix with the triangle edge `Y_xX_x` gives a simple `C_4`.
+Thus lengths `3,4` are excluded from the anchored bridge spectrum.  This does
+**not** eliminate the exact-two-attachment case: T2's admissible pair may
+have larger lengths `L,L+\delta`, independently of the isolated length `2`.
 
-**If `\operatorname{att}(B_x)` has a third point, or the 2-attachment
+`verifier/type_t_r2_s2_audit.py` includes an explicit C4-free Heawood-based
+bridge satisfying T2's degree and 2-connectivity hypotheses with terminal
+path lengths `\{2,7,9,11,13,15\}`: the admissible pairs exist among the larger
+lengths, while no length `3` or `4` path exists.  This is a direct regression
+against the invalid inference, not an F-clean Type-T survivor (the fixture has
+a `C_8`).  The symbolic incidence and independent NetworkX checks are in
+`verifier/type_t_r2_s2_audit.py`; the full recovery and scope audit is
+`type_t_recovery_audit.md`.
+
+**If `\operatorname{att}(B_x)` has a third point, the triangle reconnects
+as the chord case IV.1(ii), or the 2-attachment
 structure fails T2's 2-connectivity hypothesis internally** — CB3′ case
 2 (S5) or case 3 (genuinely new `\ge3`-terminal network) applies instead,
 exactly as catalogued in `central_bridge_templates.md`'s **S** output or
@@ -217,12 +228,12 @@ content behind the task's instruction not to treat `\Theta_a,\Theta_b,
 ambient triangle `T` — one theta's bridge can attach exactly at the
 vertex that anchors a different theta's own branch.
 
-**Computational cross-check, planned.** `check_triangle_theta_bridge` in
-a new verifier script: build explicit Type T triangle gadgets for both
-sub-cases of IV.1, confirm `\operatorname{att}(B_x)` directly via
-`networkx` component/boundary computation, and confirm the `\ell=2`
-claim of IV.2 by `all_simple_paths` enumeration inside the constructed
-`B_x`.
+**Computational cross-check, corrected and implemented.**
+`verifier/central_bridge_triangle.py` builds an explicit Type-T triangle
+gadget, recomputes `\operatorname{att}(B_x)` by NetworkX component/boundary
+calculation, and enumerates the terminal paths. The old fixture's length-4
+path is now explicitly checked to contain the forced `C_4`; it is a negative
+fixture, not an F-clean witness.
 
 ## Part V: central-bridge component sharing between two cubic triangle vertices
 

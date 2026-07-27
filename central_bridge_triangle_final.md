@@ -9,9 +9,20 @@ task (Parts X–XIII).
 
 ## Part X: the `(A,A)` case
 
-Both `\tau_x=\tau_y=A`, concretely: terminals `\{x,X_x\}`,
+The interrupted analysis assumed both `\tau_x=\tau_y=A`, concretely: terminals `\{x,X_x\}`,
 `\ell_x=2,\ell_x'\in\{3,4\}` (inside `B_x`, via `Y_x`); terminals
 `\{y,X_y\}`, `\ell_y=2,\ell_y'\in\{3,4\}` (inside `B_y`, via `Y_y`).
+
+**Recovery correction (2026-07-27; supersedes the path-length claims in
+X.1-X.2).** `central_bridge_triangle.md` IV.2's conditional anchored-detour
+lemma excludes both claimed second-path lengths. Length `3` closes against
+`xX_x` to form a `C_4`; length `4`, after deleting the forced first edge
+`xY_x`, leaves a length-3 `Y_x`-`X_x` path that closes against `Y_xX_x`
+to form a `C_4`. More fundamentally, T2 never guaranteed that its admissible
+pair contains the separately known shortest path of length 2, so the inference
+to a `3` or `4` mate was invalid. The exact-two-attachment A branch remains
+open with an unspecified larger admissible pair; the paragraphs below audit an
+unproved pinned specialization, not residual R2/S2 paths.
 
 ### X.0. The terminal-pair relationship is fully exhausted by 2 cases, not 3 [PROVED, new]
 
@@ -36,9 +47,9 @@ says nothing about the general crossing case flagged incomplete in
 `contraction_intersections.md` V.3 for arbitrary witness-path pairs
 elsewhere in `G` — that remains exactly as open as before.
 
-### X.1. Identical terminals — `X_x=y,X_y=x` [PROVED where stated]
+### X.1. Identical terminals — `X_x=y,X_y=x` [SUPERSEDED: pinned lengths unproved]
 
-Here `Y_x=Y_y=z_0}`. `B_x`'s shortest path `R_1: x\to y` (length 2) is
+Here `Y_x=Y_y=z_0`. `B_x`'s shortest path `R_1: x\to y` (length 2) is
 `x\text{-}z_0\text{-}y` (edges `xz_0,z_0y`); `B_y`'s shortest path
 `S_1: y\to x` (length 2) is `y\text{-}z_0\text{-}x` (edges `yz_0,z_0x`).
 **These use the identical two edges** — `R_1` and `S_1` are the *same
@@ -56,15 +67,13 @@ inside `B_x` (in particular `R_2`, length `\ell_x'`) passes through
 `z_0`** — none of the pairwise unions is internally disjoint, so
 neither Lemma D nor `contraction_separator_integration.md` VII.1's
 clean `\ell+\ell'`-union shortcut applies to any pair drawn from this
-set. **The only source of new cycles here is the theta-route arithmetic
-already in `central_bridge_templates.md`'s A output** (applied with
-`\ell_x=2` at `x`, `\ell_y=2` at `y`, per `central_bridge_triangle.md`
-IV.2), or a finer application of `contraction_intersections.md`'s
-cell-decomposition machinery to the shared-`z_0` overlap — **not carried
-out here**, recorded as the precise remaining step rather than assumed
-resolved.
+set. Historically this paragraph proposed applying the A-output theta
+arithmetic with `\ell_x=\ell_y=2`. That application is withdrawn: those
+length-2 paths need not belong to T2's admissible pairs. A surviving
+identical-terminal A/A case requires new, unpinned admissible-pair data before
+the overlap machinery can be applied.
 
-### X.2. One common terminal — the other three `(X_x,X_y)` rows [PROVED where stated]
+### X.2. One common terminal — the other three `(X_x,X_y)` rows [SUPERSEDED: pinned lengths unproved]
 
 Take the representative case `X_x=X_y=z_0` (`Y_x=y,Y_y=x`; the other two
 rows, `X_x=y,X_y=z_0` and `X_x=z_0,X_y=x`, are symmetric relabellings).
@@ -90,27 +99,26 @@ exactly:**
 - **`R_2` with `S_1`.** Symmetric obstruction: `S_1=y\text{-}x\text{-}
   z_0` uses `x` internally, while `R_2` starts at `x`. **Blocked** for
   the identical reason.
-- **`R_2` with `S_2`.** The only candidate with no *forced* shared
-  vertex from the argument above — **whether `R_2,S_2` are clean
-  (avoiding `x`'s/`y`'s role in each other, and avoiding `y`/`x`
-  respectively) depends on internal structure of `B_x,B_y` beyond the
-  triangle itself, which this sequence has not pinned down.** If clean,
-  Lemma D applied to (edge `xy`) `+` (`R_2` reversed `+ S_2}`) gives a
-  cycle of length `1+\ell_x'+\ell_y'\in\{7,8,9\}` — **recorded as the
-  concrete candidate, not asserted**, since cleanliness is not
-  established.
+- **`R_2` with `S_2` (corrected).** Both paths have a forced shared edge:
+  every `R_2` starts `x\text{-}y`, and every `S_2` starts
+  `y\text{-}x`.  Hence the former `1+\ell_x'+\ell_y'` object repeats
+  `x,y,xy` and is not a simple cycle.  More decisively, neither path can
+  exist: the anchored-detour lemma above produces a `C_4` from either one
+  separately.  With symbolic length `4`, cubicity would force
+  `R_2=x-y-y'-r-z_0` and `S_2=y-x-x'-s-z_0`; the literal cycles
+  `y-y'-r-z_0-y` and `x-x'-s-z_0-x` expose the contradiction.
 
-**Required outcome for Part X.** **Not eliminated.** X.0 fully resolves
+**Corrected outcome for Part X.** **The committed R2/S2 candidate is
+refuted; anchored `(A,A)` is not eliminated.** X.0 still fully resolves
 the terminal-relationship question (only X.1/X.2 occur, X.3 is
 vacuous in this anchored setting — the task's own flagged target,
-answered). X.1 and three of X.2's four candidate combinations are
-either shown to add no new information or are structurally blocked from
-the clean shortcut by a forced shared vertex; the fourth (`R_2,S_2`)
-gives one concrete candidate cycle length, `1+\ell_x'+\ell_y'`,
-conditional on an internal-disjointness fact not established here.
+answered), but X.1/X.2's concrete path list was never obtained. A surviving
+anchored A/A row must use unspecified larger admissible pairs. See
+`type_t_recovery_audit.md` for the recovered definitions, explicit inference
+counterexample, independent checks, and corrected residual table.
 
-**Computational cross-check, planned for the manifest below.**
-`check_terminal_pair_exhaustion`: brute-force over all 4 rows of
+**Computational cross-check, implemented.**
+`verifier/central_bridge_triangle_final.py` brute-forces all 4 rows of
 `central_bridge_triangle.md` V.1, confirming the terminal *sets*
 `\{x,X_x\},\{y,X_y\}` always coincide or share exactly one element,
 never four distinct vertices — an exhaustive check over the only 4
@@ -182,9 +190,10 @@ or arithmetic claim, none a search or census. **Permitted computation
 used**: finite orbit-table enumeration (X.0's 4-row exhaustion,
 `central_bridge_triangle.md` V.1's `(X_x,X_y)` table), path/attachment
 diagram verification (`networkx.all_simple_paths`,
-`node_connected_component`, `articulation_points`), and symbolic
-arithmetic (the `\ell_x'\in\{3,4\}`, `1+\ell_x'+\ell_y'\in\{7,8,9\}}`
-candidates are closed-form, not searched). **No existing project
+`node_connected_component`, `articulation_points`), and historical symbolic
+arithmetic (the now-superseded `\ell_x'\in\{3,4\}` and
+`1+\ell_x'+\ell_y'\in\{7,8,9\}` candidates were closed-form, not searched).
+**No existing project
 artifact was mined** — consistent with every prior file in this
 sequence. **No exponential Diophantine equality was newly solved this
 pass** (the frozen `2^m-2`/excluded-residue templates from
@@ -194,10 +203,13 @@ symbolic quantity, `1+\ell_x'+\ell_y'`, is a small closed enumeration
 
 ## Part XIII: honest stopping-condition assessment
 
-**Required: exactly one of the seven listed outcomes.** The match here
-is **outcome 4: every case is reduced to one exact A/P/S joint
-obstruction family** — with one genuine, load-bearing structural
-theorem earned along the way (X.0), not merely a restatement.
+**Historical assessment, corrected by the recovery audit.** The original
+match was outcome 4, but its pinned A/A specialization used T2 incorrectly.
+The current outcome is: **the interrupted R2/S2 claim is refuted by an
+explicit theorem-hypothesis configuration.** Exact-two-attachment A remains
+open with unspecified larger admissible pairs; multi-attachment A, P, S,
+chord, and component-sharing cases also remain as listed in
+`type_t_recovery_audit.md`.
 
 - **Type T is not eliminated**, and **no single T2 or T3 configuration
   is isolated as the unique survivor** — ruling out outcomes 1–3.
@@ -214,30 +226,31 @@ theorem earned along the way (X.0), not merely a restatement.
   (only shown to be the *only* one of two abstractly-possible
   distributions that can occur) — so **outcome 6 does not apply**
   precisely, though VI.1 is the closest single fact to it.
-- **The MA2/A/P/S templates are not shown to fail to combine** — on the
-  contrary, every combination examined (VIII, IX, X.1, X.2) reduces
-  cleanly to the frozen templates plus at most one new concrete
-  arithmetic candidate (`1+\ell_x'+\ell_y'`) — so **outcome 7 does not
-  apply**.
-- **Outcome 4 is the precise match**: T2's `\{a,b\}`-vs-`\{a,c\}/\{b,c\}`
+- **The MA2/A/P/S templates are not shown to fail to combine** — every
+  combination examined (VIII, IX, X.1, X.2) was expressed in the frozen
+  templates. The one concrete arithmetic candidate
+  (`1+\ell_x'+\ell_y'`) was subsequently shown not to be a simple cycle, and
+  the claimed short paths are conditionally excluded.
+- **The original outcome 4 reduction remains useful only for the genuinely
+  multi-attachment/P/S survivors**: T2's `\{a,b\}`-vs-`\{a,c\}/\{b,c\}`
   orbit split, T3's single orbit, the four `(X_x,X_y)` rows, the
   double-S5 lobe-forcing fact, the vacuous crossing-case elimination
   (X.0), and the `(A,A)/(A,P)/(P,P)` matrix all resolve to **one
   finite, named joint obstruction family**: the frozen A/P/S templates
   (`central_bridge_templates.md`), instantiated concretely at
-  triangle vertices (`\ell=2` exactly), combined via the triangle's own
-  edges — with exactly two genuinely open remaining sub-items, named
-  precisely rather than left vague: **(1)** whether `B_x,B_y` share
-  internal structure beyond their forced shared gateway vertex
-  (`central_bridge_triangle.md` Part V.2, possibilities (4)–(6)); **(2)**
-  whether the `R_2,S_2}` pair of Part X.2 is internally clean, which
-  would concretely realize the `1+\ell_x'+\ell_y'` candidate cycle.
+  triangle vertices, combined via the triangle's own edges. The inference
+  from shortest length `2` to a `3/4` mate is removed. Component sharing remains
+  open, as do the additional residual families itemized in the recovery
+  audit; the R2/S2 internal-cleanliness question is closed as based on an
+  impossible premise.
 
 **Neither Type N nor Type T is eliminated this pass.** The concrete
-named next steps are exactly the two items above — not a vague
-restatement, not another central-bridge lemma, not a block-cut
-reclassification, not a `q=4` census, and not more voltage/defect work.
+named next steps are the residual families in `type_t_recovery_audit.md`,
+led by deletion-relative component sharing and the double-S incidence problem
+— not another generic central-bridge lemma, a `q=4` census, or more
+voltage/defect work.
 
-**Computational cross-check, planned.** `check_terminal_pair_exhaustion`
-(X.0) is the one new computational claim of this file; recorded in the
-manifest below alongside the environment/checksum record.
+**Computational cross-check, implemented.** The exhaustive
+`check_terminal_pair_exhaustion` result for X.0 is recorded in
+`manifests/central_bridge_triangle_final_manifest.json` with its environment
+and checksums.

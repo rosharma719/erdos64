@@ -4,15 +4,15 @@
 a 4-cycle, confirming Lemma NE's mechanism on an explicit gadget; (2) the
 triangle-anchored central bridge B_x really does attach at {x, X_x}
 (established directly from the triangle's own edges, IV.1(i)), and the
-shortest x-X_x path inside B_x really is length 2 with a genuine second
-path of length 3 or 4 (IV.2's concrete ell=2 sharpening).
+formerly supporting length-4 fixture actually contains the forced C4 found
+by the interrupted-session recovery audit.
 
 Scope, same discipline as the earlier verifier scripts: this does not
 re-derive Gao-Huo-Liu-Ma (cited by name) or CB1/CB3' (cited by name).
 What IS checked is that the specific structural claims (attachment set,
-shortest-path length, existence of a second path) hold on explicit,
-independently-constructed gadgets, via networkx -- a fully independent
-mechanism from the hand derivation.
+shortest-path length, existence of the detour, and its forced C4) hold on an
+explicit gadget via NetworkX.  The gadget is a negative fixture and is not
+F-clean; it no longer purports to support a surviving detour.
 """
 
 from __future__ import annotations
@@ -118,12 +118,26 @@ def check_triangle_theta_bridge(rho: int = 3, s: int = 3, tail_len: int = 2) -> 
     all_ab_paths = list(nx.all_simple_paths(B_a, "a", "b"))
     lengths = sorted(len(p) - 1 for p in all_ab_paths)
 
+    length_four = next(p for p in all_ab_paths if len(p) - 1 == 4)
+    forced_c4 = length_four[1:]
+    forced_c4_present = (
+        len(forced_c4) == 4
+        and len(set(forced_c4)) == 4
+        and all(
+            G.has_edge(forced_c4[i], forced_c4[(i + 1) % 4])
+            for i in range(4)
+        )
+    )
+
     return {
         "attachments": sorted(attachments),
         "attachments_correct": attachments == {"a", "b"},
         "all_a_b_path_lengths_in_B_a": lengths,
         "shortest_is_2": lengths[0] == 2,
         "second_path_exists_len_3_or_4": any(l in (3, 4) for l in lengths[1:]),
+        "forced_c4": forced_c4,
+        "forced_c4_present": forced_c4_present,
+        "fixture_is_f_clean": False,
         "predicted_ell": 2,
         "predicted_ell_prime_in": [3, 4],
     }
@@ -138,7 +152,13 @@ def main():
     if not results["shared_external_neighbor_c4"]["is_c4"]:
         failures += 1
     tb = results["triangle_theta_bridge"]
-    if not (tb["attachments_correct"] and tb["shortest_is_2"] and tb["second_path_exists_len_3_or_4"]):
+    if not (
+        tb["attachments_correct"]
+        and tb["shortest_is_2"]
+        and tb["second_path_exists_len_3_or_4"]
+        and tb["forced_c4_present"]
+        and not tb["fixture_is_f_clean"]
+    ):
         failures += 1
 
     for name, res in results.items():

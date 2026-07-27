@@ -3,15 +3,14 @@
 **Standing reminder, per project discipline.** Every proof below is a
 hand-written Markdown argument, cross-checked computationally wherever
 the claim is unconditional. Nothing here is proof-assistant formal
-verification. `central_bridge_triangle_final.md` Part XIII already
-closed the Type-T joint-triangle sequence (outcome 4: every case reduces
-to the frozen A/P/S templates, concretely instantiated, neither Type N
-nor Type T eliminated). This file does not reopen that assessment or
-add a new part number to the closed sequence — it records two narrow,
-independently-checked sharpenings of specific claims inside
+verification. `central_bridge_triangle_final.md` Part XIII originally
+closed the Type-T joint-triangle sequence under outcome 4. The recovery audit
+corrects that assessment: the pinned A paths were not obtained, so
+exact-two-attachment A returns to the residual table and neither Type N nor
+Type T is eliminated. This file adds no new part number to the historical
+sequence; it records two narrow, independently checked corrections to claims in
 `central_bridge_triangle_s5.md` VI.1 and `central_bridge_triangle_final.md`
-Part X.2, found while independently re-deriving the same ground. Neither
-changes the sequence's overall outcome.
+Part X.2, found while independently re-deriving the same ground.
 
 ## 1. `central_bridge_triangle_s5.md` VI.1: `L=L'` is forced, not merely unresolved
 
@@ -61,13 +60,14 @@ exactly two components, and confirms both vertices' independently-
 computed "leaf side" identify the *same* component — not merely two
 components on the same "side."
 
-## 2. `central_bridge_triangle_final.md` Part X.2: the bridge-spectrum identity pins `\ell_x'=4`
+## 2. `central_bridge_triangle_final.md` Part X.2: neither claimed short detour survives
 
-Part X (citing `central_bridge_triangle.md` IV.2) leaves `\ell_x'\in\{3,4\}`
-symbolic throughout the `(A,A)` analysis (X.1, X.2's `R_2,S_2` candidate
-cycle `1+\ell_x'+\ell_y'\in\{7,8,9\}`). **`\ell_x'=3` can be excluded
-outright, and `\ell_x'=4` forces a condition on `\rho_x` — both by direct
-citation of machinery already on record, not by new arithmetic.**
+Part X (citing `central_bridge_triangle.md` IV.2) left
+`\ell_x'\in\{3,4\}` symbolic throughout the `(A,A)` analysis. The first
+version of this addendum correctly excluded `3` but incorrectly retained `4`.
+The interrupted-session recovery (`type_t_recovery_audit.md`) found the
+missing triangle-edge closure: **both values force a `C_4`**, so the pinned
+`{2,3/4}` path claim does not survive.
 
 **Setup, restated exactly.** Under IV.2's own hypothesis
 (`\operatorname{att}(B_x)=\{x,X_x\}` exactly), `\{x,X_x\}` is a genuine
@@ -86,41 +86,41 @@ through `x'` via `P_1` or `P_2`).
 **`(\Lambda_0+\Lambda_x)\cap F=\varnothing`** is exactly `two_cut.md`
 §2's own "trivial bridge" corollary: `\Lambda_x\cap\{2^k-1:k\ge2\}=
 \varnothing`. **So `3\notin\Lambda_x`, unconditionally** (3 is a literal
-`C_4` combining the length-3 detour with the direct `P_0` edge) — pinning
-IV.2's `\ell_x'\in\{3,4\}` down to `\ell_x'=4` whenever a second element
-of `\Lambda_x` beyond `2` is realized at all.
+`C_4` combining the length-3 detour with the direct `P_0` edge).
 
-**`(\Lambda_x+\Lambda_{B'})\cap F=\varnothing`**, applied to `4\in
-\Lambda_x`: `4+2^{\rho_x}\notin F` is required. This fails **exactly
-when `\rho_x=2`** (`4+4=8\in F`): for `\rho_x>2`,
-`4+2^{\rho_x}=4(2^{\rho_x-2}+1)`, with `2^{\rho_x-2}+1` odd and `>1`,
-never a power of two. **So: whenever IV.2's hypothesis holds and
-`\ell_x'=4` (the only surviving option), `\rho_x\ne2` is forced** — the
-`xx'`-edge witness's exponent can never take its minimum value.
+For `\ell_x'=4`, use information internal to `B_x` that the bridge-spectrum
+comparison discarded. Every `x`-`X_x` path in `B_x` starts with `xY_x`.
+Deleting that edge from the length-4 path leaves a simple length-3
+`Y_x`-`X_x` path. The triangle edge `Y_xX_x` closes it into a literal
+`C_4`. Hence **`4\notin\Lambda_x` as well**, under this anchored setup.
 
-**Scope, stated precisely.** This uses `two_cut.md`'s bridge-spectrum
-identity `(\Lambda_i+\Lambda_j)\cap F=\varnothing` (`i\ne j`, cited, not
-re-derived), applied to the three bridges `B_0,B_x,B'` at cut
-`\{x,X_x\}` — a direct instantiation of already-proved machinery to this
-specific triangle-anchored setting, not a new theorem about `two_cut.md`
-itself. It sharpens `\ell_x'`'s two-element dichotomy to one value and
-adds one new exponent-exclusion; it does not resolve Part X.2's own
-open item (whether `R_2,S_2` are internally clean) or change Part
-XIII's outcome-4 assessment.
+The old arithmetic implication `4\in\Lambda_x\Rightarrow\rho_x\ne2` is
+still a correct conditional application of the cross-bridge identity, but it
+is vacuous here: its antecedent cannot occur. It must not be reported as a
+surviving Type-T restriction.
+
+**Scope, stated precisely.** The length-3 exclusion uses `two_cut.md`'s
+bridge-spectrum identity; the length-4 exclusion uses only the forced prefix
+and the other triangle edge. Together they eliminate the claimed paths before any
+R2/S2 internal-disjointness or component-sharing question arises.
+
+**Upstream correction.** The exact-two-attachment A branch itself is not
+eliminated. T2 guarantees some pair of path lengths differing by 1 or 2; it
+does not guarantee that the separately known shortest path of length 2 is in
+that pair. Thus the surviving spectrum may contain `2` together with a larger
+admissible pair. The R2/S2 labels and every calculation based on their claimed
+lengths are unavailable, not a proof that the bridge has no admissible pair.
 
 **Computational cross-check.** `verifier/central_bridge_triangle_addendum.py`'s
-`check_lambda_x_excludes_three` and `check_lambda_x_four_excludes_rho_two`
-build explicit gadgets realizing a length-3 detour (confirmed to close
-into a literal `C_4` against the direct edge) and a length-4 detour
-combined with `\rho_x=2` (confirmed to close into a literal `C_8`, and
-safe at `\rho_x=3`), matching the arithmetic above exactly.
+`check_lambda_x_excludes_three` and the recovery verifier's independent
+symbolic/NetworkX checks confirm the two distinct `C_4` closures. The older
+length-4/`\rho_x` arithmetic fixture is retained only as a check of that
+conditional sum, not as evidence that a length-4 anchored detour is valid.
 
 ## 3. Status, honestly scoped
 
-Neither sharpening changes `central_bridge_triangle_final.md` Part
-XIII's stopping-condition assessment: **Type T remains not eliminated,
-outcome 4 remains the accurate match.** Both are narrow corrections/
-extensions found by independently re-deriving the same double-S and
-admissible-pair ground via a different (bridge-spectrum-identity-based)
-route, recorded here rather than silently left as a discrepancy between
-files.
+Type T remains not eliminated. The committed anchored R2/S2 candidate is
+refuted: its path lengths were not supplied by T2, and hypothetical paths of
+those lengths force `C_4`s. Exact-two-attachment A remains a survivor with an
+unspecified larger admissible pair. See `type_t_recovery_audit.md` for the
+corrected residual table and explicit theorem-inference regression.
