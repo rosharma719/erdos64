@@ -290,6 +290,13 @@ work in the sibling `erdos/` directory — no shared code.
   degree-preserving 2-switches. The remaining claim is explicitly one
   degree-saturation/ear realizability mechanism, not ICF or a bounded-family
   elimination.
+- `type_b_equality_order.md` — closes the minimum-order embedding gap for the
+  smallest tuple. Deleting the degree-one bridge terminal reduces every
+  possible 19-vertex bridge, independently of path overlap, to an 18-vertex
+  `{C4,C8}`-free graph with 26 or 27 edges and at most two degree-two
+  vertices. Exhaustive local generation eliminates the 26-edge layer; the
+  complete checksummed 570-graph McKay extremal layer eliminates 27 edges.
+  Thus `Pi0` has no realization at order 36.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -497,6 +504,11 @@ work in the sibling `erdos/` directory — no shared code.
     fixed order-36 paired template; independently enumerates every Balaban
     C16; and exhausts a precisely scoped class of 826 path-preserving
     degree-preserving 2-switches.
+  - `type_b_equality_order.py` — verifies the overlap-independent E36
+    reduction; regenerates all 101,546 possible 26-edge remainders twice with
+    unrelated C8 detectors; checks McKay's 570 order-18 extremal graphs and a
+    fresh degree audit; and certifies that neither edge layer contains a bridge
+    remainder with the necessary degree pattern.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

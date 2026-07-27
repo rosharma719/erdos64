@@ -42,7 +42,7 @@ it must not be paraphrased as formally verified.
 | E1 order 10 | `COMPUTATIONALLY_REPRODUCED` | Python and C checked 5,203,110 connected minimum-degree-3 graphs; zero survivors. |
 | E1 order 11 | `COMPUTATIONALLY_REPRODUCED` | C checked 577,076,528 graphs; zero survivors. |
 | E1 order 12+ | `INCOMPLETE_RANGE` | Order 12 was partial; no claim beyond order 11 is locally certified by E1. |
-| E5(a) McKay files | `EXTERNAL_DATA_MISSING` | Historical results retained, but eight `.s6` files are absent; see `manifests/external_s6_manifest.json`. |
+| E5(a) McKay files | `PARTIALLY_RESTORED` | The order-18 extremal file is present with its authoritative checksum for the Type-B equality audit; the other seven `.s6` files remain absent. See `manifests/external_s6_manifest.json`. |
 | E5(b) order-18 cubic check | `COMPUTATIONALLY_REPRODUCED` | 2,761 C4-free cubic graphs; zero C8-free survivors. |
 | E6 n=20–23 near-cubic layers | `INCOMPLETE_RANGE` | Not launched/completed. |
 | E9 one-pole search | `COMPUTATIONALLY_REPRODUCED`, `INCOMPLETE_RANGE` | 67,432 candidates through n=9; n=10 unfinished. |
@@ -145,6 +145,7 @@ it must not be paraphrased as formally verified.
 | Exact-two-attachment anchored A spectrum (type_t_exact_two_a.md) | `PROVED_TEMPLATE`, `COMPUTATIONALLY_REPRODUCED`, `NOT_RESOLVED`, `NOT_FORMALLY_VERIFIED` | The isolated length-2 bridge path shares the forced gateway edge with both T2 paths, so ell+2 is not guaranteed. Each admissible path instead forces its own lengths L and L+1; the other 2-cut bridge adds offsets 2^rho and 2^s+1. The complete table has infinite safe family ell=2^t+1. Heawood fails internal/cross F-cleanness; a Balaban-derived bridge passes T1/T2 and C4/C8-freeness with pair 11,13 but contains C16. T8/T8R/T8P are not inherited without self-sum cleanliness and rooted minimality. |
 | Global Type-B compatibility and T9B (type_b_compatibility.md; two_cut.md §27) | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED`, `NOT_RESOLVED`, `NOT_FORMALLY_VERIFIED` | Proves the exhaustive five-category cycle decomposition and the full edge-plus/cross compatibility system; maps the asymmetric triangle bridges without converting cycle offsets into path lengths; gives an infinite mutually compatible forced-core family for all four admissible-pair offset patterns; and proves spectrum-subset paired replacement criticality. R1/R2 sharpen T9B to: every real R/P bridge edge meets an internal cubic vertex. This does not give a finite SPQR family or a realized paired obstruction. The verifier checks decomposition/monotonicity fixtures, all 720 small-exponent exception rows, 1,600 high-exponent arithmetic rows (30,960 row-values before cross-row deduplication), and the exact Balaban C16 diagnostic. |
 | Irreducible Type-B realizability (type_b_realizability.md) | `PROVED_IN_MARKDOWN`, `COMPUTER_ASSISTED_FINITE_CERTIFICATE`, `EXHAUSTIVE_FINITE_COMPUTATION` (stated scopes), `NOT_RESOLVED`, `NOT_FORMALLY_VERIFIED` | Freezes exactly the prior parameterized family and first twenty tuples; proves sharp minimum-order canonical path unions at the first dyadic scale and degree-derived size bounds. For one fixed minimum-order embedding of `Pi=(2,2,4,4,1,1)`, deterministic CP-SAT plus an independently encoded Glucose3 instance prove no minimum-degree-three C4/C8-free saturation exists, even in a relaxation omitting closure and T9B. This does not cover other embeddings or tuples. Two exact enumerators agree on all 3,298 Balaban C16s; an exhaustive finite audit finds all 826 path-preserving closure-biconnected 2-switch mutations first fail at C4, C8, or C16. ICF remains open. |
+| Minimum-order `Pi0` Type-B realizability (type_b_equality_order.md) | `PROVED_IN_MARKDOWN`, `EXHAUSTIVE_FINITE_COMPUTATION`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | E36 uses the Hamiltonian required path and degree conditions, without fixing any other path embedding, to reduce either bridge at full order 36 to a connected order-18 C4/C8-free remainder with 26 or 27 edges and at most two degree-two vertices. Two complete geng runs with unrelated detectors eliminate all 101,546 graphs in the 26-edge degree layer. McKay's checksummed complete 570-graph extremal file has at least three degree-two vertices in every graph; two C4 and two C8 checks agree on all records and a fresh degree audit reproduces the distribution. Therefore `Pi0` has no Type-B realization at order 36. No larger order or later tuple is covered. |
 | T3 three-way consistency (central_bridge_triangle_final.md Part XI) | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Audits all six consistency dimensions the task lists (S5 uniqueness, parity/equality, component-sharing transitivity, attachment-order, common-path constraints) and finds none of the pairwise analyses creates a genuine cross-pair dependency for a third vertex to violate -- T3 is consistent because the machinery never links pairs, not because a hard three-way argument was separately resolved. |
 | Corrected residual Type-T assessment (central_bridge_triangle_final.md Part XIII; type_t_recovery_audit.md) | Honest scope statement, `CLAIM_REFUTED`, `NOT_RESOLVED` | The interrupted pinned R2/S2 claim is refuted, not converted into a Type-T elimination. Exact-two-attachment A with larger unspecified admissible pairs joins multi-attachment A, P, S, chord, mixed-S/double-S incidence, and deletion-relative component-sharing survivors. The former claim that only component sharing and R2/S2 remained was too broad. |
 | Double-S and detour addendum (central_bridge_triangle_addendum.md) | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED` | (1) The two attachment-free leaves of a generic double-S configuration are the same connected component. (2) The original addendum correctly excluded length 3 but incorrectly retained length 4; recovery adds the missing YX closure and excludes 4 by a C4 as well. The old implication 4 in Lambda_x => rho_x != 2 remains arithmetically true but is vacuous in the anchored setting. |
@@ -166,10 +167,11 @@ with Python 3.14.6 in `.venv`.
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/linkage_data.py` | 0 | All seven identity fixtures pass. |
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/bridge_closure_search.py --nmin 5 --nmax 8` | 0 | E22: all 5,212 candidates processed. |
 
-E5(a) was not rerun: its eight external McKay `.s6` inputs are absent from
-the checkout. Their authoritative URLs, line counts, and SHA-256 checksums
-are recorded in `manifests/external_s6_manifest.json`; the local status of
-each remains `MISSING`.
+E5(a) was not rerun as a whole. Its order-18 McKay input is now restored and
+independently regenerated for the Type-B equality-order audit; the other seven
+external `.s6` inputs remain absent. Their authoritative URLs, line counts,
+SHA-256 checksums, and individual local statuses are recorded in
+`manifests/external_s6_manifest.json`.
 
 ## T8/order-9 execution record
 
@@ -246,3 +248,17 @@ frozen in `manifests/type_b_realizability_manifest.json`.
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_b_realizability.py --certificate data/type_b_pi0_fixed_template_certificate.json` | 0 | Exact first-20 prefix and sharp path unions reproduced; fixed-template CP-SAT returned `INFEASIBLE` after 138 C8 witnesses and independent Glucose3 returned UNSAT; both exact C16 enumerators agreed on 3,298 Balaban cycles; 826/826 scoped 2-switches fail through C16. |
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_realizability.py` | 0 | 5 passed. |
 | `make check` | 0 | Native checkers built; 95 Python files parsed; 92 tests passed in 5.75 s. |
+
+## Type-B equality-order execution record
+
+Commands run from the repository root on 2026-07-27 EDT with Python 3.14.6,
+NetworkX 3.6.1, and nauty 2.9.3. Exact hashes and ranges are frozen in
+`manifests/type_b_equality_order_manifest.json`.
+
+| Command | Exit | Result |
+|---|---:|---|
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_b_equality_order.py --certificate data/type_b_equality_order_certificate.json` | 0 | Two complete 101,546-graph order-18 size-26 runs found zero C8-free graphs; all 570 checksummed size-27 extremal graphs have at least three degree-two vertices; zero candidate bridge remainders and zero extendable equality cores. |
+| `geng -c -q -f -d2 -D3 18 26:26 \| .build/check_c8` | 0 | Independent C route checked 101,546 graphs, saw no C4, and found zero C8-free survivors. |
+| `copyg -q -g data/c48_n18e27.s6 \| .build/check_c8` | 0 | Independent C route checked all 570 extremal graphs and confirmed all are C4/C8-free before the separate degree-pattern elimination. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_equality_order.py` | 0 | 3 passed. |
+| `make check` | 0 | Native checkers built; 97 Python files parsed; 95 tests passed in 6.70 s. |

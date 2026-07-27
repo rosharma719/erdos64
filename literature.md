@@ -64,14 +64,12 @@ Inspecting the extremal files settles these:
 - n=18: 570 extremal graphs, **all min-deg 2** (0 cubic) ⇒ none is δ≥3.
 - n=19: 304 extremal graphs, **all min-deg 2** (0 with δ≥3).
 
-**Local reproducibility note (integrity pass):** the `.s6` inputs used for
-these historical degree-distribution calculations are not present in the
-current checkout, and the original run recorded no checksums. The integrity
-pass recorded authoritative temporary-download checksums, but did not restore
-the artifacts. These computations remain `EXTERNAL_DATA_MISSING`, not locally
-reproducible from the checkout alone; see
-`manifests/external_s6_manifest.json`. The separate geng n=18 reproduction does
-not depend on those files.
+**Local reproducibility note (updated Type-B equality pass):** the order-18
+`.s6` input is now present, matches its authoritative checksum, and is
+independently regenerated in the Type-B equality-order audit. The order
+16,17,19--23 inputs remain absent. See
+`manifests/external_s6_manifest.json` for per-file status. The separate cubic
+geng n=18 reproduction does not depend on the restored file.
 
 **THEOREM (4-or-8 through n=19).** Every graph with δ≥3 on at most 19 vertices
 contains a C4 or a C8.

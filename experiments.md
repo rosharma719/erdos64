@@ -103,12 +103,11 @@ confirmed via `geng -help`), Python 3.14 venv networkx 3.6.1, trusted detector
 **(a) Extremal-file min-degree (downloaded `c48_nNeE.s6` from McKay).** For every
 non-isomorphic {C4,C8}-free extremal graph, min-degree distribution:
 
-**Current artifact status:** the eight `.s6` inputs are absent from this
-checkout and their checksums were not recorded by the original run. The
-integrity pass recorded checksums from temporary authoritative downloads in
-`manifests/external_s6_manifest.json`, but did not restore the artifacts. The
-historical results below remain `EXTERNAL_DATA_MISSING` and are **not currently
-locally reproducible from this checkout alone**.
+**Current artifact status (updated Type-B equality pass):** the order-18 file
+is restored with its authoritative checksum and independently regenerated.
+The other seven `.s6` inputs remain absent. Per-file status and checksums are
+in `manifests/external_s6_manifest.json`; historical rows using the absent
+files remain externally dependent.
 
 | n | e=ex | #graphs | min-deg distribution | #(δ≥3) |
 |---|------|---------|----------------------|--------|
