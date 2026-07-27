@@ -298,27 +298,22 @@ because `R_0` shares `xY` and its internal vertex `Y` with both full paths.
 
 ## 8. Minimal rooted obstruction and SPQR scope
 
-Choose `K` lexicographically minimally by
+The subsequent whole-pair audit `type_b_compatibility.md` replaces this
+conditional sketch with T9B. Retaining the other Type-B bridge and `xX`, any
+smaller internally clean rooted graph whose closure is 2-connected and whose
+terminal spectrum is contained in `Lambda(K)` would create a smaller
+counterexample. Exact terminal degree equality and preservation of the
+triangle gateway are unnecessary for that contradiction: the retained bridge
+and edge already contribute two at each terminal.
 
-\[
-(|V(K)|,|E(K)|,\min\Lambda(K),|\Lambda(K)|)
-\]
-
-within a fixed outside Type-B context. Edge deletion is spectrum-monotone, so
-a rooted T8-style statement is available only conditionally: if deleting an
-edge preserves internal/global degree constraints, the gateway triangle,
-and 2-connectivity of `K+xX`, then it preserves internal and cross-cycle
-cleanness and T2 re-applies, contradicting minimality. Hence every edge of a
-minimal rooted obstruction must be degree-critical, gateway-critical, or
-closure-connectivity-critical.
-
-This does not give a finite SPQR family. For a real R- or P-skeleton edge,
-R1/R2 remove the closure-connectivity alternative, but the edge may still meet
-an internal cubic vertex (or a terminal whose global degree is tight). The
-workspace's own T8R/T8P census contains many such critical incidences. No
-bound on the number or arrangement of R-nodes follows, no universal
-spectrum-safe replacement is proved, and LR* in `s6_case_tree.md` is itself
-explicitly open and not inherited automatically by Type B/C cases.
+For edge deletion, T9B says that an internal degree constraint fails or the
+closure loses 2-connectivity. R1/R2 remove the latter alternative for real
+R/P edges, so every such edge meets an internal cubic vertex. This is stronger
+and more accurately scoped than importing T8R/T8P's Type-A terminal list.
+It still does not give a finite SPQR family: internal cubic vertices can cover
+arbitrarily many real edges, and the self-sum-dependent Type-A rigid-leaf
+dichotomy is not inherited. No bound on the number or arrangement of R-nodes
+or universal spectrum-safe replacement is proved.
 
 ## 9. Result
 

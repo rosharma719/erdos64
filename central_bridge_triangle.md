@@ -222,7 +222,10 @@ infinite safe arithmetic family `\ell=2^t+1`,
 `t>\max\{\rho_x,s_x,3\}`; hence it does not eliminate the case. The proof,
 arithmetic classification, overlap audit, Heawood hypothesis table, and SPQR
 scope are in `type_t_exact_two_a.md` and
-`verifier/type_t_exact_two_a.py`.
+`verifier/type_t_exact_two_a.py`. The subsequent whole-cut continuation
+`type_b_compatibility.md` identifies this central bridge as one side of the
+actual Type-B pair, maps the asymmetric spectrum of the component through
+`x'`, and proves T9B without importing Type-A self-sum assumptions.
 
 `verifier/type_t_r2_s2_audit.py` includes an explicit C4-free Heawood-based
 bridge satisfying T2's degree and 2-connectivity hypotheses with terminal

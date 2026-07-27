@@ -1,8 +1,7 @@
 # two_cut.md — toward 3-connectivity of a minimal counterexample
 
-**Status as of 2026-07-25 (sixth redirection pass — T4, the exact
-bridge-count classification, the corrected balanced census, and T5
-added).** New main target,
+**Status as of 2026-07-27 (T4/T5 classification retained; T9B whole-pair
+Type-B criticality added in section 27).** New main target,
 replacing the one-pole gadget theory as the project's top priority (that
 work is frozen, not abandoned — see one_pole.md). This file works in the
 **2-connected case specifically**: G a lexicographically minimal
@@ -1151,3 +1150,45 @@ of scope for this pass (the task's instruction not to attempt a new LR*
 proof unless D1 specifically reduces to it; D1's outcome (II.5) did not
 reduce to the separator program this pass, so no such extension is
 pursued here).
+
+## 27. T9B: whole-pair Type-B replacement criticality [PROVED — 2026-07-27]
+
+The complete proof, dependency table, triangle mapping, and paired arithmetic
+are in `type_b_compatibility.md`. The essential correction is that Type B is
+controlled by
+
+\[
+ (\Lambda_1+\{1\})\cap\mathcal F=
+ (\Lambda_2+\{1\})\cap\mathcal F=
+ (\Lambda_1+\Lambda_2)\cap\mathcal F=\varnothing,
+\]
+
+not by assuming either bridge is self-sum-clean.
+
+**T9B(a), paired replacement [PROVED].** Fix one Type-B bridge `B_i` and
+retain the other bridge and the terminal edge. There is no smaller simple
+two-terminal `B_i'` without `xy` such that `B_i'+xy` is 2-connected, every
+internal vertex has degree at least three, `B_i'` is internally
+`\mathcal F`-clean, and `\Lambda(B_i')\subseteq\Lambda(B_i)`. Exact terminal
+degree equality is sufficient but unnecessary: the retained bridge and edge
+already contribute two at each terminal, while closure 2-connectivity makes
+`B_i'` contribute at least one. The cycle decomposition shows that internal,
+edge-plus, and cross cycles all remain clean, producing a lexicographically
+smaller counterexample.
+
+**T9B(b), deletion form [PROVED].** For every `e\in E(B_i)`, either an
+internal endpoint has degree three in `B_i`, or `(B_i+xy)-e` is not
+2-connected. Deletion only removes internal cycles and terminal paths, so if
+neither failure occurred, `B_i-e` would contradict T9B(a).
+
+**Type-B R/P consequence [PROVED, T9B+R1/R2].** Every real `B_i` edge in
+an R- or P-skeleton of `B_i+xy` meets an internal degree-three vertex. R1/R2
+exclude the connectivity alternative. The unique bridge edge at `x`, and a
+unique edge at `y` when `b_i=1`, cannot be such a real R/P edge because its
+deletion would leave closure degree one at that terminal.
+
+This is stronger than importing T8R/T8P's Type-A terminal list. It still does
+not bound the number of R-nodes: internal cubic vertices may cover every real
+edge. The Type-A rigid-leaf dichotomy also used self-sum cleanliness and is
+not inherited. Consequently T9B does not reduce Type B to a finite SPQR
+family, and no all-orders conclusion is claimed.

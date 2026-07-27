@@ -1,7 +1,7 @@
 # S6 dependency tree and the leaf-R replacement boundary
 
 This file freezes the exact logical state after T1--T5, R1/R2, T8R/T8P,
-the S/P leaf classification, and the rigid-leaf dichotomy. `G` is a
+T9B, the S/P leaf classification, and the rigid-leaf dichotomy. `G` is a
 lexicographically minimal Erdős--Gyárfás counterexample, if one exists.
 Nothing here is proof-assistant formalized.
 
@@ -32,11 +32,13 @@ S6: G is 3-connected
     |           `-- remote leaf R; FIRST UNPROVED is LR* below.
     |
     +-- Type B: two bridges plus xy, a_1=a_2=1
-    |   +-- dyadic self-sum: same deferred overlap gate.
-    |   `-- self-sum-clean
-    |       +-- T3/T5 force balance/maximality.
-    |       +-- finite S leaves/no P leaf.
-    |       `-- rigid-forced and minimal/T8-compatible: LR* gate.
+    |   +-- complete compatibility is edge-plus and cross-bridge, not
+    |   |   either bridge's self-sum.
+    |   +-- T9B forbids every smaller spectrum-subset replacement.
+    |   +-- finite S leaves/no P leaf; every real R/P edge meets an
+    |   |   internal cubic vertex.
+    |   `-- FIRST UNPROVED: control the full spectra/internal cleanliness
+    |       or construct a smaller replacement; no finite R-family follows.
     |
     `-- Type C: two bridges, no xy
         +-- q_i=3 when min(a_i,b_i)=1; q_i=2 otherwise.
@@ -50,10 +52,10 @@ S6: G is 3-connected
 ```
 
 This tree records a critical scope fact: **LR* is not currently sufficient to
-prove S6.** The cut-vertex case, the expressly deferred self-sum-overlap gate,
-and the extension from scoped minimal Type-A gadgets to every Type B/C bridge
-occur earlier in the dependency tree. Claiming that every 2-cut has already
-been reduced to LR would therefore be false.
+prove S6.** The cut-vertex case, Type A/C's expressly deferred self-sum-overlap
+gate, and the absence of a finite Type-B reduction occur earlier in the
+dependency tree. Claiming that every 2-cut has already been reduced to LR
+would therefore be false.
 
 ## 2. Exact Type A/B/C table
 
@@ -67,7 +69,7 @@ Let `c_i=|V(B_i)|-2`, `e_i=|E(B_i)|`, and
 | type | nontrivial bridges / `xy` | terminal profile | T3/T5 consequences | possible leaf types in `B_i+xy` | proved eliminations | first unproved implication |
 |---|---|---|---|---|---|---|
 | A | `t=3`, `xy` absent | after swapping poles, `a_1=a_2=a_3=1`; `d_G(x)=3`; all `q_i=3` | T3: a self-sum-clean `i` must have `(3c_i+2,3e_i) >=lex (n,m)`. T5: every clean `i` is lex-maximal among bridge signatures; if all three are clean, `(c_1,e_1)=(c_2,e_2)=(c_3,e_3)`. | if `b_i=1`, S-triangle at either terminal or S-quadrilateral through both; if `b_i>1`, only the x-triangle; P leaf impossible; otherwise R | `t>=4`; `xy` present; remote/larger S leaves; all P leaves; Type-A bridge orders <=11 (finite only) | dyadic overlapping self-sum, or LR* after the clean/minimal rigid gate |
-| B | `t=2`, `xy` present | after swap, `a_1=a_2=1`; `d_G(x)=3`; all `q_i=3`; additionally `(Lambda_i+{1}) cap F=empty` | T3 as above. T5: a clean bridge is lex-maximal; if both are clean, their `(c,e)` signatures are equal. | same per-bridge S/P/R list as Type A | all other bridge counts/profiles; remote/larger S leaves; all P leaves | dyadic overlapping self-sum, or LR* after the clean/minimal rigid gate |
+| B | `t=2`, `xy` present | after swap, `a_1=a_2=1`; `d_G(x)=3`; all `q_i=3`; `(Lambda_i+{1}) cap F=empty` and `(Lambda_1+Lambda_2) cap F=empty` | T3/T5 retain their conditional self-sum conclusions. T9B instead uses the full pair: no smaller internally clean closure with spectrum contained in `Lambda_i` can replace either bridge. Every real R/P edge meets an internal cubic vertex. | same local S/P/R list as Type A; Type-A's self-sum-based rigid-leaf dichotomy is not inherited | all other bridge counts/profiles; remote/larger S leaves; all P leaves; smaller spectrum-subset replacements | control of the full paired spectra/internal cleanliness; T9B does not make the R-family finite |
 | C | `t=2`, `xy` absent | `a_1+a_2>=3`, `b_1+b_2>=3`; no bridge has both terminal degrees >=3; `q_i=3` iff a terminal degree is 1, otherwise `q_i=2` | T3: clean `i` must have `(q_i c_i+2,q_i e_i) >=lex (n,m)`. If both have `q=2` and are clean, the full evasion equalities force equal `(c,e)`. No T5 statement is proved. | `(1,1)` is SP-eligible with the three finite S forms; exactly one unit terminal permits only its S-triangle; no unit terminal permits no S leaf; P leaf impossible; otherwise R | `q=1`; all P leaves; every S leaf outside the listed degree-2-terminal forms | Type-C replacement/balance implication; then LR* for a rigid leaf |
 
 The S-leaf entries follow from one common argument: every internal vertex on
@@ -126,7 +128,9 @@ Not inherited automatically:
 - self-sum cleanliness of the containing bridge;
 - minimality of `K` among two-terminal realizations;
 - a T8-style deletion certificate for a whole virtual expansion;
-- applicability of the scoped rigid-leaf dichotomy to all Type B/C cases.
+- applicability of the scoped rigid-leaf dichotomy to Type B/C cases (T9B
+  supplies bridge-edge criticality for Type B, not the missing self-sum step
+  or a whole-virtual-expansion replacement).
 
 These missing hypotheses are why the informal LR wording cannot simply be
 assumed.
