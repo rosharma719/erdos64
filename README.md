@@ -283,6 +283,13 @@ work in the sibling `erdos/` directory — no shared code.
   criticality plus its stronger real R/P-edge consequence. It isolates an
   exact paired-spectrum family without claiming graph realizability or a
   finite SPQR reduction.
+- `type_b_realizability.md` — freezes that exact family and its first twenty
+  targets, proves sharp canonical path-union and degree bounds, gives a
+  two-solver UNSAT certificate for one fixed minimum-order paired embedding,
+  enumerates all 3,298 Balaban `C16`s, and exhausts 826 witness-preserving
+  degree-preserving 2-switches. The remaining claim is explicitly one
+  degree-saturation/ear realizability mechanism, not ICF or a bounded-family
+  elimination.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -484,6 +491,12 @@ work in the sibling `erdos/` directory — no shared code.
     all four paired-offset patterns and a 1,600-row finite regression of the
     infinite forced-core family, plus the explicit Balaban C16 witness and
     its intersections with the length-11/13 paths.
+  - `type_b_realizability.py` — checks the frozen family and exact first-20
+    prefix; constructs sharp minimum-order path unions; runs deterministic
+    CP-SAT C8-CEGAR and an independently encoded Glucose3 UNSAT check for one
+    fixed order-36 paired template; independently enumerates every Balaban
+    C16; and exhausts a precisely scoped class of 826 path-preserving
+    degree-preserving 2-switches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
