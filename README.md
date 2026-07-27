@@ -112,7 +112,7 @@ work in the sibling `erdos/` directory — no shared code.
   each named as a precise next step, with no `q=4` census, defect
   bound, or voltage search substituted for genuine progress.
 - `contraction_central_bridge.md` — **the central-bridge lemma and
-  topological-K4 reduction (2026-07-27, current top priority):** CB1
+  topological-K4 reduction (2026-07-27):** CB1
   (PROVED, by direct citation of S5): the theta bridge carrying the
   cubic center's third edge can *never* be single-attachment, since
   `v`'s own degree (3) already contradicts S5's forced degree-4 for any
@@ -130,6 +130,24 @@ work in the sibling `erdos/` directory — no shared code.
   configuration is exhibited, though not certified canonical/minimal),
   the correct honest replacement for last phase's disproved "one-cell"
   claim.
+- `contraction_separator_integration.md` — **separators, admissible
+  paths, and Type T integration (2026-07-27, current top priority):**
+  refines the task's proposed CB3 into **CB3′**, the sharper correct
+  dichotomy: a clean 2-attachment central bridge reduces, by direct
+  citation, to `two_cut.md`'s already-proved T1 (2-connectivity) and T2
+  (two admissible paths, via Gao–Huo–Liu–Ma) with no new proof needed;
+  the failure modes are exactly an S5 cut vertex, or — the genuinely new
+  case the original formulation missed — `\ge3` theta attachments,
+  which causes real internal-degree loss when restricted to 2 terminals
+  and cannot be misfiled under Type A/B/C (a 2-terminal classification).
+  Derives the paired topological-`K_4` union arithmetic from T2's two
+  admissible paths (always safe at offset 1; excludes `\ell=2^j-1`
+  exactly at offset 2). Proves a sharp `pq`-edge consequence via direct
+  citation of T4 (if `pq\in E(G)`, some theta bridge must be
+  cross-branch) and maps the no-cross-branch case exactly onto Type A's
+  already-recorded dependency chain in `s6_case_tree.md`. Honestly
+  reports the joint two-central-bridge Type T analysis (this file's own
+  highest-value target) as not attempted.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -262,6 +280,13 @@ work in the sibling `erdos/` directory — no shared code.
     non-canonical) two-excursion CB2 instance (contraction_central_bridge.md
     Parts I-V); kept separate from the six prior contraction verifiers,
     none of which it touches.
+  - `separator_integration.py` — mechanical cross-check of CB3′'s three
+    exact cases (clean 2-attachment 2-connectivity/degree preservation;
+    the >=3-attachment internal-degree-loss phenomenon) and the paired
+    topological-K4 union arithmetic (contraction_separator_integration.md
+    Parts VI-VII); kept separate from the seven prior contraction
+    verifiers, none of which it touches; does not re-derive S5/T1/T2,
+    all cited by name.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
