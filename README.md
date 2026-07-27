@@ -215,6 +215,23 @@ work in the sibling `erdos/` directory — no shared code.
   honestly resolves 3 of the task's 6 component-sharing possibilities
   from local data alone, leaving the rest open (external-structure
   dependent) rather than forcing a false resolution.
+- `central_bridge_triangle_s5.md` — **S5 and shared-port cases at a Type
+  T triangle (2026-07-27, current top priority):** Part VI.1 proves that
+  if two cubic triangle vertices' central bridges both independently hit
+  the S5 outcome, their cut vertices must coincide (S5's own
+  uniqueness) — and, new here, that the two attachment-free leaves are
+  then *forced onto the same lobe* (never opposite lobes), since the
+  triangle itself cannot be split by a cut vertex outside it. Part VI.2
+  shows the "crosses lobes without using z" alternative is vacuous by
+  the cut-vertex definition itself, and isolates the one genuinely open
+  sub-case (a bridge path detouring through the leaf side) as needing
+  the same unresolved internal-cycle-spectrum information already
+  flagged upstream. Sets up the non-S5 `(A,A)/(A,P)/(P,P)` matrix (Part
+  VII), noting that `\tau=P` or `S` at a triangle vertex requires
+  attachment structure beyond `\{x,X_x\}` that this sequence has not
+  pinned down — the `(P,P)` case (Part VIII) is therefore left open
+  honestly rather than forced to a false arithmetic conclusion; `(A,P)`
+  (Part IX) is resolved concretely in its same-terminal-pair sub-case.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -377,6 +394,13 @@ work in the sibling `erdos/` directory — no shared code.
     length exactly 2 and a genuine second path of length 3 or 4
     (central_bridge_triangle.md Parts II, IV); kept separate from the ten
     prior contraction verifiers, none of which it touches.
+  - `central_bridge_triangle_s5.py` — mechanical cross-check that on an
+    explicit double-S5 gadget (two central bridges sharing one forced
+    cut vertex `z` of degree exactly 4), the triangle is forced entirely
+    into one lobe of `G-z` and the attachment-free leaf into the other,
+    never opposite lobes (central_bridge_triangle_s5.md Part VI.1); kept
+    separate from the eleven prior contraction verifiers, none of which
+    it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
