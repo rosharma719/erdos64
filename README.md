@@ -131,7 +131,7 @@ work in the sibling `erdos/` directory — no shared code.
   the correct honest replacement for last phase's disproved "one-cell"
   claim.
 - `contraction_separator_integration.md` — **separators, admissible
-  paths, and Type T integration (2026-07-27, current top priority):**
+  paths, and Type T integration (2026-07-27):**
   refines the task's proposed CB3 into **CB3′**, the sharper correct
   dichotomy: a clean 2-attachment central bridge reduces, by direct
   citation, to `two_cut.md`'s already-proved T1 (2-connectivity) and T2
@@ -148,6 +148,22 @@ work in the sibling `erdos/` directory — no shared code.
   already-recorded dependency chain in `s6_case_tree.md`. Honestly
   reports the joint two-central-bridge Type T analysis (this file's own
   highest-value target) as not attempted.
+- `contraction_block_cut_tree.md` — **resolving the multi-attachment
+  obstruction via block-cut trees (2026-07-27, current top priority):**
+  builds the attachment core `T_A(B)` (minimal subtree of `B`'s
+  block-cut tree spanning every marked block) and proves its five basic
+  properties; proves the attachment-free-leaf case reduces to one exact
+  S5 configuration (`z` cut vertex, exactly 2 of its 4 edges into the
+  leaf, equal-order/equal-size lobes forcing the leaf to be as large as
+  the rest of the graph); proves MA1 (a singly-marked leaf, once shown
+  not to be a bare edge, gives a genuine 2-connected `R+xz` with full
+  internal degree, licensing the admissible-path theorem and extending
+  its two paths through a second attachment). Proves **MA2**, the
+  central-bridge trichotomy — and sharpens it in the proving: outcomes
+  (1) or (3) alone already exhaust every case, from the mere existence
+  of a marked leaf in the (always-nonempty) attachment core; outcome (2)
+  is real but not needed for completeness, stated honestly rather than
+  silently dropped or overclaimed as load-bearing.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -287,6 +303,13 @@ work in the sibling `erdos/` directory — no shared code.
     Parts VI-VII); kept separate from the seven prior contraction
     verifiers, none of which it touches; does not re-derive S5/T1/T2,
     all cited by name.
+  - `block_cut_tree.py` — mechanical cross-check of attachment-core
+    pruning (via networkx's own biconnected-components/articulation-
+    points routines, independent of this project's code), the
+    attachment-free-leaf S5 consequence, the MA1 construction, and the
+    MA2 trichotomy (contraction_block_cut_tree.md Parts I-V); kept
+    separate from the eight prior contraction verifiers, none of which
+    it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
