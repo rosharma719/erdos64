@@ -73,7 +73,7 @@ work in the sibling `erdos/` directory — no shared code.
   (same internal-path content at the shared `(a,b)` pair; genuinely new
   content at `(a,c)`/`(b,c)`; exponents not assumed to coincide).
 - `contraction_mixed_witness.md` — **mixed power/near-power path systems
-  at a Type N vertex (2026-07-27, current top priority):** derives, by
+  at a Type N vertex (2026-07-27):** derives, by
   orbit-counting (not labelled enumeration), exactly four combined
   endpoint orbits (T1, T2a, T2b, T2c) for the joint nontriangle-edge and
   closed-neighbourhood witnesses at a Type N vertex, then resolves the
@@ -84,6 +84,18 @@ work in the sibling `erdos/` directory — no shared code.
   choice** (two new arithmetic lemmas proved for this pass); the clean
   local system alone never forces a contradiction at a Type N vertex,
   motivating the shift to theta-saturation as the next target.
+- `contraction_intersections.md` — **decomposing non-clean witness
+  intersections (2026-07-27, current top priority):** proves the exact
+  cell-decomposition identity for two same-endpoint paths in the
+  non-crossing case (`|P|-|Q|=\sum` over divergent cells, each yielding
+  a genuine cycle `\alpha_i+\beta_i`; common-component cells yield no
+  cycle); tests and **disproves** the "canonical witnesses always give
+  one cell" target with an explicit smallest obstruction (0 shared
+  edges/components, still 2 divergent cells); classifies three
+  non-crossing intersection-diagram types exactly. The crossing case is
+  left explicitly open — uncrossing is named as the applicable
+  technique, but its hypotheses are not verified to hold here, and no
+  crossing instance is claimed resolved.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -195,6 +207,13 @@ work in the sibling `erdos/` directory — no shared code.
     arithmetic, and two new arithmetic lemmas (contraction_mixed_witness.md);
     kept separate from the three prior contraction verifiers, none of
     which it touches.
+  - `intersection_diagrams.py` — mechanical cross-check of the
+    non-crossing cell-decomposition identity, the explicit smallest
+    counterexample to the one-cell reduction target, and the three
+    resolved non-crossing intersection-diagram types
+    (contraction_intersections.md Part V); kept separate from the four
+    prior contraction verifiers, none of which it touches; deliberately
+    builds no gadget for the still-open crossing case.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
