@@ -173,3 +173,13 @@ session.**
   20-vertex bridge with a required length-19 Hamiltonian path — is now the
   correct highest-priority Type-B target, ahead of any two-slack `Pi0`
   work.
+
+## 6. Superseded by `type_b_delta2_zero_slack.md`
+
+The recommended next step in Section 5 has since been completed: B20D2
+(no eligible 20-vertex Type-B bridge role with frozen admissible gap 2)
+is proved in `type_b_delta2_zero_slack.md`. Combined with B19+B20, every
+bridge role of every one of the 16 tuples audited here (ranks 1-16, the
+only ones with original bound `<=40`) now has order `>=21`, so **all 16
+tuples reach full-graph order `>=40`** — the priority question this file
+raised is resolved: there is no longer a tuple below 40 to prioritize.
