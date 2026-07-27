@@ -64,10 +64,10 @@ Inspecting the extremal files settles these:
 - n=18: 570 extremal graphs, **all min-deg 2** (0 cubic) ⇒ none is δ≥3.
 - n=19: 304 extremal graphs, **all min-deg 2** (0 with δ≥3).
 
-**Local reproducibility note (updated Type-B equality pass):** the order-18
-`.s6` input is now present, matches its authoritative checksum, and is
-independently regenerated in the Type-B equality-order audit. The order
-16,17,19--23 inputs remain absent. See
+**Local reproducibility note (updated Type-B one-slack pass):** the order-18
+and order-19 `.s6` inputs are now present and match their authoritative
+checksums; order 18 is also independently regenerated in the Type-B
+equality-order audit. The order 16,17,20--23 inputs remain absent. See
 `manifests/external_s6_manifest.json` for per-file status. The separate cubic
 geng n=18 reproduction does not depend on the restored file.
 

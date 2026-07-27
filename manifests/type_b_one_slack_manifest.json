@@ -1,0 +1,56 @@
+{
+  "description": "Exact one-slack Pi0 bridge reduction and exhaustive elimination of the 29-edge extremal remainder layer.",
+  "scope_note": "Covers the theoretical reduction of every 20-vertex Pi0 bridge to a 19-vertex remainder with 28 or 29 edges, and all 304 graphs in the complete 29-edge extremal layer. The 28-edge near-extremal layer is not completed, so this is not a 20-vertex bridge census or an order-38 result. No proof-assistant formalization exists.",
+  "source_parent_commit": "d9efe7ca2ce3d0d372783815af0048fdb4c892dc",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_b_one_slack_setup.py --certificate data/type_b_one_slack_extremal_certificate.json",
+  "independent_c_command": "copyg -q -g data/c48_n19e29.s6 | .build/check_c8",
+  "source_checksums": {
+    "verifier/type_b_one_slack_setup.py": "d885507faa7ac3137e9efece96b277c8f27f40d462ed6c0ecbfdb699fbd82561",
+    "tests/test_type_b_one_slack_setup.py": "69f62e8d5f45ef5633548d4823d8b7f3a35c8d52ebee0272a61a59abfd53385d",
+    "verifier/cycle_detect.py": "e74e9528916dd38cb3d94caf734b575f8c6a78c222fd2098084bd17620ee809d",
+    "verifier/check_c8.c": "48a63d29f702d70e39cfdf5126df8f50817abf6175da360d845d28bc39cde3c8"
+  },
+  "input": {
+    "path": "data/c48_n19e29.s6",
+    "source_url": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n19e29.s6",
+    "sha256": "bf81b89b826ae3153c7497addb26025796b982a52a5e39210754f15620226562",
+    "graphs": 304
+  },
+  "output_checksums": {
+    "data/type_b_one_slack_extremal_certificate.json": "a119583161880ca39cc8551f395bae440263843010e9273fadb2d25fb0393596",
+    "stdout": "7beccc434a426eca81b0d626df2ba5a0e4fe6fc69cee2507eab8cfefd7f3c626",
+    "type_b_one_slack.md": "86aebfc9185a399d679ed63746342330aa6fe692e7081285f4b66c31e978ae30",
+    "independent_c_stdout": "d630488e6c802ccb314cf9c54e39a04980ccfe925afb91baeb25d296fb194a09",
+    "independent_c_stderr": "3b81b25396a29ecf65c5cfa533495f3486774ce0dcc41c058cf2e7f443a02d8c"
+  },
+  "versions": {
+    "python": "3.14.6",
+    "networkx": "3.6.1",
+    "nauty": "2.9.3"
+  },
+  "results": {
+    "bridge_order": 20,
+    "remainder_order": 19,
+    "distinguished_path_vertices": 18,
+    "off_path_vertices": 1,
+    "remainder_edge_range": [28, 29],
+    "full_order_38_size_range": [59, 61],
+    "extremal_graphs_checked": 304,
+    "degree_two_histogram": {"3": 9, "4": 61, "5": 122, "6": 92, "7": 19, "8": 1},
+    "extremal_graphs_with_at_most_two_degree_two_vertices": 0,
+    "extremal_c4_detector_disagreements": 0,
+    "extremal_c8_detector_disagreements": 0,
+    "unresolved_edge_layer": 28,
+    "unresolved_degree_sequences": ["2,3^18", "2^2,3^16,4"],
+    "assertion_failures": 0
+  },
+  "validation": {
+    "targeted_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_one_slack_setup.py",
+    "targeted_result": "2 passed",
+    "full_command": "make check",
+    "full_result": "99 Python files parsed; 97 tests passed in 6.56 s; native checkers built successfully"
+  },
+  "independent_verification": "Common-neighbour and rooted-DFS C4 tests agree on all 304 records; rooted DFS and NetworkX simple_cycles C8 tests agree on all records; a separately compiled C checker confirms all 304 are C4/C8-free; a fresh degree pass reproduces the full histogram.",
+  "incomplete_attempt_not_used": "geng -c -q -f -d2 -D4 19 28:28 | .build/check_c8 was stopped after about six minutes without completion. No shard or absence claim from that attempt is used.",
+  "completed_range": "All 304 nonisomorphic order-19 size-29 {C4,C8}-free extremal graphs in McKay's complete checksummed input. The size-28 layer, distinguished roles, required path filters, C16, closure 2-connectivity, T9B, spectra, and pairing remain uncompleted."
+}

@@ -302,6 +302,11 @@ work in the sibling `erdos/` directory — no shared code.
   independently of its partner. Consequently both bridges have order at least
   20, the full graph has order at least 38, and order 37 is eliminated by the
   impossible mixed `(19,20)` bridge sizes.
+- `type_b_one_slack.md` — derives the exact 20-vertex bridge reduction: after
+  deleting `x`, the 19-vertex remainder has one vertex off a distinguished
+  18-vertex path, 28 or 29 edges, and at most two degree-two vertices. The
+  complete 304-graph extremal layer eliminates 29 edges; the exact 28-edge
+  degree-sequence layer remains explicitly incomplete.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -514,6 +519,10 @@ work in the sibling `erdos/` directory — no shared code.
     unrelated C8 detectors; checks McKay's 570 order-18 extremal graphs and a
     fresh degree audit; and certifies that neither edge layer contains a bridge
     remainder with the necessary degree pattern.
+  - `type_b_one_slack_setup.py` — verifies all 304 order-19, 29-edge McKay
+    extremal graphs with two C4/two C8 routes, recomputes their degree-two
+    distribution, and certifies that the extremal one-slack remainder layer is
+    empty without claiming anything about the unresolved 28-edge layer.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

@@ -42,7 +42,7 @@ it must not be paraphrased as formally verified.
 | E1 order 10 | `COMPUTATIONALLY_REPRODUCED` | Python and C checked 5,203,110 connected minimum-degree-3 graphs; zero survivors. |
 | E1 order 11 | `COMPUTATIONALLY_REPRODUCED` | C checked 577,076,528 graphs; zero survivors. |
 | E1 order 12+ | `INCOMPLETE_RANGE` | Order 12 was partial; no claim beyond order 11 is locally certified by E1. |
-| E5(a) McKay files | `PARTIALLY_RESTORED` | The order-18 extremal file is present with its authoritative checksum for the Type-B equality audit; the other seven `.s6` files remain absent. See `manifests/external_s6_manifest.json`. |
+| E5(a) McKay files | `PARTIALLY_RESTORED` | The order-18 and order-19 extremal files are present with their authoritative checksums for the Type-B equality/one-slack audits; the other six `.s6` files remain absent. See `manifests/external_s6_manifest.json`. |
 | E5(b) order-18 cubic check | `COMPUTATIONALLY_REPRODUCED` | 2,761 C4-free cubic graphs; zero C8-free survivors. |
 | E6 n=20–23 near-cubic layers | `INCOMPLETE_RANGE` | Not launched/completed. |
 | E9 one-pole search | `COMPUTATIONALLY_REPRODUCED`, `INCOMPLETE_RANGE` | 67,432 candidates through n=9; n=10 unfinished. |
@@ -147,6 +147,7 @@ it must not be paraphrased as formally verified.
 | Irreducible Type-B realizability (type_b_realizability.md) | `PROVED_IN_MARKDOWN`, `COMPUTER_ASSISTED_FINITE_CERTIFICATE`, `EXHAUSTIVE_FINITE_COMPUTATION` (stated scopes), `NOT_RESOLVED`, `NOT_FORMALLY_VERIFIED` | Freezes exactly the prior parameterized family and first twenty tuples; proves sharp minimum-order canonical path unions at the first dyadic scale and degree-derived size bounds. For one fixed minimum-order embedding of `Pi=(2,2,4,4,1,1)`, deterministic CP-SAT plus an independently encoded Glucose3 instance prove no minimum-degree-three C4/C8-free saturation exists, even in a relaxation omitting closure and T9B. This does not cover other embeddings or tuples. Two exact enumerators agree on all 3,298 Balaban C16s; an exhaustive finite audit finds all 826 path-preserving closure-biconnected 2-switch mutations first fail at C4, C8, or C16. ICF remains open. |
 | Minimum-order `Pi0` Type-B realizability (type_b_equality_order.md) | `PROVED_IN_MARKDOWN`, `EXHAUSTIVE_FINITE_COMPUTATION`, `COMPUTATIONALLY_REPRODUCED`, `NOT_FORMALLY_VERIFIED` | E36 uses the Hamiltonian required path and degree conditions, without fixing any other path embedding, to reduce either bridge at full order 36 to a connected order-18 C4/C8-free remainder with 26 or 27 edges and at most two degree-two vertices. Two complete geng runs with unrelated detectors eliminate all 101,546 graphs in the 26-edge degree layer. McKay's checksummed complete 570-graph extremal file has at least three degree-two vertices in every graph; two C4 and two C8 checks agree on all records and a fresh degree audit reproduces the distribution. Therefore `Pi0` has no Type-B realization at order 36. No larger order or later tuple is covered. |
 | B19 local bridge theorem (type_b_b19.md) | `PROVED_IN_MARKDOWN` using the previous `EXHAUSTIVE_FINITE_COMPUTATION`, `NOT_FORMALLY_VERIFIED` | Dependency audit shows the 19-vertex contradiction uses only the individual bridge role, ambient minimum degree/power-cycle-freeness, and the order-18 extremal certificate—not order-36 equality, total size, cross spectra, or the partner. Hence both `Pi0` bridges have order at least 20, every full realization has order at least 38, and order 37's forced mixed `(19,20)` sizes are impossible. No new computation is claimed. |
+| `Pi0` one-slack setup (type_b_one_slack.md) | `PROVED_IN_MARKDOWN`, extremal layer `EXHAUSTIVE_FINITE_COMPUTATION`, near-extremal layer `INCOMPLETE_RANGE`, `NOT_FORMALLY_VERIFIED` | Every 20-vertex bridge reduces to a connected 19-vertex remainder with a distinguished 18-vertex path, one off-path internal vertex, 28 or 29 edges, and at most two degree-two vertices. All 304 checksummed 29-edge extremal graphs have at least three degree-two vertices; two C4/two C8 routes agree. The sole unresolved graph layer is size 28 with degree sequence `2,3^18` or `2^2,3^16,4`; a six-minute broad geng attempt did not complete and is not evidence. No bridge or order-38 pairing conclusion is claimed. |
 | T3 three-way consistency (central_bridge_triangle_final.md Part XI) | `PROVED_IN_MARKDOWN`, `NOT_FORMALLY_VERIFIED` | Audits all six consistency dimensions the task lists (S5 uniqueness, parity/equality, component-sharing transitivity, attachment-order, common-path constraints) and finds none of the pairwise analyses creates a genuine cross-pair dependency for a third vertex to violate -- T3 is consistent because the machinery never links pairs, not because a hard three-way argument was separately resolved. |
 | Corrected residual Type-T assessment (central_bridge_triangle_final.md Part XIII; type_t_recovery_audit.md) | Honest scope statement, `CLAIM_REFUTED`, `NOT_RESOLVED` | The interrupted pinned R2/S2 claim is refuted, not converted into a Type-T elimination. Exact-two-attachment A with larger unspecified admissible pairs joins multi-attachment A, P, S, chord, mixed-S/double-S incidence, and deletion-relative component-sharing survivors. The former claim that only component sharing and R2/S2 remained was too broad. |
 | Double-S and detour addendum (central_bridge_triangle_addendum.md) | `PROVED_IN_MARKDOWN`, `COMPUTATIONALLY_REPRODUCED` | (1) The two attachment-free leaves of a generic double-S configuration are the same connected component. (2) The original addendum correctly excluded length 3 but incorrectly retained length 4; recovery adds the missing YX closure and excludes 4 by a C4 as well. The old implication 4 in Lambda_x => rho_x != 2 remains arithmetically true but is vacuous in the anchored setting. |
@@ -168,9 +169,9 @@ with Python 3.14.6 in `.venv`.
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/linkage_data.py` | 0 | All seven identity fixtures pass. |
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/bridge_closure_search.py --nmin 5 --nmax 8` | 0 | E22: all 5,212 candidates processed. |
 
-E5(a) was not rerun as a whole. Its order-18 McKay input is now restored and
-independently regenerated for the Type-B equality-order audit; the other seven
-external `.s6` inputs remain absent. Their authoritative URLs, line counts,
+E5(a) was not rerun as a whole. Its order-18 and order-19 McKay inputs are now
+restored for the Type-B equality/one-slack audits; the other six external
+`.s6` inputs remain absent. Their authoritative URLs, line counts,
 SHA-256 checksums, and individual local statuses are recorded in
 `manifests/external_s6_manifest.json`.
 
@@ -263,3 +264,17 @@ NetworkX 3.6.1, and nauty 2.9.3. Exact hashes and ranges are frozen in
 | `copyg -q -g data/c48_n18e27.s6 \| .build/check_c8` | 0 | Independent C route checked all 570 extremal graphs and confirmed all are C4/C8-free before the separate degree-pattern elimination. |
 | `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_equality_order.py` | 0 | 3 passed. |
 | `make check` | 0 | Native checkers built; 97 Python files parsed; 95 tests passed in 6.70 s. |
+
+## Type-B one-slack setup execution record
+
+Commands run from the repository root on 2026-07-27 EDT with Python 3.14.6,
+NetworkX 3.6.1, and nauty 2.9.3. Exact hashes and the incomplete boundary are
+frozen in `manifests/type_b_one_slack_manifest.json`.
+
+| Command | Exit | Result |
+|---|---:|---|
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_b_one_slack_setup.py --certificate data/type_b_one_slack_extremal_certificate.json` | 0 | All 304 checksummed order-19 size-29 extremal graphs audited; every graph has at least three degree-two vertices, so zero meet the one-slack degree condition. |
+| `copyg -q -g data/c48_n19e29.s6 \| .build/check_c8` | 0 | Independent C route confirms all 304 input graphs are C4/C8-free. |
+| `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_one_slack_setup.py` | 0 | 2 passed. |
+| `make check` | 0 | Native checkers built; 99 Python files parsed; 97 tests passed in 6.56 s. |
+| `geng -c -q -f -d2 -D4 19 28:28 \| .build/check_c8` | incomplete | Stopped after about six minutes; no result from this attempt is used. The exact 28-edge layer remains open. |
