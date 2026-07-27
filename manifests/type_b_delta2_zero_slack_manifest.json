@@ -4,8 +4,106 @@
     "depends_on_equality_of_bridge_orders": false,
     "depends_on_partner_bridge": false,
     "depends_on_rho_s": false,
+    "explicit_witness_example": {
+      "candidate_id": "delta2_000",
+      "internal_c16": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        10,
+        15,
+        14,
+        12,
+        13
+      ],
+      "q_ay_len14": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        15,
+        16,
+        17,
+        18
+      ],
+      "q_ay_len14_closure": "edges ax + xy: cycle x-0-1-2-3-4-5-6-7-8-9-10-15-16-17-18-x has 14+2=16 edges (C16)",
+      "q_ay_len6": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        17,
+        18
+      ],
+      "q_ay_len6_closure": "edges ax + xy: cycle x-0-1-2-4-5-17-18-x has 6+2=8 edges (C8)",
+      "role": 3
+    },
     "formalization_status": "no proof-assistant formalization exists",
-    "statement": "No eligible 20-vertex Type-B bridge role with frozen admissible gap 2 exists."
+    "statement": "No eligible 20-vertex bridge in a frozen Type-B role with admissible gap 2 exists.",
+    "uses_exactly": [
+      "the Hamiltonian required path of length 19",
+      "the Type-B degree profile (d_B(x)=1, internal vertices >=3, d_R(a),d_R(y)>=2)",
+      "internal power-cycle avoidance (R is C4/C8-free)",
+      "the two-edge closure a-x-y (edges ax and xy, NOT just adding xy)"
+    ]
+  },
+  "claims": {
+    "claim_1_reused_exclusions": {
+      "certificates_reused": [
+        "data/type_b_slack_family_i_certificate.json",
+        "data/type_b_one_slack_extremal_certificate.json"
+      ],
+      "description": "Family I (both labelings) and the 29-edge layer, zero new computation",
+      "new_computation_performed": false
+    },
+    "claim_2_new_finite_enumeration": {
+      "canonical_classes": 6,
+      "canonical_multiset_sha256": "7486f2ee4d8c3707e790816e15c7df5d67ec83dabed1096e8c7b5cf78110cf4c",
+      "description": "Family II, freshly run exhaustive computation",
+      "new_computation_performed": true,
+      "per_role_solution_counts": {
+        "1": 0,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 0,
+        "15": 1,
+        "16": 0,
+        "17": 0,
+        "2": 0,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 2
+      },
+      "total_labeled_candidates": 12
+    },
+    "claim_3_global_tuple_corollary": {
+      "description": "separate, logically downstream consequence of Claim 1+2 combined with prior B19/B20",
+      "not_a_global_bound_unless": "the repository proves all Type-B configurations enter this frozen list (it does not)",
+      "scope_qualifier_required": "frozen irreducible Type-B tuple families",
+      "statement": "Every one of the 16 frozen irreducible Type-B tuple families has order at least 40."
+    }
   },
   "environment": {
     "gcc_version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",

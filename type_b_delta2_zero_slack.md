@@ -1,13 +1,27 @@
 # Zero-slack `delta=2` Type-B bridges: exact reduction and B20D2
 
 **Status.** Hand-written reduction plus exhaustive computer-assisted finite
-certificates. Family I and the 29-edge layer are eliminated by direct reuse
-of existing certificates (`data/type_b_slack_family_i_certificate.json`,
-`data/type_b_one_slack_extremal_certificate.json`) with zero new
-computation. Family II is eliminated by a fresh exhaustive computation,
-cross-validated by two independently coded generators whose canonical
-candidate sets agree exactly, plus a third independent networkx verifier.
-No proof-assistant formalization exists.
+certificates. No proof-assistant formalization exists. This file makes
+**three separate claims**, kept explicitly distinct so that reusing an old
+certificate is never conflated with running a new one, and so that a local
+bridge theorem is never conflated with its global tuple-table consequence:
+
+1. **Reused exclusions** (Sections 4-5): Family I (both labelings) and the
+   29-edge layer are eliminated by direct reuse of two already-existing
+   certificates, with **zero new computation** — those certificates are
+   pure abstract-degree-sequence facts that were never conditioned on any
+   particular path embedding, so they apply verbatim here.
+2. **New finite enumeration** (Sections 6-11): Family II is eliminated by a
+   **freshly run** exhaustive computation, cross-validated by two
+   independently coded generators whose canonical candidate sets agree
+   exactly, plus a third independent networkx verifier.
+3. **The global tuple-table corollary** (Section 13): a separate,
+   logically downstream consequence of combining this file's local theorem
+   with the previously proved B19/B20, stated with its own explicit scope
+   qualifier.
+
+**B20D2 (exact statement).** No eligible 20-vertex bridge in a frozen
+Type-B role with admissible gap 2 exists.
 
 ## 1. Why this case is genuinely different from the delta=1 (B20) case
 
@@ -83,6 +97,8 @@ cases (not 17 = 16 internal + 1 off-path as in B20 — here it is 17 = 17
 on-path internal vertices exactly, a different count that happens to
 coincide numerically).
 
+## Claim 1: reused exclusions (Family I, both labelings; the 29-edge layer)
+
 ## 4. Family I (both labelings): eliminated by direct reuse, zero new computation
 
 `data/type_b_slack_family_i_certificate.json` is the record of
@@ -108,6 +124,8 @@ forced to degree `>=3`), so an eligible `R` needs at most 2 degree-two
 vertices. Since all 304 extremal graphs have at least 3, **the existing
 certificate applies verbatim: the 29-edge layer is eliminated with no new
 computation.**
+
+## Claim 2: new finite enumeration (Family II)
 
 ## 6. Family II: exact slot-matching model
 
@@ -147,19 +165,54 @@ unplanned internal consistency check. Total DFS nodes: 12,004,454 (2.3
 seconds).
 
 **All 12 candidates independently re-checked positive for all three of:**
-an internal `C16`, a simple length-6 `a`-`y` path (closure `C8`), and a
-simple length-14 `a`-`y` path (closure `C16`). Zero have a `C4`, `C8`
-directly, or a length-2 `a`-`y` path (closure `C4`) — 0/12, consistent
-with the incremental pruning.
+an internal `C16` (`C_{16}\subseteq R`), a simple length-6 `a`-`y` path
+(closing to a `C8`), and a simple length-14 `a`-`y` path (closing to a
+`C16`). Zero have a `C4`, `C8` directly, or a length-2 `a`-`y` path
+(closing to a `C4`) — 0/12, consistent with the incremental pruning.
 
-## 8. The terminal-closing offset (audited, unchanged formula)
+**Explicit witness, candidate `delta2_000` (role 3), representative of all
+12** (full data in `data/type_b_delta2_witnesses.json`):
 
-Identical mechanism to B20 Section 5: the full graph contains edges `xa`
-and `xy`; a simple `a`-`y` path of length `r` in `R` closes to a cycle of
-length `r+2` through `x-a...y-x`. `r=2` gives `C4`, `r=6` gives `C8`,
-`r=14` gives `C16`. All three lengths were explicitly checked (not just
-6 and 14); zero candidates have the length-2 path, all 12 have both the
-length-6 and length-14 paths.
+```text
+internal C16 subset of R:
+  0-1-2-3-4-5-6-7-8-9-11-10-15-14-12-13-0   (16 distinct vertices, 16 edges, all present in R)
+
+Q_{a,y} of length 6 (a=0, y=18):
+  0-1-2-4-5-17-18
+  |Q|=6  =>  the two-edge closure a-x-y (edges ax, xy) gives the cycle
+  x-0-1-2-4-5-17-18-x, which has 6+2=8 edges: a C8.
+
+Q_{a,y} of length 14 (a=0, y=18):
+  0-1-2-3-4-5-6-7-8-9-10-15-16-17-18
+  |Q|=14  =>  the two-edge closure a-x-y (edges ax, xy) gives the cycle
+  x-0-1-2-3-4-5-6-7-8-9-10-15-16-17-18-x, which has 14+2=16 edges: a C16.
+```
+
+## 8. The terminal-closing offset: two edges, not one
+
+The full graph contains edges `xa` (the bridge's unique gateway edge) and
+`xy` (the terminal edge). These are **two distinct edges**, both incident
+to `x`. A simple `a`-`y` path `Q` inside `R`, of length `r`, together with
+edge `ax` and edge `xy`, forms the simple cycle
+
+\[
+ x \xrightarrow{ax} a \xrightarrow{\ Q,\ r\text{ edges}\ } y \xrightarrow{xy} x,
+\]
+
+of length `r+2`. It is never correct to describe this as "adding `xy`" to
+`Q` — `Q` lies entirely in `R`, which does not contain `x` at all, so
+**both** `ax` and `xy` are required to close the route, contributing
+exactly 2 extra edges. Concretely:
+
+\[
+ r=2 \implies |Q|+2=4 \ (C_4), \qquad
+ r=6 \implies |Q|+2=8 \ (C_8), \qquad
+ r=14 \implies |Q|+2=16 \ (C_{16}).
+\]
+
+All three lengths were explicitly checked (not just 6 and 14): zero
+candidates have the length-2 path (no forced closure `C4`), all 12 have
+both the length-6 and length-14 paths (forced closure `C8` and `C16`).
 
 ## 9. Independent SAT generator (`verifier/type_b_delta2_slot_sat.py`)
 
@@ -204,29 +257,45 @@ path witnesses are valid simple paths/cycles on all 12 records.
 
 ## 12. Theorem B20D2
 
-**B20D2.** No eligible 20-vertex Type-B bridge with frozen admissible gap
-2 exists.
+**B20D2.** No eligible 20-vertex bridge in a frozen Type-B role with
+admissible gap 2 exists.
+
+**This proof uses exactly these four ingredients, and nothing else:**
+
+1. the Hamiltonian required path of length 19 (Section 2);
+2. the Type-B degree profile (`d_B(x)=1`, internal vertices `>=3`,
+   `d_R(a),d_R(y)>=2` derived from that profile — Section 2);
+3. internal power-cycle avoidance (`R` is `C4/C8`-free as a subgraph of the
+   ambient counterexample, feeding the edge-count and Family I/II
+   arguments — Sections 2-3, 4, 6-11);
+4. the two-edge closure `a-x-y` (edges `ax` and `xy`, giving the closure
+   `C8`/`C16` witnesses that eliminate every Family II candidate —
+   Section 8).
+
+**It explicitly does not use:** `rho`, `s`, the partner bridge, or
+cross-spectrum compatibility (`(Lambda_1+Lambda_2)\cap F`). Equality of
+the two bridge orders is likewise never invoked — this is a one-bridge,
+role-generic theorem.
 
 *Proof.* Let `B` be a bridge role with longest required path length 19
 (`delta=2` for `B1`, or `epsilon=2` for `B2`) and `|V(B)|=20`. By Section
 2, `R=B-x` has 19 vertices spanned entirely by the required path (no
 off-path vertex), with `d_R(a),d_R(y)>=2` and all 17 remaining vertices at
-degree `>=3` — derived using only generic bridge/ambient facts, never
-`rho` or `s`. By Section 2's edge-count argument, `|E(R)| in {28,29}`. The
-29-edge layer is eliminated by direct reuse of the existing 304-graph
-McKay extremal certificate (Section 5). At 28 edges, the only possible
-degree sequences are `2,3^18` (Family I, both labelings) and `2^2,3^16,4`
-(Family II). Family I is eliminated by direct reuse of the existing
-86,047-graph certificate (Section 4). Family II is eliminated by an
-exhaustive computation (Sections 6-11): all 12 candidates (agreeing
-exactly between two independently coded generators, confirmed by a third
-independent verifier) contain an internal `C16` and force a closure `C8`
-and closure `C16`. Hence no 19-vertex `R` — and so no 20-vertex bridge
-role with admissible gap 2 — satisfies the necessary conditions. `square`
+degree `>=3` — derived using only ingredients 1-2 above, never `rho` or
+`s`. By Section 2's edge-count argument (ingredient 3), `|E(R)| in
+{28,29}`. The 29-edge layer is eliminated by direct reuse of the existing
+304-graph McKay extremal certificate (Section 5, Claim 1). At 28 edges,
+the only possible degree sequences are `2,3^18` (Family I, both
+labelings) and `2^2,3^16,4` (Family II). Family I is eliminated by direct
+reuse of the existing 86,047-graph certificate (Section 4, Claim 1).
+Family II is eliminated by an exhaustive computation (Sections 6-11,
+Claim 2): all 12 candidates (agreeing exactly between two independently
+coded generators, confirmed by a third independent verifier) contain an
+internal `C16` (ingredient 3) and force a closure `C8` and closure `C16`
+via ingredient 4. Hence no 19-vertex `R` — and so no 20-vertex bridge role
+with admissible gap 2 — satisfies the necessary conditions. `square`
 
-**This proof never uses `rho`, `s`, the partner bridge, cross-spectrum
-compatibility, or equality of the two bridge orders** — matching the
-task's stated constraints for a genuinely local, role-generic theorem.
+## Claim 3: the global tuple-table corollary (separate consequence)
 
 ## 13. Global tuple corollary
 
@@ -247,28 +316,51 @@ by B20D2):
  |V(G)|=|V(B_1)|+|V(B_2)|-2\ge21+21-2=40 \quad\text{for every one of the 16 tuples.}
 \]
 
-**Every frozen irreducible paired-spectrum tuple with original bound
-`<=40` has full-graph order at least 40.** Ranks 17-20 (and beyond,
-`t` or `u`=5) already had original bound `>=52`, unaffected and
-irrelevant to this comparison.
+\[
+ \boxed{\text{Every one of the 16 frozen irreducible Type-B tuple families
+ has order at least }40.}
+\]
 
-**Scope, stated precisely.** This is a lower bound for the frozen Type-B
-tuple family in `type_b_realizability.md` — the one explicit infinite
-family isolated in prior phases, not a classification of every possible
-Type-B spectrum (that file's own completeness-scope caveat, Section 1,
-still applies). It is not automatically a global Erdos-Gyarfas
-counterexample-order lower bound unless every Type-B configuration is
-proved to reduce to this family, which is not claimed here.
+Ranks 17-20 (and beyond, `t` or `u`=5) already had original bound `>=52`,
+unaffected and irrelevant to this comparison.
 
-## 14. What is explicitly claimed and what is not
+**Scope, stated precisely.** This is a lower bound for the **frozen
+irreducible Type-B tuple families** in `type_b_realizability.md` — the one
+explicit infinite family isolated in prior phases, not a classification of
+every possible Type-B spectrum (that file's own completeness-scope
+caveat, Section 1, still applies). **This is not yet a global lower bound
+for arbitrary counterexamples, nor even for every conceivable Type-B
+configuration, unless the repository already proves that all Type-B
+configurations enter this frozen list** — which it does not. The qualifier
+"frozen irreducible Type-B tuple families" must be kept whenever this
+result is cited.
 
-- **Claimed:** B20D2 is proved, using only generic (rho,s-independent)
-  bridge facts. Family I and the 29-edge layer reuse existing certificates
-  verbatim with zero new computation; Family II is eliminated by a fresh,
-  cross-validated exhaustive computation (two independent generators
-  agreeing exactly, a third independent verifier).
-- **Claimed:** every one of the 16 frozen tuples with original bound
-  `<=40` now has full-graph order `>=40`.
-- **Not claimed:** any classification of Type-B configurations beyond the
-  frozen tuple family; any proof-assistant formalization; any statement
-  about ranks 17+ (already far above 40, unaffected).
+## 14. What is explicitly claimed and what is not, per claim
+
+**Claim 1 (reused exclusions).** Family I (both labelings) and the
+29-edge layer are eliminated by direct reuse of
+`data/type_b_slack_family_i_certificate.json` and
+`data/type_b_one_slack_extremal_certificate.json`, with **zero new graph
+generation, zero new computation**. Justification: both certificates are
+pure statements about abstract graphs (vertex count, edge count, degree
+sequence) with no path-embedding assumption baked in, so they apply
+verbatim to this differently-embedded case.
+
+**Claim 2 (new finite enumeration).** Family II is eliminated by a
+freshly run exhaustive computation: 12 total labeled candidates
+(per-role: `0,0,1,0,1,1,1,1,2,1,1,1,1,0,1,0,0` for roles 1-17), 6
+canonical classes, found independently by two differently-coded
+generators (C backtracking, PySAT) whose canonical multisets match by
+SHA-256 (`7486f2ee4d8c3707e790816e15c7df5d67ec83dabed1096e8c7b5cf78110cf4c`
+for both), confirmed by a third independent networkx verifier and by
+direct manual spot-checking of the witnesses. Not claimed: that these are
+the only graphs of this abstract degree sequence in general (they are
+specifically the ones admitting the required Hamiltonian path structure
+of Section 2).
+
+**Claim 3 (global tuple corollary).** Every one of the 16 frozen
+irreducible Type-B tuple families (`type_b_realizability.md` ranks 1-16)
+has full-graph order at least 40. Not claimed: any classification of
+Type-B configurations beyond this frozen list; any proof-assistant
+formalization; any statement about ranks 17+ (already far above 40,
+unaffected); any global Erdos-Gyarfas counterexample-order bound.
