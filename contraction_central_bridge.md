@@ -250,10 +250,37 @@ they are not claimed to be).
 
 ## Part V: integrating the third-edge near-power witness
 
-`e_v=vw` is a nontriangle edge (Type N: always; Type T: when `\Theta`'s
-`P_0` uses `v`'s two triangle-edges, leaving `e_v` as `v`'s unique
-external edge — the convention carried from `contraction_saturation.md`
-VII.2). By the original near-power edge lemma (`contraction.md`), `e_v`
+**Citation correction (2026-07-27, mathematics unaffected).** The
+previous wording here misattributed its Type-T convention to
+`contraction_saturation.md` VII.2. VII.2 does not build `\Theta` with
+`P_0` on `v`'s two triangle-edges — it builds `P_0` from *one* triangle
+edge plus the external edge (poles = one triangle-mate and `v`'s
+external neighbour), making `e_v` the *other* triangle edge, not the
+external edge. No construction in this repository is shown to produce a
+theta whose `P_0` uses both of `v`'s triangle edges (the only candidate
+source of the two extra triangle-mate-to-triangle-mate paths such a
+theta would need, `contraction_atoms.md` VI.1b, is explicitly
+unresolved, and even if realized would not automatically supply a
+*second*, independent such path — `contraction_neighborhood.md` II.2).
+This is audited in full in `central_bridge_triangle.md` Part VI(b); nothing
+in this file's own proofs (CB1, Parts II–IV) depends on which branch
+`P_0` uses, so no result above is affected.
+
+`e_v=vw` is a nontriangle edge for **Type N** (always — `v`'s three
+edges are all nontriangle, `contraction_atoms.md` Part IV). For **Type
+T**, `e_v` is a nontriangle edge only in the (unestablished) case just
+described, where `P_0` uses both triangle edges; under the actually-
+established `VII.2` construction, `e_v` is instead `v`'s *other triangle
+edge* — to which the near-power *edge* lemma below does not apply
+directly (that lemma is proved only for nontriangle edges,
+`contraction.md` Part I). **The remainder of this Part is therefore
+scoped to Type N unconditionally, and to Type T only in the
+not-yet-established both-triangle-edges case** — a scope note, not a
+retraction: nothing below is used by the Type-T triangle joint analysis
+(`central_bridge_triangle.md` onward), which cites this file only for
+CB1 (Part I), unaffected by this scoping.
+
+By the original near-power edge lemma (`contraction.md`), `e_v`
 has a witness cycle `W_v`, `|W_v|=2^t+1`; removing `v` gives a path from
 `w` to `p` or `q`, length `2^t-1`.
 
