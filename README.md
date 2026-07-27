@@ -276,6 +276,24 @@ work in the sibling `erdos/` directory — no shared code.
   `0,1,2^rho,2^s+1`, classifies its infinite arithmetic complement, audits
   Heawood/Balaban counterexamples and overlap cells, and explains why the
   scoped T8/SPQR results do not yet give a rooted replacement.
+- `central_bridge_triangle_pole_forcing.md` — resolves
+  `type_t_recovery_audit.md`'s own "theta-chord case IV.1(ii)" row
+  (there listed as open): a degree-counting argument shows a cubic
+  Type-T vertex's aligned theta pole `X_x` can never itself be cubic —
+  its fixed 3-edge budget (already committed to `P_0`, plus the
+  `N[x]`-witness `P_2`'s established avoidance of `Y_x`) forces `Y_x`
+  onto `P_1`, adjacent to `X_x`; the resulting chord `e_x`, closed
+  against the `P_0`/`P_1` route, is then a genuine simple cycle of
+  length exactly `2^{\rho_x}` — always a forbidden power of two. Since
+  every T3 vertex's two triangle-mates are both cubic, **T3 is
+  eliminated outright**; T2 is narrowed to exactly one pole assignment
+  (both cubic vertices' poles equal to the shared non-cubic vertex) —
+  the other three rows of `central_bridge_triangle.md` V.1's table are
+  eliminated by the identical mechanism. Independent of, and does not
+  touch, `type_t_recovery_audit.md`'s own R2/S2 correction — every
+  other residual family there (exact-two-attachment A, multi-attachment
+  A, P, single/mixed S, double S) survives exactly as catalogued,
+  narrowed to this one pole assignment.
 - `type_b_compatibility.md` — pivots to the complete Type-B cut: records the
   exact T3/T4/T5 scopes, proves the five-category cycle decomposition,
   reconstructs the asymmetric triangle-anchored spectra, gives an infinite
@@ -503,6 +521,15 @@ work in the sibling `erdos/` directory — no shared code.
     complete Heawood hypothesis failures, a C4/C8-free Balaban-derived rooted
     counterexample to local anchoring, and irreducible two-cell overlap
     patterns for both admissible offsets.
+  - `central_bridge_triangle_pole_forcing.py` — mechanical cross-check
+    of the degree-forcing argument (a cubic `X_x` has exactly one spare
+    edge once `P_2` is required to avoid `Y_x`, forcing `Y_x` onto
+    `P_1`); the resulting forced simple cycle of length exactly
+    `2^{\rho_x}` (`\rho_x\in\{2,3,4,5\}`); and that rows 1–3 of the
+    `(X_x,X_y)` table each force this cycle while the last row (built
+    with a genuinely non-cubic shared pole, degree 6) does not
+    (central_bridge_triangle_pole_forcing.md); independent of
+    `verifier/type_t_r2_s2_audit.py`, neither touches the other.
   - `type_b_compatibility.py` — independently checks the five Type-B cycle
     categories, deletion monotonicity, the exact asymmetric gateway mapping,
     all four paired-offset patterns and a 1,600-row finite regression of the
