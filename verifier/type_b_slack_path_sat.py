@@ -100,6 +100,126 @@ def sat_ham_path_from(g: Graph, vertices: List[int], start: int) -> bool:
         return solver.solve()
 
 
+
+# =============================================================================
+# Independent SAT-based generator for the Family II (2^2,3^16,4) layer.
+#
+# This is deliberately independent of verifier/type_b_slack_path_search.c's
+# generator: it does not import that file's recursion, its incremental
+# cycle-pruning routine, or its output as a candidate population. It shares
+# only the mathematical definition of the fixed path (vertices 0..17),
+# off-path vertex z (vertex 18), the per-role degree-deficit vector, and the
+# set of allowed non-path candidate edges.
+#
+# Model: one boolean variable per allowed non-path edge. Degree constraints
+# are exact-cardinality constraints (CardEnc.equals) forcing each vertex's
+# total additional degree (beyond its fixed path degree) to match the
+# required deficit for the given role. C4/C8-freeness is enforced by a
+# CEGAR loop: solve for a degree-feasible model, check the induced graph for
+# a C4 or C8 with verifier/cycle_detect.py's independent DFS detector (not
+# the C file's), and if one is found, add a blocking clause forbidding that
+# exact set of chosen candidate edges from recurring, then resolve. This
+# repeats until UNSAT (all C4/C8-free completions for this role have been
+# enumerated).
+# =============================================================================
+
+from cycle_detect import find_cycle_len_dfs as _cd_find_cycle_len_dfs
+from cycle_detect import from_edges as _cd_from_edges
+
+SAT_NV = 19       # vertices 0..17 = path, 18 = z
+SAT_PATH_EDGES = [(i, i + 1) for i in range(17)]
+
+
+def sat_family_ii_candidate_edges():
+    """All vertex pairs on 0..18 except the 17 fixed path edges."""
+    path_set = set(SAT_PATH_EDGES)
+    edges = []
+    for u in range(SAT_NV):
+        for v in range(u + 1, SAT_NV):
+            if (u, v) in path_set:
+                continue
+            edges.append((u, v))
+    return edges
+
+
+def sat_family_ii_deficits(role):
+    """role: 1..16 means p_role carries the +1 excess (degree 4);
+    role == 'z' means z carries it. Mirrors type_b_one_slack_resolution.md
+    Section 1, derived independently here (not imported from the C file)."""
+    deficit = {v: 0 for v in range(SAT_NV)}
+    deficit[0] = 1   # a = p0
+    deficit[17] = 1  # y = p17
+    for i in range(1, 17):
+        deficit[i] = 1
+    deficit[18] = 3  # z
+    if role == "z":
+        deficit[18] = 4
+    else:
+        deficit[role] = 2
+    return deficit
+
+
+def sat_family_ii_search_role(role, max_solutions=None):
+    """Enumerate every C4/C8-free completion for the given role. Returns a
+    list of solutions, each a sorted list of the 11 chosen candidate edges."""
+    edges = sat_family_ii_candidate_edges()
+    deficit = sat_family_ii_deficits(role)
+    pool = IDPool()
+    edge_var = {e: pool.id(("e", e)) for e in edges}
+
+    incident = {v: [] for v in range(SAT_NV)}
+    for e in edges:
+        incident[e[0]].append(edge_var[e])
+        incident[e[1]].append(edge_var[e])
+
+    base_clauses: List[List[int]] = []
+    for v in range(SAT_NV):
+        if incident[v]:
+            base_clauses += CardEnc.equals(
+                lits=incident[v], bound=deficit[v], vpool=pool,
+                encoding=EncType.seqcounter
+            ).clauses
+        elif deficit[v] != 0:
+            base_clauses.append([])  # unsatisfiable: no incident edges but nonzero deficit
+
+    total_edge_vars = list(edge_var.values())
+    base_clauses += CardEnc.equals(
+        lits=total_edge_vars, bound=11, vpool=pool, encoding=EncType.seqcounter
+    ).clauses
+
+    solutions = []
+    with Glucose3(bootstrap_with=base_clauses) as solver:
+        while solver.solve():
+            model = set(solver.get_model())
+            chosen = [e for e in edges if edge_var[e] in model]
+            assert len(chosen) == 11
+
+            g = _cd_from_edges(SAT_NV, SAT_PATH_EDGES + chosen)
+            c4 = _cd_find_cycle_len_dfs(g, 4)
+            c8 = None if c4 is not None else _cd_find_cycle_len_dfs(g, 8)
+
+            if c4 is None and c8 is None:
+                solutions.append(sorted(chosen))
+                # block this exact solution to move on to the next distinct one
+                solver.add_clause([-edge_var[e] for e in chosen])
+            else:
+                witness = c4 if c4 is not None else c8
+                witness_edges = []
+                for i in range(len(witness)):
+                    a, b = witness[i], witness[(i + 1) % len(witness)]
+                    key = (a, b) if a < b else (b, a)
+                    if key in edge_var:
+                        witness_edges.append(key)
+                # block: at least one candidate edge of this witness cycle
+                # must be absent (forbids this exact violating combination)
+                solver.add_clause([-edge_var[e] for e in witness_edges])
+
+            if max_solutions is not None and len(solutions) >= max_solutions:
+                break
+
+    return solutions
+
+
 if __name__ == "__main__":
     # smoke test: an 8-cycle graph on 8 vertices must satisfy sat_cycle_len_exists(_, 8, 8)
     n = 8
