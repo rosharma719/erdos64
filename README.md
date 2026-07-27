@@ -149,7 +149,7 @@ work in the sibling `erdos/` directory — no shared code.
   reports the joint two-central-bridge Type T analysis (this file's own
   highest-value target) as not attempted.
 - `contraction_block_cut_tree.md` — **resolving the multi-attachment
-  obstruction via block-cut trees (2026-07-27, current top priority):**
+  obstruction via block-cut trees (2026-07-27):**
   builds the attachment core `T_A(B)` (minimal subtree of `B`'s
   block-cut tree spanning every marked block) and proves its five basic
   properties; proves the attachment-free-leaf case reduces to one exact
@@ -164,6 +164,20 @@ work in the sibling `erdos/` directory — no shared code.
   of a marked leaf in the (always-nonempty) attachment core; outcome (2)
   is real but not needed for completeness, stated honestly rather than
   silently dropped or overclaimed as load-bearing.
+- `contraction_leaf_blocks.md` — **arithmetic of admissible pairs and
+  attachment-rich leaves (2026-07-27, current top priority):** the
+  endpoint-location route census (three routes same-branch; four-to-six
+  different-branch; the theta's own `p`-`q` spectrum when both
+  attachments are poles) feeds a compact finite excluded-residue
+  template family — no contradiction claimed, as expected. Resolves
+  MA2's outcome (3) further: the shared-port sub-case gives an exact
+  arithmetic template (`2^m-2}`); the distinct-port sub-case is proved
+  to reduce **directly** to the same admissible-pair mechanism as
+  outcome (1) — with `x,y` themselves as the admissible-path theorem's
+  terminals, no auxiliary construction needed — meaning Part VIII's
+  proposed "port-saturated block" classification **is not generically
+  necessary**, a genuine simplification found by working the
+  construction through rather than assumed.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -310,6 +324,13 @@ work in the sibling `erdos/` directory — no shared code.
     MA2 trichotomy (contraction_block_cut_tree.md Parts I-V); kept
     separate from the eight prior contraction verifiers, none of which
     it touches.
+  - `leaf_block_arithmetic.py` — mechanical cross-check of the
+    endpoint-location route census (via networkx.all_simple_paths,
+    fully independent enumeration), the admissible-pair excluded-
+    residue templates, the shared-port arithmetic, and the
+    distinct-port-to-admissible-pair reduction (contraction_leaf_blocks.md
+    Parts VI-VIII); kept separate from the nine prior contraction
+    verifiers, none of which it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
