@@ -165,7 +165,7 @@ work in the sibling `erdos/` directory — no shared code.
   is real but not needed for completeness, stated honestly rather than
   silently dropped or overclaimed as load-bearing.
 - `contraction_leaf_blocks.md` — **arithmetic of admissible pairs and
-  attachment-rich leaves (2026-07-27, current top priority):** the
+  attachment-rich leaves (2026-07-27):** the
   endpoint-location route census (three routes same-branch; four-to-six
   different-branch; the theta's own `p`-`q` spectrum when both
   attachments are poles) feeds a compact finite excluded-residue
@@ -178,6 +178,19 @@ work in the sibling `erdos/` directory — no shared code.
   proposed "port-saturated block" classification **is not generically
   necessary**, a genuine simplification found by working the
   construction through rather than assumed.
+- `contraction_ma2_integration.md` — **S5 integration, Type T setup,
+  and final assessment (2026-07-27, current top priority):** integrates
+  the central-bridge-induced S5 configuration precisely (which lobe
+  holds `\Theta`, which holds the attachment-free leaf, exact lobe
+  signatures) without reopening `lemmas.md`'s general cut-vertex
+  program; sets up the joint two-central-bridge Type T interaction's
+  five priority questions with MA2's full machinery now available,
+  honestly reporting none resolved — the single most consequential open
+  target across this entire six-file contraction-phase sequence.
+  Closes with: MA2 proved, every one of its three outcomes reduced to
+  an exact named obstruction (an admissible-pair arithmetic template, a
+  shared-port arithmetic template, or one precise S5 lobe-equality
+  configuration) — neither Type N nor Type T eliminated.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
