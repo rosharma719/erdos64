@@ -40,15 +40,28 @@ work in the sibling `erdos/` directory — no shared code.
   Part III's algebraic compression (projection-type classification,
   full-space hyperplane coverage, compact standalone certificate) and
   Part IV's Z3-vs-Z5/order-26 feasibility comparison.
-- `contraction.md` — **contraction-criticality endgame (2026-07-26,
-  current top priority):** the near-power edge lemma (every nontriangle
-  edge of a minimal counterexample lies on a `2^k+1`-cycle), the
-  safe-contraction obstruction (no safe nontriangle edge ever exists —
-  the naive "safe edge" target is logically equivalent to the conjecture
-  itself, not an easier sub-target), the exact `{1,3}` nontriangle-edge
-  count at every cubic vertex, and one proved-forbidden clean near-power-
-  cycle overlap configuration. Chord/bridge classification of a fixed
-  near-power cycle (Task E) remains open.
+- `contraction.md` — **contraction-criticality endgame (2026-07-26):**
+  the near-power edge lemma (every nontriangle edge of a minimal
+  counterexample lies on a `2^k+1`-cycle), the safe-contraction
+  obstruction (no safe nontriangle edge ever exists — the naive "safe
+  edge" target is logically equivalent to the conjecture itself, not an
+  easier sub-target), the exact `{1,3}` nontriangle-edge count at every
+  cubic vertex, and one proved-forbidden clean near-power-cycle overlap
+  configuration.
+- `contraction_atoms.md` — **contractible-atom generalization (2026-07-27,
+  current top priority):** the general atom-lifting lemma (`2^k+r` for
+  any connected atom `A` satisfying (H2)/(H3)), specialized to recover
+  the edge lemma and to a new triangle-pair lemma (`2^k+1,2^k+2` from
+  every C4-free triangle, automatically, no edge selection needed); the
+  Type N/Type T local cubic-vertex dichotomy; a five-lemma arithmetic/
+  gluing toolkit applied to both Type N orientation types (functional-
+  digraph classification: exactly 2 isomorphism types) and to Type T,
+  yielding finite exact constraint lists rather than a contradiction for
+  either type; and a bridge-arithmetic chord corollary. The general
+  (non-clean-overlap) case, `(a,b)`-only triangle attachment, multi-
+  cubic-vertex-triangle interaction, and the separator/crossing bridge
+  classification all remain explicitly open, recorded as concrete next
+  steps rather than a vague list.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -143,6 +156,12 @@ work in the sibling `erdos/` directory — no shared code.
     nontriangle-edge count, and the clean same-length merge lemma
     (contraction.md Parts I, III, IV); does not and cannot test claims
     that presuppose a minimal counterexample exists.
+  - `atom_lift.py` — mechanical cross-check of the general atom-lifting
+    lemma, the triangle-pair lemma, the Type N/T dichotomy plus triangle
+    uniqueness, the functional-digraph orbit classification, the
+    five-lemma arithmetic/gluing toolkit, and the bridge-arithmetic chord
+    corollary (contraction_atoms.md Parts I, III-V, VII.1); kept separate
+    from `contraction_lift.py`, whose prior audit it does not touch.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
