@@ -85,7 +85,7 @@ work in the sibling `erdos/` directory — no shared code.
   local system alone never forces a contradiction at a Type N vertex,
   motivating the shift to theta-saturation as the next target.
 - `contraction_intersections.md` — **decomposing non-clean witness
-  intersections (2026-07-27, current top priority):** proves the exact
+  intersections (2026-07-27):** proves the exact
   cell-decomposition identity for two same-endpoint paths in the
   non-crossing case (`|P|-|Q|=\sum` over divergent cells, each yielding
   a genuine cycle `\alpha_i+\beta_i`; common-component cells yield no
@@ -96,6 +96,21 @@ work in the sibling `erdos/` directory — no shared code.
   left explicitly open — uncrossing is named as the applicable
   technique, but its hypotheses are not verified to hold here, and no
   crossing instance is claimed resolved.
+- `contraction_saturation.md` — **theta-bridge saturation and the Type
+  T system (2026-07-27, current top priority):** defines theta bridges
+  precisely and reduces single-branch-pair bridges to the existing
+  near-power-cycle chord machinery; proves a genuine new connection to
+  **S5** (at most one theta-internal vertex, out of `\ge6` and growing,
+  can be saturated by a single-attachment bridge without creating a
+  second cut vertex, which S5 already forbids) — a real quantitative
+  narrowing, not a full saturation proof. Derives the complete 3-formula
+  same-branch and 4-formula cross-branch bridge arithmetic (VI.3/VI.4,
+  new). Extends the NPT-theta safety mechanism to Type T vertices
+  (VII.2). Honestly reports what is NOT resolved: VI.5's saturation
+  target, VII.3's multi-cubic-vertex-triangle interaction (the
+  highest-value remaining Type T question), and V.3's crossing case —
+  each named as a precise next step, with no `q=4` census, defect
+  bound, or voltage search substituted for genuine progress.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -214,6 +229,12 @@ work in the sibling `erdos/` directory — no shared code.
     (contraction_intersections.md Part V); kept separate from the four
     prior contraction verifiers, none of which it touches; deliberately
     builds no gadget for the still-open crossing case.
+  - `theta_saturation.py` — mechanical cross-check of the same-branch
+    and cross-branch theta-bridge arithmetic and the internal-vertex-
+    count growth used in the S5 cut-vertex saturation argument
+    (contraction_saturation.md Part VI); kept separate from the five
+    prior contraction verifiers, none of which it touches; deliberately
+    builds no gadget for the unresolved saturation target itself.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
