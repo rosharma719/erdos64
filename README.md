@@ -63,7 +63,7 @@ work in the sibling `erdos/` directory — no shared code.
   classification all remain explicitly open, recorded as concrete next
   steps rather than a vague list.
 - `contraction_neighborhood.md` — **closed-neighborhood contraction
-  (2026-07-27, current top priority):** `A=N[v]` for a cubic `v` is
+  (2026-07-27):** `A=N[v]` for a cubic `v` is
   always a valid atom ((H2)/(H3) automatic, and `v` itself is provably
   never a boundary attachment vertex), giving the cubic power-path
   lemma CN1 (every cubic vertex sits on a `2^k+2`-cycle) and, at Type T
@@ -72,6 +72,18 @@ work in the sibling `erdos/` directory — no shared code.
   exact relationship to the independent triangle-contraction witness
   (same internal-path content at the shared `(a,b)` pair; genuinely new
   content at `(a,c)`/`(b,c)`; exponents not assumed to coincide).
+- `contraction_mixed_witness.md` — **mixed power/near-power path systems
+  at a Type N vertex (2026-07-27, current top priority):** derives, by
+  orbit-counting (not labelled enumeration), exactly four combined
+  endpoint orbits (T1, T2a, T2b, T2c) for the joint nontriangle-edge and
+  closed-neighbourhood witnesses at a Type N vertex, then resolves the
+  exact cycle-length arithmetic of every clean configuration in all four
+  orbits — the NPT theta (T1, T2b), a 4-branch fan (T2a), and
+  vertex-hub/closed-triangle merges (T2c, which has no direct theta).
+  **Every single combination is unconditionally safe for every exponent
+  choice** (two new arithmetic lemmas proved for this pass); the clean
+  local system alone never forces a contradiction at a Type N vertex,
+  motivating the shift to theta-saturation as the next target.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -178,6 +190,11 @@ work in the sibling `erdos/` directory — no shared code.
     atom and the closed-neighborhood atom (contraction_neighborhood.md
     Parts I-II); kept separate from `contraction_lift.py`/`atom_lift.py`,
     neither of which it touches.
+  - `mixed_witness.py` — mechanical cross-check of the four combined
+    endpoint orbits at a Type N vertex, the NPT-theta/fan/vertex-hub
+    arithmetic, and two new arithmetic lemmas (contraction_mixed_witness.md);
+    kept separate from the three prior contraction verifiers, none of
+    which it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

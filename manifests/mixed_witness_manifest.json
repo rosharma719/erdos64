@@ -1,0 +1,35 @@
+{
+  "description": "Mechanical cross-check of contraction_mixed_witness.md: the four combined-endpoint orbits (T1, T2a, T2b, T2c) at a Type N vertex, the NPT-theta / 4-branch-fan / vertex-hub arithmetic, and two new arithmetic lemmas (E: 2^x+2^y-1 never a power of two; F: 2^s+2 never a power of two) plus two supporting identities.",
+  "scope_note": "Tests only unconditional graph-theoretic/arithmetic mechanics: the orbit-counting result and the exact cycle-length arithmetic of every clean configuration in the summary table, by direct gadget construction. Does not test whether these clean configurations actually occur in a minimal counterexample (that depends on the still-open non-clean-overlap case from contraction_atoms.md Part V). Kept separate from contraction_lift.py / atom_lift.py / neighborhood_lift.py, none of which are touched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/mixed_witness.py",
+  "source_commit": "ffe421bb0dba4b3ab946f10cee6b20dc7d551174",
+  "script_sha256": "01ad6e0b396f9eb66d272d306a18bee9f0b2c5028e10d36ea3358badcb336543",
+  "stdout_sha256": "3cde9e90ccf2d43bd84d86b11e2c0cb999fdfe046362ec8084a7c2e688e78de2",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "arithmetic_extensions": {"lemma_E": 64, "lemma_F": 8, "odd_sum_plus_one": 64, "triple_sum_minus_two": 125},
+    "combined_orbits": {"num_orbits": 4, "orbit_sizes": [6, 6, 6, 6]},
+    "T1_and_T2b_theta_gadgets": [
+      {"r": 2, "s": 2, "v_P": 5, "v_Q": 6, "P_Q": 7},
+      {"r": 2, "s": 3, "v_P": 5, "v_Q": 10, "P_Q": 11},
+      {"r": 3, "s": 2, "v_P": 9, "v_Q": 6, "P_Q": 11},
+      {"r": 3, "s": 4, "v_P": 9, "v_Q": 18, "P_Q": 23}
+    ],
+    "T2a_fan_gadgets": [
+      {"ra": 2, "rb": 2, "s": 2, "Pa_v": 5, "Pb_v": 5, "Qab_v": 6, "Pa_Pb": 6, "Pa_Qab": 7, "Pb_Qab": 7},
+      {"ra": 2, "rb": 3, "s": 2, "Pa_v": 5, "Pb_v": 9, "Qab_v": 6, "Pa_Pb": 10, "Pa_Qab": 7, "Pb_Qab": 11},
+      {"ra": 3, "rb": 4, "s": 5, "Pa_v": 9, "Pb_v": 17, "Qab_v": 34, "Pa_Pb": 22, "Pa_Qab": 39, "Pb_Qab": 47}
+    ],
+    "T2c_hub_gadgets": [
+      {"ra": 2, "rb": 2, "rc": 2, "s": 2, "Pa_Qbc_v": 9, "Pb_Qbc_v": 9, "Qbc_Pc_v": 9, "triangle_no_v": 10},
+      {"ra": 2, "rb": 3, "rc": 4, "s": 2, "Pa_Qbc_v": 9, "Pb_Qbc_v": 13, "Qbc_Pc_v": 21, "triangle_no_v": 22},
+      {"ra": 3, "rb": 2, "rc": 5, "s": 4, "Pa_Qbc_v": 25, "Pb_Qbc_v": 21, "Qbc_Pc_v": 49, "triangle_no_v": 54}
+    ],
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Every constructed gadget cycle validated by two independent implementations (hand-rolled adjacency traversal verify_cycle, and independently constructed networkx traversal verify_cycle_nx, both imported from verifier/contraction_lift.py); 0 disagreements.",
+  "completed_range": "All arithmetic ranges and gadget parameter tuples processed to completion (no partial/timeout runs)."
+}
