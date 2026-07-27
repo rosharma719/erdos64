@@ -276,6 +276,13 @@ work in the sibling `erdos/` directory — no shared code.
   `0,1,2^rho,2^s+1`, classifies its infinite arithmetic complement, audits
   Heawood/Balaban counterexamples and overlap cells, and explains why the
   scoped T8/SPQR results do not yet give a rooted replacement.
+- `type_b_compatibility.md` — pivots to the complete Type-B cut: records the
+  exact T3/T4/T5 scopes, proves the five-category cycle decomposition,
+  reconstructs the asymmetric triangle-anchored spectra, gives an infinite
+  mutually compatible forced-core family, and proves T9B paired replacement
+  criticality plus its stronger real R/P-edge consequence. It isolates an
+  exact paired-spectrum family without claiming graph realizability or a
+  finite SPQR reduction.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -472,6 +479,11 @@ work in the sibling `erdos/` directory — no shared code.
     complete Heawood hypothesis failures, a C4/C8-free Balaban-derived rooted
     counterexample to local anchoring, and irreducible two-cell overlap
     patterns for both admissible offsets.
+  - `type_b_compatibility.py` — independently checks the five Type-B cycle
+    categories, deletion monotonicity, the exact asymmetric gateway mapping,
+    all four paired-offset patterns and a 1,600-row finite regression of the
+    infinite forced-core family, plus the explicit Balaban C16 witness and
+    its intersections with the length-11/13 paths.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
