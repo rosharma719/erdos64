@@ -48,8 +48,8 @@ work in the sibling `erdos/` directory — no shared code.
   easier sub-target), the exact `{1,3}` nontriangle-edge count at every
   cubic vertex, and one proved-forbidden clean near-power-cycle overlap
   configuration.
-- `contraction_atoms.md` — **contractible-atom generalization (2026-07-27,
-  current top priority):** the general atom-lifting lemma (`2^k+r` for
+- `contraction_atoms.md` — **contractible-atom generalization
+  (2026-07-27):** the general atom-lifting lemma (`2^k+r` for
   any connected atom `A` satisfying (H2)/(H3)), specialized to recover
   the edge lemma and to a new triangle-pair lemma (`2^k+1,2^k+2` from
   every C4-free triangle, automatically, no edge selection needed); the
@@ -62,6 +62,16 @@ work in the sibling `erdos/` directory — no shared code.
   cubic-vertex-triangle interaction, and the separator/crossing bridge
   classification all remain explicitly open, recorded as concrete next
   steps rather than a vague list.
+- `contraction_neighborhood.md` — **closed-neighborhood contraction
+  (2026-07-27, current top priority):** `A=N[v]` for a cubic `v` is
+  always a valid atom ((H2)/(H3) automatic, and `v` itself is provably
+  never a boundary attachment vertex), giving the cubic power-path
+  lemma CN1 (every cubic vertex sits on a `2^k+2`-cycle) and, at Type T
+  vertices, a second pair of near-power offsets `\{2^k+1,2^k+2\}` or
+  `\{2^k+2,2^k+3\}` depending on the attachment pair. Establishes the
+  exact relationship to the independent triangle-contraction witness
+  (same internal-path content at the shared `(a,b)` pair; genuinely new
+  content at `(a,c)`/`(b,c)`; exponents not assumed to coincide).
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -162,6 +172,12 @@ work in the sibling `erdos/` directory — no shared code.
     five-lemma arithmetic/gluing toolkit, and the bridge-arithmetic chord
     corollary (contraction_atoms.md Parts I, III-V, VII.1); kept separate
     from `contraction_lift.py`, whose prior audit it does not touch.
+  - `neighborhood_lift.py` — mechanical cross-check of closed-
+    neighborhood contraction, the cubic power-path lemma CN1 and its
+    r=2 closure, and the Type T offset comparison between the triangle
+    atom and the closed-neighborhood atom (contraction_neighborhood.md
+    Parts I-II); kept separate from `contraction_lift.py`/`atom_lift.py`,
+    neither of which it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
