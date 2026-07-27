@@ -250,6 +250,20 @@ work in the sibling `erdos/` directory — no shared code.
   case reduces to the frozen A/P/S templates, concretely instantiated at
   triangle vertices, with exactly two named open items remaining;
   neither Type N nor Type T eliminated.
+- `central_bridge_triangle_addendum.md` — **two sharpenings after the
+  Part XIII close (2026-07-27):** does not reopen the closed sequence or
+  add a new part number; records two narrow corrections found while
+  independently re-deriving the same ground. (1) `central_bridge_triangle_s5.md`
+  VI.1's double-S case: since `central_bridge_templates.md`'s **S**
+  output *defines* `G_1` as `L`'s closure exactly (not merely a lobe
+  containing `L`), the two attachment-free leaves are not just "on the
+  same side" but **the same connected component of `G`**, sharper than
+  VI.1's own "not forced either way." (2) `central_bridge_triangle_final.md`
+  Part X.2's `\ell_x'\in\{3,4\}`: citing `two_cut.md` section 2's own
+  bridge-spectrum identity directly against `B_x`'s three bridges at the
+  `\{x,X_x\}` cut proves **`3` is excluded outright** (pinning
+  `\ell_x'=4`) and, when `4\in\Lambda_x`, that **`\rho_x\ne2`** is
+  forced. Neither sharpening changes Part XIII's outcome-4 assessment.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -426,6 +440,15 @@ work in the sibling `erdos/` directory — no shared code.
     impossible in this setting (central_bridge_triangle_final.md Part
     X.0); kept separate from the twelve prior contraction verifiers,
     none of which it touches.
+  - `central_bridge_triangle_addendum.py` — mechanical cross-check of
+    both sharpenings: an explicit double-S gadget confirming both
+    vertices' "leaf-side" computation identifies the identical
+    component, not merely components on the same side; and two gadgets
+    confirming a length-3 `x`-`X_x` detour closes into a literal `C_4`
+    while a length-4 detour combined with `\rho_x=2` closes into a
+    literal `C_8` (safe at `\rho_x=3`) (central_bridge_triangle_addendum.md);
+    kept separate from the thirteen prior contraction verifiers, none of
+    which it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
