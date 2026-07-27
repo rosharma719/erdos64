@@ -200,7 +200,7 @@ work in the sibling `erdos/` directory — no shared code.
   *forbidden* route length (an immediate contradiction when reached),
   not an equivalence or a safe value.
 - `central_bridge_triangle.md` — **Type T triangle: paired central
-  bridges (2026-07-27, current top priority):** classifies T2 (two
+  bridges (2026-07-27):** classifies T2 (two
   cubic triangle vertices)/T3 (three), proves no two cubic triangle
   vertices ever share an external neighbour (Lemma NE, a direct C4-forcing
   argument), records the triangle-contraction attachment-pair symmetry
@@ -216,7 +216,7 @@ work in the sibling `erdos/` directory — no shared code.
   from local data alone, leaving the rest open (external-structure
   dependent) rather than forcing a false resolution.
 - `central_bridge_triangle_s5.md` — **S5 and shared-port cases at a Type
-  T triangle (2026-07-27, current top priority):** Part VI.1 proves that
+  T triangle (2026-07-27):** Part VI.1 proves that
   if two cubic triangle vertices' central bridges both independently hit
   the S5 outcome, their cut vertices must coincide (S5's own
   uniqueness) — and, new here, that the two attachment-free leaves are
@@ -232,6 +232,24 @@ work in the sibling `erdos/` directory — no shared code.
   pinned down — the `(P,P)` case (Part VIII) is therefore left open
   honestly rather than forced to a false arithmetic conclusion; `(A,P)`
   (Part IX) is resolved concretely in its same-terminal-pair sub-case.
+- `central_bridge_triangle_final.md` — **the (A,A) case, T3
+  consistency, and the final assessment (2026-07-27, current top
+  priority):** proves (Part X.0) that the terminal pairs `\{x,X_x\}` and
+  `\{y,X_y\}` of any two triangle-anchored admissible pairs are always
+  2-subsets of the same 3-element triangle, hence always either
+  identical or share exactly one element — **the crossing case (X.3),
+  flagged incomplete in the prior path-cell work, is arithmetically
+  impossible in this anchored setting, resolved rather than left open.**
+  Classifies the identical-terminal (X.1) and one-common-terminal (X.2)
+  sub-cases exactly, finding every natural path combination either adds
+  no new information, is blocked by a forced shared gateway vertex, or
+  gives one concrete candidate cycle length (`1+\ell_x'+\ell_y'`)
+  conditional on an internal-disjointness fact not yet pinned down. Part
+  XI confirms T3's three pairwise analyses combine without any
+  three-way inconsistency. Closes the sequence: **outcome 4** — every
+  case reduces to the frozen A/P/S templates, concretely instantiated at
+  triangle vertices, with exactly two named open items remaining;
+  neither Type N nor Type T eliminated.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -401,6 +419,13 @@ work in the sibling `erdos/` directory — no shared code.
     never opposite lobes (central_bridge_triangle_s5.md Part VI.1); kept
     separate from the eleven prior contraction verifiers, none of which
     it touches.
+  - `central_bridge_triangle_final.py` — exhaustive check (all 4
+    `(X_x,X_y)` configurations) that two triangle-anchored admissible-
+    pair terminal sets always coincide or share exactly one element,
+    never four distinct vertices — the crossing case is arithmetically
+    impossible in this setting (central_bridge_triangle_final.md Part
+    X.0); kept separate from the twelve prior contraction verifiers,
+    none of which it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 

@@ -1,0 +1,20 @@
+{
+  "description": "Mechanical cross-check of central_bridge_triangle_final.md Part X.0: exhaustively over all 4 rows of central_bridge_triangle.md Part V.1's (X_x,X_y) table, the two admissible-pair terminal sets {x,X_x} and {y,X_y} always either coincide or share exactly one element -- a genuinely 4-distinct-terminal 'crossing' configuration never occurs, since both sets are 2-subsets of the single 3-element triangle T. This is the exact resolution of the task's flagged-incomplete X.3 crossing case: it does not occur in this triangle-anchored setting.",
+  "scope_note": "This is a complete enumeration over the only 4 possible (X_x,X_y) configurations (X_x in T\\{x}, 2 choices; X_y in T\\{y}, 2 choices), not a sampled search -- matching exactly central_bridge_triangle.md Part V.1's table. Does not address the separate, still-open general crossing case for arbitrary witness-path pairs elsewhere in G (contraction_intersections.md Part V.3), which this file explicitly does not claim to resolve.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/central_bridge_triangle_final.py",
+  "source_commit": "3fe25b4a3bbb7209b82817e66b29861202e3f639",
+  "script_sha256": "bf653fd38c1dcd4837b7a5ff015750d846c20ad25f9b1ffe3d101c45452ca28c",
+  "stdout_sha256": "287914423ca93d73b1e0e5b65c154820c7d9ff2eac7488b34569eaca7399887a",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 (this particular check uses no networkx, pure combinatorics, but the environment is recorded for consistency with the rest of the sequence).",
+  "exit_status": 0,
+  "results": {
+    "num_rows": 4,
+    "all_identical_or_one_shared": true,
+    "never_four_distinct_terminals": true,
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Direct exhaustive enumeration in Python, independent of the hand-derived pigeonhole argument (two 2-subsets of a 3-set always coincide or share exactly one element). 0 disagreements.",
+  "completed_range": "Complete enumeration of all 4 possible (X_x,X_y) configurations -- exhaustive, not sampled, consistent with the phase's explicit decision not to launch broad computation."
+}
