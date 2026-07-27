@@ -179,7 +179,7 @@ work in the sibling `erdos/` directory — no shared code.
   necessary**, a genuine simplification found by working the
   construction through rather than assumed.
 - `contraction_ma2_integration.md` — **S5 integration, Type T setup,
-  and final assessment (2026-07-27, current top priority):** integrates
+  and final assessment (2026-07-27):** integrates
   the central-bridge-induced S5 configuration precisely (which lobe
   holds `\Theta`, which holds the attachment-free leaf, exact lobe
   signatures) without reopening `lemmas.md`'s general cut-vertex
@@ -191,6 +191,30 @@ work in the sibling `erdos/` directory — no shared code.
   an exact named obstruction (an admissible-pair arithmetic template, a
   shared-port arithmetic template, or one precise S5 lobe-equality
   configuration) — neither Type N nor Type T eliminated.
+- `central_bridge_templates.md` — **frozen A/P/S single-bridge output
+  templates (2026-07-27):** normalizes, without paraphrase, the exact
+  proved formulas from `contraction_block_cut_tree.md`/
+  `contraction_leaf_blocks.md` into one reference table (admissible-pair
+  A, shared-port P, S5 S), resolving precisely the P output's `2^m-2`
+  role left ambiguous by a prior compressed report: it is the
+  *forbidden* route length (an immediate contradiction when reached),
+  not an equivalence or a safe value.
+- `central_bridge_triangle.md` — **Type T triangle: paired central
+  bridges (2026-07-27, current top priority):** classifies T2 (two
+  cubic triangle vertices)/T3 (three), proves no two cubic triangle
+  vertices ever share an external neighbour (Lemma NE, a direct C4-forcing
+  argument), records the triangle-contraction attachment-pair symmetry
+  orbits (T2: `\{a,b\}` inequivalent to `\{a,c\}`/`\{b,c\}`; T3: all
+  equivalent). The main new finding: each cubic triangle vertex's own
+  central bridge `B_x` attaches directly at `\{x,X_x\}` (`X_x` a pole of
+  its own canonical theta `\Theta_x`) via the triangle's own edges alone
+  — no S5 argument needed — with the shorter admissible-pair path pinned
+  to exactly length 2 (not symbolic), sharpening `central_bridge_templates.md`'s
+  **A** output concretely in this setting. Classifies the four
+  `(X_x,X_y)` configurations between two triangle vertices exactly, and
+  honestly resolves 3 of the task's 6 component-sharing possibilities
+  from local data alone, leaving the rest open (external-structure
+  dependent) rather than forcing a false resolution.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -344,6 +368,15 @@ work in the sibling `erdos/` directory — no shared code.
     distinct-port-to-admissible-pair reduction (contraction_leaf_blocks.md
     Parts VI-VIII); kept separate from the nine prior contraction
     verifiers, none of which it touches.
+  - `central_bridge_triangle.py` — mechanical cross-check that the
+    shared-external-neighbour configuration (`a'=b'`) genuinely forces a
+    4-cycle on an explicit gadget, and that a triangle-anchored central
+    bridge `B_x` (built with an explicit NPT theta `\Theta_x` and a
+    bridge component attached via the triangle's own edges) has
+    attachment set exactly `\{x,X_x\}` with shortest `x`-`X_x` path
+    length exactly 2 and a genuine second path of length 3 or 4
+    (central_bridge_triangle.md Parts II, IV); kept separate from the ten
+    prior contraction verifiers, none of which it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
