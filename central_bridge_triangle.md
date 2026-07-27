@@ -197,12 +197,40 @@ Thus lengths `3,4` are excluded from the anchored bridge spectrum.  This does
 **not** eliminate the exact-two-attachment case: T2's admissible pair may
 have larger lengths `L,L+\delta`, independently of the isolated length `2`.
 
+**Full corrected anchored spectrum [PROVED, 2026-07-27 continuation].**
+For any other bridge path `P=xY_x\cdots X_x` of length `L>2`, deleting the
+forced prefix `xY_x` leaves a simple `Y_x`-`X_x` path of length `L-1` that
+does not use `Y_xX_x`. Closing it with `Y_xX_x` gives a simple cycle of
+length `L`; closing the full path with the separate triangle edge `xX_x`
+gives a simple cycle of length `L+1`. The other nontrivial bridge at the
+`\{x,X_x\}` cut, through `x'`, has route lengths `2^{\rho_x}` and
+`2^{s_x}+1`. Therefore a T2 pair `\ell,\ell+\delta` guarantees exactly
+
+\[
+\begin{array}{c|cc}
+&P_1&P_2\\ \hline
+\text{suffix}+Y_xX_x&\ell&\ell+\delta\\
+\text{full path}+xX_x&\ell+1&\ell+\delta+1\\
+\text{near-power outside route}&\ell+2^{\rho_x}&\ell+\delta+2^{\rho_x}\\
+\text{power outside route}&\ell+2^{s_x}+1&\ell+\delta+2^{s_x}+1.
+\end{array}
+\]
+
+The two admissible paths need not be internally disjoint from each other, so
+their union contributes no guaranteed cycle. The table has the explicit
+infinite safe arithmetic family `\ell=2^t+1`,
+`t>\max\{\rho_x,s_x,3\}`; hence it does not eliminate the case. The proof,
+arithmetic classification, overlap audit, Heawood hypothesis table, and SPQR
+scope are in `type_t_exact_two_a.md` and
+`verifier/type_t_exact_two_a.py`.
+
 `verifier/type_t_r2_s2_audit.py` includes an explicit C4-free Heawood-based
 bridge satisfying T2's degree and 2-connectivity hypotheses with terminal
 path lengths `\{2,7,9,11,13,15\}`: the admissible pairs exist among the larger
 lengths, while no length `3` or `4` path exists.  This is a direct regression
-against the invalid inference, not an F-clean Type-T survivor (the fixture has
-a `C_8`).  The symbolic incidence and independent NetworkX checks are in
+against the invalid inference, not an F-clean Type-T survivor: it has an
+internal `C_8`, and its paths of lengths `7,15` close with `xX_x` to `C_8`
+and `C_{16}`. The symbolic incidence and independent NetworkX checks are in
 `verifier/type_t_r2_s2_audit.py`; the full recovery and scope audit is
 `type_t_recovery_audit.md`.
 

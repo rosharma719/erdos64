@@ -74,14 +74,16 @@ missing triangle-edge closure: **both values force a `C_4`**, so the pinned
 2-cut of `G` (`two_cut.md` VI.1, cited via
 `contraction_separator_integration.md` VI.1), with `B_x` one of its
 bridges, spectrum `\Lambda_x:=\{\text{lengths of simple }x\text{-}X_x
-\text{ paths in }B_x\}\supseteq\{2\}` (IV.2's own `\ell_x=2`). **Two
+\text{ paths in }B_x\}\supseteq\{2\}` (IV.2's isolated shortest path,
+not an admissible-path label). **Two
 further bridges at the same cut are already implicit in `\Theta_x`
 itself**: the trivial edge-bridge `B_0` (the direct `P_0` edge
 `xX_x\in E(G)`, `\Lambda_0=\{1\}`, `two_cut.md` §2's own "trivial
 bridge" convention), and `B'`, the component of `G-\{x,X_x\}` containing
 `x'` (i.e. `x'` plus the interiors of `P_1,P_2`, which meet only at
-`x'`): `\Lambda_{B'}=\{2^{\rho_x},2^{s_x}+1\}` exactly (the two routes
-through `x'` via `P_1` or `P_2`).
+`x'`): `\Lambda_{B'}\supseteq\{2^{\rho_x},2^{s_x}+1\}` (the two guaranteed
+routes through `x'` via `P_1` or `P_2`; other off-theta structure may enlarge
+the bridge spectrum).
 
 **`(\Lambda_0+\Lambda_x)\cap F=\varnothing`** is exactly `two_cut.md`
 §2's own "trivial bridge" corollary: `\Lambda_x\cap\{2^k-1:k\ge2\}=

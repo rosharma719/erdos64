@@ -163,7 +163,9 @@ length-2 path `x-Y_x-X_x`. The original text also asserted a second path of
 length 3 or 4, but that inference was invalid: T2 supplies some admissible
 pair, not necessarily one containing the length-2 path. The conditional
 anchored-detour lemma excludes lengths 3 and 4, but **exact-two-attachment A
-remains possible with an unspecified larger admissible pair**. P and S still
+remains possible with an unspecified larger admissible pair**. Its complete
+guaranteed cycle table and infinite safe family are now recorded in
+`type_t_exact_two_a.md`. P and S still
 require further attachment structure. The pinned `(A,A)` and pinned side of
 `(A,P)` analysed below are historical, unproved specializations.
 
@@ -209,28 +211,15 @@ admissible-pair lengths are not pinned by Part IV.2.
 Let `\tau_y=P` have shared port `u_y` and terminals
 `y_1,y_2\in A(B_y)`, with extra attachment as in Part VIII.
 
-**Historical pinned endpoint relationship (now vacuous).** The two terminal *sets*
-`\{x,X_x\}` and `\{y_1,y_2\}` live on different theta systems
-(`\Theta_x`, `\Theta_y`) in general — the only way they can coincide or
-overlap is through the shared triangle vertices themselves: `X_x\in T`,
-and `y_1$ or `y_2` could (per `central_bridge_triangle.md` IV.3)
-themselves equal `x` or `X_x` if `B_y`'s extra attachment happens to
-land back on `\Theta_x`'s own structure. **Same-pair case**: if
-`\{y_1,y_2\}=\{x,X_x\}` exactly (both bridges' terminal data coincide),
-the two arithmetic conditions apply to the *same* two cycles-worth of
-theta routes, giving directly comparable expressions: `A`'s paired
-cycles `2+d_i` and `4\text{ or }3+d_i` (using `\ell_x=2`), against `P`'s
-direct `2+d_i}` — **`A`'s `\ell_x=2` row and `P`'s own `2+d_i` cycle are
-arithmetically identical in form**, so in this exact sub-case the two
-templates do not conflict or reinforce each other beyond both requiring
-`d_i\ne2^m-2`-type exclusions on the same route set. **One common
-endpoint / disjoint / crossing sub-cases**: each reduces to combining
-two paths via Lemma C/D of `contraction_atoms.md`'s toolkit exactly as
-in the generic (non-triangle) leaf-block setting — no new lemma is
-needed, only the bookkeeping of which vertex contributes which path,
-not carried out exhaustively here since (per Part VII) `\tau_y=P`'s own
-extra-attachment geometry is not pinned down first.  None of this concrete
-`\ell_x=2` arithmetic applies to a surviving multi-attachment A.
+**Correct symbolic endpoint relationship.** The terminal sets
+`\{x,X_x\}` and `\{y_1,y_2\}` still live on different theta systems and
+may coincide, meet once, or be disjoint according to the unresolved P
+attachment geometry. If they coincide, A contributes its symbolic pair
+`\ell_x+d_i,\ell_x+\delta_x+d_i`, while P contributes `2+d_i`; no term
+may be replaced by a pinned `\ell_x=2`. One-common/disjoint/crossing cases
+still require the generic path-intersection toolkit, after the P ports are
+located. This classification is conditional and no A/P combination is
+eliminated.
 
 **Corrected outcome.** The same-pair, concretely pinned A/P calculation is
 withdrawn because its A path list was unproved. Exact-two-attachment and

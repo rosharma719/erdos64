@@ -156,8 +156,9 @@ consistent when the third vertex's own data is added.
   component facts hold, the third is forced by ordinary set-theoretic
   transitivity of "same connected component," not by any new graph
   argument — recorded as a free consequence, not a new theorem.
-- **Attachment-order consistency.** Each vertex's shortest path
-  (`\ell_x=2`) routes through `Y_x`, a *specific* one of the other two
+- **Attachment-order consistency.** Each vertex's isolated shortest path
+  (length `2`, not an admissible-path label) routes through `Y_x`, a
+  *specific* one of the other two
   triangle vertices — consistent across all three simultaneously exactly
   when the `(X_a,X_b,X_c)` triple is fixed (no additional constraint
   beyond X.0/V.1's per-pair table, checked once per pair, not per

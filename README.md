@@ -208,11 +208,11 @@ work in the sibling `erdos/` directory — no shared code.
   equivalent). The main new finding: each cubic triangle vertex's own
   central bridge `B_x` attaches directly at `\{x,X_x\}` (`X_x` a pole of
   its own canonical theta `\Theta_x`) via the triangle's own edges alone
-  — no S5 argument needed — with the shorter admissible-pair path pinned
-  to exactly length 2. The recovery audit shows the claimed length-3/4
-  mate was not supplied by T2; either such short mate would force a `C_4`,
-  while exact-two-attachment **A** remains open with a larger unspecified
-  admissible pair. Classifies the four
+  — no S5 argument needed — and contains an isolated shortest path of
+  length 2. The recovery audit shows that path is not pinned into T2's
+  admissible pair; either claimed length-3/4 mate would force a `C_4`.
+  The exact-two-A continuation gives the full larger-pair cycle table and
+  an infinite safe arithmetic family, so the case remains open. Classifies the four
   `(X_x,X_y)` configurations between two triangle vertices exactly, and
   honestly resolves 3 of the task's 6 component-sharing possibilities
   from local data alone, leaving the rest open (external-structure
@@ -270,6 +270,12 @@ work in the sibling `erdos/` directory — no shared code.
   definitions, theorem dependency graph, degree/simplicity audit, independent
   symbolic and NetworkX checks, an explicit T2-inference counterexample, and
   the corrected residual Type-T table.
+- `type_t_exact_two_a.md` — continues with the highest-priority residual A
+  case. Separates the generic pole-to-pole A template from the actual
+  triangle gateway, proves the complete guaranteed cycle table with offsets
+  `0,1,2^rho,2^s+1`, classifies its infinite arithmetic complement, audits
+  Heawood/Balaban counterexamples and overlap cells, and explains why the
+  scoped T8/SPQR results do not yet give a rooted replacement.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -461,6 +467,11 @@ work in the sibling `erdos/` directory — no shared code.
     candidate; verifies the forced `C_4`s and that the claimed length-9 object
     is not simple, plus a Heawood-based regression showing T2's admissible pair
     need not contain the shortest terminal path.
+  - `type_t_exact_two_a.py` — checks the corrected exact-two-attachment A
+    cycle table and infinite safe family, the generic pole-to-pole comparison,
+    complete Heawood hypothesis failures, a C4/C8-free Balaban-derived rooted
+    counterexample to local anchoring, and irreducible two-cell overlap
+    patterns for both admissible offsets.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
