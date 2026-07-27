@@ -297,6 +297,11 @@ work in the sibling `erdos/` directory — no shared code.
   vertices. Exhaustive local generation eliminates the 26-edge layer; the
   complete checksummed 570-graph McKay extremal layer eliminates 27 edges.
   Thus `Pi0` has no realization at order 36.
+- `type_b_b19.md` — promotes that result to the local bridge theorem B19 after
+  an explicit dependency audit: neither `Pi0` bridge role can have order 19,
+  independently of its partner. Consequently both bridges have order at least
+  20, the full graph has order at least 38, and order 37 is eliminated by the
+  impossible mixed `(19,20)` bridge sizes.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
