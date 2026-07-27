@@ -97,7 +97,7 @@ work in the sibling `erdos/` directory — no shared code.
   technique, but its hypotheses are not verified to hold here, and no
   crossing instance is claimed resolved.
 - `contraction_saturation.md` — **theta-bridge saturation and the Type
-  T system (2026-07-27, current top priority):** defines theta bridges
+  T system (2026-07-27):** defines theta bridges
   precisely and reduces single-branch-pair bridges to the existing
   near-power-cycle chord machinery; proves a genuine new connection to
   **S5** (at most one theta-internal vertex, out of `\ge6` and growing,
@@ -111,6 +111,25 @@ work in the sibling `erdos/` directory — no shared code.
   highest-value remaining Type T question), and V.3's crossing case —
   each named as a precise next step, with no `q=4` census, defect
   bound, or voltage search substituted for genuine progress.
+- `contraction_central_bridge.md` — **the central-bridge lemma and
+  topological-K4 reduction (2026-07-27, current top priority):** CB1
+  (PROVED, by direct citation of S5): the theta bridge carrying the
+  cubic center's third edge can *never* be single-attachment, since
+  `v`'s own degree (3) already contradicts S5's forced degree-4 for any
+  cut vertex — sharper than the prior session's general "at most one"
+  bound. Splits the return location into endpoint-return (an exact
+  normal form, no contradiction) and interior-return, which is PROVED to
+  form a genuine topological-`K_4` subdivision with an exact seven-cycle
+  table — three of the seven collapse immediately to already-proved
+  safe lemmas (Lemma E, Lemma F, and simple parity), leaving four
+  genuine open `(\ell,d)`-dependent conditions recorded as a compact
+  theorem table. Establishes the first-excursion containment fact and
+  a one-directional length bound relating the canonical return path to
+  the third-edge witness; tests the "one-excursion" target (CB2) and
+  finds it structurally unsupported (a genuine two-excursion
+  configuration is exhibited, though not certified canonical/minimal),
+  the correct honest replacement for last phase's disproved "one-cell"
+  claim.
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
@@ -235,6 +254,14 @@ work in the sibling `erdos/` directory — no shared code.
     (contraction_saturation.md Part VI); kept separate from the five
     prior contraction verifiers, none of which it touches; deliberately
     builds no gadget for the unresolved saturation target itself.
+  - `central_bridge.py` — mechanical cross-check of CB1, the
+    endpoint-return cycle list, the topological-K4 construction with a
+    full independent simple-cycle enumeration confirming exactly seven
+    cycles, the NPT substitution table (1,500 parameter tuples), the
+    first-excursion containment fact, and a structural (explicitly
+    non-canonical) two-excursion CB2 instance (contraction_central_bridge.md
+    Parts I-V); kept separate from the six prior contraction verifiers,
+    none of which it touches.
 - `manifests/` — canonical run and external-artifact provenance records.
 - `logs/`, `data/` — run outputs and artifacts.
 
