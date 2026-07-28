@@ -25,18 +25,24 @@ identical-terminal and one-common-terminal sub-cases of the joint
 vertex's single-bridge analysis (specifically: that the two central
 bridges, in the exact-two-attachment case, are forced to *be* bridges
 of an honest `two_cut.md` 2-cut, which lets the two vertices'
-otherwise-independent theta exponents interact directly) produces a
-short, fully rigorous proof that `rho_x != rho_y` is forced whenever
-this configuration survives at all — a genuinely new necessary
-condition, not present in any of the fifteen source files. Part 4 is
-the requested joint outcome matrix, citing this new fact plus the
-existing per-cell results. Part 5 makes explicit the (previously
-unstated) fact that the order-40 frontier computation already run this
-session (`type_b_order40_frontier.md` onward) *is* the realizability
-engine for the Type-B tuple this file's `(A,A)` cell reduces to. Part 6
-is the dependency diagram with PROVED/CONDITIONAL/FALSE/OPEN labels.
-Part 7 proposes (without yet building) the smallest computational model
-for the surviving residual.
+otherwise-independent theta exponents interact directly). **The two
+rows have different certainty levels and must not be conflated:** the
+one-common-terminal row gets a short, fully rigorous, unconditional
+proof that `rho_x != rho_y` is forced (Part 3.2); the identical-terminal
+row instead requires classifying how two paths *inside the same merged
+bridge* can overlap (Part 3.1.1) — this resolves to `rho_x != rho_y`
+being forced *only* in the vertex-disjoint sub-case, with an explicit
+proof that cell arithmetic alone does *not* exclude the overlapping
+sub-case (a genuine, exhibited residual, not a closed theorem). Part 4
+is the requested joint outcome matrix, citing both results at their
+correct scope plus the existing per-cell results. Part 5 makes explicit
+that the order-40 frontier computation already run this session is
+relevant infrastructure for the single-vertex-anchored sub-cases this
+file's `(A,A)` cell reduces to, but does not by itself resolve the
+enriched two-exponent-system bridge this file introduces. Part 6 is the
+dependency diagram with PROVED/CONDITIONAL/FALSE/OPEN labels. Part 7
+scopes (without yet building) the smallest computational model for the
+part of the residual it can actually cover.
 
 ## 1. Dependency audit of the fifteen files
 
@@ -138,27 +144,88 @@ So:
 \Lambda(B_2^{\rm joint})\supseteq\{2^{\rho_x},\,2^{s_x}+1,\,2^{\rho_y},\,2^{s_y}+1\}.
 \]
 
-**The obstruction [PROVED, conditional only on the generic assumption
-stated].** If the `x'`-branch pieces and `y'`-branch pieces are
-internally disjoint inside `B_2^{joint}` (the expected generic case;
-not separately certified here — see caveat below), then the two
-`x`-`y` paths of length `2^{rho_x}` and `2^{rho_y}` are internally
-disjoint, so their union is an actual simple cycle of `G` of length
-`2^{rho_x}+2^{rho_y}`. This is a power of two **exactly when
-`rho_x=rho_y`** (`2^a+2^b` is a power of two iff `a=b`, giving
-`2^{a+1}` — elementary, verified computationally for
-`a,b in [2,11]` as a hygiene check, not because the arithmetic is in
-doubt). **So `rho_x=rho_y` forces an immediate `C_{2^{rho_x+1}}`, a
-direct contradiction.**
+**Scope note on the other 5 pairs of this 4-element spectrum.** Only
+the `(2^{\rho_x},2^{\rho_y})` pair is analysed below (3.1.1) — this is
+the specific pair the task asked to resolve, and the one this file's
+headline result concerns. The other 5 pairs (`rho_x`-vs-`s_y`,
+`s_x`-vs-`rho_y`, `s_x`-vs-`s_y`, and each against itself) all involve
+paths living in the *same* bridge `B_2^{joint}` too, so they carry the
+identical same-bridge overlap ambiguity — an "odd total" is **not**
+by itself a safety guarantee once overlap is allowed (a quick check
+shows an overlapping split of an odd-length pair can still expose an
+even, individually-`\mathcal F`-hitting cell — e.g. `rho_x=s_y=2`,
+paths of length `4,5`, split `(1,3)`/`(3,2)` gives a first cell of
+length `4`). **These 5 pairs are not analysed in this file** — flagged
+honestly as unaudited, not silently assumed safe.
 
-**Honest caveat.** This specific derivation assumes the `x'`- and
-`y'`-branch pieces of `B_2^{joint}` are internally disjoint from each
-other. That is the natural expectation (they arise from two
-independently-canonicalized, structurally unrelated theta systems) but
-is **not proved here** — establishing it in general would need the
-`contraction_intersections.md` overlap toolkit, not attempted in this
-pass. Part 3.2 below gives a version of the *same* conclusion that
-needs no such assumption.
+**3.1.1. The overlap dichotomy, resolved [PROVED for one branch, REFUTED
+for the other — this is the corrected, precise scope of this row's
+obstruction].** `P_x` (`x`-`x'`-...-`y`, length `2^{rho_x}`) and `P_y`
+(`y`-`y'`-...-`x`, length `2^{rho_y}`) are both simple `x`-`y` paths
+lying inside the same bridge `B_2^{joint}`. By Lemma NE, `x'!=y'`, so
+they diverge immediately, but nothing proved so far rules out a *later*
+reconvergence at a shared internal vertex — whether they are internally
+disjoint is a genuine open structural question (of exactly the kind
+`contraction_intersections.md` V.2 already showed canonicalization does
+**not** resolve in general), not settled by any existing lemma. The
+`two_cut.md` §11 symmetric-difference identity applies to *any* two
+`x`-`y` paths regardless of overlap: writing `omega` for their shared-
+edge count and `C_1,...,C_k` for the edge-disjoint cycles the symmetric
+difference decomposes into,
+\[
+|P_x|+|P_y| = 2\,\omega + \sum_i|C_i|,
+\]
+and *each* `C_i` is an actual cycle of `G`, so **every one** must avoid
+`\mathcal F`. This splits the question into exactly the two cases the
+overlap taxonomy allows:
+
+- **Internally vertex-disjoint (`omega=0`, one cell: `P_x,P_y` share
+  only the endpoints `x,y`).** Then `k=1` and the single cycle
+  `C_1=P_x\cup P_y` has length exactly `2^{\rho_x}+2^{\rho_y}` — a power
+  of two **exactly when `rho_x=rho_y`** (`2^a+2^b\in\mathcal F` iff
+  `a=b`, giving `2^{a+1}`; verified computationally for `a,b\in[2,19]`
+  as a hygiene check). **So in this sub-case, `rho_x=rho_y` forces an
+  immediate `C_{2^{\rho_x+1}}` — outcome (1) of the task, genuinely
+  established, but scoped exactly to this sub-case.**
+- **Sharing an internal vertex (`omega=0`, `k\ge2`; or `omega>0`, fewer/
+  shorter cells).** Here `rho_x=rho_y` does **not** force a
+  contradiction by cell arithmetic alone. **Explicit general refutation
+  [PROVED]:** for every `rho\ge2`, split `P_x`'s length `L=2^{\rho}`
+  into two cells `a_1=1,a_2=L-1` and `P_y`'s length `L` into
+  `b_1=2,b_2=L-2` (valid: `b_2\ge1` for `L\ge3`, true for `rho\ge2`).
+  The resulting cell-cycle lengths are `a_1+b_1=3` and
+  `a_2+b_2=2^{\rho+1}-3`. `3` is below `\mathcal F`'s smallest element
+  (4), and `2^{\rho+1}-3` is odd (even minus odd), hence never in
+  `\mathcal F` (all of `\mathcal F` is even) — **both cell-cycles are
+  clean for every `rho\ge2`, verified computationally for
+  `rho\in[2,19]`.** So **a two-cell overlap pattern exists, for every
+  exponent, that is completely invisible to cell arithmetic** — the
+  naive hope of extending outcome (1) to the overlapping case is
+  **REFUTED** by this explicit family (matching exactly the same
+  cancellation phenomenon `type_t_exact_two_a.md` §7 already documented
+  for the *different* problem of overlapping T2 admissible-pair paths
+  within one bridge — this is not a new phenomenon, but its
+  applicability to *this* pair of paths had not been checked before).
+
+**Honest scope, corrected.** The identical-terminal row's cross-exponent
+claim is **not** a general theorem: it holds unconditionally only in
+the internally-vertex-disjoint sub-case. The overlapping sub-case is
+**not excluded by arithmetic** — this is a genuine, exhibited residual
+(outcome (4) of the task, not outcome (1) or (2)): whether an *actual
+graph* realizes an overlapping `B_2^{joint}` with `rho_x=rho_y` (i.e.
+whether the abstract escaping cell-assignment above, or one like it, is
+graph-realizable once `B_2^{joint}`'s own internal degree-`\ge3`,
+2-connected-closure, and `s_x,s_y`-branch requirements are all imposed
+simultaneously) is **not resolved by this file** and is the precise
+next question — a genuinely different, and harder, target than the
+abstract arithmetic escape alone, exactly parallel to how
+`type_t_exact_two_a.md` §7 flagged its own path-incidence
+counterexamples as "not settling whether degree-three saturation plus
+full `F`-cleanness eliminates every such overlap." Part 3.2 below gives
+a version of the exponent-inequality conclusion that needs **no**
+overlap assumption at all, because it compares two paths in
+*different* bridges (automatically disjoint), not two paths in the
+*same* bridge.
 
 ### 3.2. One-common-terminal row (`X_x=X_y=z_0`): a fully rigorous cross-cut version [PROVED unconditionally]
 
@@ -207,20 +274,35 @@ argument). `2^{\rho_y}+2^{s_x}+1` and `2^{\rho_x}+2^{s_y}+1` are each
 `rho_x!=rho_y` is the unique new necessary condition** this
 cross-interaction produces; nothing else is forced by it.
 
-### 3.3. What this does and does not establish
+### 3.3. What this does and does not establish — precise per-row scope
 
-- **PROVED, new:** whenever the joint `(A,A)` outcome survives at all
-  (either row), the two vertices' near-power exponents cannot coincide:
-  `rho_x != rho_y`. This is genuinely new information — no single-
-  vertex analysis (`type_t_exact_two_a.md` included) could see it,
-  since it requires *both* central bridges' branch structure inside the
-  *same* 2-cut simultaneously.
-- **Not established:** that `rho_x!=rho_y` (or any other parameter
-  choice) is *sufficient* for a survivor — the full guaranteed-length
+**The two rows have genuinely different certainty levels; this is not
+a single theorem with one uniform scope, and must not be summarized as
+one.**
+
+- **One-common-terminal row (3.2): `rho_x!=rho_y` is forced,
+  unconditionally, PROVED.** The two paths compared live in two
+  *different* bridges of the same 2-cut `{x,z_0}`, which are
+  automatically vertex-disjoint except at the terminals — no overlap
+  question arises at all.
+- **Identical-terminal row (3.1.1): `rho_x!=rho_y` is forced *only* in
+  the internally-vertex-disjoint sub-case of the two paths inside the
+  single merged bridge `B_2^{joint}`.** In the overlapping sub-case,
+  arithmetic alone does **not** force a contradiction — an explicit
+  general two-cell escape family (valid for every `rho\ge2`) was
+  exhibited that evades every individual cell-cycle length landing in
+  `\mathcal F`. **This sub-case is a genuine open residual, not a
+  proved theorem** — whether it is graph-realizable once every other
+  constraint on `B_2^{joint}` (internal degree `\ge3`, 2-connected
+  closure, the `s_x,s_y` branches, `Q`) is imposed simultaneously is
+  the precise next question, not resolved here.
+- **Not established in either row:** that `rho_x!=rho_y` (where it is
+  forced) is *sufficient* for a survivor — the full guaranteed-length
   tables of both vertices (`type_t_exact_two_a.md`'s 8-length table,
   applied at each vertex) still need joint cross-checking against each
   other and against `Q` (the triangle-contraction witness), which is
-  not carried out here. `(A,A)` is **narrowed, not eliminated.**
+  not carried out here. `(A,A)` is **narrowed, not eliminated**, and
+  narrowed unconditionally only via the one-common-terminal row.
 - **Scope:** this argument uses only the `rho` exponents (the
   near-power-edge-witness branch). The `s` exponents (closed-
   neighbourhood witness branch) were checked and found safe in every
@@ -231,7 +313,7 @@ cross-interaction produces; nothing else is forced by it.
 
 | `tau_x \ tau_y` | `A` | `P` | `S` |
 |---|---|---|---|
-| **`A`** | **(a)-conditional + (b):** `rho_x!=rho_y` forced (Part 3, new, PROVED); given that, reduces to a genuine (enriched) Type-B 2-cut per Part 5; residual survives for `rho_x!=rho_y` — **(d)** | **(d):** not eliminated; terminal-set relationship (coincide / meet-once / disjoint) depends on unresolved P-port geometry (`central_bridge_triangle_s5.md` IX, corrected scope); no new joint arithmetic beyond the two independent frozen templates found | **(c)+(d):** vacuous-crossing case eliminated (PROVED); generic non-touching case leaves `tau_x=A`'s own single-vertex reduction (Part 5) untouched; touching-and-detour-into-`L` OPEN (needs `L`'s internal spectrum) |
+| **`A`** | **Split by row, not one outcome.** *One-common-terminal:* **(a)** `rho_x!=rho_y` forced unconditionally (Part 3.2, PROVED); given that, reduces to a genuine Type-B 2-cut per Part 5; residual survives for `rho_x!=rho_y` — **(d)**. *Identical-terminal:* `B_x=B_y` forced (PROVED); `rho_x!=rho_y` forced *only* in the vertex-disjoint sub-case — **(a)** there, but **(d)**, a genuine open residual, in the overlapping sub-case (Part 3.1.1; arithmetic alone does not exclude it, an explicit escape family exists) | **(d):** not eliminated; terminal-set relationship (coincide / meet-once / disjoint) depends on unresolved P-port geometry (`central_bridge_triangle_s5.md` IX, corrected scope); no new joint arithmetic beyond the two independent frozen templates found | **(c)+(d):** vacuous-crossing case eliminated (PROVED); generic non-touching case leaves `tau_x=A`'s own single-vertex reduction (Part 5) untouched; touching-and-detour-into-`L` OPEN (needs `L`'s internal spectrum) |
 | **`P`** | *(symmetric to above)* | **(d):** not eliminated, not reducible further than the two independent shared-port templates plus `Q`'s pair, unless port vertices coincide with `Q`'s own attachment pair (unresolved geometry, `central_bridge_triangle_s5.md` VIII) | **(c)+(d):** same structure as `(A,S)` but with `P`'s shared-port arithmetic in place of `A`'s admissible pair |
 | **`S`** | *(symmetric)* | *(symmetric)* | **(c):** `z_x=z_y=z` forced by S5 uniqueness (PROVED); generic `z notin T` forces `T` and both thetas into one lobe, the two attachment-free leaves into the *same* literal component `L=L'` (PROVED, per the addendum correction cited in `central_bridge_triangle_s5.md` VI.1); degenerate `z in T` case **OPEN** |
 
@@ -241,7 +323,7 @@ the only one with new content in this pass; every other cell's entry
 is a citation of existing, already-published results in the fifteen
 audited files, not a new derivation.
 
-## 5. The order-40 frontier *is* the realizability engine for the `(A,A)` residual
+## 5. The order-40 frontier is relevant infrastructure — not a resolution — for the `(A,A)` residual
 
 This connection is not stated explicitly anywhere in the fifteen
 audited files, and is worth making explicit: **the `S1={2,ell,ell+delta}`,
@@ -260,9 +342,14 @@ established this session for the fixed tuple `Pi_0=(2,2,4,4,1,1)` and
 its order-21 (`t` one step higher) extensions — B19 (bridge order 19
 impossible), B20/B20D2 (order 20 impossible, both gap types), and the
 four order-21 `E=29`/`E=30` layers (all empty, fully cross-validated)
-— is **literal progress on the `(A,A)` residual of this file's joint
-matrix**, restricted to that one specific `(rho,s,t,u,delta,epsilon)`
-range. It is not "generic Type-B lower-bound raising" in the sense the
+— is **literal progress on the single-vertex-anchored realizability
+question underlying the `(A,A)` residual of this file's joint matrix**
+(the one-common-terminal row's forced-`rho_x!=rho_y` case, and the
+identical-terminal row's vertex-disjoint sub-case — see Part 6's
+diagram), restricted to that one specific `(rho,s,t,u,delta,epsilon)`
+range, and **not** the identical-terminal row's overlapping sub-case
+(Part 3.1.1), which the order-40 generators do not model at all. It is
+not "generic Type-B lower-bound raising" in the sense the
 earlier strategic redirection worried about; it is the concrete,
 already-running computational attack on exactly the residual this Part
 4's `(A,A)` cell identifies.
@@ -317,16 +404,29 @@ arbitrary Type-T triangle T={x,y,z_0}, x,y cubic
         |            touching-and-detour-into-L [OPEN, needs L's
         |            internal spectrum]
         |
-        +-- (A,A) --[Part 3, NEW]--> rho_x != rho_y forced
-        |            [PROVED, one row unconditional, one row generic]
-        |            --> reduces to enriched Type-B 2-cut(s)
-        |            [PROVED reduction, Part 3.1/3.2]
-        |            --> realizability = order-40 frontier's own
-        |            computational program, extended to 2 rho/s pairs
-        |            [CONDITIONAL: resolves this cell only if that
-        |            program reaches an all-orders theorem; currently
-        |            a finite fragment]
-        |            --> residual for rho_x != rho_y: [OPEN]
+        +-- (A,A) --[Part 3, NEW]--> reduces to enriched Type-B 2-cut(s)
+        |            [PROVED reduction, Part 3.1/3.2, both rows]
+        |            |
+        |            +-- one-common-terminal row: rho_x != rho_y
+        |            |     forced UNCONDITIONALLY [PROVED, Part 3.2 --
+        |            |     cross-cut sum between automatically-disjoint
+        |            |     bridges of the same 2-cut]
+        |            |     --> residual for rho_x != rho_y: [OPEN]
+        |            |
+        |            `-- identical-terminal row: B_x=B_y forced
+        |                  [PROVED, Part 3.1]; rho_x != rho_y forced
+        |                  ONLY in the vertex-disjoint sub-case
+        |                  [PROVED, Part 3.1.1]; in the overlapping
+        |                  sub-case, an explicit escape family REFUTES
+        |                  the naive extension [PROVED counterexample,
+        |                  Part 3.1.1] --> graph-realizability of the
+        |                  escape [OPEN, the precise next question]
+        |            --> single-vertex-anchored realizability =
+        |            order-40 frontier's own computational program
+        |            [CONDITIONAL: resolves the single-vertex sub-cases
+        |            only if that program reaches an all-orders
+        |            theorem; currently a finite fragment; does NOT
+        |            address the enriched joint spectrum at all]
         |
         +-- (A,P)/(P,A) --> [OPEN, corrected scope, no false pinning]
         |
@@ -344,43 +444,75 @@ templates used throughout Parts 3-4 above.**
 
 ## 7. Proposed next computational model (not built this pass)
 
+**This step is deliberately deferred until the overlap question (Part
+3.1.1) is resolved further, or at least explicitly scoped as the
+generator's known blind spot** — building it now, without that
+resolution, would silently bake in the unproved vertex-disjointness
+assumption for the identical-terminal row.
+
 The natural smallest next target, following directly from Part 3.2's
-fully rigorous cross-cut version: extend `type_b_realizability.py`'s
-frozen-tuple generator to a **joint tuple**
-`Pi_J=(rho_x,s_x,rho_y,s_y,t,u,delta,epsilon)` with the constraint
-`rho_x!=rho_y` built in, and `B_2`'s spectrum enriched to
+fully rigorous (one-common-terminal, automatically-disjoint) cross-cut
+version: extend `type_b_realizability.py`'s frozen-tuple generator to a
+**joint tuple** `Pi_J=(rho_x,s_x,rho_y,s_y,t,u,delta,epsilon)` with the
+constraint `rho_x!=rho_y` built in, and `B_2`'s spectrum enriched to
 `{2^{rho_x},2^{s_x}+1,2^{rho_y},2^{s_y}+1}` (four forced lengths
 instead of two) rather than the single-vertex `S2`. The smallest such
 instantiation is `rho_x=2,rho_y=3` (or the symmetric `rho_x=3,rho_y=2`),
 `s_x=s_y=2` (checked safe in Part 3.2, imposes no extra constraint),
 with `t,u` as small as the existing frontier's own bookkeeping allows.
-This is a well-specified, concrete extension of already-existing
-infrastructure (`verifier/type_b_realizability.py`,
-`verifier/type_b_order40_*`) — proposed here as the next step, per the
-user's explicit instruction to build such a model *if* a residual
-obstruction survives, but **not attempted in this pass**, since the
-primary deliverable this turn was the Type-T proof/audit itself, and
-building and running a new generator is exactly the kind of extended
-computation the governing strategic redirection asked to bound rather
-than launch by default.
+
+**Scope this generator would actually cover, stated precisely.** Such a
+generator would resolve realizability for: the one-common-terminal
+row's `rho_x!=rho_y` case (Part 3.2, unconditional), and the
+identical-terminal row's *vertex-disjoint* sub-case (Part 3.1.1, where
+`rho_x!=rho_y` is likewise unconditional there). It would **not**
+address the identical-terminal row's *overlapping* sub-case (Part
+3.1.1's escape family) at all — that sub-case's residual is a
+different, harder question (whether an overlapping `B_2^{joint}` is
+graph-realizable), not answerable by the same fixed-non-overlapping-
+path-union template `type_b_realizability.py` uses. Building a model
+for the overlapping sub-case specifically would need to additionally
+parametrize the *cell structure* of the two paths' shared vertices,
+which is a genuinely new generator design, not a straightforward
+extension. This is proposed here as the next step, per the user's
+explicit instruction to build such a model *if* a residual obstruction
+survives, but **not attempted in this pass** — the primary deliverable
+this turn was resolving the overlap question itself (Part 3.1.1), which
+is now done to the extent it currently can be (a proved dichotomy, not
+a closed theorem).
 
 ## 8. What is explicitly claimed and what is not
 
-- **Claimed (new, PROVED):** in the joint `(A,A)` outcome, `rho_x!=rho_y`
-  is a necessary condition for survival (Part 3), via two routes: an
-  unconditional cross-cut-sum argument (one-common-terminal row, Part
-  3.2, fully rigorous) and a generic-case internal-cycle argument
-  (identical-terminal row, Part 3.1, conditional on an unproved but
-  expected disjointness assumption).
+- **Claimed (new, PROVED, unconditional):** in the joint `(A,A)`
+  outcome's one-common-terminal row, `rho_x!=rho_y` is forced (Part
+  3.2) — an unconditional cross-cut-sum argument between two
+  automatically-disjoint bridges of the same 2-cut.
+- **Claimed (new, PROVED, unconditional):** in the identical-terminal
+  row, `B_x=B_y` as literal vertex sets (Part 3.1), and `rho_x!=rho_y`
+  is forced *specifically and only* in the sub-case where the two
+  `2^{rho_x}`/`2^{rho_y}`-length paths inside the merged bridge
+  `B_2^{joint}` are internally vertex-disjoint (Part 3.1.1).
+- **Claimed (new, PROVED, a refutation not a theorem):** in that same
+  identical-terminal row, the *overlapping* sub-case is **not** excluded
+  by cell arithmetic alone — an explicit general two-cell escape family,
+  valid for every `rho\ge2`, was exhibited (Part 3.1.1). **This is
+  explicitly a proof that a naive unconditional extension would be
+  false, not a proof that the overlapping sub-case survives as an
+  actual graph** — whether it is graph-realizable remains the open
+  residual.
 - **Claimed (synthesis, not a new theorem):** the order-40 frontier
-  computation already run this session is literally the realizability
-  engine for the single-vertex-anchored sub-case of `(A,·)`/`(·,A)`
-  (Part 5) — a connection not previously stated explicitly anywhere in
-  the audited files.
+  computation already run this session is relevant infrastructure for
+  the single-vertex-anchored sub-cases of `(A,·)`/`(·,A)` (Part 5), but
+  it does **not** already resolve the enriched joint bridge `B_2^{joint}`
+  (which simultaneously carries both vertices' exponent systems,
+  `{2^{\rho_x},2^{s_x}+1,2^{\rho_y},2^{s_y}+1}`) — the prior frozen
+  tuples were single-vertex anchored, and this is a strictly richer
+  object the existing generators do not target.
 - **Claimed (audit only, no new derivation):** the status of every
   other cell of the joint matrix (Part 4), each citing the exact
   existing file and result.
 - **Not claimed:** that Type T (or Type N) is eliminated; that any
-  matrix cell is fully closed; that the `(A,A)` residual (the case
-  `rho_x!=rho_y`) is resolved; that the proposed joint-tuple model
-  (Part 7) has been built or run; any all-orders theorem of any kind.
+  matrix cell is fully closed; that the identical-terminal row's
+  overlapping-sub-case residual is resolved; that the proposed
+  joint-tuple model (Part 7) has been built or run; any all-orders
+  theorem of any kind.
