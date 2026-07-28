@@ -1,12 +1,20 @@
 # Type-T joint bridge universalization: the two-central-bridge interaction
 
-**Status.** Hand-written dependency audit plus one new proved lemma
+**Status (historical; identical-terminal row structurally superseded).** Hand-written dependency audit plus one new proved lemma
 (the cross-exponent obstruction, Part 3). Everything else in this file
 either cites an existing proved result exactly, or reports an existing
 open item exactly as it stands. Nothing here is proof-assistant formal
 verification. **Type T is NOT eliminated by this file.** No row of the
 joint outcome matrix (Part 4) is fully closed; this is stated
 explicitly rather than rounded up.
+
+**Later dependency correction.**  Ancestor commit `7a3c1f7`
+(`central_bridge_triangle_pole_forcing.md`) already proves that the aligned
+pole of a cubic Type-T vertex cannot be cubic.  Hence the T2 assumptions
+`X_x=y,X_y=x` in Part 3.1 are impossible: `x,y` are cubic and the only
+surviving pole choice is `X_x=X_y=z_0`.  Part 3.1's overlap arithmetic is
+conditional historical analysis, not a live row.  Part 3.2 is the surviving
+one-common-terminal geometry.
 
 ## 0. Scope and what this file adds
 

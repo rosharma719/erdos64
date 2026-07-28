@@ -25,7 +25,8 @@
     "The entire residual reduces to whether P_1^x and P_1^y share an internal vertex.",
     "S_x and S_y add no simultaneous constraint to an A-C escape."
   ],
-  "correct_residual": "Conditional on Q adding no further x-y path, retain the full rooted color-preserving A,B,C,D incidence core with subdivision lengths and analyze all four cross-theta incidences simultaneously. If Q attaches at {x,y}, add its outside arc as a fifth color.",
+  "historical_residual_before_structural_supersession": "Conditional on Q adding no further x-y path, the arithmetic audit would retain the full rooted color-preserving A,B,C,D incidence core with subdivision lengths. This is no longer a live residual because pole forcing eliminates its terminal row.",
+  "structural_supersession": "Ancestor commit 7a3c1f7 already proves that an aligned pole of a cubic Type-T vertex cannot be cubic. Therefore X_x=y and X_y=x are impossible in T2; the pairwise results in this manifest are conditional abstract arithmetic, not a live Type-T residual.",
   "output_files": {
     "markdown": "type_t_identical_terminal_joint_spectrum.md"
   }

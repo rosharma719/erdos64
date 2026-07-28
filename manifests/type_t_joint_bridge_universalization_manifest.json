@@ -1,5 +1,6 @@
 {
   "description": "Dependency audit of the 15 Type-T/contraction/central-bridge files, plus new results on the joint (A,A) outcome: an unconditional cross-exponent obstruction (one-common-terminal row), a fully resolved overlap dichotomy for the two paths inside the merged bridge (identical-terminal row), the requested (A,P,S)x(A,P,S) joint outcome matrix, and an explicit synthesis (with corrected scope) connecting the (A,A) cell's realizability question to the order-40 frontier computational program already run this session. This manifest supersedes an earlier version whose new_result/synthesis fields incorrectly stated the identical-terminal row's obstruction as holding whenever the configuration survives at all; the corrected scope is recorded below.",
+  "structural_supersession": "Ancestor commit 7a3c1f7 proves a cubic Type-T vertex cannot have a cubic aligned pole. Thus the identical-terminal T2 row X_x=y,X_y=x is impossible; its overlap analysis is conditional historical arithmetic. The one-common-terminal row X_x=X_y=z_0 is the only surviving pole geometry.",
   "scope_note": "Hand-written dependency audit and new hand proofs; not proof-assistant formal verification, not a graph census. Computation performed: elementary arithmetic hygiene checks (2^a+2^b in F iff a==b for a,b in [2,19]; the general two-cell escape family (1,L-1)/(2,L-2) is F-clean for all rho in [2,19]; the single-cell vertex-disjoint case always gives 2^(rho+1) in F for rho in [2,19]) confirming the closed-form arguments in Part 3 -- these are one-off python3 hygiene checks, not a formal verifier script, and no manifest-tracked verifier file was produced this pass.",
   "audited_files": [
     "contraction_saturation.md",
@@ -49,7 +50,7 @@
   ],
   "output_files": {
     "markdown": "type_t_joint_bridge_universalization.md",
-    "markdown_sha256": "df332a6db2a448a5428d0ef8c0c5968e78e6738a12e421591afb92113bc6520a"
+    "markdown_sha256": "f415fab43294cf0dbce46d2e3021824521a2a3748a00915d7ac4086337632fd3"
   },
   "source_parent_commit": "19f8eb7b56bbcf279476e02122f4ac79084ba3b3",
   "corrects": "manifests/type_t_joint_bridge_universalization_manifest.json as committed in 19f8eb7 (and the corresponding chat summary in that turn), which stated the rho_x!=rho_y obstruction as applying uniformly to both rows of the joint (A,A) outcome; the identical-terminal row's applicability is actually restricted to its vertex-disjoint sub-case, with the overlapping sub-case left as an open residual after an explicit refutation of the naive extension."

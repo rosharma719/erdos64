@@ -1,0 +1,32 @@
+{
+  "description": "Prerequisite audit of the proposed minimum-degree-three saturation program for the identical-terminal alternating ladder. The row is UNSAT before saturation: pole forcing excludes both cubic aligned poles required by X_x=y, X_y=x.",
+  "scope_note": "The scripts verify canonical pole prerequisites and the reported abstract even-k arithmetic. They do not encode ears, degree saturation, Q, or graph realizability because the Type-T initial-state set is empty.",
+  "source_parent_commit": "d0773abed77b65e803a76255344122c95e29729e",
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 verifier/type_t_ladder_states.py",
+    "PYTHONDONTWRITEBYTECODE=1 python3 verifier/type_t_ladder_saturation_sat.py"
+  ],
+  "python_version": "3.14.6",
+  "state_script_sha256": "9dad3f21930ad16ac92f123f5c9b06a1e3d437cd5a483e21aa53adde6573a0e3",
+  "state_stdout_sha256": "8a31230d8f9a1e99c825bbbf54e844c6ddff0e9cb35c24db139d59a00b3cb486",
+  "sat_script_sha256": "37f824ec8ef4b03178b184ceedd7091f370ef6667852ea07df5bf8217aa82d57",
+  "sat_stdout_sha256": "c7593055da25fd5663a53bb751e93b40ee1e6231bbfc452d4616b671a6f210a3",
+  "markdown_sha256": "cf7c5917f60e3d480af052fe016ce5ad2929f2a77bd9e53ac971e595b932da9b",
+  "exit_status": 0,
+  "results": {
+    "T2_pole_rows": 4,
+    "pole_forcing_survivors": 1,
+    "surviving_row": {"X_x": "z_0", "X_y": "z_0"},
+    "identical_terminal_initial_states": 0,
+    "identical_terminal_accepting_states": 0,
+    "CNF_assignments_audited": 4,
+    "exhaustive_CNF_UNSAT": true,
+    "independent_DPLL_UNSAT": true,
+    "saturation_variables_created": 0,
+    "Q_variables_created": 0,
+    "abstract_even_k_values_checked": [2, 4, 6, 8, 10, 12],
+    "smallest_abstract_member": "L_{3,2,5}",
+    "assertion_failures": 0
+  },
+  "theorem": "No canonical Type-T alternating-ladder saturation exists because the identical-terminal row is already eliminated by pole forcing. Q cannot change the canonical-pole prerequisite."
+}

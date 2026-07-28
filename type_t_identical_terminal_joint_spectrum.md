@@ -1,10 +1,15 @@
 # The identical-terminal joint four-path spectrum: quantifier audit
 
-**Status (corrected 2026-07-28).**  This file audits commit `3ba40fc`.
+**Status (corrected 2026-07-28; structurally superseded).**  This file
+audits commit `3ba40fc`.
 The earlier version confused an existential arithmetic escape with a
 universal safety statement for three cross-theta pair types.  Those claims
 are withdrawn below.  The audit is a hand proof about path-incidence
 arithmetic, not a proof-assistant verification and not a graph census.
+Its pairwise quantifier corrections remain valid conditionally, but
+`type_t_ladder_saturation.md` observes that the identical-terminal premise
+`X_x=y,X_y=x` was already eliminated by the pole-forcing theorem in ancestor
+commit `7a3c1f7`.  Thus none of the incidence rows below is a live Type-T row.
 
 The word attached to this continuation is **REDUCTION**.
 

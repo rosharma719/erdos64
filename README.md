@@ -280,14 +280,22 @@ work in the sibling `erdos/` directory — no shared code.
   and corrects its existential/universal overlap quantifiers: the same-theta
   pairs are fixed safe, while all four cross-theta pair types have both safe
   and failing abstract incidences. It withdraws the invalid reduction to one
-  `P_1^x`/`P_1^y` coincidence and keeps `Q` separate.
+  `P_1^x`/`P_1^y` coincidence. These are now explicitly conditional abstract
+  statements: the identical-terminal pole row was already eliminated by
+  `central_bridge_triangle_pole_forcing.md`.
 - `type_t_overlap_reduction.md` — builds the rooted four-color weighted
   incidence core, proves the exact FORCED/ESCAPABLE/UNIVERSALLY-SAFE
   classification for every valid cell count, records the exact hypotheses a
-  splice must preserve, and isolates a scalable alternating-ladder family.
-  The remaining problem is degree-three saturation (plus `B_1`), or a
-  five-color extension when `Q` attaches at `{x,y}`; no unrestricted graph
-  search is claimed.
+  splice must preserve, and isolates a scalable alternating-ladder family as
+  an abstract colored graph. Structurally superseded: the ladder is not a live
+  Type-T residual because its `X_x=y,X_y=x` premise uses cubic aligned poles.
+- `type_t_ladder_saturation.md` — closes the proposed saturation target at its
+  prerequisite: pole forcing leaves only `X_x=X_y=z_0`, so the
+  identical-terminal ladder has zero initial/accepting states. It retains the
+  abstract arithmetic, corrects the smallest ladder parameter to
+  `L_{3,2,5}`, proves the generic two-attachment lower bound for off-core
+  components and exact single-ear spectrum formula, and explains why neither
+  ears nor `Q` can rescue the eliminated pole row.
 - `central_bridge_triangle_pole_forcing.md` — resolves
   `type_t_recovery_audit.md`'s own "theta-chord case IV.1(ii)" row
   (there listed as open): a degree-counting argument shows a cubic
@@ -538,6 +546,14 @@ work in the sibling `erdos/` directory — no shared code.
     four cross-theta length types, exponents 2 through 12, and every permitted
     cell count against the symbolic classification; saves the smallest mixed
     and S/S counterexamples to the former universal claims.
+  - `type_t_ladder_states.py` — independently enumerates all four T2 pole
+    rows, confirms that only the one-common-terminal `(z_0,z_0)` row survives,
+    and checks the abstract even-cell ladder formulas without calling them a
+    graph realization.
+  - `type_t_ladder_saturation_sat.py` — two independent prerequisite-CNF
+    checks (complete assignment enumeration and elementary DPLL) prove the
+    identical-terminal requirements inconsistent with pole forcing before
+    any saturation or `Q` variable is created.
   - `central_bridge_triangle_pole_forcing.py` — mechanical cross-check
     of the degree-forcing argument (a cubic `X_x` has exactly one spare
     edge once `P_2` is required to avoid `Y_x`, forcing `Y_x` onto
