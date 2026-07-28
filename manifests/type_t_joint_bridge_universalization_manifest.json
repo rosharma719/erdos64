@@ -1,0 +1,47 @@
+{
+  "description": "Dependency audit of the 15 Type-T/contraction/central-bridge files, plus one new proved lemma (the cross-exponent obstruction rho_x != rho_y in the joint (A,A) outcome), the requested (A,P,S)x(A,P,S) joint outcome matrix, and an explicit synthesis connecting the (A,A) cell's realizability question to the order-40 frontier computational program already run this session.",
+  "scope_note": "Hand-written dependency audit and one new hand proof; not proof-assistant formal verification, not a graph census. The only computation performed is an elementary arithmetic hygiene check (2^a+2^b in F iff a==b, and 2^a+2^b+2 never in F, for a,b in [2,11]) confirming the closed-form argument in Part 3 -- this is not a formal verifier script and no manifest-tracked verifier file was produced this pass.",
+  "audited_files": [
+    "contraction_saturation.md",
+    "contraction_central_bridge.md",
+    "contraction_separator_integration.md",
+    "contraction_block_cut_tree.md",
+    "contraction_leaf_blocks.md",
+    "contraction_ma2_integration.md",
+    "central_bridge_templates.md",
+    "central_bridge_triangle.md",
+    "central_bridge_triangle_s5.md",
+    "central_bridge_triangle_final.md",
+    "type_t_recovery_audit.md",
+    "type_t_exact_two_a.md",
+    "two_cut.md",
+    "type_b_realizability.md",
+    "type_b_compatibility.md"
+  ],
+  "new_result": {
+    "name": "cross-exponent obstruction",
+    "statement": "In the joint (A,A) outcome (both triangle-anchored cubic vertices x,y in exact-two-attachment A), rho_x != rho_y is forced. In the one-common-terminal row this is fully rigorous (an unconditional two_cut.md cross-cut-sum argument between two genuine distinct bridges of the same 2-cut {x,z_0}); in the identical-terminal row it follows from the same mechanism conditional on an unproved (but expected) internal-disjointness assumption between the two vertices' external-neighbour branch pieces inside the merged bridge B_2^joint.",
+    "also_proves": "B_x = B_y as literal vertex sets in the identical-terminal row (X_x=y, X_y=x), resolving in this specific sub-case the previously-open component-sharing question from central_bridge_triangle.md V.2(2).",
+    "arithmetic_hygiene_check": "python3 one-off script verified 2^a+2^b in F iff a==b, and 2^a+2^b+2 never in F, for a,b in [2,11] -- confirms (does not itself constitute) the closed-form elementary number-theory argument in the file"
+  },
+  "joint_outcome_matrix_status": {
+    "(S,S)": "PROVED generic case (same z, forced lobe distribution, L=L' per addendum); OPEN degenerate z-in-T case",
+    "(S,A)/(S,P) mixed": "PROVED vacuous-crossing elimination; OPEN touching-and-detour-into-L case",
+    "(A,A)": "NEW: rho_x != rho_y forced (Part 3); reduces to enriched Type-B 2-cut (Part 5); residual OPEN for rho_x != rho_y",
+    "(A,P)/(P,A)": "OPEN, corrected scope only (no new derivation)",
+    "(P,P)": "OPEN, not reducible further than independent per-vertex templates plus Q's pair (no new derivation)"
+  },
+  "synthesis": "The order-40 frontier computation already run this session (type_b_order40_frontier.md, type_b_order40_generators.md, B19/B20/B20D2, the four order-21 E=29/E=30 layers) is the literal realizability engine for the single-vertex-anchored sub-case of the (A,.)/(.,A) cells of this file's joint matrix, via the exact tuple correspondence with type_b_realizability.md's frozen Pi=(rho,s,t,u,delta,epsilon) family (established via type_b_compatibility.md Section 3's mapping). This connection was not previously stated explicitly in any audited file.",
+  "not_claimed": [
+    "Type T or Type N elimination",
+    "any fully closed matrix cell",
+    "resolution of the (A,A) residual for rho_x != rho_y",
+    "that the proposed joint-tuple computational model (Part 7) has been built or run",
+    "any all-orders theorem"
+  ],
+  "output_files": {
+    "markdown": "type_t_joint_bridge_universalization.md",
+    "markdown_sha256": "daf1bc2a069a44fffaeebe7daccbfcc22efbf862d951d8d3c0949ea520e10be4"
+  },
+  "source_parent_commit": "c4d46f56f45cdbe06c3598354db6f2d440ab88af"
+}
