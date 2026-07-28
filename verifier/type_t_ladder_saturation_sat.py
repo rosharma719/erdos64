@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Two independent UNSAT checks for the ladder's Type-T prerequisites.
+"""Two algorithmic checks of the ladder's prerequisite consistency.
 
 Variables:
   a := (X_x = y), where y is cubic;
   b := (X_y = x), where x is cubic.
 
-The identical-terminal row requires a and b.  Pole forcing requires not a
-and not b.  The resulting CNF is UNSAT before saturation variables exist.
+The identical-terminal row requires a and b.  Taking the already-proved pole
+forcing theorem as an input gives not a and not b.  The resulting CNF is
+UNSAT before saturation variables exist.  This checks that the two stated
+prerequisites are inconsistent; it does not independently prove pole forcing.
 """
 
 from __future__ import annotations
@@ -84,10 +86,13 @@ def main():
                 },
                 "assignments_audited": audited,
                 "exhaustive_unsat": exhaustive_unsat,
-                "independent_dpll_unsat": dpll_unsat,
+                "second_algorithm_dpll_unsat": dpll_unsat,
                 "saturation_variables_created": 0,
                 "Q_variables_created": 0,
-                "scope": "canonical Type-T prerequisite CNF, not an abstract ladder SAT model",
+                "scope": (
+                    "consistency check taking pole forcing as an input; "
+                    "not an independent proof and not an abstract ladder SAT model"
+                ),
             },
             indent=2,
             sort_keys=True,

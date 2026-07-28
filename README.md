@@ -550,10 +550,11 @@ work in the sibling `erdos/` directory — no shared code.
     rows, confirms that only the one-common-terminal `(z_0,z_0)` row survives,
     and checks the abstract even-cell ladder formulas without calling them a
     graph realization.
-  - `type_t_ladder_saturation_sat.py` — two independent prerequisite-CNF
-    checks (complete assignment enumeration and elementary DPLL) prove the
-    identical-terminal requirements inconsistent with pole forcing before
-    any saturation or `Q` variable is created.
+  - `type_t_ladder_saturation_sat.py` — complete assignment enumeration and
+    elementary DPLL confirm that the identical-terminal requirements are
+    inconsistent with pole forcing before any saturation or `Q` variable is
+    created. This is a consistency check taking pole forcing as input, not an
+    independent proof of that theorem.
   - `central_bridge_triangle_pole_forcing.py` — mechanical cross-check
     of the degree-forcing argument (a cubic `X_x` has exactly one spare
     edge once `P_2` is required to avoid `Y_x`, forcing `Y_x` onto

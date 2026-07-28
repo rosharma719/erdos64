@@ -179,11 +179,13 @@ realization.
 
 `verifier/type_t_ladder_states.py` independently enumerates the four T2 pole
 rows and confirms that pole forcing leaves only `(X_x,X_y)=(z_0,z_0)`, the
-one-common-terminal row.  `verifier/type_t_ladder_saturation_sat.py` encodes
-the identical-terminal requirements and pole-forcing clauses as a Boolean
-prerequisite CNF and confirms UNSAT by both exhaustive assignments and a
-separate elementary DPLL implementation.  Neither script calls the abstract
-colored core a graph realization.
+one-common-terminal row.  `verifier/type_t_ladder_saturation_sat.py` takes the
+pole-forcing theorem as an input, encodes it together with the
+identical-terminal requirements as a Boolean prerequisite CNF, and confirms
+their inconsistency by exhaustive assignments and elementary DPLL.  It is a
+prerequisite-consistency check, **not** an independent verification of the
+pole-forcing theorem.  Neither script calls the abstract colored core a graph
+realization.
 
 ## 7. Q track
 

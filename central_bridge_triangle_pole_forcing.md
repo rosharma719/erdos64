@@ -45,15 +45,20 @@ its two attachment vertices — here `X_x,x'` — so `P_2` avoids every
 other vertex of `A`, **in particular `Y_x`**. This is automatic from
 what "outside arc" already means; it is not a new hypothesis.
 
-**If `X_x` is cubic**, its three edges are exactly `\{x,Y_x,x'\}`
-(`X_x`'s own fixed Type-T structure: two triangle-mates `x,Y_x`, one
-external neighbour `x'`). `P_0` already uses the edge `X_x{-}x`.
+Write `X_x'` for **the pole `X_x`'s own external neighbour**; this is
+distinct notation from `x'`, the external neighbour of the original cubic
+vertex `x` and the other theta pole.  **If `X_x` is cubic**, its three edges
+are exactly `\{X_xx,X_xY_x,X_xX_x'\}` (`X_x`'s own fixed Type-T structure:
+two triangle edges and its own external edge). `P_0` already uses the edge
+`X_x{-}x`.
 `P_1,P_2` are theta branches of length `\ge3` each (`\rho_x,s_x\ge2`),
 so — by the standard definition of a theta graph used throughout this
-project — each needs its own, distinct edge from `X_x` into its
-interior. `X_x`'s only two remaining edges are `\{Y_x,x'\}`. Since
-`P_2` **cannot** use `Y_x` (above), `P_2` must use `x'`, and **`P_1`'s
-edge from `X_x` must be `Y_x`** — the only option left.
+project — each needs its own, distinct edge from `X_x` into its interior.
+`X_x`'s only two remaining edges are `X_xY_x` and `X_xX_x'`. Since `P_2`
+**cannot** use `Y_x` (above), its first edge at `X_x` must be `X_xX_x'`,
+and **`P_1`'s edge from `X_x` must be `X_xY_x`** — the only option left.
+This does not assert that `X_x'=x'`; the two external-neighbour symbols have
+different owners.
 
 **Corollary [PROVED].** *Whenever `X_x` is cubic, `Y_x` is adjacent to
 `X_x` on `P_1` — `central_bridge_triangle.md` IV.1's case (ii) is
