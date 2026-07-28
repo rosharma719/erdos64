@@ -42,9 +42,11 @@
     },
     "gap1_e30": {
       "canonical_comparison": {
-        "status": "in progress"
+        "canonical_classes": 270,
+        "multiset_sha256_both_generators": "d9920174f04d708ab62d22090b547b78b557d4ac7247e2317eb1de9cde138f22",
+        "sets_agree": true
       },
-      "conclusion": "direct+networkx confirm elimination; SAT cross-check pending",
+      "conclusion": "layer empty: all candidates eliminated by internal C16 and/or closure C8/C16; fully triple-cross-validated",
       "direct_generator": {
         "source": "verifier/type_b_order40_gap1_e30.c",
         "source_sha256": "648f8b2818d2e1fd93f050622c438eeed1a7fc343bb1280f645a3c91e0e9db14",
@@ -59,12 +61,12 @@
         "total_candidates": 1080
       },
       "independent_sat_generator": {
-        "agrees_with_direct": false,
+        "agrees_with_direct": true,
         "source": "verifier/type_b_order40_slot_sat.py",
         "source_sha256": "4ad373c3f49f527ea4f30f276906648588389e8c31e2d3c1ef154d80cd7943e1",
-        "status": "in progress: 48/210 configurations complete as of this manifest version, all agreeing with the direct generator zero-result on every A1/A2/B1/partial-B2 configuration checked so far",
-        "total_labeled_candidates": null,
-        "wall_time_seconds": null
+        "total_labeled_candidates": 1080,
+        "wall_time_seconds": 16055.9,
+        "notes": "run to completion across all 210 role configurations (initially reported in-progress at 48/210 in a prior manifest version); several B2/B3 configurations were slow CEGAR instances"
       },
       "output_files": {
         "graphs": "data/type_b_order40_gap1_e30_graphs.json",

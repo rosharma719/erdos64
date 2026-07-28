@@ -14,14 +14,21 @@ convention in `type_b_delta2_zero_slack.md`).
 | gap-two, `E=29` | complete | complete, exact match | complete, 0 discrepancies | **fully cross-validated** |
 | gap-one, `E=29` | complete | complete, exact match | complete, 0 discrepancies | **fully cross-validated** |
 | gap-two, `E=30` | complete | complete, exact match | complete, 0 discrepancies | **fully cross-validated** |
-| gap-one, `E=30` | complete | **in progress** (one configuration is a slow SAT instance) | complete, 0 discrepancies | **direct+independent-verifier confirmed; SAT cross-check pending, to be finalized in a follow-up commit** |
+| gap-one, `E=30` | complete | complete, exact match | complete, 0 discrepancies | **fully cross-validated** |
 
-No theorem is promoted on the gap-one `E=30` result until its SAT
-cross-check completes and either matches or is reconciled. The direct
-generator's result for that layer is, on its own, an exhaustive,
-self-tested, and independently networkx-verified computation — it is
-not asserted with the same confidence tier as the three fully
-triple-cross-validated layers until SAT agreement is confirmed.
+The gap-one `E=30` SAT cross-check (all 210 role configurations) has
+now completed: 1080 total solutions, matching the direct generator's
+1080 exactly, in 16,055.9s (~4.46 hours; one `B2` configuration and
+several `B3` configurations were markedly slower CEGAR instances,
+consistent with the per-configuration timing already visible in the
+gap-two `E=30` run). Canonical comparison (path reversal `p_i<->p_17-i`
+combined with the `z1<->z2` exchange): both generators give **270**
+canonical classes; identical SHA-256
+`d9920174f04d708ab62d22090b547b78b557d4ac7247e2317eb1de9cde138f22`;
+`only_in_C=0`, `only_in_SAT=0`. All four order-21 layers (`gap2_e29`,
+`gap1_e29`, `gap2_e30`, `gap1_e30`) are now **fully triple-cross-validated**
+(direct C generator, independent PySAT generator, independent networkx
+verifier, all in exact agreement).
 
 ## 1. Gap-two, `E=29` (row G2-29)
 
@@ -146,15 +153,19 @@ eliminated: all contain an internal `C16`, zero contain a `C4`/`C8`
 directly or a length-2 closure path, all 1080 have both a length-6 and
 length-14 closure path.
 
-**Independent PySAT generator:** in progress. As of this commit, 48/210
-configurations complete, all agreeing with the direct generator so far
-(zero solutions on every `A1`/`A2`/`B1`/partial-`B2` configuration
-checked, matching the C generator's zero result on those same
-configurations exactly). One `B2` configuration is proving to be a slow
-CEGAR instance; the sweep continues in the background and will be
-finalized (full canonical comparison against the direct generator's
-1080/153 result) in a follow-up commit. **No theorem is promoted on this
-layer's Family-II-analogue result until that comparison completes.**
+**Independent PySAT generator:** complete, all 210 configurations, 1080
+total solutions (16,055.9s ~4.46 hours; several `B2`/`B3` configurations
+were slow CEGAR instances, matching the pattern already seen in the
+gap-two `E=30` run), matching the direct generator's zero result on
+every `A1`/`A2`/`B1`/`B2` configuration and its 1080-solution result on
+`B3` exactly.
+
+**Canonical comparison** (path reversal `p_i<->p_17-i` combined with
+the `z1<->z2` exchange): both generators give **270** canonical
+classes; identical SHA-256
+`d9920174f04d708ab62d22090b547b78b557d4ac7247e2317eb1de9cde138f22`;
+`only_in_C=0`, `only_in_SAT=0`. This layer is now **fully
+cross-validated** on the same footing as the other three.
 
 ## 5. Manual spot-verification, all four completed layers
 
@@ -174,16 +185,13 @@ gap1_e30: checked 1080, failures 0
 
 - **Claimed (fully cross-validated, three independent methods):** the
   `E=29` layer is empty for both gap types (104+390=494 candidates, all
-  eliminated). The `E=30` layer is empty for gap-two (296 candidates,
-  all eliminated), with the striking uniform finding that only the
-  `2^2,3^16,4^2` degree sequence is even combinatorially realizable at
-  this edge count under the fixed-path constraint.
-- **Claimed (direct generator + independent networkx verifier, SAT
-  pending):** the `E=30` layer is empty for gap-one (1080 candidates,
-  all eliminated), with the same uniform-B3-only finding.
+  eliminated). The `E=30` layer is empty for both gap-two (296
+  candidates) and gap-one (1080 candidates), all eliminated, with the
+  striking uniform finding that only the `2^2,3^16,4^2` degree sequence
+  is even combinatorially realizable at this edge count under the
+  fixed-path constraint, in both gap types.
 - **Not yet claimed:** any conclusion about `E=31` or higher (deferred,
   per `type_b_order40_frontier.md` Section 3's staged plan); any
   theorem statement combining these layers into "no order-21 bridge
-  exists" (that requires resolving `E=31` too, and finalizing the
-  gap-one `E=30` SAT cross-check); the exact value of
+  exists" (that requires resolving `E=31` too); the exact value of
   `ex(20;{C4,C8})` (still unverified, per the frontier doc's Section 0).
