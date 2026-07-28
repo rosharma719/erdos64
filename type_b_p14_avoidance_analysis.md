@@ -96,32 +96,28 @@ adding exactly one unit of structural slack relative to the baseline
 | baseline | 20 | 18 | 1 (degree 3) | 11 | UNSAT | 18,682 | 25.6s |
 | **1. extra off-path vertex** | 21 | 18 (unchanged) | 2 (degrees 3, 4 — forced by parity) | 13 | **UNSAT** | 37,362 | 107.9s |
 | **2. extra path vertex** | 21 | 19 | 1 (degree 4 — forced by parity) | 12 | **UNSAT** | 23,678 | 42.2s |
-| **3. extra off-path vertex, order 22** | 22 | 19 | 2 (degrees 3, 3 — parity now permits both at 3) | 13 | **UNSAT** | *(see below)* | *(see below)* |
+| **3. extra off-path vertex, order 22** | 22 | 19 | 2 (degrees 3, 3 — parity now permits both at 3) | 13 | **UNSAT** | 58,750 | 325.6s |
 
-Relaxations 1 and 2 are both **UNSAT**: adding either one more off-path
-vertex or one more path vertex (with the necessary parity-forced degree
-bump) does **not** create a completion escaping the length-14 path.
-This directly answers the question the pivot flagged as mattering
-most: length-14 avoidance did **not** become satisfiable immediately
-under either slack increase tried. Relaxation 3 (a further step,
-combining both directions at order 22 with a fully symmetric 2-off-path
-structure) was run to test whether the pattern continues; see Section
-3.1 for its result once available, and Section 6 for the overall
-reading of this trend.
+**All three relaxations are UNSAT.** Adding one more off-path vertex,
+one more path vertex, or both together (at a fully symmetric order-22
+geometry where both off-path vertices sit at degree 3) never creates a
+completion escaping the length-14 path. This directly answers the
+question the pivot flagged as mattering most: length-14 avoidance did
+**not** become satisfiable under any of the three slack increases
+tried. The number of completions the solver had to visit and block
+before exhausting the space grows with each relaxation (18,682 ->
+37,362 / 23,678 -> 58,750), consistent with a genuinely larger search
+space each time — this is not a case of the relaxed models being
+trivially small or degenerate.
 
-**Important scope caveat:** three relaxation points (all starting from
-the same gap-two `E=29` base, all still within order 20-22, all still
-respecting the `S1`/`S2` tuple's degree/edge bookkeeping) is *not*
-evidence of an all-orders pattern — it is evidence that the forcing is
-not a knife-edge artifact of the single most-constrained layer. Whether
-it persists at, say, order 30 or 40 is not addressed by anything in
-this file.
-
-### 3.1 Relaxation 3 result
-
-*(filled in once the background run completes — see commit history /
-manifest for the final recorded value if this placeholder is still
-present)*
+**Important scope caveat:** four data points (baseline plus three
+relaxations, all starting from the same gap-two `E=29` base, all still
+within order 20-22, all still respecting the `S1`/`S2` tuple's
+degree/edge bookkeeping) is *not* evidence of an all-orders pattern —
+it is evidence that the forcing is not a knife-edge artifact of the
+single most-constrained layer. Whether it persists at, say, order 30 or
+40 is not addressed by anything in this file, and no such claim is
+made.
 
 ## 4. A proved structural reduction (Lemma 4)
 
@@ -230,10 +226,10 @@ completion set.
   completion avoids `C4`, `C8`, and a length-14 `a`-`y` path
   simultaneously (Section 2).
 - **Claimed (new relaxation results):** this unsatisfiability survives
-  adding one extra off-path vertex (order 21) and, separately, one
-  extra path vertex (order 21) to the gap-two `E=29` baseline (Section
-  3); a third relaxation (order 22) was run to test a further step (see
-  Section 3.1).
+  three successive slack increases on the gap-two `E=29` baseline
+  (Section 3): one extra off-path vertex (order 21), one extra path
+  vertex (order 21), and both together at a fully symmetric order-22
+  geometry. All three relaxations are `M14`-unsatisfiable.
 - **Claimed (proved, general):** the hub+matching decomposition, Lemma
   4 (Section 4).
 - **Not claimed:** a hand proof that `M14` is unsatisfiable in general
