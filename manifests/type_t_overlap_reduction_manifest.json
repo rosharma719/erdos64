@@ -1,0 +1,36 @@
+{
+  "description": "Exact cell-count arithmetic and colored-incidence reduction for the identical-terminal Type-T four-path residual. The run independently brute-forces small valid simple-graph decompositions and checks the symbolic classification through exponent 12 and every permitted cell count.",
+  "scope_note": "This is an exact arithmetic verifier, not a graph census, SAT model, proof-assistant verification, or minimum-degree-three saturation search. The Markdown proves and audits a precise infinite colored-core family; full ambient realizability and Q attached at {x,y} remain open.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 verifier/type_t_cell_decompositions.py",
+  "source_parent_commit": "f6712735eb1b4580d540e46a3eaf6875244bdfa8",
+  "python_version": "3.14.6",
+  "script_sha256": "f82e634c632ba5e5fb805611f5ea01add78e9ef913fe6334b9827ed0100d6cff",
+  "stdout_sha256": "624e2ae3c4fe46bb5a3cf2e5fde67cd486828bf6e6da5c7599b67090ea17bcb3",
+  "markdown_sha256": "c72dd9d286b2c4b84f75bc91181a72d952265abe8c3036c8cb3f75ece8c5471c",
+  "exit_status": 0,
+  "results": {
+    "symbolic_classification": {
+      "k=1": "FORCED iff m+n is a forbidden power of two; otherwise UNIVERSALLY_SAFE",
+      "k>=2,m+n=3k": "UNIVERSALLY_SAFE",
+      "k>=2,m+n=3k+1": "FORCED",
+      "k>=2,m+n>=3k+2": "ESCAPABLE_BUT_NOT_UNIVERSAL"
+    },
+    "simple_graph_cell_minimum": 3,
+    "brute_force_max_each_total": 10,
+    "brute_force_rows": 301,
+    "brute_force_all_permitted_cell_counts": true,
+    "exponent_range": [2, 12],
+    "exponent_pair_types": ["R_R", "R_S", "S_R", "S_S"],
+    "exponent_sweep_rows": 87167,
+    "exponent_sweep_all_permitted_cell_counts": true,
+    "classification_counts": {
+      "FORCED": 62,
+      "UNIVERSALLY_SAFE": 510,
+      "ESCAPABLE_BUT_NOT_UNIVERSAL": 86595
+    },
+    "smallest_mixed_universal_counterexample_totals": [4, 5],
+    "smallest_S_S_universal_counterexample_totals": [5, 5],
+    "assertion_failures": 0
+  },
+  "proved_reduction": "Conditional on Q adding no fifth x-y color, complete four-path incidence arithmetic admits the precise infinite alternating-ladder family L_{rho,k,t}; the remaining structural problem is minimum-degree-three saturation plus a compatible B_1. If Q attaches at {x,y}, add its outside arc as a fifth color."
+}

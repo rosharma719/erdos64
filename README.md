@@ -276,6 +276,18 @@ work in the sibling `erdos/` directory — no shared code.
   `0,1,2^rho,2^s+1`, classifies its infinite arithmetic complement, audits
   Heawood/Balaban counterexamples and overlap cells, and explains why the
   scoped T8/SPQR results do not yet give a rooted replacement.
+- `type_t_identical_terminal_joint_spectrum.md` — audits commit `3ba40fc`
+  and corrects its existential/universal overlap quantifiers: the same-theta
+  pairs are fixed safe, while all four cross-theta pair types have both safe
+  and failing abstract incidences. It withdraws the invalid reduction to one
+  `P_1^x`/`P_1^y` coincidence and keeps `Q` separate.
+- `type_t_overlap_reduction.md` — builds the rooted four-color weighted
+  incidence core, proves the exact FORCED/ESCAPABLE/UNIVERSALLY-SAFE
+  classification for every valid cell count, records the exact hypotheses a
+  splice must preserve, and isolates a scalable alternating-ladder family.
+  The remaining problem is degree-three saturation (plus `B_1`), or a
+  five-color extension when `Q` attaches at `{x,y}`; no unrestricted graph
+  search is claimed.
 - `central_bridge_triangle_pole_forcing.md` — resolves
   `type_t_recovery_audit.md`'s own "theta-chord case IV.1(ii)" row
   (there listed as open): a degree-counting argument shows a cubic
@@ -521,6 +533,11 @@ work in the sibling `erdos/` directory — no shared code.
     complete Heawood hypothesis failures, a C4/C8-free Balaban-derived rooted
     counterexample to local anchoring, and irreducible two-cell overlap
     patterns for both admissible offsets.
+  - `type_t_cell_decompositions.py` — independently brute-forces every valid
+    simple-graph cell decomposition through path totals 10, then checks all
+    four cross-theta length types, exponents 2 through 12, and every permitted
+    cell count against the symbolic classification; saves the smallest mixed
+    and S/S counterexamples to the former universal claims.
   - `central_bridge_triangle_pole_forcing.py` — mechanical cross-check
     of the degree-forcing argument (a cubic `X_x` has exactly one spare
     edge once `P_2` is required to avoid `Y_x`, forcing `Y_x` onto
