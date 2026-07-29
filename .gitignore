@@ -35,3 +35,12 @@ dist/
 
 # Deliberately local experiment output
 verifier/one_pole_survivors.json
+# Type-T j=4 exact certificate bundle.  The reports, aggregate summaries,
+# maps, and inventory remain in Git; bit-for-bit class artifacts are restored
+# by verifier/type_t_port_artifacts.py from the versioned release asset.
+/data/type_t_port_completion/j4_classes/class_*/
+/data/type_t_port_completion/j4_a2_c2_reduced_core.cnf.gz
+/data/type_t_port_completion/j4_a2_c2_reduced_core.drat.gz
+/data/type_t_port_completion/j4_a2_c2_reduced_core_analysis.json.gz
+/data/type_t_port_completion/*.tar.zst
+/.type_t_port_artifacts.lock

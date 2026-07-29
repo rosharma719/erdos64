@@ -127,16 +127,19 @@ def build_cnf(core, candidates, encoding: str):
         incident[edge[0]].append(variable)
         incident[edge[1]].append(variable)
     clauses = []
+    constraint_clause_ranges = {}
     cardinality_encoding = {
         "sequential": EncType.seqcounter,
         "pairwise": EncType.pairwise,
     }[encoding]
     for vertex in core.deficient_vertices():
+        start = len(clauses)
         clauses.extend(CardEnc.equals(
             lits=incident[vertex], bound=1, vpool=pool,
             encoding=cardinality_encoding,
         ).clauses)
-    return pool, edge_var, clauses
+        constraint_clause_ranges[vertex] = (start, len(clauses))
+    return pool, edge_var, clauses, constraint_clause_ranges
 
 
 def write_dimacs(path: Path, clauses: list[list[int]], variables: int) -> None:
@@ -248,7 +251,9 @@ def exact_search(core, max_seconds: float, max_iterations: int,
     lengths = powers_up_to(core.order)
     candidates, incompatible = safe_edges(core, lengths)
     feasibility = matching_feasibility(core, candidates)
-    pool, edge_var, clauses = build_cnf(core, candidates, encoding)
+    pool, edge_var, clauses, _constraint_clause_ranges = build_cnf(
+        core, candidates, encoding,
+    )
     base_clause_count = len(clauses)
     start_time = time.monotonic()
     cycle_cuts = Counter()
