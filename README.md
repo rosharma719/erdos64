@@ -8,6 +8,37 @@ Self-contained, autonomous research attempt on:
 Status: **OPEN.** This folder is independent of the I(4)/intersecting-family
 work in the sibling `erdos/` directory — no shared code.
 
+## Branch landscape
+
+`main` is a single-commit bootstrap; all research content lives on feature
+branches, several of them independent, parallel attempts rather than a
+linear history. As of this writing: `origin/codex/type-t-overlap-reduction`
+and `origin/claude/type-t-c16-compilation-x9ts7a` (this branch) both branch
+from the same commit (`f8a11e0`, "Analyze minimum cubic Type-T multipole
+completions") and both independently continued the same handoff task —
+compiling a static short-cycle conflict system for the minimum-cubic
+Type-T port completion. They produced files with the *same names*
+(`type_t_port_c16_compilation.md`, `verifier/type_t_port_short_conflicts.py`,
+`verifier/type_t_port_c16_hypergraph.py`) but different, independently
+developed content and results; `codex/type-t-overlap-reduction`'s furthest
+point is a `BOUNDED_INCOMPLETE` gadget-level static solve at `(4,28,4)`
+(`SAT` on a partial formula — short conflicts complete, `C16` conflicts
+not — no counterexample); this branch instead pivoted to a passage-level
+projection (see the Layout section below) that reached materially further
+(a proved, unconditional dyadic-avoidance result for the bare core, and a
+symbolic template classification) before also stopping short of a full
+resolution. **Neither branch has been merged into the other, and this
+session has not modified `codex/type-t-overlap-reduction`** — do not merge
+without deliberately reconciling the overlapping filenames first. The
+other `codex/*` and `claude/*` branches (`defect-one-voltage-obstruction`,
+`defect-three-kernel`, `e21-integrity`, `global-core-z3-lifts`,
+`leaf-compression-z5-exact`, `t8-gadget-search`, `type-a-extremal-spqr`,
+`erdos-gyarfas-handoff-l6tqlo`, `erdos-gyarfas-type-t-analysis-a9u4sx`,
+`separator-lemmas-defect-gjlolu`) are separate exploration lines on other
+parts of the conjecture (Type A/N, defect parameter, E=21/E=31 order
+searches, Z3/Z5 lifts) not directly related to this branch's Type-T port
+track; this session has not touched them.
+
 ## Layout
 - `plan.md` — strategy, rankings, status log, failed/blocked approaches.
 - `literature.md` — verified frontier (P₁₃-free, diameter-2, Carr 2026 minimal-
@@ -345,6 +376,102 @@ work in the sibling `erdos/` directory — no shared code.
   18-vertex path, 28 or 29 edges, and at most two degree-two vertices. The
   complete 304-graph extremal layer eliminates 29 edges; the exact 28-edge
   degree-sequence layer remains explicitly incomplete.
+
+### Type-T port / multipole-completion / passage-projection track
+
+Continues the Type-T thread past `type_t_ladder_saturation.md` on later
+branches, moving from the triangle-pole analysis to an explicit construction
+attempt: `type_t_common_pole_ports.md`, `type_t_common_pole_reduction.md`,
+and `type_t_joint_bridge_universalization.md` reduce the shared-port
+residual to the `E2_parallel` weighted family (infinite, 61 simple cycles,
+35 affine cycle-length forms in the pre-expansion analysis); expanded into
+an explicit ordinary-graph "port core" `H(j,a,c)` in `type_t_port_completion.md`
+(same-vertex/matching completion, fixed instances certified UNSAT) and
+`type_t_port_completion_j4.md` (all 324 `j=4` translations closed for that
+completion class); `type_t_port_completion_obstruction.md` characterizes the
+resulting conflict hypergraph; `type_t_port_multipole_completion.md`
+introduces the minimum-order added-hub completion class (triples plus, for
+even `j`, one linked-pair gadget) that the rest of this track builds on. See
+`type_t_port_c16_compilation.md`'s own "Catch-up" sections for a fuller
+narrative summary of this pre-session history in one place.
+
+- `type_t_port_c16_compilation.md` — **(2026-07-29) starts this session.**
+  Audits the multipole gadget semantics (triple/linked-gadget variable
+  meaning, materialization injectivity), then proves the exact
+  hub-passage/core-path support-size bounds for a dyadic-cycle conflict:
+  `C4` conflicts cannot exist beyond the base local-safety screen, `C8`
+  conflicts always use exactly two hub passages, `C16` conflicts use two to
+  five. Implements and runs the resulting static `C4`/`C8` compiler
+  (`verifier/type_t_port_short_conflicts.py`) to completion on all three
+  tested `j=4` instances.
+- `type_t_port_c16_passage_projection.md` — the session's central pivot:
+  a dyadic cycle only cares about a *pair of hub attachments and the route
+  between them*, not which specific triple/gadget identity supplies it — so
+  the same geometric conflict was being re-derived once per candidate
+  identity (14.5 suppliers per passage on average, up to 127). Projecting to
+  passage-level variables (`verifier/type_t_port_passages.py`) collapses the
+  `C4`/`C8` catalog **107–207x** (verified two ways: cross-checked against
+  the prior gadget-level catalog, and reproduced exactly by an
+  independently-implemented general-`m` search,
+  `verifier/type_t_port_c16_passage_hypergraph.py`, which caught a real
+  verification bug — full-supplier vs. minimal-passage materialization —
+  in the process). Documents two corrections found via external review
+  mid-session: excluding structurally-impossible two-`p3`-passage supports
+  (a completed graph only ever contains one linked gadget), and a follow-up
+  precision fix to *why* that exclusion is needed (some such supports would
+  have been actively unsound via forward channeling, not merely vacuous —
+  the code was already correct either way; only the justification needed
+  correcting). Closes with a standalone passage-support soundness theorem.
+- `type_t_port_core_dyadic_avoidance.md` — proves, unconditionally for every
+  `j>=4` and every valid `a,c` (not just the tested `j=4,5,6`), that the
+  bare core `H(j,a,c)` contains no cycle of dyadic length: fits the
+  reported `j=4,5,6` cycle spectra to 35 affine forms `A*2^j+B`, proves via
+  exact 2-adic valuation that none is ever a power of two
+  (`verifier/type_t_port_core_affine_dyadic_check.py`), then closes the
+  completeness gap with an independent kernel/cycle-space derivation
+  (`verifier/type_t_port_kernel_cycle_space.py`: the core's rank-7 cyclomatic
+  structure gives an 11-vertex, 17-edge kernel whose `2^7=128`-element cycle
+  space is enumerated symbolically, cross-validated two independent ways).
+  This closes an open precondition for an externally-proposed
+  finite-horizon/Lovász-Local-Lemma completion theorem, reinforcing a
+  strategic pivot toward growing-length obstructions rather than a
+  fixed-template all-`j` proof for this family.
+- `type_t_port_passage_templates.md` — quotients the passage-level `C8`/`C16`
+  (`m=2`) catalogs by translation/reflection symmetry using a symbolic
+  branch-coordinate system (`verifier/type_t_port_coordinates.py`, built on
+  `build_core`'s own `branch:index` vertex labels). Result: the
+  non-anchor-crossing ("same-mode") fraction collapses to a handful of
+  universal, `j`-independent templates (6 for `C8`, 22 for `C16` `m=2`,
+  proved complete and lift to every sufficiently large `j`) — but the
+  anchor-crossing fraction, which *dominates* by clause count especially at
+  `C16` scale, does not collapse (hundreds to thousands of instance-specific
+  templates). Net assessment: deprioritize a full all-`j` proof via
+  template counting.
+- `manifests/type_t_port_c16_manifest.json`,
+  `manifests/type_t_port_c16_passage_manifest.json`,
+  `manifests/type_t_port_template_manifest.json` — machine-readable status
+  and provenance for the three files above, in the same
+  `PROVED`/`COMPUTATIONALLY_CERTIFIED`/`BOUNDED_INCOMPLETE`/`UNKNOWN`/
+  `TEMPLATE_CONJECTURE` vocabulary used throughout this track.
+- `verifier/` (this track's scripts, alongside the shared list below):
+  `type_t_port_core_export.py` (builds `H(j,a,c)`), `type_t_port_triples.py`
+  / `type_t_port_multipole_sat.py` / `type_t_port_multipole_check.py`
+  (minimum-cubic-completion catalog and CEGAR search), `type_t_port_short_conflicts.py`
+  (`C4`/`C8` gadget-level compiler), `type_t_port_passages.py` /
+  `type_t_port_c16_passage_catalog.py` / `type_t_port_c16_passage_hypergraph.py`
+  (passage-level projection and its two independent search implementations),
+  `type_t_port_c16_hypergraph.py` (gadget-level general-`m` search,
+  superseded for practical use — see its own module docstring),
+  `type_t_port_coordinates.py` / `type_t_port_passage_templates.py` /
+  `type_t_port_template_lift_check.py` (symbolic template extraction),
+  `type_t_port_core_affine_dyadic_check.py` / `type_t_port_kernel_cycle_space.py`
+  (dyadic-avoidance proof), `type_t_port_large_neighborhood_search.py`
+  (large-neighborhood counterexample search from the best known near
+  misses). Data and intermediate catalogs live under
+  `data/type_t_port_completion/`, `data/type_t_port_multipole/`,
+  `data/type_t_port_c16/`, `data/type_t_port_c16_passages/`,
+  `data/type_t_port_templates/`.
+
 - `verifier/` — independently runnable code:
   - `cycle_detect.py` — exact power-of-two cycle detector (2 cross-validated impls).
   - `check_g6.c` — fast independent C checker for graph6 streams.
