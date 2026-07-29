@@ -1,0 +1,35 @@
+{
+  "all_cycle_cuts_checked": true,
+  "cnf": {
+    "clauses": 48255,
+    "variables": 19589
+  },
+  "cycle_cuts_checked": 105,
+  "independent_cycle_witnesses": {
+    "8": [
+      4,
+      86,
+      108,
+      41,
+      42,
+      88,
+      12,
+      10
+    ]
+  },
+  "parameters": {
+    "Y": 16,
+    "a": 55,
+    "c": 7,
+    "j": 4
+  },
+  "search_status": "UNKNOWN",
+  "source": "/Users/rohansharma/Desktop/Code/erdos64-type-t-overlap-reduction/data/type_t_port_multipole/j4_a55_c7_exact.json.gz",
+  "status": "PASS",
+  "structural_completion_check": {
+    "connected": true,
+    "edges": 170,
+    "minimum_degree": 3,
+    "order": 113
+  }
+}
