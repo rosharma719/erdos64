@@ -5,36 +5,41 @@
   "claims": {
     "phase0_raw_c16_enumeration": "left running as a diagnostic only; not used as a certificate",
     "phase1_passage_correspondence": "PROVED (forward implications, at-most-one-supplier structurally verified over 238,269 supplier pairs on (4,55,7))",
-    "phase2_c4_c8_passage_compilation": "COMPUTATIONALLY_CERTIFIED for all three j=4 instances; cross-validated against the gadget-level catalog (2993/3000 sampled old clauses matched exactly, remaining 7/3000 were redundant/vacuous shared-vertex old clauses, not gaps)",
-    "phase3_c16_passage_catalog": "not yet attempted",
+    "phase2_c4_c8_passage_compilation": "COMPUTATIONALLY_CERTIFIED for all three j=4 instances; cross-validated against the gadget-level catalog (2993/3000 sampled old clauses matched exactly, remaining 7/3000 were redundant/vacuous shared-vertex old clauses, not gaps) AND against a second, independently implemented general-m algorithm (type_t_port_c16_passage_hypergraph.py), which agrees exactly after a verification bug (see verification_bug_found_and_fixed) was fixed",
+    "phase3_c16_passage_catalog": "not yet attempted; the general-m algorithm needed for it is implemented and validated against C8",
     "counterexample_found": false,
     "unsat_certificate_produced": false
   },
+  "verification_bug_found_and_fixed": {
+    "description": "verify_passage_conflicts originally materialized a full supplying triple/gadget (all its edges) rather than just the claimed passage; edge_path_cycle could then 'verify' a support via an unintended cycle through the supplier's other, unclaimed edges. Found because a second, independently implemented general-m search (type_t_port_c16_passage_hypergraph.py) disagreed with the m=2-specialized search (5007 vs 5052 on (4,55,7)). Fixed by materialize_passages in type_t_port_passages.py, which builds a minimal graph containing only the literally claimed passages. Both algorithms now agree exactly on all three instances.",
+    "corrected_counts": {"a55c7": 5007, "a2c2": 5044, "a28c4": 6359},
+    "previously_reported_inflated_counts": {"a55c7": 5052, "a2c2": 5084, "a28c4": 6386}
+  },
   "compression": [
-    {"j": 4, "a": 55, "c": 7, "old_gadget_c8_clauses": 543601, "new_passage_c8_clauses": 5052, "ratio": 107.6},
-    {"j": 4, "a": 2, "c": 2, "old_gadget_c8_clauses": 682366, "new_passage_c8_clauses": 5084, "ratio": 134.2},
-    {"j": 4, "a": 28, "c": 4, "old_gadget_c8_clauses": 1122615, "new_passage_c8_clauses": 6386, "ratio": 175.8}
+    {"j": 4, "a": 55, "c": 7, "old_gadget_c8_clauses": 543601, "new_passage_c8_clauses": 5007, "ratio": 108.6},
+    {"j": 4, "a": 2, "c": 2, "old_gadget_c8_clauses": 682366, "new_passage_c8_clauses": 5044, "ratio": 135.3},
+    {"j": 4, "a": 28, "c": 4, "old_gadget_c8_clauses": 1122615, "new_passage_c8_clauses": 6359, "ratio": 176.5}
   ],
   "instances": [
     {
       "j": 4, "a": 55, "c": 7,
       "catalog": {"triples": 784, "gadgets": 2755, "p2_passages": 616, "p3_passages": 686},
       "c4": {"status": "PROVED", "verified_minimal_supports": 0},
-      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5065, "verification_rejected": 13, "verified_minimal_supports": 5052},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5065, "verification_rejected": 58, "verified_minimal_supports": 5007, "cross_validated_by_second_algorithm": true},
       "output": "data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz"
     },
     {
       "j": 4, "a": 2, "c": 2,
       "catalog": {"triples": 925, "gadgets": 3037, "p2_passages": 648, "p3_passages": 734},
       "c4": {"status": "PROVED", "verified_minimal_supports": 0},
-      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5102, "verification_rejected": 18, "verified_minimal_supports": 5084},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5102, "verification_rejected": 58, "verified_minimal_supports": 5044},
       "output": "data/type_t_port_c16_passages/j4_a2_c2_phi48_passages.json.gz"
     },
     {
       "j": 4, "a": 28, "c": 4,
       "catalog": {"triples": 1225, "gadgets": 4371, "p2_passages": 776, "p3_passages": 915},
       "c4": {"status": "PROVED", "verified_minimal_supports": 0},
-      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 6412, "verification_rejected": 26, "verified_minimal_supports": 6386},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 6412, "verification_rejected": 53, "verified_minimal_supports": 6359},
       "output": "data/type_t_port_c16_passages/j4_a28_c4_phi48_passages.json.gz"
     }
   ],
@@ -51,7 +56,8 @@
     "compile_passages": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_c16_passage_catalog.py --j 4 --a 55 --c 7 --lengths 4 8 --output data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz"
   },
   "verification": {
-    "method": "every emitted passage support independently re-verified by materializing ONE arbitrary supplier per named passage (the lifting claim being spot-checked) and locating the literal cycle via edge_path_cycle",
-    "cross_check": "3000-clause random sample of the prior gadget-level (4,55,7) C8 catalog checked against the new passage catalog; 2993/3000 exact matches, 7/3000 explained as redundant old clauses whose two identities already shared a vertex (structurally excluded by exact-cover, not a missing conflict)"
+    "method": "every emitted passage support independently re-verified by materializing a MINIMAL graph containing exactly the claimed passages (materialize_passages) and locating the literal cycle via edge_path_cycle",
+    "cross_check_vs_gadget_catalog": "3000-clause random sample of the prior gadget-level (4,55,7) C8 catalog checked against the new passage catalog; 2993/3000 exact matches, 7/3000 explained as redundant old clauses whose two identities already shared a vertex (structurally excluded by exact-cover, not a missing conflict)",
+    "cross_check_vs_second_algorithm": "type_t_port_c16_passage_hypergraph.py's general-m augmented-graph walk reproduces the m=2-specialized algorithm's C8 result exactly (5007/5044/6359) on all three j=4 instances"
   }
 }

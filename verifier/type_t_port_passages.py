@@ -125,6 +125,44 @@ def _attachment_vertices(tag: VariableTag) -> frozenset[int]:
     return frozenset((p1, p2_side, q1, q2_side))
 
 
+def materialize_passages(core, support):
+    """Materialize a MINIMAL ordinary graph containing exactly the named
+    passages and nothing else -- one fresh 2-edge hub per ``p2[u,v]``
+    (edges ``h-u``, ``h-v`` only, NOT a third attachment from whatever
+    triple happens to supply it), and one fresh pair of hubs joined by an
+    edge per ``p3[u,v]``.
+
+    This is deliberately NOT the same as materializing a real supplying
+    triple/gadget (``type_t_port_short_conflicts.materialize_variables``),
+    which also adds that object's *other*, unused edges. Verifying a
+    passage-level conflict against a fully materialized supplier is
+    unsound as a check: ``edge_path_cycle`` may find a cycle that
+    incidentally exists through the supplier's other attachments, "verifying"
+    the claimed passage pair without ever actually using the claimed
+    passage edges. Only this minimal construction tests the claim that was
+    actually made.
+    """
+    import networkx as nx
+
+    graph = nx.Graph()
+    graph.add_nodes_from(range(core.order))
+    graph.add_edges_from(core.edges)
+    next_vertex = core.order
+    for kind, (u, v) in support:
+        if kind == "p2":
+            hub = next_vertex
+            next_vertex += 1
+            graph.add_edges_from(((hub, u), (hub, v)))
+        elif kind == "p3":
+            left, right = next_vertex, next_vertex + 1
+            next_vertex += 2
+            graph.add_edges_from(((left, u), (left, right), (right, v)))
+        else:
+            raise AssertionError(f"unknown passage kind {kind}")
+    adjacency = tuple(frozenset(graph.neighbors(v)) for v in range(next_vertex))
+    return graph, adjacency
+
+
 def verify_at_most_one_supplier(p2_suppliers, p3_suppliers) -> dict:
     """Structural proof-check: every pair of distinct suppliers of the same
     passage key shares an attachment vertex, hence can never be

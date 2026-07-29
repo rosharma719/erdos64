@@ -105,9 +105,9 @@ and results are natively deduplicated by geometry.
 
 | `(j,a,c)` | old gadget-level `C8` (verified) | new passage-level `C8` (verified) | compression |
 |---|---:|---:|---:|
-| `(4,55,7)` | 543,601 | 5,052 | **107.6x** |
-| `(4,2,2)` | 682,366 | 5,084 | **134.2x** |
-| `(4,28,4)` | 1,122,615 | 6,386 | **175.8x** |
+| `(4,55,7)` | 543,601 | 5,007 | **108.6x** |
+| `(4,2,2)` | 682,366 | 5,044 | **135.3x** |
+| `(4,28,4)` | 1,122,615 | 6,359 | **176.5x** |
 
 Compression *improves* with instance size (the larger catalogs have more
 redundant suppliers per passage, not more genuine passages), which is a
@@ -154,6 +154,48 @@ precise than the old one, not merely smaller.
 clauses) is logically equivalent to the completed gadget-level
 `Phi_{4,8}`, modulo a small number of clauses in the old catalog that were
 already redundant given the exact-cover base constraints.**
+
+### A verification bug found and fixed via a second, independent algorithm
+
+Implementing a second, structurally different passage-level search
+(`verifier/type_t_port_c16_passage_hypergraph.py`, a general-`m`
+augmented-graph walk, described in Phase 3/4 below) as a cross-check
+against `enumerate_m2_passage_conflicts` initially disagreed: 5,007 vs
+5,052 verified minimal `C8` supports on `(4,55,7)`. Tracing one of the 45
+mismatches found a real bug in `verify_passage_conflicts`: it materialized
+a full *supplying* triple/gadget (all of its edges, including attachments
+irrelevant to the claimed passage) and accepted the support whenever
+`edge_path_cycle` found *any* cycle in that graph -- which can succeed via
+an unintended cycle through the supplier's *other*, unclaimed edges,
+without ever using the specific passage that was supposedly being
+verified. Fixed by materializing a **minimal** graph containing only the
+literally claimed passages (`materialize_passages` in
+`type_t_port_passages.py`: one fresh 2-edge hub per `p2`, a fresh
+edge-joined hub pair per `p3`, nothing else). After the fix, both
+independently-implemented algorithms agree **exactly**: 5,007/5,044/6,359
+verified minimal `C8` supports for `(4,55,7)/(4,2,2)/(4,28,4)`
+respectively (the corrected figures in the table above; the previously
+reported 5,052/5,084/6,386 were each inflated by ~40-60 false-positive
+"verifications"). This is exactly the value of building two structurally
+different implementations that the project's methodology calls for: the
+bug was invisible to either algorithm's self-consistency and only surfaced
+by disagreement between them.
+
+## Phase 3/4 — general-`m` augmented-graph search
+
+Implemented in `verifier/type_t_port_c16_passage_hypergraph.py`. The
+gadget-level general-`m` attempt was intractable because branching at
+every intermediate core vertex could reach 1000+ candidate passage
+*suppliers*. At the passage level there are only ~1,300 distinct passages
+total (vs ~3,500-5,600 triples/gadgets), and the maximum number of
+distinct passages touching any single vertex drops from **1,517 to 71**
+on `(4,55,7)` -- a ~21x reduction -- small enough that the direct
+augmented-graph walk (core edges at weight 1, one weight-2/3 edge per
+passage, no two consecutive passage-edges since a vertex has only one hub
+edge in any real completion) is tractable without needing the `m=2`
+reachability-join specialization. It reproduces the `C8` result exactly
+(see above) as a built-in regression check, and generalizes directly to
+`m` up to 5 for `C16` by simply raising the target length and `max_m`.
 
 ## Next
 

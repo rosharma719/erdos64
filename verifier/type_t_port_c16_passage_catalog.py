@@ -25,8 +25,8 @@ from pathlib import Path
 from type_t_port_core_export import build_core
 from type_t_port_multipole_check import edge_path_cycle, validate_literal_cycle
 from type_t_port_multipole_sat import build_catalog
-from type_t_port_passages import build_passage_catalog
-from type_t_port_short_conflicts import compute_reach_index, materialize_variables, minimal_supports
+from type_t_port_passages import build_passage_catalog, materialize_passages
+from type_t_port_short_conflicts import compute_reach_index, minimal_supports
 
 
 def enumerate_m2_passage_conflicts(core, p2, p3, target_length: int) -> dict:
@@ -71,24 +71,21 @@ def enumerate_m2_passage_conflicts(core, p2, p3, target_length: int) -> dict:
 
 
 def verify_passage_conflicts(core, target_length: int, results: dict, p2, p3) -> dict:
-    """Independent re-check: materialize ONE arbitrary supplier per named
-    passage (any supplier works, per the lifting argument -- that is
-    exactly the claim being spot-checked here) and confirm the cycle via
-    edge_path_cycle, the differently organized detector."""
+    """Independent re-check: materialize a MINIMAL graph containing exactly
+    the claimed passages (``materialize_passages`` -- a fresh 2-edge hub
+    per passage, not a real supplier's full triple/gadget, which would also
+    carry unused edges that could let ``edge_path_cycle`` "verify" the
+    support via an unrelated, unintended cycle) and confirm the cycle."""
     verified: dict[tuple, dict] = {}
     rejected = 0
     for support in results:
-        tags = set()
-        for kind, key in support:
-            suppliers = p2[key] if kind == "p2" else p3[key]
-            tags.add(suppliers[0])
-        graph, adjacency = materialize_variables(core, tuple(sorted(tags)))
+        graph, adjacency = materialize_passages(core, support)
         witness = edge_path_cycle(adjacency, target_length)
         if witness is None:
             rejected += 1
             continue
         validate_literal_cycle(graph, list(witness))
-        verified[support] = {"witness": list(witness), "example_suppliers": [list(t) for t in tags]}
+        verified[support] = {"witness": list(witness)}
     return verified, rejected
 
 
