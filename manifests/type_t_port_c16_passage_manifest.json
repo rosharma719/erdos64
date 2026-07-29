@@ -6,7 +6,7 @@
     "phase0_raw_c16_enumeration": "left running as a diagnostic only; not used as a certificate",
     "phase1_passage_correspondence": "PROVED (forward implications, at-most-one-supplier structurally verified over 238,269 supplier pairs on (4,55,7))",
     "phase2_c4_c8_passage_compilation": "COMPUTATIONALLY_CERTIFIED for all three j=4 instances; cross-validated against the gadget-level catalog (2993/3000 sampled old clauses matched exactly, remaining 7/3000 were redundant/vacuous shared-vertex old clauses, not gaps) AND against a second, independently implemented general-m algorithm (type_t_port_c16_passage_hypergraph.py), which agrees exactly after a verification bug (see verification_bug_found_and_fixed) was fixed",
-    "phase3_c16_passage_catalog": "not yet attempted; the general-m algorithm needed for it is implemented and validated against C8",
+    "phase3_c16_passage_catalog": "m=2 stage COMPUTATIONALLY_CERTIFIED for all three j=4 instances; m=3 additionally complete for (4,55,7); m=4/m=5 in progress -- see c16_stages below",
     "counterexample_found": false,
     "unsat_certificate_produced": false
   },
@@ -48,6 +48,30 @@
       "output": "data/type_t_port_c16_passages/j4_a28_c4_phi48_passages.json.gz"
     }
   ],
+  "c16_stages": {
+    "method": "type_t_port_c16_passage_general.py reuses the gadget-level general-m oracle-pruned search (type_t_port_c16_hypergraph.py) at the passage level, where per-vertex branching (~70 distinct passages) is far below the gadget-level figure (~1500) that search was built to cope with. Every m stage is pruned by lower-shadow domination against the already-compiled C8 catalog and every smaller already-verified C16 m stage, then independently re-verified by materialize_passages + edge_path_cycle exactly as elsewhere in this track. m=5 additionally has a specialized direct compiler (type_t_port_c16_passage_m5.py) exploiting the (m,r,v) length identity, which pins every m=5 conflict's core-path segments to length 1 or 2 only.",
+    "instances": [
+      {
+        "j": 4, "a": 55, "c": 7,
+        "m2": {"status": "COMPLETE", "verified_minimal_supports": 32921},
+        "m3": {"status": "COMPLETE", "verified_minimal_supports": 279859},
+        "m4": {"status": "not yet attempted"},
+        "m5": {"status": "not yet attempted"},
+        "output": "data/type_t_port_c16_passages/j4_a55_c7_c16_passages_general.json.gz"
+      },
+      {
+        "j": 4, "a": 2, "c": 2,
+        "m2": {"status": "COMPUTATIONALLY_CERTIFIED", "verified_minimal_supports": 37297},
+        "output": "data/type_t_port_c16_passages/j4_a2_c2_c16_passages_m2only.json.gz"
+      },
+      {
+        "j": 4, "a": 28, "c": 4,
+        "m2": {"status": "COMPUTATIONALLY_CERTIFIED", "verified_minimal_supports": 58804},
+        "output": "data/type_t_port_c16_passages/j4_a28_c4_c16_passages_m2only.json.gz"
+      }
+    ],
+    "note": "raw_c16_diagnostic below (2,509,952 raw m=2 candidates before minimality/verification/lower-shadow pruning) predates this compilation and is retained only as a scale calibration point, not a partial certificate; the certified counts above are the real, independently verified figures."
+  },
   "raw_c16_diagnostic": {
     "instance": "(4,55,7)",
     "m2_stage_only": {"raw_candidate_supports": 2509952, "candidate_minimal_supports": 1503692, "generation_seconds": 23.6},
