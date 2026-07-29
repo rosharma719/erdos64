@@ -8,7 +8,7 @@
     "phase1_c4_conflicts": "C4 conflicts cannot exist beyond the base local-safety screen (m>=2 required, floor(4/3)=1<2)",
     "phase1_c8_conflicts": "every C8 conflict uses exactly m=2 hub passages, support size 1 or 2",
     "phase1_c16_conflicts": "every C16 conflict uses 2<=m<=5 hub passages, support size v<=5",
-    "phase2_c4_c8_compilation": "COMPUTATIONALLY_CERTIFIED for (4,55,7); in progress for (4,2,2) and (4,28,4)",
+    "phase2_c4_c8_compilation": "COMPUTATIONALLY_CERTIFIED for all three j=4 instances (4,55,7), (4,2,2), (4,28,4)",
     "phase3_c16_hypergraph": "UNKNOWN pending background compilation",
     "phase5_static_sat": "not yet attempted",
     "counterexample_found": false,
@@ -44,8 +44,19 @@
       "c": 2,
       "catalog_triples": 925,
       "catalog_gadgets": 3037,
-      "c4": {"status": "UNKNOWN", "note": "compilation in progress"},
-      "c8": {"status": "UNKNOWN", "note": "compilation in progress"},
+      "c4": {
+        "status": "PROVED",
+        "raw_candidate_supports": 0,
+        "verified_minimal_supports": 0
+      },
+      "c8": {
+        "status": "COMPUTATIONALLY_CERTIFIED",
+        "raw_candidate_supports": 955962,
+        "candidate_minimal_supports": 714765,
+        "verification_rejected": 32399,
+        "verified_minimal_supports": 682366,
+        "support_size_distribution": {"1": 314, "2": 682052}
+      },
       "output": "data/type_t_port_c16/j4_a2_c2_phi48.json.gz"
     },
     {
@@ -54,8 +65,19 @@
       "c": 4,
       "catalog_triples": 1225,
       "catalog_gadgets": 4371,
-      "c4": {"status": "UNKNOWN", "note": "compilation in progress"},
-      "c8": {"status": "UNKNOWN", "note": "compilation in progress"},
+      "c4": {
+        "status": "PROVED",
+        "raw_candidate_supports": 0,
+        "verified_minimal_supports": 0
+      },
+      "c8": {
+        "status": "COMPUTATIONALLY_CERTIFIED",
+        "raw_candidate_supports": 1467083,
+        "candidate_minimal_supports": 1150399,
+        "verification_rejected": 27784,
+        "verified_minimal_supports": 1122615,
+        "support_size_distribution": {"1": 371, "2": 1122244}
+      },
       "output": "data/type_t_port_c16/j4_a28_c4_phi48.json.gz"
     }
   ],

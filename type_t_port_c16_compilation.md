@@ -255,21 +255,23 @@ cycle are dropped, not treated as errors.
 | `(j,a,c)` | catalog (triples+gadgets) | `C4` | `C8` raw / minimal / verified | status |
 |---|---:|---:|---|---|
 | `(4,55,7)` | 784+2755=3539 | 0 (matches the proof) | 801,129 / 571,761 / 543,601 (331 unit, 543,270 pair) | `COMPUTATIONALLY_CERTIFIED` |
-| `(4,2,2)` | 925+3037=3962 | pending | pending | running |
-| `(4,28,4)` | 1225+4371=5596 | pending | pending | running |
+| `(4,2,2)` | 925+3037=3962 | 0 (matches the proof) | 955,962 / 714,765 / 682,366 (314 unit, 682,052 pair) | `COMPUTATIONALLY_CERTIFIED` |
+| `(4,28,4)` | 1225+4371=5596 | 0 (matches the proof) | 1,467,083 / 1,150,399 / 1,122,615 (371 unit, 1,122,244 pair) | `COMPUTATIONALLY_CERTIFIED` |
 
-The `(4,55,7)` `C4` result is a genuine independent cross-check of the
-Phase 1 proof (`m>=2` required, `floor(4/3)=1`), not just a restatement of
-it — the search machinery was run and correctly found nothing. The `C8`
-scale is large (`543,601` verified minimal conflict clauses for the
-smallest of the three instances) but this is the complete, exact static
-catalog for that instance, not a CEGAR sample: `Phi_{4,8}` for `(4,55,7)`
-is the existing exact-cover encoding plus these clauses, and every model
-of it is provably `C4,C8`-free (every possible 2-hub-passage conflict was
-enumerated and independently verified) and every `C4,C8`-free completion
-is provably a model of it (Phase 1 proves no other conflict shape is
-possible). See `manifests/type_t_port_c16_manifest.json` and
-`data/type_t_port_c16/j4_a55_c7_phi48.json.gz` for the full record.
+All three `(j,a,c)` instances now have `C4` independently confirmed empty
+(a genuine cross-check of the Phase 1 proof — the search machinery ran and
+found nothing in each case, not just a restatement of the proof) and a
+complete, exactly-verified static `C8` conflict catalog, not a CEGAR
+sample: `Phi_{4,8}` for each instance is the existing exact-cover encoding
+plus these clauses, and every model of it is provably `C4,C8`-free (every
+possible 2-hub-passage conflict was enumerated and independently verified)
+while every `C4,C8`-free completion is provably a model of it (Phase 1
+proves no other conflict shape is possible). Catalog scale grows with
+instance size, as expected (`543,601 -> 682,366 -> 1,122,615` verified
+`C8` clauses), but stayed tractable (each instance compiled in well under
+30 minutes). See `manifests/type_t_port_c16_manifest.json` and
+`data/type_t_port_c16/j4_*_phi48.json.gz` for the full record. **Phase 2 is
+now complete for all three tested `j=4` instances.**
 
 Never inferring an all-`j` theorem from `j=4`, never calling a timed-out
 run `UNSAT`, and never calling a `C4,C8,C16`-free completion a
