@@ -108,3 +108,19 @@ def test_two_p3_passages_never_coexist_in_a_support():
     kept, dropped = drop_multi_p3_supports(fake)
     assert dropped == 1
     assert set(kept) == {(("p2", (1, 2)), ("p3", (3, 4))), (("p3", (9, 10)),)}
+
+
+def test_j5_c8_passage_compilation():
+    # j=5 is odd: no linked gadget exists at all, so p3 is always empty.
+    # Sanity check the passage pipeline still works correctly on a
+    # differently-shaped (larger, gadget-free) instance.
+    core = build_core(5, 2, 2)
+    _normal, _pairs, triples, gadgets, _same_bad, _cross_bad = build_catalog(core)
+    assert gadgets == []
+    p2, p3 = build_passage_catalog(triples, gadgets)
+    assert p3 == {}
+    raw = enumerate_m2_passage_conflicts(core, p2, p3, 8)
+    minimal = minimal_supports(raw)
+    verified, rejected = verify_specialized(core, 8, minimal, p2, p3)
+    final = minimal_supports(verified)
+    assert len(final) == 25553

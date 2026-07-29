@@ -227,6 +227,22 @@ reachability-join specialization. It reproduces the `C8` result exactly
 (see above) as a built-in regression check, and generalizes directly to
 `m` up to 5 for `C16` by simply raising the target length and `max_m`.
 
+## A `j=5` data point
+
+`(5,2,2)` (odd `j`, no linked gadget: `p3` is always empty) compiles to
+`25,553` verified minimal `C8` passage clauses out of `79,185` triples —
+`6,193` distinct `p2` passages, matching `type_t_port_multipole_completion.md`'s
+`allowed_pairs` count for this instance. Compiled in well under a minute
+with the `m=2`-specialized algorithm; the independent general-`m`
+cross-check times out around 100-150s on this larger core before
+finishing (it has previously agreed exactly with the specialized
+algorithm on every `j=4` instance, so this is a lower-confidence but not
+unvalidated result — see `data/type_t_port_c16_passages/j5_a2_c2_phi48_passages.json.gz`).
+This is a useful extra data point for the template-lifting work
+(`type_t_port_passage_templates.md` used a couple of ad hoc `j=5` cores
+for its own fresh-coordinate instantiation checks; this is the first full
+`j=5` *catalog*, not just spot-check instances).
+
 ## Next
 
 Phase 3/4 (bounded core-path table and passage-level `C16` compilation),
