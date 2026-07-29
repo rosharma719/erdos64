@@ -1,9 +1,11 @@
 # Bare-core dyadic-cycle avoidance for all j (2-adic argument)
 
-**Status (2026-07-29): PROVED for the 35 reported affine forms, given
-completeness; completeness itself is CERTIFIED for j=4,5,6 (matching the
-repository's existing scope) and PLAUSIBLE-BUT-NOT-YET-FORMALLY-PROVED for
-general j, pending the kernel/cycle-space argument delegated below.**
+**Status (2026-07-29): PROVED, unconditionally.** Completeness of the 35
+affine forms — the gap flagged below when this file was first written — is
+now closed by an independent kernel/cycle-space derivation
+(`verifier/type_t_port_kernel_cycle_space.py`): **the bare core `H(j,a,c)`
+avoids every dyadic cycle length, for every valid `j>=4` and every valid
+`a,c`.** See "Completeness, proved" below.
 
 This directly addresses the open precondition both the template-lifting
 agent (`type_t_port_passage_templates.md`) and the C16-passage agent's
@@ -70,51 +72,130 @@ list of simple-cycle lengths in the bare core for every `j>=4` (all valid
 certificate, replacing what was previously only an empirical `j=4,5,6`
 check.
 
-**Not yet independently re-derived here:** the completeness claim itself.
+## Completeness, proved (`verifier/type_t_port_kernel_cycle_space.py`)
+
 The repository's existing computation checked exactly `j=4,5,6` (27 cores:
 9 `(a,c)` combinations per `j`) and found 61 cycles / 35 forms in every one,
-which is why the spectrum could be fit with no `a,c`-dependence at all in
-the affine coefficients — plausible because a full traverse of the growing
-branches has `a`/`c`-independent length (`A_left+A_right=4Y-9`,
-`C_left+C_right=Y-9`, the `a`/`c` terms cancel), suggesting every one of the
-61 cycles either avoids a growing branch entirely or traverses it in full,
-never partially — but this session has not independently verified that no
-*36th* form appears at some untested `j` or `(a,c)`.
+with no `a,c`-dependence in the affine coefficients observed. That alone
+would only be strong evidence, not a proof, that no 36th form appears at
+some untested `j` or `(a,c)`. This session closed the gap with an
+independent, purely topological derivation:
 
-**Why completeness should be provable, not just observed:** the core has
-cyclomatic rank exactly 7 (`type_t_port_completion.md` Section 1: `m0-n0+1=7`,
-independently reconfirmed by `verifier/type_t_port_coordinates.py`'s kernel
-audit), so its binary cycle space has exactly `2^7=128` elements, all
-determined by a **13-anchor, 19-edge kernel multigraph whose topology never
-changes with `j`, `a`, or `c`** (only 4 of the 19 edge/path lengths do). A
-subset of kernel edges is a valid simple cycle exactly when it is one in
-this fixed abstract multigraph — a purely topological question, answerable
-once from the kernel alone, independent of `j`/`a`/`c` entirely. If that
-classification yields exactly 35 realizable affine forms (some kernel edges
-carry a `j`-dependent length, some don't), that already *is* the completeness
-proof: not "checked at three values of `j`" but "true for every value of
-`j`, `a`, `c` by construction." Formalizing this (build the kernel + cycle
-space, enumerate the up to 127 nonzero vectors, classify each) is delegated
-as a follow-on task, since it is exactly the machinery already partly built
-by `verifier/type_t_port_coordinates.py` and can reuse it directly.
+`build_core` always wires the same 13 anchor vertices via the same 19
+named subdivided paths; only 4 of the 19 path *lengths* depend on
+`j`/`a`/`c` — the topology never changes. Two anchors, `u_x` and `u_y`, are
+themselves degree-2 pass-through points (confirmed directly against a built
+core: `verify_u_bridge_suppression`); suppressing them merges their two
+incident length-1 paths each into one length-2 kernel edge, giving the true
+**kernel multigraph: 11 vertices, 17 edges, cyclomatic rank exactly 7**
+(`17-11+1=7`, matching the documented `m0-n0+1=7` exactly).
 
-## Strategic consequence, conditional on completeness
+**Reconciling 13 anchors / 19 paths with 11 kernel vertices / 17 kernel
+edges** (`verify_degree_distribution_reconciliation`,
+`cross_validate_kernel_topology` — the latter re-derives the kernel a
+*second*, fully independent way, by raw degree computation and generic
+degree-2-chain suppression directly on a materialized `build_core` graph,
+with no reference to the hand-transcribed `KERNEL_EDGES` table or to
+`coordinates.py::PATH_SPEC`, and checks it agrees exactly — vertex set, edge
+endpoints, *and* numeric lengths — with the hand-transcribed kernel across 9
+distinct `(j,a,c)` instances spanning `j=4,5,6` with extreme and interior
+`a,c`):
 
-If completeness is confirmed, this closes the open precondition for an
-externally-proposed "bounded-rank/finite-horizon completion theorem" (a
-lopsided-Lovász-Local-Lemma argument, relayed into this session and
-independently audited by the template-lifting agent for its *other*
-precondition — bounded max degree, which is already PROVED): the bare core
-would avoid every dyadic length for every `j>=4`, which is exactly the
-missing ingredient that theorem needs to conclude that **no fixed finite
-set of forbidden cycle lengths (in particular `{4,8,16}`) can be forced by
-every sufficiently large exact-cover completion of this family** — i.e. an
-all-`j` proof via a fixed short-cycle catalog would be structurally
-impossible for this specific construction, not just empirically hard. This
-would mean the strategic pivot both prior agents already leaned toward
-(deprioritize fixed-template global forcing; look at growing-length
-obstructions or explicit periodic-completion constructions instead) is not
-just prudent but *necessary* for this family. This conclusion is
-conditional on (a) the completeness claim above and (b) the external LLL
-argument's own proof holding up under independent scrutiny — neither is
-treated as settled by this file alone.
+* Of the 13 named anchors, exactly one (`z0`) has degree 4 and ten have
+  degree 3 — these 11 are exactly the kernel vertices, and
+  `sum(d(v)-2) = (4-2)*1 + (3-2)*10 = 12`, matching the documented value
+  exactly. The remaining two anchors, `u_x` and `u_y`, have degree 2 — they
+  are not branch points at all, just named waypoints, so they belong inside
+  the documented `n2=5Y-4` count (along with every ordinary path-internal
+  vertex) rather than being one of the 11 kernel vertices.
+* Suppressing `u_x` merges its two incident paths (`u_x_r_x`, `u_x_s_x`,
+  each length 1) into a single length-2 kernel edge between `r_x` and `s_x`
+  — running in parallel with the already-direct length-7 `A_middle` kernel
+  edge between the same two vertices (likewise `u_y` merges `u_y_r_y` +
+  `u_y_s_y` into a length-2 edge parallel to `C_middle`). That is exactly
+  **2 of the 19 named paths becoming parallel companions of 2 others**, so
+  19 paths collapse to 17 kernel edges — not 18 — consistent with the rank
+  formula `E = V - 1 + r = 11 - 1 + 7 = 17` exactly (not merely `<=18`).
+
+**Why the `a`/`c`-cancellation is forced by the kernel topology, not merely
+observed** (proved once here, from the fixed kernel alone — this is the
+formal version of task item 6, not an appeal to the 61-cycle enumeration
+that also happens to confirm it): `r_x` and `s_x` each have kernel-degree
+exactly 3, with incident edges `{A_left, A_middle, u_x_bridge}` at `r_x` and
+`{A_middle, u_x_bridge, A_right}` at `s_x` — i.e. `A_left` is `r_x`'s *only*
+connection away from the `r_x`-`s_x` pair, and `A_right` is `s_x`'s only
+connection away from it (`A_middle`/`u_x_bridge` are the two parallel edges
+directly between `r_x` and `s_x`). In any simple cycle, `r_x` (if used at
+all) has support-degree exactly 2. Suppose a cycle uses `A_left`: `r_x`'s
+second used edge must be `A_middle` or `u_x_bridge` (its only other
+options), so the cycle continues into `s_x`. At `s_x`, one edge (whichever
+of `A_middle`/`u_x_bridge` was just used) is already spent; `s_x` needs
+exactly one more from its remaining two options — *the other*
+`r_x`-`s_x` parallel edge, or `A_right`. Choosing the other parallel edge
+would add a *second* `r_x`-`s_x` edge back at `r_x` — but `r_x` already has
+its two allowed slots filled (`A_left` + the first parallel edge), so a
+third edge there is forbidden for a simple cycle. That option is therefore
+excluded, forcing `s_x`'s second edge to be `A_right`. Hence **`A_left` used
+implies `A_right` used**, and by the symmetric argument (starting from
+`A_right`) the converse holds too — so every simple cycle uses `A_left` and
+`A_right` together or neither, and since `length(A_left)+length(A_right) =
+(a-1)+(4Y-8-a) = 4Y-9` is itself `a`-free, the `a`-dependence cancels
+identically, for every simple cycle, by this topological argument alone
+(not by inspecting all 61 cycles case-by-case). The identical argument with
+`r_y`, `s_y`, `C_left`, `C_right`, `u_y_bridge` (also all kernel-degree 3)
+gives the matching `c`-cancellation
+(`length(C_left)+length(C_right) = (c-1)+(Y-8-c) = Y-9`).
+
+`type_t_port_kernel_cycle_space.py` builds this kernel directly from
+`build_core`'s topology (no numeric fitting anywhere in the module), picks
+a spanning tree, constructs its 7 fundamental cycles, and enumerates all
+`2^7=128` binary cycle-space vectors. For each nonzero vector it decides —
+from the *kernel's* abstract topology alone (connected edge-support, every
+included vertex has degree exactly 2), a question with no dependence on
+`j`/`a`/`c` whatsoever — whether it is a genuine simple cycle, and if so
+computes that cycle's length **symbolically** as
+`(const, Y_coef, a_coef, c_coef)` by summing the constituent kernel edges'
+symbolic lengths (no plugging in of numbers at any point).
+
+**Result:**
+* **Exactly 61 valid simple cycles** — matching the documented count
+  exactly, now derived rather than observed.
+* **Every one of the 61 has `a_coef=0` and `c_coef=0`** — proving, not
+  merely observing at 9 sampled `(a,c)` pairs, that every cycle's length is
+  a pure function of `Y` alone (the `a`/`c` contributions from `A_left`/
+  `A_right` resp. `C_left`/`C_right` always cancel exactly).
+* The resulting 35 distinct `(Y_coef, const)` pairs, **with multiplicities**,
+  are **exactly** the 35 forms independently fit from the `j=4,5,6` spectra
+  in `type_t_port_core_affine_dyadic_check.py` — literal set equality, zero
+  mismatches, checked by `self_test()` (also a pytest-covered regression:
+  `tests/test_type_t_port_kernel_cycle_space.py`).
+
+Because the kernel topology and the cycle-space classification are both
+independent of `j`/`a`/`c` by construction (not sampled at finitely many
+values), this **is** the completeness proof, not further evidence for it:
+the 35 forms are the complete simple-cycle spectrum of `H(j,a,c)` for every
+valid `j>=4` and every valid `a,c`, not just the tested combinations.
+
+**Putting it together:** the 2-adic argument above (none of the 35 forms is
+ever a power of two, for any `j>=4`) plus this completeness proof gives,
+unconditionally: **`H(j,a,c)` contains no cycle of dyadic length, for every
+valid `j>=4` and every valid `a,c`.**
+
+## Strategic consequence
+
+This closes the open precondition for an externally-proposed
+"bounded-rank/finite-horizon completion theorem" (a lopsided-Lovász-Local-
+Lemma argument, relayed into this session and independently audited by the
+template-lifting agent for its *other* precondition — bounded max degree,
+already PROVED there). With both preconditions now established, that
+theorem concludes: **no fixed finite set of forbidden cycle lengths (in
+particular `{4,8,16}`) can be forced by every sufficiently large exact-cover
+completion of this family** — an all-`j` proof via a fixed short-cycle
+catalog is structurally impossible for this specific construction, not just
+empirically hard. This makes the strategic pivot both prior agents already
+leaned toward — deprioritize fixed-template global forcing; look at
+growing-length obstructions or explicit periodic-completion constructions
+instead — not just prudent but *necessary* for this family, conditional
+only on the external LLL argument's own proof holding up under further
+scrutiny (that proof itself, as pure probability theory, has not been
+independently re-derived in this repository).
