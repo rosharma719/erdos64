@@ -5,7 +5,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "verifier"))
 
 from type_t_port_core_export import build_core
 from type_t_port_multipole_sat import build_catalog
-from type_t_port_passages import build_passage_catalog, verify_at_most_one_supplier
+from type_t_port_passages import build_passage_catalog, drop_multi_p3_supports, verify_at_most_one_supplier
 from type_t_port_c16_passage_catalog import (
     compile_instance_passages,
     enumerate_m2_passage_conflicts,
@@ -57,6 +57,7 @@ def test_c8_passage_compilation_is_sound_and_compressed():
     # this is the headline compression claim: passage-level C8 for (4,55,7)
     # must be far smaller than the already-verified gadget-level count
     assert c8["verified_minimal_supports"] < 543_601 / 20
+    assert c8["verified_minimal_supports"] == 4218
     sizes = {int(k) for k in c8["support_size_distribution"]}
     assert sizes <= {2}, "no unit passage conflicts are expected for C8"
 
@@ -83,4 +84,27 @@ def test_two_independent_algorithms_agree_exactly_on_c8():
     final_general = set(minimal_supports(verified_general))
 
     assert final_specialized == final_general
-    assert len(final_specialized) == 5007
+    assert len(final_specialized) == 4218
+
+
+def test_two_p3_passages_never_coexist_in_a_support():
+    # A completed graph ever contains at most one linked-pair gadget (the
+    # exact-cover selects exactly one), so at most one p3-supplying
+    # structure -- and hence at most one p3 passage -- can ever be
+    # physically present. Supports naming two p3 passages are sound but
+    # permanently vacuous and must be dropped, not just deduplicated.
+    core, triples, gadgets = _catalog()
+    p2, p3 = build_passage_catalog(triples, gadgets)
+    raw = enumerate_m2_passage_conflicts(core, p2, p3, 8)
+    for kind_key_pairs in raw:
+        p3_count = sum(1 for kind, _ in kind_key_pairs if kind == "p3")
+        assert p3_count <= 1
+
+    fake = {
+        (("p2", (1, 2)), ("p3", (3, 4))): {},
+        (("p3", (5, 6)), ("p3", (7, 8))): {},
+        (("p3", (9, 10)),): {},
+    }
+    kept, dropped = drop_multi_p3_supports(fake)
+    assert dropped == 1
+    assert set(kept) == {(("p2", (1, 2)), ("p3", (3, 4))), (("p3", (9, 10)),)}

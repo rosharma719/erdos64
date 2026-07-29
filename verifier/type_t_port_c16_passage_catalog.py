@@ -42,6 +42,13 @@ def enumerate_m2_passage_conflicts(core, p2, p3, target_length: int) -> dict:
     for route1, suppliers1 in passage_of_route.items():
         for (x1, y1) in suppliers1:
             for route2, suppliers2 in passage_of_route.items():
+                if route1 == 3 and route2 == 3:
+                    # A completed graph ever contains at most one linked
+                    # gadget (exactly one is selected), so it has at most
+                    # one p3-supplying structure in existence at all; two
+                    # different p3 passages can never both be physically
+                    # present. See type_t_port_passages.drop_multi_p3_supports.
+                    continue
                 core_total = target_length - route1 - route2
                 if core_total < 2:
                     continue

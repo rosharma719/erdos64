@@ -15,31 +15,36 @@
     "corrected_counts": {"a55c7": 5007, "a2c2": 5044, "a28c4": 6359},
     "previously_reported_inflated_counts": {"a55c7": 5052, "a2c2": 5084, "a28c4": 6386}
   },
+  "multi_p3_redundancy_found_and_fixed": {
+    "description": "A completed graph selects exactly one linked-pair gadget ever, so it has exactly one joining edge and at most one p3-supplying structure physically present. Any support naming two different p3 passages can never be realized -- sound (all 789/5007 and 7912/40833 cases found had fully disjoint endpoints, so no unsoundness) but permanently vacuous, already implied by the exact-cover 'exactly one gadget selected' constraint. Identified via external mathematical review, confirmed exhaustively (not sampled) against the committed catalogs, and fixed by drop_multi_p3_supports in type_t_port_passages.py plus generator-level exclusion in both enumerate_m2_passage_conflicts and enumerate_passage_conflicts so the redundant candidates are never generated.",
+    "corrected_counts": {"a55c7_c8": 4218, "a2c2_c8": 4227, "a28c4_c8": 5432, "a55c7_c16_m2": 32921},
+    "previously_reported_counts_including_vacuous_clauses": {"a55c7_c8": 5007, "a2c2_c8": 5044, "a28c4_c8": 6359, "a55c7_c16_m2": 40833}
+  },
   "compression": [
-    {"j": 4, "a": 55, "c": 7, "old_gadget_c8_clauses": 543601, "new_passage_c8_clauses": 5007, "ratio": 108.6},
-    {"j": 4, "a": 2, "c": 2, "old_gadget_c8_clauses": 682366, "new_passage_c8_clauses": 5044, "ratio": 135.3},
-    {"j": 4, "a": 28, "c": 4, "old_gadget_c8_clauses": 1122615, "new_passage_c8_clauses": 6359, "ratio": 176.5}
+    {"j": 4, "a": 55, "c": 7, "old_gadget_c8_clauses": 543601, "new_passage_c8_clauses": 4218, "ratio": 128.9},
+    {"j": 4, "a": 2, "c": 2, "old_gadget_c8_clauses": 682366, "new_passage_c8_clauses": 4227, "ratio": 161.4},
+    {"j": 4, "a": 28, "c": 4, "old_gadget_c8_clauses": 1122615, "new_passage_c8_clauses": 5432, "ratio": 206.7}
   ],
   "instances": [
     {
       "j": 4, "a": 55, "c": 7,
       "catalog": {"triples": 784, "gadgets": 2755, "p2_passages": 616, "p3_passages": 686},
       "c4": {"status": "PROVED", "verified_minimal_supports": 0},
-      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5065, "verification_rejected": 58, "verified_minimal_supports": 5007, "cross_validated_by_second_algorithm": true},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 4276, "verification_rejected": 58, "verified_minimal_supports": 4218, "cross_validated_by_second_algorithm": true},
       "output": "data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz"
     },
     {
       "j": 4, "a": 2, "c": 2,
       "catalog": {"triples": 925, "gadgets": 3037, "p2_passages": 648, "p3_passages": 734},
       "c4": {"status": "PROVED", "verified_minimal_supports": 0},
-      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5102, "verification_rejected": 58, "verified_minimal_supports": 5044},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 4285, "verification_rejected": 58, "verified_minimal_supports": 4227},
       "output": "data/type_t_port_c16_passages/j4_a2_c2_phi48_passages.json.gz"
     },
     {
       "j": 4, "a": 28, "c": 4,
       "catalog": {"triples": 1225, "gadgets": 4371, "p2_passages": 776, "p3_passages": 915},
       "c4": {"status": "PROVED", "verified_minimal_supports": 0},
-      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 6412, "verification_rejected": 53, "verified_minimal_supports": 6359},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5485, "verification_rejected": 53, "verified_minimal_supports": 5432},
       "output": "data/type_t_port_c16_passages/j4_a28_c4_phi48_passages.json.gz"
     }
   ],

@@ -90,10 +90,11 @@ def enumerate_passage_conflicts(core, p2, p3, target_length: int,
             start_virtual = kind1 == "virtual"
             support0 = frozenset({tag1}) if start_virtual else frozenset()
             m0 = 1 if start_virtual else 0
+            p3_used0 = start_virtual and tag1[0] == "p3"
             path = [start, n1]
             used = {start, n1}
 
-            def visit(vertex, weight, arrived_virtual, support, m_used):
+            def visit(vertex, weight, arrived_virtual, support, m_used, p3_used):
                 nonlocal truncated
                 if time_budget_seconds is not None and time.monotonic() - started > time_budget_seconds:
                     truncated = True
@@ -101,12 +102,19 @@ def enumerate_passage_conflicts(core, p2, p3, target_length: int,
                 for neighbor, w, kind, tag in edges_from(vertex):
                     if kind == "virtual" and arrived_virtual:
                         continue
+                    # A completed graph ever contains at most one linked
+                    # gadget, so at most one p3-supplying structure ever
+                    # physically exists; forbid a second p3 passage outright
+                    # (see type_t_port_passages.drop_multi_p3_supports).
+                    if kind == "virtual" and tag[0] == "p3" and p3_used:
+                        continue
                     new_m = m_used + (1 if kind == "virtual" else 0)
                     if new_m > max_m:
                         continue
                     new_weight = weight + w
                     if new_weight > target_length:
                         continue
+                    new_p3_used = p3_used or (kind == "virtual" and tag[0] == "p3")
                     if neighbor == start:
                         if new_weight != target_length:
                             continue
@@ -126,13 +134,13 @@ def enumerate_passage_conflicts(core, p2, p3, target_length: int,
                     new_support = support | ({tag} if kind == "virtual" else set())
                     used.add(neighbor)
                     path.append(neighbor)
-                    visit(neighbor, new_weight, kind == "virtual", new_support, new_m)
+                    visit(neighbor, new_weight, kind == "virtual", new_support, new_m, new_p3_used)
                     path.pop()
                     used.discard(neighbor)
                     if truncated:
                         return
 
-            visit(n1, w1, start_virtual, support0, m0)
+            visit(n1, w1, start_virtual, support0, m0, p3_used0)
 
     return {"results": results, "truncated": truncated, "elapsed_seconds": time.monotonic() - started}
 

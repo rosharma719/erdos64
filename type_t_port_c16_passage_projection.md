@@ -105,9 +105,9 @@ and results are natively deduplicated by geometry.
 
 | `(j,a,c)` | old gadget-level `C8` (verified) | new passage-level `C8` (verified) | compression |
 |---|---:|---:|---:|
-| `(4,55,7)` | 543,601 | 5,007 | **108.6x** |
-| `(4,2,2)` | 682,366 | 5,044 | **135.3x** |
-| `(4,28,4)` | 1,122,615 | 6,359 | **176.5x** |
+| `(4,55,7)` | 543,601 | 4,218 | **128.9x** |
+| `(4,2,2)` | 682,366 | 4,227 | **161.4x** |
+| `(4,28,4)` | 1,122,615 | 5,432 | **206.7x** |
 
 Compression *improves* with instance size (the larger catalogs have more
 redundant suppliers per passage, not more genuine passages), which is a
@@ -180,6 +180,36 @@ reported 5,052/5,084/6,386 were each inflated by ~40-60 false-positive
 different implementations that the project's methodology calls for: the
 bug was invisible to either algorithm's self-consistency and only surfaced
 by disagreement between them.
+
+### A second correction: at most one `p3` passage per completed graph
+
+An external mathematical review of this work (relayed into the session)
+correctly identified a further redundancy, distinct from the verification
+bug above: a completed graph selects **exactly one** linked-pair gadget
+(the exact-cover constraint), so it contains **exactly one** joining edge
+ever, and hence at most one `p3`-supplying hub structure is ever
+physically present. Any support naming *two different* `p3` passages can
+therefore never be realized by any actual completion -- not because it is
+unsound (both clauses were independently verified as producing a real
+cycle in the over-permissive minimal-materialization sense), but because
+the scenario itself (two different linked gadgets simultaneously
+contributing routes) never occurs in a real graph. This is analogous to,
+but distinct from, the earlier shared-vertex redundancy found in the
+gadget-level catalog: here the two `p3` passages have **fully disjoint**
+endpoints in every case found (789/5,007 C8 clauses, 7,912/40,833 `C16`
+`m=2` clauses -- checked exhaustively, not sampled), so there was no
+actual unsoundness, only permanent vacuousness.
+
+Fixed by `drop_multi_p3_supports` in `type_t_port_passages.py`, applied
+directly inside both `enumerate_m2_passage_conflicts` (skip the
+`route1=3, route2=3` case) and `enumerate_passage_conflicts` (track
+whether a `p3` edge has already been used along the current walk and
+forbid a second one), so the redundant candidates are never generated in
+the first place rather than filtered afterward. Both algorithms still
+agree exactly after the fix. Corrected counts (the compression table
+above already reflects them): `4,218` / `4,227` / `5,432` verified `C8`
+clauses for `(4,55,7)` / `(4,2,2)` / `(4,28,4)`, and `32,921` verified
+`C16` `m=2` clauses for `(4,55,7)` (down from `40,833`).
 
 ## Phase 3/4 — general-`m` augmented-graph search
 

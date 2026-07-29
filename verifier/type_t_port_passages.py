@@ -125,6 +125,27 @@ def _attachment_vertices(tag: VariableTag) -> frozenset[int]:
     return frozenset((p1, p2_side, q1, q2_side))
 
 
+def drop_multi_p3_supports(results: dict) -> tuple[dict, int]:
+    """A completed graph contains at most one linked-pair gadget ever (the
+    exact-cover constraint selects exactly one), so it has at most one
+    joining edge in existence at all -- not just "a cycle can only use it
+    once", but no second p3-supplying structure is even physically present
+    to draw a second p3 passage from. Any support naming two different
+    ``p3`` passages is therefore never realizable by any actual
+    completion: it is sound (not incorrect) but permanently vacuous,
+    already implied by the base "exactly one gadget selected" exact-cover
+    clause. Dropping these is a valid compression, not a soundness fix.
+    """
+    kept = {}
+    dropped = 0
+    for key, value in results.items():
+        if sum(1 for kind, _ in key if kind == "p3") >= 2:
+            dropped += 1
+            continue
+        kept[key] = value
+    return kept, dropped
+
+
 def materialize_passages(core, support):
     """Materialize a MINIMAL ordinary graph containing exactly the named
     passages and nothing else -- one fresh 2-edge hub per ``p2[u,v]``
