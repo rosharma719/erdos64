@@ -184,32 +184,55 @@ by disagreement between them.
 ### A second correction: at most one `p3` passage per completed graph
 
 An external mathematical review of this work (relayed into the session)
-correctly identified a further redundancy, distinct from the verification
-bug above: a completed graph selects **exactly one** linked-pair gadget
-(the exact-cover constraint), so it contains **exactly one** joining edge
-ever, and hence at most one `p3`-supplying hub structure is ever
-physically present. Any support naming *two different* `p3` passages can
-therefore never be realized by any actual completion -- not because it is
-unsound (both clauses were independently verified as producing a real
-cycle in the over-permissive minimal-materialization sense), but because
-the scenario itself (two different linked gadgets simultaneously
-contributing routes) never occurs in a real graph. This is analogous to,
-but distinct from, the earlier shared-vertex redundancy found in the
-gadget-level catalog: here the two `p3` passages have **fully disjoint**
-endpoints in every case found (789/5,007 C8 clauses, 7,912/40,833 `C16`
-`m=2` clauses -- checked exhaustively, not sampled), so there was no
-actual unsoundness, only permanent vacuousness.
+correctly identified that a passage-level support can never name two
+different `p3` passages, and a follow-up review correctly caught that this
+session's *first* explanation for why was itself imprecise for one
+important sub-case. Both rounds are recorded here since the distinction
+matters for trusting the methodology, even though **the actual generated
+catalogs were never affected either time** (see below).
 
-Fixed by `drop_multi_p3_supports` in `type_t_port_passages.py`, applied
-directly inside both `enumerate_m2_passage_conflicts` (skip the
-`route1=3, route2=3` case) and `enumerate_passage_conflicts` (track
-whether a `p3` edge has already been used along the current walk and
-forbid a second one), so the redundant candidates are never generated in
-the first place rather than filtered afterward. Both algorithms still
-agree exactly after the fix. Corrected counts (the compression table
-above already reflects them): `4,218` / `4,227` / `5,432` verified `C8`
-clauses for `(4,55,7)` / `(4,2,2)` / `(4,28,4)`, and `32,921` verified
-`C16` `m=2` clauses for `(4,55,7)` (down from `40,833`).
+**First-pass explanation (incomplete).** A completed graph selects
+**exactly one** linked-pair gadget, so it contains exactly one joining
+edge; the two `p3` passages found pre-fix had **fully disjoint** endpoints
+in every case (checked exhaustively: 789/5,007 `C8` candidates,
+7,912/40,833 `C16` `m=2` candidates), which was taken to mean the excluded
+supports were sound-but-vacuous -- already implied by "exactly one gadget
+selected," never actually unsound.
+
+**The gap.** Checking only vertex-disjointness misses a subtler case: a
+*single* gadget with sides `{a,b}` and `{c,d}` makes **all four** of its
+cross passages true simultaneously the instant it is selected (forward
+channeling: `x_g -> p3[a,c] AND p3[a,d] AND p3[b,c] AND p3[b,d]`, all
+together, regardless of whether any one cycle could ever use more than
+one). `p3[a,c]` and `p3[b,d]` are a "complementary pair" of that one
+gadget -- four fully distinct vertices, no shared endpoint, yet forced
+true *together* by a single selection. A static clause
+`not p3[a,c] or not p3[b,d]` directly contradicts that channeling axiom
+the moment this gadget is selected: not vacuous (implied by other
+constraints) but **actively unsound** -- capable of forcing the whole SAT
+instance UNSAT by rejecting a perfectly legal completion for no real
+graph-theoretic reason. Checked directly: of the 1,457 raw p3-p3
+candidates the (4,55,7) `C8` search generated pre-fix, **331 were exactly
+this same-gadget complementary case** -- a real occurrence, not a
+hypothetical edge case.
+
+**Why the catalogs were never actually wrong.** The fix
+(`drop_multi_p3_supports` in `type_t_port_passages.py`, applied inside
+both `enumerate_m2_passage_conflicts` -- skip `route1=3, route2=3` --  and
+`enumerate_passage_conflicts` -- track whether a `p3` edge was already
+used along the walk and forbid a second one) excludes **every** two-`p3`
+support unconditionally, regardless of whether it is the same-gadget
+(unsound) or different-gadget (vacuous) case -- the distinction changes
+*why* exclusion is necessary, not *whether* it is, and the code already
+did the latter correctly before this correction was raised. Both
+independent algorithms still agree exactly. Corrected counts (the
+compression table above already reflects them): `4,218` / `4,227` /
+`5,432` verified `C8` clauses for `(4,55,7)` / `(4,2,2)` / `(4,28,4)`, and
+`32,921` verified `C16` `m=2` clauses for `(4,55,7)` (down from `40,833`).
+Regression-tested directly (`test_same_gadget_complementary_p3_pairs_would_be_unsound_if_kept`
+in `tests/test_type_t_port_passages.py`): the generator produces none of
+the structurally-possible same-gadget complementary pairs, for any gadget
+in the catalog.
 
 ## Phase 3/4 — general-`m` augmented-graph search
 
@@ -243,10 +266,151 @@ This is a useful extra data point for the template-lifting work
 for its own fresh-coordinate instantiation checks; this is the first full
 `j=5` *catalog*, not just spot-check instances).
 
+## Passage-support soundness theorem
+
+The forward-implication design in Phase 1 ("selecting a gadget supplies all
+its passages simultaneously, **regardless of unused attachments**") and the
+minimal-materialization fix in Phase 2 (`materialize_passages`, closing the
+verification-bug gap) both rely, informally, on the same underlying fact:
+that an unused attachment of a selected hub can never affect whether a
+*specific* passage-based cycle candidate actually exists. This section
+states and proves that fact once, explicitly, as a standalone theorem,
+rather than leaving it as an implicit assumption baked separately into two
+different places in the code.
+
+### Setup
+
+Fix a completion `G` of the bare core `H = H(j,a,c)`: a selection of
+triples and linked-pair gadgets satisfying the exact-cover deficiency
+constraints (`type_t_port_completion.md` Section 1: a same-vertex
+completion is a perfect matching on the deficient vertices, realized here
+via triples/gadgets, that **adds** edges on top of `H` and never removes or
+alters a core edge). "Selected" means: the hub vertex/vertices of that
+triple/gadget, and *all* of their incident edges (all three of a triple's
+attachments; both hubs and the joining edge of a linked gadget), are
+literally present in `G` — this is the forward-implication fact from Phase
+1, already established, restated here only as a hypothesis this theorem
+builds on, not re-derived.
+
+A **passage-based cycle candidate** is a tuple `(P_1,...,P_k; s_1,...,s_k)`,
+`k>=2`: each `P_i` is a simple core path in `H` between two deficient
+vertices `P_i.left`, `P_i.right`, with the `P_i` pairwise vertex-disjoint
+(no vertex, including an endpoint, shared between any two distinct `P_i`);
+each `s_i` is a `p2` or `p3` passage instance whose two named endpoints are
+exactly `P_i.right` and `P_{i+1 mod k}.left`, with all hub vertices
+appearing across the `s_i` pairwise distinct from each other and from every
+`P_i`-vertex (hub vertices are always freshly-added completion vertices,
+never core vertices, so the only possible coincidence — a hub equal to some
+`P_i`-endpoint — cannot occur since endpoints are core vertices by
+definition).
+
+The candidate is **supported by `G`** if, for every `i`, some selected
+triple/gadget `h_i` of `G` supplies the passage `s_i` (Phase 1's forward
+sense). Write `E(s_i)` for the *specific* 2 (for `p2`) or 3 (for `p3`)
+edges of `h_i` that literally realize that one passage — e.g. for a `p2`
+supplied by triple `h_i={u,v,w}` with `s_i` the pair `(u,v)`, `E(s_i)` is
+exactly the two edges `hub-u`, `hub-v`, deliberately excluding `h_i`'s third
+edge `hub-w` even though that edge is also present in `G`.
+
+### Theorem
+
+If a passage-based cycle candidate `(P_1,...,P_k;s_1,...,s_k)` is supported
+by `G`, then
+```
+C := ( union_i V(P_i) union_i V(s_i),  union_i E(P_i) union_i E(s_i) )
+```
+is a simple cycle subgraph of `G` — **regardless of any other edge present
+in `G`**, in particular regardless of any unused attachment of any
+supplying hub `h_i`, and regardless of every edge of every *other* selected
+triple/gadget of `G` not among the `h_i`.
+
+### Proof
+
+**(1) `E(C) ⊆ E(G)`.** Each `P_i` is a path in `H`, and `H`'s edges are all
+present in `G` unchanged (completions only add edges), so
+`E(P_i) ⊆ E(H) ⊆ E(G)`. Each `h_i` is selected in `G` by hypothesis, so by
+the forward-implication fact *all* of `h_i`'s edges — not just the ones in
+`E(s_i)` — are present in `G`; in particular `E(s_i) ⊆ E(h_i) ⊆ E(G)`.
+`E(C)` is a finite union of subsets of `E(G)`, hence `E(C) ⊆ E(G)`. Note
+this step never used anything about which attachments are *unused* — it
+only used that a *selected* hub contributes **all** of its own edges
+(forced by "selected" meaning fully present, not partially present), which
+holds independent of anything else `G` does or doesn't contain. The unused
+attachment's edge is simply some element of `E(h_i) \ E(s_i) ⊆ E(G)`,
+present in `G` but by construction not in `E(C)` — irrelevant to a subset
+containment, since `⊆` is monotone in the right-hand side.
+
+**(2) `C` is a simple cycle.** It suffices to show every vertex of `V(C)`
+has degree exactly 2 within `E(C)`, and `E(C)` is connected on `V(C)`.
+By pairwise vertex-disjointness of the `P_i`, an internal vertex of `P_i`
+touches only `P_i`'s own two edges at that vertex (degree 2, from `P_i`
+being a simple path) and no other `P_j` or `s_j` — internal vertices are
+never named as passage endpoints. Each endpoint `P_i.right` gets one edge
+from `P_i` and, by the endpoint-matching definition of a candidate, exactly
+one more edge from `E(s_i)` (the edge of `s_i` incident to that specific
+endpoint — one edge for `p2`, one of the two "outer" edges for `p3`),
+giving degree exactly `1+1=2`; symmetrically for `P_i.left` via `s_{i-1}`.
+A `p3` joiner's internal hub-to-hub edge and its two hub vertices: each
+`p3` hub vertex is incident to exactly 2 of `E(s_i)`'s 3 edges (one outer,
+one joining), and by the pairwise-distinctness of hub vertices across
+different `s_i`, no other `s_j` or `P_j` contributes a further edge there —
+degree exactly 2. This is exactly where restricting to `E(s_i)` (the
+minimal-materialization discipline) rather than `E(h_i)` (the full hub)
+matters: if a hub's *unused* attachment edge were (incorrectly) included,
+that vertex's degree would be inflated past 2 and part (2) would fail: it
+is only because `E(C)` is built from `E(s_i)`, not `E(h_i)`, that every
+`V(C)`-vertex is guaranteed degree exactly 2. Connectivity: the cyclic
+sequence `P_1, s_1, P_2, s_2, ..., P_k, s_k` visits `P_1.left`, traverses
+`P_1` to `P_1.right`, crosses `s_1` to `P_2.left`, and so on, returning to
+`P_1.left` after `s_k` — a closed walk touching every `V(C)`-vertex, hence
+`E(C)` is connected on `V(C)`. Both conditions hold, so `C` is a simple
+cycle. `∎`
+
+### Discussion — what this closes, and what it deliberately does not
+
+* **This is a soundness statement about the translation, not a claim about
+  which supports occur.** It says nothing about which passages a *specific*
+  completion actually supports — that per-instance question is exactly what
+  the passage-level `C4/C8/C16` conflict catalogs compute. The theorem only
+  certifies that *if* a candidate is supported, its cycle genuinely exists,
+  with the hypotheses spelled out precisely enough to see exactly where each
+  one is used.
+* **Explains, precisely, why the Phase 1 forward-implication design is
+  correct.** "Regardless of unused attachments" is exactly part (1) of the
+  proof: unused attachments live in `E(G) \ E(C)`, and existence only ever
+  needs `E(C) ⊆ E(G)`, a fact monotone in — hence indifferent to — anything
+  else `G` contains.
+* **Explains, precisely, why the Phase 2 verification bug was a real bug,
+  not a counterexample.** The buggy `verify_passage_conflicts` materialized
+  the *full* supplying hub `h_i` (including unused attachments) and
+  accepted the candidate whenever `edge_path_cycle` found *any* cycle in
+  that larger graph — i.e. it silently substituted `E(h_i)` for `E(s_i)` in
+  the construction of `C`. `E(h_i) \supseteq E(s_i)` can contain an
+  unrelated cycle that never uses `s_i`'s claimed passage at all (routed
+  through the extra unused edge instead), so "a cycle exists in
+  `materialize(h_i)`" does not imply "the specific candidate `C` is a
+  cycle in `G`" — the fix (materializing exactly `E(s_i)`, nothing more) is
+  precisely what makes part (2) of the proof above go through; the theorem
+  is false in general if `E(s_i)` is replaced by `E(h_i)`, which is exactly
+  the failure mode the bug exhibited.
+* **The "second correction" (at most one `p3` passage per completed graph)
+  is orthogonal, not a special case of this theorem.** It restricts which
+  candidates can ever be *supported by `G`* at all (the exact-cover
+  constraints select exactly one linked gadget, hence realize at most one
+  `p3`-capable hub structure per completion), not whether a supported
+  candidate's cycle exists. A candidate naming two distinct `p3` joiners
+  would require two distinct selected linked gadgets in the same `G` —
+  already impossible by exact-cover, independent of anything in this
+  theorem — so such a candidate is simply never "supported by `G`" for any
+  real `G`, and the theorem is (correctly) never invoked on it. This is why
+  `drop_multi_p3_supports` is a generation-time filter (never producing the
+  candidate) rather than a caveat added to the soundness argument itself.
+
 ## Next
 
-Phase 3/4 (bounded core-path table and passage-level `C16` compilation),
-Phase 5/6 (lifting theorem writeup and compact static SAT), and Phase 8
-(passage-aware large-neighborhood search) are tracked in the task list and
-will be recorded here and in `manifests/type_t_port_c16_passage_manifest.json`
-as they complete.
+Phase 3/4 (bounded core-path table and passage-level `C16` compilation) and
+Phase 8 (passage-aware large-neighborhood search) are tracked in the task
+list and will be recorded here and in
+`manifests/type_t_port_c16_passage_manifest.json` as they complete. Phase
+5/6's soundness half (the lifting theorem) is now written up above; its
+"compact static SAT" half remains open.

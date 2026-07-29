@@ -102,10 +102,11 @@ def enumerate_passage_conflicts(core, p2, p3, target_length: int,
                 for neighbor, w, kind, tag in edges_from(vertex):
                     if kind == "virtual" and arrived_virtual:
                         continue
-                    # A completed graph ever contains at most one linked
-                    # gadget, so at most one p3-supplying structure ever
-                    # physically exists; forbid a second p3 passage outright
-                    # (see type_t_port_passages.drop_multi_p3_supports).
+                    # Forbid a second p3 passage outright: a same-gadget
+                    # complementary pair would be unsound (channeling
+                    # forces both true together), a different-gadget pair
+                    # merely vacuous (exact-cover forbids two gadgets) --
+                    # see type_t_port_passages.drop_multi_p3_supports.
                     if kind == "virtual" and tag[0] == "p3" and p3_used:
                         continue
                     new_m = m_used + (1 if kind == "virtual" else 0)

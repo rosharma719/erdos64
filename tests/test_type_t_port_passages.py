@@ -124,3 +124,33 @@ def test_j5_c8_passage_compilation():
     verified, rejected = verify_specialized(core, 8, minimal, p2, p3)
     final = minimal_supports(verified)
     assert len(final) == 25553
+
+
+def test_same_gadget_complementary_p3_pairs_would_be_unsound_if_kept():
+    # External review correction: dropping p3-p3 supports isn't merely a
+    # compression. For a gadget with sides {a,b}/{c,d}, selecting it forces
+    # p3[a,c] AND p3[b,d] true SIMULTANEOUSLY via forward channeling (all
+    # four cross passages become available together) -- so a static clause
+    # forbidding both would directly contradict that channeling axiom for
+    # any completion selecting this gadget: unsound, not vacuous. Confirm
+    # such pairs really are among what gets excluded (not just a
+    # hypothetical), and that the exclusion is unconditional.
+    core, triples, gadgets = _catalog()
+    p2, p3 = build_passage_catalog(triples, gadgets)
+
+    complementary_pairs = set()
+    for gadget in gadgets:
+        (p1, p2_side), (q1, q2_side) = gadget
+        pair_a = ("p3", (min(p1, q1), max(p1, q1)))
+        pair_b = ("p3", (min(p2_side, q2_side), max(p2_side, q2_side)))
+        complementary_pairs.add(tuple(sorted({pair_a, pair_b})))
+        pair_c = ("p3", (min(p1, q2_side), max(p1, q2_side)))
+        pair_d = ("p3", (min(p2_side, q1), max(p2_side, q1)))
+        complementary_pairs.add(tuple(sorted({pair_c, pair_d})))
+
+    assert len(complementary_pairs) > 0
+
+    # the generator must never produce ANY of these as a support, since it
+    # excludes every p3-p3 combination unconditionally
+    raw = enumerate_m2_passage_conflicts(core, p2, p3, 8)
+    assert not (set(raw.keys()) & complementary_pairs)

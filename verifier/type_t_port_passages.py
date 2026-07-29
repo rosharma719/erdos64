@@ -126,15 +126,42 @@ def _attachment_vertices(tag: VariableTag) -> frozenset[int]:
 
 
 def drop_multi_p3_supports(results: dict) -> tuple[dict, int]:
-    """A completed graph contains at most one linked-pair gadget ever (the
-    exact-cover constraint selects exactly one), so it has at most one
-    joining edge in existence at all -- not just "a cycle can only use it
-    once", but no second p3-supplying structure is even physically present
-    to draw a second p3 passage from. Any support naming two different
-    ``p3`` passages is therefore never realizable by any actual
-    completion: it is sound (not incorrect) but permanently vacuous,
-    already implied by the base "exactly one gadget selected" exact-cover
-    clause. Dropping these is a valid compression, not a soundness fix.
+    """Drop every support naming two different ``p3`` passages. This is
+    NOT merely a compression -- for one important sub-case it is a real
+    soundness fix, corrected after an external review caught the imprecise
+    original justification.
+
+    A single gadget's forward channeling makes ALL FOUR of its cross
+    passages true simultaneously the moment it is selected (see
+    ``channeling_clauses``): if the gadget's sides are ``{a,b}`` and
+    ``{c,d}``, selecting it forces ``p3[a,c] AND p3[a,d] AND p3[b,c] AND
+    p3[b,d]`` together, as *availability* predicates -- regardless of
+    whether any one simple cycle could ever use more than one of those
+    routes. A clause ``not p3[a,c] or not p3[b,d]`` would therefore be
+    directly falsified by the channeling axiom the moment this gadget is
+    selected: not vacuous (already excluded by other constraints) but
+    actively UNSOUND, capable of forcing the whole SAT instance UNSAT by
+    rejecting a perfectly legal completion for no real graph-theoretic
+    reason. Checked directly against the catalogs: of the 1,457 raw p3-p3
+    candidates found pre-fix for (4,55,7)'s C8 search, 331 were exactly
+    this same-gadget "complementary pair" case.
+
+    The remaining candidates -- two p3 passages that could only both be
+    supplied by two *different* gadgets -- are the case the original
+    docstring described: vacuous, not unsound, since exact-cover already
+    forbids selecting two different gadgets at once. Checking literal
+    vertex-disjointness (as the original verification did) distinguishes
+    "shares a vertex" from "doesn't" but does NOT distinguish "same
+    gadget, complementary pair" (unsound) from "two different gadgets"
+    (merely vacuous) -- both cases have four fully distinct endpoint
+    vertices, since a gadget's own two sides never overlap.
+
+    Either way the correct action is identical -- exclude the support
+    entirely -- and this function (plus the equivalent inline exclusion in
+    ``enumerate_m2_passage_conflicts`` and ``enumerate_passage_conflicts``)
+    already did that unconditionally, for every p3-p3 pair regardless of
+    which case it falls into, so no committed catalog was ever affected by
+    this imprecision -- only the written justification needed correcting.
     """
     kept = {}
     dropped = 0
