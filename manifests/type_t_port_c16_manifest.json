@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "BOUNDED_INCOMPLETE",
+  "scope": "static short-cycle conflict compilation for minimum-order all-new-vertices-cubic Type-T port completions",
+  "claims": {
+    "phase0_gadget_semantics_audited": true,
+    "phase1_support_bound_proof": "PROVED",
+    "phase1_c4_conflicts": "C4 conflicts cannot exist beyond the base local-safety screen (m>=2 required, floor(4/3)=1<2)",
+    "phase1_c8_conflicts": "every C8 conflict uses exactly m=2 hub passages, support size 1 or 2",
+    "phase1_c16_conflicts": "every C16 conflict uses 2<=m<=5 hub passages, support size v<=5",
+    "phase2_c4_c8_compilation": "COMPUTATIONALLY_CERTIFIED for (4,55,7); in progress for (4,2,2) and (4,28,4)",
+    "phase3_c16_hypergraph": "UNKNOWN pending background compilation",
+    "phase5_static_sat": "not yet attempted",
+    "counterexample_found": false,
+    "unsat_certificate_produced": false
+  },
+  "instances": [
+    {
+      "j": 4,
+      "a": 55,
+      "c": 7,
+      "catalog_triples": 784,
+      "catalog_gadgets": 2755,
+      "c4": {
+        "status": "PROVED",
+        "raw_candidate_supports": 0,
+        "verified_minimal_supports": 0,
+        "note": "confirms the Phase 1 proof that m=1 is the only possibility for C4 (floor(4/3)=1) and m>=2 is always required, so no search is even needed; the search was run anyway as a cross-check and found nothing, as predicted"
+      },
+      "c8": {
+        "status": "COMPUTATIONALLY_CERTIFIED",
+        "raw_candidate_supports": 801129,
+        "candidate_minimal_supports": 571761,
+        "verification_rejected": 28160,
+        "verified_minimal_supports": 543601,
+        "support_size_distribution": {"1": 331, "2": 543270},
+        "note": "verification_rejected counts candidates the fast reachability-index filter proposed that did not materialize into an actual simple C8 when independently checked by edge_path_cycle; this is expected (the filter is a sound-and-complete-recall but not exact existence test) and confirms the second detector is doing real work"
+      },
+      "output": "data/type_t_port_c16/j4_a55_c7_phi48.json.gz"
+    },
+    {
+      "j": 4,
+      "a": 2,
+      "c": 2,
+      "catalog_triples": 925,
+      "catalog_gadgets": 3037,
+      "c4": {"status": "UNKNOWN", "note": "compilation in progress"},
+      "c8": {"status": "UNKNOWN", "note": "compilation in progress"},
+      "output": "data/type_t_port_c16/j4_a2_c2_phi48.json.gz"
+    },
+    {
+      "j": 4,
+      "a": 28,
+      "c": 4,
+      "catalog_triples": 1225,
+      "catalog_gadgets": 4371,
+      "c4": {"status": "UNKNOWN", "note": "compilation in progress"},
+      "c8": {"status": "UNKNOWN", "note": "compilation in progress"},
+      "output": "data/type_t_port_c16/j4_a28_c4_phi48.json.gz"
+    }
+  ],
+  "c16_hypergraph": {
+    "status": "UNKNOWN",
+    "note": "general m in {2,...,5} enumerator design/implementation in progress; the m=2-specialized algorithm used for C4/C8 does not directly generalize because its endpoint-symmetry trick only applies to the final (closing) passage"
+  },
+  "software": {
+    "python": "3.13 (.venv)",
+    "networkx": "3.6.1",
+    "ortools": "9.15.6755",
+    "python_sat": "1.9.dev7"
+  },
+  "commands": {
+    "compile_c4_c8": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_short_conflicts.py --j 4 --a 55 --c 7 --lengths 4 8 --output data/type_t_port_c16/j4_a55_c7_phi48.json.gz"
+  },
+  "verification": {
+    "method": "every emitted support independently re-verified by materializing exactly its named hubs and locating the literal cycle via edge_path_cycle (edge plus exact-length simple avoiding path), a differently organized detector reused unmodified from verifier/type_t_port_multipole_check.py"
+  }
+}

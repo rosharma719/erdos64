@@ -231,16 +231,50 @@ in `verifier/type_t_port_short_conflicts.py` (Phase 2 below).
 
 ## Phase 2 — status
 
-See `verifier/type_t_port_short_conflicts.py` and
-`manifests/type_t_port_c16_manifest.json` for the implementation, the
-per-instance conflict counts, and the cross-checks against the existing
-CEGAR cut archive and local-search near misses. Results for each `(j,a,c)`
-instance are recorded there as they complete, using the exact status labels
-`PROVED`, `COMPUTATIONALLY_CERTIFIED`, `BOUNDED_INCOMPLETE`, `UNKNOWN`,
-`COUNTEREXAMPLE_CANDIDATE` — never inferring an all-`j` theorem from `j=4`,
-never calling a timed-out run `UNSAT`, and never calling a
-`C4,C8,C16`-free completion a counterexample before every power-of-two cycle
-through its order is independently excluded.
+Implemented in `verifier/type_t_port_short_conflicts.py` as
+`enumerate_m2_conflicts`, specialized to the (proved) exactly-`m=2` case
+that covers both `C4` (vacuously empty) and `C8`. The naive approach —
+build an augmented graph with one weighted "virtual" edge per candidate hub
+passage and run a live weighted-DFS cycle search — is intractable: some
+core vertices are endpoints of 1000+ candidate passages (from the `~3500`
+triples/gadgets in a `j=4` catalog), so branching at every intermediate
+core vertex blows up. The working algorithm instead precomputes, once, a
+bare-core reachability index `reach[v][l]` (vertices reachable from `v` by
+a simple core path of length exactly `l`) and uses the undirected symmetry
+`y2 reaches x1 at length l2  <=>  y2 in reach[x1][l2]` to turn the search
+for a valid `(x1,y1)-(x2,y2)` join into two small-set lookups plus one
+`O(1)` dict probe into `(endpoint, endpoint, route-length) -> variable`
+(`build_pair_index`), never scanning a vertex's full passage list. Every
+raw candidate is then **independently** re-verified by materializing
+exactly its named hubs and locating the cycle with `edge_path_cycle`
+(edge plus an exact-length simple path avoiding it — a differently
+organized detector, reused unmodified from `verifier/type_t_port_multipole_check.py`);
+candidates the fast filter proposes but that don't materialize into a real
+cycle are dropped, not treated as errors.
+
+| `(j,a,c)` | catalog (triples+gadgets) | `C4` | `C8` raw / minimal / verified | status |
+|---|---:|---:|---|---|
+| `(4,55,7)` | 784+2755=3539 | 0 (matches the proof) | 801,129 / 571,761 / 543,601 (331 unit, 543,270 pair) | `COMPUTATIONALLY_CERTIFIED` |
+| `(4,2,2)` | 925+3037=3962 | pending | pending | running |
+| `(4,28,4)` | 1225+4371=5596 | pending | pending | running |
+
+The `(4,55,7)` `C4` result is a genuine independent cross-check of the
+Phase 1 proof (`m>=2` required, `floor(4/3)=1`), not just a restatement of
+it — the search machinery was run and correctly found nothing. The `C8`
+scale is large (`543,601` verified minimal conflict clauses for the
+smallest of the three instances) but this is the complete, exact static
+catalog for that instance, not a CEGAR sample: `Phi_{4,8}` for `(4,55,7)`
+is the existing exact-cover encoding plus these clauses, and every model
+of it is provably `C4,C8`-free (every possible 2-hub-passage conflict was
+enumerated and independently verified) and every `C4,C8`-free completion
+is provably a model of it (Phase 1 proves no other conflict shape is
+possible). See `manifests/type_t_port_c16_manifest.json` and
+`data/type_t_port_c16/j4_a55_c7_phi48.json.gz` for the full record.
+
+Never inferring an all-`j` theorem from `j=4`, never calling a timed-out
+run `UNSAT`, and never calling a `C4,C8,C16`-free completion a
+counterexample before every power-of-two cycle through its order is
+independently excluded.
 
 ## Phase 3 onward
 
