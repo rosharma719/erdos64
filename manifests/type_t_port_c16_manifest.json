@@ -9,8 +9,8 @@
     "phase1_c8_conflicts": "every C8 conflict uses exactly m=2 hub passages, support size 1 or 2",
     "phase1_c16_conflicts": "every C16 conflict uses 2<=m<=5 hub passages, support size v<=5",
     "phase2_c4_c8_compilation": "COMPUTATIONALLY_CERTIFIED for all three j=4 instances (4,55,7), (4,2,2), (4,28,4)",
-    "phase3_c16_hypergraph": "UNKNOWN pending background compilation",
-    "phase5_static_sat": "not yet attempted",
+    "phase3_c16_hypergraph": "superseded by the passage-level projection -- see manifests/type_t_port_c16_passage_manifest.json and type_t_port_c16_passage_projection.md; the gadget-level general-m search here reached only the m=2 diagnostic stage (2,509,952 raw candidates, ~37 minutes) before the pivot",
+    "phase5_static_sat": "not yet attempted at gadget level; not needed there given the passage-level pivot",
     "counterexample_found": false,
     "unsat_certificate_produced": false
   },
