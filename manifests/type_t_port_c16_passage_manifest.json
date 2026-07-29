@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "BOUNDED_INCOMPLETE",
+  "scope": "passage-level projection of the Type-T minimum cubic multipole completion conflict catalog",
+  "claims": {
+    "phase0_raw_c16_enumeration": "left running as a diagnostic only; not used as a certificate",
+    "phase1_passage_correspondence": "PROVED (forward implications, at-most-one-supplier structurally verified over 238,269 supplier pairs on (4,55,7))",
+    "phase2_c4_c8_passage_compilation": "COMPUTATIONALLY_CERTIFIED for all three j=4 instances; cross-validated against the gadget-level catalog (2993/3000 sampled old clauses matched exactly, remaining 7/3000 were redundant/vacuous shared-vertex old clauses, not gaps)",
+    "phase3_c16_passage_catalog": "not yet attempted",
+    "counterexample_found": false,
+    "unsat_certificate_produced": false
+  },
+  "compression": [
+    {"j": 4, "a": 55, "c": 7, "old_gadget_c8_clauses": 543601, "new_passage_c8_clauses": 5052, "ratio": 107.6},
+    {"j": 4, "a": 2, "c": 2, "old_gadget_c8_clauses": 682366, "new_passage_c8_clauses": 5084, "ratio": 134.2},
+    {"j": 4, "a": 28, "c": 4, "old_gadget_c8_clauses": 1122615, "new_passage_c8_clauses": 6386, "ratio": 175.8}
+  ],
+  "instances": [
+    {
+      "j": 4, "a": 55, "c": 7,
+      "catalog": {"triples": 784, "gadgets": 2755, "p2_passages": 616, "p3_passages": 686},
+      "c4": {"status": "PROVED", "verified_minimal_supports": 0},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5065, "verification_rejected": 13, "verified_minimal_supports": 5052},
+      "output": "data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz"
+    },
+    {
+      "j": 4, "a": 2, "c": 2,
+      "catalog": {"triples": 925, "gadgets": 3037, "p2_passages": 648, "p3_passages": 734},
+      "c4": {"status": "PROVED", "verified_minimal_supports": 0},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 5102, "verification_rejected": 18, "verified_minimal_supports": 5084},
+      "output": "data/type_t_port_c16_passages/j4_a2_c2_phi48_passages.json.gz"
+    },
+    {
+      "j": 4, "a": 28, "c": 4,
+      "catalog": {"triples": 1225, "gadgets": 4371, "p2_passages": 776, "p3_passages": 915},
+      "c4": {"status": "PROVED", "verified_minimal_supports": 0},
+      "c8": {"status": "COMPUTATIONALLY_CERTIFIED", "raw_candidate_supports": 6412, "verification_rejected": 26, "verified_minimal_supports": 6386},
+      "output": "data/type_t_port_c16_passages/j4_a28_c4_phi48_passages.json.gz"
+    }
+  ],
+  "raw_c16_diagnostic": {
+    "instance": "(4,55,7)",
+    "m2_stage_only": {"raw_candidate_supports": 2509952, "candidate_minimal_supports": 1503692, "generation_seconds": 23.6},
+    "note": "m=2 alone already exceeds the entire gadget-level C8 raw count; m=3,4,5 not awaited. Retained as a scale calibration point for the passage-level C16 attempt, not as a partial certificate."
+  },
+  "software": {
+    "python": "3.13 (.venv)",
+    "networkx": "3.6.1"
+  },
+  "commands": {
+    "compile_passages": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_c16_passage_catalog.py --j 4 --a 55 --c 7 --lengths 4 8 --output data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz"
+  },
+  "verification": {
+    "method": "every emitted passage support independently re-verified by materializing ONE arbitrary supplier per named passage (the lifting claim being spot-checked) and locating the literal cycle via edge_path_cycle",
+    "cross_check": "3000-clause random sample of the prior gadget-level (4,55,7) C8 catalog checked against the new passage catalog; 2993/3000 exact matches, 7/3000 explained as redundant old clauses whose two identities already shared a vertex (structurally excluded by exact-cover, not a missing conflict)"
+  }
+}
