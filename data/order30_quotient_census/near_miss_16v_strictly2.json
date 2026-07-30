@@ -1,0 +1,10 @@
+{
+  "catalog": "data/order30_quotient_census/quotients_16v_strictly2connected.g6.gz",
+  "n": 16,
+  "k": 7,
+  "quotients_scanned": 1046,
+  "interval_clean_candidates": 0,
+  "literal_checked": 0,
+  "elapsed_seconds": 24.26903510093689,
+  "best_candidates": []
+}
