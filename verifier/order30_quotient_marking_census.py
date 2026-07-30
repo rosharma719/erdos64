@@ -67,6 +67,16 @@ def cycle_masks_and_lengths(graph: nx.Graph) -> tuple[np.ndarray, np.ndarray]:
             mask |= 1 << v
         masks.append(mask)
         lengths.append(len(cyc))
+    # Sort ascending by length: triangles/4-cycles are the cheapest and most
+    # restrictive (interval width 2e+1 is smallest at small e), so checking
+    # them first makes `eliminate_by_interval`'s early `.all()` exit trigger
+    # for the vast majority of markings before ever touching the long tail
+    # of longer cycles. Purely a speed optimization -- every cycle is still
+    # checked for any marking that survives the short ones, so this changes
+    # nothing about correctness/exhaustiveness, only wall-clock time.
+    order = sorted(range(len(lengths)), key=lambda i: lengths[i])
+    masks = [masks[i] for i in order]
+    lengths = [lengths[i] for i in order]
     return np.array(masks, dtype=np.uint64), np.array(lengths, dtype=np.int32)
 
 
