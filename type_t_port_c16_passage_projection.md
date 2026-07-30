@@ -1,7 +1,15 @@
 # Type-T port C16 passage projection
 
-**Status (2026-07-29): PASSAGE-PROJECTION — `C4/C8` COMPLETE; FIXED
-`(4,55,7)` `C16` COMPLETE FOR `m=2,3,5`, WITH ONLY `m=4` OPEN.** The
+**Status (2026-07-30): PASSAGE-PROJECTION — `C4/C8` COMPLETE; FIXED
+`(4,55,7)` `C16` NOW HAS A COMPILED LAYER FOR EVERY ADMISSIBLE `m`.
+`m=4`, previously the sole open static layer, was closed this pass
+(3,971,519 verified minimal supports, 87/87 canonical starts, 0
+verification rejections). `m=2/m=3/m=4` are complete outright; `m=5`
+remains complete only *relative to the pre-`m=4` shadow*, so exactly one
+mechanical step — rerunning `m=5` with the new `m=4` shadow — stands
+between here and the final minimal fixed-instance `C16` CNF. That rerun
+was **not** attempted in this pass; see "Phase 7" and "Next" for the
+precise cost.** The
 gadget-level `C4/C8` static catalog in
 `type_t_port_c16_compilation.md` is sound but massively redundant: the
 same geometric conflict was re-derived once per candidate triple/gadget
@@ -261,8 +269,15 @@ stages:
 |---|---|---:|
 | `m=2` | complete | 32,921 |
 | `m=3` | complete | 279,859 |
-| `m=4` | **open** | — |
-| `m=5` | complete relative to the `C8/m2/m3` lower shadow | 2,944,894 |
+| `m=4` | complete (closed 2026-07-30, Phase 7) | 3,971,519 |
+| `m=5` | complete **only relative to the `C8/m2/m3` lower shadow** — predates `m=4`, needs one rerun | 2,944,894 |
+
+`m=2`, `m=3` and `m=4` are complete *outright*, not merely relative to
+their shadow: domination only ever runs from a smaller support to a larger
+one, so a stage at support size `k` is final as soon as every conflict of
+support size `< k` is certified — which was true for each of these three at
+the time it ran. `m=5` is the only stage that was compiled before a smaller
+stage (`m=4`) existed, which is exactly why it alone carries a qualifier.
 
 The `m=5` layer is handled by
 `verifier/type_t_port_c16_passage_m5.py`.  The length identity leaves only
@@ -295,6 +310,169 @@ The `m=5` compiler must then be rerun with that new lower shadow.  Thus this
 result closes the exact five-passage search itself while identifying `m=4`
 as the sole remaining static layer for the fixed instance; it does not
 claim an UNSAT result, a counterexample, or a proof of the conjecture.
+
+## Phase 7 — closing the `m=4` layer
+
+Implemented in `verifier/type_t_port_c16_passage_m4.py`; result committed as
+`data/type_t_port_c16_passages/j4_a55_c7_c16_passages_m4_summary.json.gz`.
+
+### Why `m=4` was left open, and what was actually blocking it
+
+It was **not** a missing technique and **not** a theory gap — it was a
+scale problem with a specific shape, which is worth recording precisely
+because the shape is what dictated the fix.
+
+The general oracle-pruned search (`type_t_port_c16_passage_general.py`,
+which produced `m=2` and `m=3`) has two costs. Generation is the cheaper
+one: `m=3` generation took 50.5 s. The expensive half is *verification* —
+the generic `materialize_passages + edge_path_cycle` checker costs about
+2 ms per candidate, so `m=3`'s 417,864 candidates took **896.6 s**, over
+94% of that stage's wall time. The `m=4` layer turns out to hold
+3,971,519 surviving supports out of a far larger candidate pool; at
+~2 ms each the generic verifier alone would have run for hours. That is
+why the general driver stopped after `m=3` with `m=4` marked "not yet
+attempted", and why the committed `..._general.json.gz` artifact contains
+`per_m` entries for `2` and `3` only.
+
+So the blocker was the same one the `m=5` compiler had already solved:
+the generic verifier does not scale past ~10^6 supports. What did *not*
+transfer was the `m=5` compiler's generation trick.
+
+### Why the `m=5` compiler does not generalize to `m=4`
+
+`type_t_port_c16_passage_m5.py` is fast because the `(m,r,v)` identity
+pins its core-path composition almost completely. With `route_total = 2(m-b) + 3b`
+and `core_total = L - route_total` split into `m` positive parts:
+
+| `m` | `b=0` core budget → partitions | `b=1` core budget → partitions | longest core segment |
+|---|---|---|---:|
+| `5` | `6` → `{2,1,1,1,1}` | `5` → `{1,1,1,1,1}` | **2** |
+| `4` | `8` → `{5,1,1,1}`, `{4,2,1,1}`, `{3,3,1,1}`, `{3,2,2,1}`, `{2,2,2,2}` | `7` → `{4,1,1,1}`, `{3,2,1,1}`, `{2,2,2,1}` | **5** |
+
+At `m=5` the only core segments that can ever occur have length 1 or 2,
+which is why that compiler gets away with just `core_adj` plus a
+hand-rolled `paths2` table. At `m=4` segments of length 3, 4 and 5 all
+occur, so that pair of structures is not merely slower — it structurally
+cannot represent the search space. (The regression test
+`test_specialized_m4_needs_core_segments_the_m5_compiler_never_sees`
+pins exactly this: a tiny core whose only `m=4` conflict uses the
+`{5,1,1,1}` partition.)
+
+### The compiler
+
+The fix is to replace the ad-hoc length-1/length-2 structures with a
+precomputed table of **every** simple bare-core path of length `1..5`,
+each stored as `(length, endpoint, interior-vertex bitmask, sequence)`.
+This is cheap because the bare core is extremely sparse: on `(4,55,7)`
+the core has order 87 with degree sequence `76 x 2 + 10 x 3 + 1 x 4`, and
+the whole table is only **1,554 directed paths**. Carrying the interior
+bitmask is what makes the DFS enforce *whole-cycle* simplicity (not just
+endpoint distinctness) with a single integer AND per step — an interior
+core vertex and a passage endpoint can never collide, in either order,
+because the running used-vertex mask accumulates both.
+
+Everything else mirrors the `m=5` compiler deliberately, so the two are
+easy to diff: the same canonical rotation (each alternating cycle is
+generated exactly once, from its numerically least *passage* endpoint,
+with the walk always leaving that vertex through its passage — interior
+core vertices are correctly exempt from the `>= x1` restriction), the same
+`pair_forbidden` / `triple_forbidden` bitmask encoding of the certified
+lower shadow, the same "at most one `p3`" generation-time exclusion, and
+the same fast support-local verifier in place of the generic one.
+
+### The exact run
+
+Seeded with 316,684 distinct certified lower-shadow supports (the complete
+`C8` catalog plus the complete `C16` `m=2` and `m=3` layers), 2 worker
+processes, no time budget:
+
+* covered all **87/87** canonical start vertices, `truncated = false`;
+* pruned 103,810,586 branches on the lower shadow;
+* emitted **3,971,519** supports, every one of support size exactly 4
+  (within-stage superset minimalization is therefore a no-op, and the
+  shadow is complete for all sizes below 4, so this is the complete set of
+  size-4 clauses for the final CNF);
+* 261.3 s generation, 66.2 s verification.
+
+Because the shadow it survived is complete for every support size `< 4`,
+this layer is final: it does not need to be rerun when any later stage is
+compiled.
+
+### What was checked, and what each check is worth
+
+1. **Exhaustive support-local reconstruction — all 3,971,519 supports,
+   0 rejected.** For each support the verifier ignores the generator's
+   search entirely, takes the support's own endpoint pairing as given,
+   searches for a compatible core matching, and materializes a literal
+   cycle from core edges plus fresh hub vertices, asserting it has exactly
+   16 distinct vertices. This is the check that actually certifies the
+   claim "this support is a `C16` conflict".
+2. **Independent generic verifier on a 2,000-support evenly spaced
+   sample — 0 rejected.** This is the older `materialize_passages +
+   edge_path_cycle` implementation. Being honest about its strength: it is
+   the *weaker* of the two, because it accepts whenever *some* 16-cycle
+   exists in the minimal materialization, not necessarily one using all
+   four claimed passages. For these particular supports the two notions
+   coincide, and the argument is short: a 16-cycle in
+   `materialize_passages(core, S)` uses some subset `S' ⊆ S`; `|S'| = 0`
+   is impossible because the bare core has no dyadic-length cycle
+   (`type_t_port_core_dyadic_avoidance.md`, re-confirmed by direct
+   enumeration on this core: zero bare 16-cycles); `|S'| = 1` is excluded
+   by the Phase 1 bound `m >= 2`; and `|S'| ∈ {2,3}` would make `S'` an
+   `m=2` or `m=3` conflict, both of which are *complete* catalogs seeded
+   into the shadow, so `S ⊇ S'` would have been pruned before ever being
+   emitted. Hence `|S'| = 4`. The value of this check is that it is a
+   structurally different implementation, not that it is independently
+   sufficient.
+3. **Lower-shadow pruning audit.** The pruning is the one place where a
+   bug would silently *remove* real clauses rather than add fake ones, so
+   it gets its own check: start vertices 40–44 were re-enumerated with
+   pruning disabled, producing 368,081 raw size-4 supports; filtering those
+   post hoc by "contains no certified smaller conflict" leaves 55,337 —
+   exactly the 55,337 the pruned run emits for those starts, with **0**
+   supports on either side of the symmetric difference.
+4. **Cross-validation against the independently implemented general-`m`
+   walk.** `type_t_port_c16_passage_hypergraph.py` is the second, separately
+   written search that already cross-validated the `C8` catalog (and, by
+   disagreeing, exposed the `verify_passage_conflicts` bug in Phase 2). It
+   cannot run at `max_m=4` on the full 1,302-passage catalog, but
+   restricting the *passage catalog* leaves the bare core untouched, so on
+   any subset both searches must return identical size-4 supports. 5 random
+   40-passage subcatalogs: exact agreement, symmetric difference 0 on every
+   trial. This is the check that would catch a length-arithmetic slip, a
+   missed rotation, or a core-path-table error in the new compiler.
+
+### What this does not claim
+
+It does not claim an UNSAT result, a counterexample, or anything about the
+conjecture. It does not claim the `C16` CNF has been assembled or tested.
+It does not claim the `m=5` layer is final — it is not, and Phase 7 makes
+that *more* pressing rather than less, since there are now 3,971,519 size-4
+clauses that could subsume five-passage supports. And it deliberately does
+not assert "sound, no unsoundness": what is asserted is exactly the four
+machine-checked properties above, each with its scope stated.
+
+### The remaining static step, and its exact cost
+
+Rerunning `m=5` with the `m=4` layer in its lower shadow was **not
+attempted in this pass**, on purpose, and the reason is plumbing plus CPU
+rather than difficulty:
+
+* The committed `m=4` artifact is *summary-only* (count, canonical
+  SHA-256 commitment, samples, audit reports) — the same policy the `m=5`
+  summary follows, for the same reason: 3,971,519 near-identical 16-vertex
+  witnesses would bloat the repository without adding mathematical content.
+  Consequently the supports are not on disk in a form
+  `load_lower_shadow` can read, and must either be regenerated in-process
+  (~261 s at 2 workers) or committed as a new ~30–80 MB binary artifact.
+* `m=5` regeneration on top of that is roughly 900 CPU-seconds.
+* The domination check itself is cheap and needs no new machinery: `m=5`
+  supports have size 5 and `m=4` shadow sets size 4, so it is five set
+  lookups per surviving support, either in-DFS at the fourth hop or as a
+  post-filter.
+
+Nothing there requires new mathematics; it was left undone only to keep
+this pass's compute small on a shared machine.
 
 ## A `j=5` data point
 
@@ -454,9 +632,15 @@ cycle. `∎`
 
 ## Next
 
-The immediate static-catalog task is now exactly the `m=4` layer for
-`(4,55,7)`.  After it completes: rerun `m=5` with the `m=4` lower shadow,
-assemble the full passage CNF, and test the fixed completion instance.
-Passage-aware large-neighborhood search remains the parallel constructive
-route.  Phase 5/6's soundness half (the lifting theorem) is written up
-above; its "compact static SAT" half remains open.
+`m=4` is closed (Phase 7), so the immediate static-catalog task is now
+exactly the `m=5` rerun against the new `m=4` lower shadow — mechanical, no
+new theory, ~261 s to regenerate the `m=4` shadow plus ~900 CPU-seconds for
+`m=5` itself, or alternatively a one-off ~30–80 MB binary artifact holding
+the 3,971,519 `m=4` supports so future stages can load them directly.
+After that: assemble the full passage CNF from the four layers and test the
+fixed completion instance.  Note that neither of those steps has been
+started, and the assembled formula's satisfiability is entirely unknown —
+compiling a complete conflict catalog is not evidence either way about
+`UNSAT`.  Passage-aware large-neighborhood search remains the parallel
+constructive route.  Phase 5/6's soundness half (the lifting theorem) is
+written up above; its "compact static SAT" half remains open.

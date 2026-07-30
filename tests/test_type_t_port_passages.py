@@ -15,6 +15,12 @@ from type_t_port_c16_passage_hypergraph import (
     enumerate_passage_conflicts,
     verify_passage_conflicts as verify_general,
 )
+from type_t_port_c16_passage_m4 import (
+    enumerate_m4_c16_conflicts,
+    enumerate_m4_parallel,
+    subcatalog_crossvalidation,
+    verify_m4_support,
+)
 from type_t_port_c16_passage_m5 import (
     enumerate_m5_c16_conflicts,
     enumerate_m5_parallel,
@@ -206,3 +212,68 @@ def test_specialized_m5_applies_certified_lower_shadow_during_search():
     result = enumerate_m5_c16_conflicts(core, p2, {}, lower_shadow={2: {forbidden_pair}})
     assert result["results"] == {}
     assert result["lower_shadow_pruned_branches"] > 0
+
+
+def test_specialized_m4_needs_core_segments_the_m5_compiler_never_sees():
+    # m=4, b=0: route_total = 8, so core_total = 8 over four positive parts.
+    # The extreme partition {5,1,1,1} uses a length-5 bare-core segment --
+    # a length the m=5 compiler's (core_adj, paths2) pair structurally
+    # cannot represent, which is exactly why m=4 needs its own path table.
+    p2 = {(0, 1): [], (2, 3): [], (4, 5): [], (6, 7): []}
+    core = _TinyCore(12, [(1, 8), (8, 9), (9, 10), (10, 11), (11, 2),
+                          (3, 4), (5, 6), (7, 0)])
+    result = enumerate_m4_c16_conflicts(core, p2, {})
+    assert not result["truncated"]
+    expected = tuple(("p2", key) for key in sorted(p2))
+    assert set(result["results"]) == {expected}
+    assert len(verify_m4_support(core, expected)) == 16
+
+    # {2,2,2,2}: the other extreme of the same b=0 case.
+    core = _TinyCore(12, [(1, 8), (8, 2), (3, 9), (9, 4), (5, 10), (10, 6),
+                          (7, 11), (11, 0)])
+    result = enumerate_m4_c16_conflicts(core, p2, {})
+    assert set(result["results"]) == {expected}
+    assert len(verify_m4_support(core, expected)) == 16
+    parallel = enumerate_m4_parallel(core, p2, {}, {}, workers=2)
+    assert parallel["results"] == result["results"]
+    assert parallel["x1_completed"] == core.order
+
+
+def test_specialized_m4_b1_composition_with_one_p3():
+    # b=1: one p3 (route 3) plus three p2 (route 2 each) = route_total 9, so
+    # core_total = 7 over four positive parts; {4,1,1,1} here.
+    p2 = {(2, 3): [], (4, 5): [], (6, 7): []}
+    p3 = {(0, 1): []}
+    core = _TinyCore(11, [(1, 8), (8, 9), (9, 10), (10, 2),
+                          (3, 4), (5, 6), (7, 0)])
+    result = enumerate_m4_c16_conflicts(core, p2, p3)
+    expected = tuple(sorted([("p3", (0, 1))] + [("p2", key) for key in p2]))
+    assert set(result["results"]) == {expected}
+    assert len(verify_m4_support(core, expected)) == 16
+
+
+def test_specialized_m4_applies_certified_lower_shadow_during_search():
+    p2 = {(0, 1): [], (2, 3): [], (4, 5): [], (6, 7): []}
+    core = _TinyCore(12, [(1, 8), (8, 2), (3, 9), (9, 4), (5, 10), (10, 6),
+                          (7, 11), (11, 0)])
+    forbidden_pair = frozenset((("p2", (0, 1)), ("p2", (2, 3))))
+    result = enumerate_m4_c16_conflicts(core, p2, {}, lower_shadow={2: {forbidden_pair}})
+    assert result["results"] == {}
+    assert result["lower_shadow_pruned_branches"] > 0
+
+    forbidden_triple = frozenset((("p2", (0, 1)), ("p2", (2, 3)), ("p2", (4, 5))))
+    result = enumerate_m4_c16_conflicts(core, p2, {}, lower_shadow={3: {forbidden_triple}})
+    assert result["results"] == {}
+
+
+def test_specialized_m4_agrees_with_independent_general_walk_on_subcatalogs():
+    # The general-m augmented-graph walk is the second, independently written
+    # implementation that already cross-validated the C8 catalog. It cannot
+    # run at max_m=4 on the full 1,302-passage catalog, but restricting the
+    # passage catalog leaves the bare core untouched, so both searches must
+    # return identical size-4 supports on any subset.
+    core, triples, gadgets = _catalog()
+    p2, p3 = build_passage_catalog(triples, gadgets)
+    reports = subcatalog_crossvalidation(core, p2, p3, trials=3, passages_per_trial=40)
+    assert all(report["agrees"] for report in reports)
+    assert sum(report["m4_supports_this_module"] for report in reports) > 0

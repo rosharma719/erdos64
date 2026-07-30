@@ -422,14 +422,32 @@ narrative summary of this pre-session history in one place.
   have been actively unsound via forward channeling, not merely vacuous —
   the code was already correct either way; only the justification needed
   correcting). Closes with a standalone passage-support soundness theorem.
-  For the fixed `(4,55,7)` `C16` instance, the `m=2` and `m=3` layers are
-  complete (32,921 and 279,859 supports), and the specialized exact `m=5`
-  compiler (`verifier/type_t_port_c16_passage_m5.py`) now closes all 87/87
-  canonical starts with 2,944,894 verified survivors relative to the
-  certified `C8/m2/m3` lower shadow. Its compact summary commits to the
-  full support set by SHA-256 and retains a 2,000-support generic-verifier
-  cross-check; `m=4` is the sole missing static layer before assembling the
-  full fixed-instance `C16` formula.
+  For the fixed `(4,55,7)` `C16` instance, every admissible passage count
+  now has a compiled layer: `m=2` and `m=3` (32,921 and 279,859 supports),
+  the specialized exact `m=5` compiler
+  (`verifier/type_t_port_c16_passage_m5.py`) closing all 87/87 canonical
+  starts with 2,944,894 verified survivors relative to the certified
+  `C8/m2/m3` lower shadow, and — closing what had been the sole open static
+  layer — `m=4` via `verifier/type_t_port_c16_passage_m4.py`, with
+  **3,971,519** verified minimal supports over 87/87 starts and zero
+  verification rejections. `m=4` needed its own compiler rather than a
+  tweak to the `m=5` one because the `(m,r,v)` identity admits bare-core
+  segments of length up to 5 at `m=4` (vs. only 1 and 2 at `m=5`), so it
+  carries a precomputed table of all 1,554 simple core paths of length
+  `1..5` with interior-vertex bitmasks; the real blocker had been the
+  generic `materialize_passages + edge_path_cycle` verifier's ~2 ms per
+  candidate (94% of the `m=3` stage's wall time), which does not scale to
+  millions of supports. Checked four ways: exhaustive support-local
+  reconstruction of a literal simple 16-cycle for every support, a
+  2,000-support sample re-accepted by the older generic verifier, an
+  unpruned re-run auditing the lower-shadow pruning itself (symmetric
+  difference 0), and exact agreement with the independently implemented
+  general-`m` walk on 5 random passage subcatalogs. `m=2/m=3/m=4` are
+  complete outright; `m=5` alone still carries a qualifier because it
+  predates `m=4`, so one mechanical rerun (~261 s to regenerate the `m=4`
+  shadow plus ~900 CPU-seconds) remains before the final minimal
+  fixed-instance `C16` CNF can be assembled. No UNSAT result, counterexample,
+  or SAT test of the assembled formula is claimed.
 - `type_t_port_core_dyadic_avoidance.md` — proves, unconditionally for every
   `j>=4` and every valid `a,c` (not just the tested `j=4,5,6`), that the
   bare core `H(j,a,c)` contains no cycle of dyadic length: fits the
@@ -467,8 +485,9 @@ narrative summary of this pre-session history in one place.
   (minimum-cubic-completion catalog and CEGAR search), `type_t_port_short_conflicts.py`
   (`C4`/`C8` gadget-level compiler), `type_t_port_passages.py` /
   `type_t_port_c16_passage_catalog.py` / `type_t_port_c16_passage_hypergraph.py`
-  / `type_t_port_c16_passage_m5.py` (passage-level projection, independent
-  search implementations, and the exact specialized five-passage compiler),
+  / `type_t_port_c16_passage_m4.py` / `type_t_port_c16_passage_m5.py`
+  (passage-level projection, independent search implementations, and the
+  exact specialized four- and five-passage compilers),
   `type_t_port_c16_hypergraph.py` (gadget-level general-`m` search,
   superseded for practical use — see its own module docstring),
   `type_t_port_coordinates.py` / `type_t_port_passage_templates.py` /
