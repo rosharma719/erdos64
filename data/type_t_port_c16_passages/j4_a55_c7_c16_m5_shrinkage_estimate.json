@@ -1,0 +1,27 @@
+{
+  "caveat": "This is a per-start-vertex SAMPLE of the committed m=5 layer, not the rerun. The sampled starts are a stride subset of the 87 canonical starts, and per-start support counts are strongly non-uniform under the least-passage-endpoint canonicalization, so the domination rate here should be read as an order-of-magnitude indicator for the pending rerun, not as the exact final m=5 count.",
+  "domination_rate_on_sample": 0.047738120513001976,
+  "m4_layer_regenerated_supports": 3971519,
+  "m4_regeneration_seconds": 196.75620613299998,
+  "m5_sample_seconds": 22.79726294599982,
+  "m5_sample_start_count": 7,
+  "m5_sample_start_vertices": [
+    0,
+    14,
+    28,
+    42,
+    56,
+    70,
+    84
+  ],
+  "m5_sampled_supports": 254346,
+  "m5_sampled_supports_dominated_by_an_m4_conflict": 12142,
+  "m5_sampled_supports_surviving": 242204,
+  "m5_start_total": 87,
+  "parameters": {
+    "a": 55,
+    "c": 7,
+    "j": 4
+  },
+  "status": "BOUNDED_SAMPLE_ESTIMATE"
+}

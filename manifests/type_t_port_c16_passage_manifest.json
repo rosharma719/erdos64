@@ -275,7 +275,26 @@
       "task": "rerun m=5 with the now-certified m=4 layer added to its lower shadow",
       "why": "Domination runs from smaller supports to larger ones. m=2/m=3/m=4 are unaffected by m=4's arrival (no size-4 set can dominate a size-2, -3 or -4 support), but a size-5 support that contains one of the 3,971,519 m=4 conflicts is subsumed and must not be emitted as a separate clause.",
       "blocker": "Not theory and not a missing technique -- purely artifact plumbing plus CPU. The committed m=4 summary is summary-only (count + SHA-256 commitment + samples), exactly as the m=5 summary is, so the 3,971,519 supports are not on disk to be loaded as a shadow; they must either be regenerated in-process (~260 s at 2 workers) or committed as a new ~30-80 MB binary artifact. The m=5 regeneration on top of that is roughly 900 CPU-seconds. Neither step needs new mathematics.",
-      "status": "NOT ATTEMPTED IN THIS PASS"
+      "status": "NOT ATTEMPTED IN THIS PASS",
+      "measured_impact": {
+        "status": "BOUNDED_SAMPLE_ESTIMATE",
+        "tool": "verifier/type_t_port_c16_passage_m5_shrinkage.py",
+        "output": "data/type_t_port_c16_passages/j4_a55_c7_c16_m5_shrinkage_estimate.json",
+        "m5_sample_start_vertices": [
+          0,
+          14,
+          28,
+          42,
+          56,
+          70,
+          84
+        ],
+        "m5_sampled_supports": 254346,
+        "m5_sampled_supports_dominated_by_an_m4_conflict": 12142,
+        "domination_rate_on_sample": 0.047738120513001976,
+        "reading": "About 4.8% of the committed m=5 supports are subsumed by an m=4 conflict, so the pending rerun is worth doing but will not reshape the catalog. This is a stride sample over 7 of 87 canonical starts, and per-start support counts are strongly non-uniform, so it is a planning indicator and NOT the final m=5 count."
+      },
+      "m4_layer_independently_reproduced": "The same run regenerated the whole m=4 layer from scratch in a separate process with a different worker count and obtained 3,971,519 supports again, confirming the committed count and the enumeration's determinism under a different parallel partition."
     }
   },
   "raw_c16_diagnostic": {
@@ -295,7 +314,8 @@
   "commands": {
     "compile_passages": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_c16_passage_catalog.py --j 4 --a 55 --c 7 --lengths 4 8 --output data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz",
     "compile_m5_summary": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_c16_passage_m5.py --j 4 --a 55 --c 7 --workers 8 --summary-only --lower-shadow data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz --lower-shadow data/type_t_port_c16_passages/j4_a55_c7_c16_passages_general.json.gz --output data/type_t_port_c16_passages/j4_a55_c7_c16_passages_m5_summary.json.gz",
-    "compile_m4_summary": "cd verifier && python3 type_t_port_c16_passage_m4.py --j 4 --a 55 --c 7 --workers 2 --summary-only --generic-sample 2000 --shadow-audit-starts 40,41,42,43,44 --crossvalidation-trials 5 --lower-shadow ../data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz --lower-shadow ../data/type_t_port_c16_passages/j4_a55_c7_c16_passages_general.json.gz --output ../data/type_t_port_c16_passages/j4_a55_c7_c16_passages_m4_summary.json.gz"
+    "compile_m4_summary": "cd verifier && python3 type_t_port_c16_passage_m4.py --j 4 --a 55 --c 7 --workers 2 --summary-only --generic-sample 2000 --shadow-audit-starts 40,41,42,43,44 --crossvalidation-trials 5 --lower-shadow ../data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz --lower-shadow ../data/type_t_port_c16_passages/j4_a55_c7_c16_passages_general.json.gz --output ../data/type_t_port_c16_passages/j4_a55_c7_c16_passages_m4_summary.json.gz",
+    "measure_m5_shrinkage": "cd verifier && python3 type_t_port_c16_passage_m5_shrinkage.py --j 4 --a 55 --c 7 --workers 2 --m5-start-stride 14 --lower-shadow ../data/type_t_port_c16_passages/j4_a55_c7_phi48_passages.json.gz --lower-shadow ../data/type_t_port_c16_passages/j4_a55_c7_c16_passages_general.json.gz --output ../data/type_t_port_c16_passages/j4_a55_c7_c16_m5_shrinkage_estimate.json"
   },
   "verification": {
     "method": "C4/C8/m2/m3 emitted supports are independently re-verified by materializing a MINIMAL graph containing exactly the claimed passages (materialize_passages) and locating the literal cycle via edge_path_cycle. The 2,944,894-support m5 layer is exhaustively verified by a separate fixed-support alternating reconstruction and simple literal-witness check; an evenly spaced 2,000-support sample is additionally accepted by the older materialize_passages + edge_path_cycle implementation. The 3,971,519-support m4 layer is verified the same way as m5 (exhaustive support-local alternating reconstruction to a literal simple 16-cycle, plus a 2,000-support sample through the generic verifier). Note the generic verifier is the weaker of the two: it accepts whenever SOME 16-cycle exists in the minimal materialization, not necessarily one using all four claimed passages. For these supports the two coincide, because the shadow they survived (complete C8 + complete C16 m=2 + complete C16 m=3) already contains every conflict of support size 2 and 3, and type_t_port_core_dyadic_avoidance.md rules out a bare-core 16-cycle -- so any 16-cycle in the materialization must use all four passages. The support-local verifier is what actually certifies that, for every support and not just the sample.",

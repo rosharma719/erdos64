@@ -474,6 +474,34 @@ rather than difficulty:
 Nothing there requires new mathematics; it was left undone only to keep
 this pass's compute small on a shared machine.
 
+### How much the rerun will actually change — a measured bound
+
+Rather than leave "some `m=5` supports may drop out" as an unquantified
+hand-wave, `verifier/type_t_port_c16_passage_m5_shrinkage.py` measures it
+on a bounded sample (result:
+`data/type_t_port_c16_passages/j4_a55_c7_c16_m5_shrinkage_estimate.json`).
+It regenerates the full `m=4` layer in-process, re-runs the `m=5` search on
+a stride subset of the canonical starts using the *same* `C8/m2/m3` shadow
+the committed `m=5` layer used, and counts how many of those five-passage
+supports contain one of the certified `m=4` four-subsets:
+
+* 7 of the 87 canonical starts (0, 14, 28, 42, 56, 70, 84);
+* 254,346 sampled `m=5` supports;
+* **12,142 dominated by an `m=4` conflict — 4.77%.**
+
+So the rerun is expected to remove on the order of 5% of the 2,944,894
+`m=5` supports, not a majority and not a negligible handful. This is a
+*sample*, explicitly labelled `BOUNDED_SAMPLE_ESTIMATE`: per-start support
+counts are strongly non-uniform under the least-passage-endpoint
+canonicalization, so it is an order-of-magnitude indicator for planning,
+not the final `m=5` count. Only the rerun produces that.
+
+**Reproducibility side-benefit.** This run regenerated the `m=4` layer from
+scratch in a separate process with a different worker count, and obtained
+**3,971,519** supports again — an independent confirmation of the committed
+count and of the enumeration's determinism under a different parallel
+partition.
+
 ## A `j=5` data point
 
 `(5,2,2)` (odd `j`, no linked gadget: `p3` is always empty) compiles to
@@ -634,9 +662,11 @@ cycle. `∎`
 
 `m=4` is closed (Phase 7), so the immediate static-catalog task is now
 exactly the `m=5` rerun against the new `m=4` lower shadow — mechanical, no
-new theory, ~261 s to regenerate the `m=4` shadow plus ~900 CPU-seconds for
-`m=5` itself, or alternatively a one-off ~30–80 MB binary artifact holding
-the 3,971,519 `m=4` supports so future stages can load them directly.
+new theory, ~200–260 s to regenerate the `m=4` shadow plus ~900 CPU-seconds
+for `m=5` itself, or alternatively a one-off ~30–80 MB binary artifact
+holding the 3,971,519 `m=4` supports so future stages can load them
+directly. The measured sample says that rerun will drop about **4.8%** of
+the `m=5` supports, so it is worth doing but will not reshape the catalog.
 After that: assemble the full passage CNF from the four layers and test the
 fixed completion instance.  Note that neither of those steps has been
 started, and the assembled formula's satisfiability is entirely unknown —

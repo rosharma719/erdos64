@@ -444,10 +444,14 @@ narrative summary of this pre-session history in one place.
   difference 0), and exact agreement with the independently implemented
   general-`m` walk on 5 random passage subcatalogs. `m=2/m=3/m=4` are
   complete outright; `m=5` alone still carries a qualifier because it
-  predates `m=4`, so one mechanical rerun (~261 s to regenerate the `m=4`
-  shadow plus ~900 CPU-seconds) remains before the final minimal
-  fixed-instance `C16` CNF can be assembled. No UNSAT result, counterexample,
-  or SAT test of the assembled formula is claimed.
+  predates `m=4`, so one mechanical rerun (~200–260 s to regenerate the
+  `m=4` shadow plus ~900 CPU-seconds) remains before the final minimal
+  fixed-instance `C16` CNF can be assembled. A bounded sample
+  (`verifier/type_t_port_c16_passage_m5_shrinkage.py`) measures that rerun's
+  impact at **4.8%** of `m=5` supports subsumed — worth doing, not
+  catalog-reshaping — and incidentally reproduced the 3,971,519 `m=4` count
+  from scratch under a different parallel partition. No UNSAT result,
+  counterexample, or SAT test of the assembled formula is claimed.
 - `type_t_port_core_dyadic_avoidance.md` — proves, unconditionally for every
   `j>=4` and every valid `a,c` (not just the tested `j=4,5,6`), that the
   bare core `H(j,a,c)` contains no cycle of dyadic length: fits the
