@@ -20,7 +20,11 @@ missing case at any order) plus two exhaustive computational censuses:
 
 **This is the "cleanest current route" milestone identified in chat: a
 30-vertex cubic counterexample, if one exists, has at most five triangles**
-(order-20/five-marked and below remain open — see that section).
+(order-20/five-marked and below remain open — see that section). See the
+Corollary below the Proposition: this "at most five" conclusion is in fact
+a standalone consequence of the order-18 census alone (a `>=6`-triangle
+statement, not just `=6`) — order-16 is a valuable independent cross-check
+but not logically necessary for it.
 
 ## Proposition (exact quotient characterization — closes the missing case)
 
@@ -60,6 +64,33 @@ zero-survivor result also rules out `>=7` disjoint triangles, not just
 `=7`. Stated conservatively as "exactly seven" above since that is the
 literal quantity marked; the `>=7` extension is immediate but not
 separately re-verified with its own write-up.
+
+**Corollary (this makes "at most five" a direct, standalone consequence of
+the order-18 census alone).** Fix `t`. The Proposition places no
+restriction on `k` beyond `k>=t` (it never used "exactly `t` triangles",
+only C4-freeness + bridgelessness of `G`, to contract any `t` of `G`'s `k`
+disjoint triangles). So for *any* `k>=t`, picking any `t` of the `k`
+triangles and contracting them still gives a valid, simple, 2-connected
+cubic quotient on `30-2t` vertices with a `t`-element marked set, and the
+untouched `k-t` triangles survive as literal (unmarked) triangles inside
+that quotient — a configuration the `t`-marking census over *every*
+2-connected quotient on `30-2t` vertices already covers completely (the
+quotient catalogs are unrestricted on internal triangle content; nothing
+about how the quotients were generated assumes marked vertices are the
+*only* triangles present). Therefore:
+
+> **a zero-survivor `t`-marking census, by itself, proves no order-30
+> C4/C8/C16-free cubic graph has `>=t` disjoint triangles** — independent of
+> and not needing any census at a different `t`.
+
+Applied here: the **order-18 (`t=6`) zero-survivor result alone already
+proves "at most five triangles"** — order-16 (`t=7`, ruling out `>=7`) is
+strictly implied by it and was logically redundant for that specific
+conclusion, though still valuable as an independently-run cross-check (a
+disagreement between the two would have flagged a bug). The general
+pattern: closing `t=5` (order 20, next) proves "at most four"; closing
+`t=4` (order 22) would prove "at most three"; and so on — each new `t`
+closed *replaces*, not just adds to, the previous bound.
 
 ## Background (proposed in chat, not previously in the repo)
 
