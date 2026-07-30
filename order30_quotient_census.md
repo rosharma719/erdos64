@@ -18,13 +18,15 @@ missing case at any order) plus two exhaustive computational censuses:
 | 6 | 18 | 39,866 | 18,564 | 740,072,424 | **0** |
 | **combined** | | | | **784,390,984** | **0** |
 
-**This is the "cleanest current route" milestone identified in chat: a
-30-vertex cubic counterexample, if one exists, has at most five triangles**
-(order-20/five-marked and below remain open — see that section). See the
-Corollary below the Proposition: this "at most five" conclusion is in fact
-a standalone consequence of the order-18 census alone (a `>=6`-triangle
-statement, not just `=6`) — order-16 is a valuable independent cross-check
-but not logically necessary for it.
+**Order 20 (5 triangles) is now also complete, zero survivors — see that
+section below. Combined with the `>=t` Corollary, this proves a 30-vertex
+cubic counterexample, if one exists, has at most four triangles**
+(order-22/four-marked and below remain open — see that section). See the
+Corollary below the Proposition: each of these conclusions is in fact a
+standalone consequence of its own order's census alone — closing a larger
+`t` doesn't need the smaller ones, though they remain valuable independent
+cross-checks (and were run first, in increasing order, exactly for that
+reason).
 
 ## Proposition (exact quotient characterization — closes the missing case)
 
@@ -232,30 +234,64 @@ agreeing with the interval-test verdict.
 **Order 18 is therefore closed with the same zero-survivor result as order
 16: no order-30 counterexample has exactly six disjoint triangles either.**
 
+## Order-20 quotient family (5-marked) — complete, zero survivors
+
+Catalog: `nauty-geng -c -C -d3 -D3 20` gave 497,818 biconnected cubic
+20-vertex graphs, split by exact `node_connectivity` into **396,150
+3-connected + 101,668 strictly-2-connected** (sum matches the raw
+generation count exactly). `C(20,5)=15,504` markings/quotient, so
+`497,818 * 15,504 = 7,718,170,272` total instances — roughly 10x order 18's
+workload, run sharded across 4 background processes (2 shards each for the
+3-connected catalog, given its size, 1 each for strictly-2-connected):
+
+| shard | quotients | markings | eliminated | survivors | time |
+|---|--:|--:|--:|--:|--:|
+| 3-connected 0/4 | 99,038 | 1,535,485,152 | 1,535,485,152 | 0 | 2,863.6s |
+| 3-connected 1/4 | 99,038 | 1,535,485,152 | 1,535,485,152 | 0 | 2,908.5s |
+| 3-connected 2/4 | 99,037 | 1,535,469,648 | 1,535,469,648 | 0 | 1,951.8s |
+| 3-connected 3/4 | 99,037 | 1,535,469,648 | 1,535,469,648 | 0 | 1,927.7s |
+| strictly-2-connected 0/2 | 50,834 | 788,130,336 | 788,130,336 | 0 | 1,118.1s |
+| strictly-2-connected 1/2 | 50,834 | 788,130,336 | 788,130,336 | 0 | 706.1s |
+| **total** | **497,818** | **7,718,170,272** | **7,718,170,272** | **0** | (parallel) |
+
+`7,718,170,272` matches `497,818 * 15,504` exactly, confirming no instances
+dropped across the six independently-launched shards. Outputs:
+`data/order30_quotient_census/census_20v_3connected_shard{0,1,2,3}of4.json`,
+`census_20v_strict2_shard{0,1}of2.json`.
+
+**Order 20 is therefore closed: no order-30 counterexample has exactly five
+disjoint triangles.** By the `>=t` Corollary, this is a standalone `t=5`
+result — **no order-30 counterexample has 5 or more disjoint triangles,
+i.e. a 30-vertex cubic counterexample, if one exists, has at most four
+triangles**, strictly improving the "at most five" conclusion from orders
+16/18 alone.
+
 ## What this does and does not establish
 
-**Establishes (orders 16 and 18 / seven- and six-triangle cases, both fully
-closed):** no order-30 Erdős–Gyárfás counterexample has exactly six or
-exactly seven pairwise-disjoint triangles — proved for *every* valid
-quotient at both orders (3,874 at order 16, 39,866 at order 18, both
-splits — the Proposition shows there is no other case at either order).
-Equivalently: **a 30-vertex cubic counterexample, if one exists, has at
-most five triangles.** Combined with the earlier session's targeted
-radius-six local search around the two strongest known order-30 near-miss
-basins (`(C4,C8,C16)=(4,0,0)` and `(3,1,0)`, >160M reconnections sampled, no
-survivor found, but not a completed radius-six certificate — that part was
-**not** re-run or found this session and remains as previously reported,
-unverified here) — this narrows, but does not close, the order-30 search.
+**Establishes (orders 16, 18, and 20 / seven-, six-, and five-triangle
+cases, all fully closed):** no order-30 Erdős–Gyárfás counterexample has
+exactly five, six, or seven pairwise-disjoint triangles — proved for
+*every* valid quotient at all three orders (3,874 at order 16, 39,866 at
+order 18, 497,818 at order 20, all splits — the Proposition shows there is
+no other case at any of these orders). By the `>=t` Corollary the order-20
+result alone gives the strongest standalone conclusion: **a 30-vertex
+cubic counterexample, if one exists, has at most four triangles.**
+Combined with the earlier session's targeted radius-six local search around
+the two strongest known order-30 near-miss basins (`(C4,C8,C16)=(4,0,0)`
+and `(3,1,0)`, >160M reconnections sampled, no survivor found, but not a
+completed radius-six certificate — that part was **not** re-run or found
+this session and remains as previously reported, unverified here) — this
+narrows, but does not close, the order-30 search.
 
-**Does not (yet) establish:** anything about order-20/five-triangle and
-smaller-marking cases (per chat, order 20 has 5 marked vertices; the report
-did not give quotient counts for order 20+ and none were generated or
-tested here), or any order other than exactly 30. Also (per the Remark
-above) the "exactly six/seven" phrasing is conservative — the same
-computation immediately rules out `>=6` disjoint triangles too, but that
-extension hasn't been given its own separate verification pass. Only tests
-C4/C8/C16 specifically (sufficient for order 30, since no larger power of
-two can fit as a simple cycle length on 30 vertices).
+**Does not (yet) establish:** anything about order-22/four-triangle and
+smaller-marking cases, or any order other than exactly 30. Order 22's
+quotient count is expected to continue the ~10-12x per-order-2 growth seen
+16→18→20 (i.e. several million quotients) — per the explicit stopping rule
+adopted this session, order 22 should use the quotient-cycle CP-SAT solver
+(`order30_quotient_pbsat.md`), not a repeat of the brute-force per-marking
+pipeline used for orders 16-20. Only tests C4/C8/C16 specifically
+(sufficient for order 30, since no larger power of two can fit as a simple
+cycle length on 30 vertices).
 
 ## Cross-reference
 
