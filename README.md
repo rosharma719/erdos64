@@ -410,7 +410,7 @@ narrative summary of this pre-session history in one place.
   the same geometric conflict was being re-derived once per candidate
   identity (14.5 suppliers per passage on average, up to 127). Projecting to
   passage-level variables (`verifier/type_t_port_passages.py`) collapses the
-  `C4`/`C8` catalog **107–207x** (verified two ways: cross-checked against
+  `C4`/`C8` catalog **128.9–206.7x** (verified two ways: cross-checked against
   the prior gadget-level catalog, and reproduced exactly by an
   independently-implemented general-`m` search,
   `verifier/type_t_port_c16_passage_hypergraph.py`, which caught a real
@@ -422,6 +422,14 @@ narrative summary of this pre-session history in one place.
   have been actively unsound via forward channeling, not merely vacuous —
   the code was already correct either way; only the justification needed
   correcting). Closes with a standalone passage-support soundness theorem.
+  For the fixed `(4,55,7)` `C16` instance, the `m=2` and `m=3` layers are
+  complete (32,921 and 279,859 supports), and the specialized exact `m=5`
+  compiler (`verifier/type_t_port_c16_passage_m5.py`) now closes all 87/87
+  canonical starts with 2,944,894 verified survivors relative to the
+  certified `C8/m2/m3` lower shadow. Its compact summary commits to the
+  full support set by SHA-256 and retains a 2,000-support generic-verifier
+  cross-check; `m=4` is the sole missing static layer before assembling the
+  full fixed-instance `C16` formula.
 - `type_t_port_core_dyadic_avoidance.md` — proves, unconditionally for every
   `j>=4` and every valid `a,c` (not just the tested `j=4,5,6`), that the
   bare core `H(j,a,c)` contains no cycle of dyadic length: fits the
@@ -459,7 +467,8 @@ narrative summary of this pre-session history in one place.
   (minimum-cubic-completion catalog and CEGAR search), `type_t_port_short_conflicts.py`
   (`C4`/`C8` gadget-level compiler), `type_t_port_passages.py` /
   `type_t_port_c16_passage_catalog.py` / `type_t_port_c16_passage_hypergraph.py`
-  (passage-level projection and its two independent search implementations),
+  / `type_t_port_c16_passage_m5.py` (passage-level projection, independent
+  search implementations, and the exact specialized five-passage compiler),
   `type_t_port_c16_hypergraph.py` (gadget-level general-`m` search,
   superseded for practical use — see its own module docstring),
   `type_t_port_coordinates.py` / `type_t_port_passage_templates.py` /

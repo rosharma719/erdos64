@@ -15,6 +15,11 @@ from type_t_port_c16_passage_hypergraph import (
     enumerate_passage_conflicts,
     verify_passage_conflicts as verify_general,
 )
+from type_t_port_c16_passage_m5 import (
+    enumerate_m5_c16_conflicts,
+    enumerate_m5_parallel,
+    verify_m5_support,
+)
 from type_t_port_short_conflicts import minimal_supports
 
 
@@ -154,3 +159,50 @@ def test_same_gadget_complementary_p3_pairs_would_be_unsound_if_kept():
     # excludes every p3-p3 combination unconditionally
     raw = enumerate_m2_passage_conflicts(core, p2, p3, 8)
     assert not (set(raw.keys()) & complementary_pairs)
+
+
+class _TinyCore:
+    def __init__(self, order, edges):
+        self.order = order
+        adjacency = [set() for _ in range(order)]
+        for u, v in edges:
+            adjacency[u].add(v)
+            adjacency[v].add(u)
+        self._adjacency = tuple(frozenset(row) for row in adjacency)
+
+    def adjacency(self):
+        return self._adjacency
+
+
+def test_specialized_m5_finds_both_exact_length_compositions():
+    # b=0: five p2 passages plus core lengths {2,1,1,1,1}.
+    p2 = {(0, 1): [], (2, 3): [], (4, 5): [], (6, 7): [], (8, 9): []}
+    core = _TinyCore(11, [(1, 10), (10, 2), (3, 4), (5, 6), (7, 8), (9, 0)])
+    result = enumerate_m5_c16_conflicts(core, p2, {})
+    assert not result["truncated"]
+    assert set(result["results"]) == {
+        tuple(("p2", key) for key in sorted(p2))
+    }
+    support = next(iter(result["results"]))
+    assert len(verify_m5_support(core, support)) == 16
+    parallel = enumerate_m5_parallel(core, p2, {}, {}, workers=2)
+    assert parallel["results"] == result["results"]
+    assert parallel["x1_completed"] == core.order
+
+    # b=1: one p3 plus four p2 passages and five unit core segments.
+    p2 = {(2, 3): [], (4, 5): [], (6, 7): [], (8, 9): []}
+    p3 = {(0, 1): []}
+    core = _TinyCore(10, [(1, 2), (3, 4), (5, 6), (7, 8), (9, 0)])
+    result = enumerate_m5_c16_conflicts(core, p2, p3)
+    expected = tuple(sorted([("p3", (0, 1))] + [("p2", key) for key in p2]))
+    assert set(result["results"]) == {expected}
+    assert len(verify_m5_support(core, expected)) == 16
+
+
+def test_specialized_m5_applies_certified_lower_shadow_during_search():
+    p2 = {(0, 1): [], (2, 3): [], (4, 5): [], (6, 7): [], (8, 9): []}
+    core = _TinyCore(11, [(1, 10), (10, 2), (3, 4), (5, 6), (7, 8), (9, 0)])
+    forbidden_pair = frozenset((("p2", (0, 1)), ("p2", (2, 3))))
+    result = enumerate_m5_c16_conflicts(core, p2, {}, lower_shadow={2: {forbidden_pair}})
+    assert result["results"] == {}
+    assert result["lower_shadow_pruned_branches"] > 0

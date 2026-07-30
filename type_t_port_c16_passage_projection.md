@@ -1,13 +1,14 @@
 # Type-T port C16 passage projection
 
-**Status (2026-07-29): PASSAGE-PROJECTION — PHASE 0-2 PROVED AND
-COMPUTATIONALLY VALIDATED.** The gadget-level `C4/C8` static catalog in
+**Status (2026-07-29): PASSAGE-PROJECTION — `C4/C8` COMPLETE; FIXED
+`(4,55,7)` `C16` COMPLETE FOR `m=2,3,5`, WITH ONLY `m=4` OPEN.** The
+gadget-level `C4/C8` static catalog in
 `type_t_port_c16_compilation.md` is sound but massively redundant: the
 same geometric conflict was re-derived once per candidate triple/gadget
 *identity* supplying a passage, when a dyadic cycle only cares whether the
 passage exists. Projecting to passage-level variables collapses the
-`(4,55,7)` `C8` catalog from 543,601 gadget-level clauses to **5,052**
-passage-level clauses — a **107x** reduction — computed in 5.3 seconds
+`(4,55,7)` `C8` catalog from 543,601 gadget-level clauses to **4,218**
+passage-level clauses — a **128.9x** reduction
 instead of ~10 minutes, and cross-validated against the already-verified
 gadget-level catalog. The word is `PASSAGE-PROJECTION`.
 
@@ -250,6 +251,51 @@ reachability-join specialization. It reproduces the `C8` result exactly
 (see above) as a built-in regression check, and generalizes directly to
 `m` up to 5 for `C16` by simply raising the target length and `max_m`.
 
+### Exact fixed-instance stage ledger
+
+For `(j,a,c)=(4,55,7)`, lower-shadow pruning always includes all already
+certified `C8` conflicts and all smaller completed `C16` passage-count
+stages:
+
+| stage | status | new verified supports |
+|---|---|---:|
+| `m=2` | complete | 32,921 |
+| `m=3` | complete | 279,859 |
+| `m=4` | **open** | — |
+| `m=5` | complete relative to the `C8/m2/m3` lower shadow | 2,944,894 |
+
+The `m=5` layer is handled by
+`verifier/type_t_port_c16_passage_m5.py`.  The length identity leaves only
+two cases: five `p2` passages with core segment lengths
+`{2,1,1,1,1}`, or four `p2` passages plus one `p3` passage with five unit
+core segments.  The exact run:
+
+* covered all 87/87 canonical start vertices;
+* pruned 157,006,598 branches using 316,684 distinct certified lower-shadow
+  supports;
+* exhaustively reconstructed a literal simple 16-cycle for every one of
+  the 2,944,894 survivors, rejecting zero;
+* cross-checked an evenly spaced 2,000-support sample using the older,
+  structurally different `materialize_passages + edge_path_cycle` verifier,
+  again rejecting zero.
+
+Retaining 2,944,894 copies of essentially the same 16-vertex witness would
+inflate the repository without adding mathematical information.  The
+committed 60 KiB summary therefore contains the counts, the 2,000 generic
+cross-check witnesses, the complete reproduction command, and a canonical
+commitment to the sorted support set:
+
+```text
+ed4f922106dbba98774b97ed8151e97dfc1afe6e8f1ab25fd9a026f595f1f646
+```
+
+This is not yet the final globally minimal `C16` clause set: once `m=4` is
+compiled, some five-passage supports may be supersets of an `m=4` conflict.
+The `m=5` compiler must then be rerun with that new lower shadow.  Thus this
+result closes the exact five-passage search itself while identifying `m=4`
+as the sole remaining static layer for the fixed instance; it does not
+claim an UNSAT result, a counterexample, or a proof of the conjecture.
+
 ## A `j=5` data point
 
 `(5,2,2)` (odd `j`, no linked gadget: `p3` is always empty) compiles to
@@ -408,9 +454,9 @@ cycle. `∎`
 
 ## Next
 
-Phase 3/4 (bounded core-path table and passage-level `C16` compilation) and
-Phase 8 (passage-aware large-neighborhood search) are tracked in the task
-list and will be recorded here and in
-`manifests/type_t_port_c16_passage_manifest.json` as they complete. Phase
-5/6's soundness half (the lifting theorem) is now written up above; its
-"compact static SAT" half remains open.
+The immediate static-catalog task is now exactly the `m=4` layer for
+`(4,55,7)`.  After it completes: rerun `m=5` with the `m=4` lower shadow,
+assemble the full passage CNF, and test the fixed completion instance.
+Passage-aware large-neighborhood search remains the parallel constructive
+route.  Phase 5/6's soundness half (the lifting theorem) is written up
+above; its "compact static SAT" half remains open.
