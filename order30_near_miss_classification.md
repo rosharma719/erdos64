@@ -65,19 +65,31 @@ up: the Petersen expansion has 10 disjoint triangles total, so contracting
 any 7 of them is a valid point in *this* family too, leaving 3 as
 unmarked-but-still-literal triangles of the quotient.)
 
+## Order-18 strictly-2-connected: also zero (conjecture strengthened)
+
+`data/order30_quotient_census/near_miss_18v_strict2.json`: scanned all
+9,398 strictly-2-connected order-18 quotients, all 174,464,472 markings —
+**zero** clean (`C4=0,C8=0`) candidates, same as the order-16
+strictly-2-connected result. The order-18 3-connected scan (30,468
+quotients, 565,607,952 markings) is still running; will report its minimum
+once done.
+
+**Conjecture status, now backed by both orders' strictly-2-connected data:**
+*every literal-clean (`C4=0,C8=0`) order-30 graph reachable through
+triangle-quotient marking arises only from a 3-connected quotient, never a
+strictly-2-connected one.* Evidence: **0 clean markings out of 186,430,712
+total** across both strictly-2-connected catalogs (order 16: 0/11,966,240;
+order 18: 0/174,464,472), versus 2,090 clean markings found in the order-16
+3-connected catalog alone. Still not proved — no structural argument for
+*why* attempted yet — but the sample size checked is now the *entire*
+strictly-2-connected family at two different orders, not a subsample.
+
 ## Open / next
 
-- The order-18/six-triangle catalogs are being scanned the same way as this
-  file is written (background, not yet complete) — will report whether
-  their minimum-`C16` clean graph is also the Petersen expansion (or a new
-  extremal graph) once done.
-- **Conjecture, evidence-only so far:** every literal-clean (`C4=0,C8=0`)
-  order-30 graph reachable through triangle-quotient marking arises only
-  from a *3-connected* quotient, never a strictly-2-connected one — true
-  in both order-16 sub-families checked (0/11,966,240 vs. 2,090/32,352,320
-  clean), and (partial, in progress) the order-18 strictly-2-connected scan
-  is also showing 0 candidates through the first ~40% of quotients scanned.
-  Not proved; no argument for *why* attempted yet.
+- The order-18/six-triangle 3-connected catalog scan (the last piece needed
+  to close out order 18 the same way order 16 was closed) is still running;
+  will report its minimum-`C16` clean graph — Petersen expansion again, or
+  something new — once done.
 - Not yet checked: whether 165 is the true minimum `C16` over *all* order-30
   cubic C4/C8-free graphs, or only the minimum reachable via a 7-triangle
   (order-16-quotient) decomposition specifically — a graph with fewer or
