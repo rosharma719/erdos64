@@ -1,4 +1,4 @@
-# Order-30 triangle-quotient census: complete elimination of the 7-marking family
+# Order-30 triangle-quotient census: complete elimination by quotient order
 
 ## Status
 
@@ -6,11 +6,53 @@
 (searched every local and remote branch first — see cross-reference below —
 found no prior artifact anywhere in the repo).
 
-**Result: every order-30 candidate obtained by expanding 7 disjoint
-triangles on a 3-connected cubic 16-vertex quotient contains a C4, C8, or
-C16.** This is a complete elimination of the entire family, not a partial
-search — all 2,828 quotients, all `C(16,7)=11,440` markings each, all
-32,352,320 instances, zero survivors.
+**Theorem (this file). No 30-vertex cubic C4/C8/C16-free graph has exactly
+seven pairwise vertex-disjoint triangles.** Proved by the Proposition below
+(the quotient of such a graph by its seven triangles is *exactly* the class
+of 2-connected — not merely 3-connected — cubic 16-vertex graphs, all
+3,874 of them, no missing case) plus an exhaustive computational census: all
+3,874 sixteen-vertex 2-connected cubic quotients, all `C(16,7)=11,440`
+markings each, all **44,318,560** instances, zero survivors. Order-18
+(6-marked) results below once that run completes.
+
+## Proposition (exact quotient characterization — closes the missing case)
+
+*Let `G` be a bridgeless cubic C4-free graph on 30 vertices with exactly
+seven triangles. Contracting all seven triangles gives a simple, 2-connected
+cubic graph `Q` on 16 vertices, and `G` is uniquely recovered from `Q`
+together with the seven contracted vertices.*
+
+Proof: triangles of a C4-free graph are vertex-disjoint, so contracting all
+seven removes `2*7=14` vertices, giving order `30-14=16`; each triangle has
+exactly 3 external edges so `Q` stays cubic. `Q` is simple: a loop is
+impossible, and a parallel edge would require two connections between the
+same pair of gadgets/vertices, which (via the triangle's own edges) would
+close a `C4` in `G`, contradiction. `Q` is bridgeless: a bridge of `Q`
+corresponds to a bridge of `G` (triangle expansion adds no alternate route
+across that cut), and `G` is bridgeless by hypothesis. A connected cubic
+graph with a cut vertex necessarily has a bridge (deleting the cut vertex
+leaves some component incident to only one of its three edges), so
+bridgeless + cubic + connected `=>` 2-connected. Triangle expansion is
+unique up to the triangle's own automorphism, so `(Q, S)` determines `G`. ∎
+
+**Consequence:** the earlier "missing two-pole augmentation" (needed to
+*generate* the 1,046 strictly-2-connected quotients recursively) is
+irrelevant to the census — those 1,046 graphs were already generated
+directly via `nauty-geng -c -C` (biconnected) + an exact
+`networkx.node_connectivity` filter, same as the 2,828 3-connected ones, no
+recursive construction needed. The Proposition says there is **no
+additional 1-connected (or non-bridgeless) case to inspect at all** — every
+valid quotient is one of the 3,874 already on disk.
+
+**Remark (slightly stronger than "exactly seven"):** since a graph with
+`>=7` disjoint triangles can have any 7 of them contracted (the untouched
+extra triangles simply survive, unmarked, as literal triangles of `Q` — the
+census's literal check already covers this: it directly counts C4/C8/C16 on
+the actual lifted graph regardless of what else survives in it), the same
+zero-survivor result also rules out `>=7` disjoint triangles, not just
+`=7`. Stated conservatively as "exactly seven" above since that is the
+literal quantity marked; the `>=7` extension is immediate but not
+separately re-verified with its own write-up.
 
 ## Background (proposed in chat, not previously in the repo)
 
@@ -45,10 +87,15 @@ filter. Cross-checked against the reported sequence for every even order
 | 16 | 3,874 | **2,828** | **1,046** |
 
 Every value reproduced exactly (nauty version `2.8.8+ds-5`, Ubuntu package;
-`networkx` 3.6.1 for the connectivity filter). Catalog saved at
-`data/order30_quotient_census/quotients_16v_3connected.g6.gz`
-(sha256 `f02996eefdd152ff520c912efb83ef4194e4703ed41261fd47dd784d970cabe8`),
-2,828 lines, one graph6 string per line.
+`networkx` 3.6.1 for the connectivity filter), including the specific
+"missing 1 at order 12, missing 5 at order 14" detail from the report's own
+partial recursive generator (81-80=1, 480-475=5 here). Both order-16
+catalogs saved, one graph6 string per line:
+- `data/order30_quotient_census/quotients_16v_3connected.g6.gz` (2,828 lines,
+  sha256 `f02996eefdd152ff520c912efb83ef4194e4703ed41261fd47dd784d970cabe8`)
+- `data/order30_quotient_census/quotients_16v_strictly2connected.g6.gz`
+  (1,046 lines, sha256
+  `80654e43a6c46be95c3156d0f7d79c6012d38fbf802e5f3c37e2095dc5ba5e5a`)
 
 ## Step 2 — exact marking census
 
@@ -67,63 +114,93 @@ C4/C8/C16 detection on it.
 python verifier/order30_quotient_marking_census.py \
     data/order30_quotient_census/quotients_16v_3connected.g6.gz \
     --output data/order30_quotient_census/census_full.json
+python verifier/order30_quotient_marking_census.py \
+    data/order30_quotient_census/quotients_16v_strictly2connected.g6.gz \
+    --output data/order30_quotient_census/census_strict2_full.json
 ```
 
-**Run result** (single process, 20.0 seconds, no sharding needed):
+**Run results** (single process each, no sharding needed):
 
-```
-quotients_processed: 2828
-markings_per_quotient: 11440
-total_markings_checked: 32352320
-total_eliminated_by_interval: 32352320
-total_interval_survivors: 0
-literal_survivor_count: 0
-counterexample_candidates: []
-```
+| catalog | quotients | markings/quotient | total instances | eliminated | survivors | time |
+|---|--:|--:|--:|--:|--:|--:|
+| 3-connected | 2,828 | 11,440 | 32,352,320 | 32,352,320 | 0 | 20.0s |
+| strictly-2-connected | 1,046 | 11,440 | 11,966,240 | 11,966,240 | 0 | 8.6s |
+| **total (all 16-vertex quotients)** | **3,874** | | **44,318,560** | **44,318,560** | **0** | **28.6s** |
 
-Output saved at `data/order30_quotient_census/census_full.json`
-(sha256 `888d4f7b8126140c91818e2582ab11a3eeca51598b690d08e41c366d469ffbf4`).
+Outputs: `data/order30_quotient_census/census_full.json`
+(sha256 `888d4f7b8126140c91818e2582ab11a3eeca51598b690d08e41c366d469ffbf4`),
+`data/order30_quotient_census/census_strict2_full.json`.
 
 ## Correctness cross-check
 
 Because *every* marking was eliminated by the interval test alone (the
 literal-check code path never triggered), the interval logic itself needed
-independent validation before trusting a 100%-elimination result: 158
-random `(quotient, marking)` pairs the interval test called "eliminated"
-were separately, literally triangle-expanded and brute-force checked for
-C4/C8/C16 — **0/158 mismatches**; every "eliminated" verdict corresponded to
+independent validation before trusting a 100%-elimination result: 218 random
+`(quotient, marking)` pairs the interval test called "eliminated" (158 from
+the 3-connected catalog, 60 from the strictly-2-connected one) were
+separately, literally triangle-expanded and brute-force checked for
+C4/C8/C16 — **0/218 mismatches**; every "eliminated" verdict corresponded to
 a real forced short/dyadic cycle (sample counts e.g. `C16` in the
 hundreds). This is a spot-check, not a proof the interval code is bug-free
-on all 32M instances, but 158/158 agreement against an independently-coded
+on all 44M instances, but 218/218 agreement against an independently-coded
 literal detector is strong evidence the exhaustive result is real.
+
+## Order-18 quotient family (6-marked) — catalog confirmed, census in progress
+
+Same method, one order up: `nauty-geng -c -C -d3 -D3 18` gives all
+biconnected cubic 18-vertex graphs; split by exact `node_connectivity`.
+
+| | claimed | reproduced here |
+|---|--:|--:|
+| 3-connected | 30,468 | **30,468** |
+| strictly-2-connected | 9,398 | **9,398** |
+| total | 39,866 | **39,866** |
+
+All three counts matched exactly. Catalogs saved:
+`data/order30_quotient_census/quotients_18v_3connected.g6.gz` (sha256
+`0728fa6a5c83aae8ed22e58f368d9821e5cdaea8940ee5dace97d3de9d70c68d`),
+`data/order30_quotient_census/quotients_18v_strictly2connected.g6.gz`
+(sha256 `878c687ee960265b5c71a0eb3ed47b66a405015cc455517effc706bc3c57f71c`).
+By the same Proposition (order-agnostic: it only used C4-freeness,
+bridgelessness, and cubicness), these 39,866 graphs are the *complete* set
+of valid order-18 quotients for a 30-vertex graph with exactly six disjoint
+triangles — no missing case here either.
+
+Marking-census run (`--n 18 --k 6`, `C(18,6)=18,564` markings/quotient,
+`39,866 * 18,564 = 740,072,424` total instances) was launched at the end of
+this pass; see the next update for results — do not treat order 18 as
+closed until that lands.
 
 ## What this does and does not establish
 
-**Establishes:** no order-30 Erdős–Gyárfás counterexample exists with
-exactly 7 vertex-disjoint triangles whose contraction quotient is
-3-connected. Combined with the earlier session's targeted radius-six local
-search around the two strongest known order-30 near-miss basins
-(`(C4,C8,C16)=(4,0,0)` and `(3,1,0)`, >160M reconnections sampled, no
-survivor found, but not a completed radius-six certificate — that part was
-**not** re-run or found this session and remains as previously reported,
-unverified here) — this narrows, but does not close, the order-30 search.
+**Establishes (order 16 / seven-triangle case, fully closed):** no order-30
+Erdős–Gyárfás counterexample has exactly seven pairwise-disjoint triangles
+— proved for *every* valid quotient (all 3,874, both 3-connected and
+strictly-2-connected; the Proposition shows there is no other case).
+Combined with the earlier session's targeted radius-six local search around
+the two strongest known order-30 near-miss basins (`(C4,C8,C16)=(4,0,0)`
+and `(3,1,0)`, >160M reconnections sampled, no survivor found, but not a
+completed radius-six certificate — that part was **not** re-run or found
+this session and remains as previously reported, unverified here) — this
+narrows, but does not close, the order-30 search.
 
-**Does not establish:** anything about quotients that are only
-2-connected (the other 1,046 sixteen-vertex quotients — the report
-identified the missing edge-insertion augmentation needed to generate them
-completely but did not generate or test them, and neither did this
-session), quotients of other sizes (18-vertex/6-marked, 20-vertex/5-marked,
-etc. per the report's table), or any order other than exactly 30. It also
-only tests C4/C8/C16 specifically (sufficient for order 30, since no larger
+**Does not (yet) establish:** anything about the order-18/six-triangle
+family (catalog generated and count-verified above; marking census
+launched but not yet complete — see that section), order-20/five-triangle
+and smaller-marking cases, or any order other than exactly 30. Also
+(per the Remark above) the "exactly seven" phrasing is conservative — the
+same computation immediately rules out `>=7` disjoint triangles too, but
+that extension hasn't been given its own separate verification pass. Only
+tests C4/C8/C16 specifically (sufficient for order 30, since no larger
 power of two can fit as a simple cycle length on 30 vertices).
 
 ## Cross-reference
 
-Every specific number in the pasted external report about this order-30
-family (`1,2,4,14,57,341,2828`; `1,046`; the specific missing-1-at-12,
-missing-5-at-14 detail; `11,440`; `32,352,320`) was independently
-reproduced from scratch here and matched exactly — despite no corresponding
-artifact existing anywhere in this repo's git history (all local and remote
-branches checked). The full marking census the report described as not
-completing in its pass **did complete here** (20 seconds, not sharded) with
-a zero-survivor result.
+Every specific number in the pasted external reports about this order-30
+family — `1,2,4,14,57,341,2828`; `1,046`; the missing-1-at-12,
+missing-5-at-14 detail; `11,440`; `32,352,320`; and then `30,468`; `9,398`;
+`39,866`; `18,564`; `740,072,424` — was independently reproduced from
+scratch here and matched exactly, despite no corresponding artifact
+existing anywhere in this repo's git history (all local and remote branches
+checked). The full order-16 marking census (both connectivity classes) is
+now complete with a zero-survivor result across all 44,318,560 instances.

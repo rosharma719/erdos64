@@ -1,0 +1,13 @@
+{
+  "status": "COMPLETE",
+  "shard": "0/1",
+  "quotients_processed": 1046,
+  "markings_per_quotient": 11440,
+  "total_markings_checked": 11966240,
+  "total_eliminated_by_interval": 11966240,
+  "total_interval_survivors": 0,
+  "literal_survivor_count": 0,
+  "counterexample_candidates": [],
+  "elapsed_seconds": 8.642212867736816,
+  "literal_survivors_sample": []
+}

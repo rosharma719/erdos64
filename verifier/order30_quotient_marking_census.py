@@ -47,7 +47,9 @@ N = 16
 K = 7
 FORBIDDEN = (4, 8, 16)
 
-_POPCOUNT16 = np.array([bin(x).count("1") for x in range(1 << 16)], dtype=np.uint8)
+
+def popcount(arr: np.ndarray) -> np.ndarray:
+    return np.bitwise_count(arr.astype(np.uint64))
 
 
 def load_catalog(path: Path) -> list[str]:
@@ -59,24 +61,23 @@ def load_catalog(path: Path) -> list[str]:
 def cycle_masks_and_lengths(graph: nx.Graph) -> tuple[np.ndarray, np.ndarray]:
     masks = []
     lengths = []
-    for cyc in nx.simple_cycles(graph, length_bound=N):
+    for cyc in nx.simple_cycles(graph, length_bound=graph.number_of_nodes()):
         mask = 0
         for v in cyc:
             mask |= 1 << v
         masks.append(mask)
         lengths.append(len(cyc))
-    return np.array(masks, dtype=np.uint32), np.array(lengths, dtype=np.int32)
+    return np.array(masks, dtype=np.uint64), np.array(lengths, dtype=np.int32)
 
 
-def all_markings() -> np.ndarray:
-    out = np.empty(0, dtype=np.uint32)
+def all_markings(n: int = N, k: int = K) -> np.ndarray:
     masks = []
-    for combo in itertools.combinations(range(N), K):
+    for combo in itertools.combinations(range(n), k):
         m = 0
         for v in combo:
             m |= 1 << v
         masks.append(m)
-    return np.array(masks, dtype=np.uint32)
+    return np.array(masks, dtype=np.uint64)
 
 
 def eliminate_by_interval(cmasks: np.ndarray, clens: np.ndarray, markings: np.ndarray) -> np.ndarray:
@@ -84,7 +85,7 @@ def eliminate_by_interval(cmasks: np.ndarray, clens: np.ndarray, markings: np.nd
     (some quotient cycle's lift interval hits a forbidden power of two)."""
     eliminated = np.zeros(markings.shape[0], dtype=bool)
     for cmask, clen in zip(cmasks.tolist(), clens.tolist()):
-        e = _POPCOUNT16[(markings & cmask).astype(np.uint32)]
+        e = popcount(markings & np.uint64(cmask))
         lo = clen + e.astype(np.int32)
         hi = clen + 2 * e.astype(np.int32)
         hit = np.zeros(markings.shape[0], dtype=bool)
@@ -132,16 +133,20 @@ def main() -> None:
     parser.add_argument("--shard", type=str, default="0/1", help="res/mod, e.g. 0/4")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--limit", type=int, default=None, help="cap number of quotients (debug)")
+    parser.add_argument("--n", type=int, default=N, help="quotient order (default 16)")
+    parser.add_argument("--k", type=int, default=K, help="number of marked/expanded vertices (default 7)")
     args = parser.parse_args()
 
+    n, k = args.n, args.k
     res, mod = (int(x) for x in args.shard.split("/"))
     g6s = load_catalog(args.catalog)
     if args.limit:
         g6s = g6s[: args.limit]
     shard = [g for i, g in enumerate(g6s) if i % mod == res]
 
-    markings = all_markings()
-    assert markings.shape[0] == 11440, markings.shape
+    import math
+    markings = all_markings(n, k)
+    assert markings.shape[0] == math.comb(n, k), markings.shape
 
     t0 = time.time()
     total_markings_checked = 0
@@ -167,7 +172,7 @@ def main() -> None:
             surv_idx = np.nonzero(~eliminated)[0]
             for idx in surv_idx.tolist():
                 mask = int(markings[idx])
-                marked = {v for v in range(N) if mask & (1 << v)}
+                marked = {v for v in range(n) if mask & (1 << v)}
                 result = literal_check(graph, marked)
                 is_true_survivor = all(result["counts"][L] == 0 for L in FORBIDDEN)
                 literal_survivors.append({
