@@ -7,13 +7,20 @@
 found no prior artifact anywhere in the repo).
 
 **Theorem (this file). No 30-vertex cubic C4/C8/C16-free graph has exactly
-seven pairwise vertex-disjoint triangles.** Proved by the Proposition below
-(the quotient of such a graph by its seven triangles is *exactly* the class
-of 2-connected — not merely 3-connected — cubic 16-vertex graphs, all
-3,874 of them, no missing case) plus an exhaustive computational census: all
-3,874 sixteen-vertex 2-connected cubic quotients, all `C(16,7)=11,440`
-markings each, all **44,318,560** instances, zero survivors. Order-18
-(6-marked) results below once that run completes.
+six or exactly seven pairwise vertex-disjoint triangles.** Proved by the
+Proposition below (contracting all triangles of such a graph gives *exactly*
+the class of 2-connected — not merely 3-connected — cubic quotients, no
+missing case at any order) plus two exhaustive computational censuses:
+
+| triangles | quotient order | quotients | markings/quotient | total instances | survivors |
+|--:|--:|--:|--:|--:|--:|
+| 7 | 16 | 3,874 | 11,440 | 44,318,560 | **0** |
+| 6 | 18 | 39,866 | 18,564 | 740,072,424 | **0** |
+| **combined** | | | | **784,390,984** | **0** |
+
+**This is the "cleanest current route" milestone identified in chat: a
+30-vertex cubic counterexample, if one exists, has at most five triangles**
+(order-20/five-marked and below remain open — see that section).
 
 ## Proposition (exact quotient characterization — closes the missing case)
 
@@ -145,7 +152,7 @@ hundreds). This is a spot-check, not a proof the interval code is bug-free
 on all 44M instances, but 218/218 agreement against an independently-coded
 literal detector is strong evidence the exhaustive result is real.
 
-## Order-18 quotient family (6-marked) — catalog confirmed, census in progress
+## Order-18 quotient family (6-marked) — complete, zero survivors
 
 Same method, one order up: `nauty-geng -c -C -d3 -D3 18` gives all
 biconnected cubic 18-vertex graphs; split by exact `node_connectivity`.
@@ -166,33 +173,58 @@ bridgelessness, and cubicness), these 39,866 graphs are the *complete* set
 of valid order-18 quotients for a 30-vertex graph with exactly six disjoint
 triangles — no missing case here either.
 
-Marking-census run (`--n 18 --k 6`, `C(18,6)=18,564` markings/quotient,
-`39,866 * 18,564 = 740,072,424` total instances) was launched at the end of
-this pass; see the next update for results — do not treat order 18 as
-closed until that lands.
+Marking-census run (`--n 18 --k 6`, `C(18,6)=18,564` markings/quotient):
+
+```
+python verifier/order30_quotient_marking_census.py \
+    data/order30_quotient_census/quotients_18v_3connected.g6.gz \
+    --n 18 --k 6 --output data/order30_quotient_census/census_18v_3connected_full.json
+python verifier/order30_quotient_marking_census.py \
+    data/order30_quotient_census/quotients_18v_strictly2connected.g6.gz \
+    --n 18 --k 6 --output data/order30_quotient_census/census_18v_strict2_full.json
+```
+
+| catalog | quotients | total instances | eliminated | survivors | time |
+|---|--:|--:|--:|--:|--:|
+| 3-connected | 30,468 | 565,607,952 | 565,607,952 | 0 | 497.4s |
+| strictly-2-connected | 9,398 | 174,464,472 | 174,464,472 | 0 | 159.7s |
+| **total** | **39,866** | **740,072,424** | **740,072,424** | **0** | (ran in parallel) |
+
+`740,072,424` matches `39,866 * 18,564` exactly, confirming no instances were
+dropped. Outputs: `data/order30_quotient_census/census_18v_3connected_full.json`,
+`data/order30_quotient_census/census_18v_strict2_full.json`. Cross-validated
+with 140 further random literal triangle-expansion checks (80 + 60 across the
+two catalogs) — **0/140 mismatches**, so combined with the order-16 spot
+checks, 358 total independent literal cross-checks across both orders, all
+agreeing with the interval-test verdict.
+
+**Order 18 is therefore closed with the same zero-survivor result as order
+16: no order-30 counterexample has exactly six disjoint triangles either.**
 
 ## What this does and does not establish
 
-**Establishes (order 16 / seven-triangle case, fully closed):** no order-30
-Erdős–Gyárfás counterexample has exactly seven pairwise-disjoint triangles
-— proved for *every* valid quotient (all 3,874, both 3-connected and
-strictly-2-connected; the Proposition shows there is no other case).
-Combined with the earlier session's targeted radius-six local search around
-the two strongest known order-30 near-miss basins (`(C4,C8,C16)=(4,0,0)`
-and `(3,1,0)`, >160M reconnections sampled, no survivor found, but not a
-completed radius-six certificate — that part was **not** re-run or found
-this session and remains as previously reported, unverified here) — this
-narrows, but does not close, the order-30 search.
+**Establishes (orders 16 and 18 / seven- and six-triangle cases, both fully
+closed):** no order-30 Erdős–Gyárfás counterexample has exactly six or
+exactly seven pairwise-disjoint triangles — proved for *every* valid
+quotient at both orders (3,874 at order 16, 39,866 at order 18, both
+splits — the Proposition shows there is no other case at either order).
+Equivalently: **a 30-vertex cubic counterexample, if one exists, has at
+most five triangles.** Combined with the earlier session's targeted
+radius-six local search around the two strongest known order-30 near-miss
+basins (`(C4,C8,C16)=(4,0,0)` and `(3,1,0)`, >160M reconnections sampled, no
+survivor found, but not a completed radius-six certificate — that part was
+**not** re-run or found this session and remains as previously reported,
+unverified here) — this narrows, but does not close, the order-30 search.
 
-**Does not (yet) establish:** anything about the order-18/six-triangle
-family (catalog generated and count-verified above; marking census
-launched but not yet complete — see that section), order-20/five-triangle
-and smaller-marking cases, or any order other than exactly 30. Also
-(per the Remark above) the "exactly seven" phrasing is conservative — the
-same computation immediately rules out `>=7` disjoint triangles too, but
-that extension hasn't been given its own separate verification pass. Only
-tests C4/C8/C16 specifically (sufficient for order 30, since no larger
-power of two can fit as a simple cycle length on 30 vertices).
+**Does not (yet) establish:** anything about order-20/five-triangle and
+smaller-marking cases (per chat, order 20 has 5 marked vertices; the report
+did not give quotient counts for order 20+ and none were generated or
+tested here), or any order other than exactly 30. Also (per the Remark
+above) the "exactly six/seven" phrasing is conservative — the same
+computation immediately rules out `>=6` disjoint triangles too, but that
+extension hasn't been given its own separate verification pass. Only tests
+C4/C8/C16 specifically (sufficient for order 30, since no larger power of
+two can fit as a simple cycle length on 30 vertices).
 
 ## Cross-reference
 
@@ -202,5 +234,7 @@ missing-5-at-14 detail; `11,440`; `32,352,320`; and then `30,468`; `9,398`;
 `39,866`; `18,564`; `740,072,424` — was independently reproduced from
 scratch here and matched exactly, despite no corresponding artifact
 existing anywhere in this repo's git history (all local and remote branches
-checked). The full order-16 marking census (both connectivity classes) is
-now complete with a zero-survivor result across all 44,318,560 instances.
+checked). Both the order-16 and order-18 marking censuses (both connectivity
+classes each) are now complete, zero survivors across all 784,390,984
+combined instances — including the order-18 full census that report said it
+had not finished.
