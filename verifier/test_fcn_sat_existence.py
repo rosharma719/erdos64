@@ -33,6 +33,7 @@ from pathlib import Path
 import networkx as nx
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cycle_detect import from_edges, has_cycle_len_dfs  # noqa: E402
 from fcn_sat_existence import (  # noqa: E402
     FCNExistenceModel,
     adjacency_from_edges,
@@ -72,12 +73,16 @@ def brute_force_exists(n: int, dx: int, forbidden: tuple[int, ...],
     the degree condition forces at least n-2 vertices to have degree >=
     min_internal_degree whichever pair is chosen (only x and y are exempt).
     Skipping a graph that fails either can therefore never skip a survivor."""
-    bound = max(forbidden)
     for G in all_graphs(n):
-        lengths = {len(c) for c in nx.simple_cycles(G, length_bound=bound)}
-        if any(L in lengths for L in forbidden):
-            continue
+        # Degree prefilter first (O(n), rejects most graphs instantly).
         if sum(1 for v in G if G.degree(v) >= min_internal_degree) < n - 2:
+            continue
+        # Then the forbidden-cycle prefilter, using the SHORT-CIRCUITING
+        # detector rather than enumerating every cycle -- enumerating all
+        # cycles up to length 8 on a dense 9-vertex graph is hopeless, while
+        # "does a C4 exist" is answered almost immediately.
+        d = from_edges(n, [tuple(e) for e in G.edges()])
+        if any(has_cycle_len_dfs(d, L) for L in forbidden):
             continue
         for x, y in itertools.permutations(range(n), 2):
             if predicate_holds(G, x, y, dx, forbidden=forbidden,

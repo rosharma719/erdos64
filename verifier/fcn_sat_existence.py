@@ -138,6 +138,55 @@ def enumerate_cycles_of_length(adj: dict[int, set[int]], length: int) -> list[li
     return out
 
 
+def enumerate_open_paths(adj: dict[int, set[int]], length: int,
+                         cap: int | None = None) -> list[list[int]]:
+    """Every simple path on `length` vertices whose two endpoints are NOT
+    adjacent, each reported once (up to reversal).
+
+    Such a path is a "near-miss" forbidden cycle: adding the single missing
+    chord would create a cycle of exactly `length`.  Blocking it is a valid
+    constraint of the original problem (a genuine solution has no cycle of that
+    length at all, so it cannot contain all `length` of those edges).
+
+    Unlike `enumerate_cycles_of_length`, a path canNOT be rooted at its minimum
+    vertex, because that vertex may be internal.  So paths are grown from every
+    start vertex and de-duplicated by orientation (`path[0] < path[-1]`).
+
+    NOTE: this is disabled by default (`--nearmiss 0`).  Benchmarking at n=17
+    showed it is a net loss -- it cut iterations only 4124 -> 3538 while adding
+    ~1e6 clauses, and wall time went 64s -> 103s.  Kept because the option is
+    cheap and the trade-off may flip at other orders, not because any reported
+    result uses it.
+    """
+    out: list[list[int]] = []
+    for s in sorted(adj):
+        path = [s]
+        used = {s}
+
+        def rec(cur: int) -> bool:
+            if len(path) == length:
+                if s not in adj[cur] and path[0] < path[-1]:
+                    out.append(list(path))
+                    if cap is not None and len(out) >= cap:
+                        return True
+                return False
+            for nxt in adj[cur]:
+                if nxt not in used:
+                    used.add(nxt)
+                    path.append(nxt)
+                    stop = rec(nxt)
+                    path.pop()
+                    used.discard(nxt)
+                    if stop:
+                        return True
+            return False
+
+        if rec(s):
+            break
+    return out
+
+
+
 def adjacency_from_edges(n: int, edges: list[tuple[int, int]]) -> dict[int, set[int]]:
     adj: dict[int, set[int]] = {v: set() for v in range(n)}
     for a, b in edges:
@@ -186,6 +235,7 @@ class FCNExistenceModel:
         self.n_base_clauses = len(self.clauses)
         self.n_lazy_cycle = 0
         self.n_lazy_cut = 0
+        self.n_lazy_nearmiss = 0
         self.n_lazy_block = 0
         self.iterations = 0
 
@@ -317,6 +367,14 @@ class FCNExistenceModel:
         self.solver.add_clause(lits)
         self.n_lazy_cut += 1
 
+    def block_path_closure(self, path: list[int]) -> None:
+        """Forbid the cycle obtained by closing `path` with its missing chord."""
+        k = len(path)
+        lits = [-self.e(path[i], path[i + 1]) for i in range(k - 1)]
+        lits.append(-self.e(path[-1], path[0]))
+        self.solver.add_clause(lits)
+        self.n_lazy_nearmiss += 1
+
     def block_exact_graph(self, edges: list[tuple[int, int]]) -> None:
         """Last-resort blocking clause forbidding one exact edge set."""
         present = set(edges)
@@ -433,7 +491,7 @@ def _solve_with_budget(model: "FCNExistenceModel", seconds: float) -> bool | Non
 def search(n: int, dx: int, time_limit: float = 600.0, symbreak: bool = True,
            require_2conn: bool = True, solver_name: str = DEFAULT_SOLVER,
            forbidden: tuple[int, ...] = (4, 8), min_internal_degree: int = 3,
-           verbose: bool = False) -> dict:
+           nearmiss: int = 0, verbose: bool = False) -> dict:
     """Decide the FC-n/F-n existence question.
 
     Returns a dict with `status` in {"UNSAT", "SAT", "TIMEOUT", "BUG"}.
@@ -487,6 +545,16 @@ def search(n: int, dx: int, time_limit: float = 600.0, symbreak: bool = True,
             for cyc in enumerate_cycles_of_length(adj, L):
                 model.block_cycle(cyc)
                 found += 1
+        # Optionally also block "near misses": simple paths on L vertices whose
+        # endpoints are non-adjacent.  Valid for the same reason (a genuine
+        # solution has no C_L at all), and far more informative -- it stops the
+        # solver from converging one edge-flip at a time.
+        if nearmiss:
+            for L in forbidden:
+                if L == 4:
+                    continue
+                for pth in enumerate_open_paths(adj, L, cap=nearmiss):
+                    model.block_path_closure(pth)
         if found:
             if verbose and model.iterations % 200 == 0:
                 print(f"    iter {model.iterations}: +{found} cycle clauses "
@@ -526,6 +594,7 @@ def search(n: int, dx: int, time_limit: float = 600.0, symbreak: bool = True,
         "min_internal_degree": min_internal_degree, "solver": solver_name,
         "edge_vars": len(model.evar), "base_clauses": model.n_base_clauses,
         "lazy_cycle_clauses": model.n_lazy_cycle, "lazy_cut_clauses": model.n_lazy_cut,
+        "lazy_nearmiss_clauses": model.n_lazy_nearmiss, "nearmiss_cap": nearmiss,
         "lazy_block_clauses": model.n_lazy_block,
         "iterations": model.iterations,
         "build_seconds": round(build_seconds, 2),
@@ -593,7 +662,9 @@ GROUND_TRUTH = [
 def cmd_solve(args: argparse.Namespace) -> None:
     r = search(args.n, args.dx, time_limit=args.time_limit,
                symbreak=not args.no_symbreak, require_2conn=not args.no_2conn,
-               solver_name=args.solver, verbose=args.verbose)
+               solver_name=args.solver, nearmiss=args.nearmiss,
+               forbidden=tuple(int(t) for t in args.forbid.split(",")),
+               verbose=args.verbose)
     print(json.dumps(r, indent=2, default=str))
 
 
@@ -636,6 +707,8 @@ def cmd_sweep(args: argparse.Namespace) -> None:
     for n in range(args.start, args.end + 1):
         r = search(n, args.dx, time_limit=args.time_limit,
                    symbreak=not args.no_symbreak, solver_name=args.solver,
+                   nearmiss=args.nearmiss,
+                   forbidden=tuple(int(t) for t in args.forbid.split(",")),
                    verbose=args.verbose)
         rows.append(r)
         print(f"{n:>4} {r['status']:>8} {r['iterations']:>8} "
@@ -666,6 +739,13 @@ def main() -> None:
     ps.add_argument("--time-limit", type=float, default=600.0)
     ps.add_argument("--no-symbreak", action="store_true")
     ps.add_argument("--no-2conn", action="store_true")
+    ps.add_argument("--forbid", default="4,8",
+                    help="comma-separated forbidden cycle lengths "
+                         "(default 4,8 = the FC-N/F-N proposition; use "
+                         "4,8,16 for the full power-of-two set at n<32)")
+    ps.add_argument("--nearmiss", type=int, default=0,
+                    help="also block up to N near-miss cycles (open L-vertex "
+                         "paths) per iteration; 0 disables")
     ps.add_argument("--solver", default=DEFAULT_SOLVER)
     ps.add_argument("--verbose", action="store_true")
     ps.set_defaults(func=cmd_solve)
@@ -685,6 +765,8 @@ def main() -> None:
     pw.add_argument("--to", dest="end", type=int, required=True)
     pw.add_argument("--time-limit", type=float, default=600.0)
     pw.add_argument("--no-symbreak", action="store_true")
+    pw.add_argument("--nearmiss", type=int, default=0)
+    pw.add_argument("--forbid", default="4,8")
     pw.add_argument("--solver", default=DEFAULT_SOLVER)
     pw.add_argument("--out", default="")
     pw.add_argument("--verbose", action="store_true")
