@@ -214,6 +214,17 @@ belongs to neither nontrivial bridge (two_cut.md §3; type_b_compatibility.md
 **This does not reach 32.** Type B is not eliminated at order 32 by any order
 bound currently available.
 
+**[SUPERSEDED — `type_b_11_22_decomposition.md`, later in this session.]** The
+above applies F11 to the *bare* bridge `Bᵢ` (`d(x)=1`), whose edge box has one
+unit of headroom below `ex(n;{C4,C8})` at every order 13–17. Applying the same
+question to the **closed** piece `Jᵢ := Bᵢ+xy = G[Cᵢ∪{x,y}]` instead — legitimate
+because `xy∈E(G)` in Type B, so `Jᵢ⊆G` is still `F`-clean, and `d_{Jᵢ}(x)=aᵢ+1=2`
+— removes that headroom, pinning `|E(Jᵢ)|` to `ex(n)` exactly for every
+`n ≤ 17`. The resulting exhaustive census (**FB22-17**, zero survivors at every
+order `≤17`) gives `|V(Jᵢ)| ≥ 18` for **both** bridges, hence
+`n = n₁+n₂−2 ≥ 34 > 32`. **Type B is eliminated at order 32.** No cubic
+hypothesis needed. Status: `COMPUTATIONALLY_VERIFIED`, same tier as F11/F12/FC-15.
+
 ### What Type C gets: nothing
 
 F9/F11 requires `d_B(x)=1`. A Type-C bridge only satisfies
@@ -410,9 +421,9 @@ two-terminal F-series (F9/F11 → F12 → …), which the repo already has at
 | Branch | Distance | Notes |
 |---|---|---|
 | Cut-vertex (S5 / branch C0) | **Closed** | O32-1: free at every even order, from S5's parity claim. No new work. |
-| Type A 2-cut | **One finite computation away** | O32-2 already forces the unique configuration (three order-12 bridges, `eᵢ∈{16,17}`, `bᵢ≤3`, max degree `≤5`). F12 closes it. |
-| Type B 2-cut | **Far** | Best available bound is `n≥22` (O32-3). The `n≥40` results are scoped to 16 frozen `Π` tuples, not to Type B. Needs a general Type-B order bound or the s6_case_tree FIRST UNPROVED. |
-| Type C 2-cut | **Farthest** | No order bound at all; no T5 analogue; no F-series covering `d_B(x)=2`. Needs MISSING-2 **and** MISSING-3. |
+| Type A 2-cut | ~~**One finite computation away**~~ → **Closed** | O32-2 already forces the unique configuration (three order-12 bridges, `eᵢ∈{16,17}`, `bᵢ≤3`, max degree `≤5`). F12 closes it. [`f12_order12_result.md`, done] |
+| Type B 2-cut | ~~**Far**~~ → **Closed** | ~~Best available bound is `n≥22` (O32-3).~~ FB22-17 (`type_b_11_22_decomposition.md`) gives `n≥34`. The `n≥40` results remain scoped to 16 frozen `Π` tuples and were not used. |
+| Type C 2-cut | **Farthest — now the only open branch** | FC-15 (`fcn_order15_result.md`) supplies MISSING-2 for the `d_B(x)=2` profile but, per that file's own correction, does not by itself bound Type C's order (the `a_i=1` sub-case takes the weaker route). No T5 analogue. Still needs MISSING-3. The `(2,2)`-closure trick that closed Type B is unavailable: Type C has `xy∉E(G)`, so there is no terminal edge to close with. |
 | Cubic / cyclically 4-edge-connected variant | **Not started** | Only S4 exists. No 2-edge-cut or 3-edge-cut lemma anywhere in the repo. |
 
 **Summary judgement.** The order-32 target is *not* a small extension of

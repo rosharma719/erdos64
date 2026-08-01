@@ -117,6 +117,16 @@ strengthening, not a closed case.
   (the base two-terminal `(2,*)` profile generally) that doesn't depend on
   that specific Type-B refinement and isn't a duplicate of it, but also
   isn't confirmed to be the same fact.
+  **[RESOLVED later this session — `type_b_11_22_decomposition.md`.]** The
+  reported reduction does reconstruct: the `(1,1)`-piece is the bare bridge
+  `B_i` (order `>=13` by F11+F12) and the `(2,2)`-piece is its closure
+  `B_i+xy` (order `<=21` by `n=n_1+n_2-2=32`). Note FC-15 itself does **not**
+  apply to either — Type B always has `a_i=1`, never 2, and the closure
+  contains `xy`, violating FC-15's `xy notin E(B)` hypothesis. A separate
+  census (FB22-17, same method, terminal edge *present*) closes Type B at
+  `n=32` outright. FC-15's `n=13,15` layers were reused there and, usefully,
+  shown to be rejected by the degree-shape test alone — so FC-15's verdict at
+  those orders is not an artefact of its `xy notin E` filter.
 
 **Labels**: FC-15 is `COMPUTATIONALLY_VERIFIED`, matching F9/F11/F12's own
 status tier — not `PROVED_IN_MARKDOWN`. Its consequence for Type C's

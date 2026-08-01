@@ -1,0 +1,191 @@
+[
+ {
+  "n": 3,
+  "status": "INFEASIBLE_BY_COUNTING",
+  "m_min": 4,
+  "ex": 3,
+  "slack": 1
+ },
+ {
+  "n": 4,
+  "status": "INFEASIBLE_BY_COUNTING",
+  "m_min": 5,
+  "ex": 4,
+  "slack": 0
+ },
+ {
+  "n": 5,
+  "status": "INFEASIBLE_BY_COUNTING",
+  "m_min": 7,
+  "ex": 6,
+  "slack": 1
+ },
+ {
+  "n": 6,
+  "status": "INFEASIBLE_BY_COUNTING",
+  "m_min": 8,
+  "ex": 7,
+  "slack": 0
+ },
+ {
+  "n": 7,
+  "status": "INFEASIBLE_BY_COUNTING",
+  "m_min": 10,
+  "ex": 9,
+  "slack": 1
+ },
+ {
+  "n": 8,
+  "status": "SEARCHED",
+  "m": 11,
+  "ex": 11,
+  "slack": 0,
+  "cap": 3,
+  "raw": 1,
+  "c4c8_free": 0,
+  "reject_sample": 1,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {}
+ },
+ {
+  "n": 9,
+  "status": "INFEASIBLE_BY_COUNTING",
+  "m_min": 13,
+  "ex": 12,
+  "slack": 1
+ },
+ {
+  "n": 10,
+  "status": "SEARCHED",
+  "m": 14,
+  "ex": 14,
+  "slack": 0,
+  "cap": 3,
+  "raw": 11,
+  "c4c8_free": 0,
+  "reject_sample": 11,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {}
+ },
+ {
+  "n": 11,
+  "status": "INFEASIBLE_BY_COUNTING",
+  "m_min": 16,
+  "ex": 15,
+  "slack": 1
+ },
+ {
+  "n": 12,
+  "status": "SEARCHED",
+  "m": 17,
+  "ex": 17,
+  "slack": 0,
+  "cap": 3,
+  "raw": 75,
+  "c4c8_free": 0,
+  "reject_sample": 75,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {}
+ },
+ {
+  "n": 13,
+  "status": "SEARCHED",
+  "m": 19,
+  "ex": 19,
+  "slack": 1,
+  "cap": 4,
+  "raw": 33677,
+  "c4c8_free": 3,
+  "reject_sample": 500,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {
+   "[2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4]": 3
+  }
+ },
+ {
+  "n": 14,
+  "status": "SEARCHED",
+  "m": 20,
+  "ex": 20,
+  "slack": 0,
+  "cap": 3,
+  "raw": 677,
+  "c4c8_free": 0,
+  "reject_sample": 500,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {}
+ },
+ {
+  "n": 15,
+  "status": "SEARCHED",
+  "m": 22,
+  "ex": 22,
+  "slack": 1,
+  "cap": 4,
+  "raw": 2625442,
+  "c4c8_free": 14,
+  "reject_sample": 500,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {
+   "[2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4]": 10,
+   "[2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4]": 4
+  }
+ },
+ {
+  "n": 16,
+  "status": "SEARCHED",
+  "m": 23,
+  "ex": 23,
+  "slack": 0,
+  "cap": 3,
+  "raw": 7639,
+  "c4c8_free": 0,
+  "reject_sample": 500,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {}
+ },
+ {
+  "n": 17,
+  "status": "SEARCHED",
+  "m": 25,
+  "ex": 25,
+  "slack": 1,
+  "cap": 3,
+  "raw": 6314,
+  "c4c8_free": 0,
+  "reject_sample": 500,
+  "detector_disagreements": 0,
+  "shape_admissible": 0,
+  "survivors": [],
+  "free_degree_sequences": {}
+ },
+ {
+  "case": "n=17 sub-case B (d(y)=2) via terminal deletion",
+  "n15_raw": 2625442,
+  "n15_c4c8_free": 14,
+  "n15_free_degree_sequences": {
+   "[2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4]": 10,
+   "[2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4]": 4
+  },
+  "target_sequences": [
+   "[2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]",
+   "[2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4]"
+  ],
+  "matches": [],
+  "eliminated": true
+ }
+]

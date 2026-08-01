@@ -91,6 +91,12 @@ Per `separator_theorem_order32_gap_analysis.md`'s Part 3 (missing lemmas):
 - **Type B**: order bound only reaches `n>=22` (`O32-3`), not `n>=32` —
   **still open**, needs new machinery (a Type-B replacement/order lemma
   reaching 32, not currently in the repo).
+  **[SUPERSEDED — see `type_b_11_22_decomposition.md`.]** F12 applied to a
+  Type-B bridge raises this to `n>=24`, and the FB22-17 census in that file
+  (the same question asked of the *closed* piece `B_i+xy`, which has
+  `d(x)=2` and hence a strictly tighter edge box) raises it to `n>=34`.
+  **Type B is now eliminated at `n=32`**, without needing the cubic
+  hypothesis. Same `COMPUTATIONALLY_VERIFIED` tier as F12 itself.
 - **Type C**: **no order bound exists at all** (F9/F11/F12 require
   `d_B(x)=1`; Type C only guarantees `min(a_i,b_i)<=2`, entirely outside
   the F-series' scope) — **still open**, needs a new `d_B(x)=2` F-series
@@ -100,6 +106,8 @@ So "every order-32 minimal counterexample is 3-connected" now reduces to
 exactly two remaining cases (Type B, Type C) instead of three — a genuine,
 if partial, narrowing of the target, achieved with a few seconds of
 computation once the exact search box was correctly identified.
+**[Later in this same session: with `type_b_11_22_decomposition.md`'s
+FB22-17, Type B closes too, leaving Type C as the sole remaining case.]**
 
 **Labels** (matching F9/F11's own status exactly): F12 is
 `COMPUTATIONALLY_VERIFIED`, not `PROVED_IN_MARKDOWN` — O32-2 and this
