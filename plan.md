@@ -91,6 +91,52 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-02 (branch consolidation + n=20/22 P1 results + order-38 external audit):
+  - **P1 progress: n=20 and n=22 cubic cases CLOSED.** Rebuilt the toolchain
+    (nauty `geng`, both C checkers) on this session's Linux environment
+    (previous work was Mac-only; `certify_shard.sh` had a hardcoded Mac path,
+    now fixed to a relative lookup). Cross-validated the rebuilt C checkers
+    against `cycle_detect.py` before trusting them (n=10/n=12 C4-free
+    streams, 0 disagreements). Ran the certified `geng -c -f -d3 -D3` +
+    `check_c8` pipeline for both remaining cubic P1 cases: **n=20** (36,101
+    connected cubic C4-free graphs, `c4_seen=0` sanity, raw==checked
+    reconciled, **0 C8-free survivors**) and **n=22** (553,227 graphs, same
+    all-clear). Logs/manifests in `logs/p1_n20_23/`. n=21/n=23 (one degree-4
+    vertex, `-D4`) not yet run.
+  - Also untracked the committed platform-specific `check_c8`/`check_g6`
+    binaries (source of repeated Mac/Linux churn) — rebuild locally via `cc`
+    per the README; and dropped two accidentally-committed `.pyc` files.
+  - **Flagged and audited an external fabrication.** A prior conversation
+    turn presented an elaborate "order-38 cubic census" result (minimal
+    counterexample ≥40 vertices) with no basis in this repo's actual git
+    history (one commit at the time) — broken reference links, an
+    unverifiable checksum, and citations to a "Wormald–Kingan" theorem and
+    specific node/leaf counts with zero backing files. Treated as
+    unsubstantiated. When the user separately supplied real transcribed
+    source + proof notes for what appears to be that same order-38 line of
+    work (evidently produced in a *third*, inaccessible sandbox — hardcoded
+    `/mnt/data/...` paths), did an independent audit rather than accept it:
+    see `external_review/order38_bundle/AUDIT.md`. Summary: the 3 hand-proof
+    notes are logically sound conditional on uncited external theorems
+    (Carr 2026, Candráková–Lukoťka, "Wormald–Kingan"); the shared
+    cycle-detection primitive cross-validates against `cycle_detect.py` with
+    0 disagreements; two full partition classes ((7,31) and the complete
+    unfiltered (5,5,5,5,9,9), both `rot` and `nosym` solver variants) were
+    reproduced completely from scratch and agree (0 leaves). The other 149
+    of 151 claimed partition classes and the aggregate 60.9M-node total
+    remain unverified — the underlying result/manifest data files were never
+    supplied, only source code and a hash listing.
+  - **Discovered 14 more branches with substantial independent prior work**
+    on this conjecture (`claude/*` and `codex/*`, 10–159 commits each,
+    sharing only the single `init` commit with `main` and this branch —
+    never merged). Root-level filename collisions make naive merging unsafe
+    (flagged by one branch's own README). Consolidated full snapshots into
+    `tracks/<branch-name>/` with `tracks/MANIFEST.md` indexing provenance
+    (source branch, head SHA, date); original branches left untouched on
+    `origin`. This branch's own P1–P5 priorities above predate that
+    discovery and should be read alongside the much deeper Type A/B/C/T
+    structural work in `tracks/graph-counterexample-q6-xerdjz/` and related
+    tracks before further prioritization.
 - 2026-07-25 (correction pass 2, pre-n20-search): tightened the McKay-table
   framing and set up the n=20..23 search.
   - Read ex(n;{C4,C8}) for n=4..23 straight off McKay's file names: strict below
