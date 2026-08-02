@@ -16,3 +16,4 @@ external_review/a5_lift_probe/*.log
 # in-progress order-22 catalog generation (see plan.md status log); remove
 # this line and commit the finished file once nauty-geng completes
 tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order22/quotients_22v_all.g6
+tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order22/split/
