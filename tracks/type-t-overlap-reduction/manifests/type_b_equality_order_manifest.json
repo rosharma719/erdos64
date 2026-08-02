@@ -1,0 +1,67 @@
+{
+  "description": "Complete minimum-order audit for the smallest irreducible Type-B tuple Pi0: an overlap-independent equality reduction followed by exhaustive order-18 edge-layer elimination.",
+  "scope_note": "Covers every Type-B realization of Pi0 at full order 36. It does not enumerate naked path-union topologies because the proved degree/cycle conditions eliminate every extendable core first. It does not cover order 37 or above, any later tuple, or prove ICF. No proof-assistant formalization exists.",
+  "source_parent_commit": "8662559b89f2728cea0b9d6eed19f6c355f9ac7f",
+  "primary_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_b_equality_order.py --certificate data/type_b_equality_order_certificate.json",
+  "independent_c_commands": [
+    "geng -c -q -f -d2 -D3 18 26:26 | .build/check_c8",
+    "copyg -q -g data/c48_n18e27.s6 | .build/check_c8"
+  ],
+  "source_checksums": {
+    "verifier/type_b_equality_order.py": "997079f5ad38bd002df7604e9a5ea9702795eb80f875c8fd7099cdbca6019575",
+    "tests/test_type_b_equality_order.py": "61828096c3c293774481874d982c674598dfed9ce1f7276e048034466065d60a",
+    "verifier/cycle_detect.py": "e74e9528916dd38cb3d94caf734b575f8c6a78c222fd2098084bd17620ee809d",
+    "verifier/check_c8.c": "48a63d29f702d70e39cfdf5126df8f50817abf6175da360d845d28bc39cde3c8"
+  },
+  "input": {
+    "path": "data/c48_n18e27.s6",
+    "source_url": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n18e27.s6",
+    "sha256": "c21bfccdc139f3abac60141b886423fb4daa88dc05fa084715a012dd04460359",
+    "lines": 570,
+    "meaning": "McKay's complete nonisomorphic order-18 size-27 {C4,C8}-free extremal graphs"
+  },
+  "output_checksums": {
+    "data/type_b_equality_order_certificate.json": "dff5e28b61717f22674b1fd65dcb58202fdb4a0b0788f845f94f8508e137b560",
+    "stdout": "d0c1046dffa9ed0aa15fcc40e7732fed1fb9e9b865f7246783efc9e29764c1fc",
+    "type_b_equality_order.md": "52340714c5fa5d340f2244ab344d62f36bfc398cc20ffa6b97c78ce291dba809",
+    "near_extremal_graph6_stream": "708cb05b6d8afba76634cda3a8d1ef0a5b16dffeb871a3157f0c1ad8b5f9bdb3",
+    "near_extremal_c_stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "near_extremal_c_stderr": "11e6d602c3ab172820da6680b6a582d93fad17d9c2c164f10e665ebfddb33d90",
+    "extremal_c_stdout": "cf351a7b0872bb5ca909e85e7b010b64030ac371b95cd0256a4103c3a4379181",
+    "extremal_c_stderr": "0627bea94305bd0438560af8884b688f9b346b24730dd29d6ea14990a46ab2f5"
+  },
+  "versions": {
+    "python": "3.14.6",
+    "networkx": "3.6.1",
+    "nauty": "2.9.3"
+  },
+  "results": {
+    "parameter_tuple": [2, 2, 4, 4, 1, 1],
+    "full_order": 36,
+    "bridge_orders": [19, 19],
+    "remainder_order": 18,
+    "remainder_edge_range": [26, 27],
+    "near_extremal_graphs": 101546,
+    "near_extremal_c8_free": 0,
+    "near_extremal_independent_detector_disagreements": 0,
+    "extremal_graphs": 570,
+    "extremal_degree_two_histogram": {"3": 18, "4": 103, "5": 220, "6": 187, "7": 39, "8": 2, "9": 1},
+    "extremal_graphs_with_at_most_two_degree_two_vertices": 0,
+    "extremal_c4_detector_disagreements": 0,
+    "extremal_c8_detector_disagreements": 0,
+    "candidate_bridge_remainders": 0,
+    "extendable_equality_path_union_cores": 0,
+    "order_36_realizations": 0,
+    "assertion_failures": 0
+  },
+  "validation": {
+    "targeted_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_equality_order.py",
+    "targeted_result": "3 passed",
+    "full_command": "make check",
+    "full_result": "97 Python files parsed; 95 tests passed in 6.70 s; native checkers built successfully",
+    "push_result": "8662559b89f2728cea0b9d6eed19f6c355f9ac7f pushed; local HEAD matched upstream before equality-order edits"
+  },
+  "independent_verification": "The 26-edge geng stream is regenerated twice and checked once by the repository's rooted DFS and once by NetworkX simple_cycles; the graph6 streams have identical hashes. A separately compiled C detector checks the same complete geng stream and also finds zero survivors. On all 570 authoritative extremal graphs, common-neighbour and DFS C4 checks agree, DFS and NetworkX C8 checks agree, a fresh degree pass gives the recorded histogram, and the independent C checker confirms all 570 are C4/C8-free.",
+  "incomplete_attempt_not_used": "An eight-shard local geng -D5 regeneration of the 27-edge extremal layer was stopped after roughly ten minutes without completed shards. It is not an input to or evidence for the conclusion.",
+  "completed_range": "All connected simple order-18 size-26 C4-free graphs with minimum degree two and maximum degree three (exactly the forced 3^16,2^2 degree sequence), 101,546 graphs total; and all 570 nonisomorphic order-18 size-27 {C4,C8}-free extremal graphs from the authoritative checksummed McKay file. By E36 this covers every bridge and every required-path embedding in a Pi0 Type-B realization at full order 36."
+}

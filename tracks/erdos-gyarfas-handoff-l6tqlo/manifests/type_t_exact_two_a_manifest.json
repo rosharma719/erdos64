@@ -1,0 +1,40 @@
+{
+  "description": "Independent finite cross-check of type_t_exact_two_a.md. It distinguishes the generic pole-to-pole A template from the actual triangle gateway, verifies the complete guaranteed cycle table, exhaustively checks the forbidden-residue formula and explicit infinite safe family, audits the Heawood fixture, preserves a C4/C8-free Balaban-derived local anchoring counterexample, and realizes two-cell overlap patterns for delta 1 and 2.",
+  "scope_note": "Finite symbolic arithmetic and explicit graph fixtures, not proof-assistant verification or an all-orders graph census. The Heawood and Balaban bridges refute local anchoring substitutes only; both fail full power-cycle cleanliness (at C8 and C16 respectively), so neither is claimed to be a minimal-counterexample or full Type-T obstruction. The LCF graph and all reported structural properties are recomputed by NetworkX.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_t_exact_two_a.py",
+  "source_parent_commit": "421247fa46ede84f5daabcbb83bb6f2eb96883ee",
+  "script_sha256": "615e593acb8d54eef945ff1d1d8ffaf783896699e319fb2278a9b66967862446",
+  "stdout_sha256": "c39471bf9929c063d46303cfdb2aa95894abe06831069bb0e49ad77ab68756b2",
+  "python_version": "3.14.6",
+  "networkx_version": "3.6.1",
+  "external_data_provenance": {
+    "balaban_lcf_source": "https://github.com/sagemath/sage/blob/09472ff530d280d0c9f44fdc5a9c3e856ed95b37/src/sage/graphs/generators/smallgraphs.py#L907-L914",
+    "source_commit": "09472ff530d280d0c9f44fdc5a9c3e856ed95b37",
+    "note": "Only the 70-entry LCF sequence is imported. NetworkX independently reconstructs the graph and asserts order, size, cubicity, girth, and all rooted-fixture results."
+  },
+  "exit_status": 0,
+  "results": {
+    "actual_gateway_offsets": ["0", "1", "2^rho", "2^s+1"],
+    "actual_gateway_infinite_safe_family": "ell=2^t+1, t>max(rho,s,3)",
+    "actual_gateway_infinite_family_self_sum_clean": true,
+    "actual_gateway_ell_plus_two_guaranteed": false,
+    "abstract_pole_offsets": ["1 (if pole edge)", "2", "2^rho-1", "2^s"],
+    "abstract_pole_infinite_safe_family": "ell=2^t, t>max(rho,s,2)",
+    "arithmetic_parameter_rows_checked": 144,
+    "heawood_terminal_spectrum": [2, 7, 9, 11, 13, 15],
+    "heawood_internal_power_clean": false,
+    "heawood_trivial_edge_cross_failures": [[7, 8], [15, 16]],
+    "balaban_host_order": 70,
+    "balaban_host_size": 105,
+    "balaban_bridge_girth": 10,
+    "balaban_terminal_lengths_through_14": [2, 11, 13],
+    "balaban_admissible_pair_through_14": [11, 13],
+    "balaban_contains_c4_or_c8": false,
+    "balaban_contains_c16": true,
+    "overlap_cell_cycle_lengths_delta_1": [6, 7],
+    "overlap_cell_cycle_lengths_delta_2": [6],
+    "assertion_failures": 0
+  },
+  "independence": "The arithmetic checker compares direct power testing against the closed forbidden-set formula. NetworkX separately constructs the actual gateway, enumerates Heawood paths and cycles, builds and validates the LCF graph, enumerates its rooted paths through length 14 and a C16 witness, and enumerates the overlap-cell cycles.",
+  "completed_range": "Both delta values; rho,s from 2 through 7 for both arithmetic models; ell from 5 through 512 for exact forbidden-set agreement; complete Heawood spectrum; Balaban rooted paths through length 14 and cycles through length 16; two explicit multi-cell patterns."
+}

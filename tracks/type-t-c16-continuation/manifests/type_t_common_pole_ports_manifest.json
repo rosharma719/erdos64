@@ -1,0 +1,66 @@
+{
+  "description": "Degree-four common-pole shared-port reduction. Classifies every P attachment location on the relevant theta, adds the triangle-detour routes missing from the theta-only census, audits cubic saturation, and exhibits an explicit scalable E2_parallel two-port incidence family whose full displayed triangle/theta/port union is power-cycle-free.",
+  "scope_note": "Hand proof plus deterministic symbolic cycle enumeration. The infinite family is a rooted port-incidence core with pending MA2-leaf incidences; it is not a completed leaf remainder, minimum-degree-three graph realization, SAT certificate, graph census, or counterexample candidate.",
+  "source_parent_commit": "dee534a377cd4c1d58377f83ba1a510b547535bc",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 verifier/type_t_common_pole_ports.py",
+  "python_version": "3.14.6",
+  "exit_status": 0,
+  "script_sha256": "b8398bb3b2fc87bfe2d3175cf1c6c32842d05dbc8c0fd9fcd949c12d84ba693f",
+  "stdout_sha256": "cb34a3635041e404145b3fbfff0a8e619f784fb858db5f0986464b28d6fd3e2d",
+  "markdown_sha256": "874e52cb1a78b9e28d8e7f2d0bf400926b546659aaf1ee053cf84e2623348368",
+  "results": {
+    "degree": 4,
+    "E2_states_addressed": [
+      "E2_parallel",
+      "E2_cross"
+    ],
+    "attachment_location_classes": 8,
+    "generic_same_branch_routes": 4,
+    "generic_different_branch_routes": 6,
+    "infinite_family_state": "E2_parallel",
+    "infinite_family_exponents": "(rho_x,s_x,rho_y,s_y)=(j+2,2,j,2), j>=4",
+    "infinite_family_port_separation": 7,
+    "two_port_core_simple_cycles": 61,
+    "one_port_core_simple_cycles": 40,
+    "distinct_affine_cycle_forms": 35,
+    "affine_cycle_bands": {
+      "0": [3, 6, 7, 9, 10],
+      "1": [-4, -3, -2, 1, 2, 3, 6, 7, 8],
+      "4": [-4, -3, -2, 1, 2, 3, 6, 7, 8],
+      "5": [-11, -10, -8, -7, -6, -5, -3, -2, -1, 0, 2, 3]
+    },
+    "translation_coefficients_remaining": 0,
+    "numerical_cycle_values_checked": 1647,
+    "exponents_numerically_checked": [6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "same_attachment_pair_distinct_ports": "CONTRADICTION_C4",
+    "assertion_failures": 0
+  },
+  "theorem": "Current degree-four local, cubic-saturation, and complete displayed-core cycle inputs do not finitely localize shared ports. An E2_parallel family has two ports at arbitrary translated positions on A and C; all 61 simple cycles in its full displayed common-pole union have non-dyadic lengths kY+b in four exact bands. This is an explicit infinite port-incidence residual, not a graph realization.",
+  "failed_localization_lemmas": [
+    "lexicographic choice creates a closer shared port",
+    "the distinct-port-to-A theorem applies when both attachments share one literal port",
+    "every internal shared-prefix vertex is cubic",
+    "a shared port lies on its relevant theta prefix",
+    "a local prefix or port segment automatically satisfies T9B replacement hypotheses"
+  ],
+  "simultaneous_cell_status": {
+    "(A,P)/(P,A)": "EXPLICIT INFINITE PORT RESIDUAL; no full simultaneous A realization claimed",
+    "(P,P)": "EXPLICIT INFINITE PORT RESIDUAL",
+    "P,P same attachment pair with distinct ports": "CONTRADICTION"
+  },
+  "next_dependency": "A global completion or replacement theorem for the selected MA2 leaf. Degree five is deferred because degree four is neither eliminated nor finitely normalized.",
+  "not_claimed": [
+    "a completed MA2 leaf remainder for the infinite family",
+    "a graph-realizable P obstruction",
+    "a full graph simultaneously realizing A and the one-port family",
+    "elimination or finite normalization of degree-four P",
+    "any degree-five or degree-at-least-six port theorem",
+    "placement of Q without its actual attachment pair",
+    "Type T elimination or an all-orders Erdős-Gyárfás theorem"
+  ],
+  "output_files": {
+    "markdown": "type_t_common_pole_ports.md",
+    "verifier": "verifier/type_t_common_pole_ports.py",
+    "manifest": "manifests/type_t_common_pole_ports_manifest.json"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "description": "Mechanical cross-check of the near-power edge lemma's contraction/lifting arithmetic, the cubic-vertex nontriangle-edge count, and the clean same-length merge lemma (contraction.md Parts I, III, IV).",
+  "scope_note": "Tests only unconditional graph-theoretic mechanics on ordinary fixture graphs; does not and cannot test claims (contraction.md I.4 same-side-impossible, Part II) that presuppose a minimal Erdos-Gyarfas counterexample exists -- no such object is known.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/contraction_lift.py",
+  "source_commit": "e6050b715b098e3b16e233ff4483581fd93c59bf",
+  "script_sha256": "540d8c9dea264baf360d76d1b484fd78ac01bf16b4d8480333c4bfb78478777a",
+  "stdout_sha256": "41dac9365c95b43278d146159757b33f1884f6a6f0f9a341d8a078460c70f707",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container (max available is 3.13); this run used 3.13.12 with an unpinned but current networkx==3.6.1 (matches requirements.txt's pin exactly). No other project dependency is required by this script.",
+  "exit_status": 0,
+  "fixtures": [
+    "petersen_graph (triangle-free, 3-regular, 10 vertices)",
+    "3-cube (bipartite, 3-regular, 8 vertices)",
+    "K_3,3 (bipartite, 3-regular, 6 vertices)",
+    "prism_with_diagonal (two triangles + matching, every cubic vertex in exactly one triangle)",
+    "30 random cubic-plus-extra-edge graphs, n in {8,10,12}, seeds 0..29"
+  ],
+  "results": {
+    "graphs_checked_contraction_and_lifting": 34,
+    "nontriangle_edges_contracted": 249,
+    "cycles_through_star_lifted": 35357,
+    "same_side_length_preserving_lifts": 14141,
+    "mixed_side_length_plus_one_lifts": 21216,
+    "cubic_vertices_checked_1_or_3_count": 10,
+    "cubic_vertex_count_violations": 0,
+    "clean_merge_lengths_for_L_5_9_17_33": [8, 16, 32, 64],
+    "lift_validity_failures": 0,
+    "length_arithmetic_failures": 0
+  },
+  "detector_agreement": "Every lifted cycle validated by two independent implementations: a hand-rolled adjacency-list traversal (verify_cycle) and an independently constructed networkx.Graph traversal (verify_cycle_nx); 0 disagreements across all 35,357 lifts and all 4 clean-merge constructions.",
+  "completed_range": "All 34 fixtures processed to completion (no partial/timeout runs); cycle enumeration bounded at length 9 per graph (nx.simple_cycles length_bound=9), not exhaustive to the graph order for the larger random fixtures -- this bound only limits HOW MANY mechanical instances are exercised, not the validity of any instance actually checked."
+}

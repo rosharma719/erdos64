@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-26T01:28:42Z",
+  "source_page": "https://users.cecs.anu.edu.au/~bdm/data/extremal.html",
+  "status": "EXTERNAL_DATA_MISSING",
+  "note": "These historical McKay sparse6 inputs are not present in the current checkout. During the integrity pass, temporary downloads from the authoritative links confirmed the filenames, line counts, and SHA-256 values below; the files were not restored to the repository. E5(a), L15/L15b degree-distribution claims, and the P1 extremal-layer clearance remain not locally reproducible from the checkout alone.",
+  "files": [
+    {"expected_filename": "c48_n16e23.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n16e23.s6", "n": 16, "edges": 23, "expected_graphs": 9473, "expected_sha256": "5dd1abfbc2a4b4a7066bdeeefd2e274ff7059c025b33ce5f81dea4799796f13a", "local_status": "MISSING", "experiments": ["E5(a)", "L15", "P1 extremal layer"]},
+    {"expected_filename": "c48_n17e25.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n17e25.s6", "n": 17, "edges": 25, "expected_graphs": 2580, "expected_sha256": "6598e68c1b4d7c91ef4a626d0c03eb954e9ad256ab05b781dcf4521411967c82", "local_status": "MISSING", "experiments": ["E5(a)", "L15", "P1 extremal layer"]},
+    {"expected_filename": "c48_n18e27.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n18e27.s6", "n": 18, "edges": 27, "expected_graphs": 570, "expected_sha256": "c21bfccdc139f3abac60141b886423fb4daa88dc05fa084715a012dd04460359", "local_status": "MISSING", "experiments": ["E5(a)", "L15", "P1 extremal layer"]},
+    {"expected_filename": "c48_n19e29.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n19e29.s6", "n": 19, "edges": 29, "expected_graphs": 304, "expected_sha256": "bf81b89b826ae3153c7497addb26025796b982a52a5e39210754f15620226562", "local_status": "MISSING", "experiments": ["E5(a)", "L15", "P1 extremal layer"]},
+    {"expected_filename": "c48_n20e31.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n20e31.s6", "n": 20, "edges": 31, "expected_graphs": 94, "expected_sha256": "4b4e0670c63e365d3e26401e3ade4843ea7868077865234e7cadd61af21a9160", "local_status": "MISSING", "experiments": ["E5(a)", "L15b", "P1 extremal layer"]},
+    {"expected_filename": "c48_n21e33.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n21e33.s6", "n": 21, "edges": 33, "expected_graphs": 12, "expected_sha256": "6944a56b4c66ad2bd6687d9729233cfdc4648c3f48864918b22aa305881cecd7", "local_status": "MISSING", "experiments": ["E5(a)", "L15b", "P1 extremal layer"]},
+    {"expected_filename": "c48_n22e34.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n22e34.s6", "n": 22, "edges": 34, "expected_graphs": 13644, "expected_sha256": "ed9af6b6584c4ff5b6fd0be5be9062b41be51ffd7fc0775617594416c88152a9", "local_status": "MISSING", "experiments": ["E5(a)", "L15b", "P1 extremal layer"]},
+    {"expected_filename": "c48_n23e36.s6", "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n23e36.s6", "n": 23, "edges": 36, "expected_graphs": 3257, "expected_sha256": "e3c35927a3f9824af3daf460c99a7acdc5ead021547a8285d5fc93ffcd3c9651", "local_status": "MISSING", "experiments": ["E5(a)", "L15b", "P1 extremal layer"]}
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "arithmetic_verification_script": "ad-hoc python verification of all degree-sum and non-path-edge-count arithmetic in Sections 3-4; all checks passed (degree sums equal 2E for every listed sequence at every listed E; non-path edge counts equal E minus path edge count for both gap types)",
+  "depends_on_rho_s": false,
+  "derivation_source_file": "type_b_order40_frontier.md",
+  "derivation_source_sha256": "5196f72a7bee0dd02c76bd9091fe8e62a16662823e93e73177efb2b15aed7709",
+  "external_data_attempt": {
+    "action_taken": "not retried, per environment protocol for 403/407 organization policy denials",
+    "command": "curl -sS https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n20e31.s6",
+    "purpose": "verify ex(20;{C4,C8})=31 (currently only an unverified filename-encoded hypothesis in manifests/external_s6_manifest.json)",
+    "result": "403 policy denial from the egress proxy (gateway answered 403 to CONNECT), host users.cecs.anu.edu.au:443",
+    "status": "ex(20;{C4,C8})=31 remains UNVERIFIED; a provable Reiman-bound fallback (|E(R)|<=48) is used instead until this is resolved",
+    "target": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n20e31.s6"
+  },
+  "lower_bound_derived": {
+    "formula": "2|E(R)| >= 18*3 + 2*2 = 58",
+    "value": 29
+  },
+  "next_step": "build direct + SAT generators for gap2_order21 at E=29 first (simplest, single degree sequence, structurally closest to the completed B20 one-slack search)",
+  "reusable_existing_data_identified": {
+    "description": "36,101 raw connected C4-free cubic graphs on 20 vertices, already benchmarked in z3_lifts.md IV.B via nauty-geng -c -f -d3 -D3 20 (88.21s)",
+    "relevance": "directly the population needed for the E=30, fully-cubic (3^20) degree-sequence sub-case (G1-30-B1 / G2-30-B1)",
+    "reuse_plan": "regenerate and independently re-verify (not just cite the old benchmark count) before using as a certificate"
+  },
+  "role_tables": {
+    "gap1_order21_roles": "E=29 (1 degree sequence, 12 non-path edges), E=30 (5 sub-cases, 13 non-path edges), E=31 (deferred)",
+    "gap2_order21_roles": "E=29 (1 degree sequence, 11 non-path edges), E=30 (5 sub-cases A1/A2/B1/B2/B3, 12 non-path edges), E=31 (deferred)"
+  },
+  "title": "Order-40 frontier: normalized order-21 bridge geometries (structural derivation only)",
+  "type": "hand-written structural derivation, no new computation performed",
+  "upper_bound_status": {
+    "plan": "resolve E=29,30,31 first; extend into 32..48 only if a survivor is found or full rigor is required",
+    "provable_fallback": 48,
+    "unverified_hypothesis": 31
+  }
+}

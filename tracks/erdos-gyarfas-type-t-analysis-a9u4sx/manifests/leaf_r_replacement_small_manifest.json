@@ -1,0 +1,70 @@
+{
+  "clean_examples": [],
+  "commands": [
+    "geng -q -c -d3 4",
+    "geng -q -c -d3 5",
+    "geng -q -c -d3 6",
+    "geng -q -c -d3 7",
+    "geng -q -c -d3 8",
+    "geng -q -c -d3 9"
+  ],
+  "conclusion": "Through skeleton order 9, every unexpanded leaf-R pertinent graph R-ab satisfies LR alternative 1.",
+  "generator": "nauty geng -q -c -d3 n",
+  "limitation": "Does not cover virtual-edge expansions; since no clean K occurs, the replacement alternative and terminal-spectrum inclusion are not exercised.",
+  "orders": [
+    {
+      "C4_C8_free_after_parent_deletion": 0,
+      "C4_free_after_parent_deletion": 0,
+      "connected_delta3_skeletons": 1,
+      "edge_rooted_pairs": 6,
+      "order": 4
+    },
+    {
+      "C4_C8_free_after_parent_deletion": 0,
+      "C4_free_after_parent_deletion": 0,
+      "connected_delta3_skeletons": 3,
+      "edge_rooted_pairs": 27,
+      "order": 5
+    },
+    {
+      "C4_C8_free_after_parent_deletion": 0,
+      "C4_free_after_parent_deletion": 0,
+      "connected_delta3_skeletons": 19,
+      "edge_rooted_pairs": 216,
+      "order": 6
+    },
+    {
+      "C4_C8_free_after_parent_deletion": 0,
+      "C4_free_after_parent_deletion": 0,
+      "connected_delta3_skeletons": 150,
+      "edge_rooted_pairs": 2155,
+      "order": 7
+    },
+    {
+      "C4_C8_free_after_parent_deletion": 0,
+      "C4_free_after_parent_deletion": 1,
+      "connected_delta3_skeletons": 2589,
+      "edge_rooted_pairs": 44945,
+      "order": 8
+    },
+    {
+      "C4_C8_free_after_parent_deletion": 0,
+      "C4_free_after_parent_deletion": 9,
+      "connected_delta3_skeletons": 84242,
+      "edge_rooted_pairs": 1754669,
+      "order": 9
+    }
+  ],
+  "schema": "erdos64-leaf-r-replacement-small-v1",
+  "scope": "all connected simple minimum-degree-3 skeletons, a superset of realizable 3-connected R-skeletons",
+  "script": {
+    "path": "verifier/leaf_r_replacement_search.py",
+    "sha256": "ddd8a5cc4b4029aa5f6402800b05f810c1689f2edd0f22608e8a489055eb63ce"
+  },
+  "totals": {
+    "C4_C8_free_after_parent_deletion": 0,
+    "C4_free_after_parent_deletion": 10,
+    "edge_rooted_pairs": 1802018,
+    "skeletons": 87004
+  }
+}

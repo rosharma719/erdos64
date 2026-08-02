@@ -1,0 +1,30 @@
+{
+  "h1": {
+    "count_per_s": {},
+    "example_per_s": {},
+    "h": 1,
+    "s_max_searched": 13,
+    "valid_s_values": []
+  },
+  "h2": {
+    "count_per_s": {},
+    "example_per_s": {},
+    "h": 2,
+    "s_max_searched": 13,
+    "valid_s_values": []
+  },
+  "h3": {
+    "count_per_s": {
+      "3": 2,
+      "5": 10
+    },
+    "example_per_s": {
+      "3": [0, 1, 2],
+      "5": [0, 0, 1, 1, 2]
+    },
+    "h": 3,
+    "s_max_searched": 13,
+    "valid_s_values": [3, 5]
+  },
+  "records_sha256": "da8486eeb7c162e5e7ddaac1cae7222b3df97bb496927a680efefaa5a4e4919b"
+}

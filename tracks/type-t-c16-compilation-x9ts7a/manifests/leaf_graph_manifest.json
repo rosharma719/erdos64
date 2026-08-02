@@ -1,0 +1,13 @@
+{
+  "L1_c4_free_graph_with_collision_found": 0,
+  "L1_collisions_found_total": 0,
+  "L1_collisions_with_bad_witness": 0,
+  "L2_cycles_checked": 833,
+  "L2_failures": 0,
+  "identity_c1_checked": 1457,
+  "identity_c1_failures": [],
+  "note_L1": "expect L1_c4_free_graph_with_collision_found == 0: the generator already filters for C4-freeness, so no collision should ever survive -- this IS the check.",
+  "records_sha256": "5e3034d415aaa4dd39ad7bd9706bc523fb179c047a36eb7804927639ec83cbc2",
+  "schema": "erdos64-leaf-graph-v1",
+  "synthetic_c4_free_graphs_generated": 1443
+}

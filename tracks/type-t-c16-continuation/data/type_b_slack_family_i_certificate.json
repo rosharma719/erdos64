@@ -1,0 +1,19 @@
+{
+  "c4_violations_found": 0,
+  "c8_c16_free_survivors": 0,
+  "conclusion": "Family I layer is empty: every candidate contains a C8",
+  "cross_validation": {
+    "c_implementation_result": "see data/type_b_slack_family_i_c_verifier_report.json",
+    "python_dfs_vs_networkx_disagreements": 0,
+    "sat_encoding_validation": "agrees with DFS+networkx on 100 random-graph trials x {C4,C8}, 0 disagreements (synthetic validation, not run on the full candidate set due to per-graph SAT overhead)"
+  },
+  "family": "Family I: degree sequence 2,3^18",
+  "generation_command": "nauty-geng -c -f -d2 -D3 19 28:28",
+  "generation_note": "degree bounds [2,3] with edges=28 forces degree sequence 2,3^18 automatically (2k+3(19-k)=56 => k=1)",
+  "graphs_checked": 86047,
+  "graphs_generated": 86047,
+  "input_file": "data/type_b_slack_family_i_n19e28.g6",
+  "input_sha256": "cd9d2477eae69bd427ece21f33668bd27896d90722158fcda18f7381c281507b",
+  "scope": "20-vertex Pi0 bridge, 19-vertex remainder R, Family I (2,3^18) 28-edge layer",
+  "stage2_ham_path_survivors": 0
+}

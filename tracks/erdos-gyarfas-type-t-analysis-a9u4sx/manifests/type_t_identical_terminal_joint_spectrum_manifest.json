@@ -1,0 +1,31 @@
+{
+  "description": "Completes the joint four-path spectrum audit for the identical-terminal (A,A) sub-case of type_t_joint_bridge_universalization.md Part 3.1: audits the five spectrum pairs left open there, then tests whether the (R_x,R_y) two-cell escape can coexist with S_x, S_y, B_1's spectrum, and Q, reducing the entire residual to one precise structural question rather than treating the six pairwise overlap patterns as independently selectable.",
+  "scope_note": "Hand-written proof, cross-checked by elementary arithmetic hygiene scripts (2-adic valuation and parity arguments confirmed computationally for exponents in [2,14]), not a formal verifier or graph census. No graph-realizability model is built in this pass (Level 4, explicitly deferred).",
+  "level_1_pairwise_results": {
+    "(R_x,R_y)": "already resolved in type_t_joint_bridge_universalization.md 3.1.1: vertex-disjoint forces rho_x!=rho_y; overlapping escapes via an explicit family. Not re-derived here.",
+    "(R_x,S_x)_and_(R_y,S_y)": "PROVED unconditionally safe, no overlap freedom at all: R_x,S_x are forced to share exactly the edge x-x' (x's unique edge into B_2^joint) then diverge into the theta's own two non-P_0 branches, which are pairwise internally disjoint BY DEFINITION. The one resulting cycle is P_1^x union P_2^x = 2^rho_x+2^s_x-1, always odd, hence never in F. Verified computationally for rho,s in [2,14].",
+    "(R_x,S_y)_and_(S_x,R_y)": "PROVED unconditionally safe in both overlap regimes: vertex-disjoint gives an odd total (2^rho_x+2^s_y+1), automatically safe; overlapping was separately checked (not assumed safe from the odd total alone, per the explicit instruction) via a general 2-cell split whose second cell is 2^a+2^b-2, proved never a power of two for a,b>=2 via 2-adic valuation. Verified computationally for a,b in [2,14].",
+    "(S_x,S_y)": "PROVED unconditionally safe: vertex-disjoint total is 2^s_x+2^s_y+2 (even, so oddness argument does not apply -- proved via valuation instead: never a power of two for s_x,s_y>=2, regardless of whether s_x=s_y). Since the disjoint realization is always available and always safe, no overlap analysis is needed for this pair's safety.",
+    "summary": "Of the six pairs among {R_x,S_x,R_y,S_y}, exactly one -- (R_x,R_y) -- can ever force a contradiction, and only in its vertex-disjoint sub-case. This is a complete, exhaustive Level-1 audit, not a partial one."
+  },
+  "level_2_simultaneous_consistency": {
+    "key_reduction": "PROVED: the entire remaining identical-terminal residual reduces to exactly one structural question -- whether Theta_x's P_1^x branch and Theta_y's P_1^y branch share an internal vertex. If no: R_x,R_y are vertex-disjoint, so rho_x != rho_y is forced and the row reduces to the already-covered enriched Type-B 2-cut. If yes: the escape is arithmetically available.",
+    "S_x_S_y_do_not_add_a_constraint": "PROVED: S_x lives on Theta_x's P_2^x branch, disjoint from P_1^x by the theta's own definition, so S_x cannot touch any P_1^x-internal coincidence vertex; symmetrically S_y. Their presence does not obstruct or force anything new about the (R_x,R_y) escape.",
+    "B_1_cross_cut_sums": "PROVED, no new qualitative content: B_1 and B_2^joint are different bridges of the same 2-cut, automatically disjoint, so all 12 cross-cut sums between Lambda(B_1)>={2,ell,ell+delta} and the enriched Lambda(B_2^joint) (4 elements) are unconditional. 4 of the 12 (the '2+...' terms) are automatically safe; the other 8 are open, ell-dependent, exactly mirroring type_t_exact_two_a.md's own table doubled across both vertices' exponents, with the same infinite safe family ell=2^t+1, t>max{rho_x,s_x,rho_y,s_y,3} generalizing immediately.",
+    "Q_not_resolved": "flagged honestly as an open sub-question: whether the triangle-contraction witness Q attaches at exactly {x,y} is itself undetermined per central_bridge_triangle.md Part III; if it does, Q's own outside arc needs its own overlap classification against the four paths and B_1, not carried out in this file."
+  },
+  "level_3_conclusion": "PROVED reduction, not a resolution: the identical-terminal row's fate depends entirely on whether Theta_x's and Theta_y's own P_1 branches can share an internal vertex -- a question not answered (either way) by any lemma in the fifteen previously-audited files or by any new argument found in this file.",
+  "level_4_graph_realizability": "NOT ATTEMPTED this pass. A concrete next-step model is proposed (smallest instantiation rho_x=rho_y=2, escape split (1,3)/(2,2), theta-branch-disjointness enforced structurally, B_1's admissible pair, min-degree-3, closure 2-connectivity, C4/C8/C16-freeness) but not built or run.",
+  "not_claimed": [
+    "whether the P_1^x/P_1^y vertex-coincidence is graph-realizable",
+    "Q's full interaction with the four-path system",
+    "resolution of the identical-terminal row in either direction",
+    "any all-orders theorem",
+    "Type T or Type N elimination"
+  ],
+  "output_files": {
+    "markdown": "type_t_identical_terminal_joint_spectrum.md",
+    "markdown_sha256": "b70e1aae0c96cce1713ef39f70f552096460b8054c04a4dbaae5e571426e6623"
+  },
+  "source_parent_commit": "9798e5d5a171bf95becd64316069f55682b74dfb"
+}

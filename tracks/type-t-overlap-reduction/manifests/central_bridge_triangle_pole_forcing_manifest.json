@@ -1,0 +1,30 @@
+{
+  "description": "Mechanical cross-check of central_bridge_triangle_pole_forcing.md: the degree-forcing argument (a cubic aligned pole X_x has only one spare edge once P_2 is required to avoid Y_x, forcing Y_x onto P_1 adjacent to X_x); the resulting forced power-of-two cycle of length exactly 2^rho_x (confirmed for rho_x in {2,3,4,5}), eliminating T3 entirely and restricting T2 to the last row of central_bridge_triangle.md's V.1 table (both poles equal to the shared non-cubic vertex); confirmation that the surviving row's shared pole is genuinely non-cubic (degree 6 in the constructed gadget) so no forced-cycle contradiction applies there.",
+  "scope_note": "Does not re-derive the near-power edge lemma, the N[x]-witness construction, or the standard definition of a theta graph (all cited by name). Independent of type_t_recovery_audit.md's R2/S2 correction and verifier/type_t_r2_s2_audit.py -- this file does not touch exact-two-attachment A's own arithmetic. Resolves only type_t_recovery_audit.md's 'theta-chord case IV.1(ii)' row, previously listed there as open.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 verifier/central_bridge_triangle_pole_forcing.py",
+  "source_parent_commit": "9588939",
+  "script_sha256": "fa0eca9e8ae3c034699e8b2b80f570bab9c096da84dcb92f6ef834d28740b45a",
+  "stdout_sha256": "910a4990da063985963d5be3e34294380b2445a051e59dad9a716e6c38ef9216",
+  "python_version": "3.11.15",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.11.15.",
+  "exit_status": 0,
+  "results": {
+    "degree_forcing": {
+      "y_degree": 3,
+      "y_non_x_edges": ["yprime", "z0"],
+      "conclusion": "case (ii) [chord, Y_x on Theta_x via P_1] is forced"
+    },
+    "forced_power_cycle": {
+      "rho_x_tested": [2, 3, 4, 5],
+      "cycle_lengths": [4, 8, 16, 32],
+      "all_power_of_two": true,
+      "all_valid_simple_cycles": true
+    },
+    "rows_1_2_3_impossible": true,
+    "row_4_no_forced_cycle": {"z0_degree": 6, "is_cubic": false},
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Both an independent hand-rolled cycle verifier (verify_cycle) and networkx (verify_cycle_nx) confirm every constructed forced cycle. 0 disagreements.",
+  "completed_range": "Small explicit gadgets for rho_x in {2,3,4,5}, s_x fixed at 2 (arbitrary representative) -- not a search; the argument itself is a closed-form proof for all rho_x >= 2, the gadgets are a representative sample, not the proof."
+}

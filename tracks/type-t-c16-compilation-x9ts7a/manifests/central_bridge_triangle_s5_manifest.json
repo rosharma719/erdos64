@@ -1,0 +1,24 @@
+{
+  "description": "Mechanical cross-check of central_bridge_triangle_s5.md Part VI.1's lobe-forcing argument: on an explicit double-S5 gadget (triangle a-b-c, two central bridges B_a,B_b both reaching a single shared cut vertex z of degree exactly 4), the triangle T is forced entirely into one lobe of G-z, and the attachment-free leaf sits entirely in the other -- confirming the abstractly-possible 'opposite lobes' distribution never occurs, independent of the hand argument.",
+  "scope_note": "Does not re-derive S5 itself (cited by name: at most one cut vertex, degree exactly 4). What is checked: on the constructed gadget, z is a genuine articulation point of degree 4, removing z leaves T connected in one component, the leaf in a disjoint second component, and exactly two lobes total -- via networkx.articulation_points/node_connected_component/number_connected_components, independent of the markdown's structural argument.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/central_bridge_triangle_s5.py",
+  "source_commit": "43250d5486e7b27cb956ec3020c18e4020992aa2",
+  "script_sha256": "cd9e3e2bece61c72f5b987e07299175ef8b961322a7d96f367fe9263ca9553c6",
+  "stdout_sha256": "f3f90a26babff755fca1bbfb2647e4f12a9f40c489f6d18b2cd7d15782f1a041",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "triangle_not_split_and_leaf_on_other_side": {
+      "z_is_cut_vertex": true,
+      "z_degree": 4,
+      "T_together_after_removing_z": true,
+      "leaf_disjoint_from_T_side": true,
+      "exactly_two_lobes": true
+    },
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Uses networkx directly (articulation_points, node_connected_component, number_connected_components), independent of this project's hand-rolled cycle/component checkers used elsewhere. 0 disagreements with the hand-derived prediction.",
+  "completed_range": "One small, deterministic illustrative gadget realizing the L=L' instance of the forced configuration, not a search or census -- consistent with the phase's explicit decision not to launch broad computation."
+}

@@ -1,0 +1,53 @@
+{
+  "environment": {
+    "pysat_version": "1.9.dev7",
+    "python_version": "3.11.15"
+  },
+  "scope": "Witness-avoidance (not witness-enumeration) SAT/CEGAR models asking directly whether a completion exists that avoids C4, C8, and a length-14 a-y path simultaneously (model M14), for the gap-two/gap-one E=29 baselines and three relaxations. Strategic pivot from type_b_witness_motif_analysis.md's finding that no small common motif explains the elimination mechanism. Does not claim any all-orders theorem.",
+  "method": "CEGAR over a PySAT exact-degree cardinality encoding (CardEnc.equals), each proposed completion checked by a fresh from-scratch backtracking a-y path detector (find_ay_path_len_dfs, independent of motif_mine.py's networkx-based enumeration and of the C generators), blocking on C4, C8, or the forbidden length-14 path until either a survivor is found (SAT) or the solver returns UNSAT (every completion visited and blocked).",
+  "baseline_results": {
+    "gap2_e29": {
+      "vertices": 20, "path_length": 18, "off_path_vertices": "1 (degree 3)",
+      "non_path_edges": 11, "result": "UNSAT", "completions_blocked": 18682, "wall_time_seconds": 25.6
+    },
+    "gap1_e29": {
+      "vertices": 20, "path_length": 17, "off_path_vertices": "2 (degree 3 each)",
+      "non_path_edges": 12, "result": "UNSAT", "completions_blocked": 31338, "wall_time_seconds": 80.5
+    }
+  },
+  "e30_confirmation": "deliberately deferred, not re-run via CEGAR (153-role-config sweep judged not worth the marginal evidence given existing triple-cross-validated complete census); E=30's length-14 claim rests on type_b_order40_generators.md + type_b_witness_motif_analysis.md's complete enumeration, not on a fresh CEGAR run",
+  "relaxation_results": {
+    "relaxation_1_extra_off_path_vertex": {
+      "vertices": 21, "path_length": 18, "off_path_vertices": "2 (degrees 3, 4 -- forced by parity)",
+      "non_path_edges": 13, "result": "UNSAT", "completions_blocked": 37362, "wall_time_seconds": 107.9
+    },
+    "relaxation_2_extra_path_vertex": {
+      "vertices": 21, "path_length": 19, "off_path_vertices": "1 (degree 4 -- forced by parity)",
+      "non_path_edges": 12, "result": "UNSAT", "completions_blocked": 23678, "wall_time_seconds": 42.2
+    },
+    "relaxation_3_order_22_both": {
+      "vertices": 22, "path_length": 19, "off_path_vertices": "2 (degree 3 each -- parity now permits symmetric degrees)",
+      "non_path_edges": 13, "result": "UNSAT", "completions_blocked": 58750, "wall_time_seconds": 325.6
+    }
+  },
+  "headline": "All three relaxations of the gap-two E=29 baseline remain M14-unsatisfiable: length-14 forcing did not become satisfiable under any of the three slack increases tried (extra off-path vertex, extra path vertex, or both together at order 22). Explicitly NOT evidence of an all-orders pattern -- only four data points, all within order 20-22 -- but evidence the forcing is not a knife-edge artifact of the single most-constrained layer.",
+  "proved_lemmas": [
+    "Lemma 4 (hub+matching decomposition): at every E=29 geometry examined, every path vertex (including a,y) has degree deficit exactly 1 while every off-path vertex's deficit equals its full degree target (no path edges); every completion therefore decomposes into off-path-vertex-to-path-vertex edges saturating the off-path vertices, plus a perfect matching on the remaining path vertices."
+  ],
+  "incomplete_attempts": [
+    "A hand proof that Lemma 4's hub+matching reduction is always forced into a length-14 path (via case analysis on hub-attachment choice and matching-edge spans) was attempted but not completed; stated as an open step, not claimed."
+  ],
+  "correction_made": "Justified and scoped the path-reversal symmetry used in type_b_witness_motif_analysis.md: valid as a counting automorphism of the fixed-degree combinatorial search within each layer (a and y always carry identical deficits there), but NOT claimed as a symmetry of the underlying Type-B tuple/bridge realizability semantics, since type_b_order40_frontier.md distinguishes a ('the gateway') and y via different forcing mechanisms in the parent bridge.",
+  "not_claimed": [
+    "a general hand proof that M14 is unsatisfiable",
+    "any all-orders theorem",
+    "any conclusion about orders beyond 20-22",
+    "a fresh CEGAR-based E=30 confirmation (deferred)",
+    "anything about C16 or length-6 avoidance (M16/M6, deliberately not started)"
+  ],
+  "output_files": {
+    "markdown": "type_b_p14_avoidance_analysis.md",
+    "script": "verifier/type_b_p14_avoidance_sat.py",
+    "script_sha256": "6e1d43ba870069cf7da15e0bc74a1702f0f4dd7a417ad162c79445f671dbed44"
+  }
+}

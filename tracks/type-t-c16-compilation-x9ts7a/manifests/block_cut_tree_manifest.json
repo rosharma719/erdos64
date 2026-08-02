@@ -1,0 +1,22 @@
+{
+  "description": "Mechanical cross-check of contraction_block_cut_tree.md Parts I-V: attachment-core pruning (connectivity, all-leaves-marked, attachment representation, path projection without repetition), the attachment-free-leaf S5 consequence, the singly-marked-leaf MA1 construction, and the MA2 trichotomy.",
+  "scope_note": "Does not re-derive S5 or the Gao-Huo-Liu-Ma admissible-path theorem (both cited by name from lemmas.md/two_cut.md). The MA1 construction check uses explicitly hand-picked x-z paths (not derived from the cited theorem) purely to exercise the mechanical concatenation-with-S construction and confirm it preserves the length difference; it does not independently verify the theorem's own {1,2} guarantee. Kept separate from the eight prior contraction verifiers, none of which are touched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/block_cut_tree.py",
+  "source_commit": "4beb692dd87ff3cd44e69ab20490f22be17af64c",
+  "script_sha256": "3085780496339ba472fd1128ece01c7b71155703eadbd47eccc073416fe4d062",
+  "stdout_sha256": "8cc38d3899749e81acbc957cd690d0618a78c4dffdbcc0441d0c1cfa6bde024c",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "attachment_core_pruning": {"num_blocks_total": 3, "num_blocks_in_core": 1, "core_connected": true, "all_leaves_marked": true},
+    "path_projection": {"blocks_visited_in_order": ["L1", "L2", "L3"], "no_repetition": true},
+    "attachment_free_leaf_s5": {"z_is_cut_vertex": true, "components_after_removal": 2, "deg_z": 4, "edges_into_L": 2, "edges_into_other_side": 2},
+    "ma1_construction": {"path_lengths": [4, 2], "delta": 2, "Q1_length": 7, "Q2_length": 5, "Q_delta_matches": true},
+    "ma2_trichotomy": {"case_singly_marked_leaf_present": true, "case_multiply_marked_leaf_present": true, "trichotomy_1_or_3_always_available": true},
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Block-cut tree structure computed via networkx.biconnected_components/articulation_points (an independent library routine, not this project's own code), pruning and projection logic verified by direct construction/inspection. 0 disagreements.",
+  "completed_range": "All gadgets processed to completion; this is a small, deterministic set of explicit illustrative constructions, not a search or census -- consistent with the phase's explicit decision not to launch broad computation."
+}

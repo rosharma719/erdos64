@@ -1,0 +1,77 @@
+{
+  "schema": "erdos64-z3-lift-plan-v1",
+  "created": "2026-07-25",
+  "group": "Z3",
+  "normalization": {
+    "tree_rule": "BFS rooted at 0; vertices and neighbors scanned increasingly",
+    "tree_voltage": 0,
+    "cotree_coordinates": 13,
+    "coordinate_order": "lexicographic edge order",
+    "assignment_encoding": "base 3, coordinate 0 least significant"
+  },
+  "assignments_per_base_including_zero": 1594323,
+  "nonzero_assignments_per_base": 1594322,
+  "total_nonzero_assignments": 6377288,
+  "cycle_test_order": [4, 8, 16, 32, 64],
+  "binary": "verifier/z3_lift_search",
+  "source": "verifier/z3_lift_search.cpp",
+  "shards": [
+    {
+      "id": "base0-full",
+      "base": "data/z3_lifts/base0_markstroem.edges",
+      "base_index": 0,
+      "range": [0, 1594323],
+      "summary": "logs/z3_lifts/base0-full.json",
+      "survivor_prefix": "data/z3_lifts/results/base0-full",
+      "outputs": [
+        "data/z3_lifts/results/base0-full.after8.txt",
+        "data/z3_lifts/results/base0-full.after16.txt",
+        "data/z3_lifts/results/base0-full.after32.txt",
+        "data/z3_lifts/results/base0-full.after64.txt"
+      ]
+    },
+    {
+      "id": "base1-full",
+      "base": "data/z3_lifts/base1_hss.edges",
+      "base_index": 1,
+      "range": [0, 1594323],
+      "summary": "logs/z3_lifts/base1-full.json",
+      "survivor_prefix": "data/z3_lifts/results/base1-full",
+      "outputs": [
+        "data/z3_lifts/results/base1-full.after8.txt",
+        "data/z3_lifts/results/base1-full.after16.txt",
+        "data/z3_lifts/results/base1-full.after32.txt",
+        "data/z3_lifts/results/base1-full.after64.txt"
+      ]
+    },
+    {
+      "id": "base2-full",
+      "base": "data/z3_lifts/base2_hss.edges",
+      "base_index": 2,
+      "range": [0, 1594323],
+      "summary": "logs/z3_lifts/base2-full.json",
+      "survivor_prefix": "data/z3_lifts/results/base2-full",
+      "outputs": [
+        "data/z3_lifts/results/base2-full.after8.txt",
+        "data/z3_lifts/results/base2-full.after16.txt",
+        "data/z3_lifts/results/base2-full.after32.txt",
+        "data/z3_lifts/results/base2-full.after64.txt"
+      ]
+    },
+    {
+      "id": "base3-full",
+      "base": "data/z3_lifts/base3_hss.edges",
+      "base_index": 3,
+      "range": [0, 1594323],
+      "summary": "logs/z3_lifts/base3-full.json",
+      "survivor_prefix": "data/z3_lifts/results/base3-full",
+      "outputs": [
+        "data/z3_lifts/results/base3-full.after8.txt",
+        "data/z3_lifts/results/base3-full.after16.txt",
+        "data/z3_lifts/results/base3-full.after32.txt",
+        "data/z3_lifts/results/base3-full.after64.txt"
+      ]
+    }
+  ],
+  "completeness_rule": "Each half-open range is exhaustive; zero is skipped as disconnected; no quotienting is used."
+}

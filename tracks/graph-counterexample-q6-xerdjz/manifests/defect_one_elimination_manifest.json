@@ -1,0 +1,36 @@
+{
+  "all_checks_pass": true,
+  "h0": {
+    "all_complement_cases_have_c4": true,
+    "complement_case_results": [
+      {
+        "case": "complement_of_C6",
+        "has_c4": true,
+        "m": 9,
+        "n": 6,
+        "regular_cubic": true
+      },
+      {
+        "case": "complement_of_2C3",
+        "has_c4": true,
+        "m": 9,
+        "n": 6,
+        "regular_cubic": true
+      }
+    ],
+    "exhaustive_geng_all_have_c4": true,
+    "exhaustive_geng_count": 2,
+    "n_forced": 6
+  },
+  "h1": {
+    "algebra_failures": [],
+    "h1_q1_graphs_checked": 74,
+    "mechanism_confirmed": 74,
+    "mechanism_failures": [],
+    "n_range": [
+      7,
+      12
+    ]
+  },
+  "records_sha256": "a82ae5ab454c0c31f834fa5519c94dd5d723e33280959b521b6ed81e2dabefcc"
+}

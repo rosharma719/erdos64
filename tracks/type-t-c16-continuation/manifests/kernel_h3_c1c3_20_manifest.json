@@ -1,0 +1,163 @@
+{
+  "degree_feasibility": {
+    "min_feasible_t": 8,
+    "per_t": [
+      {
+        "e_c_h": 4,
+        "feasible_ge_4h": false,
+        "n": 5,
+        "t": 0
+      },
+      {
+        "e_c_h": 5,
+        "feasible_ge_4h": false,
+        "n": 6,
+        "t": 1
+      },
+      {
+        "e_c_h": 6,
+        "feasible_ge_4h": false,
+        "n": 7,
+        "t": 2
+      },
+      {
+        "e_c_h": 7,
+        "feasible_ge_4h": false,
+        "n": 8,
+        "t": 3
+      },
+      {
+        "e_c_h": 8,
+        "feasible_ge_4h": false,
+        "n": 9,
+        "t": 4
+      },
+      {
+        "e_c_h": 9,
+        "feasible_ge_4h": false,
+        "n": 10,
+        "t": 5
+      },
+      {
+        "e_c_h": 10,
+        "feasible_ge_4h": false,
+        "n": 11,
+        "t": 6
+      },
+      {
+        "e_c_h": 11,
+        "feasible_ge_4h": false,
+        "n": 12,
+        "t": 7
+      },
+      {
+        "e_c_h": 12,
+        "feasible_ge_4h": true,
+        "n": 13,
+        "t": 8
+      },
+      {
+        "e_c_h": 13,
+        "feasible_ge_4h": true,
+        "n": 14,
+        "t": 9
+      },
+      {
+        "e_c_h": 14,
+        "feasible_ge_4h": true,
+        "n": 15,
+        "t": 10
+      },
+      {
+        "e_c_h": 15,
+        "feasible_ge_4h": true,
+        "n": 16,
+        "t": 11
+      }
+    ]
+  },
+  "full_search": {
+    "survivors_by_t": {
+      "0": [
+        [
+          [0, 1],
+          [0, 2],
+          []
+        ],
+        [
+          [0, 1],
+          [1, 2],
+          []
+        ],
+        [
+          [0, 2],
+          [0, 1],
+          []
+        ],
+        [
+          [0, 2],
+          [1, 2],
+          []
+        ],
+        [
+          [1, 2],
+          [0, 1],
+          []
+        ],
+        [
+          [1, 2],
+          [0, 2],
+          []
+        ]
+      ],
+      "1": [],
+      "2": [
+        [
+          [0, 1],
+          [0, 2],
+          [1, 2]
+        ],
+        [
+          [0, 1],
+          [1, 2],
+          [0, 2]
+        ],
+        [
+          [0, 2],
+          [0, 1],
+          [2, 1]
+        ],
+        [
+          [0, 2],
+          [1, 2],
+          [0, 1]
+        ],
+        [
+          [1, 2],
+          [0, 1],
+          [2, 0]
+        ],
+        [
+          [1, 2],
+          [0, 2],
+          [1, 0]
+        ]
+      ],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": []
+    },
+    "tested": 88569
+  },
+  "pure_cycle_compatibility": {
+    "all_incompatible": true,
+    "incompatible_pairs": 144,
+    "pairs_tested": 144,
+    "path_survivors_t0_t2": 12,
+    "pure_cycle_survivors": 12
+  },
+  "records_sha256": "392e79bef3b19478d313270ecb71f449b896812876e79eb9a9fa8ba1ee00f9be"
+}

@@ -1,0 +1,34 @@
+{
+  "description": "Mechanical cross-check of contraction_central_bridge.md Parts I-V: CB1 (central bridge always has >=2 attachments), the endpoint-return cycle list, the topological-K4 construction and its exact seven-cycle enumeration, the NPT substitution table, the first-excursion containment fact, and a structural (non-minimality-certified) instance of a two-excursion CB2 itinerary.",
+  "scope_note": "CB1's computational check is a structural cut-vertex check, not a re-derivation of S5 (already established elsewhere and cited by name). The topological_k4 check independently enumerates the COMPLETE simple-cycle set of the constructed subdivision via networkx, confirming exactly seven cycles match prediction (not merely that the seven predicted lengths are realizable). The CB2 structural instance is explicitly NOT claimed to be minimal or canonical -- only that it is a genuine, itinerary-respecting simple path, i.e. that CB2 is not excluded by anything proved so far. Kept separate from the six prior contraction verifiers, none of which are touched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/central_bridge.py",
+  "source_commit": "039c80fe3291e8f6267c85dee810472f45d9c9a5",
+  "script_sha256": "1a08aace7430ec4addd8081e29c347f07cb036912f03de4e650721ebfac0ed30",
+  "stdout_sha256": "15c86cfe7e3009fa0a8acb6508584fb86942ce43dd9261dea9af2393f50e1439",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "cb1": {"components_after_removing_v": 2, "v_is_cut_vertex": true},
+    "endpoint_return_cases_checked": 3,
+    "topological_k4_cases_checked": 3,
+    "topological_k4_independent_enumeration": "each of 3 gadgets: predicted 7-length multiset matches the complete independently-enumerated simple-cycle set exactly (not a subset check)",
+    "npt_k4_substitution_full_range_checked": {
+      "r_range": "2..6", "s_range": "2..6",
+      "ell_d_pairs_tested": 35,
+      "total_parameter_tuples_checked": 1500,
+      "closed_formulas_confirmed_safe_every_tuple": ["N+2 or M+2 (Lemma F slot)", "M+N (Lemma E)", "the odd M+2/N+2 slot"],
+      "note": "full-range check run separately from main() (which prints only a 4-item sample); see verifier source check_npt_k4_substitution for the exact loop"
+    },
+    "first_excursion": {"B_v_component": ["bv1", "w"], "Cprime_component": ["cp1", "cp2"], "genuinely_separate": true},
+    "cb2_structural_instance": {
+      "itinerary": ["v", "w", "bv1", "y1", "y2", "bp1", "p"],
+      "genuinely_two_excursions": true,
+      "certified_minimal_or_canonical": false
+    },
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Every constructed gadget cycle validated by two independent implementations (hand-rolled adjacency traversal verify_cycle, and independently constructed networkx traversal verify_cycle_nx, both imported from verifier/contraction_lift.py); the topological-K4 check additionally cross-validates against a full independent networkx.simple_cycles enumeration, not just pairwise construction checks. 0 disagreements.",
+  "completed_range": "All listed gadget parameter tuples processed to completion; the NPT substitution table was checked over its full stated range (r,s in 2..6, 35 (ell,d) pairs, 1500 total tuples), not merely the 4-item sample printed by main()."
+}

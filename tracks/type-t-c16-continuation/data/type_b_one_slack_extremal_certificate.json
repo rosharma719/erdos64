@@ -1,0 +1,20 @@
+{
+  "assertion_failures": 0,
+  "c4_detector_disagreements": 0,
+  "c8_detector_disagreements": 0,
+  "conclusion": "the 29-edge one-slack remainder layer is empty",
+  "degree_two_histogram": {
+    "3": 9,
+    "4": 61,
+    "5": 122,
+    "6": 92,
+    "7": 19,
+    "8": 1
+  },
+  "graphs_checked": 304,
+  "graphs_with_at_most_two_degree_two_vertices": 0,
+  "input": "data/c48_n19e29.s6",
+  "input_sha256": "bf81b89b826ae3153c7497addb26025796b982a52a5e39210754f15620226562",
+  "scope": "20-vertex Pi0 bridge, 19-vertex remainder, extremal 29-edge layer only",
+  "unresolved": "the 28-edge remainder layer"
+}

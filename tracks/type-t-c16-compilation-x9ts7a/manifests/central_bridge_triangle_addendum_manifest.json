@@ -1,0 +1,42 @@
+{
+  "description": "Mechanical cross-check of the double-S leaf equality and the corrected anchored-detour result: length-3 and length-4 detours each force a C4. The older length-4 plus rho=2 C8 calculation is retained only as conditional arithmetic; every such anchored length-4 fixture already has a C4.",
+  "scope_note": "Does not re-derive S5, the triangle-pair lemma, or two_cut.md's bridge-spectrum identity. The gadgets are finite negative fixtures, not minimal-counterexample realizations. The correction excludes the claimed length-3/4 detours but does not eliminate exact-two-attachment A, because T2 never guaranteed that its admissible pair contains the shortest path of length 2.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/central_bridge_triangle_addendum.py",
+  "source_parent_commit": "d00fdac45cf85913f637c119d7a8a989aec0a8ee",
+  "script_sha256": "067bd55468df00204891a959c96bd06e9eea8e1953a3cca1bbbf85af378df13a",
+  "stdout_sha256": "147d80b9272de8b186dafd6d07e9e8dca5af5b5d3433a33e9576d4fe45880f80",
+  "python_version": "3.14.6",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Matches the repository's .python-version pin.",
+  "exit_status": 0,
+  "results": {
+    "l_equals_lprime": {
+      "num_components": 2,
+      "leaf_component": ["l1", "l2", "l3"],
+      "rest_component_contains_triangle": true,
+      "L_equals_Lprime": true
+    },
+    "lambda_x_excludes_three": {
+      "rho": 3,
+      "s": 3,
+      "detour_length": 3,
+      "closed_cycle_length": 4,
+      "confirms_lambda_x_excludes_three": true
+    },
+    "lambda_x_excludes_four": {
+      "detour_length": 4,
+      "forced_cycle_length": 4,
+      "confirms_lambda_x_excludes_four": true
+    },
+    "lambda_x_four_excludes_rho_two": {
+      "rho_2_conditional_cycle_length": 8,
+      "rho_2_conditional_cycle_is_forbidden": true,
+      "rho_3_conditional_cycle_length": 12,
+      "rho_3_conditional_cycle_is_forbidden": false,
+      "both_anchored_fixtures_already_have_c4": true
+    },
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Both an independent hand-rolled cycle verifier (verify_cycle) and NetworkX (verify_cycle_nx) confirm every constructed cycle. 0 disagreements.",
+  "completed_range": "Four small explicit checks, not a search or graph census."
+}

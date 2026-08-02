@@ -1,0 +1,78 @@
+{
+  "description": "Realizability audit for the exact irreducible Type-B forced-spectrum family: exact first-20 prefix, sharp first-scale path-union certificates, one fixed-template paired saturation UNSAT certificate, complete Balaban C16 recovery, and a finite witness-preserving 2-switch audit.",
+  "scope_note": "The fixed-template computation covers one literal minimum-order path embedding for Pi=(2,2,4,4,1,1), not every embedding at order 36, not the other first-twenty tuples, and no higher order. Closure 2-connectivity, T9B, and C16-freeness are deliberately omitted from that model, making its UNSAT conclusion valid for the larger relaxed fixed-embedding class. The Balaban mutation result covers only the stated degree-preserving 2-switch class. ICF remains conjectural; this is not proof-assistant formal verification.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_b_realizability.py --certificate data/type_b_pi0_fixed_template_certificate.json",
+  "canonical_embedded_input_command": "jq -cS '{family_definition: .family_definition, first_tuple: .first_twenty[0], fixed_paths: .fixed_template_saturation.fixed_paths}' data/type_b_pi0_fixed_template_certificate.json",
+  "source_parent_commit": "7da6882b28dacc68798706715fe64c16d330c318",
+  "source_checksums": {
+    "verifier/type_b_realizability.py": "57312eabe23354e6f83d4b8199354e8d3d7a7ba18d088abab01e6355da99bd16",
+    "tests/test_type_b_realizability.py": "41fc9679fbaa6b0853b9f7bcd07043489a2398e389467a7bffb7feb13ea58c7f",
+    "verifier/cycle_detect.py": "e74e9528916dd38cb3d94caf734b575f8c6a78c222fd2098084bd17620ee809d",
+    "verifier/type_t_exact_two_a.py": "615e593acb8d54eef945ff1d1d8ffaf783896699e319fb2278a9b66967862446"
+  },
+  "input_checksums": {
+    "type_b_compatibility.md": "8d86695516cc685902b07a8d0f90b1742ce63abf3628c7ea72b7c944c91be8bb",
+    "type_t_exact_two_a.md": "c07812b35725bcd74711ed295cd2866e296a2da964c106943662e4c34c9bcf53",
+    "canonical_embedded_solver_input": "c031ee6c3da855c109e22df4bf9aca179b378766c89f044609d4d48a24459735"
+  },
+  "output_checksums": {
+    "data/type_b_pi0_fixed_template_certificate.json": "e9db6597027ec25ea018c1b3322cde2d6b30694b94512b6d09256079f711ef41",
+    "stdout": "8a1347735546cf43d3a03946f33ce9f1457cfd725f49e52a220d2102962f464a",
+    "type_b_realizability.md": "44e16335f31b30781042cc4be0bf6e45faa3954d51b3bf6258a2c7cbbfa2751d"
+  },
+  "versions": {
+    "python": "3.14.6",
+    "networkx": "3.6.1",
+    "ortools": "9.15.6755",
+    "python_sat": "1.9.dev7",
+    "cp_sat_workers": 1,
+    "cp_sat_random_seed": 640031
+  },
+  "exit_status": 0,
+  "validation": {
+    "targeted_pytest_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_realizability.py",
+    "targeted_pytest_result": "5 passed",
+    "full_command": "make check",
+    "full_result": "95 Python files parsed; 92 tests passed; native checkers built successfully",
+    "git_push_result": "d1e3959 and 7da6882 pushed; local HEAD and upstream both 7da6882b28dacc68798706715fe64c16d330c318 before realizability edits"
+  },
+  "results": {
+    "family": "Pi=(rho,s,t,u,delta,epsilon), rho,s>=2, delta,epsilon in {1,2}, t,u>max(rho,s,3)",
+    "smallest_tuple": [2, 2, 4, 4, 1, 1],
+    "smallest_forced_spectra": [[2, 17, 18], [4, 5, 17, 18]],
+    "first_twenty_exact_prefix": true,
+    "smallest_bridge_order_bounds": [19, 19],
+    "smallest_full_order_bound": 36,
+    "smallest_full_size_bound": 55,
+    "path_union_completed_range": "t=u=4; both delta=1,2 B1 systems and both epsilon=1,2 B2 systems; exact orders 19 and 20",
+    "fixed_template": {
+      "parameter_tuple": [2, 2, 4, 4, 1, 1],
+      "bridge_orders": [19, 19],
+      "full_order": 36,
+      "within_bridge_edge_variables": 340,
+      "hard_possible_c4_constraints": 23256,
+      "learned_literal_c8_witnesses": 138,
+      "ortools_status": "INFEASIBLE",
+      "independent_cnf_variables": 1998,
+      "independent_cnf_clauses": 26318,
+      "independent_glucose3_result": "UNSAT"
+    },
+    "balaban": {
+      "admissible_pair": [11, 13],
+      "host_vertex_connectivity": 3,
+      "pair_symmetric_difference_cycle_length": 10,
+      "all_c16_cycles": 3298,
+      "c16_cycles_vertex_disjoint_from_both_paths": 672,
+      "independent_exact_enumerators_agree": true,
+      "canonical_mechanism": "length-5 rigid-core ear plus length-11 canonical-union route",
+      "structural_two_switch_mutations": 826,
+      "first_c4_failures": 135,
+      "first_c8_failures": 316,
+      "first_c16_failures": 375,
+      "clean_through_c16": 0
+    },
+    "assertion_failures": 0
+  },
+  "independent_verification": "Every minimum-order path union is checked by the project DFS detector and NetworkX. The fixed-template CP-SAT CEGAR clauses contain literal simple C8 witnesses; a from-scratch PySAT sequential-cardinality CNF, not CP-SAT's encoding, independently proves the accumulated instance UNSAT with Glucose3. NetworkX simple_cycles and a separate elementary DFS enumerator agree on the complete canonical set of 3,298 Balaban C16s. Every 2-switch failure stores a literal cycle whose distinct vertices and mutated-graph edges are rechecked.",
+  "completed_range": "Exact family functions and first 20 ordered tuples; exact path-union optima for t=u=4 and both gaps; all 340 within-bridge edge choices in one fixed Pi0 order-(19,19) embedding subject to the documented relaxed hard constraints; all 3,298 C16s of the exact Balaban-derived bridge; all 826 simple degree-preserving 2-switches that remove an unprotected canonical-C16 edge, preserve both admissible paths, and retain closure biconnectivity. No other embedding, tuple, order, or mutation class is claimed."
+}

@@ -1,0 +1,123 @@
+{
+  "description": "Ordinary-graph completion attack on the explicit Type-T E2_parallel two-port family. Materializes and audits the expanded cores, reduces same-vertex completion to a perfect matching, screens every rooted j=4 translation, certifies three representative translations UNSAT, and preserves an independently checked C4/C8-free near miss.",
+  "status": "COMPLETION_FIXED_INSTANCES_CLOSED_PARAMETRIC_FAMILY_OPEN",
+  "scope_note": "This is not an all-translation j=4 theorem. Three of 324 rooted j=4 translations have exact UNSAT certificates; all 324 have first-order compatibility/perfect-matching screening. No j=5 matching search, added-vertex completion, Q placement, or degree-five analysis is claimed.",
+  "source_parent_commit": "0b7e778a1764a0bc23613e0f8d4a99124ef8b0e6",
+  "python_version": "3.14.6",
+  "commands": {
+    "phase0": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_completion_check.py --phase0",
+    "rooted_orbits": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_matching_sat.py --j 4 --screen-rooted-orbits",
+    "heuristic": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_matching_sat.py --j 4 --a 2 --c 2 --heuristic --seed 1 --steps 12000",
+    "near_miss_check": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_completion_check.py --completion data/type_t_port_completion/j4_a2_c2_c4_c8_near_miss.json",
+    "near_miss_repairs": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_completion_check.py --repair-audit data/type_t_port_completion/j4_a2_c2_c4_c8_near_miss.json",
+    "exact_sequential_template": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_matching_sat.py --j 4 --a A --c C --max-seconds 180 --max-iterations 1000000 --cycle-limit 20000",
+    "exact_pairwise": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_matching_sat.py --j 4 --a 2 --c 2 --encoding pairwise --max-seconds 180 --max-iterations 1000000 --cycle-limit 20000",
+    "final_cnf_independent_solvers": "Load the decompressed final CNF with python-sat Solver(name='cadical195') and Solver(name='lingeling'); both solve() calls returned False",
+    "proof_check": "drat-trim at commit 2e3b2dc0ecf938addbd779d42877b6ed69d9a985 on the decompressed final CNF and DRAT trace; result s VERIFIED"
+  },
+  "hashes": {
+    "type_t_port_completion.md": "7f70245c2a862450631f319acc5ae5f0de93719e41e9116c9a5245de60575ff9",
+    "verifier/type_t_port_core_export.py": "6224d429de87a91352b17a90fac934ada76ba744eb3da67b86ba075c3b1b4cee",
+    "verifier/type_t_port_matching_sat.py": "c6679832d744236252907a71120d1ea16c4a0e7f547853a55f60b296c12eca75",
+    "verifier/type_t_port_completion_check.py": "afeaf21f6d944ddc191459ad10eaea21b9da3b05b04dfa32ef2849df350ddd36",
+    "data/type_t_port_completion/phase0_core_audit.json": "483253c86a1110b50ae071597913ccac164e8d481c3bb488f90929d200ab349d",
+    "data/type_t_port_completion/j4_rooted_orbit_screen.json": "191f022d94d1ef40f7e155b981900749ceb42ada9c2bbce74a8a402afed50c19",
+    "data/type_t_port_completion/j4_a2_c2_exact_sequential.json": "11278c2220ff9b620f27a2577fc3727467845f5da7422e23e8642465dd0729a0",
+    "data/type_t_port_completion/j4_a2_c2_exact_pairwise.json": "ee628754661cd0cf7928613e1dc2ec5a8aaf108c492363d8a066667fd5e27940",
+    "data/type_t_port_completion/j4_a28_c4_exact_sequential.json": "831f74187eaada15d2dc47e785f597a75135721ac5f179df5a677d5cbb339c94",
+    "data/type_t_port_completion/j4_a55_c7_exact_sequential.json": "2b759db71bed0ca25b056c9674ac3e19fead8eda1eabf565a2445567f218558b",
+    "data/type_t_port_completion/j4_a2_c2_c4_c8_near_miss.json": "e7d4005bd0f1b89c56e2be9e97b4d0bcdab7228ed357b1c380490336c66305cb",
+    "data/type_t_port_completion/j4_a2_c2_c4_c8_near_miss_check.json": "b2ac8ce1e9068d358b8d9423d963a16252006231294ff41831a2468700346065",
+    "data/type_t_port_completion/j4_a2_c2_c4_c8_near_miss_repairs.json": "9c1efdc6b5a106405cffb0d3378aca1c9665661a19def78c2a8cfdb32ebfcc24",
+    "data/type_t_port_completion/j4_a2_c2_final.cnf.gz": "485afe186562d6a9c4c072d9223e17397118258a1d7659417d19480f7310cf6f",
+    "data/type_t_port_completion/j4_a2_c2_final.drat.gz": "6b043d563caa2821453b2ca0692bb0ac21002cdba6767a4ae0ffaff044179318",
+    "data/type_t_port_completion/j4_a2_c2_drat_check.txt": "9a6b0f8b13f629b50c47dfe313b00ddceeb64861c799307df08fb54c07253b63"
+  },
+  "phase0": {
+    "instances": 27,
+    "j_values": [4, 5, 6],
+    "extreme_interior_cross_combinations_per_j": 9,
+    "order_formula": "5*2^j+7",
+    "size_formula": "5*2^j+13",
+    "cycle_rank": 7,
+    "deficit_formula": "5*2^j-4 degree-two vertices, each of deficit one",
+    "ordinary_simple_cycles_per_core": 61,
+    "power_cycles": 0,
+    "assertion_failures": 0
+  },
+  "rooted_j4_screen": {
+    "parameter_pairs": 324,
+    "rooted_orbits": 324,
+    "translation_equivalences": 0,
+    "safe_edge_range": [656, 843],
+    "minimum_compatibility_degree_range": [4, 11],
+    "compatibility_graphs_with_perfect_matching": 324,
+    "tutte_obstruction_found": false
+  },
+  "exact_results": [
+    {
+      "parameters": [4, 2, 2],
+      "encoding": "sequential",
+      "status": "UNSAT",
+      "models": 2585,
+      "cuts": 105429,
+      "models_by_shortest_cycle": {"4": 489, "8": 2035, "16": 61}
+    },
+    {
+      "parameters": [4, 2, 2],
+      "encoding": "pairwise",
+      "status": "UNSAT",
+      "models": 2600,
+      "cuts": 104079,
+      "models_by_shortest_cycle": {"4": 468, "8": 2071, "16": 61}
+    },
+    {
+      "parameters": [4, 28, 4],
+      "encoding": "sequential",
+      "status": "UNSAT",
+      "models": 4799,
+      "cuts": 245497,
+      "models_by_shortest_cycle": {"4": 667, "8": 3982, "16": 150}
+    },
+    {
+      "parameters": [4, 55, 7],
+      "encoding": "sequential",
+      "status": "UNSAT",
+      "models": 1414,
+      "cuts": 43493,
+      "models_by_shortest_cycle": {"4": 344, "8": 1045, "16": 25}
+    }
+  ],
+  "final_cnf_audit": {
+    "variables": 2033,
+    "clauses": 109419,
+    "glucose": "UNSAT with DRAT trace emitted",
+    "cadical195": "UNSAT; 40082 conflicts",
+    "lingeling": "UNSAT; 80473 conflicts",
+    "drat_trace_independently_checked": true,
+    "drat_checker": "drat-trim commit 2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "drat_result": "VERIFIED; 12473 input clauses and 55809 lemmas in core; 8385461 resolution steps; 11.497 seconds"
+  },
+  "near_miss": {
+    "parameters": [4, 2, 2],
+    "order": 87,
+    "size": 131,
+    "minimum_degree": 3,
+    "absent_power_cycles": [4, 8],
+    "present_power_cycles": [16, 32, 64],
+    "independent_detectors_agree": true,
+    "single_edge_deletions_tested": 131,
+    "valid_matching_two_switches_tested": 1338,
+    "power_cycle_free_repairs": 0
+  },
+  "theorem": "For the explicit ordinary E2_parallel port core at (j,a,c)=(4,2,2), no same-vertex perfect-matching completion avoids all power-of-two cycles. The same fixed-instance conclusion holds computationally at (4,28,4) and (4,55,7). This does not yet quantify over all 324 rooted j=4 translations.",
+  "next_dependency": "An all-orbit j=4 higher-order matching obstruction or an exhaustive exact run over the remaining 321 rooted translations. Only then move to j=5 or added vertices.",
+  "output_files": {
+    "markdown": "type_t_port_completion.md",
+    "core_exporter": "verifier/type_t_port_core_export.py",
+    "matching_search": "verifier/type_t_port_matching_sat.py",
+    "independent_checker": "verifier/type_t_port_completion_check.py",
+    "data_directory": "data/type_t_port_completion/",
+    "manifest": "manifests/type_t_port_completion_manifest.json"
+  }
+}

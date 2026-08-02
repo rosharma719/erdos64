@@ -1,0 +1,88 @@
+{
+  "environment": {
+    "networkx_version": "3.6.1",
+    "python_version": "3.11.15"
+  },
+  "scope": "Exhaustive witness enumeration + canonical motif clustering across all six existing Type-B candidate databases (B20, B20D2, gap2_e29, gap1_e29, gap2_e30, gap1_e30), performed to search for a common structural forcing mechanism. Does not assert any all-orders theorem.",
+  "total_candidates_mined": 1936,
+  "families": {
+    "B20": {
+      "source_data": ["data/type_b_slack_family_ii_graphs.json", "data/type_b_slack_family_ii_witnesses.json"],
+      "n_candidates": 54,
+      "geometry": "19 vertices, path p0..p17 (a=p0, y=p17), off-path vertex z=18"
+    },
+    "B20D2": {
+      "source_data": ["data/type_b_delta2_candidates.json", "data/type_b_delta2_witnesses.json"],
+      "n_candidates": 12,
+      "geometry": "19 vertices, full spanning path p0..p18 (a=p0, y=p18), no off-path vertex"
+    },
+    "gap2_e29": {
+      "source_data": ["data/type_b_order40_gap2_e29_graphs.json", "data/type_b_order40_gap2_e29_witnesses.json"],
+      "n_candidates": 104,
+      "geometry": "20 vertices, path p0..p18 (a=p0, y=p18), off-path vertex z=19"
+    },
+    "gap1_e29": {
+      "source_data": ["data/type_b_order40_gap1_e29_graphs.json", "data/type_b_order40_gap1_e29_witnesses.json"],
+      "n_candidates": 390,
+      "geometry": "20 vertices, path p0..p17 (a=p0, y=p17), off-path vertices z1=18, z2=19"
+    },
+    "gap2_e30": {
+      "source_data": ["data/type_b_order40_gap2_e30_graphs.json", "data/type_b_order40_gap2_e30_witnesses.json"],
+      "n_candidates": 296,
+      "geometry": "same as gap2_e29, E=30 (five degree-excess sub-cases, only B3 realizable)"
+    },
+    "gap1_e30": {
+      "source_data": ["data/type_b_order40_gap1_e30_graphs.json", "data/type_b_order40_gap1_e30_witnesses.json"],
+      "n_candidates": 1080,
+      "geometry": "same as gap1_e29, E=30 (five degree-excess sub-cases, only B3 realizable)"
+    }
+  },
+  "headline_reconfirmation": {
+    "method": "exhaustive re-enumeration of ALL simple C16 cycles and ALL simple a-y paths of length 6 and 14 per candidate, independent of the single witness previously recorded per candidate in the existing witness JSON files",
+    "result": "across all 1936 candidates: C4 count=0, C8 count=0, length-2 a-y path count=0, and every candidate has at least one internal C16 witness, at least one length-6 a-y path, and at least one length-14 a-y path (stronger than the previously-recorded disjunctive claim: all three hold simultaneously in every candidate)"
+  },
+  "proved_lemmas": [
+    "Lemma 1 (single-chord path creation): a chord (p_u,p_v), u<v, creates a simple a-y path of length L-(v-u)+1 where L is the path's edge count; equals 6 iff v-u=L-5, equals 14 iff v-u=L-13. General arithmetic identity, checked against every single-chord minimal witness found (no exceptions).",
+    "Lemma 2 (single-chord cycle creation): a chord (p_u,p_v) with v-u=15 closes a simple 16-cycle via the short arc plus the chord, independent of a,y,L. Observed twice in the data, both in gap1_e29 (L=17); never in the four L=18 families because the corresponding span-15 edges never occurred as edges there.",
+    "Lemma 3 (off-path vertices are chord-only): any off-path vertex has zero path edges, so its entire target degree is realized by chords, unconstrained by path-adjacency; restates degree bookkeeping already derived in type_b_order40_frontier.md."
+  ],
+  "empirical_findings": {
+    "chord_count_of_minimal_witnesses": "no fixed count works uniformly; ranges 1-9 for C16, 1-5 for length-6, 1-8 for length-14, depending on family (see md Section 3.1)",
+    "exact_motif_fragmentation": "8289 distinct exact (position-canonicalized) C16 motifs, 242 length-6 motifs, 4196 length-14 motifs across 1936 candidates -- essentially no exact motif sharing once path position is accounted for",
+    "off_path_hub_dependency_for_C16": "at least one minimal C16 witness touches the off-path vertex in 54/54 (B20), 104/104 (gap2_e29), 296/296 (gap2_e30), 1080/1080 (gap1_e30), and 388/390 (gap1_e29, 2 exceptions) candidates -- near-universal but not strictly universal",
+    "off_path_hub_dependency_for_closures": "weaker and non-monotonic for length-6/length-14 closures; both off-path-touching and pure-path-only minimal witnesses coexist in most candidates (md Section 3.4)"
+  },
+  "hand_theorem_attempt": {
+    "statement": "Every completion of the specified path-degree system avoiding C4 and C8 contains C16 or an a-y path of length 6 or 14.",
+    "status": "TRUE on all 1936 examined candidates (in fact the stronger conjunctive form holds); NOT proved in general",
+    "obstacles_identified": [
+      "no single motif or fixed chord count works uniformly across candidates (Section 3.1)",
+      "the near-universal C16/off-path-hub pattern has 2 known exceptions in gap1_e29, so it cannot ground an unconditional lemma without separately handling exceptional cases"
+    ]
+  },
+  "failed_lemmas": [
+    "every minimal C16 witness uses exactly 2 chords -- false, up to 9 chords observed",
+    "minimal length-6/length-14 witnesses never touch the off-path vertex -- false",
+    "every candidate has a single-chord length-6 closure path -- false, ranges 30%-100% of candidates by family",
+    "every minimal C16 witness touches the off-path vertex (strict universal) -- false, 2 exceptions in gap1_e29",
+    "a single-chord C16 witness (Lemma 2) occurs in every family -- false, only in gap1_e29"
+  ],
+  "not_claimed": [
+    "any all-orders theorem",
+    "a general proof of the hand-theorem statement beyond the 1936 examined candidates",
+    "any conclusion about E=31 or higher edge counts"
+  ],
+  "output_files": {
+    "markdown": "type_b_witness_motif_analysis.md",
+    "scripts": ["verifier/motif_mine.py", "verifier/motif_classify.py"],
+    "script_sha256": {
+      "verifier/motif_mine.py": "09e66fbb4b01b0a8c34ef961cb7635ff6516c672e0f0396b05275074b8bfcbc0",
+      "verifier/motif_classify.py": "7f5afff0280076eeb9b7b05d16976f0de7d98d181c3ab224ba09235bc05ed103"
+    },
+    "markdown_sha256": "15a9bbc550a45c898a803c733a815d44fa60cc9e09e7b359375ba43b46db6e52"
+  },
+  "runtime": {
+    "motif_mine_seconds": 74.7,
+    "motif_classify_seconds": 75
+  }
+}

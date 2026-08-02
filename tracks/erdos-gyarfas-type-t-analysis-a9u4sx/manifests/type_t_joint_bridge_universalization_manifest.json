@@ -1,0 +1,56 @@
+{
+  "description": "Dependency audit of the 15 Type-T/contraction/central-bridge files, plus new results on the joint (A,A) outcome: an unconditional cross-exponent obstruction (one-common-terminal row), a fully resolved overlap dichotomy for the two paths inside the merged bridge (identical-terminal row), the requested (A,P,S)x(A,P,S) joint outcome matrix, and an explicit synthesis (with corrected scope) connecting the (A,A) cell's realizability question to the order-40 frontier computational program already run this session. This manifest supersedes an earlier version whose new_result/synthesis fields incorrectly stated the identical-terminal row's obstruction as holding whenever the configuration survives at all; the corrected scope is recorded below.",
+  "scope_note": "Hand-written dependency audit and new hand proofs; not proof-assistant formal verification, not a graph census. Computation performed: elementary arithmetic hygiene checks (2^a+2^b in F iff a==b for a,b in [2,19]; the general two-cell escape family (1,L-1)/(2,L-2) is F-clean for all rho in [2,19]; the single-cell vertex-disjoint case always gives 2^(rho+1) in F for rho in [2,19]) confirming the closed-form arguments in Part 3 -- these are one-off python3 hygiene checks, not a formal verifier script, and no manifest-tracked verifier file was produced this pass.",
+  "audited_files": [
+    "contraction_saturation.md",
+    "contraction_central_bridge.md",
+    "contraction_separator_integration.md",
+    "contraction_block_cut_tree.md",
+    "contraction_leaf_blocks.md",
+    "contraction_ma2_integration.md",
+    "central_bridge_templates.md",
+    "central_bridge_triangle.md",
+    "central_bridge_triangle_s5.md",
+    "central_bridge_triangle_final.md",
+    "type_t_recovery_audit.md",
+    "type_t_exact_two_a.md",
+    "two_cut.md",
+    "type_b_realizability.md",
+    "type_b_compatibility.md"
+  ],
+  "new_results": {
+    "one_common_terminal_row": {
+      "status": "PROVED, unconditional",
+      "statement": "rho_x != rho_y is forced. B_x (cut {x,z_0}'s bridge 1, containing y and hence y's own rho_y/s_y branches) and B_2^(x) (the same cut's other bridge, containing x' and x's own rho_x/s_x branches) are two DIFFERENT bridges of the same 2-cut, hence automatically internally vertex-disjoint except at the two terminals -- no overlap question arises. two_cut.md's cross-cut sum (Lambda(B_x)+Lambda(B_2^(x))) avoid F gives 2^rho_y+2^rho_x not in F directly, i.e. rho_x != rho_y (else 2^(rho_x+1) in F). The other 3 cross-terms among the 4-element joint spectrum were checked exhaustively and found automatically safe (odd, or requiring an excluded exponent value)."
+    },
+    "identical_terminal_row": {
+      "status": "PROVED: B_x=B_y unconditional; the overlap dichotomy for P_x/P_y (both length-2^rho paths inside the single merged bridge B_2^joint) fully resolved into one proved sub-case and one proved refutation",
+      "B_x_equals_B_y": "PROVED unconditionally: both B_x and B_y, when att(B_v)={v,X_v} exactly, are shown (via contraction_separator_integration.md VI.1) to be the FULL connected component of the identical deletion G-{x,y} containing the shared vertex z_0; components of a fixed graph partition its vertices, so B_x=B_y. This resolves in this sub-case the previously-open component-sharing question from central_bridge_triangle.md V.2(2).",
+      "vertex_disjoint_subcase": "PROVED: if P_x, P_y share no internal vertices, their union is a single cycle of length 2^rho_x+2^rho_y, forced into F exactly when rho_x=rho_y -- outcome (1) of the task, but scoped exactly to this sub-case, not the whole row.",
+      "overlapping_subcase": "PROVED REFUTATION (not a theorem that the row is safe -- a proof that the naive extension of the vertex-disjoint result is FALSE): an explicit general two-cell escape family, valid for every rho>=2 (split lengths (1,2^rho-1) and (2,2^rho-2), giving safe cell-cycle lengths 3 and 2^(rho+1)-3), shows cell arithmetic alone does not exclude rho_x=rho_y once overlap is permitted. Whether this abstract escape is graph-realizable inside an actual B_2^joint satisfying all of the bridge's other constraints (internal degree >=3, 2-connected closure, the s_x/s_y branches) is NOT resolved and is the precise open residual -- exactly parallel to type_t_exact_two_a.md section 7's own path-incidence counterexamples, which likewise refuted an inference without resolving the underlying graph-realizability question.",
+      "unaudited_scope": "the other 5 pairs among the 4-element joint spectrum {2^rho_x, 2^s_x+1, 2^rho_y, 2^s_y+1} inside the same merged bridge B_2^joint were NOT analysed for overlap in this pass (only the rho_x-vs-rho_y pair, the one the task asked to resolve) -- flagged explicitly as unaudited, not assumed safe. A quick check shows odd total length does not by itself guarantee per-cell safety under overlap (example: rho_x=s_y=2 gives paths of length 4 and 5; split (1,3)/(3,2) exposes a first cell of length 4, in F)."
+    }
+  },
+  "joint_outcome_matrix_status": {
+    "(S,S)": "PROVED generic case (same z, forced lobe distribution, L=L' per addendum); OPEN degenerate z-in-T case",
+    "(S,A)/(S,P) mixed": "PROVED vacuous-crossing elimination; OPEN touching-and-detour-into-L case",
+    "(A,A)": "split by row: one-common-terminal PROVED unconditional rho_x!=rho_y forcing, residual OPEN for rho_x!=rho_y; identical-terminal PROVED B_x=B_y, PROVED rho_x!=rho_y forcing in vertex-disjoint sub-case only, PROVED refutation (not resolution) of the overlapping sub-case via an explicit escape family, graph-realizability of that escape OPEN",
+    "(A,P)/(P,A)": "OPEN, corrected scope only (no new derivation)",
+    "(P,P)": "OPEN, not reducible further than independent per-vertex templates plus Q's pair (no new derivation)"
+  },
+  "synthesis": "The order-40 frontier computation already run this session (type_b_order40_frontier.md, type_b_order40_generators.md, B19/B20/B20D2, the four order-21 E=29/E=30 layers) is relevant infrastructure -- NOT already a resolution -- for the single-vertex-anchored realizability question underlying the (A,A) cell (the one-common-terminal row's forced case, and the identical-terminal row's vertex-disjoint sub-case), via the exact tuple correspondence with type_b_realizability.md's frozen Pi=(rho,s,t,u,delta,epsilon) family (established via type_b_compatibility.md Section 3's mapping). It does NOT address the identical-terminal row's overlapping sub-case, nor the enriched two-exponent-system joint spectrum {2^rho_x,2^s_x+1,2^rho_y,2^s_y+1} in general -- that is a strictly richer object the existing generators were never built to target. This connection, and its precise limits, were not previously stated explicitly in any audited file.",
+  "not_claimed": [
+    "Type T or Type N elimination",
+    "any fully closed matrix cell",
+    "resolution of the identical-terminal row's overlapping sub-case (graph-realizability of the escape family)",
+    "that rho_x != rho_y is forced unconditionally across the whole (A,A) cell (only across the one-common-terminal row and the identical-terminal row's vertex-disjoint sub-case)",
+    "that the proposed joint-tuple computational model (Part 7) has been built or run",
+    "any all-orders theorem"
+  ],
+  "output_files": {
+    "markdown": "type_t_joint_bridge_universalization.md",
+    "markdown_sha256": "df332a6db2a448a5428d0ef8c0c5968e78e6738a12e421591afb92113bc6520a"
+  },
+  "source_parent_commit": "19f8eb7b56bbcf279476e02122f4ac79084ba3b3",
+  "corrects": "manifests/type_t_joint_bridge_universalization_manifest.json as committed in 19f8eb7 (and the corresponding chat summary in that turn), which stated the rho_x!=rho_y obstruction as applying uniformly to both rows of the joint (A,A) outcome; the identical-terminal row's applicability is actually restricted to its vertex-disjoint sub-case, with the overlapping sub-case left as an open residual after an explicit refutation of the naive extension."
+}

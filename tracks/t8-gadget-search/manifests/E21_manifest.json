@@ -1,0 +1,76 @@
+{
+  "experiment": "E21",
+  "generated_at": "2026-07-26T01:28:42Z",
+  "source_commit": "5b6e940803a66f753633c9b30e5481486e34ccd3",
+  "working_tree": {
+    "dirty": true,
+    "note": "The canonical run was executed during the integrity pass before its commit.",
+    "paths": [
+      "README.md",
+      "experiments.md",
+      "literature.md",
+      "plan.md",
+      "two_cut.md",
+      "verifier/bridge_compatibility.py",
+      "verifier/bridge_signature.py",
+      "verifier/spqr_k4_skeleton.py",
+      "verifier/three_bridge_search.py",
+      "manifests/",
+      "tests/",
+      "verification_status.md"
+    ]
+  },
+  "script": {
+    "path": "verifier/three_bridge_search.py",
+    "sha256": "a340f52602273beb3f133a14477ff8560ae74b0643664fd4b17dcc83c34bf819"
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/three_bridge_search.py",
+  "python_version": "Python 3.14.6",
+  "input": {
+    "file": null,
+    "generation_procedure": "Canonical JSON object with universe=[1,2,3,4,5,6,7,8], sizes=[2,3], and spectra equal to lexicographically ordered itertools.combinations(universe,size) for size 2 then 3; JSON serialized with sort_keys=True and separators=(',',':').",
+    "generated_spectrum_count": 84,
+    "canonical_byte_count": 672,
+    "sha256": "7b5e110a678075b26eaef1920b222f9d7aba76fcd26d9271db958af7fca45d82"
+  },
+  "models": {
+    "old_strict_order": {
+      "version": "sixth-pass strict permutation model",
+      "limitation": "Exactly one bridge can be represented as the unique lexicographic maximum, so triples with two or three self-sum-clean bridges are lost."
+    },
+    "corrected_tied_signature": {
+      "version": "integrity-pass tied-signature model",
+      "semantics": "Every self-sum-clean bridge may tie weakly at the lexicographic maximum; partial and three-way ties are representable."
+    }
+  },
+  "filters": {
+    "old_strict_order": [
+      {"stage": "generate size-2/3 spectra from 1..8", "count": 84},
+      {"stage": "T2 admissible difference 1 or 2", "count": 65},
+      {"stage": "combinations with replacement of three spectra", "count": 47905},
+      {"stage": "three pairwise cross-sum checks avoid powers of two", "count": 547},
+      {"stage": "old strict-order T5 representation", "count": 318}
+    ],
+    "corrected_tied_signature": [
+      {"stage": "generate size-2/3 spectra from 1..8", "count": 84},
+      {"stage": "T2 admissible difference 1 or 2", "count": 65},
+      {"stage": "combinations with replacement of three spectra", "count": 47905},
+      {"stage": "three pairwise cross-sum checks avoid powers of two", "count": 547},
+      {"stage": "corrected tied-signature T5 representation", "count": 547}
+    ]
+  },
+  "final_counts": {
+    "old_model_survivors": 318,
+    "corrected_model_survivors": 547,
+    "newly_represented": 229,
+    "new_exactly_two_self_sum_clean": 203,
+    "new_three_self_sum_clean": 26,
+    "graph_realizable_n_le_7": 0
+  },
+  "direct_reconciliation_check": {
+    "passed": true,
+    "statement": "The corrected-minus-old set is exactly the set of corrected cross-compatible triples with at least two self-sum-clean bridges; these and only these require a partial or three-way maximum tie unavailable to a strict permutation."
+  },
+  "interpretation": "Both finite counts are regression data only. The old count is incomplete; the corrected count confirms that the abstract conditions are insufficient. Neither count is evidence toward solving the conjecture, and zero graph-realizable survivors is vacuous because the n<=7 bridge library is empty.",
+  "exit_code": 0
+}

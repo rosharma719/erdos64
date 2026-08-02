@@ -1,0 +1,3 @@
+__pycache__/
+*.pyc
+verifier/one_pole_survivors.json

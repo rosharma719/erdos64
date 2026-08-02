@@ -1,0 +1,51 @@
+{
+  "status": "NO_COUNTEREXAMPLE; STRONGER_C4_C8_FREE_NEAR_MISS",
+  "scope": "Bounded adversarial j=5 search only; not an exhaustive j=5 certification.",
+  "parameter_ranges": {
+    "a": [2, 119],
+    "c": [2, 23]
+  },
+  "method": [
+    "random perfect matchings in the individually safe compatibility graph",
+    "exact-incremental tabu/simulated-annealing 2/3/4-edge switches",
+    "beam/tabu 2/3/4-edge refinement",
+    "periodic from-scratch DFS cycle audits",
+    "independent NetworkX bounded-Johnson recount of the best graph"
+  ],
+  "designed_cases": [
+    {"a": 2, "c": 2, "search_seed": 51001, "refinement_seed": 61001, "C4": 0, "C8": 0, "C16": 1270},
+    {"a": 60, "c": 12, "search_seed": 51003, "refinement_seed": 61003, "C4": 0, "C8": 0, "C16": 1297},
+    {"a": 2, "c": 23, "search_seed": 51004, "refinement_seed": 61004, "C4": 0, "C8": 0, "C16": 1317},
+    {"a": 119, "c": 23, "search_seed": 51002, "refinement_seed": 61002, "C4": 0, "C8": 0, "C16": 1334}
+  ],
+  "random_parameter_seed": 20260728,
+  "random_cases": [
+    {"a": 114, "c": 6, "C4": 0, "C8": 0, "C16": 1637},
+    {"a": 62, "c": 16, "C4": 0, "C8": 0, "C16": 1619},
+    {"a": 15, "c": 22, "C4": 0, "C8": 0, "C16": 1591},
+    {"a": 110, "c": 6, "C4": 0, "C8": 0, "C16": 1532}
+  ],
+  "best": {
+    "parameters": {"j": 5, "a": 2, "c": 2},
+    "order": 167,
+    "size": 251,
+    "degree_counts": {"3": 166, "4": 1},
+    "connected": true,
+    "exact_profile": {"C4": 0, "C8": 0, "C16": 1270},
+    "long_cycle_lower_bounds": {"C32": 10000, "C64": 10000},
+    "long_cycle_lower_bound_note": "Both exact DFS enumerations reached the 10000-cycle cap and were truncated.",
+    "C128_witness": true,
+    "matching_edges": 78,
+    "matching_edges_participating_in_C16": 78,
+    "C16_matching_edge_participation": {"minimum": 39, "median": 78, "maximum": 118},
+    "matching_sha256": "b6764fad091d95f64da34693bc6e53a95d6d16aa207aae4ba8d973df4a8f3b8e",
+    "graph6_sha256": "d80b3ff18980fe5df76d759172657a92fd12bf0573fc34848584fe9e1042109e",
+    "matching_file": "data/type_t_port_completion/j5_a2_c2_multiswitch_near_miss.json",
+    "independent_check": "data/type_t_port_completion/j5_a2_c2_multiswitch_near_miss_check.json"
+  },
+  "reproduction": [
+    "PYTHONPATH=verifier python verifier/type_t_port_multiswitch.py --j 5 --a 2 --c 2 --seed 51001 --steps 1200 --audit-every 400 --output data/type_t_port_completion/j5_a2_c2_multiswitch_parent.json",
+    "PYTHONPATH=verifier python verifier/type_t_port_multiswitch_refine.py --input data/type_t_port_completion/j5_a2_c2_multiswitch_parent.json --output data/type_t_port_completion/j5_a2_c2_multiswitch_near_miss.json --seed 61001 --steps 160 --beam 6 --audit-every 80",
+    "PYTHONPATH=verifier python verifier/type_t_port_j5_independent.py data/type_t_port_completion/j5_a2_c2_multiswitch_near_miss.json"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "erdos64-z3-lift-shard-v1",
+  "base_index": 1,
+  "base_path": "data/z3_lifts/base1_hss.edges",
+  "assignment_range": [0,1594323],
+  "zero_assignment_excluded": true,
+  "assignments_examined": 1594322,
+  "survivors": {
+    "4": 1594322,
+    "8": 570806,
+    "16": 0,
+    "32": 0,
+    "64": 0
+  },
+  "stage_seconds": {
+    "4": 9.576489,
+    "8": 11.947450,
+    "16": 0.218992,
+    "32": 0.000000,
+    "64": 0.000000
+  },
+  "first_rejection_witnesses": {
+    "4": null,
+    "8": {"assignment":531442,"voltage_vector":[1,0,0,0,0,0,0,0,0,0,0,0,1],"cycle":[0,3,60,64,4,1,10,6]},
+    "16": {"assignment":1,"voltage_vector":[1,0,0,0,0,0,0,0,0,0,0,0,0],"cycle":[0,3,60,57,48,33,21,18,36,24,27,39,15,12,66,9]},
+    "32": null,
+    "64": null
+  },
+  "elapsed_seconds": 22.651570,
+  "assignments_per_second": 70384.613128
+}

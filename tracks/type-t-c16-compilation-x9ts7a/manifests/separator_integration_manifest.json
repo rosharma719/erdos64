@@ -1,0 +1,22 @@
+{
+  "description": "Mechanical cross-check of contraction_separator_integration.md Parts VI-VII: CB3's three exact cases (clean 2-attachment; the S5 cut-vertex coincidence, cited not re-derived; the genuinely new >=3-attachment degree-loss case), and the paired topological-K4 union arithmetic (2*ell+1 always safe; 2*ell+2 unsafe exactly at ell=2^j-1).",
+  "scope_note": "Does not re-derive S5, T1, or T2 (all cited by name from lemmas.md/two_cut.md). Checks the structural mechanics CB3' actually reduces to: 2-connectivity and internal-degree preservation in the clean case, and the exact internal-degree LOSS phenomenon in the >=3-attachment case that motivates naming it a genuinely new failure mode rather than misapplying Type A/B/C. Kept separate from the seven prior contraction verifiers, none of which are touched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/separator_integration.py",
+  "source_commit": "3f69b1e7bf8f836da668f0445cadfc35de51d0c2",
+  "script_sha256": "63e1381b039ae174491616f47a80870bfca652267d3a070240397836ba1ce8d1",
+  "stdout_sha256": "34d2f6d69b54195574ef07d67eda9b04c12fd4a7a4b12abc28b5975fbdc0f7a4",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "cb3_case1_clean": {"is_2connected_with_vx_added": true, "internal_degrees": {"c1": 3, "c2": 3, "c3": 3}, "all_internal_degree_ge3": true},
+    "cb3_case3_degree_loss": {"full_degree_c1_including_y": 3, "restricted_degree_c1_excluding_y": 2, "degree_loss_exhibited": true, "attachment_set_size": 3},
+    "paired_k4_union_ell_range_checked": "2..19",
+    "delta2_unsafe_ell_values_found": [3, 7, 15],
+    "delta2_unsafe_ell_values_predicted_2powj_minus_1": [3, 7, 15],
+    "assertion_failures": 0
+  },
+  "detector_agreement": "The CB3 case checks use networkx.is_biconnected for the 2-connectivity claim (independent of this project's own cycle-detection code, a genuinely separate library routine) and direct adjacency-dict degree counting for the internal-degree claims. The paired-K4 arithmetic is checked by direct power-of-two testing against the symbolic prediction (ell=2^j-1 exactly). 0 disagreements.",
+  "completed_range": "All three CB3 case gadgets and the full ell in {2,...,19} range processed to completion; this is a small, deterministic set of explicit illustrative constructions plus a bounded arithmetic sweep, not a search or census -- consistent with contraction_separator_integration.md Part X's explicit decision not to launch broad computation this pass."
+}

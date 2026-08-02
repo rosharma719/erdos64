@@ -1,0 +1,99 @@
+{
+  "schema": "erdos64-z3-lift-run-v1",
+  "date": "2026-07-25",
+  "plan": "manifests/z3_lift_plan.json",
+  "base_certificates": "manifests/z3_bases_manifest.json",
+  "search_source": {
+    "path": "verifier/z3_lift_search.cpp",
+    "sha256": "73a183c1a3c34901f90f14a4ad264137a475efe1e87c2822eae0664abac512ed"
+  },
+  "search_binary_sha256": "96abf1d5a75eb83642fd5e005f1e9f4f11d6ebc7d3229ff8137a16dfe62a5e02",
+  "assignment_count": {
+    "per_base_including_zero": 1594323,
+    "per_base_nonzero": 1594322,
+    "total_nonzero": 6377288,
+    "examined": 6377288
+  },
+  "aggregate_survivors": {"4": 6377288, "8": 1545746, "16": 0, "32": 0, "64": 0},
+  "shards": [
+    {
+      "base_index": 0,
+      "range": [0, 1594323],
+      "examined": 1594322,
+      "survivors": {"4": 1594322, "8": 54458, "16": 0, "32": 0, "64": 0},
+      "summary": "logs/z3_lifts/base0-full.json",
+      "summary_sha256": "2d866843b95c69454d8f1b9b030f9be1f79cc0f6af585336b9b41a8fad7a2986",
+      "after8": "data/z3_lifts/results/base0-full.after8.txt",
+      "after8_sha256": "bb56665c6e2fcfcb457fef207785b8279940da37ba7701b3c314d6bd50dc74b4"
+    },
+    {
+      "base_index": 1,
+      "range": [0, 1594323],
+      "examined": 1594322,
+      "survivors": {"4": 1594322, "8": 570806, "16": 0, "32": 0, "64": 0},
+      "summary": "logs/z3_lifts/base1-full.json",
+      "summary_sha256": "b3d103b71fcda8b86430f6b726e718300d4555e8bc7d16744e924962b43393a8",
+      "after8": "data/z3_lifts/results/base1-full.after8.txt",
+      "after8_sha256": "b5dc99f76aec04502b85d4712580cb64f4072f301901ef9a07878d0feb296e54"
+    },
+    {
+      "base_index": 2,
+      "range": [0, 1594323],
+      "examined": 1594322,
+      "survivors": {"4": 1594322, "8": 750140, "16": 0, "32": 0, "64": 0},
+      "summary": "logs/z3_lifts/base2-full.json",
+      "summary_sha256": "39ec23b100a65c40d01bbaccedad3b2b98a38daab4d86f82e1c841b7269b5d58",
+      "after8": "data/z3_lifts/results/base2-full.after8.txt",
+      "after8_sha256": "41dc24994994ab8725ee27fef525738c53bb35033c89229153d2e2d38f0201bf"
+    },
+    {
+      "base_index": 3,
+      "range": [0, 1594323],
+      "examined": 1594322,
+      "survivors": {"4": 1594322, "8": 170342, "16": 0, "32": 0, "64": 0},
+      "summary": "logs/z3_lifts/base3-full.json",
+      "summary_sha256": "65ea99dc9088a450fad801c13177a1a2cdc2a99a79e0f08a4c546c86f7ff2ada",
+      "after8": "data/z3_lifts/results/base3-full.after8.txt",
+      "after8_sha256": "7aaa9fe753b0159cb7d8be58785eb86d34c1cc6e9f196fb3c33f090169d9e0aa"
+    }
+  ],
+  "empty_later_stage_files": {
+    "paths": [
+      "data/z3_lifts/results/base0-full.after16.txt",
+      "data/z3_lifts/results/base0-full.after32.txt",
+      "data/z3_lifts/results/base0-full.after64.txt",
+      "data/z3_lifts/results/base1-full.after16.txt",
+      "data/z3_lifts/results/base1-full.after32.txt",
+      "data/z3_lifts/results/base1-full.after64.txt",
+      "data/z3_lifts/results/base2-full.after16.txt",
+      "data/z3_lifts/results/base2-full.after32.txt",
+      "data/z3_lifts/results/base2-full.after64.txt",
+      "data/z3_lifts/results/base3-full.after16.txt",
+      "data/z3_lifts/results/base3-full.after32.txt",
+      "data/z3_lifts/results/base3-full.after64.txt"
+    ],
+    "sha256_each": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "independent_audits": {
+    "all_post_c4": {
+      "source": "verifier/independent_z3_c4_verify.py",
+      "source_sha256": "b85e2f9576fe9d32bab9aae43c35b5494b56bfd075e7c2f49972fc09c3d744b0",
+      "manifest": "manifests/z3_lift_independent_c4_audit.json",
+      "manifest_sha256": "0b427734e6599eba4fbc0ab627f0e02427571846bc54ec831625fc46b2977630",
+      "assignments_checked": 6377288,
+      "disagreements": 0
+    },
+    "all_post_c8_random_and_witnesses": {
+      "source": "verifier/independent_z3_verify.py",
+      "source_sha256": "a0d83be6075c890e2ae4e7c0d41693fede5e5035b82a0166a1b0da763b8bd9cf",
+      "manifest": "manifests/z3_lift_independent_audit.json",
+      "manifest_sha256": "0c0dbbd89a5d4807702decab044e4d87b4f5510e7ddc48b3188fe60f7ee7ccb5",
+      "post_c8_assignments_checked": 1545746,
+      "random_assignments_checked": 1024,
+      "stored_witnesses_checked": 8,
+      "disagreements": 0
+    }
+  },
+  "counterexamples": 0,
+  "certified_statement": "No connected cyclic Z3-lift of these four specific 24-vertex base graphs is an Erdos-Gyarfas counterexample."
+}

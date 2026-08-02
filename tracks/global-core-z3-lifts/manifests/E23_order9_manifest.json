@@ -1,0 +1,202 @@
+{
+  "checksums": {
+    "C_detector_binary_sha256": "3a0d2239b82c3794bffdc9418363f7e03b9d31f4b8abfeedc0bf453a1849e8cb",
+    "C_detector_source_sha256": "e398bc3e3e49cddb8c076868055122bb032a99aaf41ba30cc85542ea20679559",
+    "candidate_records_gzip_bytes": 12795230,
+    "candidate_records_gzip_sha256": "9f530d95918406bec166cc3e09fa5edf0d7b8f8ff58613b9ffae83c85851e446",
+    "canonical_rooted_stream_sha256_before_dedup": "a41decc68cdf9859ee81acdc36b23109d1db0d604c59ac47893add31ba0a0e6e",
+    "raw_generator_stream_sha256": "6b09633d69bc112296c968c179d6a5907c4e80d6a9ecd6e9ff012e5dbab98d55",
+    "search_script_sha256_at_completion": "87490950c717eb027fe12614f480871a7238d0e289a6ccd2275189d564afcedc"
+  },
+  "commands": {
+    "C_detector_compile": [
+      "cc",
+      "-O3",
+      "-std=c11",
+      "/Users/rohansharma/Desktop/Code/erdos64/verifier/check_power_masks.c",
+      "-o",
+      "/Users/rohansharma/Desktop/Code/erdos64/.venv/check_power_masks"
+    ],
+    "generator": [
+      "geng",
+      "-C",
+      "-d2",
+      "9",
+      "13:30",
+      "0/1"
+    ],
+    "rooted_canonicalization": [
+      "labelg",
+      "-q",
+      "-fabzzzzzzz"
+    ],
+    "run": [
+      "/Users/rohansharma/Desktop/Code/erdos64/.venv/bin/python",
+      "/Users/rohansharma/Desktop/Code/erdos64/verifier/type_a_order9_search.py",
+      "--run",
+      "--manifest",
+      "manifests/E23_order9_manifest.json",
+      "--workers",
+      "8"
+    ]
+  },
+  "completed_at": "2026-07-26T02:25:33Z",
+  "counts": {
+    "SP-eligible": 4214,
+    "SP_eligible_series_parallel": 0,
+    "candidate_records": 129040,
+    "degree_filtered_count": 134204,
+    "internally_power_free": 0,
+    "raw_closure_count": 193510,
+    "rigid-forced": 124826,
+    "rooted_edge_count": 345020,
+    "rooted_isomorphism_count": 129040,
+    "three_copy_equivalence_agrees": 129040,
+    "three_copy_power_free": 0
+  },
+  "created_at": "2026-07-26T02:15:01Z",
+  "detector_batches": {
+    "bridge": {
+      "exit_code": 0,
+      "input_count": 129040,
+      "input_stream_sha256": "09d1b9b1425b994b06fa3a73f7bb6cf9fc59e610a8b2d641cc92a7f46d358197",
+      "output_stream_sha256": "7ca1e728314a63250494e6da3bed619a9cccf29318c8face9df143ae0bc4c165",
+      "stderr": "checked 129040 graph6 records"
+    },
+    "three_copy_lift": {
+      "exit_code": 0,
+      "input_count": 129040,
+      "input_stream_sha256": "858b8ec1c4b42241cd2d3b8ab43972f8bd4e2a56b09f227112f5f6efa19c77c6",
+      "output_stream_sha256": "1363b8dba1759f3ac8d66d6d3ebce44189c838a735f601f0cf7510c818fa224d",
+      "stderr": "checked 129040 graph6 records"
+    }
+  },
+  "exit_codes": {
+    "C_detector_bridge_batch": 0,
+    "C_detector_compile": 0,
+    "C_detector_lift_batch": 0,
+    "generator": 0,
+    "labelg": 0,
+    "search": 0
+  },
+  "experiment": "E23b-order9-Type-A",
+  "generator": {
+    "command": [
+      "geng",
+      "-C",
+      "-d2",
+      "9",
+      "13:30",
+      "0/1"
+    ],
+    "command_string": "geng -C -d2 9 13:30 0/1",
+    "planned_residues": [
+      0
+    ],
+    "shard_modulus": 1,
+    "shards": [
+      {
+        "exit_code": 0,
+        "modulus": 1,
+        "raw_closure_count": 193510,
+        "raw_stream_sha256": "6b09633d69bc112296c968c179d6a5907c4e80d6a9ecd6e9ff012e5dbab98d55",
+        "residue": 0,
+        "status": "COMPLETE"
+      }
+    ],
+    "stderr": ">A geng -Cd2D8 n=9 e=13-30\n>Z 193510 graphs generated in 0.13 sec"
+  },
+  "near_gadgets": {
+    "h_histogram_among_internally_clean": {},
+    "minimum_observed_positive_h": null,
+    "overlap_program_instantiated": false
+  },
+  "post_run_aggregate": {
+    "bridge_python_mask_histogram": {
+      "1 (C4 only)": 5980,
+      "2 (C8 only)": 1,
+      "3 (C4 and C8)": 123059
+    },
+    "lift_python_mask_histogram": {
+      "1 (C4 only)": 9,
+      "3 (C4 and C8)": 4029,
+      "5 (C4 and C16)": 177,
+      "6 (C8 and C16)": 1,
+      "7 (C4, C8, and C16)": 124824
+    },
+    "R_node_count_histogram": {
+      "1": 122126,
+      "2": 6780,
+      "3": 134
+    },
+    "R_nodes_total": 136088,
+    "R_real_B_edges": 2057162,
+    "T8R_degree_critical_incidences": 620736,
+    "T8R_noncritical_deletion_certificates": 1436426,
+    "note": "Zero-valued required count fields and these deterministic aggregates were made explicit after the canonical run by streaming its checksummed candidate artifact; candidate data and executable results were not changed."
+  },
+  "outputs": {
+    "candidate_records_gzip": "data/E23_order9_candidates.jsonl.gz"
+  },
+  "programs": {
+    "independent_C_detector": {
+      "compile_command": [
+        "cc",
+        "-O3",
+        "-std=c11",
+        "/Users/rohansharma/Desktop/Code/erdos64/verifier/check_power_masks.c",
+        "-o",
+        ".venv/check_power_masks"
+      ],
+      "path": "verifier/check_power_masks.c",
+      "sha256": "e398bc3e3e49cddb8c076868055122bb032a99aaf41ba30cc85542ea20679559"
+    },
+    "search": {
+      "path": "verifier/type_a_order9_search.py",
+      "sha256": "87490950c717eb027fe12614f480871a7238d0e289a6ccd2275189d564afcedc"
+    }
+  },
+  "rooted_canonicalization": {
+    "command": [
+      "labelg",
+      "-q",
+      "-fabzzzzzzz"
+    ],
+    "partition": {
+      "other_vertices": "common z cell",
+      "x": "singleton a at vertex 0",
+      "y": "singleton b at vertex 1"
+    },
+    "roles_interchangeable": false,
+    "stderr": ""
+  },
+  "scope": {
+    "bridge_order": 9,
+    "bridge_order_definition": "|V(B)|",
+    "edge_bounds": {
+      "B_lower": "d_B(x)=1, d_B(y)>=1, and seven internal degrees >=3 give degree sum >=23; parity forces >=24, hence |E(B)|>=12",
+      "J_lower": "J adds the absent closure edge xy, hence |E(J)|>=13",
+      "J_upper": "d_J(x)=2, so at most all C(8,2)=28 edges away from x plus its two incident edges: |E(J)|<=30"
+    },
+    "forbidden_lengths": [
+      4,
+      8,
+      16
+    ],
+    "three_copy_order": 23
+  },
+  "software": {
+    "C_compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "biconnected_flag": "-C (confirmed from installed geng -help)",
+    "nauty": {
+      "geng_path": "/opt/homebrew/Cellar/nauty/2.9.3/bin/geng",
+      "version": "2.9.3"
+    },
+    "networkx": "3.6.1",
+    "python": "3.14.6"
+  },
+  "source_commit": "354bda01904fbb0562c375020712d7179d57e2a6",
+  "started_at": "2026-07-26T02:15:12Z",
+  "status": "COMPLETE",
+  "working_tree_dirty_at_prepare": true
+}

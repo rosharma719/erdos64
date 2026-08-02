@@ -1,0 +1,17 @@
+{
+  "base": 1,
+  "num_hyperplanes": 315,
+  "records_sha256": "b29a14bea11367cbe083d61a8e464a9dfdbcacca4059c7102797dfa7e03c38eb",
+  "result": {
+    "checked": 1220703124,
+    "covered": 1220703124,
+    "elapsed_seconds": 1059.0247161388397,
+    "rate_per_second": 1152667.2658317485,
+    "start": 0,
+    "stop": 1220703125,
+    "uncovered": 0,
+    "uncovered_indices": [],
+    "uncovered_indices_recorded": 0,
+    "uncovered_indices_truncated": false
+  }
+}

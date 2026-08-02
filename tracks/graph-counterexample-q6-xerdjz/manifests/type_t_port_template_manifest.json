@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "status": "TEMPLATE_CONJECTURE",
+  "scope": "symbolic coordinate templates underlying the passage-level C8/C16(m=2) conflict catalogs -- does the compression trend continue when quotiented by translation/reflection symmetry",
+  "headline": {
+    "c8_same_mode_universal_templates": 6,
+    "c8_same_mode_status": "PROVED complete (exact set equality with the union of realized same-mode abstract templates across all three corrected j=4 catalogs)",
+    "c8_crossing_templates_do_not_collapse": "49/53/191 distinct crossing (anchor-junction) templates per instance, union 206, only partial pairwise overlap (21-48 shared) -- a genuine negative result",
+    "c16_m2_same_mode_universal_templates": 22,
+    "c16_m2_same_mode_status": "PROVED complete (21/22 realized in the single available (4,55,7) instance; realized subset of derived is exact -- soundness confirmed, the missing 1 is data sparsity not incompleteness)",
+    "c16_m2_crossing_templates_do_not_collapse": "3248 distinct crossing templates for 27,629 of 32,921 clauses (84% of the catalog) -- dominant and non-collapsing",
+    "conclusion": "The 'bulk'/'same-mode' fraction of both catalogs (11233/13877=81% for C8, 5292/32921=16% for C16 m=2) collapses beautifully to a handful of universal, j-independent symbolic templates, derived from first principles (not just clustered) and cross-validated by literal construction+cycle-closure verification at fresh j=4 and j=5 coordinates. The 'crossing'/junction fraction (dominant for C16 m=2: 84% of clauses) does NOT collapse -- hundreds to thousands of instance-specific templates, a real negative result. Net assessment: a full all-j proof via template counting is NOT plausible for the junction-heavy part of the catalog without much harder per-anchor case analysis; the same-mode fraction alone is a promising, well-supported partial result but does not by itself close the family."
+  },
+  "corrected_catalog_note": {
+    "description": "This analysis uses the CORRECTED catalogs (commit 8617422, 'Exclude structurally-vacuous two-p3-passage supports'): a completed graph selects exactly one linked-pair gadget ever, hence exactly one hub_L-hub_R joining edge, so two DIFFERENT p3 passages can never coexist in one simple cycle (both would need to traverse that single edge). This removes the route1==route2==3 case from the template derivation (encoded directly in enumerate_bulk_shapes/enumerate_same_mode_abstract_shapes in type_t_port_passage_templates.py). Corrected clause counts: C8 4218/4227/5432 (was 5007/5044/6359) for (4,55,7)/(4,2,2)/(4,28,4); C16 m=2 32921 (was 40833) for (4,55,7)."
+  },
+  "phases": {
+    "phase0_coordinate_audit": {
+      "status": "PROVED",
+      "module": "verifier/type_t_port_coordinates.py",
+      "claims": "Every core vertex label parses uniquely to (anchor) or (path, index); symbolic_adjacent(u,v) (same path, index differing by 1) reproduces materialized bare-core adjacency EXACTLY, checked exhaustively (all O(n^2) pairs, not sampled) on all three j=4 catalog instances plus one j=5 instance. distance_to_nearest_anchor matches true BFS graph distance, exhaustively checked on the same 4 instances. The 13-anchor/19-path SKELETON TOPOLOGY (which anchor connects to which via which named path) is proved identical for every legal (j,a,c) -- only 4 of the 19 path-length formulas (A_left=a-1, A_right=4Y-8-a, C_left=c-1, C_right=Y-8-c) depend on Y/a/c; the other 15 are fixed integer constants.",
+      "self_test_command": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_coordinates.py"
+    },
+    "phase1_symbolic_features": {
+      "status": "COMPUTATIONALLY_CERTIFIED",
+      "module": "verifier/type_t_port_passage_templates.py",
+      "claims": "Every C8/C16(m=2) conflict's witness cycle decodes (via split_witness/decode_m2_witness, generalized to decode_general_witness for future m>2) into alternating hub-passage and bare-core-path segments; each segment's branch/family/offset/distance-to-anchor/same-vs-cross-path classification computed via type_t_port_coordinates. Bulk criterion (BULK_THRESHOLD=12, matching the proved C16 total-core-path-length<=12 bound) formalized as: core path stays on one named path (no anchor crossing) AND all 4 passage endpoints have distance>12 from every anchor."
+    },
+    "phase2_quotient_c8": {
+      "status": "COMPUTATIONALLY_CERTIFIED",
+      "per_instance": [
+        {"parameters": {"j": 4, "a": 55, "c": 7}, "n_clauses": 4218, "n_raw_templates_offset_preserving": 449, "n_raw_bulk_templates": 3, "n_raw_bulk_clauses": 189, "n_abstract_templates": 55, "same_mode_clauses": 3672, "same_mode_abstract_templates": 6, "crossing_clauses": 546, "crossing_abstract_templates": 49},
+        {"parameters": {"j": 4, "a": 2, "c": 2}, "n_clauses": 4227, "n_raw_templates_offset_preserving": 480, "n_raw_bulk_templates": 3, "n_raw_bulk_clauses": 189, "n_abstract_templates": 59, "same_mode_clauses": 3665, "same_mode_abstract_templates": 6, "crossing_clauses": 562, "crossing_abstract_templates": 53},
+        {"parameters": {"j": 4, "a": 28, "c": 4}, "n_clauses": 5432, "n_raw_templates_offset_preserving": 5331, "n_raw_bulk_templates": 1, "n_raw_bulk_clauses": 1, "n_abstract_templates": 197, "same_mode_clauses": 3896, "same_mode_abstract_templates": 6, "crossing_clauses": 1536, "crossing_abstract_templates": 191}
+        ],
+      "shared_vs_instance_specific": "The 6 same-mode abstract templates are IDENTICAL (literal set equality) across all three instances. Crossing templates overlap only partially: |T1&T2|=21/49&53, |T1&T3|=39/49&191, |T2&T3|=48/53&191, union=206."
+    },
+    "phase3_first_principles": {
+      "status": "PROVED (derivation+completeness) / COMPUTATIONALLY_CERTIFIED (genuineness)",
+      "derivation": "enumerate_same_mode_abstract_shapes(8) exhaustively cases route1,route2 in {2,3} (excluding route1=route2=3), l1,l2>=1 summing to 8-route1-route2, x2 branch arrangements (same/cross), quotiented by the identical canonicalize_cyclic symmetry used on real data. Yields exactly 6 templates.",
+      "completeness_check": "set(derived) == union(realized same-mode abstract keys across all 3 corrected j=4 catalogs) -- literal Python set equality, TRUE.",
+      "genuineness_check": "Every one of the 6 templates independently re-instantiated (instantiate_same_branch/instantiate_cross_branch) at FRESH, previously-unused coordinates in both a j=4 instance (55,7) and a j=5 instance (64,16), and verified via materialize_passages+edge_path_cycle (the project's own trusted minimal-materialization method) to close a genuine 8-cycle in every case (64/64 checks passed after adjusting for branch-length availability)."
+    },
+    "phase4_c16_m2": {
+      "status": "PROVED (derivation+soundness on available data) / COMPUTATIONALLY_CERTIFIED_PARTIAL (single instance, m=2 stage only)",
+      "instance": {"parameters": {"j": 4, "a": 55, "c": 7}, "n_clauses": 32921, "n_raw_templates_offset_preserving": 5403, "n_raw_bulk_templates": 8, "n_raw_bulk_clauses": 51, "n_abstract_templates": 3269, "same_mode_clauses": 5292, "same_mode_abstract_templates": 21, "crossing_clauses": 27629, "crossing_abstract_templates": 3248},
+      "derivation": "enumerate_same_mode_abstract_shapes(16) yields 22 templates; 21/22 realized in the one available instance (realized is a strict subset of derived -- SOUND, the missing one is data sparsity)."
+    },
+    "phase5_incremental_ingestion": {
+      "status": "PROVED (regression-tested)",
+      "module": "verifier/type_t_port_passage_templates.py: decode_general_witness / build_cyclic_tokens / canonicalize_cyclic_general / general_conflict_keys",
+      "claims": "General-m infrastructure for future C16 m=3,4,5 ingestion, built so the vertex-tag/core-path-descriptor/canonicalization machinery is reused unmodified (only the witness-decoder and symmetry-group order change with m). self_test_general_m2_matches_specialized reproduces the specialized m=2 pipeline's raw_key and abstract_key EXACTLY on all 4 corrected real catalogs (5007+... no: 4218+4227+5432+32921=46,798 total conflicts, 0 mismatches)."
+    },
+    "phase6_lifting": {
+      "status": "PROVED (derivation) / COMPUTATIONALLY_CERTIFIED (stress-tested at j=4..7)",
+      "module": "verifier/type_t_port_template_lift_check.py",
+      "restriction_claim": "PROVED by construction: enumerate_same_mode_abstract_shapes(L) takes only L as input, never j/a/c, so the same-mode abstract template SET for a fixed target length is identical for every instance -- a j>=5 catalog's same-mode conflicts can only ever land on keys from this fixed finite set.",
+      "embedding_threshold_derivation": "A_left+A_right=4Y-9 and C_left+C_right=Y-9 for EVERY valid (j,a) resp. (j,c) (only the split varies with a/c, not the total -- PROVED, checked at j=4,5,6). Same-branch worst-case shape needs a branch of length >= 27+(L-4) to be BULK-classified (translation-free, distance>12 from every anchor); solving ceil(budget/2)>=that bound gives the minimal j guaranteeing EVERY valid a/c admits the full bulk-classified same-branch set: j>=5 for the A-family (both C8 and C16 m=2), j>=7 for the C-family (both lengths) -- the C-family threshold is later because its total growing budget (Y-9) is 4x smaller than the A-family's (4Y-9) at the same j.",
+      "weak_existence_note": "A separate, much weaker threshold governs whether the same-mode template merely EXISTS at all (not necessarily bulk-classified): this needs only length>=l1+l2+3, satisfied even at j=4 for most (j,a,c) -- explaining why the SAME 6/22 same-mode template sets were already found complete even in the (28,4) instance, whose growing branches never reach the deep-bulk (>12) regime.",
+      "stress_test_results": {
+        "c8_A_family": {"j4": true, "j5": true, "j6": true},
+        "c8_C_family": {"j4": false, "j5": false, "j6": true, "j7": true},
+        "c16m2_A_family": {"j4": true, "j5": true, "j6": true},
+        "c16m2_C_family": {"j4": false, "j5": false, "j6": true, "j7": true}
+      },
+      "scope_clarification": "This proves the SAME finite conflict-clause template set continues to arise as valid, sound constraints for j meeting the threshold -- a structural fact about which clauses exist. It does NOT prove (and does not need to prove) that the overall exact-cover SAT instance is forced UNSAT for large j; that is a distinct, harder, global combinatorial question (raised externally re: a finite-horizon random-partition/Lovasz-Local-Lemma completion-existence lemma) not addressed here and not in conflict with this result."
+    },
+    "phase7_9_transfer_automaton": {
+      "status": "NOT ATTEMPTED",
+      "note": "Stretch goal per the task; not reached given the time invested in Phases 0-6. Starting point: state = (unfinished same-mode/crossing passage obligations within distance 12 of the current cut along the anchor skeleton), transitions = the 19 named paths with their length formulas (15 fixed, 4 growing), acceptance = a full valid exact-cover of one branch's deficient vertices reached with no open same-mode conflict spanning the cut. The Phase 0 coordinate module and Phase 2-4 template catalogs are the direct inputs this would consume."
+    }
+  },
+  "software": {"python": "3.13 (.venv)", "networkx": "3.6.1"},
+  "commands": {
+    "coordinate_self_test": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_coordinates.py",
+    "c8_template_report": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_passage_templates.py --mode c8",
+    "c16m2_template_report": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_passage_templates.py --mode c16m2",
+    "lift_check": "PYTHONPATH=verifier .venv/bin/python verifier/type_t_port_template_lift_check.py",
+    "export_templates": "PYTHONPATH=verifier .venv/bin/python verifier/export_templates.py"
+  },
+  "data": {
+    "c8_templates": "data/type_t_port_templates/c8_templates.json.gz",
+    "c16_m2_templates": "data/type_t_port_templates/c16_m2_templates.json.gz"
+  },
+  "counterexample_found": false,
+  "unsat_certificate_produced": false
+}

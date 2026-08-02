@@ -1,0 +1,30 @@
+{
+  "description": "Mechanical cross-check of central_bridge_triangle.md Parts II and IV: (1) the shared-external-neighbour configuration forces a C4; (2) the former length-4 supporting fixture has the claimed exact bridge attachments and paths but also contains the forced C4 found by the recovery audit.",
+  "scope_note": "Does not re-derive Gao-Huo-Liu-Ma, CB1, or CB3'. The triangle-theta-bridge gadget is now explicitly a negative, non-F-clean fixture: NetworkX recomputes its attachment set and paths, then checks the forced C4. It is not evidence that the length-4 detour survives.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/central_bridge_triangle.py",
+  "source_parent_commit": "d00fdac45cf85913f637c119d7a8a989aec0a8ee",
+  "script_sha256": "fdd4f03e54e36c4da4997dd87614c57b57350e200736968737cec594825b2079",
+  "stdout_sha256": "3d70ca9653660ed22bf5d6cad96ac16fe301aa8ceed881f7a07450b2e49385f2",
+  "python_version": "3.14.6",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Matches the repository's .python-version pin; networkx==3.6.1 matches requirements.txt.",
+  "exit_status": 0,
+  "results": {
+    "shared_external_neighbor_c4": {"predicted_cycle_present": true, "four_distinct_vertices": true, "is_c4": true},
+    "triangle_theta_bridge": {
+      "attachments": ["a", "b"],
+      "attachments_correct": true,
+      "all_a_b_path_lengths_in_B_a": [2, 4],
+      "shortest_is_2": true,
+      "second_path_exists_len_3_or_4": true,
+      "forced_c4": ["c", "tail_0", "tail_1", "b"],
+      "forced_c4_present": true,
+      "fixture_is_f_clean": false,
+      "predicted_ell": 2,
+      "predicted_ell_prime_in": [3, 4]
+    },
+    "assertion_failures": 0
+  },
+  "detector_agreement": "NetworkX independently computes the component boundary, all simple terminal paths, and the explicit C4 incidence. Zero disagreements with the corrected hand proof.",
+  "completed_range": "Two small, deterministic illustrative gadgets (one per claim), not a search or census -- consistent with the phase's explicit decision not to launch broad computation."
+}

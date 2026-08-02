@@ -1,0 +1,247 @@
+{
+  "canonicalization_reports": {
+    "13": {
+      "canonical_stream_sha256_before_dedup": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "command": [
+        "labelg",
+        "-q",
+        "-fabzzzzzzzz"
+      ],
+      "exit_code": 0,
+      "stderr": ""
+    },
+    "14": {
+      "canonical_stream_sha256_before_dedup": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "command": [
+        "labelg",
+        "-q",
+        "-fabzzzzzzzz"
+      ],
+      "exit_code": 0,
+      "stderr": ""
+    }
+  },
+  "checksums": {
+    "C_detector_binary_sha256": "2c99510658fda9655a54a740d7fe409b6a855de02d5f57507a8dcf7af5b4e5bc",
+    "C_detector_source_sha256": "e398bc3e3e49cddb8c076868055122bb032a99aaf41ba30cc85542ea20679559",
+    "candidate_records_gzip_bytes": 54,
+    "candidate_records_gzip_sha256": "62856049aa88a5ea796a0e957f1026543633361444dc0d0129c702e98c2db9fe",
+    "search_script_sha256_at_completion": "bb5ea9e38856f8f51126d1cdd14ff0b38626af8f55302ea02c86a40fc77d0bc3"
+  },
+  "completed_at": "2026-07-26T03:17:26Z",
+  "counts_by_edge_layer": {
+    "13": {
+      "C8_free_graphs": 4,
+      "closure_2connected_pairs": 0,
+      "generator_C4_violations": 0,
+      "internal_degree_filtered_pairs": 0,
+      "internally_power_free": 0,
+      "oriented_degree1_x_pairs": 0,
+      "raw_graphs": 57,
+      "rooted_isomorphism_count": 0,
+      "self_sum_clean": 0,
+      "terminal_edge_absent_pairs": 0,
+      "three_copy_equivalence_agrees": 0,
+      "three_copy_power_free": 0
+    },
+    "14": {
+      "C8_free_graphs": 12,
+      "closure_2connected_pairs": 0,
+      "generator_C4_violations": 0,
+      "internal_degree_filtered_pairs": 0,
+      "internally_power_free": 0,
+      "oriented_degree1_x_pairs": 0,
+      "raw_graphs": 216,
+      "rooted_isomorphism_count": 0,
+      "self_sum_clean": 0,
+      "terminal_edge_absent_pairs": 0,
+      "three_copy_equivalence_agrees": 0,
+      "three_copy_power_free": 0
+    }
+  },
+  "counts_post_run_note": "Counter keys with zero observations were made explicit after the completed checksummed run; executable outputs and artifacts were unchanged.",
+  "created_at": "2026-07-26T03:17:13Z",
+  "detector_reports": {
+    "13": {
+      "lift_batch": {
+        "exit_code": 0,
+        "input_count": 0,
+        "input_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "checked 0 graph6 records"
+      },
+      "raw_bridge_batch": {
+        "exit_code": 0,
+        "input_count": 57,
+        "input_stream_sha256": "d7b013992e507b039c46c7e8b1580c53339bc92a8ad17ba28dadc77d0a818b63",
+        "output_stream_sha256": "ed243376231d9c323475e837fa28cf9c99257b5c706a3e65bdc609e5162e298f",
+        "stderr": "checked 57 graph6 records"
+      }
+    },
+    "14": {
+      "lift_batch": {
+        "exit_code": 0,
+        "input_count": 0,
+        "input_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "checked 0 graph6 records"
+      },
+      "raw_bridge_batch": {
+        "exit_code": 0,
+        "input_count": 216,
+        "input_stream_sha256": "f8c21e2e66dda6729624997d2f3240c366a2ff6bd2ce0762169ec32ab54cf3b1",
+        "output_stream_sha256": "21b2276da3669246a4670b2bfae0abaa8326d3adcee5272c06be4ecb95c4fe0a",
+        "stderr": "checked 216 graph6 records"
+      }
+    }
+  },
+  "exit_codes": {
+    "C_detector_compile": 0,
+    "m13_generator": 0,
+    "m13_labelg": 0,
+    "m13_lift_C_batch": 0,
+    "m13_raw_C_batch": 0,
+    "m14_generator": 0,
+    "m14_labelg": 0,
+    "m14_lift_C_batch": 0,
+    "m14_raw_C_batch": 0,
+    "search": 0
+  },
+  "experiment": "E24b-order10-direct-Type-A",
+  "filter_order": [
+    "geng connected simple C4-free generation",
+    "absence of C8",
+    "oriented d_B(x)=1 terminal choices",
+    "d_B(y)>=1 and all internal degrees >=3",
+    "xy absent",
+    "B+xy 2-connected",
+    "rooted oriented isomorphism",
+    "internal power-cycle cleanliness",
+    "terminal dyadic self-sum cleanliness",
+    "direct three-copy lift verification"
+  ],
+  "generator": {
+    "commands": {
+      "13": [
+        "geng",
+        "-c",
+        "-f",
+        "-d1",
+        "-D3",
+        "10",
+        "13:13",
+        "0/1"
+      ],
+      "14": [
+        "geng",
+        "-c",
+        "-f",
+        "-d1",
+        "-D5",
+        "10",
+        "14:14",
+        "0/1"
+      ]
+    },
+    "layers": {
+      "13": {
+        "edges": 13,
+        "modulus": 1,
+        "residue": 0,
+        "status": "PLANNED"
+      },
+      "14": {
+        "edges": 14,
+        "modulus": 1,
+        "residue": 0,
+        "status": "PLANNED"
+      }
+    },
+    "planned_residues": [
+      0
+    ],
+    "shard_modulus": 1
+  },
+  "generator_reports": {
+    "13": {
+      "command": [
+        "geng",
+        "-c",
+        "-f",
+        "-d1",
+        "-D3",
+        "10",
+        "13:13",
+        "0/1"
+      ],
+      "exit_code": 0,
+      "raw_count": 57,
+      "raw_stream_sha256": "d7b013992e507b039c46c7e8b1580c53339bc92a8ad17ba28dadc77d0a818b63",
+      "stderr": ">A geng -cfd1D3 n=10 e=13\n>Z 57 graphs generated in 0.00 sec"
+    },
+    "14": {
+      "command": [
+        "geng",
+        "-c",
+        "-f",
+        "-d1",
+        "-D5",
+        "10",
+        "14:14",
+        "0/1"
+      ],
+      "exit_code": 0,
+      "raw_count": 216,
+      "raw_stream_sha256": "f8c21e2e66dda6729624997d2f3240c366a2ff6bd2ce0762169ec32ab54cf3b1",
+      "stderr": ">A geng -cfd1D5 n=10 e=14\n>Z 216 graphs generated in 0.00 sec"
+    }
+  },
+  "outputs": {
+    "candidate_records_gzip": "data/E24_order10_candidates.jsonl.gz"
+  },
+  "programs": {
+    "independent_C_detector": {
+      "path": "verifier/check_power_masks.c",
+      "sha256": "e398bc3e3e49cddb8c076868055122bb032a99aaf41ba30cc85542ea20679559"
+    },
+    "search": {
+      "path": "verifier/type_a_order10_direct.py",
+      "sha256": "bb5ea9e38856f8f51126d1cdd14ff0b38626af8f55302ea02c86a40fc77d0bc3"
+    }
+  },
+  "rooted_canonicalization": {
+    "command": [
+      "labelg",
+      "-q",
+      "-fabzzzzzzzz"
+    ],
+    "roles_interchangeable": false,
+    "x": "singleton color a at vertex 0",
+    "y": "singleton color b at vertex 1"
+  },
+  "scope": {
+    "bridge_order": 10,
+    "edge_bound": {
+      "general": "2|E(B)| >= d(x)+d(y)+sum_internal d(v) >= 1+1+3(n-2)=3n-4, hence |E(B)|>=ceil((3n-4)/2)",
+      "m13_max_degree": "degree sum attains the lower bound, so Delta(B)<=3",
+      "m14_max_degree": "two excess degree units above the lower bound imply Delta(B)<=5",
+      "order_10": "|E(B)|>=13"
+    },
+    "edge_layers": [
+      13,
+      14
+    ],
+    "generator_C4_filter": "-f, confirmed by installed geng -help as only generate 4-cycle-free graphs",
+    "three_copy_order": 26
+  },
+  "software": {
+    "nauty_version": "2.9.3",
+    "nauty_geng": "/opt/homebrew/bin/geng",
+    "networkx": "3.6.1",
+    "python": "3.14.6"
+  },
+  "source_commit": "f28437129eff7ef9c752c814cc17d9f1641db5e0",
+  "started_at": "2026-07-26T03:17:25Z",
+  "status": "COMPLETE",
+  "working_tree_dirty_at_prepare": true
+}

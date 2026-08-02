@@ -1,0 +1,28 @@
+{
+  "description": "Mechanical cross-check of contraction_intersections.md Part V: the exact cell-decomposition identity for two same-endpoint simple paths (non-crossing case), the explicit smallest counterexample disproving the 'canonical witnesses give exactly one cell' target, and the three resolved (non-crossing) named intersection-diagram types (common prefix, common suffix, enter-and-leave).",
+  "scope_note": "Tests only the non-crossing case. The crossing case is explicitly left open in contraction_intersections.md V.3 (uncrossing is named as the standard technique but its hypotheses are not verified to hold in this project's setting); deliberately no gadget is built for it here, so as not to falsely validate an unresolved claim. Kept separate from the four prior contraction verifiers, none of which are touched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/intersection_diagrams.py",
+  "source_commit": "56204cec92f529aa2f1137b312ade5ddc8eb4d3e",
+  "script_sha256": "197113ac926259e511e156fbae130d6ed7821d15cf81b7a03c28fe2bc8db9b94",
+  "stdout_sha256": "ece9853f56ce6b47879d1763ab1ded106e964cf5c137af5a6bbe2f4d545e1da2",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "cell_decomposition": {"lenP": 9, "lenQ": 8, "diff": 1, "divergent_cycle_lengths": [5, 6]},
+    "one_cell_target_disproof": {
+      "shared_edges": 0, "common_components": 0, "divergent_cells": 2,
+      "lenP": 5, "lenQ": 5, "cell_cycle_lengths": [5, 5],
+      "interpretation": "0 shared edges and 0 common components (already minimal on the canonical-choice criteria) coexist with 2 divergent cells, not 1 -- direct disproof of the one-cell reduction target as stated."
+    },
+    "intersection_diagram_types": {
+      "common_prefix": {"lenP": 4, "lenQ": 5},
+      "common_suffix": {"lenP": 5, "lenQ": 4},
+      "enter_and_leave": {"lenP": 6, "lenQ": 8}
+    },
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Every constructed gadget cycle validated by two independent implementations (hand-rolled adjacency traversal verify_cycle, and independently constructed networkx traversal verify_cycle_nx, both imported from verifier/contraction_lift.py); 0 disagreements.",
+  "completed_range": "All gadget constructions processed to completion; this is a small, deterministic set of explicit illustrative constructions, not a search or census."
+}

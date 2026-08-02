@@ -1,0 +1,49 @@
+{
+  "kappa1_split": {
+    "num_topology_classes": 3,
+    "per_topology": [
+      {
+        "kernel_edges": [
+          ["v", "u1"],
+          ["u1", "u2"],
+          ["u1", "u2"],
+          ["u2", "u3"],
+          ["u3", "u3"]
+        ],
+        "survivors": [],
+        "tested_full_survivors": 0
+      },
+      {
+        "kernel_edges": [
+          ["v", "u1"],
+          ["u1", "u2"],
+          ["u1", "u3"],
+          ["u2", "u2"],
+          ["u3", "u3"]
+        ],
+        "survivors": [],
+        "tested_full_survivors": 0
+      },
+      {
+        "kernel_edges": [
+          ["v", "u1"],
+          ["u1", "u2"],
+          ["u1", "u3"],
+          ["u2", "u3"],
+          ["u2", "u3"]
+        ],
+        "survivors": [],
+        "tested_full_survivors": 0
+      }
+    ]
+  },
+  "kappa2_split": {
+    "conclusion": "eliminated by direct citation of VI.1 (kernel_h2_c1c3_02_manifest.json): 0 survivors among 6804 theta + 304 dumbbell realizations",
+    "lollipop_beta_check": {
+      "beta_always": 1,
+      "checked_k_range": [0, 20]
+    },
+    "other_component": "2 C3 vertices, beta=2 -- identical degree sequence/beta/h to VI.1's theta+dumbbell kernel"
+  },
+  "records_sha256": "b02622b2561dd430e0a69ca692f78ad41b52d5fa6cba7c2b0c15c391aa29c64b"
+}

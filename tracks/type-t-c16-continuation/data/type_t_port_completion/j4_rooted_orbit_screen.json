@@ -1,0 +1,3252 @@
+{
+  "Y": 16,
+  "all_compatibility_graphs_matchable": true,
+  "j": 4,
+  "nontrivial_translation_equivalences": 0,
+  "orbit_invariant": "(a,c)=(|prefix_AC+A_left|,|prefix_AC+C_left|)",
+  "parameter_pairs": 324,
+  "records": [
+    {
+      "a": 2,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2079,
+      "perfect_matching_exists": true,
+      "safe_edges": 703
+    },
+    {
+      "a": 2,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2083,
+      "perfect_matching_exists": true,
+      "safe_edges": 700
+    },
+    {
+      "a": 2,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2095,
+      "perfect_matching_exists": true,
+      "safe_edges": 688
+    },
+    {
+      "a": 2,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2090,
+      "perfect_matching_exists": true,
+      "safe_edges": 693
+    },
+    {
+      "a": 2,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2099,
+      "perfect_matching_exists": true,
+      "safe_edges": 684
+    },
+    {
+      "a": 2,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2105,
+      "perfect_matching_exists": true,
+      "safe_edges": 677
+    },
+    {
+      "a": 3,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2074,
+      "perfect_matching_exists": true,
+      "safe_edges": 709
+    },
+    {
+      "a": 3,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2071,
+      "perfect_matching_exists": true,
+      "safe_edges": 713
+    },
+    {
+      "a": 3,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2086,
+      "perfect_matching_exists": true,
+      "safe_edges": 698
+    },
+    {
+      "a": 3,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2074,
+      "perfect_matching_exists": true,
+      "safe_edges": 710
+    },
+    {
+      "a": 3,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2094,
+      "perfect_matching_exists": true,
+      "safe_edges": 690
+    },
+    {
+      "a": 3,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2095,
+      "perfect_matching_exists": true,
+      "safe_edges": 688
+    },
+    {
+      "a": 4,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2072,
+      "perfect_matching_exists": true,
+      "safe_edges": 711
+    },
+    {
+      "a": 4,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2071,
+      "perfect_matching_exists": true,
+      "safe_edges": 713
+    },
+    {
+      "a": 4,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2076,
+      "perfect_matching_exists": true,
+      "safe_edges": 708
+    },
+    {
+      "a": 4,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2073,
+      "perfect_matching_exists": true,
+      "safe_edges": 711
+    },
+    {
+      "a": 4,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2086,
+      "perfect_matching_exists": true,
+      "safe_edges": 698
+    },
+    {
+      "a": 4,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2091,
+      "perfect_matching_exists": true,
+      "safe_edges": 692
+    },
+    {
+      "a": 5,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2067,
+      "perfect_matching_exists": true,
+      "safe_edges": 716
+    },
+    {
+      "a": 5,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2067,
+      "perfect_matching_exists": true,
+      "safe_edges": 717
+    },
+    {
+      "a": 5,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2076,
+      "perfect_matching_exists": true,
+      "safe_edges": 708
+    },
+    {
+      "a": 5,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2066,
+      "perfect_matching_exists": true,
+      "safe_edges": 718
+    },
+    {
+      "a": 5,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2079,
+      "perfect_matching_exists": true,
+      "safe_edges": 705
+    },
+    {
+      "a": 5,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2086,
+      "perfect_matching_exists": true,
+      "safe_edges": 697
+    },
+    {
+      "a": 6,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2062,
+      "perfect_matching_exists": true,
+      "safe_edges": 721
+    },
+    {
+      "a": 6,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2063,
+      "perfect_matching_exists": true,
+      "safe_edges": 721
+    },
+    {
+      "a": 6,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2071,
+      "perfect_matching_exists": true,
+      "safe_edges": 713
+    },
+    {
+      "a": 6,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2063,
+      "perfect_matching_exists": true,
+      "safe_edges": 721
+    },
+    {
+      "a": 6,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2074,
+      "perfect_matching_exists": true,
+      "safe_edges": 710
+    },
+    {
+      "a": 6,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2080,
+      "perfect_matching_exists": true,
+      "safe_edges": 703
+    },
+    {
+      "a": 7,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2056,
+      "perfect_matching_exists": true,
+      "safe_edges": 727
+    },
+    {
+      "a": 7,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2057,
+      "perfect_matching_exists": true,
+      "safe_edges": 727
+    },
+    {
+      "a": 7,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2066,
+      "perfect_matching_exists": true,
+      "safe_edges": 718
+    },
+    {
+      "a": 7,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2059,
+      "perfect_matching_exists": true,
+      "safe_edges": 725
+    },
+    {
+      "a": 7,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2069,
+      "perfect_matching_exists": true,
+      "safe_edges": 715
+    },
+    {
+      "a": 7,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2075,
+      "perfect_matching_exists": true,
+      "safe_edges": 708
+    },
+    {
+      "a": 8,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2050,
+      "perfect_matching_exists": true,
+      "safe_edges": 733
+    },
+    {
+      "a": 8,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2049,
+      "perfect_matching_exists": true,
+      "safe_edges": 735
+    },
+    {
+      "a": 8,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2058,
+      "perfect_matching_exists": true,
+      "safe_edges": 726
+    },
+    {
+      "a": 8,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2053,
+      "perfect_matching_exists": true,
+      "safe_edges": 731
+    },
+    {
+      "a": 8,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2063,
+      "perfect_matching_exists": true,
+      "safe_edges": 721
+    },
+    {
+      "a": 8,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2067,
+      "perfect_matching_exists": true,
+      "safe_edges": 716
+    },
+    {
+      "a": 9,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2044,
+      "perfect_matching_exists": true,
+      "safe_edges": 739
+    },
+    {
+      "a": 9,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2041,
+      "perfect_matching_exists": true,
+      "safe_edges": 743
+    },
+    {
+      "a": 9,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2051,
+      "perfect_matching_exists": true,
+      "safe_edges": 733
+    },
+    {
+      "a": 9,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2045,
+      "perfect_matching_exists": true,
+      "safe_edges": 739
+    },
+    {
+      "a": 9,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2055,
+      "perfect_matching_exists": true,
+      "safe_edges": 729
+    },
+    {
+      "a": 9,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2062,
+      "perfect_matching_exists": true,
+      "safe_edges": 721
+    },
+    {
+      "a": 10,
+      "c": 2,
+      "maximum_compatibility_degree": 35,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2036,
+      "perfect_matching_exists": true,
+      "safe_edges": 747
+    },
+    {
+      "a": 10,
+      "c": 3,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2035,
+      "perfect_matching_exists": true,
+      "safe_edges": 749
+    },
+    {
+      "a": 10,
+      "c": 4,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2045,
+      "perfect_matching_exists": true,
+      "safe_edges": 739
+    },
+    {
+      "a": 10,
+      "c": 5,
+      "maximum_compatibility_degree": 35,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2039,
+      "perfect_matching_exists": true,
+      "safe_edges": 745
+    },
+    {
+      "a": 10,
+      "c": 6,
+      "maximum_compatibility_degree": 35,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2049,
+      "perfect_matching_exists": true,
+      "safe_edges": 735
+    },
+    {
+      "a": 10,
+      "c": 7,
+      "maximum_compatibility_degree": 35,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2059,
+      "perfect_matching_exists": true,
+      "safe_edges": 724
+    },
+    {
+      "a": 11,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2036,
+      "perfect_matching_exists": true,
+      "safe_edges": 747
+    },
+    {
+      "a": 11,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2034,
+      "perfect_matching_exists": true,
+      "safe_edges": 750
+    },
+    {
+      "a": 11,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2044,
+      "perfect_matching_exists": true,
+      "safe_edges": 740
+    },
+    {
+      "a": 11,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2035,
+      "perfect_matching_exists": true,
+      "safe_edges": 749
+    },
+    {
+      "a": 11,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2045,
+      "perfect_matching_exists": true,
+      "safe_edges": 739
+    },
+    {
+      "a": 11,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2054,
+      "perfect_matching_exists": true,
+      "safe_edges": 729
+    },
+    {
+      "a": 12,
+      "c": 2,
+      "maximum_compatibility_degree": 35,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2032,
+      "perfect_matching_exists": true,
+      "safe_edges": 751
+    },
+    {
+      "a": 12,
+      "c": 3,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2030,
+      "perfect_matching_exists": true,
+      "safe_edges": 754
+    },
+    {
+      "a": 12,
+      "c": 4,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2042,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 12,
+      "c": 5,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2034,
+      "perfect_matching_exists": true,
+      "safe_edges": 750
+    },
+    {
+      "a": 12,
+      "c": 6,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2042,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 12,
+      "c": 7,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2051,
+      "perfect_matching_exists": true,
+      "safe_edges": 732
+    },
+    {
+      "a": 13,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2030,
+      "perfect_matching_exists": true,
+      "safe_edges": 753
+    },
+    {
+      "a": 13,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2025,
+      "perfect_matching_exists": true,
+      "safe_edges": 759
+    },
+    {
+      "a": 13,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2038,
+      "perfect_matching_exists": true,
+      "safe_edges": 746
+    },
+    {
+      "a": 13,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2031,
+      "perfect_matching_exists": true,
+      "safe_edges": 753
+    },
+    {
+      "a": 13,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2041,
+      "perfect_matching_exists": true,
+      "safe_edges": 743
+    },
+    {
+      "a": 13,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2048,
+      "perfect_matching_exists": true,
+      "safe_edges": 735
+    },
+    {
+      "a": 14,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2028,
+      "perfect_matching_exists": true,
+      "safe_edges": 755
+    },
+    {
+      "a": 14,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2023,
+      "perfect_matching_exists": true,
+      "safe_edges": 761
+    },
+    {
+      "a": 14,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2034,
+      "perfect_matching_exists": true,
+      "safe_edges": 750
+    },
+    {
+      "a": 14,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2029,
+      "perfect_matching_exists": true,
+      "safe_edges": 755
+    },
+    {
+      "a": 14,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2040,
+      "perfect_matching_exists": true,
+      "safe_edges": 744
+    },
+    {
+      "a": 14,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2047,
+      "perfect_matching_exists": true,
+      "safe_edges": 736
+    },
+    {
+      "a": 15,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2027,
+      "perfect_matching_exists": true,
+      "safe_edges": 756
+    },
+    {
+      "a": 15,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2022,
+      "perfect_matching_exists": true,
+      "safe_edges": 762
+    },
+    {
+      "a": 15,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2033,
+      "perfect_matching_exists": true,
+      "safe_edges": 751
+    },
+    {
+      "a": 15,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2026,
+      "perfect_matching_exists": true,
+      "safe_edges": 758
+    },
+    {
+      "a": 15,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2037,
+      "perfect_matching_exists": true,
+      "safe_edges": 747
+    },
+    {
+      "a": 15,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2043,
+      "perfect_matching_exists": true,
+      "safe_edges": 740
+    },
+    {
+      "a": 16,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2025,
+      "perfect_matching_exists": true,
+      "safe_edges": 758
+    },
+    {
+      "a": 16,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2022,
+      "perfect_matching_exists": true,
+      "safe_edges": 762
+    },
+    {
+      "a": 16,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2033,
+      "perfect_matching_exists": true,
+      "safe_edges": 751
+    },
+    {
+      "a": 16,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2026,
+      "perfect_matching_exists": true,
+      "safe_edges": 758
+    },
+    {
+      "a": 16,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2035,
+      "perfect_matching_exists": true,
+      "safe_edges": 749
+    },
+    {
+      "a": 16,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2044,
+      "perfect_matching_exists": true,
+      "safe_edges": 739
+    },
+    {
+      "a": 17,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2023,
+      "perfect_matching_exists": true,
+      "safe_edges": 760
+    },
+    {
+      "a": 17,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2024,
+      "perfect_matching_exists": true,
+      "safe_edges": 760
+    },
+    {
+      "a": 17,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2035,
+      "perfect_matching_exists": true,
+      "safe_edges": 749
+    },
+    {
+      "a": 17,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2028,
+      "perfect_matching_exists": true,
+      "safe_edges": 756
+    },
+    {
+      "a": 17,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2036,
+      "perfect_matching_exists": true,
+      "safe_edges": 748
+    },
+    {
+      "a": 17,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2042,
+      "perfect_matching_exists": true,
+      "safe_edges": 741
+    },
+    {
+      "a": 18,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2017,
+      "perfect_matching_exists": true,
+      "safe_edges": 766
+    },
+    {
+      "a": 18,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2020,
+      "perfect_matching_exists": true,
+      "safe_edges": 764
+    },
+    {
+      "a": 18,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2031,
+      "perfect_matching_exists": true,
+      "safe_edges": 753
+    },
+    {
+      "a": 18,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2027,
+      "perfect_matching_exists": true,
+      "safe_edges": 757
+    },
+    {
+      "a": 18,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2035,
+      "perfect_matching_exists": true,
+      "safe_edges": 749
+    },
+    {
+      "a": 18,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2041,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 19,
+      "c": 2,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2014,
+      "perfect_matching_exists": true,
+      "safe_edges": 769
+    },
+    {
+      "a": 19,
+      "c": 3,
+      "maximum_compatibility_degree": 42,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2016,
+      "perfect_matching_exists": true,
+      "safe_edges": 768
+    },
+    {
+      "a": 19,
+      "c": 4,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2028,
+      "perfect_matching_exists": true,
+      "safe_edges": 756
+    },
+    {
+      "a": 19,
+      "c": 5,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2026,
+      "perfect_matching_exists": true,
+      "safe_edges": 758
+    },
+    {
+      "a": 19,
+      "c": 6,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2035,
+      "perfect_matching_exists": true,
+      "safe_edges": 749
+    },
+    {
+      "a": 19,
+      "c": 7,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2041,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 20,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2013,
+      "perfect_matching_exists": true,
+      "safe_edges": 770
+    },
+    {
+      "a": 20,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2013,
+      "perfect_matching_exists": true,
+      "safe_edges": 771
+    },
+    {
+      "a": 20,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2019,
+      "perfect_matching_exists": true,
+      "safe_edges": 765
+    },
+    {
+      "a": 20,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2020,
+      "perfect_matching_exists": true,
+      "safe_edges": 764
+    },
+    {
+      "a": 20,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 2033,
+      "perfect_matching_exists": true,
+      "safe_edges": 751
+    },
+    {
+      "a": 20,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2038,
+      "perfect_matching_exists": true,
+      "safe_edges": 745
+    },
+    {
+      "a": 21,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2005,
+      "perfect_matching_exists": true,
+      "safe_edges": 778
+    },
+    {
+      "a": 21,
+      "c": 3,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1996,
+      "perfect_matching_exists": true,
+      "safe_edges": 788
+    },
+    {
+      "a": 21,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2011,
+      "perfect_matching_exists": true,
+      "safe_edges": 773
+    },
+    {
+      "a": 21,
+      "c": 5,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2008,
+      "perfect_matching_exists": true,
+      "safe_edges": 776
+    },
+    {
+      "a": 21,
+      "c": 6,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2018,
+      "perfect_matching_exists": true,
+      "safe_edges": 766
+    },
+    {
+      "a": 21,
+      "c": 7,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2027,
+      "perfect_matching_exists": true,
+      "safe_edges": 756
+    },
+    {
+      "a": 22,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1994,
+      "perfect_matching_exists": true,
+      "safe_edges": 789
+    },
+    {
+      "a": 22,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2000,
+      "perfect_matching_exists": true,
+      "safe_edges": 784
+    },
+    {
+      "a": 22,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2004,
+      "perfect_matching_exists": true,
+      "safe_edges": 780
+    },
+    {
+      "a": 22,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1998,
+      "perfect_matching_exists": true,
+      "safe_edges": 786
+    },
+    {
+      "a": 22,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2012,
+      "perfect_matching_exists": true,
+      "safe_edges": 772
+    },
+    {
+      "a": 22,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2023,
+      "perfect_matching_exists": true,
+      "safe_edges": 760
+    },
+    {
+      "a": 23,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 1992,
+      "perfect_matching_exists": true,
+      "safe_edges": 791
+    },
+    {
+      "a": 23,
+      "c": 3,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 1995,
+      "perfect_matching_exists": true,
+      "safe_edges": 789
+    },
+    {
+      "a": 23,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 1999,
+      "perfect_matching_exists": true,
+      "safe_edges": 785
+    },
+    {
+      "a": 23,
+      "c": 5,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 1993,
+      "perfect_matching_exists": true,
+      "safe_edges": 791
+    },
+    {
+      "a": 23,
+      "c": 6,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2003,
+      "perfect_matching_exists": true,
+      "safe_edges": 781
+    },
+    {
+      "a": 23,
+      "c": 7,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2014,
+      "perfect_matching_exists": true,
+      "safe_edges": 769
+    },
+    {
+      "a": 24,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1984,
+      "perfect_matching_exists": true,
+      "safe_edges": 799
+    },
+    {
+      "a": 24,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1983,
+      "perfect_matching_exists": true,
+      "safe_edges": 801
+    },
+    {
+      "a": 24,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1985,
+      "perfect_matching_exists": true,
+      "safe_edges": 799
+    },
+    {
+      "a": 24,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1984,
+      "perfect_matching_exists": true,
+      "safe_edges": 800
+    },
+    {
+      "a": 24,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1991,
+      "perfect_matching_exists": true,
+      "safe_edges": 793
+    },
+    {
+      "a": 24,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2002,
+      "perfect_matching_exists": true,
+      "safe_edges": 781
+    },
+    {
+      "a": 25,
+      "c": 2,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1965,
+      "perfect_matching_exists": true,
+      "safe_edges": 818
+    },
+    {
+      "a": 25,
+      "c": 3,
+      "maximum_compatibility_degree": 42,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1965,
+      "perfect_matching_exists": true,
+      "safe_edges": 819
+    },
+    {
+      "a": 25,
+      "c": 4,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1974,
+      "perfect_matching_exists": true,
+      "safe_edges": 810
+    },
+    {
+      "a": 25,
+      "c": 5,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1968,
+      "perfect_matching_exists": true,
+      "safe_edges": 816
+    },
+    {
+      "a": 25,
+      "c": 6,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 8,
+      "one_edge_incompatible_pairs": 1982,
+      "perfect_matching_exists": true,
+      "safe_edges": 802
+    },
+    {
+      "a": 25,
+      "c": 7,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1986,
+      "perfect_matching_exists": true,
+      "safe_edges": 797
+    },
+    {
+      "a": 26,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1953,
+      "perfect_matching_exists": true,
+      "safe_edges": 830
+    },
+    {
+      "a": 26,
+      "c": 3,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1957,
+      "perfect_matching_exists": true,
+      "safe_edges": 827
+    },
+    {
+      "a": 26,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1961,
+      "perfect_matching_exists": true,
+      "safe_edges": 823
+    },
+    {
+      "a": 26,
+      "c": 5,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1964,
+      "perfect_matching_exists": true,
+      "safe_edges": 820
+    },
+    {
+      "a": 26,
+      "c": 6,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 8,
+      "one_edge_incompatible_pairs": 1971,
+      "perfect_matching_exists": true,
+      "safe_edges": 813
+    },
+    {
+      "a": 26,
+      "c": 7,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1980,
+      "perfect_matching_exists": true,
+      "safe_edges": 803
+    },
+    {
+      "a": 27,
+      "c": 2,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1944,
+      "perfect_matching_exists": true,
+      "safe_edges": 839
+    },
+    {
+      "a": 27,
+      "c": 3,
+      "maximum_compatibility_degree": 42,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1944,
+      "perfect_matching_exists": true,
+      "safe_edges": 840
+    },
+    {
+      "a": 27,
+      "c": 4,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1957,
+      "perfect_matching_exists": true,
+      "safe_edges": 827
+    },
+    {
+      "a": 27,
+      "c": 5,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1952,
+      "perfect_matching_exists": true,
+      "safe_edges": 832
+    },
+    {
+      "a": 27,
+      "c": 6,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 11,
+      "one_edge_incompatible_pairs": 1967,
+      "perfect_matching_exists": true,
+      "safe_edges": 817
+    },
+    {
+      "a": 27,
+      "c": 7,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1970,
+      "perfect_matching_exists": true,
+      "safe_edges": 813
+    },
+    {
+      "a": 28,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1942,
+      "perfect_matching_exists": true,
+      "safe_edges": 841
+    },
+    {
+      "a": 28,
+      "c": 3,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1951,
+      "perfect_matching_exists": true,
+      "safe_edges": 833
+    },
+    {
+      "a": 28,
+      "c": 4,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1956,
+      "perfect_matching_exists": true,
+      "safe_edges": 828
+    },
+    {
+      "a": 28,
+      "c": 5,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1957,
+      "perfect_matching_exists": true,
+      "safe_edges": 827
+    },
+    {
+      "a": 28,
+      "c": 6,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 8,
+      "one_edge_incompatible_pairs": 1967,
+      "perfect_matching_exists": true,
+      "safe_edges": 817
+    },
+    {
+      "a": 28,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1974,
+      "perfect_matching_exists": true,
+      "safe_edges": 809
+    },
+    {
+      "a": 29,
+      "c": 2,
+      "maximum_compatibility_degree": 35,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1941,
+      "perfect_matching_exists": true,
+      "safe_edges": 842
+    },
+    {
+      "a": 29,
+      "c": 3,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1942,
+      "perfect_matching_exists": true,
+      "safe_edges": 842
+    },
+    {
+      "a": 29,
+      "c": 4,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1953,
+      "perfect_matching_exists": true,
+      "safe_edges": 831
+    },
+    {
+      "a": 29,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1950,
+      "perfect_matching_exists": true,
+      "safe_edges": 834
+    },
+    {
+      "a": 29,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 10,
+      "one_edge_incompatible_pairs": 1961,
+      "perfect_matching_exists": true,
+      "safe_edges": 823
+    },
+    {
+      "a": 29,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 9,
+      "one_edge_incompatible_pairs": 1968,
+      "perfect_matching_exists": true,
+      "safe_edges": 815
+    },
+    {
+      "a": 30,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1940,
+      "perfect_matching_exists": true,
+      "safe_edges": 843
+    },
+    {
+      "a": 30,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1949,
+      "perfect_matching_exists": true,
+      "safe_edges": 835
+    },
+    {
+      "a": 30,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1955,
+      "perfect_matching_exists": true,
+      "safe_edges": 829
+    },
+    {
+      "a": 30,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1953,
+      "perfect_matching_exists": true,
+      "safe_edges": 831
+    },
+    {
+      "a": 30,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 8,
+      "one_edge_incompatible_pairs": 1965,
+      "perfect_matching_exists": true,
+      "safe_edges": 819
+    },
+    {
+      "a": 30,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1969,
+      "perfect_matching_exists": true,
+      "safe_edges": 814
+    },
+    {
+      "a": 31,
+      "c": 2,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1945,
+      "perfect_matching_exists": true,
+      "safe_edges": 838
+    },
+    {
+      "a": 31,
+      "c": 3,
+      "maximum_compatibility_degree": 42,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1948,
+      "perfect_matching_exists": true,
+      "safe_edges": 836
+    },
+    {
+      "a": 31,
+      "c": 4,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1958,
+      "perfect_matching_exists": true,
+      "safe_edges": 826
+    },
+    {
+      "a": 31,
+      "c": 5,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1956,
+      "perfect_matching_exists": true,
+      "safe_edges": 828
+    },
+    {
+      "a": 31,
+      "c": 6,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1965,
+      "perfect_matching_exists": true,
+      "safe_edges": 819
+    },
+    {
+      "a": 31,
+      "c": 7,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1971,
+      "perfect_matching_exists": true,
+      "safe_edges": 812
+    },
+    {
+      "a": 32,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1955,
+      "perfect_matching_exists": true,
+      "safe_edges": 828
+    },
+    {
+      "a": 32,
+      "c": 3,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1961,
+      "perfect_matching_exists": true,
+      "safe_edges": 823
+    },
+    {
+      "a": 32,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1969,
+      "perfect_matching_exists": true,
+      "safe_edges": 815
+    },
+    {
+      "a": 32,
+      "c": 5,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1967,
+      "perfect_matching_exists": true,
+      "safe_edges": 817
+    },
+    {
+      "a": 32,
+      "c": 6,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1977,
+      "perfect_matching_exists": true,
+      "safe_edges": 807
+    },
+    {
+      "a": 32,
+      "c": 7,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1982,
+      "perfect_matching_exists": true,
+      "safe_edges": 801
+    },
+    {
+      "a": 33,
+      "c": 2,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1970,
+      "perfect_matching_exists": true,
+      "safe_edges": 813
+    },
+    {
+      "a": 33,
+      "c": 3,
+      "maximum_compatibility_degree": 42,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1972,
+      "perfect_matching_exists": true,
+      "safe_edges": 812
+    },
+    {
+      "a": 33,
+      "c": 4,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1980,
+      "perfect_matching_exists": true,
+      "safe_edges": 804
+    },
+    {
+      "a": 33,
+      "c": 5,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1977,
+      "perfect_matching_exists": true,
+      "safe_edges": 807
+    },
+    {
+      "a": 33,
+      "c": 6,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1989,
+      "perfect_matching_exists": true,
+      "safe_edges": 795
+    },
+    {
+      "a": 33,
+      "c": 7,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1992,
+      "perfect_matching_exists": true,
+      "safe_edges": 791
+    },
+    {
+      "a": 34,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1987,
+      "perfect_matching_exists": true,
+      "safe_edges": 796
+    },
+    {
+      "a": 34,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1985,
+      "perfect_matching_exists": true,
+      "safe_edges": 799
+    },
+    {
+      "a": 34,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1990,
+      "perfect_matching_exists": true,
+      "safe_edges": 794
+    },
+    {
+      "a": 34,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 1988,
+      "perfect_matching_exists": true,
+      "safe_edges": 796
+    },
+    {
+      "a": 34,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 1997,
+      "perfect_matching_exists": true,
+      "safe_edges": 787
+    },
+    {
+      "a": 34,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2010,
+      "perfect_matching_exists": true,
+      "safe_edges": 773
+    },
+    {
+      "a": 35,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1999,
+      "perfect_matching_exists": true,
+      "safe_edges": 784
+    },
+    {
+      "a": 35,
+      "c": 3,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1999,
+      "perfect_matching_exists": true,
+      "safe_edges": 785
+    },
+    {
+      "a": 35,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1998,
+      "perfect_matching_exists": true,
+      "safe_edges": 786
+    },
+    {
+      "a": 35,
+      "c": 5,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 1993,
+      "perfect_matching_exists": true,
+      "safe_edges": 791
+    },
+    {
+      "a": 35,
+      "c": 6,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2011,
+      "perfect_matching_exists": true,
+      "safe_edges": 773
+    },
+    {
+      "a": 35,
+      "c": 7,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2016,
+      "perfect_matching_exists": true,
+      "safe_edges": 767
+    },
+    {
+      "a": 36,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2009,
+      "perfect_matching_exists": true,
+      "safe_edges": 774
+    },
+    {
+      "a": 36,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2011,
+      "perfect_matching_exists": true,
+      "safe_edges": 773
+    },
+    {
+      "a": 36,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2012,
+      "perfect_matching_exists": true,
+      "safe_edges": 772
+    },
+    {
+      "a": 36,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2008,
+      "perfect_matching_exists": true,
+      "safe_edges": 776
+    },
+    {
+      "a": 36,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2019,
+      "perfect_matching_exists": true,
+      "safe_edges": 765
+    },
+    {
+      "a": 36,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2034,
+      "perfect_matching_exists": true,
+      "safe_edges": 749
+    },
+    {
+      "a": 37,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2016,
+      "perfect_matching_exists": true,
+      "safe_edges": 767
+    },
+    {
+      "a": 37,
+      "c": 3,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2021,
+      "perfect_matching_exists": true,
+      "safe_edges": 763
+    },
+    {
+      "a": 37,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2024,
+      "perfect_matching_exists": true,
+      "safe_edges": 760
+    },
+    {
+      "a": 37,
+      "c": 5,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2016,
+      "perfect_matching_exists": true,
+      "safe_edges": 768
+    },
+    {
+      "a": 37,
+      "c": 6,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2031,
+      "perfect_matching_exists": true,
+      "safe_edges": 753
+    },
+    {
+      "a": 37,
+      "c": 7,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2040,
+      "perfect_matching_exists": true,
+      "safe_edges": 743
+    },
+    {
+      "a": 38,
+      "c": 2,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2016,
+      "perfect_matching_exists": true,
+      "safe_edges": 767
+    },
+    {
+      "a": 38,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2023,
+      "perfect_matching_exists": true,
+      "safe_edges": 761
+    },
+    {
+      "a": 38,
+      "c": 4,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2030,
+      "perfect_matching_exists": true,
+      "safe_edges": 754
+    },
+    {
+      "a": 38,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2025,
+      "perfect_matching_exists": true,
+      "safe_edges": 759
+    },
+    {
+      "a": 38,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2039,
+      "perfect_matching_exists": true,
+      "safe_edges": 745
+    },
+    {
+      "a": 38,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2043,
+      "perfect_matching_exists": true,
+      "safe_edges": 740
+    },
+    {
+      "a": 39,
+      "c": 2,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2020,
+      "perfect_matching_exists": true,
+      "safe_edges": 763
+    },
+    {
+      "a": 39,
+      "c": 3,
+      "maximum_compatibility_degree": 42,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2027,
+      "perfect_matching_exists": true,
+      "safe_edges": 757
+    },
+    {
+      "a": 39,
+      "c": 4,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2033,
+      "perfect_matching_exists": true,
+      "safe_edges": 751
+    },
+    {
+      "a": 39,
+      "c": 5,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2030,
+      "perfect_matching_exists": true,
+      "safe_edges": 754
+    },
+    {
+      "a": 39,
+      "c": 6,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2039,
+      "perfect_matching_exists": true,
+      "safe_edges": 745
+    },
+    {
+      "a": 39,
+      "c": 7,
+      "maximum_compatibility_degree": 41,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2048,
+      "perfect_matching_exists": true,
+      "safe_edges": 735
+    },
+    {
+      "a": 40,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2020,
+      "perfect_matching_exists": true,
+      "safe_edges": 763
+    },
+    {
+      "a": 40,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2025,
+      "perfect_matching_exists": true,
+      "safe_edges": 759
+    },
+    {
+      "a": 40,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2031,
+      "perfect_matching_exists": true,
+      "safe_edges": 753
+    },
+    {
+      "a": 40,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2030,
+      "perfect_matching_exists": true,
+      "safe_edges": 754
+    },
+    {
+      "a": 40,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2042,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 40,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2045,
+      "perfect_matching_exists": true,
+      "safe_edges": 738
+    },
+    {
+      "a": 41,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2021,
+      "perfect_matching_exists": true,
+      "safe_edges": 762
+    },
+    {
+      "a": 41,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2024,
+      "perfect_matching_exists": true,
+      "safe_edges": 760
+    },
+    {
+      "a": 41,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2030,
+      "perfect_matching_exists": true,
+      "safe_edges": 754
+    },
+    {
+      "a": 41,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2029,
+      "perfect_matching_exists": true,
+      "safe_edges": 755
+    },
+    {
+      "a": 41,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 7,
+      "one_edge_incompatible_pairs": 2039,
+      "perfect_matching_exists": true,
+      "safe_edges": 745
+    },
+    {
+      "a": 41,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2046,
+      "perfect_matching_exists": true,
+      "safe_edges": 737
+    },
+    {
+      "a": 42,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2023,
+      "perfect_matching_exists": true,
+      "safe_edges": 760
+    },
+    {
+      "a": 42,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2028,
+      "perfect_matching_exists": true,
+      "safe_edges": 756
+    },
+    {
+      "a": 42,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2034,
+      "perfect_matching_exists": true,
+      "safe_edges": 750
+    },
+    {
+      "a": 42,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2033,
+      "perfect_matching_exists": true,
+      "safe_edges": 751
+    },
+    {
+      "a": 42,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2043,
+      "perfect_matching_exists": true,
+      "safe_edges": 741
+    },
+    {
+      "a": 42,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2053,
+      "perfect_matching_exists": true,
+      "safe_edges": 730
+    },
+    {
+      "a": 43,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2030,
+      "perfect_matching_exists": true,
+      "safe_edges": 753
+    },
+    {
+      "a": 43,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2034,
+      "perfect_matching_exists": true,
+      "safe_edges": 750
+    },
+    {
+      "a": 43,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2040,
+      "perfect_matching_exists": true,
+      "safe_edges": 744
+    },
+    {
+      "a": 43,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2036,
+      "perfect_matching_exists": true,
+      "safe_edges": 748
+    },
+    {
+      "a": 43,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2046,
+      "perfect_matching_exists": true,
+      "safe_edges": 738
+    },
+    {
+      "a": 43,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2056,
+      "perfect_matching_exists": true,
+      "safe_edges": 727
+    },
+    {
+      "a": 44,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2033,
+      "perfect_matching_exists": true,
+      "safe_edges": 750
+    },
+    {
+      "a": 44,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2037,
+      "perfect_matching_exists": true,
+      "safe_edges": 747
+    },
+    {
+      "a": 44,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2045,
+      "perfect_matching_exists": true,
+      "safe_edges": 739
+    },
+    {
+      "a": 44,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2042,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 44,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2050,
+      "perfect_matching_exists": true,
+      "safe_edges": 734
+    },
+    {
+      "a": 44,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2060,
+      "perfect_matching_exists": true,
+      "safe_edges": 723
+    },
+    {
+      "a": 45,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2036,
+      "perfect_matching_exists": true,
+      "safe_edges": 747
+    },
+    {
+      "a": 45,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2037,
+      "perfect_matching_exists": true,
+      "safe_edges": 747
+    },
+    {
+      "a": 45,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2046,
+      "perfect_matching_exists": true,
+      "safe_edges": 738
+    },
+    {
+      "a": 45,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2044,
+      "perfect_matching_exists": true,
+      "safe_edges": 740
+    },
+    {
+      "a": 45,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2054,
+      "perfect_matching_exists": true,
+      "safe_edges": 730
+    },
+    {
+      "a": 45,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2063,
+      "perfect_matching_exists": true,
+      "safe_edges": 720
+    },
+    {
+      "a": 46,
+      "c": 2,
+      "maximum_compatibility_degree": 35,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2041,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 46,
+      "c": 3,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2042,
+      "perfect_matching_exists": true,
+      "safe_edges": 742
+    },
+    {
+      "a": 46,
+      "c": 4,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2049,
+      "perfect_matching_exists": true,
+      "safe_edges": 735
+    },
+    {
+      "a": 46,
+      "c": 5,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2049,
+      "perfect_matching_exists": true,
+      "safe_edges": 735
+    },
+    {
+      "a": 46,
+      "c": 6,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2060,
+      "perfect_matching_exists": true,
+      "safe_edges": 724
+    },
+    {
+      "a": 46,
+      "c": 7,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2069,
+      "perfect_matching_exists": true,
+      "safe_edges": 714
+    },
+    {
+      "a": 47,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2047,
+      "perfect_matching_exists": true,
+      "safe_edges": 736
+    },
+    {
+      "a": 47,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2047,
+      "perfect_matching_exists": true,
+      "safe_edges": 737
+    },
+    {
+      "a": 47,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2054,
+      "perfect_matching_exists": true,
+      "safe_edges": 730
+    },
+    {
+      "a": 47,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2053,
+      "perfect_matching_exists": true,
+      "safe_edges": 731
+    },
+    {
+      "a": 47,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2064,
+      "perfect_matching_exists": true,
+      "safe_edges": 720
+    },
+    {
+      "a": 47,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2073,
+      "perfect_matching_exists": true,
+      "safe_edges": 710
+    },
+    {
+      "a": 48,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2052,
+      "perfect_matching_exists": true,
+      "safe_edges": 731
+    },
+    {
+      "a": 48,
+      "c": 3,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2055,
+      "perfect_matching_exists": true,
+      "safe_edges": 729
+    },
+    {
+      "a": 48,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2061,
+      "perfect_matching_exists": true,
+      "safe_edges": 723
+    },
+    {
+      "a": 48,
+      "c": 5,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2061,
+      "perfect_matching_exists": true,
+      "safe_edges": 723
+    },
+    {
+      "a": 48,
+      "c": 6,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2070,
+      "perfect_matching_exists": true,
+      "safe_edges": 714
+    },
+    {
+      "a": 48,
+      "c": 7,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2079,
+      "perfect_matching_exists": true,
+      "safe_edges": 704
+    },
+    {
+      "a": 49,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2056,
+      "perfect_matching_exists": true,
+      "safe_edges": 727
+    },
+    {
+      "a": 49,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2063,
+      "perfect_matching_exists": true,
+      "safe_edges": 721
+    },
+    {
+      "a": 49,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2070,
+      "perfect_matching_exists": true,
+      "safe_edges": 714
+    },
+    {
+      "a": 49,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2069,
+      "perfect_matching_exists": true,
+      "safe_edges": 715
+    },
+    {
+      "a": 49,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2078,
+      "perfect_matching_exists": true,
+      "safe_edges": 706
+    },
+    {
+      "a": 49,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2084,
+      "perfect_matching_exists": true,
+      "safe_edges": 699
+    },
+    {
+      "a": 50,
+      "c": 2,
+      "maximum_compatibility_degree": 36,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2061,
+      "perfect_matching_exists": true,
+      "safe_edges": 722
+    },
+    {
+      "a": 50,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2066,
+      "perfect_matching_exists": true,
+      "safe_edges": 718
+    },
+    {
+      "a": 50,
+      "c": 4,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2073,
+      "perfect_matching_exists": true,
+      "safe_edges": 711
+    },
+    {
+      "a": 50,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2074,
+      "perfect_matching_exists": true,
+      "safe_edges": 710
+    },
+    {
+      "a": 50,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2083,
+      "perfect_matching_exists": true,
+      "safe_edges": 701
+    },
+    {
+      "a": 50,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2089,
+      "perfect_matching_exists": true,
+      "safe_edges": 694
+    },
+    {
+      "a": 51,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2071,
+      "perfect_matching_exists": true,
+      "safe_edges": 712
+    },
+    {
+      "a": 51,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2070,
+      "perfect_matching_exists": true,
+      "safe_edges": 714
+    },
+    {
+      "a": 51,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2081,
+      "perfect_matching_exists": true,
+      "safe_edges": 703
+    },
+    {
+      "a": 51,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2082,
+      "perfect_matching_exists": true,
+      "safe_edges": 702
+    },
+    {
+      "a": 51,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2094,
+      "perfect_matching_exists": true,
+      "safe_edges": 690
+    },
+    {
+      "a": 51,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2100,
+      "perfect_matching_exists": true,
+      "safe_edges": 683
+    },
+    {
+      "a": 52,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2080,
+      "perfect_matching_exists": true,
+      "safe_edges": 703
+    },
+    {
+      "a": 52,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2083,
+      "perfect_matching_exists": true,
+      "safe_edges": 701
+    },
+    {
+      "a": 52,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2084,
+      "perfect_matching_exists": true,
+      "safe_edges": 700
+    },
+    {
+      "a": 52,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2089,
+      "perfect_matching_exists": true,
+      "safe_edges": 695
+    },
+    {
+      "a": 52,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2100,
+      "perfect_matching_exists": true,
+      "safe_edges": 684
+    },
+    {
+      "a": 52,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2107,
+      "perfect_matching_exists": true,
+      "safe_edges": 676
+    },
+    {
+      "a": 53,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2086,
+      "perfect_matching_exists": true,
+      "safe_edges": 697
+    },
+    {
+      "a": 53,
+      "c": 3,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2081,
+      "perfect_matching_exists": true,
+      "safe_edges": 703
+    },
+    {
+      "a": 53,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2091,
+      "perfect_matching_exists": true,
+      "safe_edges": 693
+    },
+    {
+      "a": 53,
+      "c": 5,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2089,
+      "perfect_matching_exists": true,
+      "safe_edges": 695
+    },
+    {
+      "a": 53,
+      "c": 6,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2102,
+      "perfect_matching_exists": true,
+      "safe_edges": 682
+    },
+    {
+      "a": 53,
+      "c": 7,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2110,
+      "perfect_matching_exists": true,
+      "safe_edges": 673
+    },
+    {
+      "a": 54,
+      "c": 2,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2089,
+      "perfect_matching_exists": true,
+      "safe_edges": 694
+    },
+    {
+      "a": 54,
+      "c": 3,
+      "maximum_compatibility_degree": 40,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2097,
+      "perfect_matching_exists": true,
+      "safe_edges": 687
+    },
+    {
+      "a": 54,
+      "c": 4,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2100,
+      "perfect_matching_exists": true,
+      "safe_edges": 684
+    },
+    {
+      "a": 54,
+      "c": 5,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2098,
+      "perfect_matching_exists": true,
+      "safe_edges": 686
+    },
+    {
+      "a": 54,
+      "c": 6,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2110,
+      "perfect_matching_exists": true,
+      "safe_edges": 674
+    },
+    {
+      "a": 54,
+      "c": 7,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 4,
+      "one_edge_incompatible_pairs": 2117,
+      "perfect_matching_exists": true,
+      "safe_edges": 666
+    },
+    {
+      "a": 55,
+      "c": 2,
+      "maximum_compatibility_degree": 37,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2098,
+      "perfect_matching_exists": true,
+      "safe_edges": 684
+    },
+    {
+      "a": 55,
+      "c": 3,
+      "maximum_compatibility_degree": 39,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2101,
+      "perfect_matching_exists": true,
+      "safe_edges": 682
+    },
+    {
+      "a": 55,
+      "c": 4,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2108,
+      "perfect_matching_exists": true,
+      "safe_edges": 675
+    },
+    {
+      "a": 55,
+      "c": 5,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2108,
+      "perfect_matching_exists": true,
+      "safe_edges": 675
+    },
+    {
+      "a": 55,
+      "c": 6,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 6,
+      "one_edge_incompatible_pairs": 2119,
+      "perfect_matching_exists": true,
+      "safe_edges": 664
+    },
+    {
+      "a": 55,
+      "c": 7,
+      "maximum_compatibility_degree": 38,
+      "maximum_matching_edges": 38,
+      "minimum_compatibility_degree": 5,
+      "one_edge_incompatible_pairs": 2126,
+      "perfect_matching_exists": true,
+      "safe_edges": 656
+    }
+  ],
+  "root_convention": "z0,x,xprime,y,yprime,w_AC,w_BD,u_x,u_y and the A/B/C/D path colours are fixed",
+  "rooted_translation_orbits": 324
+}

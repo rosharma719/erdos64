@@ -1,0 +1,23 @@
+{
+  "description": "Mechanical cross-check of contraction_leaf_blocks.md Parts VI-VIII: the endpoint-location route census (same-branch, different-branch with/without pq edge), the admissible-pair excluded-residue templates, the shared-port arithmetic (2+d_i power-of-two condition), and the distinct-port reduction to a direct admissible pair.",
+  "scope_note": "Does not re-derive Gao-Huo-Liu-Ma (cited by name). The route census checks use networkx.all_simple_paths for a fully independent enumeration of every simple x-y route in the constructed theta gadgets, confirming both the COUNT and the exact multiset of lengths (including structurally-distinct routes that happen to share a numeric length). The distinct-port reduction check confirms mechanically that R+xy is 2-connected with full internal degree preserved, demonstrating why port-saturation (Part VIII) is not generically needed rather than asserting it. Kept separate from the nine prior contraction verifiers, none of which are touched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/leaf_block_arithmetic.py",
+  "source_commit": "c9f2666479ed571d50888afcf14fbee2c49198c3",
+  "script_sha256": "deee8a57d5d2bff6ac5bfa1aecb8fc19b0e062ded74b2d4b721fcca03c14e43e",
+  "stdout_sha256": "17e6aa12b2821b05a0168fb88ba3680e6be7d8fdf115b8983dde7cb48b559932",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "same_branch_route_census": {"M": 10, "dx": 2, "dy": 6, "N": 5, "predicted": [4, 8, 11], "found": [4, 8, 11]},
+    "different_branch_route_census_no_pq": {"predicted": [5, 10, 10, 11], "found": [5, 10, 10, 11]},
+    "different_branch_route_census_with_pq": {"predicted": [5, 9, 9, 10, 10, 11], "found": [5, 9, 9, 10, 10, 11]},
+    "admissible_pair_templates_checked": {"delta1": 39, "delta2": 39},
+    "shared_port_arithmetic_2m_minus_2_values": [2, 6, 14, 30, 62, 126, 254, 510],
+    "distinct_port_reduction": {"is_2connected": true, "internal_degrees": {"m1": 3, "m2": 3, "w": 4, "u": 4}, "all_ge3": true},
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Route census enumeration uses networkx.all_simple_paths (independent of this project's own hand-rolled/networkx-cycle-based checkers used elsewhere), confirming exact route counts and length multisets. 2-connectivity checks use networkx.is_biconnected. 0 disagreements.",
+  "completed_range": "All gadgets and the full excluded-residue sweep (val in 1..39) processed to completion; a small, deterministic set of explicit illustrative constructions, not a search or census -- consistent with the phase's explicit decision not to launch broad computation."
+}

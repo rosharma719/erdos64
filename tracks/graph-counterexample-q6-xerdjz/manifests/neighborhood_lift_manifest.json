@@ -1,0 +1,43 @@
+{
+  "description": "Mechanical cross-check of contraction_neighborhood.md Parts I-II: closed-neighborhood contraction A=N[v] at a cubic vertex, the cubic power-path lemma CN1 and its r=2 closure, and the Type T offset comparison between the triangle atom and the closed-neighborhood atom.",
+  "scope_note": "Tests only unconditional graph-theoretic mechanics; does not test the minimality-dependent 'p != q' forced-distinct-attachment step (contraction_atoms.md I.4), which can and does fail mechanically on ordinary (non-counterexample) fixtures -- those instances are recorded and skipped, not silently ignored. Kept separate from verifier/contraction_lift.py and verifier/atom_lift.py, whose prior audits are untouched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/neighborhood_lift.py",
+  "source_commit": "f01112ad20848c883edc004f919c8c4c152aa1c2",
+  "script_sha256": "ca44f5ccc76a9c76473d2d022a6b56faba5cc6c1907f28063598d76d71fd9773",
+  "stdout_sha256": "db263dc2d484cc337c373c16c5076be9805e84470162ea50ef8e0c5ad1af870e",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "fixtures": [
+    "petersen_graph, 3-cube, K_3,3, triangle_bearing_c4_free_fixture (reused from contraction_lift.py/atom_lift.py)",
+    "15 random cubic-plus-extra-edge graphs, n in {8,10,12}, seeds 3000..3014"
+  ],
+  "results": {
+    "cn1": {
+      "cubic_vertices_checked": 20,
+      "type_N": 11,
+      "type_T": 9,
+      "cycles_through_star": 516,
+      "raw_path_arithmetic_ok": 420,
+      "r2_closure_arithmetic_ok": 420,
+      "same_attachment_mechanically_possible_and_skipped": 96
+    },
+    "type_T_offsets": [
+      [2, "ab", {"1": 5, "2": 6}],
+      [2, "ac", {"2": 6, "3": 7}],
+      [3, "ab", {"1": 9, "2": 10}],
+      [3, "ac", {"2": 10, "3": 11}],
+      [4, "ab", {"1": 17, "2": 18}],
+      [4, "ac", {"2": 18, "3": 19}]
+    ],
+    "triangle_vs_neighborhood": {
+      "ab_lengths_triangle": [1, 2],
+      "ab_lengths_neighborhood": [1, 2],
+      "ac_lengths_neighborhood_only": [2, 3]
+    },
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Every constructed lift/gadget cycle validated by two independent implementations (hand-rolled adjacency traversal verify_cycle, and independently constructed networkx traversal verify_cycle_nx, both imported from verifier/contraction_lift.py); 0 disagreements.",
+  "completed_range": "All fixtures and gadget parameter ranges processed to completion; cycle enumeration in check_cn1 bounded at length 8 per graph (nx.simple_cycles length_bound=8)."
+}

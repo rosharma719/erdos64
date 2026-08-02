@@ -1,0 +1,37 @@
+{
+  "description": "Exact cell-count arithmetic and an abstract colored-incidence construction for the hypothetical identical-terminal four-path row. The run independently brute-forces small valid simple-graph decompositions and checks the symbolic classification through exponent 12 and every permitted cell count.",
+  "scope_note": "This is an exact arithmetic verifier, not a graph census, SAT model, proof-assistant verification, or minimum-degree-three saturation search. The alternating ladder is an abstract colored-core family, not a live Type-T residual: ancestor pole forcing excludes X_x=y,X_y=x.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 verifier/type_t_cell_decompositions.py",
+  "source_parent_commit": "f6712735eb1b4580d540e46a3eaf6875244bdfa8",
+  "python_version": "3.14.6",
+  "script_sha256": "f82e634c632ba5e5fb805611f5ea01add78e9ef913fe6334b9827ed0100d6cff",
+  "stdout_sha256": "624e2ae3c4fe46bb5a3cf2e5fde67cd486828bf6e6da5c7599b67090ea17bcb3",
+  "markdown_sha256": "a6c3abe22111ecbb5c7e06b2d4176c42b9112733ca40e60edce07d5774ed95e6",
+  "exit_status": 0,
+  "results": {
+    "symbolic_classification": {
+      "k=1": "FORCED iff m+n is a forbidden power of two; otherwise UNIVERSALLY_SAFE",
+      "k>=2,m+n=3k": "UNIVERSALLY_SAFE",
+      "k>=2,m+n=3k+1": "FORCED",
+      "k>=2,m+n>=3k+2": "ESCAPABLE_BUT_NOT_UNIVERSAL"
+    },
+    "simple_graph_cell_minimum": 3,
+    "brute_force_max_each_total": 10,
+    "brute_force_rows": 301,
+    "brute_force_all_permitted_cell_counts": true,
+    "exponent_range": [2, 12],
+    "exponent_pair_types": ["R_R", "R_S", "S_R", "S_S"],
+    "exponent_sweep_rows": 87167,
+    "exponent_sweep_all_permitted_cell_counts": true,
+    "classification_counts": {
+      "FORCED": 62,
+      "UNIVERSALLY_SAFE": 510,
+      "ESCAPABLE_BUT_NOT_UNIVERSAL": 86595
+    },
+    "smallest_mixed_universal_counterexample_totals": [4, 5],
+    "smallest_S_S_universal_counterexample_totals": [5, 5],
+    "assertion_failures": 0
+  },
+  "proved_reduction": "Complete abstract four-path incidence arithmetic admits the infinite even-k alternating-ladder family L_{rho,k,t}; this demonstrates that arithmetic alone does not bound colored cores.",
+  "structural_supersession": "The canonical Type-T application is empty: in T2 both x,y are cubic, while pole forcing requires X_x=X_y=z_0. Thus the identical-terminal assumptions X_x=y,X_y=x and every associated saturation/Q extension are impossible."
+}

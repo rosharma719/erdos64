@@ -1,0 +1,26 @@
+{
+  "dumbbell": {
+    "loop_word_counts_by_s": {
+      "2": 2,
+      "3": 0,
+      "4": 2,
+      "5": 0,
+      "6": 0
+    },
+    "survivors": [],
+    "tested": 304,
+    "topology": "dumbbell"
+  },
+  "pigeonhole": {
+    "claim": "3 draws from 2 colours always repeat (pigeonhole)",
+    "verified": true
+  },
+  "records_sha256": "e625b3ad04ba72530de3b29957862e2df8f4f73517d9054cdf593af260e049be",
+  "theta": {
+    "all_subdivided_survivors": [],
+    "one_or_more_direct_survivors": [],
+    "survivors": [],
+    "tested": 6804,
+    "topology": "theta"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "BOUNDED_INCOMPLETE",
+  "scope": "static C4/C8/C16 conflict compilation for the minimum cubic Type-T completion at (j,a,c)=(4,28,4)",
+  "claims": {
+    "short_catalog_complete": true,
+    "c16_support_bound": 5,
+    "c16_catalog_complete": false,
+    "static_formula_status": "SAT",
+    "counterexample_found": false,
+    "unsat_certificate_produced": false
+  },
+  "universal_graph": {
+    "core_vertices": 87,
+    "allowed_triples": 1225,
+    "linked_gadgets": 4371,
+    "gadgets": 5596,
+    "vertices": 10054,
+    "edges": 25623
+  },
+  "short_conflicts": {
+    "core_paths": 579,
+    "literal_c4_cycles": 0,
+    "literal_c8_cycles": 286011,
+    "minimal_supports": 227725,
+    "support_size_distribution": {"1": 371, "2": 227354}
+  },
+  "c16_conflicts": {
+    "minimal_supports": 84936,
+    "support_size_distribution": {
+      "1": 569,
+      "2": 24252,
+      "3": 29172,
+      "4": 16497,
+      "5": 14446
+    },
+    "unary_raw": 608,
+    "unary_redundant_mod_phi48": 39,
+    "projection_status": "TIME_LIMIT",
+    "requires_phi48_exact_cover_extension": true,
+    "projection_variables": 562575,
+    "projection_base_clauses": 2055416,
+    "phi48_extension_clauses": 309680,
+    "supports_enumerated_in_final_pass": 13037,
+    "final_pass_seconds": 1201.448301
+  },
+  "static_formula": {
+    "variables": 31049,
+    "exact_cover_clauses": 76359,
+    "short_conflict_clauses": 227725,
+    "c16_conflict_clauses": 84936,
+    "total_clauses": 389020,
+    "cadical195": "SAT",
+    "lingeling": "SAT",
+    "reconstructed_power_cycles": [16, 32, 64]
+  },
+  "software": {
+    "networkx": "3.6.1",
+    "ortools": "9.15.6755",
+    "python_sat": "1.9.dev7",
+    "primary_solver": "cadical195",
+    "independent_solver": "lingeling"
+  },
+  "verification": {
+    "prior_c8_cuts_covered": 9157,
+    "saved_completion_short_violations": 0,
+    "catalog_audit": "PASS: all 84936 C16 supports independently materialized and verified",
+    "test_suite": "103 passed"
+  },
+  "commands": {
+    "short_compile": "PYTHONPATH=verifier python verifier/type_t_port_short_conflicts.py --j 4 --a 28 --c 4 --output data/type_t_port_c16/j4_a28_c4_short_conflicts.json.gz",
+    "c16_compile": "PYTHONPATH=verifier python verifier/type_t_port_c16_hypergraph.py --j 4 --a 28 --c 4 --length 16 --seed-unary --forbid-catalog data/type_t_port_c16/j4_a28_c4_short_conflicts.json.gz --seed-cegar data/type_t_port_multipole/j4_a28_c4_exact.json.gz --output data/type_t_port_c16/j4_a28_c4_c16_hypergraph.json.gz",
+    "static_solve": "PYTHONPATH=verifier python verifier/type_t_port_c16_static_sat.py --j 4 --a 28 --c 4 --short-catalog data/type_t_port_c16/j4_a28_c4_short_conflicts.json.gz --c16-catalog data/type_t_port_c16/j4_a28_c4_c16_hypergraph.json.gz --output data/type_t_port_c16/j4_a28_c4_static_sat.json",
+    "audit": "PYTHONPATH=verifier python verifier/type_t_port_c16_check.py --j 4 --a 28 --c 4 --workers 8 --short-catalog data/type_t_port_c16/j4_a28_c4_short_conflicts.json.gz --c16-catalog data/type_t_port_c16/j4_a28_c4_c16_hypergraph.json.gz --cegar data/type_t_port_multipole/j4_a28_c4_exact.json.gz --completion data/type_t_port_multipole/j4_a28_c4_local.json --output data/type_t_port_c16/j4_a28_c4_catalog_check.json"
+  },
+  "hashes": {
+    "type_t_port_c16_compilation.md": "1c851c9a5b51f20fa9e854c3dbaec88ae1936e90891001d03d15e2f649318b50",
+    "verifier/type_t_port_short_conflicts.py": "01e5b129c95c80f63c6eb0acfee64c9baa74fcc1c3f9ea74a76a9b4e8c6324fc",
+    "verifier/type_t_port_c16_hypergraph.py": "0534f8ee6f361794ec466a48f179612a5a6e1ed85fb57b6803fa3e78e527025c",
+    "verifier/type_t_port_c16_static_sat.py": "affbf49b6611b4c82a005dfc20e8b60b2f28b7f47f161028fd9566e3d7606284",
+    "verifier/type_t_port_c16_check.py": "7c27dc7b8e83d33a291b89f477cf390a0749fe98c38c07a947f92f30e8858823",
+    "tests/test_type_t_port_c16.py": "9fc259c678989f785b04f7765e5e64e7d2b96dc70ed0a182319a9c8a0e81f9b1",
+    "data/type_t_port_c16/j4_a28_c4_short_conflicts.json.gz": "e99310b5a8568d9e3cf722ee491b55cbc22ea66a3294c6d6b83d4ea2f342fc8c",
+    "data/type_t_port_c16/j4_a28_c4_c16_hypergraph.json.gz": "6d5432190f66509a5002836a4bae5d87f482f7b0b0366a0fdca2769e04b011f4",
+    "data/type_t_port_c16/j4_a28_c4_static_sat.json": "2265290717e48decce2eb5128becc8453f0318e78a641d2e9d508e6b3d0fb80c",
+    "data/type_t_port_c16/j4_a28_c4_catalog_check.json": "0e597bf3b7a34411bc67e516400984bc5d76e02126e2c8ed8c5d97230d8cf624"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "checker_A": "NetworkX is_biconnected",
+  "checker_B": "direct connectivity-after-every-vertex-deletion DFS",
+  "definition": {
+    "closure": "B+xy simple and 2-connected",
+    "d_B(x)": 1,
+    "d_B(y)": ">=1",
+    "internal_minimum_degree": 3,
+    "terminal_edge": "xy absent"
+  },
+  "download_date": "2026-07-25 America/New_York",
+  "exit_code": 0,
+  "experiment": "E24a-Type-A-extremal-certificates",
+  "generated_at": "2026-07-26T03:14:34.154178+00:00",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_a_extremal_check.py --output manifests/E24_extremal_manifest.json",
+  "orders": {
+    "11": {
+      "Turan_number": 15,
+      "checker_agreement": true,
+      "cycle_detector_disagreements": 0,
+      "local_path": "data/extremal/c48_n11e15.s6",
+      "manual_survivors": 0,
+      "networkx_survivors": 0,
+      "order": 11,
+      "oriented_terminal_choices_tested": 26950,
+      "sha256": "fa5c5158ad641d1f2124feea75255e8077144fcdaeb7b051cd45f32470bbe0f2",
+      "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n11e15.s6",
+      "sparse6_records": 245
+    },
+    "9": {
+      "Turan_number": 12,
+      "checker_agreement": true,
+      "cycle_detector_disagreements": 0,
+      "local_path": "data/extremal/c48_n9e12.s6",
+      "manual_survivors": 0,
+      "networkx_survivors": 0,
+      "order": 9,
+      "oriented_terminal_choices_tested": 2376,
+      "sha256": "ab93fb789a63defcb189f69f6e7f8a3bcac1057c77837dfd20211d644416ca98",
+      "source": "https://users.cecs.anu.edu.au/~bdm/data/extremal/c48_n9e12.s6",
+      "sparse6_records": 33
+    }
+  },
+  "script": {
+    "path": "verifier/type_a_extremal_check.py",
+    "sha256": "4347910ba32f709f44058c8406cda22afa056bfaf1fe2fccc8260d63390a5110"
+  },
+  "source_page": "https://users.cecs.anu.edu.au/~bdm/data/extremal.html",
+  "status": "COMPLETE"
+}

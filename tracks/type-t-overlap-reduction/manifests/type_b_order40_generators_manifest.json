@@ -1,0 +1,175 @@
+{
+  "environment": {
+    "gcc_version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "networkx_version": "3.6.1",
+    "pysat_version": "1.9.dev7",
+    "python_version": "3.11.15"
+  },
+  "layers": {
+    "gap1_e29": {
+      "canonical_comparison": {
+        "canonical_classes": 103,
+        "multiset_sha256_both_generators": "c15d44eea0137b058106f52fe472fede2df4663ca4e4d796daccf037ababf25b",
+        "sets_agree": true
+      },
+      "conclusion": "layer empty: all candidates eliminated by internal C16 and/or closure C8/C16",
+      "direct_generator": {
+        "source": "verifier/type_b_order40_gap1_e29.c",
+        "source_sha256": "7c2a130eebf3f98cd6d12da08bb344e9fb21bf6ff335f687877b39109d442fe6",
+        "total_dfs_nodes": 35483733,
+        "total_labeled_candidates": 390,
+        "wall_time_seconds": 9.66
+      },
+      "independent_networkx_verifier": {
+        "not_eliminated_survivors": 0,
+        "script": "verifier/type_b_order40_independent.py (or ad-hoc batch variant for multi-degree-sequence layers)",
+        "structurally_inconsistent": 0,
+        "total_candidates": 390
+      },
+      "independent_sat_generator": {
+        "agrees_with_direct": true,
+        "source": "verifier/type_b_order40_slot_sat.py",
+        "source_sha256": "4ad373c3f49f527ea4f30f276906648588389e8c31e2d3c1ef154d80cd7943e1",
+        "total_labeled_candidates": 390,
+        "wall_time_seconds": 74.56
+      },
+      "output_files": {
+        "graphs": "data/type_b_order40_gap1_e29_graphs.json",
+        "graphs_sha256": "a4fbd972789b908491f1cbece2ba2ae6a643ec2969b79afe3032f9a7c965614b",
+        "witnesses": "data/type_b_order40_gap1_e29_witnesses.json",
+        "witnesses_sha256": "1237a1c4acc4d579a147372c247f7c558ece0347a04b36e02acbd8e7ed534c93"
+      }
+    },
+    "gap1_e30": {
+      "canonical_comparison": {
+        "canonical_classes": 270,
+        "multiset_sha256_both_generators": "d9920174f04d708ab62d22090b547b78b557d4ac7247e2317eb1de9cde138f22",
+        "sets_agree": true
+      },
+      "conclusion": "layer empty: all candidates eliminated by internal C16 and/or closure C8/C16; fully triple-cross-validated",
+      "direct_generator": {
+        "source": "verifier/type_b_order40_gap1_e30.c",
+        "source_sha256": "648f8b2818d2e1fd93f050622c438eeed1a7fc343bb1280f645a3c91e0e9db14",
+        "total_dfs_nodes": 5425098514,
+        "total_labeled_candidates": 1080,
+        "wall_time_seconds": 1698
+      },
+      "independent_networkx_verifier": {
+        "not_eliminated_survivors": 0,
+        "script": "verifier/type_b_order40_independent.py (or ad-hoc batch variant for multi-degree-sequence layers)",
+        "structurally_inconsistent": 0,
+        "total_candidates": 1080
+      },
+      "independent_sat_generator": {
+        "agrees_with_direct": true,
+        "source": "verifier/type_b_order40_slot_sat.py",
+        "source_sha256": "4ad373c3f49f527ea4f30f276906648588389e8c31e2d3c1ef154d80cd7943e1",
+        "total_labeled_candidates": 1080,
+        "wall_time_seconds": 16055.9,
+        "notes": "run to completion across all 210 role configurations (initially reported in-progress at 48/210 in a prior manifest version); several B2/B3 configurations were slow CEGAR instances"
+      },
+      "output_files": {
+        "graphs": "data/type_b_order40_gap1_e30_graphs.json",
+        "graphs_sha256": "98261ab2620a15ad71483824cda992663c1dbe238e073fdb4d846d60abfadd1a",
+        "witnesses": "data/type_b_order40_gap1_e30_witnesses.json",
+        "witnesses_sha256": "4d09c141c3f6b05855b1cacd3abff59688c0b923c796ff8d1e2afb5c6c3cf4a1"
+      }
+    },
+    "gap2_e29": {
+      "canonical_comparison": {
+        "canonical_classes": 52,
+        "multiset_sha256_both_generators": "3850450f0198ce3ef959ef999631524dfc4bfc28934f549d13d0119f42d8cc71",
+        "sets_agree": true
+      },
+      "conclusion": "layer empty: all candidates eliminated by internal C16 and/or closure C8/C16",
+      "direct_generator": {
+        "source": "verifier/type_b_order40_gap2_e29.c",
+        "source_sha256": "f85004cadeb841eabca8df45bc0ce510b4eef84407039fe2c46d4956df37b7ec",
+        "total_dfs_nodes": 8402595,
+        "total_labeled_candidates": 104,
+        "wall_time_seconds": 2.56
+      },
+      "independent_networkx_verifier": {
+        "not_eliminated_survivors": 0,
+        "script": "verifier/type_b_order40_independent.py (or ad-hoc batch variant for multi-degree-sequence layers)",
+        "structurally_inconsistent": 0,
+        "total_candidates": 104
+      },
+      "independent_sat_generator": {
+        "agrees_with_direct": true,
+        "source": "verifier/type_b_order40_slot_sat.py",
+        "source_sha256": "4ad373c3f49f527ea4f30f276906648588389e8c31e2d3c1ef154d80cd7943e1",
+        "total_labeled_candidates": 104,
+        "wall_time_seconds": 24.38
+      },
+      "output_files": {
+        "graphs": "data/type_b_order40_gap2_e29_graphs.json",
+        "graphs_sha256": "c404723b9ebbf6fb8fb8388eb098a6db89aacaaaa3a3c7498485c48a16dcc6a0",
+        "witnesses": "data/type_b_order40_gap2_e29_witnesses.json",
+        "witnesses_sha256": "0efaeabaab87b2aca63cb0b1a501073e0da0547ec030960d4ee56f0b3c557da0"
+      }
+    },
+    "gap2_e30": {
+      "canonical_comparison": {
+        "canonical_classes": 148,
+        "multiset_sha256_both_generators": "489a89bd65c292bcb7f7d5f118831365f49398689baa3b9cbcbab6102d49eede",
+        "sets_agree": true
+      },
+      "conclusion": "layer empty: all candidates eliminated by internal C16 and/or closure C8/C16",
+      "direct_generator": {
+        "source": "verifier/type_b_order40_gap2_e30.c",
+        "source_sha256": "a3954136107909d37a893cc8a26ced543fbee13c96b63aded7d060d1e3457525",
+        "total_dfs_nodes": 1330749623,
+        "total_labeled_candidates": 296,
+        "wall_time_seconds": 422
+      },
+      "independent_networkx_verifier": {
+        "not_eliminated_survivors": 0,
+        "script": "verifier/type_b_order40_independent.py (or ad-hoc batch variant for multi-degree-sequence layers)",
+        "structurally_inconsistent": 0,
+        "total_candidates": 296
+      },
+      "independent_sat_generator": {
+        "agrees_with_direct": true,
+        "source": "verifier/type_b_order40_slot_sat.py",
+        "source_sha256": "4ad373c3f49f527ea4f30f276906648588389e8c31e2d3c1ef154d80cd7943e1",
+        "total_labeled_candidates": 296,
+        "wall_time_seconds": 6028.5
+      },
+      "output_files": {
+        "graphs": "data/type_b_order40_gap2_e30_graphs.json",
+        "graphs_sha256": "66b8895dbec7b7db2fc37e5981026cf53c8c7f83ea7ba53e118a4e18ed8ebe48",
+        "witnesses": "data/type_b_order40_gap2_e30_witnesses.json",
+        "witnesses_sha256": "f10b97ee57dff773036c03685240082f47c2e707e196e05ed3c6bf074113123e"
+      }
+    }
+  },
+  "manual_spot_check": {
+    "gap1_e29": {
+      "checked": 390,
+      "failures": 0
+    },
+    "gap1_e30": {
+      "checked": 1080,
+      "failures": 0
+    },
+    "gap2_e29": {
+      "checked": 104,
+      "failures": 0
+    },
+    "gap2_e30": {
+      "checked": 296,
+      "failures": 0
+    }
+  },
+  "next_steps": [
+    "finalize gap1_e30 independent SAT cross-check",
+    "derive and resolve the E=31 degree-sequence classification (deferred in type_b_order40_frontier.md Section 3)",
+    "resolve or independently verify ex(20;{C4,C8}) to bound the full edge-count range"
+  ],
+  "scope_honesty": "Three layers (gap2-E29, gap1-E29, gap2-E30) are fully cross-validated (direct C generator, independent PySAT generator, independent networkx verifier, plus manual witness spot-checking). The fourth layer (gap1-E30) has a complete, self-tested direct generator result and complete independent networkx verification, but its independent PySAT cross-check is still in progress as of this manifest version. No theorem is promoted on gap1-E30 until that comparison completes and matches.",
+  "sub_case_finding": {
+    "description": "At E=30, both gap types independently show that only the B3 sub-case (2^2,3^16,4^2) is even combinatorially realizable under the fixed-path C4/C8-avoidance constraint; A1, A2, B1 (fully cubic), and B2 all give zero completions across their combined 57 role configurations, in both gap types, confirmed by both the direct generator and (for gap2, fully; for gap1, partially so far) the independent SAT generator."
+  },
+  "title": "Order-40 frontier: gap-two and gap-one bridge remainder generators, E=29 and E=30"
+}

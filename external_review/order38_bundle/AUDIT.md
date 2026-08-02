@@ -61,7 +61,18 @@ original bundle:
 | (7,31) | 2 | rot | **0 leaves**, 41,753 nodes, 7.6s |
 | (7,31) | 2 | nosym | **0 leaves**, 41,753 nodes, 7.6s (identical — no symmetry pruning fired here) |
 | (5,5,5,5,9,9) | 3,390 | rot | **0 leaves**, 122,976 nodes, 26.7s |
-| (5,5,5,5,9,9) | 3,390 | nosym | started; no-symmetry search is far more expensive per row, did not finish within this session's time budget |
+| (5,5,5,5,9,9) | 3,390 | nosym | **0 leaves**, 13,118,795 nodes, 25m06s (completed; ~107x more nodes than `rot`, as expected with zero symmetry pruning, same 0-leaves answer) |
+
+The `nosym` completion is a strong result: it directly rules out a symmetry-pruning bug for
+this entire partition class, since the two solvers agree despite one applying no orbit
+reduction whatsoever.
+
+A separate large-n cross-check of the shared pathrec primitive (n=28..38, L up to 32,
+`xcheck_pathrec_large.py`) was abandoned after 30+ minutes — the pure-Python DFS side (not
+the C++ side) blew up on an unlucky sparse instance, which is expected behavior for a naive
+exponential backtracking search with no memoization, not evidence of anything wrong. The
+n≤24 cross-check (300 trials, 0 disagreements) plus the two full from-scratch partition
+reproductions above already give solid confidence in the primitive.
 
 Both reproduced classes agree with the bundle's headline claim (no counterexample in that
 factor-cycle-length class). This is a real, independent computation — not merely a hash

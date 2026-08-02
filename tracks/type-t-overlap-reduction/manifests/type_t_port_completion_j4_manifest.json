@@ -1,0 +1,160 @@
+{
+  "description": "Complete exact closure of all same-vertex j=4 Type-T port-core completion instances, with ordinary-core canonicalization, independently solved final CNFs, verified DRAT dependency cores, semantic conflict-hypergraph maps, a fixed-point obstruction core, and a bounded adversarial j=5 search.",
+  "status": "COMPLETION_ALL_ORDINARY_J4_INSTANCES_UNSAT",
+  "scope_note": "The theorem covers all 324 same-vertex j=4 ordinary cores. It is not an all-j theorem and does not cover added vertices, degree five, or Q placement.",
+  "source_parent_commit": "824bc12",
+  "environment": {
+    "python": "3.14.6",
+    "python_sat": "1.9.dev7",
+    "networkx": "3.6.1",
+    "nauty": "2.9.3",
+    "drat_trim_commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "drat_trim_binary_sha256": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47",
+    "final_cnf_solvers": ["cadical195", "lingeling"],
+    "proof_solver": "glucose3"
+  },
+  "commands": {
+    "canonicalize": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_core_classes.py --classify --data-dir data/type_t_port_completion/j4_classes",
+    "exact_first_pass": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_core_classes.py --sweep --data-dir data/type_t_port_completion/j4_classes --workers 6 --max-seconds 300 --max-iterations 1000000 --cycle-limit 20000",
+    "exact_timeout_resume": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_core_classes.py --sweep --data-dir data/type_t_port_completion/j4_classes --workers 1 --max-seconds 1200 --max-iterations 1000000 --cycle-limit 20000",
+    "exact_final_resumability_audit": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_core_classes.py --sweep --data-dir data/type_t_port_completion/j4_classes --workers 6 --max-seconds 1200 --max-iterations 1000000 --cycle-limit 20000",
+    "proof_core_sweep": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_unsat_core.py --sweep-dir data/type_t_port_completion/j4_classes --drat-trim /tmp/type-t-core.kowTKe/drat-trim/drat-trim --workers 5",
+    "inventory": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_core_classes.py --inventory --data-dir data/type_t_port_completion/j4_classes",
+    "artifact_pack": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_artifacts.py pack --output /tmp/erdos64-type-t-port-completion-j4-v1.tar.zst",
+    "artifact_fetch": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_artifacts.py fetch",
+    "artifact_verify": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_artifacts.py verify",
+    "fixed_core_analysis": "PYTHONPATH=verifier PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python verifier/type_t_port_unsat_core.py --cnf data/type_t_port_completion/j4_a2_c2_reduced_core.cnf.gz --proof data/type_t_port_completion/j4_a2_c2_reduced_core.drat.gz --drat-trim /tmp/type-t-core.kowTKe/drat-trim/drat-trim --j 4 --a 2 --c 2 --output data/type_t_port_completion/j4_a2_c2_reduced_core_analysis.json.gz",
+    "j5_search": "See the reproduction array in data/type_t_port_completion/j5_heuristic_campaign.json",
+    "tests": "PYTHONDONTWRITEBYTECODE=1 ../erdos64/.venv/bin/python -m pytest -q"
+  },
+  "ordinary_core_classification": {
+    "rooted_translations": 324,
+    "ordinary_isomorphism_classes": 324,
+    "class_size_distribution": {"1": 324},
+    "automorphism_group_size_distribution": {"1": 324},
+    "independent_checks": {
+      "dense_nauty_classes": 324,
+      "sparse_nauty_classes": 324,
+      "traces_classes": 324,
+      "shortg_classes": 324,
+      "distance_profile_classes": 324,
+      "WL20_classes": 324,
+      "networkx_explicit_maps": 324,
+      "networkx_automorphism_checks": 324
+    },
+    "representative_graph6_stream_sha256": "d1e9a2309042122005e246fd537df65111591fa16cb1d277c72cdc2f6461ea9b",
+    "representative_sparse6_stream_sha256": "3357ed235fe8ef67f086ac37f61d8b52643ece1bbdb4b5c1696c1fee52666d07"
+  },
+  "exact_sweep": {
+    "classes": 324,
+    "status_counts": {"UNSAT": 324},
+    "first_pass": {"UNSAT": 323, "UNKNOWN_TIMEOUT": 1, "SAT": 0},
+    "resumed_instance": {"a": 2, "c": 6, "status": "UNSAT", "models_checked": 2414},
+    "models_checked": {"minimum": 1105, "median": 2735.5, "maximum": 5939, "total": 951844},
+    "learned_cycle_clauses": {"minimum": 38284, "median": 122644.5, "maximum": 310824, "total": 43094034},
+    "final_cnf_clauses": {"minimum": 42154, "median": 126970.5, "maximum": 315648, "total": 44481648},
+    "models_by_shortest_cycle": {"4": 166403, "8": 759578, "16": 25863, "32": 0, "64": 0},
+    "classes_using_higher_order_cut_length": {"4": 324, "8": 324, "16": 324, "32": 0, "64": 0},
+    "final_cnf_independent_solver_confirmations": {"cadical195_UNSAT": 324, "lingeling_UNSAT": 324},
+    "final_cnfs_preserved": 324
+  },
+  "proof_core_sweep": {
+    "classes": 324,
+    "status_counts": {"VERIFIED_UNSAT_PROOF_CORE": 324},
+    "drat_extractions_verified": 324,
+    "reduced_drat_proofs_reverified": 324,
+    "independent_cadical_core_solves_UNSAT": 324,
+    "proof_core_clauses": {"minimum": 161, "median": 6594, "maximum": 20070, "total": 2200561},
+    "reduction_fraction": {"minimum": 0.860969387755102, "median": 0.9533540301185868, "maximum": 0.9963002835438431},
+    "retained_cycle_cuts": {"minimum": 55, "median": 4115.5, "maximum": 15861, "total": 1449689},
+    "cycle_cut_source_lengths": {"4": 57441, "8": 418608, "16": 973640},
+    "classes_using_source_length": {"4": 320, "8": 324, "16": 324},
+    "deficient_vertex_support": {"minimum": 23, "median": 76, "maximum": 76},
+    "classes_using_all_76_deficient_vertices": 284,
+    "global_topology_aware_motif_clusters": 12544,
+    "semantic_analyses_preserved": 324
+  },
+  "fixed_point_core_a2_c2": {
+    "kind": "aggressively reduced proof-dependency core; not claimed MUS",
+    "original_clauses": 109419,
+    "retained_clauses": 10548,
+    "retained_matching_cardinality_clauses": 3289,
+    "retained_cycle_cuts": 7259,
+    "cycle_cut_source_lengths": {"4": 331, "8": 2283, "16": 4645},
+    "deficient_vertices_in_cycle_cuts": 76,
+    "safe_variables_in_cycle_cuts": 642,
+    "family_essentiality": "Removing any one length family is SAT; keeping only any one family is SAT.",
+    "drat_verified": true
+  },
+  "structural_obstruction": {
+    "proved_lemma": "A cycle with k matching edges decomposes into k vertex-disjoint nonempty core paths of total length L-k.",
+    "uniform_total_core_path_support_bounds": {"C4": 2, "C8": 6, "C16": 14},
+    "conclusion": "The conflict alphabet is bounded in total core metric support, but neither the fixed-point core nor 284 of the 324 one-pass cores has bounded global vertex support. No uniform bounded-coordinate-window theorem is proved."
+  },
+  "j5_adversarial_search": {
+    "scope": "bounded heuristic search; not exhaustive",
+    "best_parameters": {"j": 5, "a": 2, "c": 2},
+    "exact_short_profile": {"4": 0, "8": 0, "16": 1270},
+    "long_cycle_lower_bounds": {"32": 10000, "64": 10000},
+    "C128_witness": true,
+    "matching_edges": 78,
+    "matching_edges_participating_in_C16": 78,
+    "independent_networkx_check": "PASS",
+    "matching_sha256": "b6764fad091d95f64da34693bc6e53a95d6d16aa207aae4ba8d973df4a8f3b8e",
+    "graph6_sha256": "d80b3ff18980fe5df76d759172657a92fd12bf0573fc34848584fe9e1042109e"
+  },
+  "artifact_bundle": {
+    "release_tag": "type-t-port-completion-j4-v1",
+    "name": "erdos64-type-t-port-completion-j4-v1.tar.zst",
+    "format": "deterministic POSIX pax tar compressed with zstd level 3",
+    "bytes": 332641703,
+    "sha256": "8db839baba3518f96e6177904834a31cf187071147ef3ab68c36ef8077fa3916",
+    "url": "https://github.com/rosharma719/erdos64/releases/download/type-t-port-completion-j4-v1/erdos64-type-t-port-completion-j4-v1.tar.zst",
+    "contents": [
+      "all 324 class directories with final CNFs, proof-core CNFs, semantic analyses, results, and proof summaries",
+      "the complete Git-resident class indexes and aggregate summaries for bit-for-bit restoration",
+      "the fixed-point (4,2,2) reduced CNF, DRAT proof, and semantic analysis"
+    ],
+    "remote_asset_digest_verified": true,
+    "restore_command": "PYTHONPATH=verifier python verifier/type_t_port_artifacts.py fetch"
+  },
+  "artifact_inventory": {
+    "status": "PASS",
+    "classes": 324,
+    "files": 1627,
+    "total_bytes": 338333702,
+    "aggregate_sha256": "ee7dc1967c40911991519761d26456840b1d6932a7f883be5cc30a7698b5b439",
+    "inventory_file": "data/type_t_port_completion/j4_classes/inventory.json"
+  },
+  "hashes": {
+    ".gitignore": "4d6b2c1e7ef43aa6cbd75bfa1615265175ff807492bc606e8bb41080cc112f47",
+    "type_t_port_completion_j4.md": "ef1db42e66fb3d2d925c65511ede379edfdca8f4478f8be89f410e6f799f967b",
+    "type_t_port_completion_obstruction.md": "dabdb4c5f7bf43974db089d8739f7c8f40cb855f92b2b7af72b68f7bdd918cdd",
+    "verifier/type_t_port_artifacts.py": "c3b80eab48623e20d2c0d7389cd30cc05894085143d6ee46567d00ae35aa75dd",
+    "verifier/type_t_port_core_classes.py": "3aa943c3bf44910ee7052f9b6565d584a27a41055aa772250a1e9ac36784edf0",
+    "verifier/type_t_port_unsat_core.py": "966c1cd94f23eac95abfaee978b842c2a2cc2fabf204fb56adaff6c58fa46751",
+    "verifier/type_t_port_matching_sat.py": "bd43b56b1edb00976119ab4a241ebd51ee3ef5b2b1dadf940170b822742ceb8a",
+    "verifier/type_t_port_multiswitch.py": "2d5ec5f374a5ebc9d7b3a409b2de0ce4ae4eaac7a64b0d725f800aa7e6265b5d",
+    "verifier/type_t_port_multiswitch_refine.py": "0f85b7796c36f451a1b1dec5678253daa8ab01870072964bbb1cc96b32e447c9",
+    "verifier/type_t_port_j5_independent.py": "0a13a7fd23207702f986c706e887b04558d155640eea9a00529429f167c569d7",
+    "data/type_t_port_completion/j4_classes/classes.json": "fb7505633d44ad2a0f5a81f997dfe6e827b1991ec37e35fc599ae9d1cccbe0fe",
+    "data/type_t_port_completion/j4_classes/isomorphism_maps.json": "db9c253b73ce8d0b20be922dc7fcfe3ed230d561ae8569682e04d29b7c007822",
+    "data/type_t_port_completion/j4_classes/sweep.json": "41d6757b7c0f3f2c6ec1f2b7774597e3677fc420c8c7b1f76c22fb1773289499",
+    "data/type_t_port_completion/j4_classes/proof_core_sweep.json": "10cfe4ea0ab5d3b13e6cf9c4003227d1e462f66ddcb61f2b50d9137fbbe5309b",
+    "data/type_t_port_completion/j4_classes/aggregate_summary.json": "db4b083b98529f069169753e7e94820feeb78fd32d0f28246af0858558066be4",
+    "data/type_t_port_completion/j4_classes/inventory.json": "5dbc4c15bbb89322b7f9a848511522e7c64f9d102237615124296eb41f9e4ce3",
+    "data/type_t_port_completion/j4_a2_c2_reduced_core.cnf.gz": "fe363510f01cea925f2e9f50ab718f43771f92c434ac2019e42b2275dfae24fc",
+    "data/type_t_port_completion/j4_a2_c2_reduced_core.drat.gz": "f7da9f04f873fbfc6ecc973f4a2a1f8f507bf2424b77a8d986aef4d74a6e527c",
+    "data/type_t_port_completion/j4_a2_c2_reduced_core_analysis.json.gz": "693a23321f513336b982abd74da222ce579afea2506559c8a9748cc84b76ac30",
+    "data/type_t_port_completion/j5_heuristic_campaign.json": "0ad9fabdf0fc941549fa7c0fbd81206710091cffca1b34d81dbb75ad029fc276",
+    "data/type_t_port_completion/j5_a2_c2_multiswitch_near_miss.json": "063b6067ae3b67980bca1b0951f87cb69778490c4529d9f4c2968b3d8ad3fdc0",
+    "data/type_t_port_completion/j5_a2_c2_multiswitch_near_miss_check.json": "240570d6ef9335b46119ba4a880fc082c3350023e664ab700b8c6e7a6cfbba6e"
+  },
+  "theorem": "For every valid j=4 Type-T E2_parallel port core, no same-vertex perfect-matching completion avoids all power-of-two cycles. Individually unsafe matching edges close C4/C8/C16/C32/C64; every perfect matching surviving that screening closes C4/C8/C16.",
+  "limitations": [
+    "No all-j theorem is inferred from the finite j=4 closure.",
+    "The proof cores are DRAT dependency cores, not clause-minimal MUSes.",
+    "The j=5 campaign is adversarial heuristic search, not exhaustive certification.",
+    "Added vertices, degree five, and Q are outside scope."
+  ]
+}

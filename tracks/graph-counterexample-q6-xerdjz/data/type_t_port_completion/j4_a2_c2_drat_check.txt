@@ -1,0 +1,14 @@
+checker: drat-trim
+checker_repository: https://github.com/marijnheule/drat-trim.git
+checker_commit: 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+input: j4_a2_c2_final.cnf.gz (decompressed)
+proof: j4_a2_c2_final.drat.gz (decompressed)
+
+c parsing input formula with 2033 variables and 109419 clauses
+c finished parsing
+c detected empty clause; start verification via backward checking
+c 12473 of 109419 clauses in core
+c 55809 of 182486 lemmas in core using 8385461 resolution steps
+c 0 RAT lemmas in core; 244473 redundant literals in core lemmas
+s VERIFIED
+c verification time: 11.497 seconds

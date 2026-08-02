@@ -1,0 +1,83 @@
+{
+  "all_witnesses_valid": true,
+  "chunk_size": 1000,
+  "constructor": "verifier/z3_lifts.py::lift_detector_graph",
+  "detector": "verifier/cycle_detect.py::has_cycle_len_dfs",
+  "elapsed_seconds": 371.37511404199176,
+  "random_assignments_checked": 1024,
+  "random_assignments_per_base": 256,
+  "random_failures": [],
+  "random_seed": "0xE6403",
+  "schema": "erdos64-z3-independent-audit-v1",
+  "shards": [
+    {
+      "after8_assignments": 54458,
+      "after8_sha256": "bb56665c6e2fcfcb457fef207785b8279940da37ba7701b3c314d6bd50dc74b4",
+      "base_index": 0,
+      "summary_sha256": "2d866843b95c69454d8f1b9b030f9be1f79cc0f6af585336b9b41a8fad7a2986"
+    },
+    {
+      "after8_assignments": 570806,
+      "after8_sha256": "b5dc99f76aec04502b85d4712580cb64f4072f301901ef9a07878d0feb296e54",
+      "base_index": 1,
+      "summary_sha256": "b3d103b71fcda8b86430f6b726e718300d4555e8bc7d16744e924962b43393a8"
+    },
+    {
+      "after8_assignments": 750140,
+      "after8_sha256": "41dc24994994ab8725ee27fef525738c53bb35033c89229153d2e2d38f0201bf",
+      "base_index": 2,
+      "summary_sha256": "39ec23b100a65c40d01bbaccedad3b2b98a38daab4d86f82e1c841b7269b5d58"
+    },
+    {
+      "after8_assignments": 170342,
+      "after8_sha256": "7aaa9fe753b0159cb7d8be58785eb86d34c1cc6e9f196fb3c33f090169d9e0aa",
+      "base_index": 3,
+      "summary_sha256": "65ea99dc9088a450fad801c13177a1a2cdc2a99a79e0f08a4c546c86f7ff2ada"
+    }
+  ],
+  "stage_survivor_failures": [],
+  "stage_survivors_checked": 1545746,
+  "witness_checks": [
+    {
+      "base": 0,
+      "length": 8,
+      "valid": true
+    },
+    {
+      "base": 0,
+      "length": 16,
+      "valid": true
+    },
+    {
+      "base": 1,
+      "length": 8,
+      "valid": true
+    },
+    {
+      "base": 1,
+      "length": 16,
+      "valid": true
+    },
+    {
+      "base": 2,
+      "length": 8,
+      "valid": true
+    },
+    {
+      "base": 2,
+      "length": 16,
+      "valid": true
+    },
+    {
+      "base": 3,
+      "length": 8,
+      "valid": true
+    },
+    {
+      "base": 3,
+      "length": 16,
+      "valid": true
+    }
+  ],
+  "workers": 8
+}

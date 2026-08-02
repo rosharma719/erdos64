@@ -1,0 +1,28 @@
+{
+  "description": "Mechanical cross-check of contraction_saturation.md Part VI: the same-branch (3-formula) and cross-branch (4-formula) theta-bridge arithmetic, and the internal-vertex-count growth used in the S5 cut-vertex saturation argument.",
+  "scope_note": "Tests only the symbolic arithmetic of VI.3/VI.4 by explicit gadget construction, and the internal-vertex-count formula used in VI.2's S5 citation. Does NOT test and does not claim to resolve VI.5's saturation target, which contraction_saturation.md leaves explicitly open, nor Part VII's Type T multi-vertex interaction, nor Part V's crossing case. This run caught and led to correcting a real hand-derivation error in the original VI.4 write-up (options 3 and 4 had d0/d1 swapped); the corrected formulas in contraction_saturation.md match this verified code. Kept separate from the five prior contraction verifiers, none of which are touched.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/theta_saturation.py",
+  "source_commit": "1d2a809659584cfa1eaa13bf3acc5751eafa66cb",
+  "script_sha256": "c2ff4582f0340b812b639499dda20b2f878fcfd9d9a15d16a7eb90bb92dd8133",
+  "stdout_sha256": "50b4bd3439d77a3e638c5b43ed2a093cdd9d1097dd0d2b16f5a9cf46e2dcf20a",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as prior manifests: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container; this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "results": {
+    "same_branch_bridge_arithmetic": [
+      {"L0": 7, "L1": 4, "L2": 5, "i": 2, "j": 5, "ell": 1, "local": 4, "via_branch1": 9, "via_branch2": 10},
+      {"L0": 9, "L1": 3, "L2": 4, "i": 1, "j": 4, "ell": 2, "local": 5, "via_branch1": 11, "via_branch2": 12},
+      {"L0": 8, "L1": 6, "L2": 3, "i": 3, "j": 6, "ell": 1, "local": 4, "via_branch1": 12, "via_branch2": 9}
+    ],
+    "cross_branch_bridge_arithmetic": [
+      {"L0": 7, "L1": 4, "L2": 5, "d0": 2, "d1": 1, "ell": 1, "via_x": 4, "via_y": 9, "via_x_then_branch2": 12, "via_y_then_branch2": 11},
+      {"L0": 9, "L1": 3, "L2": 4, "d0": 3, "d1": 1, "ell": 2, "via_x": 6, "via_y": 10, "via_x_then_branch2": 13, "via_y_then_branch2": 11},
+      {"L0": 8, "L1": 6, "L2": 3, "d0": 4, "d1": 2, "ell": 1, "via_x": 7, "via_y": 9, "via_x_then_branch2": 10, "via_y_then_branch2": 12}
+    ],
+    "cut_vertex_bound_internal_vertex_counts": "computed for r,s in {2,3,4,5}x{2,3,4,5}, all >1, ranging 6..62 (see contraction_saturation.md VI.2 and the script's check_cut_vertex_bound for the full table)",
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Every constructed gadget cycle validated by two independent implementations (hand-rolled adjacency traversal verify_cycle, and independently constructed networkx traversal verify_cycle_nx, both imported from verifier/contraction_lift.py); 0 disagreements after the direction-bug fixes caught during development.",
+  "completed_range": "All gadget parameter tuples and the full 4x4 (r,s) grid processed to completion; this is a small, deterministic set of explicit illustrative constructions, not a search or census -- consistent with contraction_saturation.md Part IX's explicit decision not to launch broad computation this pass."
+}

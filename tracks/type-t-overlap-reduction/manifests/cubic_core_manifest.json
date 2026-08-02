@@ -1,0 +1,20 @@
+{
+  "atlas": {
+    "applicable_cubic_core_graphs": 14,
+    "checked": 173,
+    "failures": [],
+    "population": "networkx graph_atlas_g, connected delta>=3, order<=7"
+  },
+  "minimal_core_fixtures": {
+    "checked": 12,
+    "failures": [],
+    "population": "inclusion-minimal delta>=3 fixtures, order<=7 (global_core_check.py)"
+  },
+  "records_sha256": "be26f9c838f759fca802fe0828a528c6186c0bb71cd09ce65684512f7d53388f",
+  "schema": "erdos64-cubic-core-v1",
+  "synthetic": {
+    "checked": 8145,
+    "failures": [],
+    "population": "synthetic H-independent all-C-degree-3 random graphs, 20000 trials, seed 20260726"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "assignment_ranges": [
+    [
+      1,
+      1594323
+    ],
+    [
+      1,
+      1594323
+    ],
+    [
+      1,
+      1594323
+    ],
+    [
+      1,
+      1594323
+    ]
+  ],
+  "assignments_checked": 6377288,
+  "chunk_size": 5000,
+  "constructor": "verifier/z3_lifts.py::lift_detector_graph",
+  "detector": "verifier/cycle_detect.py::has_cycle_len_dfs",
+  "elapsed_seconds": 255.57952604201273,
+  "expected_assignments": 6377288,
+  "failures": [],
+  "schema": "erdos64-z3-independent-c4-audit-v1",
+  "workers": 8
+}

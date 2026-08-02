@@ -1,0 +1,57 @@
+{
+  "assertion_failures": 0,
+  "candidate_bridge_remainders": 0,
+  "conclusion": "Pi0 has no Type-B realization at full order 36",
+  "extendable_equality_path_union_cores": 0,
+  "extremal_27": {
+    "authoritative_input": "data/c48_n18e27.s6",
+    "authoritative_input_sha256": "c21bfccdc139f3abac60141b886423fb4daa88dc05fa084715a012dd04460359",
+    "c4_detector_disagreements": 0,
+    "c8_detector_disagreements": 0,
+    "canonical_set_sha256": "7ab085589f8748f88856531984ba61762b1f0addd945f68110863e79d7ddd0fa",
+    "degree_two_histogram": {
+      "3": 18,
+      "4": 103,
+      "5": 220,
+      "6": 187,
+      "7": 39,
+      "8": 2,
+      "9": 1
+    },
+    "graphs_checked": 570,
+    "graphs_with_at_most_two_degree_two_vertices": 0
+  },
+  "formalization": "computer-assisted exhaustive finite computation; not proof-assistant formal verification",
+  "near_extremal_26": {
+    "dfs_route": {
+      "c8_free_graphs": 0,
+      "command": "geng -c -q -f -d2 -D3 18 26:26",
+      "detector": "dfs",
+      "exit_status": 0,
+      "geng_stderr": "",
+      "graph6_stream_sha256": "708cb05b6d8afba76634cda3a8d1ef0a5b16dffeb871a3157f0c1ad8b5f9bdb3",
+      "graphs_checked": 101546
+    },
+    "networkx_route": {
+      "c8_free_graphs": 0,
+      "command": "geng -c -q -f -d2 -D3 18 26:26",
+      "detector": "networkx",
+      "exit_status": 0,
+      "geng_stderr": "",
+      "graph6_stream_sha256": "708cb05b6d8afba76634cda3a8d1ef0a5b16dffeb871a3157f0c1ad8b5f9bdb3",
+      "graphs_checked": 101546
+    }
+  },
+  "reduction": {
+    "bridge_order": 19,
+    "degree_condition": "sixteen vertices have degree at least three and the gateway/y pair have degree at least two",
+    "deleted_terminal": "x, whose bridge degree is one",
+    "remainder_edge_range": [
+      26,
+      27
+    ],
+    "remainder_order": 18,
+    "why_all_path_embeddings_are_covered": "the required length-18 terminal path is Hamiltonian at bridge order 19; the reduction uses no assumption about the other paths"
+  },
+  "scope": "all Pi0 Type-B realizations at full order 36"
+}

@@ -1,0 +1,153 @@
+{
+ "cross_validation": [
+  "raw counts at n=8,10,12,13,14,15 reproduce verifier/type_c_fcn_series.py (FC-15) exactly: 1, 11, 75, 33677, 677, 2625442",
+  "raw count at n=16 reproduces diamond_exterior_r20_closure.md's 7,639",
+  "independent Python DFS detector vs C batch detector: 0 disagreements on every {C4,C8}-free survivor plus a 500-graph random sample of rejects at every searched order",
+  "geng -f verified to emit C4-free graphs (control at n=10,m=14: 102/113 have a C4 without -f, 0/11 with -f)"
+ ],
+ "detector_source": "verifier/check_power_masks.c",
+ "detector_source_sha256": "e398bc3e3e49cddb8c076868055122bb032a99aaf41ba30cc85542ea20679559",
+ "ex_table_source": "literature.md L15 / L15b (McKay extremal data)",
+ "infeasible_by_counting": [
+  3,
+  4,
+  5,
+  6,
+  7,
+  9,
+  11
+ ],
+ "name": "FB22-17: the Type-B closed-piece {C4,C8} series through order 17",
+ "order_17_subcase_B": {
+  "matches": 0,
+  "method": "terminal deletion: J-{x,y} is a connected {C4,C8}-free 15-vertex graph with 22 edges and degree sequence 2,3^14 or 2,2,4,3^12; the n=15 layer above enumerates every such candidate and neither sequence occurs",
+  "n15_c4c8_free_degree_sequences": {
+   "[2,2,2,2,2,3,3,3,3,3,3,4,4,4,4]": 4,
+   "[2,2,2,2,3,3,3,3,3,3,3,3,4,4,4]": 10
+  }
+ },
+ "report": "data/fb22_series_report.json",
+ "report_sha256": "21b77f27effcf727b6972d5f102fb6fda005f26cf5d4c94294ceeff7ebc7cdf9",
+ "script": "verifier/type_b_22piece_series.py",
+ "script_sha256": "8cb16a8f5e257f7dad75c059c7786592873455ffa52db7503d371d4d19640acb",
+ "searched_layers": {
+  "10": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D3",
+    "10",
+    "14:14"
+   ],
+   "raw_count": 11,
+   "raw_stream_sha256": "81186ae869d0388f69c632fa34836d44578165f7b7f2804e1c93bba8445df89e"
+  },
+  "12": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D3",
+    "12",
+    "17:17"
+   ],
+   "raw_count": 75,
+   "raw_stream_sha256": "4c87d661cd8bf57b8ee240c26981d3ad36d1ff5801e21e6e885af62d4f8791be"
+  },
+  "13": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D4",
+    "13",
+    "19:19"
+   ],
+   "raw_count": 33677,
+   "raw_stream_sha256": "c6ddd5ce7f3ec5a76554c7c4f19e381ed7e6efdcc9b4db3d319ee804068be78d"
+  },
+  "14": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D3",
+    "14",
+    "20:20"
+   ],
+   "raw_count": 677,
+   "raw_stream_sha256": "6680cd96c041a4c48ee60d222c8a5ad3f73ae0fb474a208020db1d99e583e986"
+  },
+  "15": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D4",
+    "15",
+    "22:22"
+   ],
+   "raw_count": 2625442,
+   "raw_stream_sha256": "f5deba485a3203185993156cc67d5ef02f06834218065c1a2a533f40f4e3f2a4"
+  },
+  "16": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D3",
+    "16",
+    "23:23"
+   ],
+   "raw_count": 7639,
+   "raw_stream_sha256": "c0eef0e333fc906ed2af7998c258024097f259b2bdad3686036375096341ecb2"
+  },
+  "17": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D3",
+    "17",
+    "25:25"
+   ],
+   "raw_count": 6314,
+   "raw_stream_sha256": "73a7c7e5e9e23ef35ad1d431f8795c98729db3f8e5c313acbed1882eca24a9e2"
+  },
+  "8": {
+   "geng_command": [
+    "nauty-geng",
+    "-c",
+    "-q",
+    "-f",
+    "-d2",
+    "-D3",
+    "8",
+    "11:11"
+   ],
+   "raw_count": 1,
+   "raw_stream_sha256": "a65560dd95e0e02e80f14d6a42eb0b2a5c13198cbda07af8de0f2c5c49105609"
+  }
+ },
+ "statement": "Every simple graph J with |V(J)|<=17, two distinguished adjacent vertices x,y with d_J(x)=2 and d_J(y)>=2, d_J(v)>=3 for every v not in {x,y}, and J 2-connected, contains a C4 or a C8.",
+ "status": "COMPLETE",
+ "totals": {
+  "detector_disagreements": 0,
+  "survivors": 0
+ }
+}

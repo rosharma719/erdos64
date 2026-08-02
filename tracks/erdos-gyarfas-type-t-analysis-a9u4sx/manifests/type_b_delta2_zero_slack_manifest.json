@@ -1,0 +1,237 @@
+{
+  "b20d2_theorem": {
+    "depends_on_cross_spectrum_compatibility": false,
+    "depends_on_equality_of_bridge_orders": false,
+    "depends_on_partner_bridge": false,
+    "depends_on_rho_s": false,
+    "explicit_witness_example": {
+      "candidate_id": "delta2_000",
+      "internal_c16": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        10,
+        15,
+        14,
+        12,
+        13
+      ],
+      "q_ay_len14": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        15,
+        16,
+        17,
+        18
+      ],
+      "q_ay_len14_closure": "edges ax + xy: cycle x-0-1-2-3-4-5-6-7-8-9-10-15-16-17-18-x has 14+2=16 edges (C16)",
+      "q_ay_len6": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        17,
+        18
+      ],
+      "q_ay_len6_closure": "edges ax + xy: cycle x-0-1-2-4-5-17-18-x has 6+2=8 edges (C8)",
+      "role": 3
+    },
+    "formalization_status": "no proof-assistant formalization exists",
+    "statement": "No eligible 20-vertex bridge in a frozen Type-B role with admissible gap 2 exists.",
+    "uses_exactly": [
+      "the Hamiltonian required path of length 19",
+      "the Type-B degree profile (d_B(x)=1, internal vertices >=3, d_R(a),d_R(y)>=2)",
+      "internal power-cycle avoidance (R is C4/C8-free)",
+      "the two-edge closure a-x-y (edges ax and xy, NOT just adding xy)"
+    ]
+  },
+  "claims": {
+    "claim_1_reused_exclusions": {
+      "certificates_reused": [
+        "data/type_b_slack_family_i_certificate.json",
+        "data/type_b_one_slack_extremal_certificate.json"
+      ],
+      "description": "Family I (both labelings) and the 29-edge layer, zero new computation",
+      "new_computation_performed": false
+    },
+    "claim_2_new_finite_enumeration": {
+      "canonical_classes": 6,
+      "canonical_multiset_sha256": "7486f2ee4d8c3707e790816e15c7df5d67ec83dabed1096e8c7b5cf78110cf4c",
+      "description": "Family II, freshly run exhaustive computation",
+      "new_computation_performed": true,
+      "per_role_solution_counts": {
+        "1": 0,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 0,
+        "15": 1,
+        "16": 0,
+        "17": 0,
+        "2": 0,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 2
+      },
+      "total_labeled_candidates": 12
+    },
+    "claim_3_global_tuple_corollary": {
+      "description": "separate, logically downstream consequence of Claim 1+2 combined with prior B19/B20",
+      "not_a_global_bound_unless": "the repository proves all Type-B configurations enter this frozen list (it does not)",
+      "scope_qualifier_required": "frozen irreducible Type-B tuple families",
+      "statement": "Every one of the 16 frozen irreducible Type-B tuple families has order at least 40."
+    }
+  },
+  "environment": {
+    "gcc_version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "networkx_version": "3.6.1",
+    "pysat_version": "1.9.dev7",
+    "python_version": "3.11.15"
+  },
+  "family_ii_new_computation": {
+    "canonical_comparison": {
+      "direct_generator_canonical_count": 6,
+      "direct_generator_canonical_multiset_sha256": "7486f2ee4d8c3707e790816e15c7df5d67ec83dabed1096e8c7b5cf78110cf4c",
+      "only_in_direct": 0,
+      "only_in_sat": 0,
+      "sat_generator_canonical_count": 6,
+      "sat_generator_canonical_multiset_sha256": "7486f2ee4d8c3707e790816e15c7df5d67ec83dabed1096e8c7b5cf78110cf4c",
+      "sets_agree": true,
+      "symmetry": "path reversal p_i <-> p_18-i, role mapped accordingly"
+    },
+    "conclusion": "Family II (2^2,3^16,4) zero-slack layer is empty: all 12 exhaustively-generated candidates eliminated by internal C16, closure C8, and closure C16 simultaneously",
+    "direct_generator": {
+      "command": "./verifier/type_b_delta2_slot_search -generate-all",
+      "output_file": "data/type_b_delta2_candidates.json",
+      "output_sha256": "bdd8895fcb79612cf29cc5071d7b279271d6fa4092d0d432d6c6ed259cf8aa6a",
+      "per_role_solution_counts": {
+        "1": 0,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 0,
+        "15": 1,
+        "16": 0,
+        "17": 0,
+        "2": 0,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 2
+      },
+      "selftest_command": "./verifier/type_b_delta2_slot_search -selftest",
+      "source_sha256": "3d50f148819a5acc57729d5ed1a7554803d8b252419971f77bac938f542fb4e4",
+      "symmetry_check": "role j and role (18-j) agree under path reversal (unplanned emergent check); role 9 self-paired at count 2",
+      "total_dfs_nodes": 12004454,
+      "total_labeled_solutions": 12,
+      "wall_time_seconds": 2.3,
+      "witnesses_file": "data/type_b_delta2_witnesses.json",
+      "witnesses_sha256": "f14d0369fc73ac1cfff5c41a3729c7d36ae40beaa00b97fe6501e98eb5f8827d"
+    },
+    "independent_verifier": {
+      "method": "networkx only; does not call either generator internal function",
+      "result": {
+        "not_eliminated_survivors": 0,
+        "structurally_inconsistent": 0,
+        "total_candidates": 12
+      },
+      "script": "verifier/type_b_delta2_independent.py",
+      "source_sha256": "001e05a6bc5431136b3b6798655dd49d0124e10c3bab5526834e35be06090952"
+    },
+    "sat_generator": {
+      "agrees_with_direct_generator_per_role": true,
+      "per_role_solution_counts": {
+        "1": 0,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 0,
+        "15": 1,
+        "16": 0,
+        "17": 0,
+        "2": 0,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 2
+      },
+      "pysat_version": "1.9.dev7",
+      "solver": "Glucose3",
+      "source_sha256": "85b591950ad0e2ac31ac811605a0722562a772f22abff814c6a555ac4bc90169",
+      "total_labeled_solutions": 12,
+      "wall_time_seconds": 105.072
+    },
+    "terminal_closing_offset_audit": "r=2,6,14 close through a-x-y to C4,C8,C16 respectively; all three lengths checked (not just 6,14): 0/12 have length-2 path, 12/12 have length-6 and length-14 paths"
+  },
+  "global_tuple_corollary": {
+    "mechanism": "B19+B20 raises any gap-1 role from 20 to 21; B20D2 raises any gap-2 role from 20 to 21; every role in ranks 1-16 has gap 1 or 2",
+    "scope_caveat": "lower bound for the frozen Type-B tuple family only; not claimed as a general Type-B or global counterexample-order bound",
+    "statement": "Every one of the 16 frozen tuples (type_b_realizability.md ranks 1-16, the only ones with original bound <=40) now has full-graph order >=40.",
+    "table": {
+      "ranks_1_4_gap_1_1": {
+        "new_nG": 40,
+        "orig_nG": 36
+      },
+      "ranks_5_6_8_9_10_11_14_15_mixed": {
+        "new_nG": 40,
+        "orig_nG": 37
+      },
+      "ranks_7_12_13_16_gap_2_2": {
+        "new_nG": 40,
+        "orig_nG": 38
+      }
+    }
+  },
+  "reused_certificates_zero_new_computation": {
+    "29_edge_layer": {
+      "certificate": "data/type_b_one_slack_extremal_certificate.json",
+      "certificate_sha256": "a119583161880ca39cc8551f395bae440263843010e9273fadb2d25fb0393596",
+      "input_file": "data/c48_n19e29.s6",
+      "input_sha256": "bf81b89b826ae3153c7497addb26025796b982a52a5e39210754f15620226562",
+      "result": "all 304 extremal graphs have >=3 degree-two vertices",
+      "reuse_justification": "McKay extremal census of 19-vertex, 29-edge, C4/C8-free graphs is a pure abstract statement; the at-most-2-degree-two-vertices requirement is identical in the zero-slack case (only a,y can be degree 2)"
+    },
+    "family_i_both_labelings": {
+      "certificate": "data/type_b_slack_family_i_certificate.json",
+      "certificate_sha256": "0f0536d029796942aa6fce43e48c33f0aa82736f08564e71b66752e0c9a62869",
+      "input_file": "data/type_b_slack_family_i_n19e28.g6",
+      "input_sha256": "cd9d2477eae69bd427ece21f33668bd27896d90722158fcda18f7381c281507b",
+      "result": "86047/86047 candidates contain a C8",
+      "reuse_justification": "pure abstract statement about 19-vertex, 28-edge, degree-(2,3^18), C4-free graphs (nauty-geng -c -f -d2 -D3 19 28:28); no path-embedding assumption baked in; applies verbatim to Family I-A and Family I-Y (both share this abstract degree sequence)"
+    }
+  },
+  "scope_honesty": "B20D2 proved: no eligible 20-vertex Type-B bridge role with frozen admissible gap 2 exists. Combined with B19+B20 (gap-1 roles), every bridge role of every frozen tuple with original bound <=40 now has order >=21, giving |V(G)|>=40 for all 16 such tuples.",
+  "stopping_outcome": "Outcome 1: B20D2 proved locally, raising every frozen tuple family to order at least 40.",
+  "title": "Zero-slack delta=2 Type-B bridge elimination (B20D2) and global tuple corollary"
+}

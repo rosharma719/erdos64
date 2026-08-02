@@ -1,0 +1,108 @@
+{
+  "exit_code": 0,
+  "experiment": "E24c-R2-SPQR-leaf-audit",
+  "failure_count": 0,
+  "generated_at": "2026-07-26T03:25:24.081885+00:00",
+  "graph_atlas": {
+    "counts": {
+      "P_nodes": 425,
+      "R2_preserved": 388,
+      "biconnected_graphs": 538,
+      "real_P_edges": 388
+    },
+    "violations": []
+  },
+  "relaxed_closures": {
+    "counts": {
+      "P_leaf_instances": 0,
+      "R2_preserved": 3498,
+      "RP_tight_rooted_closures": 129,
+      "S_leaf_SP_quadrilateral_xy": 312,
+      "S_leaf_instances": 5206,
+      "S_leaf_rigid_root_triangle_x": 4894,
+      "T8P_degree_critical": 380,
+      "T8P_noncritical_deletion_certificates": 3118,
+      "out_of_scope_leaf_failure_self_sum_4": 2696,
+      "out_of_scope_leaf_failure_self_sum_8": 2868,
+      "out_of_scope_rigid_leaf_shape_failures": 2872,
+      "real_P_B_edge_instances": 3498,
+      "rigid_clean_tight_leaf_holds": 2,
+      "rigid_clean_tight_prerequisite_closures": 2,
+      "rigid_leaf_multi_R_leaves": 3074,
+      "rigid_leaf_single_R": 2138,
+      "rooted_closures": 5212
+    },
+    "generator_reports": [
+      {
+        "command": [
+          "geng",
+          "-c",
+          "-d2",
+          "5"
+        ],
+        "exit_code": 0,
+        "order": 5,
+        "raw_graphs": 11,
+        "stderr": ">A geng -cd2D4 n=5 e=5-10\n>Z 11 graphs generated in 0.00 sec"
+      },
+      {
+        "command": [
+          "geng",
+          "-c",
+          "-d2",
+          "6"
+        ],
+        "exit_code": 0,
+        "order": 6,
+        "raw_graphs": 61,
+        "stderr": ">A geng -cd2D5 n=6 e=6-15\n>Z 61 graphs generated in 0.00 sec"
+      },
+      {
+        "command": [
+          "geng",
+          "-c",
+          "-d2",
+          "7"
+        ],
+        "exit_code": 0,
+        "order": 7,
+        "raw_graphs": 507,
+        "stderr": ">A geng -cd2D6 n=7 e=7-21\n>Z 507 graphs generated in 0.00 sec"
+      },
+      {
+        "command": [
+          "geng",
+          "-c",
+          "-d2",
+          "8"
+        ],
+        "exit_code": 0,
+        "order": 8,
+        "raw_graphs": 7442,
+        "stderr": ">A geng -cd2D7 n=8 e=8-28\n>Z 7442 graphs generated in 0.01 sec"
+      }
+    ],
+    "range": [
+      5,
+      8
+    ],
+    "violation_count": 0,
+    "violations": []
+  },
+  "script": "/Users/rohansharma/Desktop/Code/erdos64/verifier/spqr_extremal_audit.py",
+  "script_sha256": "0e9a37306501a0c656e787a1f487e69cd02140701c51a30d4803c57c079cd248",
+  "status": "COMPLETE",
+  "synthetic_P_fixture": {
+    "P_node_tree_degrees": [
+      2
+    ],
+    "R2_holds": true,
+    "real_P_edges": [
+      [
+        0,
+        1
+      ]
+    ],
+    "union_2connected": true
+  }
+}
