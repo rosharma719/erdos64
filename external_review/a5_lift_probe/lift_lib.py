@@ -146,8 +146,9 @@ def build_lift(bg, assignment):
 
 
 def lift_witness_to_walk(witness):
-    """witness: list of (base_vertex, sheet) from cd.find_cycle_len_dfs on the
-    lift (node ids v*5+s). Returns (base_walk_vertices, start_sheet)."""
-    walk = [bv for bv, s in witness]
-    start_sheet = witness[0][1]
+    """witness: list of raw lift node ids (v*5+s) from cd.find_cycle_len_dfs.
+    Returns (base_walk_vertices, start_sheet)."""
+    decoded = [divmod(node, 5) for node in witness]
+    walk = [bv for bv, s in decoded]
+    start_sheet = decoded[0][1]
     return walk, start_sheet
