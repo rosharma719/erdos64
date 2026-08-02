@@ -7,7 +7,7 @@
 # and writes a JSON manifest entry. Streaming (no large temp file).
 set -u
 N=$1; M=$2; D=$3; RES=$4; MOD=$5; OUTDIR=$6; LABEL=$7
-REPO=/Users/rohansharma/Desktop/Code/erdos64
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CHK="$REPO/verifier/check_c8"
 mkdir -p "$OUTDIR"
 STEM="$OUTDIR/${LABEL}_n${N}m${M}_${RES}of${MOD}"

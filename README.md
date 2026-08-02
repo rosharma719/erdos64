@@ -28,9 +28,13 @@ Python venv in `.venv` (networkx, numpy, OR-Tools CP-SAT, PySAT); nauty `geng`.
 ```
 . .venv/bin/activate
 cd verifier && python test_detector.py          # validate the detector
-cc -O3 -o check_g6 check_g6.c                    # build the C checker
+cc -O3 -o check_g6 check_g6.c                    # build the C checker (gitignored; rebuild per machine)
+cc -O3 -o check_c8 check_c8.c                    # build the C8-survivor checker (gitignored)
 geng -c -d3 10 | ./check_g6                      # exhaustive n=10 check
 ```
+`check_g6`/`check_c8` are compiled binaries, intentionally gitignored — rebuild
+them with the `cc` commands above on each machine (they are not portable
+across architectures/OSes).
 
 ## Discipline
 Every mathematical assertion is labeled PROVED / COMPUTATIONALLY VERIFIED /
