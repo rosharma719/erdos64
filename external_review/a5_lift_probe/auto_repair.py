@@ -19,7 +19,21 @@ from lift_lib import BaseGraph, build_lift, lift_witness_to_walk, IDENT
 import cycle_detect as cd
 
 SOLVER = "./a5_breakout_solver_v2"
+K3_SOLVER = "./a5_point_repair_k3"
 FORBIDDEN = (4, 8, 16, 32, 64)
+
+
+def run_k3(base_mat, cuts_path, warm_path, timeout=300):
+    try:
+        proc = subprocess.run(
+            [K3_SOLVER, base_mat, cuts_path, warm_path],
+            capture_output=True, text=True, timeout=timeout,
+        )
+    except subprocess.TimeoutExpired:
+        return None
+    if "FOUND" not in proc.stdout:
+        return None
+    return proc.stdout
 
 
 def write_mat(edges_path, mat_path):
@@ -107,8 +121,13 @@ def main():
                   f"last stderr: {err.strip().splitlines()[-2:] if err.strip() else '(none)'}")
             out = None
         if out is None:
-            print(f"[{log_prefix} iter {it}] exhausted retries with {len(cuts)} cuts -- stopping")
-            break
+            print(f"[{log_prefix} iter {it}] random-restart exhausted with {len(cuts)} cuts, "
+                  f"trying exhaustive k3-repair fallback")
+            out = run_k3(mat_path, cuts_path, warm_path, timeout=300)
+            if out is None:
+                print(f"[{log_prefix} iter {it}] k3-repair also found nothing with {len(cuts)} cuts -- stopping")
+                break
+            print(f"[{log_prefix} iter {it}] k3-repair found a fix")
 
         edge_perms = parse_found(out)
         assignment = {}
