@@ -96,8 +96,12 @@ def main():
                 cuts.append((parts[0], parts[1:]))
     seen_cuts = set((sh, tuple(w)) for sh, w in cuts)
 
-    warm_path = f"auto_warm_{name}.txt"
-    open(warm_path, "w").close()  # empty first
+    warm_path = sys.argv[3] if len(sys.argv) > 3 else f"auto_warm_{name}.txt"
+    if len(sys.argv) <= 3:
+        open(warm_path, "w").close()  # fresh run: start with an empty warm-start
+    # if a warm_path was explicitly given (continuation), preserve its content --
+    # do NOT truncate it (this was a real bug: it silently discarded a prepared
+    # near-solution warm-start on every continuation run).
     cuts_path = f"auto_cuts_{name}.txt"
     solution_path = f"SOLUTION_found_{name}.txt"
     log_prefix = name
