@@ -91,6 +91,41 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-02 (continued session: A5-lift audit + order-30 census extension):
+  - **A5-permutation-lift counterexample attempt: audited and extended, converges
+    to a negative result.** An externally-supplied (Codex) attempt lifted the
+    24-vertex Markström near-counterexample through A5 (5 sheets, 120 vertices),
+    reactively patching one bad cycle at a time; rejected for containing a C8.
+    Automated and extended this (`external_review/a5_lift_probe/`): wrote an
+    independent Python reimplementation of the solver's tree/cotree bookkeeping
+    (verified byte-for-byte against the compiled solver's actual behavior),
+    then a loop that audits the *entire* literal lift for every forbidden
+    length in one pass, derives cuts for all violations, and falls back to
+    exhaustive 3-variable repair when local search stalls. Tested against all
+    four available 24-vertex near-miss bases (`base0_markstroem`,
+    `base1/2/3_hss`, all independently confirmed C4/C8-free with C16 present):
+    every one hit a wall where both random-restart search and exhaustive
+    k3-repair failed (`base0`: 26 cuts; `base2` and `base3`: independently
+    converged to the *same* 9-cut wall; `base1`: couldn't clear even the
+    starting constraint). Convergent evidence across 4 independent bases that
+    this specific construction (5-sheet A5 lift of these bases, via local
+    search) is very likely exhausted, not unlucky. Full writeup:
+    `external_review/a5_lift_probe/AUDIT.md`.
+  - **Order-30 cubic triangle-quotient census (t=4 case) in progress.** Per
+    `tracks/graph-counterexample-q6-xerdjz/order30_quotient_census.md`, orders
+    16/18/20 (7/6/5-triangle cases) are exhaustively closed with zero survivors
+    (~8.5B instances); by the ">=t" corollary, any order-30 cubic
+    counterexample has at most 4 triangles, and t=0..4 remain open. Hand-verified
+    the underlying exact-interval lemma (each triangle contributes an
+    independently-choosable 1-or-2-edge detour, so cycle lengths lift to an
+    *exact*, not merely bounded, interval) against our trusted detector (0
+    mismatches on 251 markings across 6 test graphs). Generated the order-22
+    catalog for t=4 (7,187,627 biconnected cubic 22-vertex graphs, matching a
+    from-scratch geng run) and started the 3-connected/strictly-2-connected
+    split (`external_review/split_shard.py`, sharded); marking census
+    (C(22,4)=7,315 instances/quotient) to follow once the split completes.
+  - Also resumed the two still-open P1 near-cubic cases (n=21, n=23) in the
+    background.
 - 2026-08-02 (branch consolidation + n=20/22 P1 results + order-38 external audit):
   - **P1 progress: n=20 and n=22 cubic cases CLOSED.** Rebuilt the toolchain
     (nauty `geng`, both C checkers) on this session's Linux environment
