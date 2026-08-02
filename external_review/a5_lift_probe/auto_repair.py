@@ -19,8 +19,23 @@ from lift_lib import BaseGraph, build_lift, lift_witness_to_walk, IDENT
 import cycle_detect as cd
 
 SOLVER = "./a5_breakout_solver_v2"
-BASE_MAT = "base0_markstroem.mat"
 FORBIDDEN = (4, 8, 16, 32, 64)
+
+
+def write_mat(edges_path, mat_path):
+    with open(edges_path) as f:
+        header = f.readline().split()
+        n, m = int(header[0]), int(header[1])
+        mat = [[0] * n for _ in range(n)]
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            u, v = map(int, line.split())
+            mat[u][v] = mat[v][u] = 1
+    with open(mat_path, "w") as f:
+        for row in mat:
+            f.write(" ".join(map(str, row)) + "\n")
 
 
 def parse_found(text):
@@ -35,9 +50,9 @@ def parse_found(text):
     return edges
 
 
-def run_solver(cuts_path, warm_path, seed, timeout=120):
+def run_solver(base_mat, cuts_path, warm_path, seed, timeout=120):
     proc = subprocess.run(
-        [SOLVER, BASE_MAT, cuts_path, warm_path, str(seed)],
+        [SOLVER, base_mat, cuts_path, warm_path, str(seed)],
         capture_output=True, text=True, timeout=timeout,
     )
     return proc.stdout, proc.stderr, proc.returncode
@@ -50,20 +65,28 @@ def write_cuts(path, cuts):
 
 
 def main():
-    bg = BaseGraph()
+    name = sys.argv[1] if len(sys.argv) > 1 else "base0_markstroem"
+    edges_path = f"{name}.edges"
+    mat_path = f"{name}.mat"
+    initial_cuts_path = sys.argv[2] if len(sys.argv) > 2 else None
+    write_mat(edges_path, mat_path)
+    bg = BaseGraph(edges_path)
     cuts = []
-    with open("cuts16.txt") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            parts = list(map(int, line.split()))
-            cuts.append((parts[0], parts[1:]))
+    if initial_cuts_path:
+        with open(initial_cuts_path) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                parts = list(map(int, line.split()))
+                cuts.append((parts[0], parts[1:]))
     seen_cuts = set((sh, tuple(w)) for sh, w in cuts)
 
-    warm_path = "auto_warm.txt"
+    warm_path = f"auto_warm_{name}.txt"
     open(warm_path, "w").close()  # empty first
-    cuts_path = "auto_cuts.txt"
+    cuts_path = f"auto_cuts_{name}.txt"
+    solution_path = f"SOLUTION_found_{name}.txt"
+    log_prefix = name
 
     t0 = time.time()
     for it in range(60):
@@ -73,18 +96,18 @@ def main():
             seed = 42 if (it == 0 and attempt == 0) else 1000 + it * 10 + attempt
             timeout = 900 if it == 0 else 300
             try:
-                out, err, rc = run_solver(cuts_path, warm_path, seed=seed, timeout=timeout)
+                out, err, rc = run_solver(mat_path, cuts_path, warm_path, seed=seed, timeout=timeout)
             except subprocess.TimeoutExpired:
-                print(f"[iter {it} attempt {attempt}] TIMEOUT after {timeout}s (seed={seed}) with {len(cuts)} cuts, retrying")
+                print(f"[{log_prefix} iter {it} attempt {attempt}] TIMEOUT after {timeout}s (seed={seed}) with {len(cuts)} cuts, retrying")
                 out = None
                 continue
             if "FOUND" in out:
                 break
-            print(f"[iter {it} attempt {attempt}] solver reported NO solution (rc={rc}); "
+            print(f"[{log_prefix} iter {it} attempt {attempt}] solver reported NO solution (rc={rc}); "
                   f"last stderr: {err.strip().splitlines()[-2:] if err.strip() else '(none)'}")
             out = None
         if out is None:
-            print(f"[iter {it}] exhausted retries with {len(cuts)} cuts -- stopping")
+            print(f"[{log_prefix} iter {it}] exhausted retries with {len(cuts)} cuts -- stopping")
             break
 
         edge_perms = parse_found(out)
@@ -102,13 +125,13 @@ def main():
 
         elapsed = time.time() - t0
         if not violations:
-            print(f"[iter {it}] CLEAN through C64! {elapsed:.1f}s elapsed, {len(cuts)} cuts.")
-            with open("SOLUTION_found.txt", "w") as f:
+            print(f"[{log_prefix} iter {it}] CLEAN through C64! {elapsed:.1f}s elapsed, {len(cuts)} cuts.")
+            with open(solution_path, "w") as f:
                 f.write(out)
-            print("Wrote SOLUTION_found.txt -- this is a genuine candidate counterexample.")
+            print(f"Wrote {solution_path} -- this is a genuine candidate counterexample.")
             return
 
-        print(f"[iter {it}] {elapsed:.1f}s: violations at lengths "
+        print(f"[{log_prefix} iter {it}] {elapsed:.1f}s: violations at lengths "
               f"{[L for L, _ in violations]} with {len(cuts)} cuts")
 
         new_cuts = 0
@@ -121,7 +144,7 @@ def main():
                 seen_cuts.add(key)
                 new_cuts += 1
         if new_cuts == 0:
-            print(f"[iter {it}] all violations already covered by existing cuts but still "
+            print(f"[{log_prefix} iter {it}] all violations already covered by existing cuts but still "
                   f"present -- inconsistency, stopping")
             break
 
@@ -129,7 +152,7 @@ def main():
         with open(warm_path, "w") as f:
             f.write(out)
 
-    print(f"auto_repair finished after {time.time()-t0:.1f}s, {len(cuts)} total cuts, no clean result yet")
+    print(f"[{log_prefix}] auto_repair finished after {time.time()-t0:.1f}s, {len(cuts)} total cuts, no clean result yet")
 
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ external_review/order38_bundle/src/factor38_direct_mrv
 external_review/order38_bundle/test_pathrec
 external_review/order40_probe/src/factor40_direct_mrv
 external_review/a5_lift_probe/a5_breakout_solver_v2
+external_review/a5_lift_probe/a5_point_repair_k3
 external_review/a5_lift_probe/*.log
 
 # in-progress order-22 catalog generation (see plan.md status log); remove
