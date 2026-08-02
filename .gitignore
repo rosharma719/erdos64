@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 verifier/check_c8
 verifier/check_g6
+external_review/order38_bundle/src/generate_quotients38
+external_review/order38_bundle/src/quotient_static38_rot
+external_review/order38_bundle/src/quotient_static38_nosym
+external_review/order38_bundle/src/factor38_direct_mrv
+external_review/order38_bundle/test_pathrec
