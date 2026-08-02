@@ -8,3 +8,8 @@ external_review/order38_bundle/src/quotient_static38_rot
 external_review/order38_bundle/src/quotient_static38_nosym
 external_review/order38_bundle/src/factor38_direct_mrv
 external_review/order38_bundle/test_pathrec
+external_review/order40_probe/src/factor40_direct_mrv
+
+# in-progress order-22 catalog generation (see plan.md status log); remove
+# this line and commit the finished file once nauty-geng completes
+tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order22/quotients_22v_all.g6
