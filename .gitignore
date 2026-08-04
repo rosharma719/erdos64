@@ -20,3 +20,6 @@ tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order22/split
 external_review/t4_intersection_filter/results/t4_full_intersection/chunks/
 external_review/t4_intersection_filter/sample500.g6
 external_review/t4_intersection_filter/bin/
+external_review/t4_intersection_filter/sample24_500.g6
+external_review/t4_intersection_filter/gen24_sample.err
+tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order24/quotients_24v_all.g6
