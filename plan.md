@@ -91,6 +91,41 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-04 (order-30 t=4 CLOSED — real, certified, exhaustive result):
+  - **THEOREM (COMPUTATIONALLY VERIFIED): no order-30 cubic Erdős–Gyárfás
+    counterexample has exactly four disjoint triangles.** An externally
+    supplied (Codex) specialized filter implementing the same exact
+    triangle-quotient interval theorem already independently derived and
+    verified this session was itself independently audited before use: its
+    `allowed_bits` table checked by hand against the theorem's printed
+    table, and its aggregate output on a 500-quotient sample cross-validated
+    *exactly* (every field) against our own independently-written
+    `order30_quotient_marking_census.py` on the same real data. The
+    ~340x measured speedup (0.057s vs 19.5s for 500 quotients, confirmed on
+    our own hardware, not taken on faith) then let the complete real
+    7,187,627-graph order-22 biconnected catalog (generated this session via
+    `nauty-geng -c -C -d3 -D3 22`, SHA-256 verified) be checked exhaustively
+    in 4m30s wall clock: all 52,577,491,505 four-vertex markings
+    (7,187,627 × C(22,4), exact), zero survivors, zero literal/theorem
+    mismatches, `complete: true`. Full writeup and certification fields:
+    `external_review/t4_intersection_filter/AUDIT.md`.
+  - **Combined with the prior session's exhaustive t=7/6/5 closures**
+    (`tracks/graph-counterexample-q6-xerdjz/order30_quotient_census.md`,
+    orders 16/18/20, ~8.5B instances, zero survivors) and the `>=t`
+    corollary there, this **strengthens the standing bound from "at most 4
+    triangles" to "at most 3 triangles"** for any hypothetical order-30
+    cubic counterexample.
+  - Superseded this session's own slower, still-running approach (Python
+    marking census + connectivity split on partial data) — the new filter
+    needs only plain connectivity (already guaranteed by `nauty-geng -c -C`),
+    not the 3-connected/strictly-2-connected split, so that split work is no
+    longer necessary for this specific census and was stopped.
+  - **Next open target: t=3** (order-24 cubic quotients). A generic version
+    of the same filter was mentioned but not supplied/audited this session;
+    per the project's own discipline, it needs the same independent audit
+    (theorem/table cross-check + small-sample cross-validation against an
+    independent implementation) before being trusted with real compute.
+    t=0,1,2 also remain open.
 - 2026-08-02 (continued session: A5-lift audit + order-30 census extension):
   - **A5-permutation-lift counterexample attempt: audited and extended, converges
     to a negative result.** An externally-supplied (Codex) attempt lifted the

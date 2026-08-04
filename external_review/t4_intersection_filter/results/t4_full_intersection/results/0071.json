@@ -1,0 +1,21 @@
+{
+  "lines": 87627,
+  "parsed": 87627,
+  "cubic22": 87627,
+  "connected": 87627,
+  "initial_markings": 640991505,
+  "candidate_intersection_tests": 744567836,
+  "graphs_with_candidates": 0,
+  "final_markings": 0,
+  "literal_checked": 0,
+  "literal_mismatch": 0,
+  "counterexamples": 0,
+  "cycles_seen_by_length": {
+    "3": 278420,
+    "4": 26560,
+    "8": 81820,
+    "12": 4793,
+    "16": 545993
+  },
+  "seconds": 4.547710
+}
