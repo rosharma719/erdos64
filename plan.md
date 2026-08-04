@@ -91,6 +91,29 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-04 (t=3 EXTERNAL CLAIM — unverified, recorded for tracking only):
+  - A separate external (GPT) session reported closing the order-30 t=3 case
+    by a different method than our own catalog census: contract the 3
+    triangles, classify the marker-induced subgraph `Q[S]` into its 3
+    possible forest types (`3K1`, `K2+K1`, `P3` — **this specific fact
+    independently checked**: a forest on 3 vertices has exactly 3
+    isomorphism types by edge count 0/1/2, consistent with our own
+    already-derived and verified theorem that `Q[S]` must be a forest), then
+    exhaustively search finite cubic-pseudograph kernels after deleting
+    markers and suppressing degree-2 paths, across 12 exact shared-attachment
+    patterns.
+  - **Status: UNVERIFIED.** No source code, logs, or data were supplied —
+    only a prose description and a boxed conclusion. Per this project's own
+    discipline (every claim must be checked before being trusted, see the
+    order-38/A5-lift/t=4 audits above, all of which required actual
+    artifacts before any compute or belief was extended), this is recorded
+    as an external claim only, not a result. If actual source/data
+    materializes, it gets the same independent-audit treatment as
+    everything else in `external_review/`.
+  - **This does not need to be taken on faith either way**: our own
+    independent, already-in-progress exhaustive order-24 catalog + t=3
+    filter (below) will settle the same question definitively, with full
+    certification, regardless of whether this external claim holds up.
 - 2026-08-04 (order-30 t=4 CLOSED — real, certified, exhaustive result):
   - **THEOREM (COMPUTATIONALLY VERIFIED): no order-30 cubic Erdős–Gyárfás
     counterexample has exactly four disjoint triangles.** An externally
