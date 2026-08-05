@@ -91,7 +91,68 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
-- 2026-08-05 (THEORY, non-computational — girth exclusion + strategic reframe):
+- 2026-08-05 (EXTERNAL REPORT logged + independently corrected — girth-7 kernel
+  reduction, theta/self-loop skeleton enumeration):
+  - An external ("Codex"-labeled) report was supplied covering three claims.
+    Per user instruction, treated as a working lead, not pre-verified truth;
+    checked what's checkable without artifacts.
+  - **Claim 1 (t=4 "finishes the order-30 search"): OVERREACH, corrected.**
+    Our own certified t=4 result (see below) only closes t=4, giving "≤3
+    triangles" combined with the prior t=5,6,7 closures. t≤3 remains fully
+    open. Recorded as an error, not accepted.
+  - **Claim 2 (order 32-40 direct cubic search, #C16=676 at order 32 with
+    #C4=#C8=0): UNVERIFIED, no artifacts supplied.** The message referenced
+    "Research note," "search implementation," and "persisted record graph"
+    as attachments, but none actually arrived — no code, no graph file, no
+    log. Recorded as an unverified claim only, per standing project
+    discipline; the qualitative idea (C4/C8 easy, C16 is the hard
+    constraint) is plausible but not independently checked here.
+  - **Claim 3 (girth-7 kernel reduction): CHECKED BY HAND, ONE REAL ERROR
+    FOUND AND CORRECTED — net result is a genuine simplification.**
+    - The base kernel setup was independently re-derived and confirmed: fix
+      a 7-cycle C=v0..v6, each v_i's third neighbor x_i is necessarily
+      distinct from all C vertices and from every other x_j (else a cycle of
+      length <7 or in {4,8} forms), and each x_i's other 2 edges must go
+      into H=G-C-{x_i} (an edge to another C-vertex also forces a forbidden
+      length). H has 16 vertices, 14 boundary-edge endpoints from the x_i.
+    - **Error found:** the report claims a kernel vertex may have two
+      boundary attachments at cyclic distance 3 (x_i, x_{i+3}). Using the
+      report's own formula (H-path length ℓ joining two boundary labels at
+      distance d gives cycle lengths ℓ+d+2 and ℓ+(7-d)+2) with ℓ=2 (a single
+      vertex directly adjacent to both x_i, x_{i+3}): lengths are 7 and 8.
+      The 8-cycle is forbidden. Checking distances 1 and 2 the same way also
+      fails (sub-girth or forbidden lengths in every case). **Conclusion:
+      no kernel vertex can carry two boundary attachments at all — a=0 is
+      forced, not a free parameter over {0,...,7}.** (The final |V(H)|=16,
+      |E(H)|=17 headline numbers happen to be a=-invariant, so they still
+      hold; only the "range of cases" claim was wrong.)
+    - This simplifies rather than kills the reduction: with a=0, exactly 14
+      kernel vertices carry one boundary edge, 2 carry none (cubic hubs).
+      Suppressing all degree-2 vertices, the abstract skeleton is either (i)
+      a theta graph — 3 internally-disjoint paths between the 2 hubs, or
+      (ii) two hub self-loops joined by a connecting path.
+    - **Theta-graph case, hand-enumerated:** path lengths (ℓ1,ℓ2,ℓ3),
+      ℓ1+ℓ2+ℓ3=14, each pairwise hub-to-hub cycle (length 16-ℓk for the
+      excluded path k) must avoid {4,8,16} and be ≥7, giving ℓk∈{1..9}\{8}.
+      Exhaustive hand enumeration of a≤b≤c summing to 14 in that set yields
+      exactly 9 surviving triples: (1,4,9), (1,6,7), (2,3,9), (2,5,7),
+      (2,6,6), (3,4,7), (3,5,6), (4,4,6), (4,5,5).
+    - **Double-self-loop case, hand-enumerated:** loop lengths ℓA,ℓB need
+      ℓA+1, ℓB+1 ≥7 and ∉{8,16} (so ℓA,ℓB≥6, ≠7), connecting path
+      ℓAB=14-ℓA-ℓB≥0. Only 2 profiles survive (up to hub symmetry):
+      (ℓA,ℓB,ℓAB)=(6,6,2) and (6,8,0).
+    - **Net: the entire girth-7 order-30 branch reduces to exactly 11
+      candidate skeletons.** Remaining work: assign the 7 boundary labels
+      (2 slots each of 14 positions) to each skeleton and check every
+      resulting cycle (including same-label pairs, which give a separate
+      direct cycle of length ℓ+2, needing ℓ≥5 and ℓ∉{6,14} — also derived
+      and confirmed by hand here) against the {4,8,16}/girth-7 exclusion.
+      This labeling-feasibility check is well-defined but combinatorially
+      intricate enough (14 positions, 7-label assignment, two cycle-length
+      formulas depending on position AND label) that it should be resolved
+      with a short targeted script rather than further hand tracing — this
+      would be a tiny computation (11 skeletons) compared to any census run
+      so far, not a re-opening of large-scale search.
   - **New rigorous theorem, zero computation.** For a cubic graph on exactly
     n=30 vertices, girth is bounded by the standard (3,g)-cage table (Petersen
     g=5/n=10, Heawood g=6/n=14, McGee g=7/n=24, Tutte–Coxeter g=8/n=30
