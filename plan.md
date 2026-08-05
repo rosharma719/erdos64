@@ -91,6 +91,49 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (EXTERNAL S5-LIFT CLAIM — setup independently confirmed,
+  numeric result spot-checked, still unverified in full; no
+  counterexample found in this session's own sampling either):
+  - A further external report claimed an exact 5-sheeted S_5 permutation
+    lift census over all 17 connected cubic pseudographs on 6 vertices
+    (order 30, gauge-fixed to 4 free S_5 permutations per base), reporting
+    12,075,358 gauge/conjugacy representatives, 44 final C4,C8-free
+    survivors, and 0 that are also C16-free. As always with this source,
+    no code or data was actually attached ("Artifacts" list is placeholder
+    links again) — checked what's independently checkable.
+  - **Confirmed exactly: there really are 17 connected cubic pseudographs
+    on 6 vertices** (own from-scratch enumeration,
+    `external_review/s5_lift_check/enumerate_pseudographs.py`,
+    backtracking over the edge-multiplicity matrix with degree-3
+    constraint + connectivity + canonical-form dedup over all 720 vertex
+    permutations — no external tool dependency). This matches their
+    setup claim precisely.
+  - Built and sanity-checked an independent S_5-lift constructor
+    (`lift_check.py`): verified the all-identity voltage assignment
+    produces 5 disconnected copies of the base graph (correct expected
+    degenerate case) before trusting it on random voltages.
+  - **Bounded random spot-check** (not exhaustive — their 12M-case
+    exhaustive claim is not reproducible in this session): 1.5 million
+    random S_5^4 voltage assignments each on two of the 17 bases (K_{3,3}
+    and the triangular-prism-type graph, both loopless/multi-edge-free).
+    Result: **zero C4,C8-free lifts found in either 1.5M-trial sample.**
+    This is not a contradiction of their claim — a spot check confirmed
+    the intermediate C4-free rate is nontrivial (~5%) so the sampling
+    pipeline works, and getting zero C4-C8-free hits from 2 of 17 bases
+    is consistent with their reported total of only 44 survivors across
+    all 17 bases combined (very plausibly concentrated in the
+    looped/multi-edge bases, not the two simple ones sampled here) —
+    but it means this session did NOT independently reproduce their
+    headline numbers, only their setup and the qualitative rarity
+    pattern. **Status: setup confirmed, full numeric result still
+    unverified**, logged honestly as such.
+  - No counterexample turned up in this session's own sampling either,
+    continuing the same pattern as every other construction tried.
+  - The report's proposed follow-on (an S_7 permutation-word CSP compiler
+    targeting order 42) is a described next step, not a completed result
+    in their message, and was not attempted this session given the
+    accumulating evidence and the more pressing unfinished elimination
+    work (girth-6, t=3).
 - 2026-08-05 (THEORETICAL construction, round 2 — LCF notation family,
   no counterexample):
   - Extended the algebraic-family sweep with LCF notation (Hamilton cycle
