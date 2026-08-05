@@ -91,6 +91,47 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (THEORY, non-computational — girth exclusion + strategic reframe):
+  - **New rigorous theorem, zero computation.** For a cubic graph on exactly
+    n=30 vertices, girth is bounded by the standard (3,g)-cage table (Petersen
+    g=5/n=10, Heawood g=6/n=14, McGee g=7/n=24, Tutte–Coxeter g=8/n=30
+    (**unique** (3,8)-cage), next cage g=9/n=58). Two exclusions follow with no
+    search: (a) girth=4 trivially satisfies E–G (shortest cycle is itself a
+    power of 2); (b) girth=8 is impossible for a counterexample because n=30 is
+    exactly the (3,8)-cage number and the cage is unique, so the only girth-8
+    cubic graph on 30 vertices is Tutte–Coxeter itself, which contains an
+    8-cycle by definition of girth. girth≥9 is impossible outright (needs ≥58
+    vertices). **Conclusion: any order-30 cubic E–G counterexample has girth
+    ∈ {3, 5, 6, 7}.**
+  - **Maps exactly onto the existing t-decomposition.** girth=3 ⟺ t≥1 (a
+    triangle exists) — the branch the triangle-quotient program already
+    covers (t=4..7 closed, t=3 running). girth∈{5,6,7} ⟺ t=0, fully
+    triangle-free — a branch the triangle-quotient theorem *cannot* address at
+    all (nothing to contract). This branch has zero coverage from any tool
+    built so far.
+  - **Computational-ceiling finding for the t-branch.** Quotient order is
+    30−2t, so it *grows* as t shrinks: t=4→order22 (7.19M, done), t=3→order24
+    (~127M, in progress, ~18x growth matching the empirical 20→22 ratio),
+    t=2→order26 extrapolates to ~2.2–2.4B, t=1→order28 extrapolates to
+    ~40B+ — almost certainly months of generation alone on this hardware, i.e.
+    the triangle-quotient chain likely cannot reach t=1 in practice even if
+    t=3 and t=2 both close cleanly.
+  - **Reframing.** The triangle-quotient program was never going to resolve
+    the full order-30 cubic question by itself — it only ever had reach into
+    the girth=3 branch, and even there it likely stalls before t=1. The
+    untouched girth∈{5,6,7} branch is a structurally different problem
+    (needs algebraic/voltage-lift constructions, à la the earlier A5-lift
+    work, or a girth-filtered generation — much cheaper than full cubic
+    generation since girth≥5 is a strong restriction, not full geng). Within
+    that branch, **girth=7 is the highest-leverage entry point**: only 6
+    vertices above the McGee cage (24), vs. 20 above Petersen for girth 5, so
+    it plausibly has by far the smallest population and is most tractable to
+    attack first (analytically or with a cheap targeted search) once t=3
+    closes.
+  - No claim here has been computationally re-verified in this session beyond
+    citing the standard, extremely well-documented cage table; flagging this
+    explicitly per project discipline even though cage numbers/uniqueness are
+    textbook facts, not external claims.
 - 2026-08-04 (t=3 EXTERNAL CLAIM — unverified, recorded for tracking only):
   - A separate external (GPT) session reported closing the order-30 t=3 case
     by a different method than our own catalog census: contract the 3
