@@ -91,6 +91,55 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (GIRTH-7 BRANCH CLOSED — exact, verified, no computation beyond
+  a tiny 11-skeleton search): see `external_review/girth7_kernel/`.
+  - Built `verify_skeletons.py` to resolve the 11 candidate skeletons
+    (9 theta-graph length-triples + 2 double-self-loop profiles) from the
+    corrected kernel reduction below into an exact backtracking search over
+    every way to assign the 7 boundary labels (2 slots each) to the 14
+    skeleton positions, checking every resulting cycle against {4,8,16} and
+    girth 7.
+  - **Two real bugs were found and fixed in the verifier before trusting
+    it**, both caught by independent cross-checks, not by inspection alone:
+    (1) the first version reused the theta hub-pairwise formula's `+2`
+    offset for the general boundary-excursion case, when the correct
+    offset (re-derived against the report's own worked h,h'-adjacent
+    example) is `+4`; (2) the self-loop "other way around" distance used
+    `lA - d1` instead of the correct `(lA+1) - d1`. Both were caught by
+    (a) a trivial sanity check (all-distances-huge input must be feasible —
+    it was, confirming the search machinery itself was sound) and (b)
+    re-deriving the formula by hand against the report's own already-
+    verified d+5/7/8-9 worked example, which the buggy version failed to
+    reproduce.
+  - Rewrote the verifier to avoid hand formulas entirely: it builds the
+    actual skeleton graph (16 nodes: 2 hubs + 14 positions) and enumerates
+    every simple path between any two positions by brute-force DFS, so
+    there is no distance formula left to get wrong.
+  - **Cross-validated against literal 30-vertex reconstruction** (networkx,
+    `literal_crosscheck.py`): built real graphs for specific (skeleton,
+    labeling) pairs and confirmed with `nx.simple_cycles` that the
+    abstracted model's predicted cycle lengths for a given position-pair
+    exactly match the literal graph's actual cycle lengths, for both the
+    same-label (d=0) and cross-label (d=1,2,3) cases. Also independently
+    re-confirmed the a=0 correction (below) directly on a minimal literal
+    graph: a vertex double-attached at boundary distance 3 produces cycle
+    lengths {7,8} exactly as predicted — the 8 confirms the report's
+    claimed-viable case is not actually viable.
+  - **Result: all 11 skeletons are infeasible — no labeling avoids {4,8,16}
+    and sub-girth cycles on any of them.** Combined with the corrected
+    kernel reduction (a=0 forced is provably exhaustive — every order-30
+    girth-7 cubic graph decomposes into one of these 11 skeletons, no
+    others are possible), this eliminates girth=7 entirely: **no order-30
+    cubic Erdős–Gyárfás counterexample can have girth exactly 7.**
+  - Combined with the earlier girth exclusion theorem (girth ∈ {3,5,6,7}
+    only), the remaining space for any order-30 cubic counterexample is
+    now **girth ∈ {3, 5, 6}**.
+  - Confidence framing: this is independently derived and cross-validated
+    within this session (hand derivation + two independent code paths +
+    literal-graph spot checks), but a result of this significance should
+    still get a second, from-scratch implementation before being promoted
+    to fully certain — same standard applied to the t=4 result before it
+    was trusted.
 - 2026-08-05 (EXTERNAL REPORT logged + independently corrected — girth-7 kernel
   reduction, theta/self-loop skeleton enumeration):
   - An external ("Codex"-labeled) report was supplied covering three claims.
