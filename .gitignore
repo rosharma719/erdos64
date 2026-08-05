@@ -25,5 +25,6 @@ external_review/t4_intersection_filter/gen24_sample.err
 tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order24/quotients_24v_all.g6
 tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order24/shards/
 tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order24/shards1024/
+tracks/graph-counterexample-q6-xerdjz/data/order30_quotient_census/order24/waves1024.log
 external_review/t4_intersection_filter/sample26_300.g6
 external_review/t4_intersection_filter/gen26_sample.err
