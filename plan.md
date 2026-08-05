@@ -126,6 +126,20 @@ compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-mis
     `external_review/order32_direct_search/best_n32_seed*.edges` with
     literal re-verification (recount C4/C8/C16 from the saved edge list,
     not trusted from the search state) before being recorded.
+  - **Longer run (300s, seed=1): C16=236**, re-verified independently by
+    re-reading the persisted edge file from scratch (n=32, e=48, all
+    degree 3, connected, C4=0, C8=0, C16=236 recomputed cold). Still above
+    the report's suggested <100 target, but a third consecutive
+    independent run beating their reported figures (676, 471) with no
+    tuning and no incremental cycle-delta evaluation — the report's own
+    named "highest-value engineering step," not yet implemented here.
+    Continuing to push this down is a legitimate, bounded next step but
+    is a compute-bound search, not further hand theory — the theoretical
+    thread for this branch is the girth-5/6 kernel work above, not this
+    local search (which only speaks to the *general* cubic-graph
+    landscape, unconstrained by the girth/triangle structure already
+    established for order-30 specifically, and unconstrained to n=30
+    since this is order 32).
 - 2026-08-05 (t=3 GENERATION RE-SHARDED for restart resilience; GIRTH-6
   kernel exploration started — partial, honestly incomplete, genuinely
   harder than girth-7):
