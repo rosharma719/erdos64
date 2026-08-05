@@ -91,6 +91,67 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (GIRTH-6 KERNEL, case s=0/a=0 — bounded sample, no counter-
+  example, real progress toward the proof but not yet exhaustive):
+  - Built the general girth-6 skeleton verifier
+    (`external_review/girth6_kernel/verify_s0a0.py`), extending the
+    girth-7 methodology (DFS-based exact simple-path enumeration, no
+    hand-derived distance formula to get wrong) with the girth-6-specific
+    cycle-length formula (spine `ell+4` closed via arc `d` or `6-d` for
+    distinct labels; `ell+2` for same-label) and forbidden-set {4,8,16},
+    minimum length 6.
+  - For the (s=0, a=0) sub-case (no antipodal chords, no doubled
+    attachments — degree sequence 2^12 3^6), the 6 hub vertices, viewed
+    with internal edges only, form exactly the same object as the 17
+    connected cubic pseudographs on 6 vertices already independently
+    enumerated and verified for the S5-lift spot-check — reused directly
+    rather than re-derived.
+  - Validated the internal-cycle pre-filter on a concrete example before
+    trusting the sweep: one specific length distribution on the K_{3,3}
+    topology was correctly flagged as containing a real internal 8-cycle
+    (traced by hand: hubs 1-3-2-4-1 via four length-1 abstract edges,
+    each contributing 2 edges, totaling 8) — confirms the checker finds
+    genuine obstructions, not spurious ones.
+  - **Ran a bounded random sweep** (not exhaustive — compositions of 12
+    into up to 9 parts per topology run into the hundreds of thousands,
+    times a labeling search for each, infeasible to fully enumerate in
+    this session): 3,565,164 random length-distributions sampled across
+    all 17 topologies in 150s, 8,499 passing the cheap internal-cycle
+    pre-filter, **zero yielding a feasible boundary labeling.**
+  - **Honest status:** this is real, substantial evidence for the
+    (s=0,a=0) sub-case specifically, not a proof even for that one
+    sub-case (sampling, not exhaustive), and the other 9 of 10 total
+    (s,a) classes for girth-6 (any with antipodal chords or doubled
+    attachments present) remain completely untested. Continuing to
+    convert this into an exhaustive result, and extending to the
+    remaining (s,a) classes, is the concrete next step toward actually
+    closing girth-6 as part of the proof-pursuit pivot.
+- 2026-08-05 (STRATEGIC PIVOT: from counterexample-hunting to proof-pursuit):
+  - After an extensive, honest negative campaign (dozens of algebraic
+    families, lift constructions, and an unconstrained local search, all
+    finding zero counterexamples), explicitly reassessed the goal: the
+    realistic, achievable target is proving **no order-30 cubic
+    Erdős–Gyárfás counterexample exists**, not continuing to hunt for one.
+  - **Honest inventory of what a complete proof needs:** girth 4,8
+    trivial; girth 7 CLOSED; girth 6 OPEN (scoped, harder than girth-7);
+    girth 5 OPEN (not started); t=4..7 CLOSED (exhaustive); t=3 running
+    computationally; t=2 likely reachable with sustained compute
+    (~2.2B graphs); **t=1 is the honest weak point** (~40B+ graphs via
+    the direct census approach, likely infeasible with available compute).
+  - **A real dead end, recorded rather than hidden:** considered whether
+    the girth-7 kernel trick generalizes to "fix one triangle, analyze
+    the kernel" to close t=1 without the infeasible order-28 census.
+    It does not: girth-7's tractability came specifically from *girth*
+    being an extremely strong global constraint (any violation anywhere
+    creates a contradiction). "Has at least one triangle" (t=1) is a much
+    weaker local constraint — the resulting "kernel" is mathematically
+    just the unmarked part of the same order-28 quotient the existing
+    computational census already must enumerate. No shortcut found there.
+  - **Redirected main effort to girth-6 and girth-5 closure** via the
+    already-proven kernel method, since that path is real, tractable (with
+    the right tooling), and would independently establish "any order-30
+    cubic counterexample has girth exactly 3" even before the triangle
+    branch (t=1,2) fully closes.
 - 2026-08-05 (EXTERNAL S5-LIFT CLAIM — setup independently confirmed,
   numeric result spot-checked, still unverified in full; no
   counterexample found in this session's own sampling either):
