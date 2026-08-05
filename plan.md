@@ -91,6 +91,41 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (THEORETICAL, non-iterative construction attempt — named
+  algebraic graph families checked exactly, no counterexample found):
+  - Per explicit request to use theoretical construction rather than
+    iterative/local search: checked specific, deterministically-defined
+    graphs from well-understood algebraic families
+    (`external_review/algebraic_constructions/check_families.py`) — each
+    candidate is a formula-defined function of 1-3 small integer
+    parameters, not a search trajectory. Cycle counter re-validated first
+    against the actual Petersen graph via the family's own generator
+    (GP(5,2) reproduced C4=0, C8=15 exactly, matching the known values
+    already used to validate the counter in the order-32 work).
+  - **Generalized Petersen graphs GP(15,k), k=1..7** (all non-isomorphic
+    choices at n=15): k=1 has C4=15 (fails immediately); k=2..7 all reach
+    girth 5 or 7 but every single one has C8 in {15,30} and C16 in the
+    hundreds — never zero. Notably **GP(15,4) has girth exactly 7**, and,
+    consistent with this session's already-proven girth-7 elimination
+    theorem, it does contain forbidden cycles (C8=30, C16=1110) — a nice
+    independent real-world sanity check of that theorem, not just an
+    abstract argument.
+  - **I-graphs I(15,j,k)** (generalizing GP with a non-unit outer step
+    j=2,3,4, all k != j): same pattern, C8 in {15,30}, C16 in the
+    hundreds, never zero, across 18 more candidates.
+  - **Cubic circulants C_30(a,15)** for a=1..14 (distance-a plus antipodal
+    connection, the only way to get a cubic circulant on an even order):
+    every connected one has C4=15 (circulants of this shape are girth-4
+    by construction — the a, a, antipodal triangle-adjacent structure
+    forces short 4-cycles); several are disconnected outright.
+  - **Zero counterexamples found across 39 formula-defined candidates.**
+    This is consistent with, not contradicting, everything else this
+    session found (girth-7 closed, t>=4 closed, lift constructions
+    negative, local search near-misses never zero) — highly symmetric
+    algebraic families are a natural, well-motivated place to look for a
+    counterexample (many past extremal/record graphs in cycle-avoidance
+    problems ARE vertex-transitive), and finding nothing there again adds
+    to the evidence, without proving anything about non-symmetric graphs.
 - 2026-08-05 (GIRTH-7 CLOSURE INDEPENDENTLY CONFIRMED by a second,
   separately-derived source; S_3-lift claims logged as unverified; girth-6
   scoped honestly as substantially harder than girth-7):
