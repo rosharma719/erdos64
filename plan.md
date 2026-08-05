@@ -91,6 +91,84 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (INDEPENDENT CHECK of GPT's order-32-40 direct search claim —
+  reimplemented from scratch, partially reproduces and exceeds it):
+  - The earlier GPT report claimed an order-32 cubic graph with
+    #C4=#C8=0, #C16=676 (via degree-preserving two-edge switches + exact
+    cycle counters), but supplied no code, log, or graph file — recorded
+    as unverified. Since the method itself (not the specific numbers) is
+    well-described, built an independent from-scratch implementation
+    (`external_review/order32_direct_search/local_search.py`) rather than
+    trusting the claim.
+  - Cycle counter validated first against the Petersen graph's known exact
+    values (C3=0, C4=0, C5=12, C8=15) before trusting it on anything else.
+  - First attempt (single simulated-annealing objective with an infinite
+    penalty for any C4 or C8) found **zero** feasible (C4=C8=0) states in
+    2,000,000+ iterations over 90s starting from a random cubic graph —
+    confirming the report's own observation that a plain boolean gate from
+    a random start doesn't work well; a continuous descent is needed first.
+  - Redesigned as **two phases** (matching the report's own stated
+    strategy): phase 1 minimizes C4+C8 as a continuous objective until it
+    hits 0; phase 2 then hard-gates C4=C8=0 (rejects any move that would
+    reintroduce either) and anneals to minimize C16.
+  - **Result (100s total, single run): phase 1 reached C4=C8=0 in 38,453
+    iterations; phase 2 reached C16=304 in the remaining 60s** — better
+    than the report's claimed 676 and also better than their "471" figure
+    (which they said was itself lost/unpersisted). This independently
+    confirms the qualitative claim (C4/C8-free with low C16 is reachable
+    by this method) and suggests their reported numbers were not
+    optimized very far — 304 in under 2 minutes on a single instance, no
+    tuning, no incremental cycle-delta evaluation (the perf optimization
+    the report itself flagged as the "highest-value engineering step" and
+    did not implement). A longer run is in progress to see how far below
+    100 (their own suggested next target) this simple version can get.
+  - Best graph so far is persisted to
+    `external_review/order32_direct_search/best_n32_seed*.edges` with
+    literal re-verification (recount C4/C8/C16 from the saved edge list,
+    not trusted from the search state) before being recorded.
+- 2026-08-05 (t=3 GENERATION RE-SHARDED for restart resilience; GIRTH-6
+  kernel exploration started — partial, honestly incomplete, genuinely
+  harder than girth-7):
+  - **Practical:** confirmed the container has only 4 CPU cores, already
+    fully saturated by the order-24 generation (4/4 concurrent geng
+    workers) — no parallelism headroom to exploit. Re-sharded from 512-way
+    to 1024-way (`order24/shards1024/`) to roughly halve the max work lost
+    per restart (~254s/shard -> ~127s/shard), since restarts, not CPU
+    availability, are the dominant source of waste. Old 512-way partial
+    progress (24 shards) is superseded, not reused (different res/mod
+    partition, not resumable across shard counts).
+  - **Theory, girth-6 kernel (started, not closed):** applied the same
+    method that closed girth-7 to the girth-6 case (fix a 6-cycle C,
+    x_i=third neighbor of v_i, H=G-C-{x_i}, 18 vertices). Two facts
+    verified by hand so far:
+    - x_i are still pairwise distinct (checked all d=1,2,3: same-x cycle
+      length d+2 is 3,4,5, all violate girth-6 or hit a forbidden length).
+    - x_i CAN be directly adjacent when antipodal (d(i,j)=3): the two
+      closing cycles both have length exactly 6 (d+3 and (6-d)+3 both = 6
+      at d=3), which is girth itself and perfectly allowed — unlike
+      girth-7, where x_i's were forced fully independent. This means the
+      girth-6 boundary structure has an extra degree of freedom (up to 3
+      possible "antipodal chords" among the 6 x_i, present or absent
+      independently) that girth-7 did not have.
+    - Consequently, double-attachment kernel vertices (one H-vertex
+      adjacent to two x_i directly) are himself NOT forced to zero here:
+      distance-1 and distance-2 double-attachments fail (lengths 5,9 and
+      6,8 — a 5 violates girth, an 8 is forbidden), but **distance-3
+      (antipodal) double-attachment gives cycle lengths exactly 7,7 —
+      both valid.** This is the opposite of the girth-7 finding (where the
+      external report's analogous "x_i,x_{i+3} viable" claim was wrong);
+      here the same-shaped configuration is genuinely viable.
+  - **Honest status:** girth-6 does not collapse to a single forced case
+    the way girth-7 did (a=0). It has a real branching structure (chord
+    count k=0..3 among antipodal pairs, plus double-attachment vertices
+    tied to those same pairs) that needs full, careful case enumeration
+    before any skeleton search is meaningful. This is a bigger derivation
+    than girth-7 and is NOT complete — recording the verified facts now
+    rather than rushing an unverified "closed" claim. Continuing this is
+    the natural next theoretical step, alongside girth-5 (likely even
+    larger, since n=30 is 20 vertices above the girth-5 cage vs. only 6
+    above the girth-7 cage, i.e., much more freedom, probably harder, not
+    easier).
 - 2026-08-05 (GIRTH-7 BRANCH CLOSED — exact, verified, no computation beyond
   a tiny 11-skeleton search): see `external_review/girth7_kernel/`.
   - Built `verify_skeletons.py` to resolve the 11 candidate skeletons
