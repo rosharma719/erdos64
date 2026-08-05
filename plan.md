@@ -91,6 +91,57 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (GIRTH-7 CLOSURE INDEPENDENTLY CONFIRMED by a second,
+  separately-derived source; S_3-lift claims logged as unverified; girth-6
+  scoped honestly as substantially harder than girth-7):
+  - An external ("Codex/GPT") report independently found and fixed the
+    exact same error this session already found and fixed (the
+    boundary-excursion formula's constant offset: `ell+d+4`, not
+    `ell+d+2`). Cross-checked their corrected formula directly: their
+    `ell+11-d` is algebraically identical to this session's
+    `ell+(7-d)+4` (both equal `ell+11-d`) — **exact match**.
+  - Cross-checked their reported 11 skeletons against this session's own
+    9 theta-triples + 2 dumbbell profiles. Their numbers use path EDGE
+    counts; this session's use internal-VERTEX counts (edges = vertices+1
+    per path). Converting their numbers by subtracting 1 from each
+    reproduces this session's exact 9 triples and exact 2 dumbbell
+    profiles, entry for entry. **This is a genuine independent
+    confirmation of the girth-7 closure** — satisfies the "should get a
+    second, from-scratch implementation" caveat recorded when this
+    session's own closure was first written up.
+  - **Girth-7 elimination is now doubly-derived and confirmed: no order-30
+    cubic Erdős–Gyárfás counterexample can have girth exactly 7.**
+  - The same report's separate S_3-voltage-lift claim (19 cubic bases on
+    10 vertices, 6 gauge-fixed voltage variables each, 19*6^6=886,464
+    assignments, 882,854 connected lifts, 56 with no C4/C8, best 333 C16
+    reduced to 246 by two-edge surgery) came with no code/data attached
+    (same "artifacts" placeholder pattern as before; user noted files
+    would be attached later). Checked what's cheaply checkable without
+    artifacts: **confirmed via nauty-geng that there really are exactly
+    19 connected cubic graphs on 10 vertices, and 19*6^6=886,464 is
+    correct arithmetic.** The deeper numeric results (882,854; 56; 246)
+    remain unverified pending the promised files — logged, not trusted.
+  - **Girth-6, scoped honestly:** the report's proposed (s,a) framework
+    (s = number of antipodal-chorded boundary pairs, a = number of
+    doubled-attachment kernel vertices, s+a<=3, degree sequence
+    1^a 2^(12-2s-2a) 3^(6+2s+a), |E(H)|=21+s, 10 total (s,a) classes)
+    was independently re-derived from scratch this session (before their
+    message arrived) up through the same s=0 double-attachment-at-
+    distance-3 finding, and the degree-sequence arithmetic checks out by
+    hand (sums to 18 kernel vertices and 21+s edges correctly for
+    general s,a). **This is a real, harder problem than girth-7,** not
+    just more cases: girth-7's kernel always had exactly 2 hub
+    (zero-attachment) vertices; girth-6's hub count is 6+2s+a, ranging
+    from 6 (s=a=0) up to 12 (s=3,a=0). Enumerating all cubic-multigraph
+    topologies on 6-12 hub vertices (loops and multi-edges allowed, since
+    hub-to-hub "edges" represent suppressed paths of any length) is a
+    substantially bigger combinatorial object than girth-7's 2 topologies
+    (theta, dumbbell) — nauty's `multig -l3` tool was tried and did not
+    behave as hoped from an empty-graph seed; needs either a working
+    multigraph generator or a purpose-built "suppressed-core compiler"
+    (the report's own phrase) before a skeleton search is meaningful.
+    Recording this honestly as scoped-but-not-closed, not rushing a
+    result at girth-7's level of rigor without the right tooling.
 - 2026-08-05 (INDEPENDENT CHECK of GPT's order-32-40 direct search claim —
   reimplemented from scratch, partially reproduces and exceeds it):
   - The earlier GPT report claimed an order-32 cubic graph with
