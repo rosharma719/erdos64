@@ -71,6 +71,32 @@ def gen_igraph(n, j, k):
         add(n + i, n + (i + k) % n)
     return adj, N
 
+def gen_lcf(n, pattern):
+    """LCF notation: Hamilton cycle 0..n-1..0, plus chord i -> i+pattern[i%k]
+    (mod n). Only valid if the chord assignment is a genuine involution
+    (chord(chord(i))==i for all i) and gives a simple graph (no chord
+    coincides with a Hamilton-cycle edge, no repeated/self chord) -- this is
+    checked explicitly, not assumed, so an invalid pattern is caught rather
+    than silently producing a malformed graph."""
+    k = len(pattern)
+    if n % k != 0:
+        return None, None, "period does not divide n"
+    chord = [(i + pattern[i % k]) % n for i in range(n)]
+    for i in range(n):
+        if chord[chord[i]] != i:
+            return None, None, f"not an involution at i={i}"
+        if chord[i] == i:
+            return None, None, f"self-chord at i={i}"
+        if abs(chord[i] - i) % n in (1, n - 1):
+            return None, None, f"chord duplicates Hamilton edge at i={i}"
+    adj = [set() for _ in range(n)]
+    for i in range(n):
+        adj[i].add((i + 1) % n)
+        adj[(i + 1) % n].add(i)
+        adj[i].add(chord[i])
+        adj[chord[i]].add(i)
+    return adj, n, None
+
 def main():
     found = []
     print("=== Generalized Petersen graphs GP(15,k), order 30 ===")
@@ -100,6 +126,36 @@ def main():
             adj, n = gen_igraph(15, j, k)
             if check(adj, n, f"I(15,{j},{k})"):
                 found.append(f"I(15,{j},{k})")
+
+    print()
+    print("=== LCF notation, order 30, periods 1/2/3/5 ===")
+    for a in range(1, 15):
+        adj, n, err = gen_lcf(30, [a])
+        if err:
+            continue
+        if check(adj, n, f"LCF[{a}]^30"):
+            found.append(f"LCF[{a}]^30")
+    for a in range(2, 15):
+        adj, n, err = gen_lcf(30, [a, -a])
+        if err:
+            continue
+        if check(adj, n, f"LCF[{a},-{a}]^15"):
+            found.append(f"LCF[{a},-{a}]^15")
+    for b in [4, 7, 10, 13, 16, 19, 22, 25, 28]:
+        adj, n, err = gen_lcf(30, [15, b, -b])
+        if err:
+            continue
+        if check(adj, n, f"LCF[15,{b},-{b}]^10"):
+            found.append(f"LCF[15,{b},-{b}]^10")
+    for b in [6, 11, 16, 21, 26]:
+        for c in [6, 11, 16, 21, 26]:
+            for sb, sc in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
+                pattern = [15, sb * b, -sb * b, sc * c, -sc * c]
+                adj, n, err = gen_lcf(30, pattern)
+                if err:
+                    continue
+                if check(adj, n, f"LCF{pattern}^6"):
+                    found.append(f"LCF{pattern}^6")
 
     print()
     print("FOUND COUNTEREXAMPLES:", found if found else "NONE")

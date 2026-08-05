@@ -91,6 +91,41 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (THEORETICAL construction, round 2 — LCF notation family,
+  no counterexample):
+  - Extended the algebraic-family sweep with LCF notation (Hamilton cycle
+    + periodic chords), which covers many named cage-like graphs
+    (Möbius–Kantor, Desargues, Nauru, Dyck, McGee) via a checkable
+    consistency rule (chord must be a genuine involution: chord(chord(i))
+    == i for all i) rather than group-theory risk.
+  - Validated the constructor against the actual Möbius–Kantor graph
+    (LCF[5,-5]^8, 16 vertices): reproduced its documented girth of 6
+    exactly before trusting the constructor on order-30 candidates.
+  - **Period 2** ([a,-a]^15): only odd `a` gives a valid involution (even
+    `a` fails immediately, confirmed by the validity checker itself, not
+    assumed) — a=3,5,7,9,11,13 all valid, all reach girth 4 or 6, but
+    every one has nonzero C8.
+  - **Period 3**: naive small (a,b,c) triples are essentially never valid
+    involutions (0 valid out of the tested range) — worked out why by
+    hand, following the same residue-pairing logic the real McGee graph's
+    own LCF ([12,7,-7]^8) uses: one term must be self-paired (offset =
+    n/2, valid only when n/2 is divisible by the period k, keeping the
+    residue class fixed under doubling), the other two must be an
+    additive-inverse pair whose offset shifts residues consistently.
+    Constructed the n=30 analog (period 3, self-paired term=15, valid
+    since 15 is divisible by 3) with a swept second parameter — all
+    valid, one (**LCF[15,10,-10]^10) has girth exactly 7**, again
+    consistent with (and a further independent check of) the proven
+    girth-7 elimination theorem: it does contain C8=30, C16=1110. None
+    of the 9 valid period-3 patterns avoid C8.
+  - **Period 5** (self-paired 15 + two independent +b/-b pairs, 25 valid
+    patterns): zero even reach C4=C8=0, let alone C16=0.
+  - **Net: zero counterexamples across the full LCF sweep (period
+    1,2,3,5, ~40 valid constructions total)**, continuing the same
+    pattern as every other family tried. GP(15,4) and LCF[15,10,-10]^10
+    both independently landing on girth exactly 7 and both containing the
+    theorem-predicted forbidden cycles is a nice unplanned cross-check of
+    that result from two unrelated constructions.
 - 2026-08-05 (THEORETICAL, non-iterative construction attempt — named
   algebraic graph families checked exactly, no counterexample found):
   - Per explicit request to use theoretical construction rather than
