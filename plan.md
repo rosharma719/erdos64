@@ -91,6 +91,71 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-06 (GLOBAL METHODS — diagnosis + two hand-derived theorems that
+  cut across the girth/triangle case split):
+  - **Diagnosis: why global machinery fails at delta=3.** The known
+    global cycle-length theorems are degree-driven — Bondy-Vince (two
+    cycles differing by 1 or 2), Gao-Huo-Liu-Ma (delta >= k+1 gives all
+    even lengths mod k), Liu-Ma (consecutive even lengths). At delta=3,
+    k=2, and "all even lengths mod 2" degenerates to "an even cycle
+    exists." Every such theorem is near-vacuous at exactly delta=3.
+    The structural reason is a **type mismatch: this machinery produces
+    ADDITIVE windows of cycle lengths (consecutive, or an arithmetic
+    progression), while the target set {4,8,16,...} is MULTIPLICATIVE
+    with doubling gaps.** At n=30 an additive guarantee would need width
+    >= 8 to be forced onto a power of 2; degree 3 buys width 2.
+    **Actionable consequence:** no degree-based global argument can close
+    n=30. Any proof must exploit the sporadic arithmetic of {4,8,16}
+    against n=30 specifically. This predicts (correctly, given this
+    project's history) that the problem keeps devolving into case
+    analysis, and that a slick general argument at this order does not
+    exist.
+  - **THEOREM A (chord-span theorem, hand-derived).** Let G be cubic on
+    30 vertices, Hamiltonian with Hamilton cycle v_0..v_29; the other 15
+    edges form a perfect matching of chords. For a chord {v_i,v_j} put
+    d=|i-j|, span a=min(d,30-d). The chord splits H into cycles of
+    lengths d+1 and 31-d, so avoiding {4,8,16} forces d not in
+    {3,7,15,23,27}, i.e.
+    **every chord has span a in {2,4,5,6,8,9,10,11,12,13,14}.**
+    In particular **no chord is antipodal** (a=15 gives cycles 16 and 16,
+    a double hit), and spans 3 and 7 are banned outright.
+    - **Corollary (bipartite):** 2-colour by index parity; every chord
+      joins opposite classes, so every d is odd, so every span is odd.
+      Intersecting: **every chord has span in {5,9,11,13}** — fifteen
+      chords, only four permitted spans.
+    - **Pair constraints:** two crossing chords cut H into arcs
+      alpha,beta,gamma,delta (summing to 30) and generate six cycles:
+      alpha+beta+1, gamma+delta+1, beta+gamma+1, delta+alpha+1,
+      beta+delta+2, alpha+gamma+2. For two span-5 chords at offset d:
+      alpha=gamma=d, beta=5-d, delta=25-d, giving alpha+gamma+2 = 2d+2
+      and beta+delta+2 = 32-2d, so offsets d=1,3 are banned (2d+2 in
+      {4,8}); at d=1 the offending cycle is literally
+      v_i v_{i+5} v_{i+6} v_{i+1}, a C4. The whole case becomes a finite
+      matching-design problem on Z_30.
+    - **Why this matters:** it is the first tool in this project that is
+      orthogonal to the girth/triangle decomposition — it applies to
+      girth-3 and girth-6 graphs alike. **Limitation:** it needs
+      Hamiltonicity, and non-Hamiltonian cubic graphs on 30 vertices
+      exist. The ear-decomposition generalization (longest cycle length L
+      plus an ear of length p attached at arc-distance a, giving cycles
+      a+p and L-a+p) survives without Hamiltonicity but loses the rigid
+      matching structure.
+  - **THEOREM B (3-edge-cut reduction, sharp at this order).** Suppose an
+    order-30 cubic counterexample G has a nontrivial 3-edge-cut splitting
+    it into G1,G2 (each >= 2 vertices). Contract G2 to a single vertex z:
+    G1' is cubic on fewer than 30 vertices. Every cycle of G1' avoiding z
+    is a cycle of G of identical length. Since all cubic graphs on < 30
+    vertices satisfy the conjecture (Royle-Markstrom), G1' has a
+    power-of-2 cycle; it must therefore pass through z — and symmetrically
+    for G2'. Cycles through z use exactly 2 of the 3 cut edges, so **both
+    contracted sides must thread their entire power-of-2 cycle spectrum
+    through a single degree-3 vertex simultaneously.** Unlike the generic
+    minimal-counterexample version, this is not conditional on
+    minimality — the verified base case does the work. This is the clean
+    route to assuming cyclic 4-edge-connectivity at n=30.
+  - **Honest scope:** the diagnosis is not a theorem; A and B are genuine
+    but partial. Neither closes any case. A's reach is limited to
+    Hamiltonian graphs; B restricts but does not eliminate cut structure.
 - 2026-08-06 (HAND-DERIVED (6,7) KERNEL THEOREM — pure math, no
   computation; reproduces the girth-7 kernel as its degenerate case):
   - Anchored on a 7-cycle inside a girth-6 graph (rather than on the
