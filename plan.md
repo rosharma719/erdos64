@@ -91,6 +91,52 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-06 (HAND-DERIVED (6,7) KERNEL THEOREM — pure math, no
+  computation; reproduces the girth-7 kernel as its degenerate case):
+  - Anchored on a 7-cycle inside a girth-6 graph (rather than on the
+    6-cycle, which is what the earlier girth-6 (s,a) framework did). Let
+    G be cubic, n=30, girth 6, containing a C7, with no C8 and no C16.
+  - **L1 (C is chordless):** a chord at cyclic distance d in {2,3} splits
+    C into cycles {3,6} or {4,5}; both contain a cycle < 6.
+  - **L2 (the seven w_i are distinct):** w_i=w_j at distance d gives
+    cycles d+2 and 9-d, i.e. {3,8}, {4,7}, {5,6} for d=1,2,3 — every case
+    has a cycle < 6. Hence |C ∪ W| = 14 and the kernel R has |R| = 16.
+  - **L3 (W-edges only at distance 3):** w_i~w_j gives cycles d+3 and
+    10-d: {4,9}, {5,8}, {6,7}. Only d=3 survives. Since gcd(3,7)=1 the
+    distance-3 pairs form a single 7-cycle H_3 on W.
+  - **L4 (S is a matching in H_3):** if w_i~w_{i+3} and w_i~w_{i+4} (both
+    individually legal, w_{i+4}=w_{i-3}), then since u_{i+3}u_{i+4} is a
+    C-edge, w_{i+3}-w_i-w_{i+4}-u_{i+4}-u_{i+3}-w_{i+3} is a 5-cycle.
+    Therefore |S| <= 3.
+  - **L5 (doubled R-attachments only at distance 2):** an R-vertex
+    adjacent to w_i, w_j gives cycles d+4 and 11-d: {5,10}, {6,9},
+    {7,8}. Only d=2 survives. **Note: the d=3 case dies specifically on
+    the no-C8 hypothesis, not on girth** — this is the unique place in
+    the entire reduction where a power-of-2 constraint (rather than
+    girth) is load-bearing, and therefore the pressure point any
+    completion of this case must exploit.
+  - **L6:** no R-vertex has 3 W-neighbours ({i,i+2,i+4} has d(i,i+4)=3);
+    two R-vertices cannot share a W-pair (immediate C4).
+  - **Counting theorem.** Each w_i spends degree 3 as one edge to u_i,
+    plus [w_i matched], plus edges into R, so e(W,R) = 14-2|S| and
+    |E(R)| = (48-(14-2|S|))/2 = 17+|S|. With a = doubled, b = singly
+    attached, c = untouched R-vertices: a+b+c=16 and 2a+b=14-2|S|, giving
+    b = 14-2|S|-2a and c = a+2+2|S|. Hence
+    **deg_R = 1^a 2^(14-2|S|-2a) 3^(a+2+2|S|), |V(R)|=16, |E(R)|=17+|S|,
+    with |S| <= 3 and a <= 7-|S|.**
+  - **Internal consistency check (the reason to trust this).** Re-running
+    L1-L6 under girth 7 instead of 6: L3's surviving d=3 case yields
+    cycles {6,7} — the 6 now violates girth, so S = empty; L5's surviving
+    d=2 case yields {6,9} — again the 6 dies, so a = 0. Substituting
+    |S|=a=0 gives |V(R)|=16, |E(R)|=17, deg_R = 2^14 3^2 — **exactly the
+    girth-7 kernel this project established earlier, re-derived from
+    scratch by a different anchor.** The new framework strictly contains
+    the old theorem as its degenerate case.
+  - **Honest scope:** this bounds (6,7) to at most 4 parameter classes
+    (|S| in {0,1,2,3}) with a fully pinned 16-vertex kernel each. It does
+    NOT close (6,7). The remaining step — showing no admissible
+    (S, a, kernel) configuration avoids a C16 — has no hand argument yet;
+    the C16 constraint is global in a way L1-L6 are not.
 - 2026-08-05 (GIRTH-6, case (s=0,a=0) EXHAUSTIVELY CLOSED — with a real
   bug caught and fixed along the way, not glossed over):
   - Per explicit request to pursue a closed-form (exhaustive) proof rather
