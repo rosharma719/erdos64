@@ -57,6 +57,24 @@ def all_simple_path_lengths(adj, u, v):
     dfs(u, {u}, 0)
     return lengths
 
+def skeleton_degrees_ok(matrix, adj):
+    """Post-build validation: every hub must have degree exactly 3 in the
+    built skeleton, and every path-internal position exactly 2. Catches
+    the case where two parallel abstract edges/loops between the same hub
+    pair both get length 0 and silently collapse into one set-membership
+    edge (found by hand-tracing a spurious 'feasible' result on topology
+    #12: two length-0 copies of the (0,5) edge collapsed, leaving hub 0
+    and hub 5 at degree 2 instead of 3 -- an invalid, non-cubic graph that
+    must never be accepted as a real candidate)."""
+    for i in range(6):
+        if len(adj[f"H{i}"]) != 3:
+            return False
+    for node, nbrs in adj.items():
+        if not (isinstance(node, str) and node.startswith("H")):
+            if len(nbrs) != 2:
+                return False
+    return True
+
 def build_skeleton(matrix, lengths):
     """matrix: 6x6 edge-multiplicity matrix (diagonal=loops). lengths: dict
     mapping each concrete abstract edge instance (i,j,copy_idx) or loop

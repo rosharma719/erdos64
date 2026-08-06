@@ -91,6 +91,49 @@ Deprioritized: unrestricted brute enumeration (redundant), E (P₁₃ frontier, 
 compute), cycle-space (too weak), lifts/Cayley (only if P1–P3 surface near-misses).
 
 ## Status log (newest first)
+- 2026-08-05 (GIRTH-6, case (s=0,a=0) EXHAUSTIVELY CLOSED — with a real
+  bug caught and fixed along the way, not glossed over):
+  - Per explicit request to pursue a closed-form (exhaustive) proof rather
+    than sampled evidence: converted the random sweep into a true
+    exhaustive enumeration (`exhaustive_s0a0.py`). Every one of the 17 hub
+    topologies has exactly 9 abstract edge/loop slots (a fixed consequence
+    of 6*3=18 half-edges, 2 per slot) — distributing 12 suppressed
+    vertices among 9 slots is a composition of 12 into 9 non-negative
+    parts (loops needing >=1), at most C(20,8)=125,970 per topology.
+    Validated the composition generator against independent brute force
+    on two cases (including the exact 4-loop-minimum case) before trusting
+    it, then ran it completely (not sampled) across all 17 topologies:
+    1,294,670 total compositions.
+  - **First exhaustive run found `feasible=1` on topology #12 — stopped
+    immediately to investigate rather than report a result.** Extracted
+    the exact configuration and found a real bug: topology #12 has two
+    parallel abstract edges between hubs 0 and 5, and the "feasible"
+    distribution assigned length 0 to *both*. Two length-0 (direct)
+    edges between the same hub pair is a multi-edge, but the adjacency
+    was stored as a Python `set`, which silently collapsed the duplicate
+    into a single edge — leaving hub 0 and hub 5 at degree 2 instead of
+    3. Confirmed this by hand (printed the built adjacency, degree 2
+    exactly as suspected). This was not a counterexample; it was an
+    invalid, non-cubic graph slipping through unfiltered.
+  - **Fixed** with an explicit post-build degree validator
+    (`skeleton_degrees_ok`: every hub must have degree exactly 3, every
+    path-internal vertex exactly 2) applied *before* any cycle or
+    labeling check, rejecting degenerate parallel-length-0 collapses.
+  - **Reran exhaustively with the fix: 1,294,670 compositions checked
+    across all 17 topologies, 13,074 passing the internal-cycle
+    pre-filter, zero feasible labelings.** This is now a complete,
+    non-sampled result: **case (s=0,a=0) is fully and rigorously
+    eliminated for girth-6** — not "no counterexample found in a large
+    sample," but "no counterexample exists among any topology, any
+    length distribution, any boundary labeling in this sub-case."
+  - This is exactly the kind of near-miss the project's verification
+    discipline exists to catch, and it worked as intended: a plausible-
+    looking "found one" result was not reported, reported, or acted on
+    until independently traced to its root cause.
+  - 9 of 10 total (s,a) classes for girth-6 remain (any with antipodal
+    chords or doubled-attachment vertices present); those need the
+    skeleton builder extended to support degree-1 (leaf) positions, not
+    yet implemented.
 - 2026-08-05 (GIRTH-6 KERNEL, case s=0/a=0 — bounded sample, no counter-
   example, real progress toward the proof but not yet exhaustive):
   - Built the general girth-6 skeleton verifier
