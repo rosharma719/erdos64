@@ -1,13 +1,18 @@
 import importlib.util
 import sys
-sys.path.insert(0, "/home/user/erdos64/tracks/graph-counterexample-q6-xerdjz/verifier")
+# Repo-root resolution added 2026-08-18 during consolidation: these
+# scripts moved out of external_review/ and previously hard-coded an
+# absolute home directory.  Resolve relative to this file instead.
+import os
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+sys.path.insert(0, os.path.join(_REPO_ROOT, "verifier"))
 import networkx as nx
 from order30_quotient_marking_census import (
     triangle_expand, cycle_masks_and_lengths, eliminate_by_interval, all_markings
 )
 import numpy as np
 
-spec = importlib.util.spec_from_file_location("trusted_cycle_detect", "/home/user/erdos64/verifier/cycle_detect.py")
+spec = importlib.util.spec_from_file_location("trusted_cycle_detect", os.path.join(_REPO_ROOT, "verifier", "cycle_detect.py"))
 cd = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(cd)
 

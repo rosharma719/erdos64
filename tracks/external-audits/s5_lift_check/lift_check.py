@@ -15,10 +15,17 @@ check the qualitative pattern holds and, more importantly, to see whether
 any C4=C8=C16=0 lift turns up that their claim says cannot exist.
 """
 import itertools
+import os
 import random
 import sys
 
-sys.path.insert(0, "/home/user/erdos64/external_review/order32_direct_search")
+# Path fixed 2026-08-18 during consolidation: this tree moved from
+# external_review/ to tracks/external-audits/.  Resolve relative to this
+# file rather than to an absolute home directory.
+sys.path.insert(
+    0,
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "order32_direct_search"),
+)
 from local_search import count_cycles, has_cycle, is_connected
 
 SHEETS = 5

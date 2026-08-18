@@ -1,8 +1,14 @@
+import os
 import sys
-sys.path.insert(0, "/home/user/erdos64/verifier")
+# Repo-root resolution added 2026-08-18 during consolidation: these
+# scripts moved out of external_review/ and previously hard-coded an
+# absolute home directory.  Resolve relative to this file instead.
+import os
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
+sys.path.insert(0, os.path.join(_REPO_ROOT, "verifier"))
 import cycle_detect as cd
 
-edges_file = "/home/user/erdos64/tracks/global-core-z3-lifts/data/z3_lifts/base0_markstroem.edges"
+edges_file = os.path.join(_REPO_ROOT, "data", "z3_lifts", "base0_markstroem.edges")
 with open(edges_file) as f:
     header = f.readline().split()
     n, m = int(header[0]), int(header[1])
@@ -21,7 +27,10 @@ for u, v in edges:
     mat[u][v] = mat[v][u] = 1
     g[u].add(v); g[v].add(u)
 
-with open("/home/user/erdos64/external_review/a5_lift_probe/base0_markstroem.mat", "w") as out:
+# Path fixed 2026-08-18 during consolidation (tree moved to
+# tracks/external-audits/); write next to this script.
+_HERE = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(_HERE, "base0_markstroem.mat"), "w") as out:
     for row in mat:
         out.write(" ".join(map(str, row)) + "\n")
 

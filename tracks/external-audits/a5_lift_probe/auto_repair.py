@@ -13,8 +13,13 @@ import subprocess
 import sys
 import time
 
+# Repo-root resolution added 2026-08-18 during consolidation: these
+# scripts moved out of external_review/ and previously hard-coded an
+# absolute home directory.  Resolve relative to this file instead.
+import os
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 sys.path.insert(0, ".")
-sys.path.insert(0, "/home/user/erdos64/verifier")
+sys.path.insert(0, os.path.join(_REPO_ROOT, "verifier"))
 from lift_lib import BaseGraph, build_lift, lift_witness_to_walk, IDENT
 import cycle_detect as cd
 

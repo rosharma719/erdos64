@@ -9,11 +9,18 @@ function of a small integer parameter, motivated by known structure
 (generalized Petersen graphs, circulants), and there are only a handful of
 parameter choices to check per family, checked exactly.
 
-Cycle counting reused from external_review/order32_direct_search/local_search.py
+Cycle counting reused from tracks/external-audits/order32_direct_search/local_search.py
 (already validated against the Petersen graph's known exact cycle counts).
 """
+import os
 import sys
-sys.path.insert(0, "/home/user/erdos64/external_review/order32_direct_search")
+
+# Path fixed 2026-08-18 during consolidation (tree moved to
+# tracks/external-audits/); resolve relative to this file.
+sys.path.insert(
+    0,
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "order32_direct_search"),
+)
 from local_search import count_cycles, has_cycle, is_connected
 
 def girth(adj, n):

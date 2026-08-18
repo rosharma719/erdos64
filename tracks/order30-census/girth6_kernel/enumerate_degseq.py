@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generalization of external_review/s5_lift_check/enumerate_pseudographs.py
+Generalization of tracks/external-audits/s5_lift_check/enumerate_pseudographs.py
 to an ARBITRARY target degree sequence (not just all-3), needed for the
 girth-6 (s,a) sub-cases with a>0: the suppressed core there is a multigraph
 on (6+2s+a) hubs of degree 3 plus 'a' leaves of degree 1, not a pure cubic

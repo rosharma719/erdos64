@@ -1,7 +1,12 @@
 import random
 import subprocess
 import sys
-sys.path.insert(0, "/home/user/erdos64/verifier")
+# Repo-root resolution added 2026-08-18 during consolidation: these
+# scripts moved out of external_review/ and previously hard-coded an
+# absolute home directory.  Resolve relative to this file instead.
+import os
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
+sys.path.insert(0, os.path.join(_REPO_ROOT, "verifier"))
 import cycle_detect as cd
 
 def random_graph_adj(n, p, rng):

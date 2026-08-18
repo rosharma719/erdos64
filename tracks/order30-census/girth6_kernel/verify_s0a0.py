@@ -10,7 +10,7 @@ attachments), form a connected cubic PSEUDOGRAPH on 6 vertices (loops and
 multi-edges allowed, since a hub-to-hub "edge" is really a suppressed path
 of some length, and a loop is a path that leaves and returns to the same
 hub). This is exactly the same object independently enumerated and verified
-in external_review/s5_lift_check/enumerate_pseudographs.py (17 of them) --
+in tracks/external-audits/s5_lift_check/enumerate_pseudographs.py (17 of them) --
 reused directly here rather than re-derived, since it was already proven
 correct there (own from-scratch backtracking enumeration, degree+
 connectivity+canonical-form verified).
