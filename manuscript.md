@@ -9,6 +9,47 @@ expert feedback.** The project's current top priority is `two_cut.md`
 manuscript section will be added there in a future pass, not folded into
 this frozen section.
 
+---
+
+### Consolidation note (2026-08-18) — carried forward verbatim, with three flags
+
+This is the most complete formal write-up the project produced and it is
+carried into `consolidated/canonical` **unchanged below this note**, frozen
+sections and all. Three things a reader should know before using it:
+
+1. **Its self-imposed novelty ceiling is real and permanent from this
+   environment.** Every novelty statement here reads *"novelty supported by
+   the available searchable literature; full external expert verification
+   remains desirable."* That wording is not modesty — arXiv and every
+   tested mirror return HTTP 403 at the platform level (confirmed by direct
+   `curl` through the egress proxy, not just the fetch tool), so **no full
+   paper body was read for any citation in the reference list below**, with
+   the single exception of Carr's four-page preprint, obtained later in
+   full HTML (`literature.md` L18). The ceiling cannot be lifted from here.
+   See `literature.md` L24 and `RETROSPECTIVE.md`: this is a **tooling
+   gap**, and getting real literature access is an action item, not a
+   permanent property of the results.
+2. **§3's "next open target" is out of date; the surrounding results are
+   not.** The manuscript names O4 as the precise next target. That is still
+   accurate for the one-pole track, but the project's overall top priority
+   moved on: the 2-cut program it defers to (`two_cut.md`) was carried to
+   completion, yielding the Type A/B/C trichotomy, the F/FC series, and
+   3-connectivity at every even order in `[17,33]` (`proof.md` P14). The
+   frozen §§1–3 statements themselves are unaffected.
+3. **Nothing in §§1–3 was later retracted.** S4, S5, O1–O3, O5, O6, O7, the
+   `n ≤ 2D+3` disproof and the suppressed-edge equivalence all survive the
+   consolidation audit at the same labels they carry here. The results that
+   *were* retracted elsewhere in the project (the additive-density formula,
+   the vine lemma V1, R2/S2, the one-cell reduction target, the inflated
+   passage-conflict counts) are recorded in `proof.md` Part VIII and none of
+   them appears in this manuscript.
+
+No section below has been edited. A future manuscript section covering the
+2-cut / Type-T / C16 material should be added as new §§4+, not folded into
+the frozen text.
+
+---
+
 ## Status of this manuscript
 
 This is a structural note, not a resolution. The Erdős–Gyárfás conjecture

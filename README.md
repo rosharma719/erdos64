@@ -8,36 +8,33 @@ Self-contained, autonomous research attempt on:
 Status: **OPEN.** This folder is independent of the I(4)/intersecting-family
 work in the sibling `erdos/` directory — no shared code.
 
-## Branch landscape
+## This branch
 
-`main` is a single-commit bootstrap; all research content lives on feature
-branches, several of them independent, parallel attempts rather than a
-linear history. As of this writing: `origin/codex/type-t-overlap-reduction`
-and `origin/claude/type-t-c16-compilation-x9ts7a` (this branch) both branch
-from the same commit (`f8a11e0`, "Analyze minimum cubic Type-T multipole
-completions") and both independently continued the same handoff task —
-compiling a static short-cycle conflict system for the minimum-cubic
-Type-T port completion. They produced files with the *same names*
-(`type_t_port_c16_compilation.md`, `verifier/type_t_port_short_conflicts.py`,
-`verifier/type_t_port_c16_hypergraph.py`) but different, independently
-developed content and results; `codex/type-t-overlap-reduction`'s furthest
-point is a `BOUNDED_INCOMPLETE` gadget-level static solve at `(4,28,4)`
-(`SAT` on a partial formula — short conflicts complete, `C16` conflicts
-not — no counterexample); this branch instead pivoted to a passage-level
-projection (see the Layout section below) that reached materially further
-(a proved, unconditional dyadic-avoidance result for the bare core, and a
-symbolic template classification) before also stopping short of a full
-resolution. **Neither branch has been merged into the other, and this
-session has not modified `codex/type-t-overlap-reduction`** — do not merge
-without deliberately reconciling the overlapping filenames first. The
-other `codex/*` and `claude/*` branches (`defect-one-voltage-obstruction`,
-`defect-three-kernel`, `e21-integrity`, `global-core-z3-lifts`,
-`leaf-compression-z5-exact`, `t8-gadget-search`, `type-a-extremal-spqr`,
-`erdos-gyarfas-handoff-l6tqlo`, `erdos-gyarfas-type-t-analysis-a9u4sx`,
-`separator-lemmas-defect-gjlolu`) are separate exploration lines on other
-parts of the conjecture (Type A/N, defect parameter, E=21/E=31 order
-searches, Z3/Z5 lifts) not directly related to this branch's Type-T port
-track; this session has not touched them.
+`consolidated/canonical` is the single canonical branch, built off `main` on
+2026-08-18 by consolidating seven substantial research branches. **Read
+`tracks/MANIFEST.md` first** — it records the real branch topology (five of
+the seven turned out to be a linear chain, not parallel attempts), where
+every piece of code ended up, and what was deliberately dropped.
+
+Canonical documents, in reading order:
+
+- `proof.md` — the labeled ledger of everything established, retracted, or
+  audited-and-rejected. Start here.
+- `plan.md` — strategy, the **single** durable status log, and the current
+  seven-item priority list.
+- `lemmas.md` — every named lemma across all tracks, one canonical
+  statement each, indexed by track and cross-referenced to `proof.md`.
+- `verification_status.md` — the row-by-row verification matrix, including
+  every `NOT_FORMALLY_VERIFIED`, `INCOMPLETE_RANGE` and
+  `EXTERNAL_DATA_MISSING` qualifier.
+- `literature.md` — the master table L1–L24 plus the exact record of what
+  could and could not be checked against full text.
+- `manuscript.md` — the most complete formal write-up (frozen §§1–3).
+- `RETROSPECTIVE.md` — process findings from the whole multi-branch effort
+  and the rules adopted going forward.
+
+The fifteen original branches remain untouched on `origin`; nothing here
+deletes them, and this branch has not been merged into `main`.
 
 ## Layout
 - `plan.md` — strategy, rankings, status log, failed/blocked approaches.
@@ -744,7 +741,20 @@ narrative summary of this pre-session history in one place.
     distribution, and certifies that the extremal one-slack remainder layer is
     empty without claiming anything about the unresolved 28-edge layer.
 - `manifests/` — canonical run and external-artifact provenance records.
-- `logs/`, `data/` — run outputs and artifacts.
+- `logs/`, `data/` — run outputs and artifacts. `logs/certify/` and
+  `logs/p1_n20_23/` hold the certification manifests (command, nauty
+  version, checker source SHA-256, raw/checked counts, both pipe exit
+  codes, stream SHA-256) for the exhaustive small-order searches.
+- `tracks/` — material that could not sit in the root layout without a real
+  filename collision or a real provenance question. See
+  `tracks/MANIFEST.md`: `type-t-c16-static-sat/` (the parallel gadget-level
+  C16 compilation, `BOUNDED_INCOMPLETE`), `order30-census/` (the audited
+  `t=4` filter with its complete run logs, plus the girth-6/girth-7 kernel
+  verifiers), `external-audits/` (audits of claims that arrived from
+  outside the session that checked them — **none of these is a result of
+  this project**).
+- `RETROSPECTIVE.md` — what worked and what did not across the whole
+  multi-branch effort, and the rules adopted going forward.
 
 ## Environment
 

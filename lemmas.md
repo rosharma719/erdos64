@@ -10,7 +10,174 @@ never length-shifts a forbidden cycle. **Vertex/edge deletion is safe** (it only
 destroys cycles; surviving cycles keep their length). **Degree-2 suppression is
 NOT safe** — it shifts cycle lengths by 1, breaking power-of-two-ness (see B2).
 
+**Consolidated 2026-08-18.** Every named lemma produced across the seven
+research branches appears exactly once below, at the label its originating
+branch gave it. The full proofs of the core (B/M/G/S/O/C/D/I) families
+follow this index unchanged; the later track lemmas are stated canonically
+in the index with a pointer to the file carrying their proof, because those
+proofs are long and already written out there. Cross-references to
+`proof.md` sections are given throughout.
+
 ---
+
+# Canonical lemma index, by track
+
+## Track A — degree structure of a minimal counterexample (proof.md P2)
+
+| id | statement | label | proof |
+|---|---|---|---|
+| **B0** | `G` is C4-free; `m ≤ ½(1+√(4n−3))n` | PROVED | below |
+| **B1** | `G` is connected | PROVED | below |
+| **B2** | 2-connectivity by degree-2 suppression | **DISPROVED as a method** — suppression shifts lengths by `ℓ−1` | below |
+| **B2⁺** | which reduction collections preserve power-of-two-cycle existence | CONJECTURAL, open target | — |
+| **B3 = M1** | every edge has a degree-3 endpoint; degree-≥4 vertices are independent | PROVED | below |
+| **B4** | every neighbour of a degree-≥4 vertex is cubic | PROVED | below |
+| **M2** | every vertex is adjacent to a degree-3 vertex | KNOWN FROM LITERATURE (Carr 2026); partial workspace re-derivation | below |
+| **M3** | `n₃ ≥ (4/7)n` | PROVED (independent re-derivation of Carr) | below |
+| **M4** | a regular minimal counterexample is cubic | PROVED | below |
+| **G1** | `n₃ ≥ (2/3)n` | PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH | below |
+| **G2** | `m ≤ 2n−3` | PROVED IN WORKSPACE, KNOWN INGREDIENTS | below |
+| **G3** | `q = 2n−2−m ≥ 1`; `Σ(d−3) ≤ n−6` | PROVED IN WORKSPACE | below |
+| **S1** | excess identity `Σ(deg−3) = 2m−3n` | PROVED, elementary | below |
+| **S2** | extremal-layer reduction | PROVED, given McKay's `ex(n)` | below |
+| **S3** | connectedness is safe for the `n ≤ 23` search | PROVED, given the `n ≤ 19` theorem | below |
+
+## Track B — separators, one-pole gadgets, 2-cuts (proof.md P5, P7b/c, P14, P15)
+
+| id | statement | label | proof |
+|---|---|---|---|
+| **S4** | a minimal counterexample has no bridge | PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH | below |
+| **S5** | cut-vertex classification: exactly 2 components, `deg v = 4`, equal lobe order (so `n` odd) and equal lobe size, at most one cut vertex | PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH | below |
+| **O1** | a master-minimal one-pole graph is bridgeless | PROVED | `one_pole.md` |
+| **O2** | `H−r` is connected | PROVED | `one_pole.md` |
+| **O3** | `H` is fully 2-connected | PROVED | `one_pole.md` |
+| **O4** | `H−r` has two disjoint root-neighbour paths | **CONJECTURAL** | `one_pole.md` |
+| **O4′** | `H` has two root cycles differing in length by 1 or 2 | PROVED (via Gao–Huo–Liu–Ma 2022, `k=2`) | `one_pole.md` |
+| **O4a** | failure structure: a 1-vertex separator `x`, two lobes, cross-lobe cycles `= Λ₁+Λ₂`, doubling gives `Λᵢ+Λᵢ` | PROVED IN WORKSPACE | `one_pole.md` |
+| **O5** | *rigid core:* every master-minimal one-pole graph has a K4-minor — unconditional, from the degree profile plus 2-connectivity alone | PROVED, COMPUTATIONALLY REPRODUCED, **two independent proofs** (SPQR leaves; partial 2-trees via Dirac 1961) | `one_pole.md`, `manuscript.md` §3 |
+| **O6** | proper two-pole forcing: `Λ(P) ∩ {2ᵏ−2} ≠ ∅` when `H_P` is smaller | PROVED, conditional | `one_pole.md` |
+| **O7** | no external common neighbour at a remote leaf R-node | PROVED, COMPUTATIONALLY REPRODUCED | `one_pole.md` |
+| **suppressed-edge equivalence** | a one-pole graph exists iff some loopless `Gₑ` with δ≥3 has an edge `e` such that every F-cycle uses `e` and no `e`-cycle has length in `{2ᵏ−1}` | PROVED | `one_pole.md`, `manuscript.md` §3 |
+| **T1** | the bridge closure is 2-connected | PROVED | `two_cut.md` |
+| **T2** | endpoint admissible paths | PROVED, KNOWN FROM LITERATURE ingredient (Gao–Huo–Liu–Ma) | `two_cut.md` |
+| **T3** | bridge self-forcing / minimality | PROVED | `two_cut.md` |
+| **T4** | *the 2-cut trichotomy:* minimal terminal cover and the exact **Type A / Type B / Type C** classification of every 2-cut by terminal-degree profile — order-independent | PROVED | `two_cut.md` §2c, `separator_theorem_order32_gap_analysis.md` §2c |
+| **T5** | replacement forcing | PROVED, IMPLEMENTATION_FIXED | `two_cut.md` |
+| **T6** | direct simple copy-gadget criterion | PROVED | `two_cut.md` |
+| **T7** | — | **CONJECTURAL**, gated on finding one internally clean bridge | `s6_case_tree.md` |
+| **T8 / T8R / T8P / R1 / R1b / R2** | minimal Type-A gadget edge-criticality, the T8+R1 incidence rule, real R/P-edge deletion | PROVED, COMPUTATIONALLY REPRODUCED | `two_cut.md`, `verification_status.md` |
+| **F12** | every two-terminal `B`, `\|V\|=12`, `d(x)=1`, `d(y)≥1`, `xy∉E`, internal degree ≥3, `B+xy` simple 2-connected ⇒ C4 or C8 | COMPUTATIONALLY VERIFIED, exhaustive, dual-detector | `f12_order12_result.md` |
+| **FC-15** | as F12 but `d(x)=2`, `d(y)≥2`, `\|V\|≤15` | COMPUTATIONALLY VERIFIED, exhaustive | `fcn_order15_result.md` |
+| **F13–F19** | the `d(x)=1` forbidden-`{4,8}` existence series is UNSAT contiguously through 19 | COMPUTATIONALLY VERIFIED | `fcn_satsolver_extension.md` §4.4 |
+| **FC-18** | the `(2,*)`-terminal series is UNSAT through 18 | COMPUTATIONALLY VERIFIED | `fcn_satsolver_extension.md` §4.3 |
+| **FC-19/20/21** | the same for 19–21 | **DISPROVED** — verified C4/C8-free `(2,2)`-terminal survivors exist | `fcn_satsolver_extension.md` |
+| **monotonicity lemma** | `S`-UNSAT ⇒ `S'`-UNSAT for `S' ⊇ S` | PROVED, set containment on solution sets | `type_c_closure_order32.md` |
+| **2-cut order floor** | a minimal counterexample with any 2-cut has `n ≥ 36` (Type A ≥56, Type B ≥38, Type C ≥36) | COMPUTATIONALLY VERIFIED | `order32_bounds_f19_extension.md` |
+| **O32-1** | if `\|V(G)\|` is even, `G` has no cut vertex | PROVED (S5 parity) | `separator_theorem_order32_gap_analysis.md` |
+| **3-connectivity corollary** | every even-order minimal counterexample with `17 ≤ n ≤ 33` is 3-connected | COMPUTATIONALLY VERIFIED — see proof.md P14 for a recorded `[17,35]` inconsistency | `three_connectivity_general_order.md` |
+| **cubic 3-edge-connectivity** | a cubic minimal counterexample of even order in `[17,33]` has no edge cut of size 1 or 2 | PROVED (Whitney `κ ≤ λ ≤ δ`) | `cubic_edge_connectivity.md` |
+| **V (separator-defect formulas)** | `q(G) = 2d(lobe)` for S5; `q(G) = Σd(Bᵢ) − {4,3,2}` for Type A/B/C | PROVED, COMPUTATIONALLY REPRODUCED | `defect.md` |
+
+## Track C — contraction, Type N / Type T (proof.md Part III)
+
+| id | statement | label | proof |
+|---|---|---|---|
+| **near-power edge lemma** | every **nontriangle** edge of a minimal counterexample lies on a cycle of length `2ᵏ+1` | PROVED; mechanics COMPUTATIONALLY REPRODUCED | `contraction.md` Part I, audited in `every_edge_witness_audit.md` |
+| **safe-contraction obstruction** | no nontriangle edge is ever safe; the "global safe-edge target" is equivalent to the conjecture itself | PROVED | `contraction.md` Part II |
+| **cubic nontriangle-edge count** | every cubic vertex of a C4-free graph has exactly 1 or exactly 3 nontriangle incident edges | PROVED, COMPUTATIONALLY REPRODUCED | `contraction.md` Part III |
+| **clean same-length merge** | two equal-length `(2ʳ+1)`-cycles sharing exactly one edge and no other vertex force a `2^{r+1}`-cycle | PROVED, verified for `L=5,9,17,33` | `contraction.md` Part IV |
+| **general atom-lifting lemma** | for connected `A` with (H2) no outside vertex has 2 neighbours in `A` and (H3) `\|∂A\| ≥ 3`, every simple `a`–`b` path of length `r` in `G[A]` lifts a power-of-two cycle of `G/A` to a `2ᵏ+r`-cycle of `G` | PROVED; mechanics COMPUTATIONALLY REPRODUCED | `contraction_atoms.md` Part I |
+| **triangle automatic contractibility** | every triangle of a C4-free graph satisfies (H2),(H3) automatically | PROVED, COMPUTATIONALLY REPRODUCED | `contraction_atoms.md` Part III |
+| **Type N / Type T dichotomy** | exhaustive, exclusive: a cubic vertex has 0 internal edges among its neighbours (**Type N**) or exactly 1 (**Type T**, unique triangle). Global elimination of either type is explicitly NOT established | PROVED, COMPUTATIONALLY REPRODUCED | `contraction_atoms.md` Part IV |
+| **Type N witness classification** | exactly 2 isomorphism types of loopless 3-element functional digraphs; the five-lemma arithmetic toolkit resolves both; **neither is eliminated** | PROVED | `contraction_atoms.md` Part V |
+| **CN1, cubic power-path lemma** | for every cubic vertex some two neighbours are joined in `G−v` by a path of length `2ᵏ`, giving a `2ᵏ+2`-cycle through `v` | PROVED; the forced-distinct-attachment step is a minimality argument, not mechanically testable | `contraction_neighborhood.md` I.3–I.4 |
+| **NPT arithmetic lemmas** | `2ˣ+2ʸ−1` and `2ˢ+2` are never powers of two (`x,y,s ≥ 2`); **every clean combined orbit at a Type-N vertex is unconditionally safe** | PROVED, COMPUTATIONALLY REPRODUCED | `contraction_mixed_witness.md` Part IV |
+| **cell-decomposition identity** | non-crossing case: `\|P\|−\|Q\| = Σ(αᵢ−βᵢ)` over divergent cells; each divergent cell yields a cycle of length `αᵢ+βᵢ` | PROVED | `contraction_intersections.md` V.1 |
+| **one-cell reduction target** | the canonical joint witness choice forces exactly one divergent cell | **DISPROVED**, smallest exact obstruction recorded | `contraction_intersections.md` V.2 |
+| **crossing case** | common vertices in different relative order along the two paths | **OPEN**, explicitly unresolved | `contraction_intersections.md` V.3 |
+| **CB1, central return** | the theta bridge carrying the cubic centre's third edge always has ≥2 attachments | PROVED | `contraction_central_bridge.md` I.1 |
+| **CB2, one-excursion target** | — | **NOT PROVED OR DISPROVED**; a two-excursion itinerary exhibited but not certified canonical | `contraction_central_bridge.md` V.2 |
+| **CB3′, block-or-separator** | the correct three-case dichotomy; ≥3 attachments is a genuinely new failure mode | PROVED | `contraction_separator_integration.md` VI.2 |
+| **MA1** | multi-attachment admissible-pair lemma | PROVED, COMPUTATIONALLY REPRODUCED | `contraction_block_cut_tree.md` Part IV |
+| **MA2** | the central bridge trichotomy | PROVED, COMPUTATIONALLY REPRODUCED | `contraction_block_cut_tree.md` Part V |
+| **VI.5, theta saturation** | — | **OPEN**, neither proved nor disproved | `contraction_saturation.md` |
+| **Lemma NE** | no two cubic triangle vertices share an external neighbour | PROVED, COMPUTATIONALLY REPRODUCED | `central_bridge_triangle.md` II.1 |
+| **pole-forcing theorem** | *the aligned pole `X_x` of a cubic Type-T vertex can never be cubic* — hence **T3 eliminated, T2 narrowed to `X_x = X_y = z₀`** | PROVED, COMPUTATIONALLY REPRODUCED (gadgets `ρ_x ∈ {2,3,4,5}`) | `central_bridge_triangle_pole_forcing.md` |
+| **Theorem 2.1 (divergent cells)** | complete composition classification: `k=1` + dyadic `T` FORCED; `k=1` + non-dyadic UNIVERSALLY SAFE; `k≥2` + `T=3k` UNIVERSALLY SAFE; `T=3k+1` forced; `T ≥ 3k+2` escapable but not universal | PROVED | `type_t_overlap_reduction.md` §2 |
+| **alternating ladder family** | an explicit infinite colored family; no finite core list bounds the incidence structure in general | PROVED as an abstract object; **STRUCTURALLY SUPERSEDED** as a Type-T residual (its premise row is excluded by pole forcing) | `type_t_overlap_reduction.md`, `type_t_ladder_saturation.md` Thm 1.1 |
+| **identical-terminal reduction** | the whole identical-terminal residual reduces to one yes/no question (do `P₁ˣ`, `P₁ʸ` share an internal vertex?) | PROVED, but **MOOT** — the host row `X_x=y, X_y=x` is excluded by pole forcing | `type_t_identical_terminal_joint_spectrum.md` |
+| **R2/S2** | — | **CLAIM_REFUTED**, explicit Heawood/Balaban counterexamples | `type_t_recovery_audit.md` |
+| **B19 / B20 / B20D2** | every bridge role of all 16 frozen Type-B tuples has order ≥21, so all 16 reach full-graph order ≥40 | PROVED using EXHAUSTIVE FINITE COMPUTATION | `type_b_b19.md`, `type_b_one_slack_resolution.md`, `type_b_delta2_zero_slack.md` |
+| **joint two-central-bridge Type-T interaction** | — | **NOT ATTEMPTED** (top priority) | `contraction_ma2_integration.md` Part X |
+
+## Track D — Type-T C16 port completion (proof.md Part IV)
+
+| id | statement | label | proof |
+|---|---|---|---|
+| **support-bound theorem** | with `m` hub passages and `r` hubs used (`m ≤ r ≤ 2m`), a length-`L` simple cycle satisfies `L ≥ 2m + r`, hence `m ≤ ⌊L/3⌋`; and `m ≥ 2` always. So **C4 conflicts cannot exist**, **C8 conflicts have `m=2` exactly** (support size 1 or 2), **C16 conflicts have `m ∈ {2,3,4,5}`**, `v ≤ 5` | PROVED | `type_t_port_c16_compilation.md` §1.2–1.4 |
+| **`m=1` screen completeness** | no candidate triple or gadget can close a dyadic cycle of *any* length by itself | PROVED | `type_t_port_c16_compilation.md` §1.3 |
+| **`Φ_{4,8}` exactness** | exact-cover base clauses + C8 conflicts at `m=2` is exactly complete for `{C4,C8}`, with no CEGAR loop | PROVED | `type_t_port_c16_compilation.md` §1.5 |
+| **affine dyadic-avoidance theorem** | the bare core `H(j,a,c)` avoids **every** dyadic cycle length, for **every** valid `j ≥ 4` and every valid `a,c`. 35 affine forms `A·2ʲ+B`, `A ∈ {0,1,4,5}`, killed by a 2-adic valuation argument (`v₂(B) ≤ 3` for all 29 forms with `A>0, B≠0`) | PROVED, unconditionally; form-completeness closed by an independent kernel/cycle-space derivation | `type_t_port_core_dyadic_avoidance.md` |
+| **passage-support soundness (lifting) theorem** | a supported passage-based cycle candidate yields a genuine simple cycle subgraph of `G`, **regardless of any other edge of `G`** — unused attachments of supplying hubs and all other selected gadgets are irrelevant | PROVED | `type_t_port_c16_passage_projection.md` "Passage-support soundness theorem" |
+| **at most one `p3` passage** | per completed graph | PROVED (after two rounds of correction, both recorded) | `type_t_port_c16_passage_projection.md` |
+| **passage projection** | 128.9× (`(4,55,7)`) and 206.7× (`(4,28,4)`) compression vs. gadget-level, cross-validated | COMPUTATIONALLY VERIFIED | same |
+| **C16 stage ledger `(4,55,7)`** | `m=2` (32,921), `m=3` (279,859), `m=4` (3,971,519) complete **outright**; `m=5` (2,944,894) **COMPLETE_RELATIVE_TO** the pre-`m=4` shadow | COMPUTATIONALLY VERIFIED at the stated scopes | same |
+| **gadget-level `(4,28,4)` catalog** | 227,725 minimized `C4/C8` clauses, 0 C4 supports; 84,936 inclusion-minimal C16 supports | **BOUNDED_INCOMPLETE** — residual projection still SAT | `tracks/type-t-c16-static-sat/type_t_port_c16_compilation.md` |
+
+## Track E — order-30 cubic census and girth kernels (proof.md Part VII)
+
+| id | statement | label | proof |
+|---|---|---|---|
+| **exact quotient characterization** | contracting all `t` triangles of a bridgeless cubic C4-free 30-vertex graph gives a simple **2-connected** (not merely 3-connected) cubic quotient on `30−2t` vertices, and `G` is uniquely recovered | PROVED | `order30_quotient_census.md` |
+| **exact-interval lemma** | each contracted triangle contributes an independently choosable 1-or-2-edge detour, so quotient cycle lengths lift to an **exact**, not merely bounded, interval | PROVED, hand-verified against the trusted detector (0 mismatches, 251 markings, 6 graphs) | `order30_quotient_census.md`, `tracks/order30-census/` |
+| **`≥t` corollary** | closing quotient order `30−2t` closes every `t' ≥ t` standalone | PROVED | `order30_quotient_census.md` |
+| **triangle-count theorem** | a 30-vertex cubic counterexample, if one exists, has **at most three** pairwise disjoint triangles | COMPUTATIONALLY VERIFIED, EXHAUSTIVE (`t=7,6,5,4` closed) | `order30_quotient_census.md`, `tracks/order30-census/t4_intersection_filter/AUDIT.md` |
+| **girth-7 kernel** | `\|V(R)\|=16`, `\|E(R)\|=17`, `deg_R = 2¹⁴3²`; the girth-7 branch is closed at order 30 | PROVED, independently re-derived twice | `tracks/order30-census/girth7_kernel/` |
+| **girth-6 `(s=0,a=0)`** | exhaustively eliminated: 17 topologies × 1,294,670 compositions, 13,074 passing the pre-filter, **0 feasible labelings** | COMPUTATIONALLY VERIFIED, EXHAUSTIVE (after a real degree-collapse bug was caught and fixed) | `tracks/order30-census/girth6_kernel/exhaustive_s0a0.py` |
+| **(6,7)-kernel theorem** | L1 (C chordless), L2 (`\|R\|=16`), L3 (W-edges only at distance 3, forming a single 7-cycle `H₃`), L4 (`S` a matching, `\|S\| ≤ 3`), L5 (doubled R-attachments only at distance 2), L6; counting theorem `deg_R = 1^a 2^{14−2\|S\|−2a} 3^{a+2+2\|S\|}`, `\|V(R)\|=16`, `\|E(R)\|=17+\|S\|`, `a ≤ 7−\|S\|`. Girth-7 degeneration (`S=∅`, `a=0`) reproduces the girth-7 kernel exactly | PROVED, hand-derived; **does NOT close (6,7)** | plan.md status log 2026-08-06 |
+| **Theorem A (chord-span)** | in a Hamiltonian order-30 cubic counterexample every chord has span in `{2,4,5,6,8,9,10,11,12,13,14}`; bipartite case `{5,9,11,13}`; no antipodal chord | PROVED; **requires Hamiltonicity** | plan.md status log 2026-08-06 |
+| **Theorem B (3-edge-cut reduction)** | a nontrivial 3-edge-cut forces both contracted sides to thread their entire power-of-two spectrum through one degree-3 vertex — **not conditional on minimality**, the verified Royle–Markström base case does the work | PROVED | plan.md status log 2026-08-06 |
+| **additive/multiplicative diagnosis** | degree-driven global cycle-length theorems produce additive length windows; `{4,8,16,…}` is multiplicative, so at δ=3 they are near-vacuous — no degree-based global argument can close `n=30` | DIAGNOSIS, explicitly **not a theorem** | plan.md status log 2026-08-06 |
+
+## Track F — additive / theta (proof.md P3, Part VIII)
+
+| id | statement | label | proof |
+|---|---|---|---|
+| **C1** | "forced power-of-two sum" | CONJECTURAL, target | below |
+| **C1a** | elementary necessary condition on a single theta | PROVED | below |
+| **C2 lower** | `{2^{k−1}+1,…,2^k}` is power-of-two-sum-free, so `α ≥ ⌊N/2⌋` | PROVED | below |
+| **C2-upper** | `α(H_N) = ⌊N/2⌋+1`, density exactly 1/2 | **DISPROVED** — witness `{1,2,4,5,8,9,10} ⊂ {1..10}` | below |
+| **C3** | single-scale distinct-length pairwise sums are insufficient | PROVED, narrowed | below |
+| **D-def / D-identity** | `D := 2n−2−m`; `Σ(deg−3) = n−4−2D` | PROVED, pure algebra | below |
+| **D-upper** | `D ≤ ⌊n/2⌋−2` | PROVED from S1 | below |
+| **D-lower** | `D ≥ 2` | **OPEN — gap** (witness route fails on 6.8–16.0% of C4-free δ≥3 graphs) | below |
+| **Central-target** | `n ≤ 2D+3` | **DISPROVED** unconditionally for every δ≥3 graph | below |
+| **V1 (vine charging)** | #missing dyadic lengths `≤ D` | **DISPROVED** — witness `n=13`, `D=0`, missing `{4}` | below |
+
+## Track G — the defect ladder (proof.md P8–P13)
+
+| id | statement | label | proof |
+|---|---|---|---|
+| **I.1a–c** | `e(C,H)`, `\|E(F)\|`, `β(F)` cubic-core identities | PROVED, COMPUTATIONALLY REPRODUCED | below |
+| **I.1d** | the `C1/C2/C3` degree partition | PROVED, needs M2 | below |
+| **I.2** | component-incidence quotient `Q`, with the `κ(F) ≥ 2` correction | PROVED | below |
+| **I.3** | weighted-incidence cycle formula (coefficient corrected `t → 2t`) | PROVED, corrected | below |
+| **II.0** | fast `O(n(n+m))` equivalent of property (2) | PROVED | below |
+| **leaf-count identity** | `c1 = c3 + 4h − 2q − 4` | PROVED, pure algebra | below |
+| **L1–L4 (derived leaf graph)** | `L(G)` is simple, cycle-lifting, power-cycle-clean, 2-degenerate | PROVED (L1/L2 also mechanically verified; L3/L4 are minimality arguments, not empirically testable) | below |
+| **h ≤ q** | weak corollary of `c3+2h ≤ 2q+1` | PROVED, scope precise | below |
+| **D1** | δ≥3 + property (2) + `m=2n−3` ⇒ C4 or C8? | **OPEN**, neither proved nor refuted | below |
+| **D1C** | proposed nonedge-completion lemma | **DISPROVED** from `n=9` | below |
+| **q(G) ≥ 2 / ≥ 3 / ≥ 4** | `\|E\| ≤ 2\|V\|−4 / −5 / −6` | PROVED IN WORKSPACE, NOVELTY SUPPORTED BY SEARCH | below, `defect.md`, `defect_three.md` |
+| **bounded branching-kernel lemma** | `n=2q+4` (`h=0`), `c3=2q` (`h=1`), `c1+c3 ≤ 2q−2` (`h≥2`) | PROVED, COMPUTATIONALLY REPRODUCED | `defect_three.md` |
+| **colored degree-2 path lemma** | `t ≤ 2,5,8` for `h=1,2,3` (each tight); extended to `t(4)=12`, `t(5)=18` | PROVED, **two independent implementations**, 0 mismatches over 29,655 words | `defect_three.md`, `defect_q_ge6_audit.md` |
+| **colored cyclic-word classification** | no valid pure-cycle F-component at `h=1,2`; exactly `s=3,5` at `h=3` | PROVED, cross-checked exhaustively to `s=13` | `defect_three.md` |
+| **q(G) ≥ 5, q(G) ≥ 6** | — | **NOT_ESTABLISHED** (externally claimed, zero matching artifacts) | `defect_q_ge6_audit.md` |
+
+---
+
+# Full proofs of the core families
+
 
 ## B0. Definition sanity  [PROVED]
 G a counterexample ⇒ G has no 4-cycle. (4 ∈ F.) So **every counterexample is

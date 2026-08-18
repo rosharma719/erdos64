@@ -361,6 +361,92 @@ searched across L1–L23. Recorded at the same **novelty supported by
 search only, full external verification desirable** ceiling used
 throughout — not a priority claim.
 
+### L24 — Cited external theorems actually used in proofs [consolidated 2026-08-18]
+
+Three published results are load-bearing in this project's own arguments
+and were previously recorded only inside `manuscript.md`'s reference list
+rather than in this master file. They are added here so that no proof
+depends on a citation that lives outside `literature.md`.
+
+**(a) Gao, Huo, Liu, Ma 2022 — the admissible-path theorem.**
+Jun Gao, Qingyi Huo, Chun-Hung Liu, Jie Ma, "A Unified Proof of Conjectures
+on Cycle Lengths in Graphs," *International Mathematics Research Notices*
+2022(10):7615–7653; arXiv:1904.08126 (2019).
+*Statement used (k = 2):* if `K + xy` is 2-connected and every vertex of
+`K \ {x,y}` has degree ≥ `k+1`, then `K` contains `k` **admissible** `x`–`y`
+paths — lengths forming an arithmetic progression with common difference 1
+or 2. **Important:** the paths are **not** claimed internally disjoint, and
+none of this project's applications needs them to be.
+*Where used:* **O4′** (`one_pole.md`, `manuscript.md` §3), **T2**
+(`two_cut.md`), and by citation in **MA1** (`contraction_block_cut_tree.md`
+Part IV) and **CB3′** (`contraction_separator_integration.md` VI.2).
+*Verification status:* `HYPOTHESES MATCHED VIA SEARCH-RETURNED
+ABSTRACT/SNIPPET ONLY`. The full text was never readable in this
+environment (see the access note below). The statement's hypotheses and
+conclusion were checked against search-returned material and against the
+2-connectivity fact (`K+ab` 2-connected via classical degree-2 suppression)
+that this project proves separately.
+
+**(b) Dirac 1953 — the historical cut-vertex technique.**
+G. A. Dirac, "The Structure of k-Chromatic Graphs," *Fundamenta
+Mathematicae* 40 (1953), 42–55.
+*Relevance:* this is the closest classical analog to **S4/S5** — the same
+mechanism (split at a cut vertex, recombine to build a smaller contradicting
+instance), used there to show chromatic-critical graphs have no cut vertex.
+It is a **different theorem**, and it does not carry S5's equal-order /
+equal-edge-count lobe refinement, which needs lexicographic `(|V|,|E|)`
+minimality rather than order alone. Recorded explicitly so that S4/S5's
+*technique* is not presented as original — only their statements are, and
+those only at the `NOVELTY SUPPORTED BY SEARCH` ceiling.
+
+**(c) Dirac 1961 — chordal graphs, used in O5's second proof.**
+G. A. Dirac, "On rigid circuit graphs," *Abhandlungen aus dem Mathematischen
+Seminar der Universität Hamburg* 25 (1961), 71–76.
+*Statement used:* a chordal graph that is not complete has ≥2 non-adjacent
+simplicial vertices.
+*Where used:* the second, **convention-independent** proof of **O5** (the
+rigid-core / K4-minor lemma) via partial 2-trees — complete a
+series-parallel graph to a 2-tree, which is chordal and non-complete, and
+sandwich the two simplicial vertices to degree exactly 2. This proof exists
+precisely so that O5 does not rest on any SPQR-tree normalization
+convention; the two proofs were cross-checked computationally against each
+other and against two flawed hand-examples that both algorithms reject
+(independently: the examples register treewidth 3, so they are genuinely
+not partial 2-trees).
+
+**Supporting algorithmic citations** (used by the computational side, not
+by any proof): C. Gutwenger, P. Mutzel, "A Linear Time Implementation of
+SPQR-Trees" (2001), correcting J. E. Hopcroft, R. E. Tarjan, "Dividing a
+Graph into Triconnected Components" (1973), with data structures from
+G. Di Battista, R. Tamassia, "On-Line Planarity Testing" (1996) — the
+algorithm behind the `spqrtree` package used throughout the one-pole work.
+Also **Whitney 1932** (`κ ≤ λ ≤ δ`), used in `cubic_edge_connectivity.md`,
+and the **Alon–Hoory–Linial irregular Moore bound**, used in the audit of
+the length-16 tangle theorem's Lemma 2.
+
+### Access limitation — a tooling gap, restated because it caps every novelty label
+
+Direct access to arXiv and to every tested mirror returns **HTTP 403 at the
+platform/proxy level**, confirmed by direct `curl` through the egress proxy
+and not merely by the fetch tool (L16, L17). **No full paper body has been
+read for any citation above.** Consequences, stated plainly rather than
+hedged:
+
+1. Every "novelty" label in this repository is capped at
+   **NOVELTY SUPPORTED BY SEARCH** and can never be upgraded from this
+   environment. It means "two targeted search passes over
+   abstracts/snippets found no prior statement" — nothing stronger.
+2. Where even that is an overstatement, the label used is
+   **NOVELTY UNCHECKED** (e.g. the 4-or-8 dichotomy through `n=19`, which
+   may well be implicit in the extremal tables).
+3. This is a **tooling gap, not a mathematical one**, and the correct
+   response is to obtain real literature access — not to keep restating the
+   ceiling. It is an action item in RETROSPECTIVE.md, not a permanent
+   condition of the project.
+4. The one exception on record: Carr's four-page preprint
+   (arXiv:2605.22844) *was* obtained in full HTML and read (L18), which is
+   why G1's audit is stronger than the rest.
+
 ## Verified vs. to-verify (my independent checks — see experiments.md)
 
 - L10 (≥17): I reproduce exhaustively as far as compute allows via `geng` +
@@ -377,3 +463,9 @@ throughout — not a priority claim.
 - ScienceDirect/Discrete Math (Hu & Shen, P₁₀-free 2024; Gao & Shan, P₈-free 2022).
 - MathWorld "Markström Graph."
 - arXiv:2605.02731 — Choi, Chu, Kim, Park, "Existence of cycles of length divisible by 3 or 4" (abstract snippet only; full text inaccessible, see L23).
+- arXiv:1904.08126 / IMRN 2022(10):7615–7653 — Gao, Huo, Liu, Ma, "A Unified Proof of Conjectures on Cycle Lengths in Graphs" (admissible-path theorem, applied with k=2 in O4′ and T2; see L24a).
+- G. A. Dirac, "The Structure of k-Chromatic Graphs," Fundamenta Mathematicae 40 (1953), 42–55 (the historical cut-vertex split-and-recombine technique behind S4/S5; see L24b).
+- G. A. Dirac, "On rigid circuit graphs," Abh. Math. Sem. Univ. Hamburg 25 (1961), 71–76 (chordal graphs have ≥2 non-adjacent simplicial vertices; O5's second proof; see L24c).
+- C. Gutwenger, P. Mutzel, "A Linear Time Implementation of SPQR-Trees" (2001); J. E. Hopcroft, R. E. Tarjan, "Dividing a Graph into Triconnected Components" (1973); G. Di Battista, R. Tamassia, "On-Line Planarity Testing" (1996) — the `spqrtree` algorithm stack.
+- H. Whitney, "Congruent graphs and the connectivity of graphs" (1932) — κ ≤ λ ≤ δ, used in `cubic_edge_connectivity.md`.
+- N. Alon, S. Hoory, N. Linial, "The Moore bound for irregular graphs" (2002) — used in the length-16 tangle audit.
