@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "status": "BOUNDED_INCOMPLETE",
+  "scope": "minimum-order all-new-vertices-cubic completions of explicit Type-T port cores",
+  "claims": {
+    "minimum_order_identity": "3*t=|D|+2*e",
+    "j4_normal_form": "24 triple hubs plus two linked double hubs",
+    "j5_normal_form": "52 triple hubs",
+    "j4_local_exact_covers": "SAT for (2,2), (28,4), and (55,7)",
+    "j4_global_status": "bounded UNKNOWN for all three representatives",
+    "j5_a2_c2_local_exact_cover": "SAT",
+    "counterexample_found": false,
+    "unsat_certificate_produced": false
+  },
+  "instances": [
+    {
+      "j": 4,
+      "a": 2,
+      "c": 2,
+      "allowed_pairs": 652,
+      "allowed_triples": 925,
+      "maximum_safe_attachment_set": 6,
+      "linked_pair_gadgets": 3037,
+      "exact_models": 691,
+      "cycle_cuts": 9169,
+      "exact_status": "UNKNOWN",
+      "best_cycle_counts": {"4": 0, "8": 1, "16": null}
+    },
+    {
+      "j": 4,
+      "a": 28,
+      "c": 4,
+      "allowed_pairs": 776,
+      "allowed_triples": 1225,
+      "maximum_safe_attachment_set": 5,
+      "linked_pair_gadgets": 4371,
+      "exact_models": 2092,
+      "cycle_cuts": 49018,
+      "exact_status": "UNKNOWN",
+      "best_cycle_counts": {"4": 0, "8": 0, "16": 927}
+    },
+    {
+      "j": 4,
+      "a": 55,
+      "c": 7,
+      "allowed_pairs": 623,
+      "allowed_triples": 784,
+      "maximum_safe_attachment_set": 5,
+      "linked_pair_gadgets": 2755,
+      "exact_models": 8,
+      "cycle_cuts": 105,
+      "exact_status": "UNKNOWN",
+      "best_cycle_counts": {"4": 0, "8": 13, "16": null}
+    },
+    {
+      "j": 5,
+      "a": 2,
+      "c": 2,
+      "allowed_pairs": 6193,
+      "allowed_triples": 79185,
+      "maximum_safe_attachment_set": 11,
+      "local_exact_cover": "SAT",
+      "cp_sat_confirmation": "UNKNOWN after 30 seconds",
+      "best_cycle_counts": {"4": 0, "8": 0, "16": 1404}
+    }
+  ],
+  "software": {
+    "networkx": "3.6.1",
+    "ortools": "9.15.6755",
+    "python_sat": "1.9.dev7",
+    "incremental_solver": "cadical195",
+    "independent_exact_cover_solvers": ["glucose3", "CP-SAT"]
+  },
+  "verification": {
+    "cycle_cut_checks": "all 58292 retained j=4 cuts independently checked",
+    "test_suite": "99 passed",
+    "independent_cycle_method": "edge plus exact-length simple path avoiding that edge"
+  },
+  "commands": {
+    "single_hub": "PYTHONPATH=verifier python verifier/type_t_port_triples.py --j 4 --a 2 --c 2 --include-catalog",
+    "exact_check": "PYTHONPATH=verifier python verifier/type_t_port_multipole_check.py data/type_t_port_multipole/j4_a2_c2_exact.json.gz",
+    "local_check": "PYTHONPATH=verifier python verifier/type_t_port_multipole_check.py data/type_t_port_multipole/j5_a2_c2_local.json",
+    "resume": "PYTHONPATH=verifier python verifier/type_t_port_multipole_sat.py --j 4 --a 28 --c 4 --resume data/type_t_port_multipole/j4_a28_c4_exact.json.gz --phase-completion data/type_t_port_multipole/j4_a28_c4_local.json --max-seconds 300 --output /tmp/j4_a28_c4_next.json.gz --cnf /tmp/j4_a28_c4_next.cnf.gz"
+  },
+  "hashes": {
+    "type_t_port_multipole_completion.md": "f5b885ff3cc173fc27bdbda771fec98624c2f6c30dbba1e10474a98f82e1f95e",
+    "verifier/type_t_port_triples.py": "0e67cdd71bb18c6c41398fcabfbcea1414482968093306c3a88a62230aeca913",
+    "verifier/type_t_port_multipole_sat.py": "3f2c0ab92f86ddd516fabf3d802dd5db08cb9c59fe01a4f29fd3c0d16b0e8a74",
+    "verifier/type_t_port_multipole_check.py": "cdb3f8fd191848fc79bf68cbe09d95069e87164dbac4f3cc2c26274b2b19d86f",
+    "tests/test_type_t_port_multipole.py": "9f2575f66a53757fbc6e5ea06365af34f8352fde87281cd914dd40eeee4bd8ca",
+    "data/type_t_port_multipole/j4_a2_c2_triples.json.gz": "4d836a960c6eeab57e275bd2f304b521cee6692fc4c359586fe7b518ab01aaf2",
+    "data/type_t_port_multipole/j4_a2_c2_exact.json.gz": "75e3182bfe4f23304a1911b533a9ec77395e89dc9af7180d0dc71fb98bd53b9b",
+    "data/type_t_port_multipole/j4_a2_c2_final.cnf.gz": "99a2fbc0c533f5bf226f702987e9496112ec0bee69560f9dda27fd1788808c7b",
+    "data/type_t_port_multipole/j4_a2_c2_exact_check.json": "02b2659d0050be93a4d1de8ca8bee051fdb4b70e96b628da849a14e056e40a56",
+    "data/type_t_port_multipole/j4_a2_c2_local.json": "941e448144ca51ea4a9db7e83601b7a423ae85dfa5f79404522cbff0f364f8d4",
+    "data/type_t_port_multipole/j4_a2_c2_local_check.json": "f4483085ce7cbee895231873fd1a6ca81f6d06530272667ade03ac417eb3f8ab",
+    "data/type_t_port_multipole/j4_a28_c4_triples.json.gz": "0787997089fb7b5afb1029ad64af61b0d8173d7dccfb7405dcd19b88528120b0",
+    "data/type_t_port_multipole/j4_a28_c4_exact.json.gz": "d8ef40e5737973aba2d9709cefea91fdc0a5635363de958a4989995fb42eacf4",
+    "data/type_t_port_multipole/j4_a28_c4_final.cnf.gz": "af7f8088d2713d0787d1143d8e5226f301eef85127e9c6a14c35836e594c9d04",
+    "data/type_t_port_multipole/j4_a28_c4_exact_check.json": "032349d10a632abf5a7ecbbf21fb4384e6f238f8598ec6728298e58f01c3de94",
+    "data/type_t_port_multipole/j4_a28_c4_local.json": "fdf7588d737b315205f51bbfb114426619cf50e04dde78715badbcdb8939871c",
+    "data/type_t_port_multipole/j4_a28_c4_local_check.json": "8405b2b9b23cde4a6397a0c6016dbc227a586b37ffbbc49fb0a4edb2d7270374",
+    "data/type_t_port_multipole/j4_a55_c7_triples.json.gz": "0f72b28148e5a7b2e0352de4804558942abbcc1f78d73dea785fb7228d60dca5",
+    "data/type_t_port_multipole/j4_a55_c7_exact.json.gz": "865c36271961e8a5333a455429ca27fe43864b140213997da63c6d93c1acd16c",
+    "data/type_t_port_multipole/j4_a55_c7_final.cnf.gz": "bf9a047b5c89886d1d6eef8990c20d207a270ca2129029c358aed126eae65bc8",
+    "data/type_t_port_multipole/j4_a55_c7_exact_check.json": "d080751894da2c0077267e990caefc926533bcd68f6b33877d9d6f2505846592",
+    "data/type_t_port_multipole/j4_a55_c7_local.json": "5a721c72d1d4a4a87c8f1a6de4c54109c2dcd2293562f81984f5c3301bd0a8d2",
+    "data/type_t_port_multipole/j4_a55_c7_local_check.json": "feaee66dcac521de07508e64a4e0d9e84877ed814bfc72dec98e37d0dfbeac4b",
+    "data/type_t_port_multipole/j5_a2_c2_triples.json.gz": "ffe543d3c2d58d60850a55b870113669f4be9a23b74740bb3a88755830bf281d",
+    "data/type_t_port_multipole/j5_a2_c2_local.json": "586405931a54a4871940255591036b50971885bb83bf2c07ec9f99bef48bfb1e",
+    "data/type_t_port_multipole/j5_a2_c2_local_check.json": "e3bed900c92f8276c210067afbd7619273f9416c642e8463bd0d4f10567deb9f"
+  }
+}

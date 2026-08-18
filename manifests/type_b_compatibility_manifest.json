@@ -1,0 +1,57 @@
+{
+  "description": "Independent finite cross-check of type_b_compatibility.md: exact five-category Type-B cycle support, edge-deletion monotonicity, asymmetric triangle-gateway spectra, paired forced-core arithmetic, and the Balaban C16 diagnostic.",
+  "scope_note": "Finite mechanics and bounded arithmetic regression only. The universal decomposition, infinite family, and T9B are hand-written proofs. This is not proof-assistant verification, an exhaustive paired-bridge census, a finite SPQR reduction, or a claim that the forced-core spectrum family is realized by full internally power-clean bridges.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/type_b_compatibility.py",
+  "source_parent_commit": "273da2695ab6db6c37ef05f172631298dc05adb2",
+  "script_sha256": "9bd02958b75e491238949d33a1ae0bec4e682b3b33750f8befdd6e36d58f51db",
+  "stdout_sha256": "b0e2f1845a61ed8b68a3b73326ed395c1f6594c1789630665173547d486e1556",
+  "python_version": "3.14.6",
+  "networkx_version": "3.6.1",
+  "exit_status": 0,
+  "validation": {
+    "targeted_pytest_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider -q tests/test_type_b_compatibility.py",
+    "targeted_pytest_result": "4 passed",
+    "full_command": "make check",
+    "full_result": "93 Python files parsed; 87 tests passed; native checkers built successfully"
+  },
+  "results": {
+    "cycle_support_categories": [
+      "internal_B1",
+      "internal_B2",
+      "edge_plus_B1",
+      "edge_plus_B2",
+      "cross_B1_B2"
+    ],
+    "cycle_fixture_cycles_classified": 21,
+    "edge_deletions_checked_for_monotonicity": 14,
+    "triangle_gateway_B1_spectrum": [2, 7, 9],
+    "triangle_gateway_B2_spectrum": [4, 9, 11, 12],
+    "known_length_two_bridge": "B1 only",
+    "triangle_gateway_theta_internal_cycle": 11,
+    "delta_epsilon_patterns": {
+      "1,1": [0, 1, 1, 2],
+      "1,2": [0, 1, 2, 3],
+      "2,1": [0, 1, 2, 3],
+      "2,2": [0, 2, 2, 4]
+    },
+    "exact_small_exponent_power_exceptions": {
+      "0": [[1, 2], [2, 1]],
+      "1": [],
+      "2": [[1, 1], [2, 3], [3, 2]],
+      "3": [],
+      "4": [[1, 3], [3, 1]]
+    },
+    "exception_classification_rows_checked": 720,
+    "arithmetic_parameter_rows_checked": 1600,
+    "forced_values_checked_before_cross_row_deduplication": 30960,
+    "infinite_forced_core_family": "ell=2^t+1, m=2^u+1, t,u>max(rho,s,3), delta,epsilon in {1,2}",
+    "balaban_host_vertex_connectivity": 3,
+    "balaban_c16_witness": [0, 69, 28, 27, 8, 7, 6, 5, 4, 3, 32, 31, 22, 23, 62, 61],
+    "balaban_c16_common_edges_with_path_11": 5,
+    "balaban_c16_common_edges_with_path_13": 9,
+    "balaban_t9b_degree_incidence_violations": 0,
+    "assertion_failures": 0
+  },
+  "independence": "NetworkX enumerates every simple cycle in the explicit two-bridge fixture and classifies it from literal edge support; every B1-edge deletion is independently re-enumerated for cycle/path monotonicity. Separate shared-gateway graphs recover both rooted spectra. Direct power testing checks the symbolic family's bounded parameter box. The Balaban host is reconstructed from the frozen LCF sequence, its vertex connectivity and literal paths/cycle are checked, and all intersection counts are recomputed.",
+  "completed_range": "All five support categories; all edges of the B1 decomposition fixture; all four delta/epsilon cases; rho,s=2..6 and four consecutive t,u values above max(rho,s,3), totaling 1,600 parameter rows; exact recorded Balaban paths and C16 witness."
+}

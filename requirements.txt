@@ -1,0 +1,5 @@
+networkx==3.6.1
+numpy==2.5.1
+ortools==9.15.6755
+python-sat==1.9.dev7
+spqrtree==0.1.2

@@ -1,0 +1,62 @@
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Python caches and tooling state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Native build products
+.build/
+build/
+dist/
+*.o
+*.so
+*.dylib
+
+# Editors, operating systems, and local agents
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.claude/
+.codex/
+
+# Compiled binaries of the carried-forward audit tracks (rebuild from source;
+# never commit platform-specific binaries — see RETROSPECTIVE.md, hygiene note).
+tracks/external-audits/order38_bundle/src/generate_quotients38
+tracks/external-audits/order38_bundle/src/quotient_static38_rot
+tracks/external-audits/order38_bundle/src/quotient_static38_nosym
+tracks/external-audits/order38_bundle/src/factor38_direct_mrv
+tracks/external-audits/order38_bundle/test_pathrec
+tracks/external-audits/order40_probe/src/factor40_direct_mrv
+tracks/external-audits/a5_lift_probe/a5_breakout_solver_v2
+tracks/external-audits/a5_lift_probe/a5_point_repair_k3
+tracks/external-audits/a5_lift_probe/*.log
+tracks/order30-census/t4_intersection_filter/bin/
+tracks/order30-census/t4_intersection_filter/results/t4_full_intersection/chunks/
+tracks/order30-census/t4_intersection_filter/*.g6
+tracks/order30-census/t4_intersection_filter/*.err
+
+# Deliberately local experiment output
+verifier/one_pole_survivors.json
+# Type-T j=4 exact certificate bundle.  The reports, aggregate summaries,
+# maps, and inventory remain in Git; bit-for-bit class artifacts are restored
+# by verifier/type_t_port_artifacts.py from the versioned release asset.
+/data/type_t_port_completion/j4_classes/class_*/
+/data/type_t_port_completion/j4_a2_c2_reduced_core.cnf.gz
+/data/type_t_port_completion/j4_a2_c2_reduced_core.drat.gz
+/data/type_t_port_completion/j4_a2_c2_reduced_core_analysis.json.gz
+/data/type_t_port_completion/*.tar.zst
+/.type_t_port_artifacts.lock

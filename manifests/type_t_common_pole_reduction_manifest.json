@@ -1,0 +1,54 @@
+{
+  "description": "Exact symbolic reduction of the only live Type-T pole geometry X_x=X_y=z_0: proves all four non-P_0 branches use nontriangle first edges, classifies their seven labelled first-edge partitions into six x-y symmetry orbits, relates them to deg(z_0), and enumerates every simple cycle in the genuine-split prefix-only cores.",
+  "scope_note": "Hand proof plus deterministic symbolic state enumeration. This is not proof-assistant formal verification, not SAT, not a graph census, and not a completeness bound on arbitrary branch intersections after the forced prefixes.",
+  "source_parent_commit": "42dd15ee4a766f81cd1fc36efde9939c9d8e712b",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 verifier/type_t_common_pole_states.py",
+  "python_version": "3.14.6",
+  "exit_status": 0,
+  "script_sha256": "f54406b38933ee9706d694d7c8d6eddec932aa63eca6c8385bbad74a3d0a26ac",
+  "stdout_sha256": "33cc9415760ba6939dadc974cf9e00cc0979900244516926f84e9c759e8732a5",
+  "markdown_sha256": "8f03c828b80e1cfc07bb1549727ff8318ed83d8dd037785ad06692e852f23222",
+  "results": {
+    "raw_set_partitions": 15,
+    "admissible_labeled_partitions": 7,
+    "xy_symmetry_orbits": 6,
+    "orbit_names": [
+      "E2_parallel",
+      "E2_cross",
+      "E3_near",
+      "E3_power",
+      "E3_mixed",
+      "E4_discrete"
+    ],
+    "degree4_orbits": 2,
+    "degree5_orbits": 5,
+    "degree6_or_more_orbits": 6,
+    "pair_prefix_instances_checked_exponents_2_through_10": 1923345,
+    "simultaneous_core_instances_checked_exponents_2_through_6": 194488,
+    "prefix_only_cycles_per_E2_or_E3_core": 7,
+    "prefix_only_cycles_in_E4_core": 6,
+    "forced_dyadic_orbits": 0,
+    "universally_prefix_only_safe_orbit": "E4_discrete",
+    "assertion_failures": 0
+  },
+  "theorem": "Every live Type-T common-pole instance has one of six rooted first-edge allocation orbits. Degree 4 permits exactly the two E2 orbits, degree 5 permits E2/E3, and degree at least 6 permits all six. Shared states may expose dyadic pair or four-color prefix-only cycles but none forces one; arbitrary post-prefix four-color incidence remains open.",
+  "joint_matrix": {
+    "(A,A)": "REDUCED TO ENRICHED TYPE-B",
+    "(A,P)/(P,A)": "ONE EXPLICIT OPEN RESIDUAL",
+    "(P,P)": "ONE EXPLICIT OPEN RESIDUAL",
+    "any cell containing S": "REDUCED TO AN S5 LOBE"
+  },
+  "not_claimed": [
+    "elimination of degree 4, degree 5, or degree at least 6 at z_0",
+    "a finite list of full common-pole graph cores",
+    "a separator or canonical splice forced by a shared prefix",
+    "placement of Q relative to the four-color incidence core",
+    "closure of any live A/P/S cell",
+    "Type T elimination or an all-orders Erdős-Gyárfás theorem"
+  ],
+  "output_files": {
+    "markdown": "type_t_common_pole_reduction.md",
+    "verifier": "verifier/type_t_common_pole_states.py",
+    "manifest": "manifests/type_t_common_pole_reduction_manifest.json"
+  }
+}

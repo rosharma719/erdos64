@@ -1,0 +1,121 @@
+{
+  "aggregate": {
+    "RP-tight": {
+      "candidates": 411,
+      "contained_in_one_R_node": 307,
+      "created_by_two_P_node_expansions": 70,
+      "represented_by_an_S_node_cycle": 0,
+      "shortest_C4": 410,
+      "shortest_C8": 1,
+      "spread_across_multiple_SPQR_nodes": 34,
+      "touching_root_local_terminal_subdivision": 0
+    },
+    "SP-eligible": {
+      "candidates": 4214,
+      "contained_in_one_R_node": 3670,
+      "created_by_two_P_node_expansions": 504,
+      "represented_by_an_S_node_cycle": 0,
+      "shortest_C4": 4214,
+      "spread_across_multiple_SPQR_nodes": 40,
+      "touching_root_local_terminal_subdivision": 0
+    },
+    "all": {
+      "candidates": 129040,
+      "contained_in_one_R_node": 98990,
+      "created_by_two_P_node_expansions": 29581,
+      "represented_by_an_S_node_cycle": 0,
+      "shortest_C4": 129039,
+      "shortest_C8": 1,
+      "spread_across_multiple_SPQR_nodes": 469,
+      "touching_root_local_terminal_subdivision": 0
+    },
+    "leaf_R": {
+      "internal_spectrum_4": 21335,
+      "internal_spectrum_4,8": 54409,
+      "internal_spectrum_8": 1,
+      "internal_spectrum_clean": 0,
+      "records": 75745,
+      "skeleton_n4_m6": 5570,
+      "skeleton_n5_m10": 360,
+      "skeleton_n5_m8": 1224,
+      "skeleton_n5_m9": 1208,
+      "skeleton_n6_m10": 740,
+      "skeleton_n6_m11": 1264,
+      "skeleton_n6_m12": 964,
+      "skeleton_n6_m13": 404,
+      "skeleton_n6_m14": 112,
+      "skeleton_n6_m15": 34,
+      "skeleton_n6_m9": 116,
+      "skeleton_n7_m11": 140,
+      "skeleton_n7_m12": 820,
+      "skeleton_n7_m13": 1865,
+      "skeleton_n7_m14": 2315,
+      "skeleton_n7_m15": 1825,
+      "skeleton_n7_m16": 1020,
+      "skeleton_n7_m17": 440,
+      "skeleton_n7_m18": 160,
+      "skeleton_n7_m19": 50,
+      "skeleton_n7_m20": 15,
+      "skeleton_n7_m21": 5,
+      "skeleton_n8_m12": 15,
+      "skeleton_n8_m13": 335,
+      "skeleton_n8_m14": 1971,
+      "skeleton_n8_m15": 5658,
+      "skeleton_n8_m16": 9910,
+      "skeleton_n8_m17": 11874,
+      "skeleton_n8_m18": 10533,
+      "skeleton_n8_m19": 7328,
+      "skeleton_n8_m20": 4167,
+      "skeleton_n8_m21": 2004,
+      "skeleton_n8_m22": 839,
+      "skeleton_n8_m23": 309,
+      "skeleton_n8_m24": 104,
+      "skeleton_n8_m25": 33,
+      "skeleton_n8_m26": 10,
+      "skeleton_n8_m27": 3,
+      "skeleton_n8_m28": 1,
+      "tight_cover_exists": 6325,
+      "tight_cover_missing": 69420
+    },
+    "rigid-forced": {
+      "candidates": 124826,
+      "contained_in_one_R_node": 95320,
+      "created_by_two_P_node_expansions": 29077,
+      "represented_by_an_S_node_cycle": 0,
+      "shortest_C4": 124825,
+      "shortest_C8": 1,
+      "spread_across_multiple_SPQR_nodes": 429,
+      "touching_root_local_terminal_subdivision": 0
+    }
+  },
+  "aggregate_post_run_note": "Zero-valued requested classifications were made explicit after streaming the completed checksummed artifact; candidate records and executable results were unchanged.",
+  "candidate_generation": "none; streamed existing E23 records",
+  "classification_priority": [
+    "touching_root_local_terminal_subdivision",
+    "contained_in_one_R_node",
+    "created_by_two_P_node_expansions",
+    "represented_by_an_S_node_cycle",
+    "spread_across_multiple_SPQR_nodes"
+  ],
+  "elapsed_seconds": 328.044,
+  "exit_code": 0,
+  "experiment": "E24d-order9-shortest-cycle-SPQR-support",
+  "generated_at": "2026-07-26T03:35:04.586591+00:00",
+  "input": {
+    "path": "data/E23_order9_candidates.jsonl.gz",
+    "records": 129040,
+    "sha256": "9f530d95918406bec166cc3e09fa5edf0d7b8f8ff58613b9ffae83c85851e446"
+  },
+  "output": {
+    "bytes": 3456437,
+    "path": "data/E24_order9_spqr_obstructions.jsonl.gz",
+    "records": 129040,
+    "sha256": "e6723280ec82e02f125730958279e219b61d5939ecd8b8dba8cce1732684ca0e"
+  },
+  "script": {
+    "path": "/Users/rohansharma/Desktop/Code/erdos64/verifier/order9_spqr_obstructions.py",
+    "sha256": "b1b770811fba51ec44a96e28bdadcaf170e368493b55d62a19f51060dc917917"
+  },
+  "status": "COMPLETE",
+  "workers": 8
+}

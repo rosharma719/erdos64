@@ -1,0 +1,311 @@
+{
+  "catalog": "data/order30_quotient_census/quotients_16v_3connected.g6.gz",
+  "n": 16,
+  "k": 7,
+  "quotients_sampled": 600,
+  "core_size_min": 3,
+  "core_size_max": 11,
+  "core_size_mean": 5.765,
+  "core_size_histogram": {
+    "9": 21,
+    "6": 196,
+    "4": 95,
+    "8": 46,
+    "5": 86,
+    "7": 101,
+    "3": 49,
+    "10": 4,
+    "11": 2
+  },
+  "distinct_length_signatures": 182,
+  "top_signatures": [
+    {
+      "lengths": "4,4,6",
+      "count": 49,
+      "example": {
+        "graph6": "O???C@_oIaBGM?H_Oo?[?",
+        "core_lengths": [
+          4,
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,4,4",
+      "count": 38,
+      "example": {
+        "graph6": "O??CA?_eE_F?IOP_?s?J?",
+        "core_lengths": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "lengths": "3,4,4,5,5,5",
+      "count": 32,
+      "example": {
+        "graph6": "O??CA?_ceOKGDOCg@c@W?",
+        "core_lengths": [
+          3,
+          4,
+          4,
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,4,5",
+      "count": 24,
+      "example": {
+        "graph6": "O???C@_UAgBO_gAoCgDG?",
+        "core_lengths": [
+          4,
+          4,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,4,4,4",
+      "count": 20,
+      "example": {
+        "graph6": "O???C@_oJABGM?D_Oo?[?",
+        "core_lengths": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "lengths": "3,4,5,5,6,6",
+      "count": 16,
+      "example": {
+        "graph6": "O??CA?_ob@U?CoF?@g?X?",
+        "core_lengths": [
+          3,
+          4,
+          5,
+          5,
+          6,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "3,4,4,4",
+      "count": 16,
+      "example": {
+        "graph6": "O??CA?_eE_ECHOPO@o?T?",
+        "core_lengths": [
+          3,
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "lengths": "3,4,5,5,5,6",
+      "count": 14,
+      "example": {
+        "graph6": "O??CA?oBCPF?w?@cAgAE?",
+        "core_lengths": [
+          3,
+          4,
+          5,
+          5,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "3,4,5,5,5,5",
+      "count": 13,
+      "example": {
+        "graph6": "O??CAA_EECGcGoL?BG?W_",
+        "core_lengths": [
+          3,
+          4,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,5,5,5,5",
+      "count": 11,
+      "example": {
+        "graph6": "O??CA?_sDOCgP_@WBC?s?",
+        "core_lengths": [
+          4,
+          4,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "4,5,5,5,6,6",
+      "count": 11,
+      "example": {
+        "graph6": "O??CA?_sASQGBOH_Ac@P?",
+        "core_lengths": [
+          4,
+          5,
+          5,
+          5,
+          6,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,5,5,5,6",
+      "count": 10,
+      "example": {
+        "graph6": "O??CA?oIE@GoI_BCAgCa?",
+        "core_lengths": [
+          4,
+          4,
+          5,
+          5,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "3,4,4,4,5,5",
+      "count": 10,
+      "example": {
+        "graph6": "O??CAA_EEAICF?BOCo@C_",
+        "core_lengths": [
+          3,
+          4,
+          4,
+          4,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,5,5,6",
+      "count": 9,
+      "example": {
+        "graph6": "O??CAA_EEGICHCM?@W?M?",
+        "core_lengths": [
+          4,
+          4,
+          5,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,5,5,5",
+      "count": 8,
+      "example": {
+        "graph6": "O??CA?_sDOCWSOD_@c?X?",
+        "core_lengths": [
+          4,
+          4,
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "3,3,4,4,5",
+      "count": 8,
+      "example": {
+        "graph6": "O??CA?_eECJ?M?HG?w?J?",
+        "core_lengths": [
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "3,4,5,6,6,6",
+      "count": 7,
+      "example": {
+        "graph6": "O???C@_UEGQGD_B_CW@P?",
+        "core_lengths": [
+          3,
+          4,
+          5,
+          6,
+          6,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "4,4,4,5,5,5",
+      "count": 7,
+      "example": {
+        "graph6": "O??CA?_eF?I_D_@g@K@Q?",
+        "core_lengths": [
+          4,
+          4,
+          4,
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "lengths": "3,3,4,5,5,6",
+      "count": 7,
+      "example": {
+        "graph6": "O??CA?oID@B_B_p?AIAE?",
+        "core_lengths": [
+          3,
+          3,
+          4,
+          5,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "lengths": "4,5,5,6,6,6",
+      "count": 6,
+      "example": {
+        "graph6": "O???C@_eEAAcS_BODO@K?",
+        "core_lengths": [
+          4,
+          5,
+          5,
+          6,
+          6,
+          6
+        ]
+      }
+    }
+  ],
+  "elapsed_seconds": 148.9304964542389
+}

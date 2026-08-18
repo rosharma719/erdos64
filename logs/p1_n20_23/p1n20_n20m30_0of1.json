@@ -1,0 +1,7 @@
+{
+  "label":"p1n20","n":20,"m":30,"maxdeg":3,"res":0,"mod":1,
+  "command":"geng -c -f -d3 -D3 20 30:30 0/1","nauty_geng":">E Usage: geng [-cCmtfkbd#D#] [-kTSPF] [-uygsnh] [-lvq] [-x#X#] n [mine[:maxe]] [res/mod] [file]","checker":"check_c8.c","checker_src_sha256":"48a63d29f702d70e39cfdf5126df8f50817abf6175da360d845d28bc39cde3c8",
+  "start":"2026-08-02T13:21:24Z","end":"2026-08-02T13:22:43Z","geng_exit":0,"check_exit":0,
+  "raw_count":36101,"checked_count":36101,"c4_seen":0,
+  "c8free_survivors":0,"reconcile":"OK","stream_sha256":"b3140d8afa66dc5ec423f71dc1877dc054fee8f7d8b2fa3e2429d44bf465cb84"
+}

@@ -1,0 +1,18 @@
+{
+  "anomalies": [],
+  "base": 2,
+  "c16_projection_type_counts": {
+    "3": 72
+  },
+  "elapsed_seconds": 0.3791835308074951,
+  "independent_recheck_failures": [],
+  "killed_at_counts": {
+    "16": 72
+  },
+  "records_sha256": "9bd33bbbb02a5e1f5b5bd43fac2ef8e773020b2ee39ae2934709b26f658b1b2c",
+  "structural_check_failures": [],
+  "survivors": [],
+  "total_uncovered_by_hyperplane_scan": 72,
+  "uncovered_indices_processed": 72,
+  "uncovered_list_was_truncated": false
+}

@@ -1,0 +1,108 @@
+{
+  "automaton_h1": {
+    "h": 1,
+    "levels_sizes": {
+      "0": 1,
+      "1": 1,
+      "2": 1
+    },
+    "max_valid_length": 2,
+    "reachable_states_by_length": {
+      "0": 1,
+      "1": 1,
+      "2": 1
+    },
+    "total_reachable_states": 3,
+    "total_transitions_explored": 3,
+    "witness_per_length": {
+      "0": [],
+      "1": [0],
+      "2": [0, 0]
+    }
+  },
+  "automaton_h2": {
+    "h": 2,
+    "levels_sizes": {
+      "0": 1,
+      "1": 2,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4
+    },
+    "max_valid_length": 5,
+    "reachable_states_by_length": {
+      "0": 1,
+      "1": 2,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4
+    },
+    "total_reachable_states": 19,
+    "total_transitions_explored": 38,
+    "witness_per_length": {
+      "0": [],
+      "1": [0],
+      "2": [0, 0],
+      "3": [0, 0, 1],
+      "4": [0, 0, 1, 1],
+      "5": [0, 0, 1, 1, 0]
+    }
+  },
+  "automaton_h3": {
+    "h": 3,
+    "levels_sizes": {
+      "0": 1,
+      "1": 3,
+      "2": 9,
+      "3": 18,
+      "4": 36,
+      "5": 72,
+      "6": 78,
+      "7": 36,
+      "8": 6
+    },
+    "max_valid_length": 8,
+    "reachable_states_by_length": {
+      "0": 1,
+      "1": 3,
+      "2": 9,
+      "3": 18,
+      "4": 36,
+      "5": 72,
+      "6": 78,
+      "7": 36,
+      "8": 6
+    },
+    "total_reachable_states": 253,
+    "total_transitions_explored": 777,
+    "witness_per_length": {
+      "0": [],
+      "1": [0],
+      "2": [0, 0],
+      "3": [0, 0, 1],
+      "4": [0, 0, 1, 1],
+      "5": [0, 0, 1, 1, 0],
+      "6": [0, 0, 1, 1, 0, 2],
+      "7": [0, 0, 1, 1, 0, 2, 2],
+      "8": [0, 1, 1, 0, 0, 2, 2, 0]
+    }
+  },
+  "cross_check_h1": {
+    "h": 1,
+    "mismatches": [],
+    "words_checked": 4
+  },
+  "cross_check_h2": {
+    "h": 2,
+    "mismatches": [],
+    "words_checked": 127
+  },
+  "cross_check_h3": {
+    "h": 3,
+    "mismatches": [],
+    "words_checked": 29524
+  },
+  "records_sha256": "d5954dd38bc93e3be70067ad738df69510da8c8d7e95b07fd50749db38b51bad"
+}

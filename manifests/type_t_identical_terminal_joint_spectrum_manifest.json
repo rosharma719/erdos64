@@ -1,0 +1,33 @@
+{
+  "description": "Quantifier audit of commit 3ba40fc's identical-terminal four-path spectrum. It corrects existential-safe overlap constructions that were incorrectly promoted to universal safety and withdraws the resulting single A-C coincidence reduction.",
+  "scope_note": "Hand-written exact path-incidence audit, not a proof-assistant verification or an ambient graph census. Abstract ladder incidences prove only colored path-system realizability; minimum degree, bridge closure, global F-cleanliness, attachments, and Q are deliberately not inferred.",
+  "source_commit_audited": "3ba40fc",
+  "level_1_pairwise_results": {
+    "(R_x,S_x)": "FIXED_BY_SAME_THETA_GEOMETRY and FORCED_SAFE: one divergent cell P_1^x union P_2^x has odd length 2^rho_x+2^s_x-1.",
+    "(R_y,S_y)": "FIXED_BY_SAME_THETA_GEOMETRY and FORCED_SAFE: symmetric to (R_x,S_x).",
+    "(R_x,R_y)": "SAFE_INCIDENCE_EXISTS_BUT_OTHERS_MAY_FAIL: disjoint equal exponents fail, unequal exponents are safe, equal exponents have a safe two-cell escape, and every exponent pair admits an abstract two-cell incidence exposing C4.",
+    "(R_x,S_y)": "SAFE_INCIDENCE_EXISTS_BUT_OTHERS_MAY_FAIL: disjoint is safe and the old two-cell family is safe, but these are existential; a valid two-cell composition can expose C4.",
+    "(S_x,R_y)": "SAFE_INCIDENCE_EXISTS_BUT_OTHERS_MAY_FAIL: symmetric to (R_x,S_y).",
+    "(S_x,S_y)": "SAFE_INCIDENCE_EXISTS_BUT_OTHERS_MAY_FAIL: disjoint is safe by valuation but cannot replace the actual paths; a valid two-cell composition can expose C4.",
+    "forced_contradiction_for_every_incidence": [],
+    "universally_safe_cross_theta_pairs": []
+  },
+  "symbolic_countertest": {
+    "statement": "For totals m,n>=2 and m+n>=7, a positive two-cell composition with two valid simple-graph cells exists with a_1+b_1=4; every application here has total at least eight.",
+    "application": "Every cross-theta pair here has both totals at least four, so every cross-pair type admits an abstract incidence with a forbidden C4.",
+    "smallest_mixed_example": {"totals": [4, 5], "a": [1, 3], "b": [3, 2], "cell_lengths": [4, 5]},
+    "smallest_S_S_example": {"totals": [5, 5], "a": [1, 4], "b": [3, 2], "cell_lengths": [4, 6]}
+  },
+  "withdrawn_claims": [
+    "The two mixed cross-theta pairs are always safe under arbitrary overlap.",
+    "The existence of a safe disjoint S_x,S_y realization makes their actual overlap irrelevant.",
+    "Five of the six pairs impose no constraint under any configuration.",
+    "The entire residual reduces to whether P_1^x and P_1^y share an internal vertex.",
+    "S_x and S_y add no simultaneous constraint to an A-C escape."
+  ],
+  "historical_residual_before_structural_supersession": "Conditional on Q adding no further x-y path, the arithmetic audit would retain the full rooted color-preserving A,B,C,D incidence core with subdivision lengths. This is no longer a live residual because pole forcing eliminates its terminal row.",
+  "structural_supersession": "Ancestor commit 7a3c1f7 already proves that an aligned pole of a cubic Type-T vertex cannot be cubic. Therefore X_x=y and X_y=x are impossible in T2; the pairwise results in this manifest are conditional abstract arithmetic, not a live Type-T residual.",
+  "output_files": {
+    "markdown": "type_t_identical_terminal_joint_spectrum.md"
+  }
+}

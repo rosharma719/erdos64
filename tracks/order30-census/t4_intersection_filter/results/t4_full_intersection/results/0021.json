@@ -1,0 +1,21 @@
+{
+  "lines": 100000,
+  "parsed": 100000,
+  "cubic22": 100000,
+  "connected": 100000,
+  "initial_markings": 731500000,
+  "candidate_intersection_tests": 1090473590,
+  "graphs_with_candidates": 0,
+  "final_markings": 0,
+  "literal_checked": 0,
+  "literal_mismatch": 0,
+  "counterexamples": 0,
+  "cycles_seen_by_length": {
+    "3": 160992,
+    "4": 167732,
+    "8": 467334,
+    "12": 41160,
+    "16": 4783037
+  },
+  "seconds": 8.621012
+}

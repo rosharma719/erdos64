@@ -1,0 +1,40 @@
+{
+  "description": "Mechanical cross-check of contraction_atoms.md: the general contractible-atom lemma, the triangle-pair lemma, the Type N/T local cubic-vertex dichotomy plus triangle uniqueness, the two-orbit functional-digraph classification, the five-lemma arithmetic toolkit (A, A', B, C, D, D3), and the bridge-arithmetic chord corollary.",
+  "scope_note": "Tests only unconditional graph-theoretic mechanics on ordinary fixture graphs and explicit gadget constructions; does not and cannot test claims that presuppose a minimal Erdos-Gyarfas counterexample exists (contraction_atoms.md's 'clean-case' distinctness constraints in Parts V-VI, and the still-open non-clean/general cases). Kept separate from verifier/contraction_lift.py and its manifest, whose prior 35,357-cycle audit is untouched by this phase.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python verifier/atom_lift.py",
+  "source_commit": "0874b14e8123a7c4a401a0241d4ae572bb695276",
+  "script_sha256": "5b87ee8ae140505ce12dd355aedea6a37db7308f0fe901bf92dc415fd10bd616",
+  "stdout_sha256": "b0e302af7e91630ed04670d1c555aa804c64d9d4da8f474e956f931bff68df63",
+  "python_version": "3.13.12",
+  "networkx_version": "3.6.1",
+  "note_on_python_version": "Same environment note as contraction_lift_manifest.json: requirements.txt/.python-version pin CPython 3.14.6, unavailable in this container (max available 3.13); this run used 3.13.12 with networkx==3.6.1 (matches requirements.txt's pin exactly).",
+  "exit_status": 0,
+  "fixtures": [
+    "petersen_graph, 3-cube, K_3,3, prism_with_diagonal (reused from contraction_lift.py)",
+    "triangle_bearing_c4_free_fixture: cubic, C4-free, n=10, random_regular_graph(3,10,seed=12) -- rejection-sampled to give III.1's automatic-contractibility claim genuine triangle-plus-C4-free test coverage",
+    "15 random cubic-plus-extra-edge graphs, n in {8,10,12}, seeds 1000..1014"
+  ],
+  "results": {
+    "atom_contraction": {
+      "atoms_checked": 30,
+      "cycles_lifted_mixed_r": 2475,
+      "length_formula_2k_plus_r_ok": 2475,
+      "same_vertex_lift_same_length_instances": 1479,
+      "note": "same_vertex_lift_same_length is the mechanical fact (contracted-vertex neighbours coincide -> lift reproduces a same-length G-cycle), not itself an error; whether this is IMPOSSIBLE for a genuine minimal counterexample is the minimality argument proved in contraction_atoms.md Part I.4, not testable here."
+    },
+    "triangles_automatically_contractible_H2_H3": 3,
+    "triangle_pair_lemma_k_len1_len2": [[2, 5, 6], [3, 9, 10], [4, 17, 18]],
+    "cubic_dichotomy": {"type_N": 11, "type_T": 9},
+    "functional_digraph_orbits": {"num_orbits": 2, "orbit_sizes": [2, 6]},
+    "arithmetic_toolkit_checks": {"lemma_A": 49, "lemma_Aprime": 49, "lemma_D3": 343},
+    "gluing_lemma_gadget_instances": {"lemma_B": 16, "lemma_C": 16, "lemma_D": 16},
+    "bridge_arithmetic": [
+      {"r": 2, "L": 5, "chord_contradiction_distances": []},
+      {"r": 3, "L": 9, "chord_contradiction_distances": [3]},
+      {"r": 4, "L": 17, "chord_contradiction_distances": [3, 7]}
+    ],
+    "assertion_failures": 0
+  },
+  "detector_agreement": "Every constructed lift/gadget cycle validated by two independent implementations (hand-rolled adjacency traversal verify_cycle, and independently constructed networkx traversal verify_cycle_nx, both imported from verifier/contraction_lift.py); 0 disagreements.",
+  "completed_range": "All fixtures and gadget parameter ranges processed to completion (no partial/timeout runs); cycle enumeration in check_atom_contraction bounded at length 8 per graph (nx.simple_cycles length_bound=8), limiting how many mechanical instances are exercised, not the validity of any instance actually checked."
+}

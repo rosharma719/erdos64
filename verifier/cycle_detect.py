@@ -19,7 +19,6 @@ cycle has a unique smallest vertex and is rooted there exactly once.
 """
 
 from __future__ import annotations
-import itertools
 from typing import Dict, List, Optional, Sequence, Set, Tuple
 
 Graph = Dict[int, Set[int]]  # adjacency: vertex -> set of neighbors
