@@ -1,0 +1,36 @@
+{
+  "c16_catalog": {
+    "complete": false,
+    "independent_projection_exhaustion": null,
+    "supports": 84936,
+    "verified_support_sizes": {
+      "1": 569,
+      "2": 24252,
+      "3": 29172,
+      "4": 16497,
+      "5": 14446
+    }
+  },
+  "cegar_cross_check": {
+    "c8_cuts_checked": 9157,
+    "missing": 0
+  },
+  "parameters": {
+    "a": 28,
+    "c": 4,
+    "j": 4
+  },
+  "saved_completion_cross_check": {
+    "selected_gadgets": 25,
+    "short_violations": 0
+  },
+  "short_catalog": {
+    "complete": true,
+    "supports": 227725,
+    "verified_by_length": {
+      "4": 0,
+      "8": 227725
+    }
+  },
+  "status": "PASS"
+}
