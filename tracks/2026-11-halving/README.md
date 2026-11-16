@@ -82,3 +82,17 @@ rule on claims from outside the current session.
 Each script has a matching `test_*.py`. To run them:
 `python -m pytest -q tracks/2026-11-halving/scripts`. One test compiles
 `rooted_hamiltonian_census.cpp` with the local C++ compiler.
+
+## Three-port classification and the additive-reduction brief (2026-11-16, evening)
+
+- `three_port_classification.md` — every clean 3-pole (three degree-2 vertices,
+  rest degree 3, no power-of-two cycle) through 19 vertices: only the two H7
+  gadgets and H15, plus the triangle. Triangle-built clean pieces stop at 15
+  vertices at every size. Matches all pass VI Hamiltonian survivors. States
+  Conjecture T. Also corrects an earlier conversational remark about
+  Ducoffe–Dumitru's low-degree question.
+- `research_brief_additive_reduction.md` — the plan: replace "hit a power of
+  two" by "cover a factor-2 interval", reduce to prime graphs labelled by the
+  five gadget letters (WRP), then attack dense and sparse labellings.
+- Scripts: `triangle_closure.py`, `identify_three_poles.py`; data:
+  `clean_three_poles_n_le_19.g6`.
