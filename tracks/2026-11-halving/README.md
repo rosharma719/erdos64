@@ -1,7 +1,54 @@
 # tracks/2026-11-halving — session of 2026-11-16
 
-Independent audit of the repository plus one new line of work. Nothing here
-edits the canonical ledger files other than one status-log entry in `plan.md`.
+Independent audit of the repository, then a new line of work that converged on
+one central conjecture. Nothing here edits the canonical ledger files other
+than status-log entries in `plan.md`.
+
+## Central target: Conjecture T
+
+> **Conjecture T.** Every connected graph with exactly three vertices of degree
+> 2, all others of degree 3, and no cycle of length a power of two, is one of
+> four graphs: the triangle, uniform H7, skew H7, or H15 (3, 7, 7, 15 vertices).
+
+**T implies the Erdős–Gyárfás conjecture for every cubic graph**: delete a leaf
+of a spanning tree from a cubic counterexample. Statement and proof:
+`three_port_classification.md`. Plan of attack:
+`research_brief_additive_reduction.md`.
+
+### Status map
+
+| Statement | Status | Where |
+|---|---|---|
+| T ⇒ Erdős–Gyárfás for all cubic graphs | **Proved** (short, uses the published order bound) | `three_port_classification.md` |
+| No clean 3-pole on 5 vertices | **Proved** by hand, plus brute force | `audits/three_pole_research_handoff.md` |
+| Clean 3-poles on ≤ 19 vertices are exactly the four in T | **Computed**, one exhaustive run; certification gate not met | `three_pole_census_manifest.md` |
+| Pass VI Hamiltonian survivors are these poles | **Computed**, identification only, not uniqueness | `scripts/check_three_pole_isomorphisms.py` |
+| Triangle-built clean 3-poles have 1, 3, 7, 15 vertices, at every size | **Computed** at signature level; hand proof not written | `three_port_classification.md` |
+| Order 21 | **Open**; run started and stopped, no result | `three_pole_census_manifest.md` |
+| Decomposition lemma (smallest exception to T is a labelled prime) | **Not proved** | brief, Step 3 |
+| WRP ⇒ T | **Conditional** on the decomposition lemma | brief, Step 3 |
+| WRP for gadget-heavy labellings | **Proved** above an explicit global threshold | `cycle_space_obstruction.md` |
+| WRP for identity/triangle-heavy labellings (doubling-chain lemma) | **Open**; the main conceptual gap | brief, Step 5 |
+| Non-cubic graphs (vertices of degree ≥ 4) | **Not covered** by this programme | — |
+
+"Proved" means a hand argument written in one session: not machine-checked,
+not independently reviewed, novelty unchecked.
+
+### Supporting machinery
+
+| Role in the T programme | Notes |
+|---|---|
+| Exact length transfer across cuts, used by the decomposition lemma | `three_cut_prime_transfer.md` (3-edge cuts), `boundary_linkage_composition.md` (general cuts), `bridge_prime_reduction.md` (bridges) |
+| Gadget windows and the dense-labelling threshold | `partial_triangle_expansion_census.md`, `mixed_gadget_research.md`, `cycle_space_obstruction.md` |
+| Rooted primes, the identity-only case of WRP | `prime_pole_obstructions.md`, `root_orbit_switching.md`, `bridge_resilience_potential.md`, `square_strip_minmax.md` |
+| Interval sources for the doubling-chain lemma | `switching_spectrum_necessity.md` (switches), `square_strip_minmax.md` (strips) |
+| Earlier groundwork from this session | `halving_calculus.md`, `sumset_classification.md`, `richness_findings.md`, `extremal24_findings.md`, `q4_independent_check.md`, `literature_update_2026-11.md`, `expander_brief.md` |
+
+**Known code issue.** `mixed_gadget_solver.make_gadget` writes graph6 in
+node-iteration order while storing port labels by sorted order, so a stored
+gadget's ports need not match its graph6. Records built from graph6 should
+derive ports from the degree-2 vertices, as `audit_clean_poles.py` now does.
+The solver itself is unchanged.
 
 **Label ceiling.** Every proof in this directory is a hand argument written and
 checked once in a single session. None is machine-checked or reviewed. Treat
@@ -96,3 +143,14 @@ Each script has a matching `test_*.py`. To run them:
   five gadget letters (WRP), then attack dense and sparse labellings.
 - Scripts: `triangle_closure.py`, `identify_three_poles.py`; data:
   `clean_three_poles_n_le_19.g6`.
+
+## Corrections and audit (2026-11-16, late evening)
+
+- Brief and classification corrected: T settles **all** cubic graphs; WRP is a
+  route to T conditional on the decomposition lemma; the width score is
+  additive over disjoint cycles, not linear over the binary cycle space; Step 4
+  must sharpen the existing threshold.
+- Added `three_pole_census_manifest.md`, `audits/three_pole_research_handoff.md`
+  (a separate model's audit, with an erratum), `scripts/audit_clean_poles.py`
+  and its output `scripts/clean_pole_small_audit.json`, and
+  `scripts/check_three_pole_isomorphisms.py`.

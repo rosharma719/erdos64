@@ -1,0 +1,196 @@
+{
+  "order5_labeled_degree_pattern_graphs": 70,
+  "census": {
+    "3": {
+      "capped_connected_cubic_classes": 1,
+      "surviving_unordered_marked_3_pole_classes": 1,
+      "representatives": [
+        {
+          "graph6": "Bw",
+          "ports": [
+            0,
+            1,
+            2
+          ],
+          "path_length_sets": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "internal_cycles": [
+            3
+          ],
+          "is_clean": true
+        }
+      ]
+    },
+    "5": {
+      "capped_connected_cubic_classes": 2,
+      "surviving_unordered_marked_3_pole_classes": 0,
+      "representatives": []
+    },
+    "7": {
+      "capped_connected_cubic_classes": 5,
+      "surviving_unordered_marked_3_pole_classes": 2,
+      "representatives": [
+        {
+          "graph6": "F`MN?",
+          "ports": [
+            1,
+            3,
+            5
+          ],
+          "path_length_sets": [
+            [
+              3,
+              4,
+              5,
+              6
+            ],
+            [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            [
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          ],
+          "internal_cycles": [
+            3,
+            5,
+            6,
+            7
+          ],
+          "is_clean": true
+        },
+        {
+          "graph6": "FOpso",
+          "ports": [
+            1,
+            2,
+            3
+          ],
+          "path_length_sets": [
+            [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            [
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          ],
+          "internal_cycles": [
+            3,
+            5,
+            6
+          ],
+          "is_clean": true
+        }
+      ]
+    },
+    "9": {
+      "capped_connected_cubic_classes": 19,
+      "surviving_unordered_marked_3_pole_classes": 0,
+      "representatives": []
+    },
+    "11": {
+      "capped_connected_cubic_classes": 85,
+      "surviving_unordered_marked_3_pole_classes": 0,
+      "representatives": []
+    }
+  },
+  "one_known_15_vertex_example": {
+    "graph6": "Nhoo[?@?G?_K?E?@a@?",
+    "ports": [
+      6,
+      13,
+      14
+    ],
+    "path_length_sets": [
+      [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    ],
+    "internal_cycles": [
+      3,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "is_clean": true
+  }
+}

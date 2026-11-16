@@ -32,7 +32,8 @@ All connected graphs with three degree-2 vertices, the rest degree 3, and no
 | 17 | 75,524 | 6 | 0 |
 | 19 | 1,124,269 | 38 | 0 |
 
-`N` is odd by the degree sum. `N = 3` is the triangle. `N = 5` was not run.
+`N` is odd by the degree sum. `N = 3` is the triangle. `N = 5` has no clean
+3-pole (hand proof and brute force in `audits/three_pole_research_handoff.md`).
 A 21-vertex run was started and stopped; no result is recorded for it.
 
 The three survivors (`scripts/clean_three_poles_n_le_19.g6`), identified by
@@ -47,11 +48,25 @@ The three survivors (`scripts/clean_three_poles_n_le_19.g6`), identified by
 The path sets agree exactly with the independent table in
 `mixed_gadget_research.md`.
 
-**Cross-check with pass VI.** Each of the 8 labelled survivors of the rooted
-Hamiltonian census (`scripts/root_switching_certificates.json`: five at order
-8, three at order 16) is isomorphic to one of these three graphs with a cap
-vertex added. Two different methods (Hamiltonian chord matchings; unrestricted
-`geng`) agree.
+Full census record, including the unfinished order-21 run:
+`three_pole_census_manifest.md`.
+
+**Two separate verification claims.**
+
+1. *Identification (cross-check with pass VI).* For each of the 8 labelled
+   survivors of the rooted Hamiltonian census
+   (`scripts/root_switching_certificates.json`: five at order 8, three at
+   order 16) and each of its root-critical vertices, deleting that vertex
+   gives one of these three poles, with ports marked
+   (`scripts/check_three_pole_isomorphisms.py`). This shows the census
+   survivors are these poles. It says nothing about poles that do not arise
+   from a Hamiltonian cubic graph.
+2. *Uniqueness.* That H7 (two classes) and H15 (one class) are the **only**
+   clean poles at 7 and 15 vertices rests on the exhaustive `geng` census
+   alone, assuming that census is complete for the stated class.
+
+The catalog-based audit (`scripts/clean_pole_small_audit.json`,
+`scripts/audit_clean_poles.py`) independently agrees at orders 3 to 11.
 
 ## Result 2 — the triangle closure is finite [COMPUTED, signature-level]
 
@@ -89,12 +104,17 @@ The uniform H7 is clean but **not** triangle-built: it comes from a different
 the two H7 gadgets and H15. In particular every clean 3-pole has at most 15
 vertices.
 
-- T implies the cubic Erdős–Gyárfás conjecture. A connected cubic
-  counterexample has at least 50 vertices (no cubic counterexample of order
-  ≤ 48, Ducoffe–Dumitru, arXiv:2609.28594; cubic orders are even). Deleting a
-  vertex that is not a cut vertex leaves a connected graph whose three
-  degree-2 vertices are the deleted vertex's neighbours: a clean 3-pole on at
-  least 49 vertices.
+- **T implies the Erdős–Gyárfás conjecture for every cubic graph.**
+  *Proof.* A disconnected counterexample has a counterexample component, so
+  let `G` be a connected cubic graph with no power-of-two cycle. Let `v` be a
+  leaf of a spanning tree of `G`; then `G − v` is connected. Its three
+  degree-2 vertices are the distinct neighbours of `v`, every other vertex has
+  degree 3, and deleting a vertex creates no cycle. So `G − v` is a clean
+  3-pole, and T gives `|V(G)| ∈ {4, 8, 16}`. No cubic counterexample of order
+  ≤ 48 exists (Ducoffe–Dumitru, arXiv:2609.28594, Thm 5.1; K4 and every
+  cubic graph on 8 or 16 vertices are covered). ∎
+- So **WRP is a route to T, not a requirement**, and that route is
+  conditional on the decomposition lemma.
 - T is falsifiable by the same enumeration at 21, 23, 25 vertices.
 - If T holds, every piece hanging off a cyclic 3-edge cut of a counterexample
   has **interval** port path lengths. That is what lets the additive calculus
