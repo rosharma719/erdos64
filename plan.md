@@ -207,6 +207,23 @@ independently or refute it; do not build on it meanwhile.**
 
 # Status log (newest first)
 
+**2026-11-16 — external audit and halving track (`tracks/2026-11-halving/`).**
+All results below are single-session hand proofs, `NOT_FORMALLY_VERIFIED`,
+`NOVELTY UNCHECKED`; see that directory's README for the reading order.
+- **Literature moved.** arXiv:2609.28594 (Ducoffe–Dumitru) publishes S4, S5,
+  G1, the near-power edge lemma and the leaf-graph reduction, and verifies no
+  counterexample of order ≤ 40 (bipartite ≤ 66, cubic ≤ 48). arXiv:2609.04686
+  proves the 4-or-8 dichotomy through 23 vertices. Tracks A and E and the
+  3-connectivity range are superseded.
+- **`q(G) ≥ 4` independently confirmed** for order ≥ 37 by a shorter route.
+- **New:** Theorem A (no `2^j`-subdivision of a graph with one degree-2
+  vertex), Theorem B (necklace condition on two-pole pieces), Theorem C
+  (integer conditions), the truncation formula, and the reformulation
+  `EG ⇔ f(k) ≥ 2^{k+1}` with sufficient condition `f(k+1) ≥ 2 f(k)`.
+- **Negative:** Theorems B/C exclude no small piece; halving does not relate
+  the 10- and 24-vertex extremal graphs.
+- **Not fixed:** the `D ≥ 2` ledger contradiction and the failing `make test`.
+
 **2026-08-18 — CONSOLIDATION.** Seven branches merged into
 `consolidated/canonical` off `main`.
 - **Branch topology established by `git merge-base`, not assumed.** Five of
