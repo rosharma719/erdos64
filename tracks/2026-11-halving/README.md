@@ -56,3 +56,29 @@ order 20 (36,101, 0). The stored DRAT certificate re-verified with drat-trim.
   imports a root module of the same name.
 - With the floors 56/38/36, the even-order 3-connectivity range should read
   `[17,35]` (now moot given order ≥ 41).
+
+## Research passes added 2026-11-16 (later the same day)
+
+Supplied as a patch after pull request #2 was merged. **These were not written
+or reviewed by the audit session above, and their tests were not run when they
+were committed.** Each note states its own status; none claims a proof of the
+conjecture. Treat every result as CONJECTURAL until reproduced, per the house
+rule on claims from outside the current session.
+
+| note | pass | scripts |
+|---|---|---|
+| `partial_triangle_expansion_census.md` | partial triangle expansion | `partial_triangle_expansion.py`, `census_small_bases.py`, `derive_cubic_12_catalog.py` |
+| `mixed_gadget_research.md` | mixed three-port gadgets, 78-vertex family | `mixed_gadget_solver.py`, `mixed_gadget_census.py`, `exoo78_family.py`, `exoo78_witness.py` |
+| `cycle_space_obstruction.md` | cycle-space averaging | `cycle_space_obstruction.py` |
+| `three_cut_prime_transfer.md` | IV: cyclic three-edge cuts | `three_cut_transfer.py` |
+| `prime_pole_obstructions.md` | V: parity-resolved spectra | `prime_pole_obstructions.py` |
+| `root_orbit_switching.md` | VI: rooted prime graphs, two-ear switching | `root_orbit_switching.py`, `rooted_hamiltonian_matching.py`, `rooted_hamiltonian_census.cpp` |
+| `bridge_prime_reduction.md` | VII: bridge transfer | `bridge_reduction.py` |
+| `bridge_resilience_potential.md` | VIII: fractional resilience | `bridge_family_robustness.py`, `fractional_bridge_resilience_lp.py` |
+| `square_strip_minmax.md` | IX: square strips | `square_strip_obstruction.py` |
+| `boundary_linkage_composition.md` | X: boundary-linkage composition | `boundary_linkage.py` |
+| `switching_spectrum_necessity.md` | XI: spectral isolation, switch amplification | `spectral_switching.py` |
+
+Each script has a matching `test_*.py`. To run them:
+`python -m pytest -q tracks/2026-11-halving/scripts`. One test compiles
+`rooted_hamiltonian_census.cpp` with the local C++ compiler.
