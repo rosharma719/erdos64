@@ -1,0 +1,33 @@
+{
+  "note": "Unlabeled representatives discovered by seeded random sampling; completeness follows from pairwise non-isomorphism plus the published counts: 5 at n=8, 19 at n=10. Verify with census_small_bases.py.",
+  "connected_cubic": {
+    "8": [
+      "GaKkn?",
+      "GU``qW",
+      "G`G}eO",
+      "GLgImG",
+      "GbdcHS"
+    ],
+    "10": [
+      "ILQQS?dAo",
+      "IGcVAIgDO",
+      "ILbAOWo?w",
+      "IiGWtA@@g",
+      "Iic_PCT`_",
+      "IWd?X`P`_",
+      "IAiAjQCKG",
+      "IUHDOHDEO",
+      "IBbB@oEaG",
+      "IY_GIiaE_",
+      "ISOXKPoOo",
+      "IS@hu@GCW",
+      "ICTacY_Gg",
+      "IoLSQCo@W",
+      "IJBCSOsAo",
+      "IdH?YCw`O",
+      "Ihd?KObD_",
+      "I?ub?NOKO",
+      "IC`HV@QL?"
+    ]
+  }
+}

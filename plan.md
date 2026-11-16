@@ -207,6 +207,16 @@ independently or refute it; do not build on it meanwhile.**
 
 # Status log (newest first)
 
+**2026-11-16 (later) — research passes IV–XI added to `tracks/2026-11-halving/`.**
+Eleven notes with scripts, tests and certificates, supplied as a patch after
+pull request #2 merged: partial triangle expansion, mixed three-port gadgets
+and a 78-vertex family, cycle-space averaging, cyclic three-edge-cut transfer,
+prime pole obstructions, root-orbit switching, bridge transfer and resilience,
+square strips, boundary-linkage composition, and spectral isolation with
+independent-switch amplification. **Committed as supplied: not reviewed and
+tests not run in the committing session. CONJECTURAL until reproduced.** None
+claims a proof of the conjecture. Index in that directory's README.
+
 **2026-11-16 — external audit and halving track (`tracks/2026-11-halving/`).**
 All results below are single-session hand proofs, `NOT_FORMALLY_VERIFIED`,
 `NOVELTY UNCHECKED`; see that directory's README for the reading order.
