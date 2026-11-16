@@ -207,6 +207,15 @@ independently or refute it; do not build on it meanwhile.**
 
 # Status log (newest first)
 
+**2026-11-16 (evening) — clean three-port pieces classified through 19 vertices.**
+`tracks/2026-11-halving/three_port_classification.md`. [COMPUTED, two
+independent methods agree] The only connected graphs with three degree-2
+vertices, the rest degree 3, and no power-of-two cycle, on at most 19 vertices,
+are the triangle, the uniform and skew H7, and H15. Triangle-built such pieces
+have 1, 3, 7 or 15 vertices at every size. **Conjecture T** (that list is
+complete) implies the cubic conjecture. Plan for the next round:
+`research_brief_additive_reduction.md`.
+
 **2026-11-16 (later) — research passes IV–XI added to `tracks/2026-11-halving/`.**
 Eleven notes with scripts, tests and certificates, supplied as a patch after
 pull request #2 merged: partial triangle expansion, mixed three-port gadgets
