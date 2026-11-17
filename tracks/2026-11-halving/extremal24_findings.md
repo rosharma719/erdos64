@@ -1,3 +1,13 @@
+---
+id: extremal24-findings
+title: "How the 24-vertex extremal graphs avoid 4 and 8 (2026-11-16)"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Question. The smallest min-degree-3 graph with no 4-cycle has 10 vertices (Petersen). The smallest with no 4- or 8-cycle has 24. Do the 24-vertex graphs contain a \"half\" that is a Petersen-like object, as the halving calculus would want?"
+---
+
 # How the 24-vertex extremal graphs avoid 4 and 8 (2026-11-16)
 
 **Question.** The smallest min-degree-3 graph with no 4-cycle has 10 vertices

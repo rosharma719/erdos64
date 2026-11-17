@@ -1,3 +1,13 @@
+---
+id: square-strip-minmax
+title: "Research pass IX: square strips, exact rooted blockers, and a four-terminal transfer"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "16 November 2026. Status: proved structural statements for cyclically four-edge-connected cubic graphs; exact rooted 4-cycle hitting/packing min-max theorem; arbitrary-depth bridge-survival corollary; constructive path spectra for four-terminal square strips; finite reference checks."
+---
+
 # Research pass IX: square strips, exact rooted blockers, and a four-terminal transfer
 
 **16 November 2026.** Status: proved structural statements for cyclically four-edge-connected cubic graphs; exact rooted 4-cycle hitting/packing min-max theorem; arbitrary-depth bridge-survival corollary; constructive path spectra for four-terminal square strips; finite reference checks. This does **not** settle rooted dyadic-cycle robustness for 8-, 16-, or longer cycles, or the Erdős–Gyárfás conjecture. These square-ladder arguments are elementary; originality is **not** established.

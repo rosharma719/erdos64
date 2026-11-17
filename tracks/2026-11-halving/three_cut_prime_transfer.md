@@ -1,3 +1,13 @@
+---
+id: three-cut-prime-transfer
+title: "Structural pass IV: cyclic three-edge cuts as exact cycle-spectrum interfaces"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Research note · November 16, 2026. Follow-up to cycle_space_obstruction.md."
+---
+
 # Structural pass IV: cyclic three-edge cuts as exact cycle-spectrum interfaces
 
 **Research note · November 16, 2026.** Follow-up to `cycle_space_obstruction.md`.

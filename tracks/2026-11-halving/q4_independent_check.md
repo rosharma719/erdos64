@@ -1,3 +1,14 @@
+---
+id: q4-independent-check
+title: "q(G) ≥ 4: independent check (2026-11-16)"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Result. Every minimal Erdős–Gyárfás counterexample on at least 37 vertices has q(G) = 2n − 2 − m ≥ 4, i.e. m ≤ 2n − 6. Since no counterexample has order ≤ 40 (Ducoffe–Dumitru, arXiv:2609.28594, Theorem 5.1 — not re-verified here), this confirms the repo's q(G) ≥ 4."
+status_line: "Status. Hand argument plus one brute-force script (q4_check.py), both"
+---
+
 # q(G) ≥ 4: independent check (2026-11-16)
 
 **Result.** Every minimal Erdős–Gyárfás counterexample on at least 37 vertices

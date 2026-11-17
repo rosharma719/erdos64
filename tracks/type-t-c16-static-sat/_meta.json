@@ -1,0 +1,15 @@
+{
+  "type_t_port_c16_compilation.md": {
+    "id": "tracks-type-t-c16-static-sat-type-t-port-c16-compilation",
+    "title": "Type-T port cores: static short-cycle compilation",
+    "kind": "track-note",
+    "topics": [
+      "tracks",
+      "type-t-c16-static-sat"
+    ],
+    "doc_status": "active",
+    "date": "2026-08-18",
+    "summary": "For the fixed representative (j,a,c)=(4,28,4), the complete static C4/C8 layer has been compiled and independently checked. The C16 compiler replaces completion-by-completion cycle discovery with an AllSAT projection of every simple 16-cycle in a universal gadget graph.",
+    "hash_locked": true
+  }
+}

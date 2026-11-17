@@ -1,3 +1,13 @@
+---
+id: tracks-external-audits-order38-bundle-audit
+title: "Audit of the externally-supplied \"order-38 census\" bundle"
+kind: track-note
+topics: ["tracks", "external-audits"]
+doc_status: audit
+date: 2026-08-18
+summary: "Source: pasted by the user as ALL_PROOFS_AND_SOURCE.md plus a sha256sum-style file listing for ~370 result/data files. Only the markdown transcription (proof notes + C++/Python source) was actually available as content; the referenced data files themselves (manifest.json, partition_catalog.tsv, results//*.out|.err|.sta…"
+---
+
 # Audit of the externally-supplied "order-38 census" bundle
 
 **Source:** pasted by the user as `ALL_PROOFS_AND_SOURCE.md` plus a `sha256sum`-style file

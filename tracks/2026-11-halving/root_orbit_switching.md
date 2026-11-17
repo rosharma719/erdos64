@@ -1,3 +1,13 @@
+---
+id: root-orbit-switching
+title: "Research pass VI: rooted prime graphs, automorphism orbits, and balanced two-ear switching"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "16 November 2026. Status: proved elementary general structural lemmas; obtained a fully checkable finite theorem for Hamiltonian cubic graphs through order 16; found a concrete obstruction to a naive one-ear proof. The rooted prime conjecture and the Erdős–Gyárfás conjecture remain open."
+---
+
 # Research pass VI: rooted prime graphs, automorphism orbits, and balanced two-ear switching
 
 **16 November 2026. Status:** proved elementary general structural lemmas; obtained a fully checkable finite theorem for Hamiltonian cubic graphs through order 16; found a concrete obstruction to a naive one-ear proof. **The rooted prime conjecture and the Erdős–Gyárfás conjecture remain open.** No novelty claim is made for the elementary lemmas.

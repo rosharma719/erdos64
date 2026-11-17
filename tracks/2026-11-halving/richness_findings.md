@@ -1,3 +1,13 @@
+---
+id: richness-findings
+title: "Are path-length sets rich? Literature and small cases (2026-11-16)"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Question (from sumset_classification.md). In a C4-free graph with two poles and all other degrees ≥ 3, must the set of pole-to-pole path lengths contain a long run of consecutive lengths?"
+---
+
 # Are path-length sets rich? Literature and small cases (2026-11-16)
 
 **Question (from `sumset_classification.md`).** In a C4-free graph with two

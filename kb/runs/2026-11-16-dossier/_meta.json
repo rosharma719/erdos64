@@ -1,0 +1,59 @@
+{
+  "Erdos_Gyarfas_Research_Dossier.md": {
+    "id": "dossier-2026-11-16",
+    "title": "Erdős–Gyárfás Research Dossier (16 Nov 2026)",
+    "kind": "run",
+    "topics": [
+      "run-2026-11"
+    ],
+    "doc_status": "historical",
+    "date": "2026-11-16",
+    "summary": "Uploaded consolidated dossier of the earlier research conversation: minimal-counterexample work, 3-cut transfer, edge-bridging four-predecessor theorem, fractional resilience and its universal ceiling, theta-necklace and interlacement barriers, order-16/18 rooted census. Kept verbatim (has its own pandoc front matter)."
+  },
+  "Erdos_Gyarfas_Research_Dossier.pdf": {
+    "id": "dossier-2026-11-16-pdf",
+    "title": "Erdős–Gyárfás Research Dossier (PDF)",
+    "kind": "artifact",
+    "topics": [
+      "run-2026-11"
+    ],
+    "doc_status": "historical",
+    "date": "2026-11-16",
+    "summary": "PDF rendering of the uploaded dossier; not verified to match the markdown."
+  },
+  "source_archive/": {
+    "id": "dossier-source-archive",
+    "title": "Dossier source archive",
+    "kind": "artifact",
+    "topics": [
+      "run-2026-11"
+    ],
+    "doc_status": "historical",
+    "date": "2026-11-16",
+    "hash_locked": true,
+    "summary": "Extracted upload: notes for Passes IV–XII and XXIII–XXVI, scripts and certificates, continuation logs (order-16 census, order-18 bridge scan), July brief, prior-chat review and the November patch. Checksums in SHA256SUMS.txt; scripts hard-code /mnt/data paths."
+  },
+  "passes/13_tripod_theta_tree_backbones/": {
+    "id": "pass-13-tripod-theta",
+    "title": "Pass XIII — tripod–theta tree backbones",
+    "kind": "pass",
+    "topics": [
+      "run-2026-11"
+    ],
+    "doc_status": "active",
+    "date": "2026-11-17",
+    "hash_locked": true,
+    "summary": "Coherent decycling partitions of cyclically 4-edge-connected cubic graphs: tree-edge congestion, two-connector root-avoiding cycles, theta normal form; rank-two dyadic forcing fails already at orders 10 and 14 (certificates independently verified). Packet with MANIFEST sha256s."
+  },
+  "passes/14_rooted_stress_test/": {
+    "id": "pass-14-rooted-stress-test",
+    "title": "Pass XIV — rooted stress test (code, catalogs, results)",
+    "kind": "pass",
+    "topics": [
+      "run-2026-11"
+    ],
+    "doc_status": "active",
+    "date": "2026-11-17",
+    "summary": "C checker and generator: all 3-connected cubic graphs through 16 vertices (counts match OEIS) are root-robust except K4, two 8-vertex graphs and one 16-vertex graph; every known hard instance (4/8/16-free up to 126 vertices, the 370- and 26,550-vertex constructions) is root-robust, with independently verified witnesses."
+  }
+}

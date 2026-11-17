@@ -1,3 +1,13 @@
+---
+id: tracks-order30-census-t4-intersection-filter-t3-audit
+title: "Order-30 cubic t=3 census — filter built and validated, catalog generation in progress"
+kind: track-note
+topics: ["tracks", "order30-census"]
+doc_status: audit
+date: 2026-08-18
+summary: "The externally-supplied material referenced a generic triangle_quotient_intersection_filter.cpp for t=1..6, but only its theorem writeup (triangle_quotient_intersection_theorem.md) was actually supplied in any upload — the source file itself never arrived."
+---
+
 # Order-30 cubic t=3 census — filter built and validated, catalog generation in progress
 
 ## Why this filter is hand-built, not imported

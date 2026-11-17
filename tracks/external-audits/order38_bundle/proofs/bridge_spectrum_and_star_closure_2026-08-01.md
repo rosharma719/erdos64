@@ -1,3 +1,13 @@
+---
+id: bridge-spectrum-and-star-closure-2026-08-01
+title: "Bridge spectrum and star-closure lemmas"
+kind: track-note
+topics: ["tracks", "external-audits"]
+doc_status: active
+date: 2026-08-18
+summary: "Let H be a finite simple graph and let e=ab and f=cd be distinct edges. Form G=B(H;e,f) by deleting e,f, introducing new vertices x,y, and adding"
+---
+
 # Bridge spectrum and star-closure lemmas
 
 ## 1. Exact bridge-spectrum correspondence

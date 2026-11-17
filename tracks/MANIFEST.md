@@ -1,3 +1,13 @@
+---
+id: tracks-manifest
+title: "tracks/ — provenance and layout of the consolidation"
+kind: track-note
+topics: ["tracks"]
+doc_status: active
+date: 2026-08-18
+summary: "Consolidated 2026-08-18 onto consolidated/canonical, branched from main. This file records where every branch's work went, and why the layout is what it is. No original branch was deleted; all fifteen remain on origin with full commit history."
+---
+
 # tracks/ — provenance and layout of the consolidation
 
 **Consolidated 2026-08-18 onto `consolidated/canonical`, branched from

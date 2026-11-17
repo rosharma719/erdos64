@@ -1,3 +1,13 @@
+---
+id: tracks-order30-census-t4-intersection-filter-audit
+title: "Order-30 cubic t=4 census — closed, zero survivors (COMPUTATIONALLY VERIFIED)"
+kind: track-note
+topics: ["tracks", "order30-census"]
+doc_status: audit
+date: 2026-08-18
+summary: "Source: externally supplied (Codex) C++ filter (t4_intersection_filter.cpp) implementing the same exact triangle-quotient interval theorem already in use in this project's own order30_quotient_marking_census.py, claimed to be 24-42x faster via a specialized allowed-intersection bitmask table and a high-yield cycle-leng…"
+---
+
 # Order-30 cubic t=4 census — closed, zero survivors (COMPUTATIONALLY VERIFIED)
 
 **Source:** externally supplied (Codex) C++ filter (`t4_intersection_filter.cpp`)

@@ -1,3 +1,13 @@
+---
+id: prime-pole-obstructions
+title: "Structural pass V: parity-resolved spectra and rooted prime obstructions"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Research note, 16 November 2026. This pass tests the proposed program of lower-bounding the three-terminal score Phi on cyclically 4-edge-connected cubic components."
+---
+
 # Structural pass V: parity-resolved spectra and rooted prime obstructions
 
 **Research note, 16 November 2026.** This pass tests the proposed program of lower-bounding the three-terminal score `Phi` on cyclically 4-edge-connected cubic components. It finds a fundamental defect in the score for bipartite components, repairs part of that defect with parity-resolved spectra, and isolates a sharper obstruction involving dyadic cycles that avoid the attachment vertex. **The conjecture remains open. Novelty of these lemmas has not been established.**

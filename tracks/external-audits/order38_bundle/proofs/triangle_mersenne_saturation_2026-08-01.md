@@ -1,3 +1,14 @@
+---
+id: triangle-mersenne-saturation-2026-08-01
+title: "Triangle Mersenne saturation in a cubic minimal counterexample"
+kind: track-note
+topics: ["tracks", "external-audits"]
+doc_status: active
+date: 2026-08-18
+summary: "Date: 2026-08-01 Status: hand theorem, conditional only on the already-established nontriangle-edge witness lemma in contraction.md."
+status_line: "Status: hand theorem, conditional only on the already-established nontriangle-edge witness lemma in contraction.md."
+---
+
 # Triangle Mersenne saturation in a cubic minimal counterexample
 
 **Date:** 2026-08-01

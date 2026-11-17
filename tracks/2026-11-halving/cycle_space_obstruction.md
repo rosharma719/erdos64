@@ -1,3 +1,13 @@
+---
+id: cycle-space-obstruction
+title: "Structural jump: cycle-space averaging and constructive dyadic witnesses"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Research note, 2026-11-16. Continuation of mixed_gadget_research.md."
+---
+
 # Structural jump: cycle-space averaging and constructive dyadic witnesses
 
 **Research note, 2026-11-16.** Continuation of `mixed_gadget_research.md`.

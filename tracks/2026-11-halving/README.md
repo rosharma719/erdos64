@@ -1,3 +1,13 @@
+---
+id: tracks-2026-11-halving-readme
+title: "tracks/2026-11-halving — session of 2026-11-16"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Independent audit of the repository plus one new line of work. Nothing here edits the canonical ledger files other than one status-log entry in plan.md."
+---
+
 # tracks/2026-11-halving — session of 2026-11-16
 
 Independent audit of the repository plus one new line of work. Nothing here

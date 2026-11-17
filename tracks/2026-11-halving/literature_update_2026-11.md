@@ -1,3 +1,13 @@
+---
+id: literature-update-2026-11
+title: "Literature update for erdos64 (2026-11-16)"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "The repo's literature.md stops in August 2026 and records arXiv as unreachable. arXiv was reachable in this session. Papers below were read from the arXiv HTML unless marked \"abstract only\"."
+---
+
 # Literature update for erdos64 (2026-11-16)
 
 The repo's `literature.md` stops in August 2026 and records arXiv as

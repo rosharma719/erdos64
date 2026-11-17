@@ -1,3 +1,13 @@
+---
+id: research-brief-additive-reduction
+title: "Research brief: reducing the power-of-two target to an additive one"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "16 November 2026. A plan, not a result. Written for whoever does the next round of work, human or model. Builds on three_port_classification.md and passes IV–XI in this directory."
+---
+
 # Research brief: reducing the power-of-two target to an additive one
 
 **16 November 2026.** A plan, not a result. Written for whoever does the next

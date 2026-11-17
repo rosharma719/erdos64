@@ -1,3 +1,14 @@
+---
+id: three-port-classification
+title: "Clean three-port pieces: a complete small classification (2026-11-16)"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Status. Two computer-assisted results, each checked against an independent earlier computation in this track. Hand proofs are not written yet. Not machine-checked, not reviewed. No claim about the conjecture itself."
+status_line: "Status. Two computer-assisted results, each checked against an"
+---
+
 # Clean three-port pieces: a complete small classification (2026-11-16)
 
 **Status.** Two computer-assisted results, each checked against an

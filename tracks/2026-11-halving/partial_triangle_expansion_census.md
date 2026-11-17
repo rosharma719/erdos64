@@ -1,3 +1,14 @@
+---
+id: partial-triangle-expansion-census
+title: "Partial triangle expansion: exact constraints and a small complete census"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "2026-11-16 — Research continuation of PR #2"
+status_line: "Status: The cycle-length formula and reductions below have a hand proof and were tested by separate algorithms; they are not formally verified. The census is computationally verified, conditional on the published completeness of the cubic-g"
+---
+
 # Partial triangle expansion: exact constraints and a small complete census
 
 **2026-11-16 — Research continuation of PR #2**

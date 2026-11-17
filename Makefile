@@ -6,26 +6,34 @@ BUILD_DIR := .build
 CFLAGS := -O3 -std=c11 -Wall -Wextra -pedantic
 CXXFLAGS := -O3 -std=c++17 -Wall -Wextra -pedantic
 
-.PHONY: help setup check test syntax checkers clean
+.PHONY: help setup check test syntax checkers clean kb kb-check
 
 help:
 	@echo "make setup     Create .venv and install pinned development dependencies"
 	@echo "make check     Build native checkers, parse Python, and run the test suite"
 	@echo "make checkers  Build all native verification binaries under $(BUILD_DIR)/"
 	@echo "make clean     Remove disposable build and test caches"
+	@echo "make kb        Regenerate kb/INDEX.md, kb/index.json and llms.txt"
+	@echo "make kb-check  Validate knowledge-base metadata and generated indexes"
 
 setup:
 	python3 -m venv .venv
 	.venv/bin/python -m pip install --upgrade pip
 	.venv/bin/python -m pip install -r requirements-dev.txt
 
-check: checkers syntax test
+check: checkers syntax kb-check test
+
+kb:
+	python3 tools/kb.py index
+
+kb-check:
+	python3 tools/kb.py check
 
 test:
 	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m pytest -p no:cacheprovider -q
 
 syntax:
-	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -c 'import ast, pathlib; files = sorted(pathlib.Path("verifier").glob("*.py")) + sorted(pathlib.Path("tests").glob("*.py")); [ast.parse(path.read_text(), filename=str(path)) for path in files]; print(f"syntax: {len(files)} Python files")'
+	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -c 'import ast, pathlib; files = sorted(pathlib.Path("verifier").glob("*.py")) + sorted(pathlib.Path("tests").glob("*.py")) + sorted(pathlib.Path("tools").glob("*.py")); [ast.parse(path.read_text(), filename=str(path)) for path in files]; print(f"syntax: {len(files)} Python files")'
 
 checkers: \
 	$(BUILD_DIR)/check_g6 \

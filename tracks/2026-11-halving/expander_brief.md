@@ -1,3 +1,13 @@
+---
+id: expander-brief
+title: "Sublinear expanders and the Erdős–Gyárfás conjecture: a working brief"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Date: 2026-11-16. Tags: [SRC: x] = read in source x; [INF] = my inference, not checked against a source. Source keys: LM = Liu–Montgomery; LET = Letzter survey; MON = Montgomery survey; SV = Sudakov–Verstraëte; FK = Friedman–Krivelevich; DD = Ducoffe–Dumitru; GAR = Garcia; HJYY = Hou–Jin–Yang–Yang; REPO = project files…"
+---
+
 # Sublinear expanders and the Erdős–Gyárfás conjecture: a working brief
 
 Date: 2026-11-16. Tags: [SRC: x] = read in source x; [INF] = my inference, not checked against a source.

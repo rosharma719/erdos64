@@ -1,0 +1,57 @@
+{
+  "type_b_compatibility.md": {
+    "id": "type-b-compatibility",
+    "title": "Global Type-B compatibility",
+    "kind": "note",
+    "topics": [
+      "type-b"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "pivots to the complete Type-B cut: records the exact T3/T4/T5 scopes, proves the five-category cycle decomposition, reconstructs the asymmetric triangle-anchored spectra, gives an infinite mutually compatible forced-core family, and proves T9B paired replacement criticality plus its stronger real R/P-edge consequence.",
+    "status_line": "Status. Hand-written graph-theoretic and arithmetic proofs, with an",
+    "legacy_path": "type_b_compatibility.md",
+    "hash_locked": true
+  },
+  "type_b_equality_order.md": {
+    "id": "type-b-equality-order",
+    "title": "Minimum-order realizability of the smallest Type-B tuple",
+    "kind": "note",
+    "topics": [
+      "type-b"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "closes the minimum-order embedding gap for the smallest tuple. Deleting the degree-one bridge terminal reduces every possible 19-vertex bridge, independently of path overlap, to an 18-vertex {C4,C8}-free graph with 26 or 27 edges and at most two degree-two vertices.",
+    "legacy_path": "type_b_equality_order.md",
+    "hash_locked": true
+  },
+  "type_b_one_slack.md": {
+    "id": "type-b-one-slack",
+    "title": "One-slack `Pi0` bridges: exact reduction and open layer",
+    "kind": "note",
+    "topics": [
+      "type-b"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "derives the exact 20-vertex bridge reduction: after deleting x, the 19-vertex remainder has one vertex off a distinguished 18-vertex path, 28 or 29 edges, and at most two degree-two vertices.",
+    "status_line": "Status. This file gives a hand-written one-slack reduction and a",
+    "legacy_path": "type_b_one_slack.md",
+    "hash_locked": true
+  },
+  "type_b_realizability.md": {
+    "id": "type-b-realizability",
+    "title": "Realizability of the irreducible Type-B family",
+    "kind": "note",
+    "topics": [
+      "type-b"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "freezes that exact family and its first twenty targets, proves sharp canonical path-union and degree bounds, gives a two-solver UNSAT certificate for one fixed minimum-order paired embedding, enumerates all 3,298 Balaban C16s, and exhausts 826 witness-preserving degree-preserving 2-switches.",
+    "status_line": "Status. This phase combines hand-written proofs, explicit finite graph",
+    "legacy_path": "type_b_realizability.md",
+    "hash_locked": true
+  }
+}

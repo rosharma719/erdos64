@@ -1,3 +1,13 @@
+---
+id: bridge-resilience-potential
+title: "Research pass VIII: fractional dyadic-cycle resilience under edge bridging"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "16 November 2026. Status: a proved, general quantitative bridge-survival theorem; an exact linear-programming dual; an infinite-family result for arbitrarily many bridge operations on large prism/Möbius-ladder bases; finite verification of the small one-bridge exceptions; and explicit counterexamples to two tempting st…"
+---
+
 # Research pass VIII: fractional dyadic-cycle resilience under edge bridging
 
 **16 November 2026.** Status: a proved, general quantitative bridge-survival theorem; an exact linear-programming dual; an infinite-family result for arbitrarily many bridge operations on large prism/Möbius-ladder bases; finite verification of the small one-bridge exceptions; and explicit counterexamples to two tempting stronger statements. **The full prime bridge-stability conjecture and the Erdős–Gyárfás conjecture remain open.** These elementary incidence and LP arguments have not been established as new in the broader literature.

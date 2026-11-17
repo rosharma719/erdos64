@@ -1,0 +1,2297 @@
+{
+ "schema": "erdos64-kb/1",
+ "documents": [
+  {
+   "id": "dossier-2026-11-16-pdf",
+   "title": "Erdős–Gyárfás Research Dossier (PDF)",
+   "kind": "artifact",
+   "doc_status": "historical",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-16",
+   "summary": "PDF rendering of the uploaded dossier; not verified to match the markdown.",
+   "path": "kb/runs/2026-11-16-dossier/Erdos_Gyarfas_Research_Dossier.pdf",
+   "metadata_source": "kb/runs/2026-11-16-dossier/_meta.json"
+  },
+  {
+   "id": "dossier-source-archive",
+   "title": "Dossier source archive",
+   "kind": "artifact",
+   "doc_status": "historical",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-16",
+   "summary": "Extracted upload: notes for Passes IV–XII and XXIII–XXVI, scripts and certificates, continuation logs (order-16 census, order-18 bridge scan), July brief, prior-chat review and the November patch. Checksums in SHA256SUMS.txt; scripts hard-code /mnt/data paths.",
+   "path": "kb/runs/2026-11-16-dossier/source_archive/",
+   "hash_locked": true,
+   "metadata_source": "kb/runs/2026-11-16-dossier/_meta.json"
+  },
+  {
+   "id": "c-anchoring-nesting",
+   "title": "Few rigid candidates: anchoring and nesting lemmas",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "In a 2-connected bounded-degree α-expander with δ ≥ 3, after removing a set W′ with robust core U, every rigid (mod p) candidate cycle is anchored at a defect, and each defect anchors at most κ/β + 1 pairwise-disjoint candidates. Hence at most O(Δ|W′|κ/β) of any family of disjoint candidates are …",
+   "path": "kb/claims/c-anchoring-nesting.md",
+   "depends_on": [
+    "c-short-nonzero-residue-cycles"
+   ],
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/18_robust_specials.md#1",
+    "kb/runs/2026-11-16-dossier/passes/18_robust_specials.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-coin-gcd-parity",
+   "title": "Coin lemma, gcd reduction and odd-cycle parity gadget",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Values v1..vt ≤ h with gcd g, each with multiplicity M ≥ (t+1)h² + Ag, have subset sums containing every multiple of g in [t h², M v1]. Repeated pigeonhole on gadgets with steps ≢ 0 mod m drives the gcd to 1 or 2 in ≤ log2 h + 1 rounds. In a 2-connected non-bipartite graph the shortest odd cycle …",
+   "path": "kb/claims/c-coin-gcd-parity.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#2",
+    "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#3"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-conditional-expander-theorem",
+   "title": "EG for 2-connected bounded-degree δ≥3 expanders (conditional)",
+   "kind": "claim",
+   "label": "CONJECTURAL",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Every sufficiently large 2-connected α-expander with 3 ≤ δ ≤ Δ(G) ≤ Δ contains cycles of every even length in a linear range, in particular a cycle whose length is a power of two; and cycles of all residues mod every odd k (answering the bounded-degree case of Martinsson–Steiner's question).",
+   "path": "kb/claims/c-conditional-expander-theorem.md",
+   "depends_on": [
+    "c-short-nonzero-residue-cycles",
+    "c-anchoring-nesting",
+    "c-pi-gadget",
+    "c-coin-gcd-parity",
+    "q-mod4-bipartite-pockets",
+    "q-robust-linkage",
+    "q-fk-threading-constants",
+    "q-subcase-t",
+    "q-lyngsie-merker-check"
+   ],
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#6",
+    "kb/runs/2026-11-16-dossier/passes/19_threading_and_gaps.md#1"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-delta3-induced-cycle-adjuster",
+   "title": "Induced cycles are ±1/±2 length adjusters when δ ≥ 3",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "If δ(G) ≥ 3 and Q is an induced cycle, any two vertices of Q have edges leaving Q; entering and leaving Q at two vertices at arc distance ⌊(q−1)/2⌋ gives two routes whose lengths differ by 1 or 2.",
+   "path": "kb/claims/c-delta3-induced-cycle-adjuster.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#4"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-fan-pocket-adjusters",
+   "title": "2-separated pockets and every edge give lengths differing by 1 or 2 (from Fan 2002)",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "If δ(G) ≥ 3 and (A,B) is a separation with A∩B = {u,v} and (G[B],u,v) rooted 2-connected, then any cycle through B can be rerouted inside B to change its length by 1 or 2. In a 2-connected δ≥3 graph every edge lies on two cycles whose lengths differ by 1 or 2.",
+   "path": "kb/claims/c-fan-pocket-adjusters.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/16_crux_sharpening.md#2",
+    "kb/runs/2026-11-16-dossier/LITERATURE_REVIEW.md#5"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-growth-reformulation",
+   "title": "EG ⟺ f(k) ≥ 2^(k+1) for all k",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Let f(k) be the minimum order of a graph with δ ≥ 3 and no cycle of length 2^2,…,2^k. Then the Erdős–Gyárfás conjecture holds iff f(k) ≥ 2^(k+1) for every k ≥ 2.",
+   "path": "kb/claims/c-growth-reformulation.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-pi-gadget",
+   "title": "Π-gadget: a position- and modulus-free length adjuster",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "If a path Π outside a path M meets M through rungs at x, y, w (same order along both, middle rung a single edge), then among the three reroutings of M through Π some length change is ≢ 0 (mod m) for every m ≥ 3; in general s1 + s2 − s3 = 2·t_y. Five rungs always contain three in matching order (E…",
+   "path": "kb/claims/c-pi-gadget.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#1"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-resilience-ceiling",
+   "title": "Universal ceiling on fractional dyadic resilience",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "For a graph with n vertices, m edges and shortest dyadic cycle length q, the fractional resilience satisfies ρ(G) ≤ m(n−q)/(2nq); for cubic graphs ρ(G) ≤ 3(n−q)/(4q).",
+   "path": "kb/claims/c-resilience-ceiling.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/Erdos_Gyarfas_Research_Dossier.md#4.1"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-rigid-pocket-example",
+   "title": "δ ≥ 3 + bounded degree + expansion do not force long cycles of nonzero residue",
+   "kind": "claim",
+   "label": "SKETCH",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "For each odd prime p there are arbitrarily large cubic α-expanders (α = α(p)) in which every cycle of length > 5 has length ≡ 0 mod p: subdivide a cubic expander (each edge into a path of length p) and attach a pendant K4-with-subdivided-edge to each new vertex.",
+   "path": "kb/claims/c-rigid-pocket-example.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/16_crux_sharpening.md#1"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-rooted-robustness-fails-n16",
+   "title": "Rooted robustness fails for 3-connected cubic graphs (K4, two on 8, one on 16 vertices)",
+   "kind": "claim",
+   "label": "COMPUTATIONALLY VERIFIED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Among all 3-connected cubic graphs on ≤ 16 vertices (generated by edge-bridging from K4; class counts 1, 2, 4, 14, 57, 341, 2828 match OEIS A204198), exactly K4, two 8-vertex graphs (K4 with two vertices truncated; K3,3 with one vertex truncated) and one 16-vertex graph (graph6 `OJO?_U?_kA?@H?B?_…",
+   "path": "kb/claims/c-rooted-robustness-fails-n16.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/14_rooted_stress_test/results/rc3conn_n16.txt",
+    "kb/runs/2026-11-16-dossier/passes/14_rooted_stress_test/results/root_critical_n16.g6",
+    "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#3"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-rooted-robustness-hard-instances",
+   "title": "All known 4/8/16-free cubic graphs are root-robust",
+   "kind": "claim",
+   "label": "COMPUTATIONALLY VERIFIED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Every vertex is avoided by a dyadic cycle in: all {C4,C8}-free cubic graphs on 24 and 26 vertices; 48 C8-free girth-5 graphs on 30 vertices; 100 large vertex-transitive survivors; 18 {C4,C8,C16}-free cubic graphs on 82–126 vertices (via C32); the 370-vertex {C4..C32}-free graph (via C64); the 26,…",
+   "path": "kb/claims/c-rooted-robustness-hard-instances.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/14_rooted_stress_test/results/wit_hard.txt",
+    "kb/runs/2026-11-16-dossier/passes/14_rooted_stress_test/results/external_sha256.txt"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-short-nonzero-residue-cycles",
+   "title": "Short cycles of nonzero residue in 2-connected δ≥3 expanders, for every α",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "For every α ∈ (0,1] there is C(α) such that every 2-connected α-expander on n ≥ n0 vertices with δ ≥ 3 contains, for every odd prime p, a cycle of length ≢ 0 (mod p) and at most C log n.",
+   "path": "kb/claims/c-short-nonzero-residue-cycles.md",
+   "depends_on": [
+    "c-fan-pocket-adjusters"
+   ],
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/17_short_nonzero_residue.md#1"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-three-cut-rooted-gluing",
+   "title": "Rooted robustness glues across nontrivial 3-edge cuts",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "If G is 3-connected cubic with a nontrivial 3-edge cut (A,B), and the contractions G_A, G_B are root-robust, then G is root-robust. A minimum counterexample to root-robustness (n ≥ 10) has, on the side of every nontrivial 3-cut away from the root, a triangle or one of two specific 7-vertex pieces.",
+   "path": "kb/claims/c-three-cut-rooted-gluing.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#3"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-three-escapable-lemma",
+   "title": "Three escape points on a cycle of length ≢ 0 mod m give a step ≢ 0 mod m",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "For a cycle of length q and any three of its vertices, if m is an odd prime power (or a power of 2) not dividing q, some pair has arc-length difference ≢ 0 mod m. Moreover a cycle of length ≥ 2k/β + k in a β-expander has k vertices with vertex-disjoint routes to any set of more than half the vert…",
+   "path": "kb/claims/c-three-escapable-lemma.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/16_crux_sharpening.md#3",
+    "kb/runs/2026-11-16-dossier/passes/17_short_nonzero_residue.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "retrospective",
+   "title": "process findings from the multi-branch Erdős #64 effort",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-08-18",
+   "summary": "what worked and what did not across the whole multi-branch effort, and the rules adopted going forward.",
+   "path": "kb/core/RETROSPECTIVE.md",
+   "legacy_path": "RETROSPECTIVE.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "experiments",
+   "title": "Erdős #64",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-07-25",
+   "summary": "every run: command, params, output, interpretation.",
+   "path": "kb/core/experiments.md",
+   "legacy_path": "experiments.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "legacy-readme",
+   "title": "Legacy README (pre-2026-11 layout guide)",
+   "kind": "core",
+   "doc_status": "historical",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-08-18",
+   "summary": "The repository README as of the August consolidation plus November additions: branch topology, and a paragraph-length description of every legacy note (paths refer to the old flat layout; use tools/kb.py resolve).",
+   "path": "kb/core/legacy_readme.md",
+   "legacy_path": "README.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "lemmas",
+   "title": "Erdős #64",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-07-25",
+   "summary": "candidate lemmas with status labels; Track-B/Track-C results.",
+   "path": "kb/core/lemmas.md",
+   "status_line": "Status labels: PROVED (by me, from definitions, here) / KNOWN FROM LITERATURE /",
+   "legacy_path": "lemmas.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "literature",
+   "title": "Literature — Erdős–Gyárfás conjecture (Erdős Problem #64)",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-07-25",
+   "summary": "verified frontier (P₁₃-free, diameter-2, Carr 2026 minimal- counterexample structure, Royle–Markström bounds), with a master table.",
+   "path": "kb/core/literature.md",
+   "legacy_path": "literature.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "manuscript",
+   "title": "Structural results toward the Erdős–Gyárfás conjecture: separator lemmas, an ordering-defect obstruction, and a one-pole gadget theory",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-07-29",
+   "summary": "structural manuscript draft (2026-07-25, one-pole sections FROZEN): pulls together S4, S5, O1, O3, O4a, O4′, O5, O6, O7, and the suppressed-edge equivalence into a single citable write-up.",
+   "path": "kb/core/manuscript.md",
+   "legacy_path": "manuscript.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "plan",
+   "title": "Erdős–Gyárfás (Erdős #64): consolidated strategy and status ledger",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-07-25",
+   "summary": "strategy, rankings, status log, failed/blocked approaches.",
+   "path": "kb/core/plan.md",
+   "status_line": "Status 2026-08: OPEN.",
+   "legacy_path": "plan.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "proof",
+   "title": "Erdős #64: consolidated status of proof / counterexample work",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-07-25",
+   "summary": "current rigorously-established progress vs. conjectural notes.",
+   "path": "kb/core/proof.md",
+   "legacy_path": "proof.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "verification-status",
+   "title": "Verification status",
+   "kind": "core",
+   "doc_status": "active",
+   "topics": [
+    "core"
+   ],
+   "date": "2026-07-29",
+   "summary": "theorem/experiment verification matrix, including explicit NOT_FORMALLY_VERIFIED, missing-data, and incomplete-range labels.",
+   "path": "kb/core/verification_status.md",
+   "legacy_path": "verification_status.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "kb-schema",
+   "title": "Knowledge-base layout and metadata schema",
+   "kind": "guide",
+   "doc_status": "active",
+   "topics": [
+    "guide"
+   ],
+   "date": "2026-11-17",
+   "summary": "How kb/ is organized, the front-matter schema every document carries, the _meta.json sidecar mechanism for hash-locked or archival files, and the generated indexes.",
+   "path": "kb/README.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "state-of-knowledge",
+   "title": "State of knowledge — read this first",
+   "kind": "guide",
+   "doc_status": "active",
+   "topics": [
+    "guide"
+   ],
+   "date": "2026-11-17",
+   "summary": "Curated one-page state of the Erdős–Gyárfás project: the conjecture, verified frontier, what this repository has established (with labels), the November 2026 expander program, open problems, dead ends, and where to look next.",
+   "path": "kb/STATE.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "literature-review-2026-11",
+   "title": "Literature review (Nov 2026)",
+   "kind": "literature",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Every external result used in the November run with a verification level (read / abstract / secondary / dossier) and novelty positioning of our results; flags Fan (2002) and Lyngsie–Merker as must-check.",
+   "path": "kb/runs/2026-11-16-dossier/LITERATURE_REVIEW.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "central-bridge-templates",
+   "title": "normalized single-bridge output templates",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "central-bridge"
+   ],
+   "date": "2026-07-29",
+   "summary": "frozen A/P/S single-bridge output templates (2026-07-27): normalizes, without paraphrase, the exact proved formulas from contraction_block_cut_tree.md/ contraction_leaf_blocks.md into one reference table (admissible-pair A, shared-port P, S5 S), resolving precisely the P output's 2^m-2 role left ambiguous by a prior co…",
+   "path": "kb/notes/central-bridge/central_bridge_templates.md",
+   "legacy_path": "central_bridge_templates.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "central-bridge-triangle",
+   "title": "Type T triangle: shared witnesses and paired central bridges",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "central-bridge"
+   ],
+   "date": "2026-07-29",
+   "summary": "Type T triangle: paired central bridges (2026-07-27): classifies T2 (two cubic triangle vertices)/T3 (three), proves no two cubic triangle vertices ever share an external neighbour (Lemma NE, a direct C4-forcing argument), records the triangle-contraction attachment-pair symmetry orbits (T2: {a,b} inequivalent to {a,c}…",
+   "path": "kb/notes/central-bridge/central_bridge_triangle.md",
+   "legacy_path": "central_bridge_triangle.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "central-bridge-triangle-addendum",
+   "title": "two sharpenings after the Part XIII close",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "central-bridge"
+   ],
+   "date": "2026-07-29",
+   "summary": "two sharpenings after the Part XIII close (2026-07-27): does not reopen the closed sequence or add a new part number; records two narrow corrections found while independently re-deriving the same ground.",
+   "path": "kb/notes/central-bridge/central_bridge_triangle_addendum.md",
+   "legacy_path": "central_bridge_triangle_addendum.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "central-bridge-triangle-final",
+   "title": "the (A,A) case, T3 consistency, and the final assessment",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "central-bridge"
+   ],
+   "date": "2026-07-29",
+   "summary": "the (A,A) case, T3 consistency, and the final assessment (2026-07-27, current top priority): proves (Part X.0) that the terminal pairs {x,X_x} and {y,X_y} of any two triangle-anchored admissible pairs are always 2-subsets of the same 3-element triangle, hence always either identical or share exactly one element — the c…",
+   "path": "kb/notes/central-bridge/central_bridge_triangle_final.md",
+   "legacy_path": "central_bridge_triangle_final.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "central-bridge-triangle-pole-forcing",
+   "title": "the theta-chord case is forced whenever the pole is cubic, eliminating T3",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "central-bridge"
+   ],
+   "date": "2026-07-29",
+   "summary": "resolves type_t_recovery_audit.md's own \"theta-chord case IV.1(ii)\" row (there listed as open): a degree-counting argument shows a cubic Type-T vertex's aligned theta pole X_x can never itself be cubic — its fixed 3-edge budget (already committed to P_0, plus the N[x]-witness P_2's established avoidance of Y_x) forces…",
+   "path": "kb/notes/central-bridge/central_bridge_triangle_pole_forcing.md",
+   "status_line": "Status. Hand-written proof, independently cross-checked by an",
+   "legacy_path": "central_bridge_triangle_pole_forcing.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "central-bridge-triangle-s5",
+   "title": "S5 cases at a Type T triangle",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "central-bridge"
+   ],
+   "date": "2026-07-29",
+   "summary": "S5 and shared-port cases at a Type T triangle (2026-07-27): Part VI.1 proves that if two cubic triangle vertices' central bridges both independently hit the S5 outcome, their cut vertices must coincide (S5's own uniqueness) — and, new here, that the two attachment-free leaves are then *forced onto the same lobe* (never…",
+   "path": "kb/notes/central-bridge/central_bridge_triangle_s5.md",
+   "legacy_path": "central_bridge_triangle_s5.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "cubic-edge-connectivity",
+   "title": "A cubic minimal counterexample of even order in [17,33] has no 2-edge-cut",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "connectivity"
+   ],
+   "date": "2026-08-02",
+   "summary": "(new lemma — the edge-connectivity side of the separator program is untouched territory until now)",
+   "path": "kb/notes/connectivity/cubic_edge_connectivity.md",
+   "legacy_path": "cubic_edge_connectivity.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "diamond-exterior-r20-closure",
+   "title": "Diamond exterior (R20's last open case): zero candidates, dual-verified",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "connectivity"
+   ],
+   "date": "2026-07-31",
+   "summary": "[COMPUTATIONALLY VERIFIED, exhaustive, dual-tool cross-validated — but see the explicit scope caveat below before treating \"R20\" itself as fully closed].",
+   "path": "kb/notes/connectivity/diamond_exterior_r20_closure.md",
+   "legacy_path": "diamond_exterior_r20_closure.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "one-pole",
+   "title": "the rooted one-pole gadget theory",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "connectivity"
+   ],
+   "date": "2026-07-29",
+   "summary": "rooted one-pole gadget theory (2026-07-25, current top priority): O1–O3 prove a master-minimal one-pole graph is fully 2-connected; O5 proves it always has a K4-minor (unconditional rigid core); O4′ gives an admissible-path corollary (cited theorem); O4a + the terminal-spectrum identity give the exact failure structure…",
+   "path": "kb/notes/connectivity/one_pole.md",
+   "status_line": "Status as of 2026-07-25. Formalizes the \"induction gadget\" direction:",
+   "legacy_path": "one_pole.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "s6-case-tree",
+   "title": "S6 dependency tree and the leaf-R replacement boundary",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "connectivity"
+   ],
+   "date": "2026-07-29",
+   "summary": "exact Type A/B/C dependency tree, the proved spectrum-safe replacement principle, its scope boundary, and the first unseen genuine leaf-R configuration.",
+   "path": "kb/notes/connectivity/s6_case_tree.md",
+   "legacy_path": "s6_case_tree.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "separator-theorem-order32-gap-analysis",
+   "title": "Order-32 3-connectivity: gap analysis",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "connectivity"
+   ],
+   "date": "2026-07-30",
+   "summary": "Status of this file. Scoping/triage report. It contains (a) an inventory of what this repository actually proves about 2-connectivity, 2-cuts, and terminal-path signatures, with exact citations; (b) three short new corollaries that follow from already-proved statements by citation only, each labelled with the project's…",
+   "path": "kb/notes/connectivity/separator_theorem_order32_gap_analysis.md",
+   "status_line": "Status of this file. Scoping/triage report. It contains (a) an inventory",
+   "legacy_path": "separator_theorem_order32_gap_analysis.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "three-connectivity-general-order",
+   "title": "Generalizing beyond n=32: every even-order minimal counterexample with",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "connectivity"
+   ],
+   "date": "2026-08-01",
+   "summary": "[COMPUTATIONALLY_VERIFIED — a direct generalization of type_c_closure_ order32.md, f12_order12_result.md, and type_b_11_22_decomposition.md; no new computation, only recognizing that all the underlying per-bridge order bounds are stated for a bridge B_i in isolation and never actually used the target order n(G)=32 anyw…",
+   "path": "kb/notes/connectivity/three_connectivity_general_order.md",
+   "legacy_path": "three_connectivity_general_order.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "two-cut",
+   "title": "toward 3-connectivity of a minimal counterexample",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "connectivity"
+   ],
+   "date": "2026-07-29",
+   "summary": "Type A/B/C two-cut theory through T1–T6 and the exact remaining SPQR/replacement boundary; 3-connectivity remains conjectural.",
+   "path": "kb/notes/connectivity/two_cut.md",
+   "status_line": "Status as of 2026-07-27 (T4/T5 classification retained; T9B whole-pair",
+   "legacy_path": "two_cut.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "z3-lifts",
+   "title": "Exact normalized cyclic Z3 lifts",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "constructions"
+   ],
+   "date": "2026-07-29",
+   "summary": "normalization, completeness, implementation, and exact elimination statement for cyclic Z3 lifts of the four certified bases; Part III's algebraic compression (projection-type classification, full-space hyperplane coverage, compact standalone certificate) and Part IV's Z3-vs-Z5/order-26 feasibility comparison.",
+   "path": "kb/notes/constructions/z3_lifts.md",
+   "legacy_path": "z3_lifts.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction",
+   "title": "the contraction-criticality endgame",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "contraction-criticality endgame (2026-07-26): the near-power edge lemma (every nontriangle edge of a minimal counterexample lies on a 2^k+1-cycle), the safe-contraction obstruction (no safe nontriangle edge ever exists — the naive \"safe edge\" target is logically equivalent to the conjecture itself, not an easier sub-ta…",
+   "path": "kb/notes/contraction/contraction.md",
+   "legacy_path": "contraction.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-atoms",
+   "title": "the contractible-atom generalization",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "contractible-atom generalization (2026-07-27): the general atom-lifting lemma (2^k+r for any connected atom A satisfying (H2)/(H3)), specialized to recover the edge lemma and to a new triangle-pair lemma (2^k+1,2^k+2 from every C4-free triangle, automatically, no edge selection needed); the Type N/Type T local cubic-ve…",
+   "path": "kb/notes/contraction/contraction_atoms.md",
+   "legacy_path": "contraction_atoms.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-block-cut-tree",
+   "title": "resolving the multi-attachment obstruction",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "resolving the multi-attachment obstruction via block-cut trees (2026-07-27): builds the attachment core T_A(B) (minimal subtree of B's block-cut tree spanning every marked block) and proves its five basic properties; proves the attachment-free-leaf case reduces to one exact S5 configuration (z cut vertex, exactly 2 of…",
+   "path": "kb/notes/contraction/contraction_block_cut_tree.md",
+   "legacy_path": "contraction_block_cut_tree.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-central-bridge",
+   "title": "the central-bridge lemma and topological-K4 reduction",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "the central-bridge lemma and topological-K4 reduction (2026-07-27): CB1 (PROVED, by direct citation of S5): the theta bridge carrying the cubic center's third edge can *never* be single-attachment, since v's own degree (3) already contradicts S5's forced degree-4 for any cut vertex — sharper than the prior session's ge…",
+   "path": "kb/notes/contraction/contraction_central_bridge.md",
+   "legacy_path": "contraction_central_bridge.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-intersections",
+   "title": "decomposing non-clean witness intersections",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "decomposing non-clean witness intersections (2026-07-27): proves the exact cell-decomposition identity for two same-endpoint paths in the non-crossing case (|P|-|Q|=sum over divergent cells, each yielding a genuine cycle alpha_i+beta_i; common-component cells yield no cycle); tests and disproves the \"canonical witnesse…",
+   "path": "kb/notes/contraction/contraction_intersections.md",
+   "legacy_path": "contraction_intersections.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-leaf-blocks",
+   "title": "arithmetic of admissible pairs and attachment-rich leaves",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "arithmetic of admissible pairs and attachment-rich leaves (2026-07-27): the endpoint-location route census (three routes same-branch; four-to-six different-branch; the theta's own p-q spectrum when both attachments are poles) feeds a compact finite excluded-residue template family — no contradiction claimed, as expecte…",
+   "path": "kb/notes/contraction/contraction_leaf_blocks.md",
+   "legacy_path": "contraction_leaf_blocks.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-ma2-integration",
+   "title": "S5 integration, Type T setup, and final assessment",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "S5 integration, Type T setup, and final assessment (2026-07-27): integrates the central-bridge-induced S5 configuration precisely (which lobe holds Theta, which holds the attachment-free leaf, exact lobe signatures) without reopening lemmas.md's general cut-vertex program; sets up the joint two-central-bridge Type T in…",
+   "path": "kb/notes/contraction/contraction_ma2_integration.md",
+   "legacy_path": "contraction_ma2_integration.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-mixed-witness",
+   "title": "mixed power/near-power path systems at a Type N vertex",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "mixed power/near-power path systems at a Type N vertex (2026-07-27): derives, by orbit-counting (not labelled enumeration), exactly four combined endpoint orbits (T1, T2a, T2b, T2c) for the joint nontriangle-edge and closed-neighbourhood witnesses at a Type N vertex, then resolves the exact cycle-length arithmetic of e…",
+   "path": "kb/notes/contraction/contraction_mixed_witness.md",
+   "legacy_path": "contraction_mixed_witness.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-neighborhood",
+   "title": "closed-neighborhood contraction at a cubic vertex",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "closed-neighborhood contraction (2026-07-27): A=N[v] for a cubic v is always a valid atom ((H2)/(H3) automatic, and v itself is provably never a boundary attachment vertex), giving the cubic power-path lemma CN1 (every cubic vertex sits on a 2^k+2-cycle) and, at Type T vertices, a second pair of near-power offsets {2^k…",
+   "path": "kb/notes/contraction/contraction_neighborhood.md",
+   "legacy_path": "contraction_neighborhood.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-saturation",
+   "title": "theta-bridge saturation and the Type T system",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "theta-bridge saturation and the Type T system (2026-07-27): defines theta bridges precisely and reduces single-branch-pair bridges to the existing near-power-cycle chord machinery; proves a genuine new connection to S5 (at most one theta-internal vertex, out of ge6 and growing, can be saturated by a single-attachment b…",
+   "path": "kb/notes/contraction/contraction_saturation.md",
+   "legacy_path": "contraction_saturation.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "contraction-separator-integration",
+   "title": "separators, admissible paths, and Type T integration",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "contraction"
+   ],
+   "date": "2026-07-29",
+   "summary": "separators, admissible paths, and Type T integration (2026-07-27): refines the task's proposed CB3 into CB3′, the sharper correct dichotomy: a clean 2-attachment central bridge reduces, by direct citation, to two_cut.md's already-proved T1 (2-connectivity) and T2 (two admissible paths, via Gao–Huo–Liu–Ma) with no new p…",
+   "path": "kb/notes/contraction/contraction_separator_integration.md",
+   "legacy_path": "contraction_separator_integration.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "defect",
+   "title": "the ordering-defect parameter q",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "defect"
+   ],
+   "date": "2026-07-29",
+   "summary": "arbitrary-order redirection (2026-07-25): the ordering-defect parameter D, S4/S5 bridge/cut-vertex proofs summary, and the disproof of the literal \"n≤2D+3\" central target.",
+   "path": "kb/notes/defect/defect.md",
+   "legacy_path": "defect.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "defect-q-ge6-audit",
+   "title": "audit of the claimed \"provisional q(G)>=6\"",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "defect"
+   ],
+   "date": "2026-07-30",
+   "summary": "Standing reminder, per project discipline: every proof referenced below is a hand-written Markdown argument cross-checked by independent computation. None of it is proof-assistant formal verification — no Lean/Coq/Isabelle artifact exists anywhere in this project.",
+   "path": "kb/notes/defect/defect_q_ge6_audit.md",
+   "legacy_path": "defect_q_ge6_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "defect-q-ge-a-audit",
+   "title": "Audit: is `q(G) >= a` (`a` = number of high-degree vertices) proven here?",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "defect"
+   ],
+   "date": "2026-07-30",
+   "summary": "An external strategy document (pasted 2026-07-30) used the bound q(G)>=a (writing A for the independent high-degree-vertex set, a=|A|) to derive |A|<=9 at n=32 from n=a+s+2q+4, then flagged that inequality as \"not part of the presently summarized proved package,\" recommending the weaker fallback |A|<=10 (from the two-t…",
+   "path": "kb/notes/defect/defect_q_ge_a_audit.md",
+   "status_line": "Status labels (as recorded in defect.md/verification_status.md):",
+   "legacy_path": "defect_q_ge_a_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "defect-three",
+   "title": "attacking q(G)=3 for a genuine minimal Erdős–Gyárfás counterexample",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "defect"
+   ],
+   "date": "2026-07-29",
+   "summary": "Standing reminder, repeated at every major claim in this file, per project discipline: every proof below is a hand-written Markdown argument, cross-checked against independent computation wherever the claim is computationally testable.",
+   "path": "kb/notes/defect/defect_three.md",
+   "legacy_path": "defect_three.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "linear-defect-growth-audit",
+   "title": "Audit: the claimed \"linear defect growth\" theorem (n <= 15q-17)",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "defect"
+   ],
+   "date": "2026-08-01",
+   "summary": "[PARTIAL AUDIT — arithmetic and overlap confirmed; the genuinely new core lemma is NOT independently verified here]",
+   "path": "kb/notes/defect/linear_defect_growth_audit.md",
+   "legacy_path": "linear_defect_growth_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "cubic32-mersenne-audit",
+   "title": "Audit: the claimed \"cubic order-32 factor census\" and \"Mersenne closure witness\"",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-08-01",
+   "summary": "[PARTIAL AUDIT — one major finding: the \"new\" structural theorem is not new]",
+   "path": "kb/notes/finite-frontier/cubic32_mersenne_audit.md",
+   "legacy_path": "cubic32_mersenne_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "cubic34-factor-census-audit",
+   "title": "Audit: the claimed \"cubic order-34 factor census\" and \"Two-witness theorem\"",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-08-01",
+   "summary": "[PARTIAL AUDIT — partition count independently confirmed exact after fixing a bug in my own first attempt; the \"Two-witness theorem\" is, like the prior \"Mersenne closure witness\" claim, not new content]",
+   "path": "kb/notes/finite-frontier/cubic34_factor_census_audit.md",
+   "legacy_path": "cubic34_factor_census_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "every-edge-witness-audit",
+   "title": "Audit: \"every edge lies on an odd cycle of length 2^k+1, and every",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-08-01",
+   "summary": "vertex has an incident edge on at least two such cycles\"",
+   "path": "kb/notes/finite-frontier/every_edge_witness_audit.md",
+   "legacy_path": "every_edge_witness_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "order30-near-miss-classification",
+   "title": "Order-30 near-miss classification within the triangle-quotient families",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-07-30",
+   "summary": "[COMPUTATIONALLY VERIFIED, EXHAUSTIVE within the families searched so far]. New analysis this session, built on the already-exhaustive order30_quotient_census.md catalogs (not a new search space — a finer classification of the same, already fully-enumerated data).",
+   "path": "kb/notes/finite-frontier/order30_near_miss_classification.md",
+   "legacy_path": "order30_near_miss_classification.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "order30-quotient-census",
+   "title": "Order-30 triangle-quotient census: complete elimination by quotient order",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-07-30",
+   "summary": "[COMPUTATIONALLY VERIFIED, EXHAUSTIVE]. Built from scratch this session (searched every local and remote branch first — see cross-reference below — found no prior artifact anywhere in the repo).",
+   "path": "kb/notes/finite-frontier/order30_quotient_census.md",
+   "legacy_path": "order30_quotient_census.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "order30-quotient-pbsat",
+   "title": "Quotient-cycle cardinality-constraint (CP-SAT) solver",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-07-30",
+   "summary": "[COMPUTATIONALLY VERIFIED against the exhaustive census, on 250+ quotients]. This is the \"replace expansion enumeration with quotient-cycle constraints\" engineering direction — a real, working, validated tool, built and tested this session, not a design sketch.",
+   "path": "kb/notes/finite-frontier/order30_quotient_pbsat.md",
+   "legacy_path": "order30_quotient_pbsat.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "order30-quotient-unsat-cores",
+   "title": "UNSAT-core mining: compressing the order-16 census into recurring obstructions",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-07-30",
+   "summary": "[COMPUTATIONALLY VERIFIED on a 600-quotient sample]. Prototype for the proposed \"quotient-cycle UNSAT-core mining\" direction — not a new computation, a compression of what order30_quotient_census.md already exhaustively proved.",
+   "path": "kb/notes/finite-frontier/order30_quotient_unsat_cores.md",
+   "legacy_path": "order30_quotient_unsat_cores.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "order32-bounds-f19-extension",
+   "title": "F19 also strengthens Type A and Type B directly — extending 3-connectivity",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-08-02",
+   "summary": "[COMPUTATIONALLY_VERIFIED — free arithmetic consequence of F19 (fcn_satsolver_extension.md, already merged) applied to bridges that were previously only given the weaker F12 bound. No new computation.]",
+   "path": "kb/notes/finite-frontier/order32_bounds_f19_extension.md",
+   "legacy_path": "order32_bounds_f19_extension.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "rooted-order20-theorem-audit",
+   "title": "Audit: the claimed \"rooted order-20 theorem\" — independently confirmed (C4-free case)",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "finite-frontier"
+   ],
+   "date": "2026-08-01",
+   "summary": "[COMPUTATIONALLY VERIFIED — independent partial confirmation, different method and implementation than the source report]",
+   "path": "kb/notes/finite-frontier/rooted_order20_theorem_audit.md",
+   "legacy_path": "rooted_order20_theorem_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "f12-order12-result",
+   "title": "F12: proved — Type A is entirely eliminated at order 32",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-a"
+   ],
+   "date": "2026-07-30",
+   "summary": "[COMPUTATIONALLY VERIFIED, exhaustive, dual-detector cross-validated]. Identified as the single highest-value cheap follow-up in separator_theorem_order32_gap_analysis.md (MISSING-1); run and closed this session.",
+   "path": "kb/notes/type-a/f12_order12_result.md",
+   "legacy_path": "f12_order12_result.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-11-22-decomposition",
+   "title": "Type B as a (1,1)-piece / (2,2)-piece pair: reconstruction, audit, and closure at n=32",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-08-01",
+   "summary": "Three separate claims live in this file, at three different evidence levels. Read the labels.",
+   "path": "kb/notes/type-b/type_b_11_22_decomposition.md",
+   "legacy_path": "type_b_11_22_decomposition.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-b19",
+   "title": "The local 19-vertex bridge obstruction",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "promotes that result to the local bridge theorem B19 after an explicit dependency audit: neither Pi0 bridge role can have order 19, independently of its partner.",
+   "path": "kb/notes/type-b/type_b_b19.md",
+   "legacy_path": "type_b_b19.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-compatibility",
+   "title": "Global Type-B compatibility",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "pivots to the complete Type-B cut: records the exact T3/T4/T5 scopes, proves the five-category cycle decomposition, reconstructs the asymmetric triangle-anchored spectra, gives an infinite mutually compatible forced-core family, and proves T9B paired replacement criticality plus its stronger real R/P-edge consequence.",
+   "path": "kb/notes/type-b/type_b_compatibility.md",
+   "status_line": "Status. Hand-written graph-theoretic and arithmetic proofs, with an",
+   "legacy_path": "type_b_compatibility.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-b/_meta.json"
+  },
+  {
+   "id": "type-b-delta2-zero-slack",
+   "title": "Zero-slack `delta=2` Type-B bridges: exact reduction and B20D2",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status. Hand-written reduction plus exhaustive computer-assisted finite certificates. No proof-assistant formalization exists.",
+   "path": "kb/notes/type-b/type_b_delta2_zero_slack.md",
+   "status_line": "Status. Hand-written reduction plus exhaustive computer-assisted finite",
+   "legacy_path": "type_b_delta2_zero_slack.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-equality-order",
+   "title": "Minimum-order realizability of the smallest Type-B tuple",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "closes the minimum-order embedding gap for the smallest tuple. Deleting the degree-one bridge terminal reduces every possible 19-vertex bridge, independently of path overlap, to an 18-vertex {C4,C8}-free graph with 26 or 27 edges and at most two degree-two vertices.",
+   "path": "kb/notes/type-b/type_b_equality_order.md",
+   "legacy_path": "type_b_equality_order.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-b/_meta.json"
+  },
+  {
+   "id": "type-b-one-slack",
+   "title": "One-slack `Pi0` bridges: exact reduction and open layer",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "derives the exact 20-vertex bridge reduction: after deleting x, the 19-vertex remainder has one vertex off a distinguished 18-vertex path, 28 or 29 edges, and at most two degree-two vertices.",
+   "path": "kb/notes/type-b/type_b_one_slack.md",
+   "status_line": "Status. This file gives a hand-written one-slack reduction and a",
+   "legacy_path": "type_b_one_slack.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-b/_meta.json"
+  },
+  {
+   "id": "type-b-one-slack-resolution",
+   "title": "One-slack `Pi0` bridges: resolving the 28-edge remainder layer",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status. This file extends type_b_one_slack.md Section 4. Both Family I (2,3^18) and Family II (2^2,3^16,4) are now fully eliminated by exhaustive computation.",
+   "path": "kb/notes/type-b/type_b_one_slack_resolution.md",
+   "status_line": "Status. This file extends type_b_one_slack.md Section 4. Both Family",
+   "legacy_path": "type_b_one_slack_resolution.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-order40-frontier",
+   "title": "The order-40 frontier: normalizing the two order-21 bridge geometries",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status. Hand-written structural derivation. No new computation is reported in this file; it fixes the exact normalized data structures, degree/edge bounds, and role tables that the order-21 generators (to be built next) must satisfy. No proof-assistant formalization exists.",
+   "path": "kb/notes/type-b/type_b_order40_frontier.md",
+   "status_line": "Status. Hand-written structural derivation. No new computation is",
+   "legacy_path": "type_b_order40_frontier.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-order40-generators",
+   "title": "The order-40 frontier: gap-two and gap-one, E=29 and E=30",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status. Hand-written reduction plus exhaustive computer-assisted finite certificates. Extends type_b_order40_frontier.md, which derived the normalized geometries and role tables used here. No proof-assistant formalization exists.",
+   "path": "kb/notes/type-b/type_b_order40_generators.md",
+   "status_line": "Status. Hand-written reduction plus exhaustive computer-assisted",
+   "legacy_path": "type_b_order40_generators.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-p14-avoidance-analysis",
+   "title": "P14-avoidance models: does length-14 forcing survive under slack?",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status. Computer-assisted exhaustive/CEGAR search, hand-derived reduction lemma. Follows on from type_b_witness_motif_analysis.md, which found that the \"small common motif\" route does not explain the elimination mechanism (thousands of exact minimal witnesses, no uniform chord count).",
+   "path": "kb/notes/type-b/type_b_p14_avoidance_analysis.md",
+   "status_line": "Status. Computer-assisted exhaustive/CEGAR search, hand-derived",
+   "legacy_path": "type_b_p14_avoidance_analysis.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-realizability",
+   "title": "Realizability of the irreducible Type-B family",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "freezes that exact family and its first twenty targets, proves sharp canonical path-union and degree bounds, gives a two-solver UNSAT certificate for one fixed minimum-order paired embedding, enumerates all 3,298 Balaban C16s, and exhausts 826 witness-preserving degree-preserving 2-switches.",
+   "path": "kb/notes/type-b/type_b_realizability.md",
+   "status_line": "Status. This phase combines hand-written proofs, explicit finite graph",
+   "legacy_path": "type_b_realizability.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-b/_meta.json"
+  },
+  {
+   "id": "type-b-tuple-priority-audit",
+   "title": "Priority audit: does `Pi0` remain the lowest-order unresolved Type-B tuple?",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status. This file is a hand-written logical audit reusing existing proofs and existing computer-assisted finite certificates. It performs no new computation and generates no new candidate graphs. It reaches a PROVED_IN_MARKDOWN conclusion (Section 4) that changes the project's priority order.",
+   "path": "kb/notes/type-b/type_b_tuple_priority_audit.md",
+   "status_line": "Status. This file is a hand-written logical audit reusing existing",
+   "legacy_path": "type_b_tuple_priority_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-b-witness-motif-analysis",
+   "title": "Witness motif analysis across all completed Type-B candidate databases",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-b"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status. Exhaustive computer-assisted enumeration and classification. This file mines the six candidate databases that currently exist for the order-19/20/21 Type-B bridge frontier (B19-successor layers B20, B20D2, and the four order-40-frontier order-21 layers gap2_e29, gap1_e29, gap2_e30, gap1_e30) for a *common struc…",
+   "path": "kb/notes/type-b/type_b_witness_motif_analysis.md",
+   "status_line": "Status. Exhaustive computer-assisted enumeration and classification.",
+   "legacy_path": "type_b_witness_motif_analysis.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "fcn-order15-result",
+   "title": "FC-15: proved — a new per-bridge order bound for the (2,*)-terminal case",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-c"
+   ],
+   "date": "2026-07-30",
+   "summary": "(see the corrected \"Consequence\" section below: this does NOT by itself push Type C's overall order bound to n>=32)",
+   "path": "kb/notes/type-c/fcn_order15_result.md",
+   "legacy_path": "fcn_order15_result.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "fcn-satsolver-extension",
+   "title": "FC-N by direct SAT graph-existence search: extending the (2,\\*)-terminal series past order 15",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-c"
+   ],
+   "date": "2026-08-01",
+   "summary": "Status of the artefact: [COMPUTATIONALLY_VERIFIED] for the orders marked UNSAT below; [TIMEOUT] (explicitly *not* a result) for the rest.",
+   "path": "kb/notes/type-c/fcn_satsolver_extension.md",
+   "status_line": "Status of the artefact: [COMPUTATIONALLY_VERIFIED] for the orders marked",
+   "legacy_path": "fcn_satsolver_extension.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-c-closure-order32",
+   "title": "Type C is eliminated at n=32 — the order-32 3-connectivity target is complete",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-c"
+   ],
+   "date": "2026-08-01",
+   "summary": "[COMPUTATIONALLY_VERIFIED — a pure logical (monotonicity) argument applied to two already-computed, already-merged SAT results (fcn_satsolver_extension.md §4.3-4.4: F19 and FC-18).",
+   "path": "kb/notes/type-c/type_c_closure_order32.md",
+   "legacy_path": "type_c_closure_order32.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-common-pole-ports",
+   "title": "Degree-four Type-T common-pole shared ports",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status (2026-07-28): REDUCTION — EXPLICIT INFINITE PORT RESIDUAL. This file localizes every part of a shared-port outcome that the current degree-four hypotheses actually determine, gives the complete local route formulas, tests the proposed port-normalization argument, and proves that the currently available local inp…",
+   "path": "kb/notes/type-t/type_t_common_pole_ports.md",
+   "status_line": "Status (2026-07-28): REDUCTION — EXPLICIT INFINITE PORT RESIDUAL.",
+   "legacy_path": "type_t_common_pole_ports.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-common-pole-reduction",
+   "title": "Type-T common-pole branch allocation",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status (2026-07-28): REDUCTION. Pole forcing leaves one live T2 geometry. This file proves the exact first-edge theorem there, classifies all rooted first-edge allocations, relates them to deg(z_0), and identifies the precise point where a finite state list stops.",
+   "path": "kb/notes/type-t/type_t_common_pole_reduction.md",
+   "status_line": "Status (2026-07-28): REDUCTION.  Pole forcing leaves one live T2",
+   "legacy_path": "type_t_common_pole_reduction.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-exact-two-a",
+   "title": "Exact-two-attachment Type-T A spectrum",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "continues with the highest-priority residual A case. Separates the generic pole-to-pole A template from the actual triangle gateway, proves the complete guaranteed cycle table with offsets 0,1,2^rho,2^s+1, classifies its infinite arithmetic complement, audits Heawood/Balaban counterexamples and overlap cells, and expla…",
+   "path": "kb/notes/type-t/type_t_exact_two_a.md",
+   "status_line": "Status. Hand-written structural and arithmetic audit, independently",
+   "legacy_path": "type_t_exact_two_a.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-t/_meta.json"
+  },
+  {
+   "id": "type-t-identical-terminal-joint-spectrum",
+   "title": "The identical-terminal joint four-path spectrum: quantifier audit",
+   "kind": "note",
+   "doc_status": "superseded",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "audits commit 3ba40fc and corrects its existential/universal overlap quantifiers: the same-theta pairs are fixed safe, while all four cross-theta pair types have both safe and failing abstract incidences. It withdraws the invalid reduction to one P_1^x/P_1^y coincidence.",
+   "path": "kb/notes/type-t/type_t_identical_terminal_joint_spectrum.md",
+   "status_line": "Status (corrected 2026-07-28; structurally superseded).  This file",
+   "legacy_path": "type_t_identical_terminal_joint_spectrum.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-joint-bridge-universalization",
+   "title": "Type-T joint bridge universalization: the two-central-bridge interaction",
+   "kind": "note",
+   "doc_status": "superseded",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status (historical; identical-terminal row structurally superseded). Hand-written dependency audit plus one new proved lemma (the cross-exponent obstruction, Part 3). Everything else in this file either cites an existing proved result exactly, or reports an existing open item exactly as it stands.",
+   "path": "kb/notes/type-t/type_t_joint_bridge_universalization.md",
+   "status_line": "Status (historical; identical-terminal row structurally superseded). Hand-written dependency audit plus one new proved lemma",
+   "legacy_path": "type_t_joint_bridge_universalization.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-ladder-saturation",
+   "title": "Type-T ladder saturation: the prerequisite row is impossible",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "closes the proposed saturation target at its prerequisite: pole forcing leaves only X_x=X_y=z_0, so the identical-terminal ladder has zero initial/accepting states.",
+   "path": "kb/notes/type-t/type_t_ladder_saturation.md",
+   "status_line": "Status (2026-07-28).  The proposed saturation program stops before ear",
+   "legacy_path": "type_t_ladder_saturation.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-overlap-reduction",
+   "title": "Type-T identical-terminal overlap reduction",
+   "kind": "note",
+   "doc_status": "superseded",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "builds the rooted four-color weighted incidence core, proves the exact FORCED/ESCAPABLE/UNIVERSALLY-SAFE classification for every valid cell count, records the exact hypotheses a splice must preserve, and isolates a scalable alternating-ladder family as an abstract colored graph.",
+   "path": "kb/notes/type-t/type_t_overlap_reduction.md",
+   "status_line": "Status (2026-07-28; abstract construction, structurally superseded).",
+   "legacy_path": "type_t_overlap_reduction.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-port-c16-compilation",
+   "title": "Type-T port C16 compilation",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "(2026-07-29) starts this session. Audits the multipole gadget semantics (triple/linked-gadget variable meaning, materialization injectivity), then proves the exact hub-passage/core-path support-size bounds for a dyadic-cycle conflict: C4 conflicts cannot exist beyond the base local-safety screen, C8 conflicts always us…",
+   "path": "kb/notes/type-t/type_t_port_c16_compilation.md",
+   "status_line": "Status (2026-07-29): PHASE 0/1 PROVED; PHASE 2 IN PROGRESS. This picks up",
+   "legacy_path": "type_t_port_c16_compilation.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-port-c16-passage-projection",
+   "title": "Type-T port C16 passage projection",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "the session's central pivot: a dyadic cycle only cares about a *pair of hub attachments and the route between them*, not which specific triple/gadget identity supplies it — so the same geometric conflict was being re-derived once per candidate identity (14.5 suppliers per passage on average, up to 127).",
+   "path": "kb/notes/type-t/type_t_port_c16_passage_projection.md",
+   "status_line": "Status (2026-07-30): PASSAGE-PROJECTION — C4/C8 COMPLETE; FIXED",
+   "legacy_path": "type_t_port_c16_passage_projection.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-port-completion",
+   "title": "Type-T port completion",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status (2026-07-28): COMPLETION — FIXED-INSTANCES CLOSED; PARAMETRIC FAMILY OPEN. The weighted E2_parallel residual is now an ordinary graph, its same-vertex completion problem is an exact perfect-matching problem, and three representative j=4 translations are certified UNSAT.",
+   "path": "kb/notes/type-t/type_t_port_completion.md",
+   "status_line": "Status (2026-07-28): COMPLETION — FIXED-INSTANCES CLOSED; PARAMETRIC",
+   "legacy_path": "type_t_port_completion.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-t/_meta.json"
+  },
+  {
+   "id": "type-t-port-completion-j4",
+   "title": "Type-T same-vertex completion at `j=4`",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status (2026-07-28): COMPLETION — ALL ORDINARY j=4 INSTANCES CLOSED. Every one of the 324 valid expanded ordinary cores has no same-vertex minimum-degree-three completion avoiding all power-of-two cycle lengths.",
+   "path": "kb/notes/type-t/type_t_port_completion_j4.md",
+   "status_line": "Status (2026-07-28): COMPLETION — ALL ORDINARY j=4 INSTANCES",
+   "legacy_path": "type_t_port_completion_j4.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-t/_meta.json"
+  },
+  {
+   "id": "type-t-port-completion-obstruction",
+   "title": "Type-T completion obstruction",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "Status (2026-07-28): OBSTRUCTION — BOUNDED METRIC MOTIFS, GLOBAL CERTIFICATE SUPPORT. Exact completion failure is governed by conflict hyperedges representing C4, C8, and C16.",
+   "path": "kb/notes/type-t/type_t_port_completion_obstruction.md",
+   "status_line": "Status (2026-07-28): OBSTRUCTION — BOUNDED METRIC MOTIFS, GLOBAL",
+   "legacy_path": "type_t_port_completion_obstruction.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-t/_meta.json"
+  },
+  {
+   "id": "type-t-port-core-dyadic-avoidance",
+   "title": "Bare-core dyadic-cycle avoidance for all j (2-adic argument)",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "proves, unconditionally for every j>=4 and every valid a,c (not just the tested j=4,5,6), that the bare core H(j,a,c) contains no cycle of dyadic length: fits the reported j=4,5,6 cycle spectra to 35 affine forms A*2^j+B, proves via exact 2-adic valuation that none is ever a power of two (verifier/type_t_port_core_affi…",
+   "path": "kb/notes/type-t/type_t_port_core_dyadic_avoidance.md",
+   "status_line": "Status (2026-07-29): PROVED, unconditionally. Completeness of the 35",
+   "legacy_path": "type_t_port_core_dyadic_avoidance.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-port-multipole-completion",
+   "title": "Type-T port cores: minimum cubic multipole completion",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "This run establishes the minimum-order normal form, exhaustively computes the single-hub compatibility hypergraphs, and implements the requested unlabelled exact-cover/cycle-cut formulation.",
+   "path": "kb/notes/type-t/type_t_port_multipole_completion.md",
+   "legacy_path": "type_t_port_multipole_completion.md",
+   "hash_locked": true,
+   "metadata_source": "kb/notes/type-t/_meta.json"
+  },
+  {
+   "id": "type-t-port-passage-templates",
+   "title": "Type-T port passage-level symbolic templates",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "quotients the passage-level C8/C16 (m=2) catalogs by translation/reflection symmetry using a symbolic branch-coordinate system (verifier/type_t_port_coordinates.py, built on build_core's own branch:index vertex labels).",
+   "path": "kb/notes/type-t/type_t_port_passage_templates.md",
+   "status_line": "Status (2026-07-29): TEMPLATE_CONJECTURE. This picks up",
+   "legacy_path": "type_t_port_passage_templates.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-port-safe-4pole",
+   "title": "Safe-4-pole decomposition of the Type-T port completion",
+   "kind": "note",
+   "doc_status": "active",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-30",
+   "summary": "Independently verified here, 2026-07-30, against every completed-graph artifact currently in the repo. This file records the first computational check of a decomposition claim proposed in chat (not previously in any branch — see verification_status.md cross-reference below): since every completed j instance has degree…",
+   "path": "kb/notes/type-t/type_t_port_safe_4pole.md",
+   "legacy_path": "type_t_port_safe_4pole.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "type-t-recovery-audit",
+   "title": "Type-T interrupted-session recovery and R2/S2 audit",
+   "kind": "note",
+   "doc_status": "audit",
+   "topics": [
+    "type-t"
+   ],
+   "date": "2026-07-29",
+   "summary": "forensic state recovery, exact R2/S2 definitions, theorem dependency graph, degree/simplicity audit, independent symbolic and NetworkX checks, an explicit T2-inference counterexample, and the corrected residual Type-T table.",
+   "path": "kb/notes/type-t/type_t_recovery_audit.md",
+   "status_line": "Status. Hand-written proof, independently reproduced by finite symbolic",
+   "legacy_path": "type_t_recovery_audit.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-cubic-4-8-16-free-50-62",
+   "title": "Finite band: no {C4,C8,C16}-free cubic graph on 50–62 vertices?",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Decide whether a cubic graph on 50–62 vertices avoids C4, C8 and C16. A negative answer closes the cubic k = 5 band of the growth reformulation (any cubic counterexample there would be such a graph).",
+   "path": "kb/open/q-cubic-4-8-16-free-50-62.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-fk-threading-constants",
+   "title": "M1: recheck Friedman–Krivelevich constants with the threading modifications",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Verify FK Lemmas 2.2–2.7 and the Theorem 1 construction still hold with an O(log n) removed set and the two new root choices (T rooted at the chain end; T′ rooted at the first core vertex reached from the chain start).",
+   "path": "kb/open/q-fk-threading-constants.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/19_threading_and_gaps.md#1"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-lyngsie-merker-check",
+   "title": "Check the conditional expander theorem against Lyngsie–Merker's 2-connected cubic examples",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Lyngsie–Merker construct 2-connected cubic graphs missing residues m mod k when 3 | m, k and k ≥ 12. Determine whether such examples can be expanding; if so, c-conditional-expander-theorem is false as stated.",
+   "path": "kb/open/q-lyngsie-merker-check.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/LITERATURE_REVIEW.md#5"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-martinsson-steiner",
+   "title": "Martinsson–Steiner: all residues mod odd k in 3-connected expanders for every α",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Is it true that for every α > 0 and odd k, every sufficiently large 3-connected α-expander contains cycles of all lengths modulo k? (Martinsson–Steiner, arXiv:2204.09107, §4.)",
+   "path": "kb/open/q-martinsson-steiner.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/LITERATURE_REVIEW.md#4"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-mod4-bipartite-pockets",
+   "title": "G1′: mod-4 rigidity in bipartite cores whose pockets all have ≥ 3 attachments",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "In a 2-connected bounded-degree bipartite α-expander with δ ≥ 3, show that among many disjoint candidate cycles, some yield a gadget with step ≡ 2 (mod 4), in the configuration where giant-attached vertices are pairwise non-adjacent and every clean pocket has ≥ 3 attachments.",
+   "path": "kb/open/q-mod4-bipartite-pockets.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/19_threading_and_gaps.md#3",
+    "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#5"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-pillar-b-nonexpanding",
+   "title": "Pillar B: graphs with no large expanding piece",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Prove EG (or an exact-length theorem) for minimal counterexamples that are not expanders, e.g. via expander decomposition with flexible-length transit through pieces.",
+   "path": "kb/open/q-pillar-b-nonexpanding.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#5"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-robust-linkage",
+   "title": "Robust linkage of specific vertices in weak expanders",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Rewrite every step that needs a *specific* vertex (Π-gadget middle rung, chain passing a rung vertex, M1 endpoints) to keep disjoint routes into the core as a selection from a large set, as done for G3.",
+   "path": "kb/open/q-robust-linkage.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#5"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-rooted-prime-conjecture",
+   "title": "Rooted prime conjecture (from the dossier)",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Is every cyclically 4-edge-connected cubic graph root-robust (every vertex avoided by some dyadic cycle)?",
+   "path": "kb/open/q-rooted-prime-conjecture.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/Erdos_Gyarfas_Research_Dossier.md#6.1",
+    "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#3"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-subcase-t",
+   "title": "G3 subcase T: tiny certificate cycles",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Handle the case where the only nonzero-residue certificate is a tiny cycle y x1 (short arc) x2 y with d < 6/β and d ≡ 2 (mod p).",
+   "path": "kb/open/q-subcase-t.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#4"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-verify-fan-cor31",
+   "title": "Verify Fan (2002) Cor. 3.1 in the original",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Confirm the exact hypotheses of Fan, Distribution of cycle lengths in graphs, JCTB 84 (2002), Cor. 3.1, as quoted in Liu–Ma (arXiv:1508.07912).",
+   "path": "kb/open/q-verify-fan-cor31.md",
+   "evidence": [
+    "kb/runs/2026-11-16-dossier/LITERATURE_REVIEW.md#5"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "pass-13-tripod-theta",
+   "title": "Pass XIII — tripod–theta tree backbones",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Coherent decycling partitions of cyclically 4-edge-connected cubic graphs: tree-edge congestion, two-connector root-avoiding cycles, theta normal form; rank-two dyadic forcing fails already at orders 10 and 14 (certificates independently verified). Packet with MANIFEST sha256s.",
+   "path": "kb/runs/2026-11-16-dossier/passes/13_tripod_theta_tree_backbones/",
+   "hash_locked": true,
+   "metadata_source": "kb/runs/2026-11-16-dossier/_meta.json"
+  },
+  {
+   "id": "pass-14-rooted-stress-test",
+   "title": "Pass XIV — rooted stress test (code, catalogs, results)",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "C checker and generator: all 3-connected cubic graphs through 16 vertices (counts match OEIS) are root-robust except K4, two 8-vertex graphs and one 16-vertex graph; every known hard instance (4/8/16-free up to 126 vertices, the 370- and 26,550-vertex constructions) is root-robust, with independently verified witnesses.",
+   "path": "kb/runs/2026-11-16-dossier/passes/14_rooted_stress_test/",
+   "metadata_source": "kb/runs/2026-11-16-dossier/_meta.json"
+  },
+  {
+   "id": "pass-15-pillar-a-attempt",
+   "title": "Pass XV — Pillar A attempt",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Friedman–Krivelevich construction read in full; exactness of cycle lengths reduces to attaching adjusters (the Attachable Adjuster Lemma); triangle adjusters work position-free.",
+   "path": "kb/runs/2026-11-16-dossier/passes/15_pillar_A_attempt.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "pass-16-crux-sharpening",
+   "title": "Pass XVI — crux sharpening",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "δ≥3 alone does not force exact lengths (rigid-pocket example); Fan's lemma makes 2-separated pockets step-1/2 adjusters; three-escapable lemma; crux identified with the Martinsson–Steiner open question.",
+   "path": "kb/runs/2026-11-16-dossier/passes/16_crux_sharpening.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "pass-17-short-nonzero-residue",
+   "title": "Pass XVII — short nonzero-residue cycles",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Theorem: every 2-connected α-expander with δ≥3 has, for each odd prime p, a cycle of length ≢ 0 mod p and length O(log n), for every α. Constant-specials reduction (gcd divides lcm(1..A+1)).",
+   "path": "kb/runs/2026-11-16-dossier/passes/17_short_nonzero_residue.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "pass-18-robust-specials",
+   "title": "Pass XVIII — robust specials",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Anchoring and nesting lemmas: only O(|W|) of many disjoint candidate cycles can be rigid, for any α; free-entry gadget types; chain sketch with gaps G1–G3.",
+   "path": "kb/runs/2026-11-16-dossier/passes/18_robust_specials.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "pass-19-threading-and-gaps",
+   "title": "Pass XIX — threading and gaps",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "M1 design: thread the gadget chain into the FK near-length cycle by re-rooting its two trees; G2 closed in outline; mod-4 reduced to G1′.",
+   "path": "kb/runs/2026-11-16-dossier/passes/19_threading_and_gaps.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "pass-20-closing-status",
+   "title": "Pass XX — closing status",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Π-gadget lemma (position- and modulus-free adjuster), coin lemma, parity lemma, G3 for odd primes; honest list of what remains open in the expander pillar.",
+   "path": "kb/runs/2026-11-16-dossier/passes/20_closing_status.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "dossier-2026-11-16",
+   "title": "Erdős–Gyárfás Research Dossier (16 Nov 2026)",
+   "kind": "run",
+   "doc_status": "historical",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-16",
+   "summary": "Uploaded consolidated dossier of the earlier research conversation: minimal-counterexample work, 3-cut transfer, edge-bridging four-predecessor theorem, fractional resilience and its universal ceiling, theta-necklace and interlacement barriers, order-16/18 rooted census. Kept verbatim (has its own pandoc front matter).",
+   "path": "kb/runs/2026-11-16-dossier/Erdos_Gyarfas_Research_Dossier.md",
+   "metadata_source": "kb/runs/2026-11-16-dossier/_meta.json"
+  },
+  {
+   "id": "run-2026-11-readme",
+   "title": "November 2026 research run — index",
+   "kind": "run",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Entry point for the 16–17 November run: reading order, layout, and the open-items list.",
+   "path": "kb/runs/2026-11-16-dossier/README.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "program-2026-11-17",
+   "title": "Research program (Nov 2026)",
+   "kind": "run",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Milestones, dependencies and subjective probabilities for the expander route; M2 line superseded by Pass XVI.",
+   "path": "kb/runs/2026-11-16-dossier/program/PROGRAM_2026-11-17.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "strategy-2026-11-17",
+   "title": "Strategic assessment (Nov 2026)",
+   "kind": "run",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11"
+   ],
+   "date": "2026-11-17",
+   "summary": "Growth reformulation EG ⟺ f(k) ≥ 2^(k+1) and why disproof looks unlikely; rooted 3-cut gluing and where it breaks; the δ≥3 adjuster lemma; Pillar A/B program.",
+   "path": "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "tracks-2026-11-halving-readme",
+   "title": "tracks/2026-11-halving — session of 2026-11-16",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Independent audit of the repository plus one new line of work. Nothing here edits the canonical ledger files other than one status-log entry in plan.md.",
+   "path": "tracks/2026-11-halving/README.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "boundary-linkage-composition",
+   "title": "Research pass X: exact boundary-linkage composition and dyadic spectral sparsity",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Date: 16 November 2026. Status: Complete elementary transfer theorem and contextual-replacement corollaries, with a separate numerical density certificate. Exact finite verification is included.",
+   "path": "tracks/2026-11-halving/boundary_linkage_composition.md",
+   "status_line": "Date: 16 November 2026.  Status: Complete elementary transfer theorem and contextual-replacement corollaries, with a separate numerical density certificate. Exact finite verification is included. This is not a proof of the Erdős–Gyárfás con",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "bridge-prime-reduction",
+   "title": "Research pass VII: exact bridge transfer and the rooted prime induction barrier",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "16 November 2026. Mathematical status: a proved general cycle-decomposition theorem and exact rooted obstruction for edge-bridging operations. A conditional reduction for the root-robust prime conjecture. No proof of the prime conjecture or the Erdős–Gyárfás conjecture is claimed.",
+   "path": "tracks/2026-11-halving/bridge_prime_reduction.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "bridge-resilience-potential",
+   "title": "Research pass VIII: fractional dyadic-cycle resilience under edge bridging",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "16 November 2026. Status: a proved, general quantitative bridge-survival theorem; an exact linear-programming dual; an infinite-family result for arbitrarily many bridge operations on large prism/Möbius-ladder bases; finite verification of the small one-bridge exceptions; and explicit counterexamples to two tempting st…",
+   "path": "tracks/2026-11-halving/bridge_resilience_potential.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "cycle-space-obstruction",
+   "title": "Structural jump: cycle-space averaging and constructive dyadic witnesses",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Research note, 2026-11-16. Continuation of mixed_gadget_research.md.",
+   "path": "tracks/2026-11-halving/cycle_space_obstruction.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "expander-brief",
+   "title": "Sublinear expanders and the Erdős–Gyárfás conjecture: a working brief",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Date: 2026-11-16. Tags: [SRC: x] = read in source x; [INF] = my inference, not checked against a source. Source keys: LM = Liu–Montgomery; LET = Letzter survey; MON = Montgomery survey; SV = Sudakov–Verstraëte; FK = Friedman–Krivelevich; DD = Ducoffe–Dumitru; GAR = Garcia; HJYY = Hou–Jin–Yang–Yang; REPO = project files…",
+   "path": "tracks/2026-11-halving/expander_brief.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "extremal24-findings",
+   "title": "How the 24-vertex extremal graphs avoid 4 and 8 (2026-11-16)",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Question. The smallest min-degree-3 graph with no 4-cycle has 10 vertices (Petersen). The smallest with no 4- or 8-cycle has 24. Do the 24-vertex graphs contain a \"half\" that is a Petersen-like object, as the halving calculus would want?",
+   "path": "tracks/2026-11-halving/extremal24_findings.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "halving-calculus",
+   "title": "Halving calculus for Erdős 64 — candidate definition (draft 1, 2026-11-16)",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Status. Hand-written, checked once by the author of this draft, not machine-checked and not reviewed. Labels: [PROVED-HERE] has a complete argument below; [KNOWN] is a restatement of a published or repo result; [OPEN] is a question; [CANDIDATE] is a conjecture that may be false.",
+   "path": "tracks/2026-11-halving/halving_calculus.md",
+   "status_line": "Status. Hand-written, checked once by the author of this draft, not",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "literature-update-2026-11",
+   "title": "Literature update for erdos64 (2026-11-16)",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "The repo's literature.md stops in August 2026 and records arXiv as unreachable. arXiv was reachable in this session. Papers below were read from the arXiv HTML unless marked \"abstract only\".",
+   "path": "tracks/2026-11-halving/literature_update_2026-11.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "mixed-gadget-research",
+   "title": "Mixed three-port gadget search: exact constraints, catalogues, and a 78-vertex family",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Research notebook, 2026-11-16. Continuation of partial_triangle_expansion_census.md following erdos64 PR #2. This is computational/structural progress on construction families; it does not settle the Erdős–Gyárfás conjecture.",
+   "path": "tracks/2026-11-halving/mixed_gadget_research.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "partial-triangle-expansion-census",
+   "title": "Partial triangle expansion: exact constraints and a small complete census",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "2026-11-16 — Research continuation of PR #2",
+   "path": "tracks/2026-11-halving/partial_triangle_expansion_census.md",
+   "status_line": "Status: The cycle-length formula and reductions below have a hand proof and were tested by separate algorithms; they are not formally verified. The census is computationally verified, conditional on the published completeness of the cubic-g",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "prime-pole-obstructions",
+   "title": "Structural pass V: parity-resolved spectra and rooted prime obstructions",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Research note, 16 November 2026. This pass tests the proposed program of lower-bounding the three-terminal score Phi on cyclically 4-edge-connected cubic components.",
+   "path": "tracks/2026-11-halving/prime_pole_obstructions.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q4-independent-check",
+   "title": "q(G) ≥ 4: independent check (2026-11-16)",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Result. Every minimal Erdős–Gyárfás counterexample on at least 37 vertices has q(G) = 2n − 2 − m ≥ 4, i.e. m ≤ 2n − 6. Since no counterexample has order ≤ 40 (Ducoffe–Dumitru, arXiv:2609.28594, Theorem 5.1 — not re-verified here), this confirms the repo's q(G) ≥ 4.",
+   "path": "tracks/2026-11-halving/q4_independent_check.md",
+   "status_line": "Status. Hand argument plus one brute-force script (q4_check.py), both",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "research-brief-additive-reduction",
+   "title": "Research brief: reducing the power-of-two target to an additive one",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "16 November 2026. A plan, not a result. Written for whoever does the next round of work, human or model. Builds on three_port_classification.md and passes IV–XI in this directory.",
+   "path": "tracks/2026-11-halving/research_brief_additive_reduction.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "richness-findings",
+   "title": "Are path-length sets rich? Literature and small cases (2026-11-16)",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Question (from sumset_classification.md). In a C4-free graph with two poles and all other degrees ≥ 3, must the set of pole-to-pole path lengths contain a long run of consecutive lengths?",
+   "path": "tracks/2026-11-halving/richness_findings.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "root-orbit-switching",
+   "title": "Research pass VI: rooted prime graphs, automorphism orbits, and balanced two-ear switching",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "16 November 2026. Status: proved elementary general structural lemmas; obtained a fully checkable finite theorem for Hamiltonian cubic graphs through order 16; found a concrete obstruction to a naive one-ear proof. The rooted prime conjecture and the Erdős–Gyárfás conjecture remain open.",
+   "path": "tracks/2026-11-halving/root_orbit_switching.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "square-strip-minmax",
+   "title": "Research pass IX: square strips, exact rooted blockers, and a four-terminal transfer",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "16 November 2026. Status: proved structural statements for cyclically four-edge-connected cubic graphs; exact rooted 4-cycle hitting/packing min-max theorem; arbitrary-depth bridge-survival corollary; constructive path spectra for four-terminal square strips; finite reference checks.",
+   "path": "tracks/2026-11-halving/square_strip_minmax.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "sumset-classification",
+   "title": "The integer question behind Theorem B (2026-11-16)",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Question. F = {4, 8, 16, …}. For a finite set P of positive integers let mP be the set of sums of m elements of P, repeats allowed. Which P satisfy mP ∩ F ≠ ∅ for every 3 ≤ m ≤ M?",
+   "path": "tracks/2026-11-halving/sumset_classification.md",
+   "status_line": "Status. Theorem C and its corollaries: proved by hand below, then tested",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "switching-spectrum-necessity",
+   "title": "Research pass XI: spectral isolation and independent-switch amplification",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Date: 16 November 2026. Status: Proven elementary conditional lemmas, independent graph-level verification, and a concrete two-ear rooted certificate in the Petersen graph. No proof of Erdős–Gyárfás or of a universal connectivity-to-switching theorem is claimed.",
+   "path": "tracks/2026-11-halving/switching_spectrum_necessity.md",
+   "status_line": "Date: 16 November 2026. Status: Proven elementary conditional lemmas, independent graph-level verification, and a concrete two-ear rooted certificate in the Petersen graph. No proof of Erdős–Gyárfás or of a universal connectivity-to-switchi",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "three-cut-prime-transfer",
+   "title": "Structural pass IV: cyclic three-edge cuts as exact cycle-spectrum interfaces",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Research note · November 16, 2026. Follow-up to cycle_space_obstruction.md.",
+   "path": "tracks/2026-11-halving/three_cut_prime_transfer.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "three-port-classification",
+   "title": "Clean three-port pieces: a complete small classification (2026-11-16)",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-16",
+   "summary": "Status. Two computer-assisted results, each checked against an independent earlier computation in this track. Hand proofs are not written yet. Not machine-checked, not reviewed. No claim about the conjecture itself.",
+   "path": "tracks/2026-11-halving/three_port_classification.md",
+   "status_line": "Status. Two computer-assisted results, each checked against an",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "tracks-manifest",
+   "title": "tracks/ — provenance and layout of the consolidation",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks"
+   ],
+   "date": "2026-08-18",
+   "summary": "Consolidated 2026-08-18 onto consolidated/canonical, branched from main. This file records where every branch's work went, and why the layout is what it is. No original branch was deleted; all fifteen remain on origin with full commit history.",
+   "path": "tracks/MANIFEST.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "tracks-external-audits-a5-lift-probe-audit",
+   "title": "A5-permutation-lift counterexample attempt — audit and independent extension",
+   "kind": "track-note",
+   "doc_status": "audit",
+   "topics": [
+    "tracks",
+    "external-audits"
+   ],
+   "date": "2026-08-18",
+   "summary": "Source: externally supplied (Codex) C++ tools (a5_breakout_solver_v2.cpp, a5_point_repair_k3.cpp, s5_parity_breakout.cpp) plus a hand-derived 16-cut constraint file, reporting a serious but ultimately rejected 120-vertex cubic candidate (a 5-sheeted A5-permutation lift of the 24-vertex Markström near-counterexample) —…",
+   "path": "tracks/external-audits/a5_lift_probe/AUDIT.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "tracks-external-audits-order38-bundle-audit",
+   "title": "Audit of the externally-supplied \"order-38 census\" bundle",
+   "kind": "track-note",
+   "doc_status": "audit",
+   "topics": [
+    "tracks",
+    "external-audits"
+   ],
+   "date": "2026-08-18",
+   "summary": "Source: pasted by the user as ALL_PROOFS_AND_SOURCE.md plus a sha256sum-style file listing for ~370 result/data files. Only the markdown transcription (proof notes + C++/Python source) was actually available as content; the referenced data files themselves (manifest.json, partition_catalog.tsv, results//*.out|.err|.sta…",
+   "path": "tracks/external-audits/order38_bundle/AUDIT.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "bridge-spectrum-and-star-closure-2026-08-01",
+   "title": "Bridge spectrum and star-closure lemmas",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "external-audits"
+   ],
+   "date": "2026-08-18",
+   "summary": "Let H be a finite simple graph and let e=ab and f=cd be distinct edges. Form G=B(H;e,f) by deleting e,f, introducing new vertices x,y, and adding",
+   "path": "tracks/external-audits/order38_bundle/proofs/bridge_spectrum_and_star_closure_2026-08-01.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "triangle-chords-in-odd-factor-2026-08-01",
+   "title": "Triangle chords in the 5-odd-connected factor reduction",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "external-audits"
+   ],
+   "date": "2026-08-18",
+   "summary": "Date: 2026-08-01 Status: hand reduction from the Candráková–Lukoťka 2-factor theorem and elementary cycle switching.",
+   "path": "tracks/external-audits/order38_bundle/proofs/triangle_chords_in_odd_factor_2026-08-01.md",
+   "status_line": "Status: hand reduction from the Candráková–Lukoťka 2-factor theorem and elementary cycle switching.",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "triangle-mersenne-saturation-2026-08-01",
+   "title": "Triangle Mersenne saturation in a cubic minimal counterexample",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "external-audits"
+   ],
+   "date": "2026-08-18",
+   "summary": "Date: 2026-08-01 Status: hand theorem, conditional only on the already-established nontriangle-edge witness lemma in contraction.md.",
+   "path": "tracks/external-audits/order38_bundle/proofs/triangle_mersenne_saturation_2026-08-01.md",
+   "status_line": "Status: hand theorem, conditional only on the already-established nontriangle-edge witness lemma in contraction.md.",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "verification-log-2026-08-06",
+   "title": "Verification report — \"girth pair (6,9) closed\" report, 2026-08-06",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "external-audits"
+   ],
+   "date": "2026-08-18",
+   "summary": "Standard format going forward for these external report pastes: claim → status → method → note. Statuses: VERIFIED (checked myself, holds), REFUTED (checked myself, false), UNVERIFIED (no code/data supplied, not cheaply checkable), PLAUSIBLE (setup/reasoning sound, specific numbers unchecked).",
+   "path": "tracks/external-audits/verification_log_2026-08-06.md",
+   "status_line": "status → method → note. Statuses: VERIFIED (checked myself, holds),",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "tracks-order30-census-t4-intersection-filter-audit",
+   "title": "Order-30 cubic t=4 census — closed, zero survivors (COMPUTATIONALLY VERIFIED)",
+   "kind": "track-note",
+   "doc_status": "audit",
+   "topics": [
+    "tracks",
+    "order30-census"
+   ],
+   "date": "2026-08-18",
+   "summary": "Source: externally supplied (Codex) C++ filter (t4_intersection_filter.cpp) implementing the same exact triangle-quotient interval theorem already in use in this project's own order30_quotient_marking_census.py, claimed to be 24-42x faster via a specialized allowed-intersection bitmask table and a high-yield cycle-leng…",
+   "path": "tracks/order30-census/t4_intersection_filter/AUDIT.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "tracks-order30-census-t4-intersection-filter-t3-audit",
+   "title": "Order-30 cubic t=3 census — filter built and validated, catalog generation in progress",
+   "kind": "track-note",
+   "doc_status": "audit",
+   "topics": [
+    "tracks",
+    "order30-census"
+   ],
+   "date": "2026-08-18",
+   "summary": "The externally-supplied material referenced a generic triangle_quotient_intersection_filter.cpp for t=1..6, but only its theorem writeup (triangle_quotient_intersection_theorem.md) was actually supplied in any upload — the source file itself never arrived.",
+   "path": "tracks/order30-census/t4_intersection_filter/T3_AUDIT.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "tracks-type-t-c16-static-sat-type-t-port-c16-compilation",
+   "title": "Type-T port cores: static short-cycle compilation",
+   "kind": "track-note",
+   "doc_status": "active",
+   "topics": [
+    "tracks",
+    "type-t-c16-static-sat"
+   ],
+   "date": "2026-08-18",
+   "summary": "For the fixed representative (j,a,c)=(4,28,4), the complete static C4/C8 layer has been compiled and independently checked. The C16 compiler replaces completion-by-completion cycle discovery with an AllSAT projection of every simple 16-cycle in a universal gadget graph.",
+   "path": "tracks/type-t-c16-static-sat/type_t_port_c16_compilation.md",
+   "hash_locked": true,
+   "metadata_source": "tracks/type-t-c16-static-sat/_meta.json"
+  }
+ ]
+}

@@ -1,3 +1,13 @@
+---
+id: bridge-prime-reduction
+title: "Research pass VII: exact bridge transfer and the rooted prime induction barrier"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "16 November 2026. Mathematical status: a proved general cycle-decomposition theorem and exact rooted obstruction for edge-bridging operations. A conditional reduction for the root-robust prime conjecture. No proof of the prime conjecture or the Erdős–Gyárfás conjecture is claimed."
+---
+
 # Research pass VII: exact bridge transfer and the rooted prime induction barrier
 
 **16 November 2026.** Mathematical status: a proved general cycle-decomposition

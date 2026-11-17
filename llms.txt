@@ -1,0 +1,63 @@
+# erdos64
+
+> Research knowledge base on the Erdős–Gyárfás conjecture (Erdős Problem #64): every graph with minimum degree ≥ 3 contains a cycle whose length is a power of two. The conjecture is OPEN; nothing here proves or disproves it. Every claim carries a label (PROVED, COMPUTATIONALLY VERIFIED, KNOWN FROM LITERATURE, SKETCH, CONJECTURAL, OPEN, DISPROVED).
+
+Read AGENTS.md for conventions, then kb/STATE.md for the current state of knowledge. kb/index.json lists every document with metadata.
+
+## Start here
+- [AGENTS.md](AGENTS.md): rules and workflow for agents working in this repository
+- [kb/STATE.md](kb/STATE.md): curated state of knowledge, frontier, open problems, dead ends
+- [kb/INDEX.md](kb/INDEX.md): generated index of every document
+- [kb/index.json](kb/index.json): the same index, machine-readable
+- [CONTRIBUTING.md](CONTRIBUTING.md): how to add knowledge with additive pull requests
+
+## Open problems
+- [Finite band: no {C4,C8,C16}-free cubic graph on 50–62 vertices?](kb/open/q-cubic-4-8-16-free-50-62.md): Decide whether a cubic graph on 50–62 vertices avoids C4, C8 and C16. A negative answer closes the cubic k = 5 band of the growth reformulation (any cubic counterexample there would be such a graph).
+- [M1: recheck Friedman–Krivelevich constants with the threading modifications](kb/open/q-fk-threading-constants.md): Verify FK Lemmas 2.2–2.7 and the Theorem 1 construction still hold with an O(log n) removed set and the two new root choices (T rooted at the chain end; T′ rooted at the first core vertex reached from the chain start).
+- [Check the conditional expander theorem against Lyngsie–Merker's 2-connected cubic examples](kb/open/q-lyngsie-merker-check.md): Lyngsie–Merker construct 2-connected cubic graphs missing residues m mod k when 3 | m, k and k ≥ 12. Determine whether such examples can be expanding; if so, c-conditional-expander-theorem is false as stated.
+- [Martinsson–Steiner: all residues mod odd k in 3-connected expanders for every α](kb/open/q-martinsson-steiner.md): Is it true that for every α > 0 and odd k, every sufficiently large 3-connected α-expander contains cycles of all lengths modulo k? (Martinsson–Steiner, arXiv:2204.09107, §4.)
+- [G1′: mod-4 rigidity in bipartite cores whose pockets all have ≥ 3 attachments](kb/open/q-mod4-bipartite-pockets.md): In a 2-connected bounded-degree bipartite α-expander with δ ≥ 3, show that among many disjoint candidate cycles, some yield a gadget with step ≡ 2 (mod 4), in the configuration where giant-attached vertices are pairwise non-adjacent and every clean pocket has ≥ 3 attachments.
+- [Pillar B: graphs with no large expanding piece](kb/open/q-pillar-b-nonexpanding.md): Prove EG (or an exact-length theorem) for minimal counterexamples that are not expanders, e.g. via expander decomposition with flexible-length transit through pieces.
+- [Robust linkage of specific vertices in weak expanders](kb/open/q-robust-linkage.md): Rewrite every step that needs a *specific* vertex (Π-gadget middle rung, chain passing a rung vertex, M1 endpoints) to keep disjoint routes into the core as a selection from a large set, as done for G3.
+- [Rooted prime conjecture (from the dossier)](kb/open/q-rooted-prime-conjecture.md): Is every cyclically 4-edge-connected cubic graph root-robust (every vertex avoided by some dyadic cycle)?
+- [G3 subcase T: tiny certificate cycles](kb/open/q-subcase-t.md): Handle the case where the only nonzero-residue certificate is a tiny cycle y x1 (short arc) x2 y with d < 6/β and d ≡ 2 (mod p).
+- [Verify Fan (2002) Cor. 3.1 in the original](kb/open/q-verify-fan-cor31.md): Confirm the exact hypotheses of Fan, Distribution of cycle lengths in graphs, JCTB 84 (2002), Cor. 3.1, as quoted in Liu–Ma (arXiv:1508.07912).
+
+## Claims
+- [Few rigid candidates: anchoring and nesting lemmas](kb/claims/c-anchoring-nesting.md): In a 2-connected bounded-degree α-expander with δ ≥ 3, after removing a set W′ with robust core U, every rigid (mod p) candidate cycle is anchored at a defect, and each defect anchors at most κ/β + 1 pairwise-disjoint candidates. Hence at most O(Δ|W′|κ/β) of any family of disjoint candidates are …
+- [Coin lemma, gcd reduction and odd-cycle parity gadget](kb/claims/c-coin-gcd-parity.md): Values v1..vt ≤ h with gcd g, each with multiplicity M ≥ (t+1)h² + Ag, have subset sums containing every multiple of g in [t h², M v1]. Repeated pigeonhole on gadgets with steps ≢ 0 mod m drives the gcd to 1 or 2 in ≤ log2 h + 1 rounds. In a 2-connected non-bipartite graph the shortest odd cycle …
+- [EG for 2-connected bounded-degree δ≥3 expanders (conditional)](kb/claims/c-conditional-expander-theorem.md): Every sufficiently large 2-connected α-expander with 3 ≤ δ ≤ Δ(G) ≤ Δ contains cycles of every even length in a linear range, in particular a cycle whose length is a power of two; and cycles of all residues mod every odd k (answering the bounded-degree case of Martinsson–Steiner's question).
+- [Induced cycles are ±1/±2 length adjusters when δ ≥ 3](kb/claims/c-delta3-induced-cycle-adjuster.md): If δ(G) ≥ 3 and Q is an induced cycle, any two vertices of Q have edges leaving Q; entering and leaving Q at two vertices at arc distance ⌊(q−1)/2⌋ gives two routes whose lengths differ by 1 or 2.
+- [2-separated pockets and every edge give lengths differing by 1 or 2 (from Fan 2002)](kb/claims/c-fan-pocket-adjusters.md): If δ(G) ≥ 3 and (A,B) is a separation with A∩B = {u,v} and (G[B],u,v) rooted 2-connected, then any cycle through B can be rerouted inside B to change its length by 1 or 2. In a 2-connected δ≥3 graph every edge lies on two cycles whose lengths differ by 1 or 2.
+- [EG ⟺ f(k) ≥ 2^(k+1) for all k](kb/claims/c-growth-reformulation.md): Let f(k) be the minimum order of a graph with δ ≥ 3 and no cycle of length 2^2,…,2^k. Then the Erdős–Gyárfás conjecture holds iff f(k) ≥ 2^(k+1) for every k ≥ 2.
+- [Π-gadget: a position- and modulus-free length adjuster](kb/claims/c-pi-gadget.md): If a path Π outside a path M meets M through rungs at x, y, w (same order along both, middle rung a single edge), then among the three reroutings of M through Π some length change is ≢ 0 (mod m) for every m ≥ 3; in general s1 + s2 − s3 = 2·t_y. Five rungs always contain three in matching order (E…
+- [Universal ceiling on fractional dyadic resilience](kb/claims/c-resilience-ceiling.md): For a graph with n vertices, m edges and shortest dyadic cycle length q, the fractional resilience satisfies ρ(G) ≤ m(n−q)/(2nq); for cubic graphs ρ(G) ≤ 3(n−q)/(4q).
+- [δ ≥ 3 + bounded degree + expansion do not force long cycles of nonzero residue](kb/claims/c-rigid-pocket-example.md): For each odd prime p there are arbitrarily large cubic α-expanders (α = α(p)) in which every cycle of length > 5 has length ≡ 0 mod p: subdivide a cubic expander (each edge into a path of length p) and attach a pendant K4-with-subdivided-edge to each new vertex.
+- [Rooted robustness fails for 3-connected cubic graphs (K4, two on 8, one on 16 vertices)](kb/claims/c-rooted-robustness-fails-n16.md): Among all 3-connected cubic graphs on ≤ 16 vertices (generated by edge-bridging from K4; class counts 1, 2, 4, 14, 57, 341, 2828 match OEIS A204198), exactly K4, two 8-vertex graphs (K4 with two vertices truncated; K3,3 with one vertex truncated) and one 16-vertex graph (graph6 `OJO?_U?_kA?@H?B?_…
+- [All known 4/8/16-free cubic graphs are root-robust](kb/claims/c-rooted-robustness-hard-instances.md): Every vertex is avoided by a dyadic cycle in: all {C4,C8}-free cubic graphs on 24 and 26 vertices; 48 C8-free girth-5 graphs on 30 vertices; 100 large vertex-transitive survivors; 18 {C4,C8,C16}-free cubic graphs on 82–126 vertices (via C32); the 370-vertex {C4..C32}-free graph (via C64); the 26,…
+- [Short cycles of nonzero residue in 2-connected δ≥3 expanders, for every α](kb/claims/c-short-nonzero-residue-cycles.md): For every α ∈ (0,1] there is C(α) such that every 2-connected α-expander on n ≥ n0 vertices with δ ≥ 3 contains, for every odd prime p, a cycle of length ≢ 0 (mod p) and at most C log n.
+- [Rooted robustness glues across nontrivial 3-edge cuts](kb/claims/c-three-cut-rooted-gluing.md): If G is 3-connected cubic with a nontrivial 3-edge cut (A,B), and the contractions G_A, G_B are root-robust, then G is root-robust. A minimum counterexample to root-robustness (n ≥ 10) has, on the side of every nontrivial 3-cut away from the root, a triangle or one of two specific 7-vertex pieces.
+- [Three escape points on a cycle of length ≢ 0 mod m give a step ≢ 0 mod m](kb/claims/c-three-escapable-lemma.md): For a cycle of length q and any three of its vertices, if m is an odd prime power (or a power of 2) not dividing q, some pair has arc-length difference ≢ 0 mod m. Moreover a cycle of length ≥ 2k/β + k in a β-expander has k vertices with vertex-disjoint routes to any set of more than half the vert…
+
+## Core ledgers
+- [process findings from the multi-branch Erdős #64 effort](kb/core/RETROSPECTIVE.md): what worked and what did not across the whole multi-branch effort, and the rules adopted going forward.
+- [Erdős #64](kb/core/experiments.md): every run: command, params, output, interpretation.
+- [Legacy README (pre-2026-11 layout guide)](kb/core/legacy_readme.md): The repository README as of the August consolidation plus November additions: branch topology, and a paragraph-length description of every legacy note (paths refer to the old flat layout; use tools/kb.py resolve).
+- [Erdős #64](kb/core/lemmas.md): candidate lemmas with status labels; Track-B/Track-C results.
+- [Literature — Erdős–Gyárfás conjecture (Erdős Problem #64)](kb/core/literature.md): verified frontier (P₁₃-free, diameter-2, Carr 2026 minimal- counterexample structure, Royle–Markström bounds), with a master table.
+- [Structural results toward the Erdős–Gyárfás conjecture: separator lemmas, an ordering-defect obstruction, and a one-pole gadget theory](kb/core/manuscript.md): structural manuscript draft (2026-07-25, one-pole sections FROZEN): pulls together S4, S5, O1, O3, O4a, O4′, O5, O6, O7, and the suppressed-edge equivalence into a single citable write-up.
+- [Erdős–Gyárfás (Erdős #64): consolidated strategy and status ledger](kb/core/plan.md): strategy, rankings, status log, failed/blocked approaches.
+- [Erdős #64: consolidated status of proof / counterexample work](kb/core/proof.md): current rigorously-established progress vs. conjectural notes.
+- [Verification status](kb/core/verification_status.md): theorem/experiment verification matrix, including explicit NOT_FORMALLY_VERIFIED, missing-data, and incomplete-range labels.
+
+## Literature
+- [Literature review (Nov 2026)](kb/runs/2026-11-16-dossier/LITERATURE_REVIEW.md): Every external result used in the November run with a verification level (read / abstract / secondary / dossier) and novelty positioning of our results; flags Fan (2002) and Lyngsie–Merker as must-check.
+
+## Research runs
+- [Erdős–Gyárfás Research Dossier (16 Nov 2026)](kb/runs/2026-11-16-dossier/Erdos_Gyarfas_Research_Dossier.md): Uploaded consolidated dossier of the earlier research conversation: minimal-counterexample work, 3-cut transfer, edge-bridging four-predecessor theorem, fractional resilience and its universal ceiling, theta-necklace and interlacement barriers, order-16/18 rooted census. Kept verbatim (has its own pandoc front matter).
+- [November 2026 research run — index](kb/runs/2026-11-16-dossier/README.md): Entry point for the 16–17 November run: reading order, layout, and the open-items list.
+- [Research program (Nov 2026)](kb/runs/2026-11-16-dossier/program/PROGRAM_2026-11-17.md): Milestones, dependencies and subjective probabilities for the expander route; M2 line superseded by Pass XVI.
+- [Strategic assessment (Nov 2026)](kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md): Growth reformulation EG ⟺ f(k) ≥ 2^(k+1) and why disproof looks unlikely; rooted 3-cut gluing and where it breaks; the δ≥3 adjuster lemma; Pillar A/B program.
+
+## Optional
+- [kb/INDEX.md](kb/INDEX.md): topical notes, passes, tracks and artifacts

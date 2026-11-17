@@ -1,0 +1,71 @@
+{
+  "type_t_exact_two_a.md": {
+    "id": "type-t-exact-two-a",
+    "title": "Exact-two-attachment Type-T A spectrum",
+    "kind": "note",
+    "topics": [
+      "type-t"
+    ],
+    "doc_status": "audit",
+    "date": "2026-07-29",
+    "summary": "continues with the highest-priority residual A case. Separates the generic pole-to-pole A template from the actual triangle gateway, proves the complete guaranteed cycle table with offsets 0,1,2^rho,2^s+1, classifies its infinite arithmetic complement, audits Heawood/Balaban counterexamples and overlap cells, and expla…",
+    "status_line": "Status. Hand-written structural and arithmetic audit, independently",
+    "legacy_path": "type_t_exact_two_a.md",
+    "hash_locked": true
+  },
+  "type_t_port_completion.md": {
+    "id": "type-t-port-completion",
+    "title": "Type-T port completion",
+    "kind": "note",
+    "topics": [
+      "type-t"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "Status (2026-07-28): COMPLETION — FIXED-INSTANCES CLOSED; PARAMETRIC FAMILY OPEN. The weighted E2_parallel residual is now an ordinary graph, its same-vertex completion problem is an exact perfect-matching problem, and three representative j=4 translations are certified UNSAT.",
+    "status_line": "Status (2026-07-28): COMPLETION — FIXED-INSTANCES CLOSED; PARAMETRIC",
+    "legacy_path": "type_t_port_completion.md",
+    "hash_locked": true
+  },
+  "type_t_port_completion_j4.md": {
+    "id": "type-t-port-completion-j4",
+    "title": "Type-T same-vertex completion at `j=4`",
+    "kind": "note",
+    "topics": [
+      "type-t"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "Status (2026-07-28): COMPLETION — ALL ORDINARY j=4 INSTANCES CLOSED. Every one of the 324 valid expanded ordinary cores has no same-vertex minimum-degree-three completion avoiding all power-of-two cycle lengths.",
+    "status_line": "Status (2026-07-28): COMPLETION — ALL ORDINARY j=4 INSTANCES",
+    "legacy_path": "type_t_port_completion_j4.md",
+    "hash_locked": true
+  },
+  "type_t_port_completion_obstruction.md": {
+    "id": "type-t-port-completion-obstruction",
+    "title": "Type-T completion obstruction",
+    "kind": "note",
+    "topics": [
+      "type-t"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "Status (2026-07-28): OBSTRUCTION — BOUNDED METRIC MOTIFS, GLOBAL CERTIFICATE SUPPORT. Exact completion failure is governed by conflict hyperedges representing C4, C8, and C16.",
+    "status_line": "Status (2026-07-28): OBSTRUCTION — BOUNDED METRIC MOTIFS, GLOBAL",
+    "legacy_path": "type_t_port_completion_obstruction.md",
+    "hash_locked": true
+  },
+  "type_t_port_multipole_completion.md": {
+    "id": "type-t-port-multipole-completion",
+    "title": "Type-T port cores: minimum cubic multipole completion",
+    "kind": "note",
+    "topics": [
+      "type-t"
+    ],
+    "doc_status": "active",
+    "date": "2026-07-29",
+    "summary": "This run establishes the minimum-order normal form, exhaustively computes the single-hub compatibility hypergraphs, and implements the requested unlabelled exact-cover/cycle-cut formulation.",
+    "legacy_path": "type_t_port_multipole_completion.md",
+    "hash_locked": true
+  }
+}

@@ -1,3 +1,14 @@
+---
+id: switching-spectrum-necessity
+title: "Research pass XI: spectral isolation and independent-switch amplification"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Date: 16 November 2026. Status: Proven elementary conditional lemmas, independent graph-level verification, and a concrete two-ear rooted certificate in the Petersen graph. No proof of Erdős–Gyárfás or of a universal connectivity-to-switching theorem is claimed."
+status_line: "Date: 16 November 2026. Status: Proven elementary conditional lemmas, independent graph-level verification, and a concrete two-ear rooted certificate in the Petersen graph. No proof of Erdős–Gyárfás or of a universal connectivity-to-switchi"
+---
+
 # Research pass XI: spectral isolation and independent-switch amplification
 
 **Date:** 16 November 2026. **Status:** Proven elementary conditional lemmas, independent graph-level verification, and a concrete two-ear rooted certificate in the Petersen graph. **No proof of Erdős–Gyárfás or of a universal connectivity-to-switching theorem is claimed.** The results here should be considered a proposed research framework, not publication-level novelty without literature comparison.

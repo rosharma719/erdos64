@@ -1,3 +1,13 @@
+---
+id: tracks-external-audits-a5-lift-probe-audit
+title: "A5-permutation-lift counterexample attempt — audit and independent extension"
+kind: track-note
+topics: ["tracks", "external-audits"]
+doc_status: audit
+date: 2026-08-18
+summary: "Source: externally supplied (Codex) C++ tools (a5_breakout_solver_v2.cpp, a5_point_repair_k3.cpp, s5_parity_breakout.cpp) plus a hand-derived 16-cut constraint file, reporting a serious but ultimately rejected 120-vertex cubic candidate (a 5-sheeted A5-permutation lift of the 24-vertex Markström near-counterexample) —…"
+---
+
 # A5-permutation-lift counterexample attempt — audit and independent extension
 
 **Source:** externally supplied (Codex) C++ tools (`a5_breakout_solver_v2.cpp`,

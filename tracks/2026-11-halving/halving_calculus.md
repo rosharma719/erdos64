@@ -1,3 +1,14 @@
+---
+id: halving-calculus
+title: "Halving calculus for Erdős 64 — candidate definition (draft 1, 2026-11-16)"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Status. Hand-written, checked once by the author of this draft, not machine-checked and not reviewed. Labels: [PROVED-HERE] has a complete argument below; [KNOWN] is a restatement of a published or repo result; [OPEN] is a question; [CANDIDATE] is a conjecture that may be false."
+status_line: "Status. Hand-written, checked once by the author of this draft, not"
+---
+
 # Halving calculus for Erdős 64 — candidate definition (draft 1, 2026-11-16)
 
 **Status.** Hand-written, checked once by the author of this draft, not

@@ -1,3 +1,14 @@
+---
+id: boundary-linkage-composition
+title: "Research pass X: exact boundary-linkage composition and dyadic spectral sparsity"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Date: 16 November 2026. Status: Complete elementary transfer theorem and contextual-replacement corollaries, with a separate numerical density certificate. Exact finite verification is included."
+status_line: "Date: 16 November 2026.  Status: Complete elementary transfer theorem and contextual-replacement corollaries, with a separate numerical density certificate. Exact finite verification is included. This is not a proof of the Erdős–Gyárfás con"
+---
+
 # Research pass X: exact boundary-linkage composition and dyadic spectral sparsity
 
 **Date:** 16 November 2026.  **Status:** Complete elementary transfer theorem and contextual-replacement corollaries, with a separate numerical density certificate. Exact finite verification is included. This is **not** a proof of the Erdős–Gyárfás conjecture or of bridge stability, and the generic matching-state construction is standard in connectivity dynamic programming; no claim of publication-level originality is made.

@@ -1,3 +1,14 @@
+---
+id: sumset-classification
+title: "The integer question behind Theorem B (2026-11-16)"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Question. F = {4, 8, 16, …}. For a finite set P of positive integers let mP be the set of sums of m elements of P, repeats allowed. Which P satisfy mP ∩ F ≠ ∅ for every 3 ≤ m ≤ M?"
+status_line: "Status. Theorem C and its corollaries: proved by hand below, then tested"
+---
+
 # The integer question behind Theorem B (2026-11-16)
 
 **Question.** `F = {4, 8, 16, …}`. For a finite set `P` of positive integers

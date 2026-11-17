@@ -1,3 +1,13 @@
+---
+id: mixed-gadget-research
+title: "Mixed three-port gadget search: exact constraints, catalogues, and a 78-vertex family"
+kind: track-note
+topics: ["tracks", "2026-11-halving"]
+doc_status: active
+date: 2026-11-16
+summary: "Research notebook, 2026-11-16. Continuation of partial_triangle_expansion_census.md following erdos64 PR #2. This is computational/structural progress on construction families; it does not settle the Erdős–Gyárfás conjecture."
+---
+
 # Mixed three-port gadget search: exact constraints, catalogues, and a 78-vertex family
 
 **Research notebook, 2026-11-16.** Continuation of `partial_triangle_expansion_census.md` following `erdos64` PR #2. This is computational/structural progress on construction families; it **does not settle the Erdős–Gyárfás conjecture**. The search results have reproducible code and independent graph-level checks, not formal SAT/DRAT certificates.

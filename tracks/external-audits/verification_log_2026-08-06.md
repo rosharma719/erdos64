@@ -1,3 +1,14 @@
+---
+id: verification-log-2026-08-06
+title: "Verification report — \"girth pair (6,9) closed\" report, 2026-08-06"
+kind: track-note
+topics: ["tracks", "external-audits"]
+doc_status: active
+date: 2026-08-18
+summary: "Standard format going forward for these external report pastes: claim → status → method → note. Statuses: VERIFIED (checked myself, holds), REFUTED (checked myself, false), UNVERIFIED (no code/data supplied, not cheaply checkable), PLAUSIBLE (setup/reasoning sound, specific numbers unchecked)."
+status_line: "status → method → note. Statuses: VERIFIED (checked myself, holds),"
+---
+
 # Verification report — "girth pair (6,9) closed" report, 2026-08-06
 
 Standard format going forward for these external report pastes: claim →

@@ -1,3 +1,14 @@
+---
+id: triangle-chords-in-odd-factor-2026-08-01
+title: "Triangle chords in the 5-odd-connected factor reduction"
+kind: track-note
+topics: ["tracks", "external-audits"]
+doc_status: active
+date: 2026-08-18
+summary: "Date: 2026-08-01 Status: hand reduction from the Candráková–Lukoťka 2-factor theorem and elementary cycle switching."
+status_line: "Status: hand reduction from the Candráková–Lukoťka 2-factor theorem and elementary cycle switching."
+---
+
 # Triangle chords in the 5-odd-connected factor reduction
 
 **Date:** 2026-08-01
