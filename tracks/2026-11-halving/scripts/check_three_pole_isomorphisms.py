@@ -4,7 +4,7 @@
 Two separate claims are checked, and kept separate:
   (1) Identification: every rooted survivor of the pass VI Hamiltonian census
       (root_switching_certificates.json), with its root deleted, is isomorphic
-      to one of the three clean poles in clean_three_poles_n_le_19.g6.
+      to one of the three clean poles in clean_three_poles_n_le_21.g6.
   (2) Agreement: the representatives in the audit file clean_pole_small_audit.json
       match the same three poles.
 Neither check establishes uniqueness at 15 vertices. Uniqueness rests on the
@@ -22,7 +22,7 @@ def marked(G):
     for v in H: H.nodes[v]["port"] = H.degree(v) == 2
     return H
 def load_ours():
-    poles = [nx.from_graph6_bytes(l.strip().encode()) for l in open(os.path.join(HERE, "clean_three_poles_n_le_19.g6")) if l.strip()]
+    poles = [nx.from_graph6_bytes(l.strip().encode()) for l in open(os.path.join(HERE, "clean_three_poles_n_le_21.g6")) if l.strip()]
     assert len(poles) == 3
     for P in poles: assert sum(1 for v in P if P.degree(v) == 2) == 3
     return poles

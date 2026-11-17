@@ -1,7 +1,8 @@
 # tracks/2026-11-halving — session of 2026-11-16
 
 Independent audit of the repository, then a new line of work that converged on
-one central conjecture. Nothing here edits the canonical ledger files other
+one central conjecture. **Node statuses: `BLUEPRINT.md`. How the two models
+divide the work: `WORKFLOW.md`.** Nothing here edits the canonical ledger files other
 than status-log entries in `plan.md`.
 
 ## Central target: Conjecture T
@@ -21,10 +22,11 @@ of a spanning tree from a cubic counterexample. Statement and proof:
 |---|---|---|
 | T ⇒ Erdős–Gyárfás for all cubic graphs | **Proved** (short, uses the published order bound) | `three_port_classification.md` |
 | No clean 3-pole on 5 vertices | **Proved** by hand, plus brute force | `audits/three_pole_research_handoff.md` |
-| Clean 3-poles on ≤ 19 vertices are exactly the four in T | **Computed**, one exhaustive run; certification gate not met | `three_pole_census_manifest.md` |
+| Clean 3-poles on ≤ 21 vertices are exactly the four in T | **Certified** for checkers (two independent), single generator | `three_pole_census_manifest.md` |
+| No clean 2-pole on ≤ 20 vertices | **Certified** for checkers, single generator | `three_pole_census_manifest.md` |
 | Pass VI Hamiltonian survivors are these poles | **Computed**, identification only, not uniqueness | `scripts/check_three_pole_isomorphisms.py` |
 | Triangle-built clean 3-poles have 1, 3, 7, 15 vertices, at every size | **Computed** at signature level; hand proof not written | `three_port_classification.md` |
-| Order 21 | **Open**; run started and stopped, no result | `three_pole_census_manifest.md` |
+| Order 23 | **Open**; about 3.3 hours on two cores | `three_pole_census_manifest.md` |
 | Decomposition lemma (smallest exception to T is a labelled prime) | **Not proved** | brief, Step 3 |
 | WRP ⇒ T | **Conditional** on the decomposition lemma | brief, Step 3 |
 | WRP for gadget-heavy labellings | **Proved** above an explicit global threshold | `cycle_space_obstruction.md` |
@@ -133,7 +135,7 @@ Each script has a matching `test_*.py`. To run them:
 ## Three-port classification and the additive-reduction brief (2026-11-16, evening)
 
 - `three_port_classification.md` — every clean 3-pole (three degree-2 vertices,
-  rest degree 3, no power-of-two cycle) through 19 vertices: only the two H7
+  rest degree 3, no power-of-two cycle) through 21 vertices (certified 16 Nov): only the two H7
   gadgets and H15, plus the triangle. Triangle-built clean pieces stop at 15
   vertices at every size. Matches all pass VI Hamiltonian survivors. States
   Conjecture T. Also corrects an earlier conversational remark about
@@ -142,7 +144,7 @@ Each script has a matching `test_*.py`. To run them:
   two" by "cover a factor-2 interval", reduce to prime graphs labelled by the
   five gadget letters (WRP), then attack dense and sparse labellings.
 - Scripts: `triangle_closure.py`, `identify_three_poles.py`; data:
-  `clean_three_poles_n_le_19.g6`.
+  `clean_three_poles_n_le_21.g6`.
 
 ## Corrections and audit (2026-11-16, late evening)
 

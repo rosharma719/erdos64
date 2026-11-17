@@ -41,14 +41,14 @@ counterexample gives one.
 
 - **Conjecture T.** The only clean 3-poles are the triangle, the two H7
   gadgets and H15.
-- **Evidence.** Exhaustive census through 19 vertices
+- **Evidence.** Certified census through 21 vertices, and no clean 2-pole through 20
   (`three_pole_census_manifest.md`); `N = 5` by hand proof; complete at every
   size for triangle-built pieces (`three_port_classification.md`).
 - **Why it matters.** **T alone implies the conjecture for every cubic
   graph** (proof in `three_port_classification.md`). WRP below is one proposed
   route to T, not a prerequisite. T also means every relevant piece has
   interval path lengths, which the additive calculus needs.
-- **Task.** Extend the enumeration to 21, 23, 25 vertices in shards. Run the
+- **Task.** Order 21 is done; extend to 23 and 25 in shards. Run the
   analogous counts for two-port and four-port pieces (no clean two-port piece
   on 8–13 vertices).
 - **Stop rule.** A clean 3-pole outside the list refutes T. If its path

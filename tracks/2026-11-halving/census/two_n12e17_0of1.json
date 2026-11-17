@@ -1,0 +1,8 @@
+{"label":"two","n":12,"e":17,"degree2_vertices":2,"res":0,"mod":1,
+ "command":"geng -c -f -d2 -D3 12 17:17 0/1","nauty_geng":">E Usage: geng [-cCmtfkbd#D#] [-kTSPF] [-uygsnh] [-lvq] ",
+ "checker_A":"cycle_check.c","checker_A_sha256":"7dcf0cd198ddbd01070a76a4356d4a0b7b353ace34ca34432b2a5aa6d2dc5ad4",
+ "checker_B":"verifier/check_power_masks.c","checker_B_sha256":"e398bc3e3e49cddb8c076868055122bb032a99aaf41ba30cc85542ea20679559",
+ "start":"2026-11-16T23:47:33Z","end":"2026-11-16T23:47:34Z","geng_exit":0,"tee_exit":0,"checker_A_exit":0,
+ "raw_count":75,"checker_A_count":75,"checker_B_count":75,
+ "c4_seen":0,"clean_A":0,"clean_B":0,
+ "stream_sha256":"4c87d661cd8bf57b8ee240c26981d3ad36d1ff5801e21e6e885af62d4f8791be","clean_graphs_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","result":"PASS"}
