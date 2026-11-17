@@ -33,5 +33,42 @@
     "doc_status": "historical",
     "date": "2026-11-17",
     "summary": "Extracted copies of the eight packet zips in handoff/Original_Research_Packets for direct reading: EG28 rooted audit and corrected rerun, cycle-transversal audit, Coxeter transversal, Run4, short-cycle theorem route (inflated K4/Petersen), Run6 flexibility and 165-vertex 4-regular obstruction, Run7 core bound (verify_complete_7.cpp), shortest-path audit."
+  },
+  "run8/EG_NearDyadic_Run8_Research_Packet.zip": {
+    "id": "run8-near-dyadic-packet-zip",
+    "title": "Run 8 near-dyadic research packet (original zip)",
+    "kind": "artifact",
+    "topics": [
+      "run-2026-11-handoff",
+      "near-dyadic"
+    ],
+    "doc_status": "historical",
+    "date": "2026-11-17",
+    "hash_locked": true,
+    "summary": "Verbatim upload of the Run 8 packet (includes __pycache__ files, which are omitted from the extracted copy)."
+  },
+  "run8/EG_NearDyadic_Run8/": {
+    "id": "run8-near-dyadic-packet",
+    "title": "Run 8 near-dyadic packet (extracted)",
+    "kind": "artifact",
+    "topics": [
+      "run-2026-11-handoff",
+      "near-dyadic"
+    ],
+    "doc_status": "active",
+    "date": "2026-11-17",
+    "summary": "Extracted Run 8 packet without __pycache__: research_run8.py, scale_escalation_check.py, independent_static_oracle.py, graph6 certificates (K4 3-subdivision, 8-vertex near-dyadic block, glued 29-vertex example), stdout logs, verified_results.json; SHA256SUMS verified on import."
+  },
+  "run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md": {
+    "id": "run8-near-dyadic-note",
+    "title": "Run 8 — girth-cycle overlap and scale escalation",
+    "kind": "pass",
+    "topics": [
+      "run-2026-11-handoff",
+      "near-dyadic"
+    ],
+    "doc_status": "active",
+    "date": "2026-11-17",
+    "summary": "Near-dyadic attack: girth-cycle intersection lemma; scale-escalation theorem (overlaps of two C_{2^k+1} force an internal edge onto no C_{2^k+1}); cubic odd-girth edge-cover forcing theorem; overlap-packing inequality nu_g ≤ 2D_g + H; exact C9-pair census; K4-subdivision and average-degree obstructions."
   }
 }

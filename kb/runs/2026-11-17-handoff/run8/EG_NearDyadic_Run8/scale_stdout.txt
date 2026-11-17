@@ -1,0 +1,3 @@
+{'shared_path_edges': 2, 'visited_states': 27, 'third_C9_witnesses': 0, 'witness_sequences': []}
+{'shared_path_edges': 3, 'visited_states': 43, 'third_C9_witnesses': 4, 'witness_sequences': [[1, 14, 15, 16, 17, 7, 8, 3, 2], [1, 14, 15, 16, 17, 12, 13, 3, 2], [1, 14, 15, 16, 17, 18, 8, 3, 2], [1, 14, 15, 16, 17, 18, 13, 3, 2]]}
+{'shared_path_edges': 4, 'visited_states': 41, 'third_C9_witnesses': 3, 'witness_sequences': [[1, 13, 14, 15, 16, 8, 4, 3, 2], [1, 13, 14, 15, 16, 12, 4, 3, 2], [1, 13, 14, 15, 16, 17, 18, 3, 2]]}

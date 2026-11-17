@@ -97,3 +97,4 @@ q ≥ 5 d[…] the crude count gives n ≤ 48 when h = 2 and n […]".
 ## History
 
 - 2026-11-17: created from a screenshot of another session; transcribed, not verified.
+- 2026-11-17: reported answer — yes, both finite, by a short hand argument; n ≤ (3q² + 7q − 4)/2 for q ≥ 2 (see `c-defect-quadratic-bound`, SKETCH pending write-up; computer check of the key lemma recorded as passed). The question stays open until the proof is written here; a linear bound remains open.

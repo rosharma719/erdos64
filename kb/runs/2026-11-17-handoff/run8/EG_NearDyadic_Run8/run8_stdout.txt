@@ -1,0 +1,5 @@
+two-C9 embeddings: {'tested': 130922, 'accepted_dyadic_free': 151, 'accepted_shared_other_vertices_1': 2, 'accepted_girth9': 9, 'girth9_shared_path_edges_2': 2, 'accepted_shared_other_vertices_2': 25, 'girth9_shared_path_edges_3': 3, 'accepted_shared_other_vertices_3': 49, 'girth9_shared_path_edges_4': 4, 'accepted_shared_other_vertices_4': 57, 'accepted_shared_other_vertices_5': 6, 'accepted_shared_other_vertices_6': 12}
+two-ear cases 67 valid 27
+8-vertex block near-dyadic edge witnesses 11
+29-vertex glued: n,m,avgdeg {'vertices': 29, 'edges': 44, 'average_degree': 3.0344827586206895, 'cycles_by_length': {3: 8, 6: 20, 7: 8, 5: 12}}
+SHA256 1628bc98f2eee14af927ceebef2a31829e20a5910bc955066490ccab0701567c

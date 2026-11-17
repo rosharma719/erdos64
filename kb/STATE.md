@@ -139,6 +139,29 @@ contributes:
 - **A refuted auxiliary "every vertex lies on a dyadic cycle"**
   (`c-handoff-rooted-on-cycle-fails`). This is unrelated to the Pass XIV avoidance
   results.
+- **Run 8, the near-dyadic attack** (`run8/`). Proofs were read on import; none is
+  refereed.
+  - `c-scale-escalation` [PROVED]: two C_{2^k+1} girth cycles sharing a path whose
+    internal vertices are cubic force an internal edge onto a strictly longer
+    near-dyadic scale.
+  - `c-odd-girth-edge-cover-forcing` [PROVED]: a cubic graph of odd girth g with every
+    edge on a g-cycle contains C_{2g−2}.
+  - `c-overlap-packing-inequality` [PROVED]: ν_g ≤ 2D_g + H.
+  - Obstructions [PROVED] showing that minimum degree 3 is essential:
+    - `c-k4-subdivision-near-dyadic-obstruction`;
+    - `c-average-degree-near-dyadic-obstruction`.
+  - `c-c9-pair-census` [COMPUTATIONALLY VERIFIED, as reported].
+
+## 4c. Defect growth (`c-defect-quadratic-bound`, SKETCH)
+
+Another session reports the following for a minimal counterexample with q ≥ 2:
+- t(h) and K(h) are finite;
+- **n ≤ (3q² + 7q − 4)/2**, hence m ≤ 2n − √(2n/3) + O(1);
+- with Ducoffe–Dumitru's n ≥ 41, **q ≥ 5, i.e. m ≤ 2n − 7**. This would improve the
+  repo's q ≥ 4.
+
+The computer check of the key lemma is recorded as passed. The hand proof is not yet in
+the repo.
 
 ## 5. Open problems (one file each in `kb/open/`)
 
@@ -156,7 +179,8 @@ contributes:
 | `q-rooted-prime-conjecture` | From the dossier; survives all tests. |
 | `q-three-terminal-forcing-lemma` | Equivalent to EG (handoff §7); a clean reformulation. |
 | `q-order28-rooted-census` | The 251 cubic {C₄,C₈}-free graphs on 28 vertices, rooted classification. |
-| `q-defect-growth-via-t-and-k` | If t(h) and K(h) are finite, q(G) → ∞ (m ≤ 2n − g(n)). Generalizes the q ≥ 4 check; t(4) = 12 and t(5) = 18 are reported only. |
+| `q-defect-growth-via-t-and-k` | If t(h) and K(h) are finite, q(G) → ∞ (m ≤ 2n − g(n)). Reported answered (quadratic bound, see §4c); open until the proof is written here, and a linear bound is still open. |
+| `q-near-dyadic-overlap-packing` | Force enough near-dyadic overlaps in a minimal counterexample (Run 8's next step). |
 
 ## 6. Dead ends (do not re-try without a new idea)
 

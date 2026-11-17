@@ -56,6 +56,35 @@
    "metadata_source": "kb/runs/2026-11-17-handoff/_meta.json"
   },
   {
+   "id": "run8-near-dyadic-packet",
+   "title": "Run 8 near-dyadic packet (extracted)",
+   "kind": "artifact",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Extracted Run 8 packet without __pycache__: research_run8.py, scale_escalation_check.py, independent_static_oracle.py, graph6 certificates (K4 3-subdivision, 8-vertex near-dyadic block, glued 29-vertex example), stdout logs, verified_results.json; SHA256SUMS verified on import.",
+   "path": "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/",
+   "metadata_source": "kb/runs/2026-11-17-handoff/_meta.json"
+  },
+  {
+   "id": "run8-near-dyadic-packet-zip",
+   "title": "Run 8 near-dyadic research packet (original zip)",
+   "kind": "artifact",
+   "doc_status": "historical",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Verbatim upload of the Run 8 packet (includes __pycache__ files, which are omitted from the extracted copy).",
+   "path": "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8_Research_Packet.zip",
+   "hash_locked": true,
+   "metadata_source": "kb/runs/2026-11-17-handoff/_meta.json"
+  },
+  {
    "id": "c-anchoring-nesting",
    "title": "Few rigid candidates: anchoring and nesting lemmas",
    "kind": "claim",
@@ -73,6 +102,46 @@
    "evidence": [
     "kb/runs/2026-11-16-dossier/passes/18_robust_specials.md#1",
     "kb/runs/2026-11-16-dossier/passes/18_robust_specials.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-average-degree-near-dyadic-obstruction",
+   "title": "Average degree > 3 plus near-dyadic edge saturation does not force a dyadic cycle",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Gluing t ≥ 4 copies of the 8-vertex, 11-edge graph GxaGiC (no C4/C8, every edge on a C3 or C5) at one vertex gives a graph with average degree 22t/(7t+1) > 3, every edge on a C3 or C5, and no dyadic cycle.",
+   "path": "kb/claims/c-average-degree-near-dyadic-obstruction.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#6",
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/near_dyad_8vertex_block.g6",
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/near_dyad_glued29.g6"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-c9-pair-census",
+   "title": "Local census of two 9-cycles sharing an edge",
+   "kind": "claim",
+   "label": "COMPUTATIONALLY VERIFIED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Of 130,922 labelled placements of a second C9 through a fixed edge of a C9, 151 give a subcubic union with no C4, C8, C16; 9 of those also have girth ≥ 9, with shared paths of length 2 (2 cases), 3 (3), 4 (4). Of 67 two-ear (K4-subdivision) patterns, 27 have girth ≥ 9 and no C16.",
+   "path": "kb/claims/c-c9-pair-census.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#4",
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/run8_stdout.txt",
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/verified_results.json"
    ],
    "metadata_source": "front-matter"
   },
@@ -124,6 +193,30 @@
    "metadata_source": "front-matter"
   },
   {
+   "id": "c-defect-quadratic-bound",
+   "title": "Minimal counterexamples satisfy n ≤ (3q² + 7q − 4)/2, hence q ≥ 5 (m ≤ 2n − 7)",
+   "kind": "claim",
+   "label": "SKETCH",
+   "doc_status": "active",
+   "topics": [
+    "defect",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-17",
+   "summary": "For a minimal counterexample with q = 2n − 2 − m ≥ 2, t(h) and K(h) are finite and n ≤ (3q² + 7q − 4)/2, so m ≤ 2n − √(2n/3) + O(1). With Garcia's lower bound n ≥ 24 this gives q ≥ 4 (m ≤ 2n − 6); with Ducoffe–Dumitru's n ≥ 41 it gives q ≥ 5 (m ≤ 2n − 7).",
+   "path": "kb/claims/c-defect-quadratic-bound.md",
+   "depends_on": [
+    "q4-independent-check",
+    "q-defect-growth-via-t-and-k"
+   ],
+   "evidence": [
+    "kb/open/assets/2026-11-17-defect-quadratic-bound-screenshot.jpg",
+    "kb/open/q-defect-growth-via-t-and-k.md",
+    "tracks/2026-11-halving/q4_independent_check.md"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
    "id": "c-delta3-induced-cycle-adjuster",
    "title": "Induced cycles are ±1/±2 length adjusters when δ ≥ 3",
    "kind": "claim",
@@ -155,6 +248,24 @@
    "evidence": [
     "kb/runs/2026-11-16-dossier/passes/16_crux_sharpening.md#2",
     "kb/runs/2026-11-16-dossier/LITERATURE_REVIEW.md#5"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-girth-cycle-intersection",
+   "title": "Two girth cycles sharing an edge meet in one path of length 2..h",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Let G have odd girth g = 2h+1. Two distinct g-cycles sharing an edge intersect in a single path of length t with 1 ≤ t ≤ h, and their union contains a cycle of length 2(g − t). If G has no C_{2g−2}, then 2 ≤ t ≤ h. For g = 2^k + 1 the excluded length 2g − 2 is 2^{k+1}.",
+   "path": "kb/claims/c-girth-cycle-intersection.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#1"
    ],
    "metadata_source": "front-matter"
   },
@@ -266,6 +377,67 @@
    "metadata_source": "front-matter"
   },
   {
+   "id": "c-k4-subdivision-near-dyadic-obstruction",
+   "title": "Degree 3 is essential: subdivided K4 has all edges on two near-dyadic cycles and no dyadic cycle",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "For odd k ≥ 3 and m = (2^k + 1)/3, the uniform m-subdivision of K4 is 2-connected, has girth 2^k + 1, all cycles of length 3m or 4m (none dyadic), and every edge on exactly two C_{2^k+1}. For k = 3 (m = 3): 16 vertices, four C9 and three C12.",
+   "path": "kb/claims/c-k4-subdivision-near-dyadic-obstruction.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#5",
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/K4_three_subdivision.g6"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-odd-girth-edge-cover-forcing",
+   "title": "Cubic graphs of odd girth g with every edge on a g-cycle contain C_{2g−2}",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "For every odd g ≥ 5, a cubic graph of girth g in which every edge lies on a g-cycle contains a cycle of length 2g − 2. In particular, for g = 2^k + 1 such a graph contains C_{2^{k+1}}.",
+   "path": "kb/claims/c-odd-girth-edge-cover-forcing.md",
+   "depends_on": [
+    "c-scale-escalation"
+   ],
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#3"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-overlap-packing-inequality",
+   "title": "Overlap-packing inequality ν_g ≤ 2D_g + H",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "For δ ≥ 3, odd girth g ≥ 5 and no C_{2g−2}: if ν_g is the maximum number of pairwise internally vertex-disjoint common paths (length ≥ 2) of distinct g-cycles, D_g the number of edges on no g-cycle and H the number of vertices of degree ≥ 4, then ν_g ≤ 2D_g + H; for cubic G, D_g ≥ ⌈ν_g/2⌉.",
+   "path": "kb/claims/c-overlap-packing-inequality.md",
+   "depends_on": [
+    "c-scale-escalation"
+   ],
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
    "id": "c-pi-gadget",
    "title": "Π-gadget: a position- and modulus-free length adjuster",
    "kind": "claim",
@@ -350,6 +522,28 @@
    "evidence": [
     "kb/runs/2026-11-16-dossier/passes/14_rooted_stress_test/results/wit_hard.txt",
     "kb/runs/2026-11-16-dossier/passes/14_rooted_stress_test/results/external_sha256.txt"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-scale-escalation",
+   "title": "Scale escalation: overlaps of near-dyadic girth cycles force an uncovered edge",
+   "kind": "claim",
+   "label": "PROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Let g = 2^k + 1 (k ≥ 2) and let G have girth g and no C_{2g−2}. If two distinct g-cycles share a path P of t ≥ 2 edges whose internal vertices all have degree 3, then some internal vertex has its third edge on no g-cycle. In a smallest counterexample of girth g that edge must lie on some C_{2^j+1…",
+   "path": "kb/claims/c-scale-escalation.md",
+   "depends_on": [
+    "c-girth-cycle-intersection"
+   ],
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#2",
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/scale_stdout.txt"
    ],
    "metadata_source": "front-matter"
   },
@@ -1749,6 +1943,28 @@
    "metadata_source": "front-matter"
   },
   {
+   "id": "q-near-dyadic-overlap-packing",
+   "title": "Global overlap packing: force enough near-dyadic overlaps in a minimal counterexample",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Show that a smallest counterexample must contain enough internally disjoint overlap paths of near-dyadic girth cycles (or an analogue without the girth hypothesis) that the forced scale escalations (c-scale-escalation, c-overlap-packing-inequality) cannot all be accommodated, e.g. via a recurrenc…",
+   "path": "kb/open/q-near-dyadic-overlap-packing.md",
+   "depends_on": [
+    "c-scale-escalation",
+    "c-overlap-packing-inequality"
+   ],
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md#8"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
    "id": "q-order28-rooted-census",
    "title": "Rooted classification of the 251 cubic {C4,C8}-free graphs on 28 vertices",
    "kind": "open-problem",
@@ -1972,6 +2188,20 @@
    "summary": "Π-gadget lemma (position- and modulus-free adjuster), coin lemma, parity lemma, G3 for odd primes; honest list of what remains open in the expander pillar.",
    "path": "kb/runs/2026-11-16-dossier/passes/20_closing_status.md",
    "metadata_source": "front-matter"
+  },
+  {
+   "id": "run8-near-dyadic-note",
+   "title": "Run 8 — girth-cycle overlap and scale escalation",
+   "kind": "pass",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff",
+    "near-dyadic"
+   ],
+   "date": "2026-11-17",
+   "summary": "Near-dyadic attack: girth-cycle intersection lemma; scale-escalation theorem (overlaps of two C_{2^k+1} force an internal edge onto no C_{2^k+1}); cubic odd-girth edge-cover forcing theorem; overlap-packing inequality nu_g ≤ 2D_g + H; exact C9-pair census; K4-subdivision and average-degree obstructions.",
+   "path": "kb/runs/2026-11-17-handoff/run8/EG_NearDyadic_Run8/RESEARCH_NOTE.md",
+   "metadata_source": "kb/runs/2026-11-17-handoff/_meta.json"
   },
   {
    "id": "dossier-2026-11-16",
