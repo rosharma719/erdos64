@@ -1,0 +1,810 @@
+[
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 4,
+    "marked": [],
+    "marked_count": 0,
+    "marked_fraction": "0/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": false,
+    "forced_witness_found": true,
+    "cycle_length": 4,
+    "quotient_cycle": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "r": 0,
+    "lifted_cycle": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "sha256_edgelist": "b68fb7de3d4c450107307a6d055e1d97e292335557965c26edfc710d3104e6dd",
+    "edgelist_filename": "k4_.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 10,
+    "marked": [
+      0
+    ],
+    "marked_count": 1,
+    "marked_fraction": "1/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": false,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      5,
+      1,
+      2,
+      6,
+      3,
+      4,
+      7,
+      8
+    ],
+    "sha256_edgelist": "22e07869a273505bb6c148852011d52cda0eec91a970a511d0c78bfec2349b2a",
+    "edgelist_filename": "k4_0.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 10,
+    "marked": [
+      1
+    ],
+    "marked_count": 1,
+    "marked_fraction": "1/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": false,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      0,
+      5,
+      1,
+      3,
+      7,
+      4,
+      6,
+      8
+    ],
+    "sha256_edgelist": "8f6da3146ef1476f32a1276f82324b8a575ee98fee6d5d9679bd974e670b6a46",
+    "edgelist_filename": "k4_1.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 10,
+    "marked": [
+      2
+    ],
+    "marked_count": 1,
+    "marked_fraction": "1/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": false,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      0,
+      1,
+      7,
+      3,
+      4,
+      8,
+      5,
+      6
+    ],
+    "sha256_edgelist": "c649563cc9bfc08b735e57b5300f36edbc27211eb433256cac934338b48e4fa4",
+    "edgelist_filename": "k4_2.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 10,
+    "marked": [
+      3
+    ],
+    "marked_count": 1,
+    "marked_fraction": "1/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": false,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      3
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      0,
+      1,
+      8,
+      4,
+      5,
+      9,
+      6,
+      7
+    ],
+    "sha256_edgelist": "12665ed1260237a4f5d7fd09f73fe77fab5d102a2d0da2fec8a9fd3b25ca3dd4",
+    "edgelist_filename": "k4_3.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 16,
+    "marked": [
+      0,
+      1
+    ],
+    "marked_count": 2,
+    "marked_fraction": "2/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 2,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      4,
+      11,
+      10,
+      12,
+      14
+    ],
+    "sha256_edgelist": "d98e15b5c70bed7522fff82a78a2be33069e1d6474f62cb1d334083599499dd1",
+    "edgelist_filename": "k4_01.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 16,
+    "marked": [
+      0,
+      2
+    ],
+    "marked_count": 2,
+    "marked_fraction": "2/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 2,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      4,
+      7,
+      13,
+      11,
+      12
+    ],
+    "sha256_edgelist": "f392b69ae55ca7dfaa7ccf8111294b0f6f39bdb3aeee3e6c5fc20e88ff04b439",
+    "edgelist_filename": "k4_02.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 16,
+    "marked": [
+      0,
+      3
+    ],
+    "marked_count": 2,
+    "marked_fraction": "2/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      5,
+      1,
+      2,
+      6,
+      3,
+      4,
+      7,
+      8
+    ],
+    "sha256_edgelist": "9021c7f62857c30bbc7a1a3f9d042ce0a6846acb0a435a07b7bd6d26e7f78e51",
+    "edgelist_filename": "k4_03.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 16,
+    "marked": [
+      1,
+      2
+    ],
+    "marked_count": 2,
+    "marked_fraction": "2/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 2,
+    "lifted_cycle": [
+      0,
+      5,
+      1,
+      2,
+      6,
+      13,
+      11,
+      12
+    ],
+    "sha256_edgelist": "3833c552e26591c9b877ce3cf16097fc8831430c51e38ab181fb5c0869dcda7f",
+    "edgelist_filename": "k4_12.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 16,
+    "marked": [
+      1,
+      3
+    ],
+    "marked_count": 2,
+    "marked_fraction": "2/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      0,
+      5,
+      1,
+      3,
+      7,
+      4,
+      6,
+      8
+    ],
+    "sha256_edgelist": "5710a0770aa1624ac28bb41133a16623d4e89b510aea3d997a5005ed22b77e8c",
+    "edgelist_filename": "k4_13.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 16,
+    "marked": [
+      2,
+      3
+    ],
+    "marked_count": 2,
+    "marked_fraction": "2/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      0,
+      1,
+      7,
+      3,
+      4,
+      8,
+      5,
+      6
+    ],
+    "sha256_edgelist": "3aad87c7d2e9ac1879f6520a5838177c3d0b15931cbe4fb961bf8cff840a37c4",
+    "edgelist_filename": "k4_23.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 22,
+    "marked": [
+      0,
+      1,
+      2
+    ],
+    "marked_count": 3,
+    "marked_fraction": "3/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      3
+    ],
+    "r": 2,
+    "lifted_cycle": [
+      6,
+      2,
+      0,
+      4,
+      11,
+      10,
+      13,
+      21
+    ],
+    "sha256_edgelist": "95c12735615698898695901e94e718565184b7c11d906f5d37889c5e183fbaee",
+    "edgelist_filename": "k4_012.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 22,
+    "marked": [
+      0,
+      1,
+      3
+    ],
+    "marked_count": 3,
+    "marked_fraction": "3/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 2,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      4,
+      11,
+      10,
+      12,
+      14
+    ],
+    "sha256_edgelist": "08d9da1d73b99307f080045b387918095056088d1d70fb1c35399c758aad3ce6",
+    "edgelist_filename": "k4_013.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 22,
+    "marked": [
+      0,
+      2,
+      3
+    ],
+    "marked_count": 3,
+    "marked_fraction": "3/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 2,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      4,
+      7,
+      13,
+      11,
+      12
+    ],
+    "sha256_edgelist": "2eeb5f454e91904dc5e2aaaa103170f8ded70b1a20abc141352d8a565df3d5a4",
+    "edgelist_filename": "k4_023.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 22,
+    "marked": [
+      1,
+      2,
+      3
+    ],
+    "marked_count": 3,
+    "marked_fraction": "3/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 2,
+    "lifted_cycle": [
+      0,
+      5,
+      1,
+      2,
+      6,
+      13,
+      11,
+      12
+    ],
+    "sha256_edgelist": "695a585c2522ddc65a8aa938ea2dead6df45ca1228a1139bae5c89c5c8fee971",
+    "edgelist_filename": "k4_123.edges"
+  },
+  {
+    "base": "K4",
+    "base_n": 4,
+    "inflated_n": 28,
+    "marked": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "marked_count": 4,
+    "marked_fraction": "4/4",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 16,
+    "quotient_cycle": [
+      0,
+      1,
+      2
+    ],
+    "r": 3,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      2,
+      6,
+      3,
+      4,
+      11,
+      7,
+      9,
+      13,
+      10,
+      12,
+      19,
+      17,
+      18
+    ],
+    "sha256_edgelist": "5d7c127e5d8f6ba751955dc4a23e07e1710ae3da64b56923216db65d595d212c",
+    "edgelist_filename": "k4_0123.edges"
+  },
+  {
+    "base": "Petersen",
+    "base_n": 10,
+    "inflated_n": 10,
+    "marked": [],
+    "marked_count": 0,
+    "marked_fraction": "0/10",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": false,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      9,
+      7,
+      5
+    ],
+    "r": 0,
+    "lifted_cycle": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      9,
+      7,
+      5
+    ],
+    "sha256_edgelist": "5e831e4e971b87aaa20e92099ed3002faad1fae5f6606d0fa214cfdfee658023",
+    "edgelist_filename": "petersen_.edges"
+  },
+  {
+    "base": "Petersen",
+    "base_n": 10,
+    "inflated_n": 34,
+    "marked": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "marked_count": 4,
+    "marked_fraction": "4/10",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": false,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      2,
+      3,
+      8,
+      5,
+      7
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      14,
+      10,
+      9,
+      13,
+      15,
+      32,
+      23,
+      31
+    ],
+    "sha256_edgelist": "190d133eed80bc870316a9fe0fb8b9049bb9da9e2bf74c53f9c22d31ca18329f",
+    "edgelist_filename": "petersen_0246.edges"
+  },
+  {
+    "base": "Petersen",
+    "base_n": 10,
+    "inflated_n": 40,
+    "marked": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "marked_count": 5,
+    "marked_fraction": "5/10",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 16,
+    "quotient_cycle": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "r": 5,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      4,
+      11,
+      10,
+      12,
+      18,
+      17,
+      19,
+      25,
+      24,
+      26,
+      33,
+      31,
+      32
+    ],
+    "sha256_edgelist": "7a119203ddcff2ce629ac127e6ba1bd7a29d45a3df7a8a646369ed057e86f21f",
+    "edgelist_filename": "petersen_01234.edges"
+  },
+  {
+    "base": "Petersen",
+    "base_n": 10,
+    "inflated_n": 40,
+    "marked": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
+    "marked_count": 5,
+    "marked_fraction": "5/10",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 16,
+    "quotient_cycle": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "r": 3,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      2,
+      6,
+      3,
+      4,
+      7,
+      12,
+      8,
+      9,
+      13,
+      15,
+      21,
+      19,
+      20
+    ],
+    "sha256_edgelist": "043a7a275cded6888444394cfdcb5e70d8a300caecc05818e35dd355f65645a4",
+    "edgelist_filename": "petersen_02468.edges"
+  },
+  {
+    "base": "Petersen",
+    "base_n": 10,
+    "inflated_n": 46,
+    "marked": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "marked_count": 6,
+    "marked_fraction": "6/10",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 8,
+    "quotient_cycle": [
+      5,
+      7,
+      9,
+      6,
+      8
+    ],
+    "r": 1,
+    "lifted_cycle": [
+      41,
+      37,
+      36,
+      40,
+      43,
+      45,
+      42,
+      44
+    ],
+    "sha256_edgelist": "ddb049f8372c45750119c5ec6863a103ac7132a2bda1e8a9edcae8ffd3569465",
+    "edgelist_filename": "petersen_012345.edges"
+  },
+  {
+    "base": "Petersen",
+    "base_n": 10,
+    "inflated_n": 70,
+    "marked": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "marked_count": 10,
+    "marked_fraction": "10/10",
+    "all_degrees_three": true,
+    "base_has_perfect_matching": true,
+    "density_condition": true,
+    "forced_witness_found": true,
+    "cycle_length": 16,
+    "quotient_cycle": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "r": 5,
+    "lifted_cycle": [
+      5,
+      1,
+      0,
+      4,
+      11,
+      10,
+      12,
+      18,
+      17,
+      19,
+      25,
+      24,
+      26,
+      33,
+      31,
+      32
+    ],
+    "sha256_edgelist": "5f2f47e9e33786fdf0babf9fc827c9435be6f8aff5dc08f751a33ed35134c6c9",
+    "edgelist_filename": "petersen_0123456789.edges"
+  }
+]

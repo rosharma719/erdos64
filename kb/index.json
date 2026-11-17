@@ -29,6 +29,33 @@
    "metadata_source": "kb/runs/2026-11-16-dossier/_meta.json"
   },
   {
+   "id": "handoff-2026-11-17-bundle",
+   "title": "EG complete handoff bundle (verbatim)",
+   "kind": "artifact",
+   "doc_status": "historical",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "Verbatim upload: full research dossier in md/txt/pdf (21 pp.), README_START_HERE.txt, SHA256SUMS.txt, and the eight original research packets as zips (plus two loose files). Do not edit; checksums verified on import.",
+   "path": "kb/runs/2026-11-17-handoff/handoff/",
+   "hash_locked": true,
+   "metadata_source": "kb/runs/2026-11-17-handoff/_meta.json"
+  },
+  {
+   "id": "handoff-2026-11-17-packets",
+   "title": "Handoff research packets (extracted copies)",
+   "kind": "artifact",
+   "doc_status": "historical",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "Extracted copies of the eight packet zips in handoff/Original_Research_Packets for direct reading: EG28 rooted audit and corrected rerun, cycle-transversal audit, Coxeter transversal, Run4, short-cycle theorem route (inflated K4/Petersen), Run6 flexibility and 165-vertex 4-regular obstruction, Run7 core bound (verify_complete_7.cpp), shortest-path audit.",
+   "path": "kb/runs/2026-11-17-handoff/packets/",
+   "metadata_source": "kb/runs/2026-11-17-handoff/_meta.json"
+  },
+  {
    "id": "c-anchoring-nesting",
    "title": "Few rigid candidates: anchoring and nesting lemmas",
    "kind": "claim",
@@ -145,6 +172,96 @@
    "path": "kb/claims/c-growth-reformulation.md",
    "evidence": [
     "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-handoff-c4c8-edge-bound",
+   "title": "Edge bound |E| ≤ 2n − 5 for 3-critical C4/C8-free graphs",
+   "kind": "claim",
+   "label": "COMPUTATIONALLY VERIFIED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "Every 2-degenerate C4/C8-free graph on N ≥ 9 vertices has at most 2N − 6 edges (finite 8-vertex saturation lemma, by exhaustive enumeration of 2^21 labelled 7-vertex graphs, plus induction). Hence a graph with n ≥ 10, δ ≥ 3, no C4, no C8 and no proper subgraph of minimum degree 3 has at most 2n −…",
+   "path": "kb/claims/c-handoff-c4c8-edge-bound.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md#6",
+    "kb/runs/2026-11-17-handoff/packets/EG_Run7_Core_Bound_and_Audit/verify_complete_7.cpp",
+    "kb/runs/2026-11-17-handoff/packets/EG_Run7_Core_Bound_and_Audit/RESEARCH_NOTE_RUN7.md"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-handoff-coxeter-transversals",
+   "title": "Coxeter graph: dyadic cycle counts and transversal numbers",
+   "kind": "claim",
+   "label": "COMPUTATIONALLY VERIFIED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "The Coxeter graph (28 vertices) has exactly 21 distinct 8-cycles and 609 distinct 16-cycles; the minimum vertex transversal of its 8-cycles has size 6 and that of its 16-cycles has size 5.",
+   "path": "kb/claims/c-handoff-coxeter-transversals.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md#3.2",
+    "kb/runs/2026-11-17-handoff/packets/EG_Run3_Coxeter_Transversal/coxeter_summary.json"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-handoff-rooted-on-cycle-fails",
+   "title": "Not every vertex of a connected cubic graph lies on a dyadic cycle",
+   "kind": "claim",
+   "label": "DISPROVED",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "The auxiliary claim 'every vertex of every connected cubic graph lies on some dyadic cycle' is false: an 18-vertex connected cubic graph (a central triangle with three bridges to five-vertex caps) has a vertex whose only cycles are triangles.",
+   "path": "kb/claims/c-handoff-rooted-on-cycle-fails.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md#7.4",
+    "kb/runs/2026-11-17-handoff/handoff/Original_Research_Packets/EG_shortest_path_audit.py"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-handoff-saturated-triangle-bound",
+   "title": "8t < n for saturated triangle gadgets in bridgeless cubic dyadic-free graphs",
+   "kind": "claim",
+   "label": "SKETCH",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "If a bridgeless cubic graph of order n with no dyadic cycle contains t disjoint saturated T-gadgets, then 8t < n. (Contract the gadgets; a perfect matching of the bridgeless cubic base gives a 2-factor; the weighted window theorem forces a dyadic cycle once half the vertices are marked.)",
+   "path": "kb/claims/c-handoff-saturated-triangle-bound.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md#5.2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "c-handoff-short-cycle-edge-cover",
+   "title": "Cubic graphs with every edge on a C3 or C5 contain C4 or C8",
+   "kind": "claim",
+   "label": "SKETCH",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "If a cubic graph has every edge on a triangle or a pentagon, it contains a C4 or a C8. Equivalently, a cubic {C4,C8}-free graph has an edge lying on neither a C3 nor a C5.",
+   "path": "kb/claims/c-handoff-short-cycle-edge-cover.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md#4.2",
+    "kb/runs/2026-11-17-handoff/packets/EG_Proof_Route_Short_Cycle_Theorem/RESEARCH_NOTE.md"
    ],
    "metadata_source": "front-matter"
   },
@@ -1607,6 +1724,23 @@
    "metadata_source": "front-matter"
   },
   {
+   "id": "q-order28-rooted-census",
+   "title": "Rooted classification of the 251 cubic {C4,C8}-free graphs on 28 vertices",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "Obtain an authenticated list of the 251 connected cubic graphs on 28 vertices without C4 or C8, as reported by Markström, and classify them by rooted dyadic-cycle properties.",
+   "path": "kb/open/q-order28-rooted-census.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md#2"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
    "id": "q-pillar-b-nonexpanding",
    "title": "Pillar B: graphs with no large expanding piece",
    "kind": "open-problem",
@@ -1672,6 +1806,23 @@
    "path": "kb/open/q-subcase-t.md",
    "evidence": [
     "kb/runs/2026-11-16-dossier/passes/20_closing_status.md#4"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "q-three-terminal-forcing-lemma",
+   "title": "Three-terminal path-forcing lemma (equivalent to EG)",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "Let H be a 2-degenerate graph with terminals a, b, c, every non-terminal of degree ≥ 3, every terminal of degree ≥ 2, and no cycle of length 2^k. Show that some pair of terminals is joined by a simple path of length 2^k − 2 for some k ≥ 2.",
+   "path": "kb/open/q-three-terminal-forcing-lemma.md",
+   "evidence": [
+    "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md#7"
    ],
    "metadata_source": "front-matter"
   },
@@ -1848,6 +1999,33 @@
    "summary": "Growth reformulation EG ⟺ f(k) ≥ 2^(k+1) and why disproof looks unlikely; rooted 3-cut gluing and where it breaks; the δ≥3 adjuster lemma; Pillar A/B program.",
    "path": "kb/runs/2026-11-16-dossier/program/STRATEGY_2026-11-17.md",
    "metadata_source": "front-matter"
+  },
+  {
+   "id": "run-2026-11-handoff-readme",
+   "title": "17 November 2026 handoff — index and cross-references",
+   "kind": "run",
+   "doc_status": "active",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "Entry point for the imported handoff dossier: what it contains, how its evidence tags map to repository labels, registered claims and open problems, and cross-references to existing results (q(G) ≥ 4, Pass XIV rooted results, gadget-window precedent).",
+   "path": "kb/runs/2026-11-17-handoff/README.md",
+   "metadata_source": "front-matter"
+  },
+  {
+   "id": "handoff-2026-11-17-dossier",
+   "title": "Full research dossier: order-28 rooted audit, transversals, pentagon gadget, edge bound, three-terminal lemma",
+   "kind": "run",
+   "doc_status": "historical",
+   "topics": [
+    "run-2026-11-handoff"
+   ],
+   "date": "2026-11-17",
+   "summary": "Handoff from another conversation. No proof of EG. Stages: planned 251-graph order-28 rooted census (dataset never obtained); exact cycle transversals (24-vertex near-misses, Coxeter graph); pentagon overlap lemma, cubic short-cycle edge-cover claim and a 7-vertex three-port gadget with window forcing; saturated-triangle bound 8t<n; computer-assisted edge bound |E| ≤ 2n−5; the unproved three-terminal path-forcing lemma, equivalent to EG.",
+   "path": "kb/runs/2026-11-17-handoff/handoff/Erdos_Gyarfas_Full_Research_Dossier.md",
+   "hash_locked": true,
+   "metadata_source": "kb/runs/2026-11-17-handoff/_meta.json"
   },
   {
    "id": "tracks-2026-11-halving-readme",

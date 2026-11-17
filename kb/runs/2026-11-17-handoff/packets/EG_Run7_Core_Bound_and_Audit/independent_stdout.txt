@@ -1,0 +1,3 @@
+VERIFIED GxaGiC n=8 m=11; all 28 new two-neighbor attachments create C4 or C8
+VERIFIED GgqPi_ n=8 m=11; all 28 new two-neighbor attachments create C4 or C8
+Independently checked: two non-isomorphic extremal candidates.

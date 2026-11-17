@@ -122,6 +122,24 @@ One claim file each in `kb/claims/`:
     below. **Even if completed it is not EG.**
 - `c-resilience-ceiling` [PROVED] — from the uploaded dossier.
 
+## 4b. 17 November 2026 handoff (`kb/runs/2026-11-17-handoff/`)
+
+This is an imported dossier from another conversation. It does not prove EG. It
+contributes:
+
+- **The three-terminal path-forcing lemma** (`q-three-terminal-forcing-lemma`): a clean
+  open problem *equivalent* to EG.
+- **An edge bound** (`c-handoff-c4c8-edge-bound`): |E| ≤ 2n − 5 for 3-critical C₄/C₈-free
+  graphs. It is computer-assisted, and for minimal counterexamples it is weaker than the
+  repo's q(G) ≥ 4.
+- **Two sketched structural claims:**
+  - `c-handoff-short-cycle-edge-cover`;
+  - `c-handoff-saturated-triangle-bound`.
+- **Coxeter graph transversal data** (`c-handoff-coxeter-transversals`).
+- **A refuted auxiliary "every vertex lies on a dyadic cycle"**
+  (`c-handoff-rooted-on-cycle-fails`). This is unrelated to the Pass XIV avoidance
+  results.
+
 ## 5. Open problems (one file each in `kb/open/`)
 
 | id | One line |
@@ -136,6 +154,8 @@ One claim file each in `kb/claims/`:
 | `q-cubic-4-8-16-free-50-62` | The decisive finite computation (SAT scale). |
 | `q-martinsson-steiner` | External open question that our program would partly settle. |
 | `q-rooted-prime-conjecture` | From the dossier; survives all tests. |
+| `q-three-terminal-forcing-lemma` | Equivalent to EG (handoff §7); a clean reformulation. |
+| `q-order28-rooted-census` | The 251 cubic {C₄,C₈}-free graphs on 28 vertices, rooted classification. |
 
 ## 6. Dead ends (do not re-try without a new idea)
 

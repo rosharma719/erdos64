@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "total_input": 1,
+    "C4_C8_free": 0,
+    "prime_C4_C8_free": 0,
+    "root_critical": 0,
+    "prime_root_critical": 0
+  },
+  "results": [
+    {
+      "graph6": "[pC_I@??G?_C@@?O@G?O???G?CG?A?CQ?OG??_A???C??QO?CC?_??A???d????e",
+      "n": 28,
+      "triangles": 0,
+      "has_C4": false,
+      "has_C8": true,
+      "three_vertex_connected": true,
+      "cyclic_three_cut_witness": null,
+      "cyclically_four_edge_connected": true,
+      "root_critical_vertices": [],
+      "dyadic_witnesses": [
+        {
+          "avoid_root": 0,
+          "length": 8,
+          "cycle": [
+            1,
+            7,
+            13,
+            18,
+            23,
+            12,
+            11,
+            8
+          ]
+        },
+        {
+          "avoid_root": 1,
+          "length": 8,
+          "cycle": [
+            0,
+            2,
+            3,
+            4,
+            15,
+            24,
+            27,
+            25
+          ]
+        }
+      ],
+      "dyadic_witness_count": 2
+    }
+  ]
+}

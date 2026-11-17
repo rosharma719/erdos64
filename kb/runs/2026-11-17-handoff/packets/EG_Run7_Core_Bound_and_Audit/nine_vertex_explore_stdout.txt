@@ -1,0 +1,2 @@
+time 0.8898506164550781 n8 m>=10 158 n9 m12 candidates 778 n9 m12 iso 33 n9 m12 extension cases 681
+example n10 m 14 g6 IH?N[aAOO

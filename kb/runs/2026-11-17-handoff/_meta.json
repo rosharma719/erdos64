@@ -1,0 +1,37 @@
+{
+  "handoff/": {
+    "id": "handoff-2026-11-17-bundle",
+    "title": "EG complete handoff bundle (verbatim)",
+    "kind": "artifact",
+    "topics": [
+      "run-2026-11-handoff"
+    ],
+    "doc_status": "historical",
+    "date": "2026-11-17",
+    "hash_locked": true,
+    "summary": "Verbatim upload: full research dossier in md/txt/pdf (21 pp.), README_START_HERE.txt, SHA256SUMS.txt, and the eight original research packets as zips (plus two loose files). Do not edit; checksums verified on import."
+  },
+  "handoff/Erdos_Gyarfas_Full_Research_Dossier.md": {
+    "id": "handoff-2026-11-17-dossier",
+    "title": "Full research dossier: order-28 rooted audit, transversals, pentagon gadget, edge bound, three-terminal lemma",
+    "kind": "run",
+    "topics": [
+      "run-2026-11-handoff"
+    ],
+    "doc_status": "historical",
+    "date": "2026-11-17",
+    "hash_locked": true,
+    "summary": "Handoff from another conversation. No proof of EG. Stages: planned 251-graph order-28 rooted census (dataset never obtained); exact cycle transversals (24-vertex near-misses, Coxeter graph); pentagon overlap lemma, cubic short-cycle edge-cover claim and a 7-vertex three-port gadget with window forcing; saturated-triangle bound 8t<n; computer-assisted edge bound |E| ≤ 2n−5; the unproved three-terminal path-forcing lemma, equivalent to EG."
+  },
+  "packets/": {
+    "id": "handoff-2026-11-17-packets",
+    "title": "Handoff research packets (extracted copies)",
+    "kind": "artifact",
+    "topics": [
+      "run-2026-11-handoff"
+    ],
+    "doc_status": "historical",
+    "date": "2026-11-17",
+    "summary": "Extracted copies of the eight packet zips in handoff/Original_Research_Packets for direct reading: EG28 rooted audit and corrected rerun, cycle-transversal audit, Coxeter transversal, Run4, short-cycle theorem route (inflated K4/Petersen), Run6 flexibility and 165-vertex 4-regular obstruction, Run7 core bound (verify_complete_7.cpp), shortest-path audit."
+  }
+}

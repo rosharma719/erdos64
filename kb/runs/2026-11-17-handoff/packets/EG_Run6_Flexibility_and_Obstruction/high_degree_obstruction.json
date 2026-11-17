@@ -1,0 +1,29 @@
+{
+  "prime": 11,
+  "base_girth": 9,
+  "base_vertices": 110,
+  "line_graph_vertices": 165,
+  "line_graph_edges": 330,
+  "line_graph_degree": 4,
+  "c4": false,
+  "c8": false,
+  "every_edge_in_triangle": true,
+  "edge_list_sha256": "17e911bc7240f37b5d055c75a94ac2abbad57179721512a61c61a05687cb20e8",
+  "petersen_voltage": {
+    "0-1": 5,
+    "0-4": 5,
+    "0-5": 9,
+    "1-2": 6,
+    "1-6": 2,
+    "2-3": 0,
+    "2-7": 1,
+    "3-4": 10,
+    "3-8": 6,
+    "4-9": 3,
+    "5-7": 2,
+    "5-8": 9,
+    "6-8": 8,
+    "6-9": 3,
+    "7-9": 5
+  }
+}

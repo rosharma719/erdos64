@@ -1,0 +1,1001 @@
+{
+  "summary": {
+    "total_input": 6,
+    "C4_C8_free": 4,
+    "prime_C4_C8_free": 0,
+    "root_critical": 1,
+    "prime_root_critical": 1
+  },
+  "results": [
+    {
+      "graph6": "IheA@GUAo",
+      "n": 10,
+      "triangles": 0,
+      "has_C4": false,
+      "has_C8": true,
+      "three_vertex_connected": true,
+      "cyclic_three_cut_witness": null,
+      "cyclically_four_edge_connected": true,
+      "root_critical_vertices": [],
+      "dyadic_witnesses": [
+        {
+          "avoid_root": 0,
+          "length": 8,
+          "cycle": [
+            1,
+            2,
+            3,
+            8,
+            5,
+            7,
+            9,
+            6
+          ]
+        },
+        {
+          "avoid_root": 1,
+          "length": 8,
+          "cycle": [
+            0,
+            4,
+            3,
+            8,
+            6,
+            9,
+            7,
+            5
+          ]
+        },
+        {
+          "avoid_root": 3,
+          "length": 8,
+          "cycle": [
+            0,
+            1,
+            2,
+            7,
+            9,
+            6,
+            8,
+            5
+          ]
+        },
+        {
+          "avoid_root": 5,
+          "length": 8,
+          "cycle": [
+            0,
+            1,
+            2,
+            3,
+            8,
+            6,
+            9,
+            4
+          ]
+        },
+        {
+          "avoid_root": 6,
+          "length": 8,
+          "cycle": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9,
+            7,
+            5
+          ]
+        },
+        {
+          "avoid_root": 9,
+          "length": 8,
+          "cycle": [
+            0,
+            1,
+            2,
+            7,
+            5,
+            8,
+            3,
+            4
+          ]
+        }
+      ],
+      "dyadic_witness_count": 6
+    },
+    {
+      "graph6": "C~",
+      "n": 4,
+      "triangles": 4,
+      "has_C4": true,
+      "has_C8": false,
+      "three_vertex_connected": true,
+      "cyclic_three_cut_witness": null,
+      "cyclically_four_edge_connected": true,
+      "root_critical_vertices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "dyadic_witnesses": [],
+      "dyadic_witness_count": 0
+    },
+    {
+      "graph6": "W??G?C??KCCBa?OCgO@O@C??O?IG??G?K`??CO?K@???C@@",
+      "n": 24,
+      "triangles": 4,
+      "has_C4": false,
+      "has_C8": false,
+      "three_vertex_connected": true,
+      "cyclic_three_cut_witness": {
+        "edges": [
+          [
+            0,
+            22
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            16,
+            23
+          ]
+        ],
+        "cyclic_components": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          [
+            8,
+            22,
+            23
+          ]
+        ]
+      },
+      "cyclically_four_edge_connected": false,
+      "root_critical_vertices": [],
+      "dyadic_witnesses": [
+        {
+          "avoid_root": 0,
+          "length": 16,
+          "cycle": [
+            1,
+            14,
+            15,
+            4,
+            12,
+            13,
+            9,
+            11,
+            10,
+            6,
+            7,
+            21,
+            3,
+            17,
+            19,
+            18
+          ]
+        },
+        {
+          "avoid_root": 1,
+          "length": 16,
+          "cycle": [
+            0,
+            12,
+            13,
+            9,
+            11,
+            10,
+            6,
+            14,
+            15,
+            4,
+            5,
+            19,
+            17,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 4,
+          "length": 16,
+          "cycle": [
+            0,
+            12,
+            13,
+            9,
+            11,
+            10,
+            6,
+            14,
+            15,
+            2,
+            20,
+            21,
+            3,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 6,
+          "length": 16,
+          "cycle": [
+            0,
+            12,
+            13,
+            9,
+            11,
+            2,
+            15,
+            14,
+            1,
+            18,
+            5,
+            19,
+            17,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 9,
+          "length": 16,
+          "cycle": [
+            0,
+            12,
+            13,
+            1,
+            18,
+            19,
+            5,
+            4,
+            15,
+            2,
+            20,
+            21,
+            3,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 12,
+          "length": 16,
+          "cycle": [
+            0,
+            10,
+            11,
+            9,
+            13,
+            1,
+            14,
+            15,
+            4,
+            5,
+            18,
+            19,
+            17,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 13,
+          "length": 16,
+          "cycle": [
+            0,
+            12,
+            4,
+            15,
+            14,
+            6,
+            10,
+            11,
+            2,
+            20,
+            21,
+            3,
+            17,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 15,
+          "length": 16,
+          "cycle": [
+            0,
+            12,
+            13,
+            9,
+            11,
+            10,
+            6,
+            14,
+            1,
+            18,
+            5,
+            19,
+            17,
+            16,
+            23,
+            22
+          ]
+        }
+      ],
+      "dyadic_witness_count": 8
+    },
+    {
+      "graph6": "WK?Y?CAGK?G`?G??_?O_@????@WOO@O?C@O??OOK??O??D@",
+      "n": 24,
+      "triangles": 3,
+      "has_C4": false,
+      "has_C8": false,
+      "three_vertex_connected": true,
+      "cyclic_three_cut_witness": {
+        "edges": [
+          [
+            0,
+            22
+          ],
+          [
+            14,
+            23
+          ],
+          [
+            16,
+            17
+          ]
+        ],
+        "cyclic_components": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          [
+            16,
+            22,
+            23
+          ]
+        ]
+      },
+      "cyclically_four_edge_connected": false,
+      "root_critical_vertices": [],
+      "dyadic_witnesses": [
+        {
+          "avoid_root": 0,
+          "length": 16,
+          "cycle": [
+            1,
+            6,
+            8,
+            12,
+            14,
+            23,
+            22,
+            16,
+            17,
+            15,
+            3,
+            5,
+            4,
+            18,
+            10,
+            11
+          ]
+        },
+        {
+          "avoid_root": 1,
+          "length": 16,
+          "cycle": [
+            0,
+            10,
+            18,
+            19,
+            2,
+            9,
+            20,
+            21,
+            13,
+            12,
+            14,
+            15,
+            17,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 10,
+          "length": 16,
+          "cycle": [
+            0,
+            3,
+            15,
+            17,
+            13,
+            21,
+            20,
+            9,
+            2,
+            1,
+            6,
+            8,
+            12,
+            14,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 12,
+          "length": 16,
+          "cycle": [
+            0,
+            10,
+            18,
+            19,
+            4,
+            5,
+            11,
+            1,
+            6,
+            7,
+            21,
+            13,
+            17,
+            16,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 17,
+          "length": 16,
+          "cycle": [
+            0,
+            10,
+            18,
+            19,
+            4,
+            5,
+            11,
+            1,
+            6,
+            7,
+            21,
+            13,
+            12,
+            14,
+            23,
+            22
+          ]
+        },
+        {
+          "avoid_root": 22,
+          "length": 16,
+          "cycle": [
+            0,
+            3,
+            15,
+            17,
+            16,
+            23,
+            14,
+            12,
+            13,
+            21,
+            20,
+            9,
+            2,
+            19,
+            18,
+            10
+          ]
+        },
+        {
+          "avoid_root": 23,
+          "length": 16,
+          "cycle": [
+            0,
+            10,
+            18,
+            19,
+            4,
+            5,
+            11,
+            1,
+            6,
+            8,
+            12,
+            14,
+            15,
+            17,
+            16,
+            22
+          ]
+        }
+      ],
+      "dyadic_witness_count": 7
+    },
+    {
+      "graph6": "W?GG?C??CO?FW?P?q??g@?_@A?GA??a?E?_??GAH?_??A?P",
+      "n": 24,
+      "triangles": 6,
+      "has_C4": false,
+      "has_C8": false,
+      "three_vertex_connected": true,
+      "cyclic_three_cut_witness": {
+        "edges": [
+          [
+            0,
+            14
+          ],
+          [
+            3,
+            19
+          ],
+          [
+            5,
+            15
+          ]
+        ],
+        "cyclic_components": [
+          [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          [
+            3,
+            14,
+            15
+          ]
+        ]
+      },
+      "cyclically_four_edge_connected": false,
+      "root_critical_vertices": [],
+      "dyadic_witnesses": [
+        {
+          "avoid_root": 0,
+          "length": 16,
+          "cycle": [
+            1,
+            13,
+            12,
+            2,
+            22,
+            9,
+            11,
+            10,
+            4,
+            5,
+            15,
+            3,
+            19,
+            7,
+            6,
+            17
+          ]
+        },
+        {
+          "avoid_root": 1,
+          "length": 16,
+          "cycle": [
+            0,
+            14,
+            15,
+            5,
+            13,
+            12,
+            2,
+            22,
+            23,
+            18,
+            7,
+            6,
+            17,
+            16,
+            21,
+            20
+          ]
+        },
+        {
+          "avoid_root": 2,
+          "length": 16,
+          "cycle": [
+            0,
+            14,
+            15,
+            5,
+            13,
+            12,
+            1,
+            17,
+            6,
+            7,
+            18,
+            23,
+            9,
+            11,
+            8,
+            20
+          ]
+        },
+        {
+          "avoid_root": 5,
+          "length": 16,
+          "cycle": [
+            0,
+            14,
+            15,
+            3,
+            19,
+            18,
+            23,
+            22,
+            2,
+            12,
+            13,
+            1,
+            17,
+            16,
+            21,
+            20
+          ]
+        },
+        {
+          "avoid_root": 12,
+          "length": 16,
+          "cycle": [
+            0,
+            14,
+            15,
+            5,
+            13,
+            1,
+            17,
+            16,
+            6,
+            7,
+            18,
+            23,
+            9,
+            11,
+            8,
+            20
+          ]
+        },
+        {
+          "avoid_root": 13,
+          "length": 16,
+          "cycle": [
+            0,
+            14,
+            15,
+            5,
+            4,
+            10,
+            11,
+            9,
+            23,
+            18,
+            7,
+            6,
+            17,
+            16,
+            21,
+            20
+          ]
+        },
+        {
+          "avoid_root": 15,
+          "length": 16,
+          "cycle": [
+            0,
+            14,
+            3,
+            19,
+            18,
+            23,
+            22,
+            2,
+            12,
+            13,
+            1,
+            17,
+            6,
+            16,
+            21,
+            20
+          ]
+        },
+        {
+          "avoid_root": 17,
+          "length": 16,
+          "cycle": [
+            0,
+            14,
+            15,
+            5,
+            13,
+            12,
+            2,
+            22,
+            23,
+            18,
+            19,
+            7,
+            6,
+            16,
+            21,
+            20
+          ]
+        }
+      ],
+      "dyadic_witness_count": 8
+    },
+    {
+      "graph6": "W?O@??O@COO@O_O?c?@?`c??P?GGG?W?C@@??o?G@@??E?@",
+      "n": 24,
+      "triangles": 7,
+      "has_C4": false,
+      "has_C8": false,
+      "three_vertex_connected": true,
+      "cyclic_three_cut_witness": {
+        "edges": [
+          [
+            0,
+            16
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "cyclic_components": [
+          [
+            0,
+            4,
+            5,
+            10,
+            11,
+            18,
+            19
+          ],
+          [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            20,
+            21,
+            22,
+            23
+          ]
+        ]
+      },
+      "cyclically_four_edge_connected": false,
+      "root_critical_vertices": [],
+      "dyadic_witnesses": [
+        {
+          "avoid_root": 0,
+          "length": 16,
+          "cycle": [
+            1,
+            12,
+            6,
+            2,
+            15,
+            14,
+            22,
+            23,
+            8,
+            3,
+            16,
+            17,
+            7,
+            21,
+            20,
+            13
+          ]
+        },
+        {
+          "avoid_root": 1,
+          "length": 16,
+          "cycle": [
+            0,
+            11,
+            18,
+            19,
+            5,
+            9,
+            23,
+            22,
+            14,
+            15,
+            2,
+            6,
+            21,
+            7,
+            17,
+            16
+          ]
+        },
+        {
+          "avoid_root": 2,
+          "length": 16,
+          "cycle": [
+            0,
+            11,
+            18,
+            5,
+            19,
+            4,
+            1,
+            13,
+            12,
+            6,
+            21,
+            20,
+            7,
+            17,
+            3,
+            16
+          ]
+        },
+        {
+          "avoid_root": 6,
+          "length": 16,
+          "cycle": [
+            0,
+            11,
+            10,
+            4,
+            19,
+            18,
+            5,
+            9,
+            15,
+            14,
+            22,
+            23,
+            8,
+            3,
+            17,
+            16
+          ]
+        },
+        {
+          "avoid_root": 16,
+          "length": 16,
+          "cycle": [
+            0,
+            10,
+            4,
+            1,
+            13,
+            20,
+            21,
+            7,
+            17,
+            3,
+            8,
+            23,
+            9,
+            5,
+            18,
+            11
+          ]
+        },
+        {
+          "avoid_root": 17,
+          "length": 16,
+          "cycle": [
+            0,
+            11,
+            18,
+            19,
+            4,
+            1,
+            13,
+            20,
+            21,
+            6,
+            2,
+            14,
+            22,
+            8,
+            3,
+            16
+          ]
+        }
+      ],
+      "dyadic_witness_count": 6
+    }
+  ]
+}

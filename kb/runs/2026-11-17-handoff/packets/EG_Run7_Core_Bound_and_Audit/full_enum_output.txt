@@ -1,0 +1,2 @@
+enumerated=2097152 eligible_C4free_2deg_7=163440 max_edges_7=9 eligible_edges9=6615 labelled_8vertex_11edge_extremals=15120 degree2_extensions_without_C4_C8=0
+PASS: every 2deg C4,C8-free n=8 graph has <=11 edges; n=8 m=11 cannot accept 9th degree-2 vertex without C4 or C8.
