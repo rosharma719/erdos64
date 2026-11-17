@@ -207,6 +207,17 @@ independently or refute it; do not build on it meanwhile.**
 
 # Status log (newest first)
 
+**2026-11-16 (night, later) — pass XII integrated: tower theorem reviewed; WRP ⇒ T drafted.**
+- [REVIEWED, author ChatGPT, checked by Claude] Tower theorem: clean
+  triangle-built networks are exactly I, T, S, H15. Both composition tables
+  recomputed independently; a gap in the uniqueness step closed by an
+  automorphism of skew H7. Awaits user sign-off.
+- [REVIEWED] Decomposition for 3-edge-connected caps (ChatGPT, Part A).
+- [PROVED-DRAFT, Claude, awaiting ChatGPT review] `joint_minimality.md`: a
+  minimal counterexample taken jointly over clean 1-, 2- and 3-poles has a
+  3-edge-connected cap, so **WRP ⇒ T\* ⇒ T ⇒ cubic Erdős–Gyárfás**. WRP is the
+  only open node on that route.
+
 **2026-11-16 (night) — census certified through 21 vertices; blueprint and workflow added.**
 [CERTIFIED for checkers, single generator] With two independent checkers on
 the same `geng` stream and full manifests (`tracks/2026-11-halving/census/`):

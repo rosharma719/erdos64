@@ -25,10 +25,11 @@ of a spanning tree from a cubic counterexample. Statement and proof:
 | Clean 3-poles on ≤ 21 vertices are exactly the four in T | **Certified** for checkers (two independent), single generator | `three_pole_census_manifest.md` |
 | No clean 2-pole on ≤ 20 vertices | **Certified** for checkers, single generator | `three_pole_census_manifest.md` |
 | Pass VI Hamiltonian survivors are these poles | **Computed**, identification only, not uniqueness | `scripts/check_three_pole_isomorphisms.py` |
-| Triangle-built clean 3-poles have 1, 3, 7, 15 vertices, at every size | **Computed** at signature level; hand proof not written | `three_port_classification.md` |
+| Triangle-built clean 3-poles have 1, 3, 7, 15 vertices, at every size (tower theorem) | **Reviewed**: proof by ChatGPT, checked by Claude; awaits your sign-off | `tower_theorem.md`, `pass12/REVIEW.md` |
 | Order 23 | **Open**; about 3.3 hours on two cores | `three_pole_census_manifest.md` |
-| Decomposition lemma (smallest exception to T is a labelled prime) | **Not proved** | brief, Step 3 |
-| WRP ⇒ T | **Conditional** on the decomposition lemma | brief, Step 3 |
+| Decomposition, 3-edge-connected caps | **Reviewed**: ChatGPT, checked by Claude | `decomposition_lemma.md`, Part A |
+| Decomposition, bridges and 2-edge cuts (joint minimality over 1-, 2-, 3-poles) | **Proved, draft** (Claude); awaits ChatGPT's review | `joint_minimality.md` |
+| WRP ⇒ T* ⇒ T (T*: also no clean 1- or 2-poles) | **Proved, draft** (Claude); awaits review. If it holds, WRP is the only open step to T | `joint_minimality.md` |
 | WRP for gadget-heavy labellings | **Proved** above an explicit global threshold | `cycle_space_obstruction.md` |
 | WRP for identity/triangle-heavy labellings (doubling-chain lemma) | **Open**; the main conceptual gap | brief, Step 5 |
 | Non-cubic graphs (vertices of degree ≥ 4) | **Not covered** by this programme | — |
@@ -156,3 +157,13 @@ Each script has a matching `test_*.py`. To run them:
   (a separate model's audit, with an erratum), `scripts/audit_clean_poles.py`
   and its output `scripts/clean_pole_small_audit.json`, and
   `scripts/check_three_pole_isomorphisms.py`.
+
+## Pass XII (2026-11-16, night)
+
+- ChatGPT's results, committed as supplied: `tower_theorem.md`,
+  `decomposition_lemma.md`, and `pass12/` (verifiers, streams, certification
+  manifest, its own status notes).
+- Claude's review: `pass12/REVIEW.md`. Its certification rerun matches bit for
+  bit; one gap in the tower proof's uniqueness step is closed there.
+- Claude's addition: `joint_minimality.md`, closing the bridge and 2-edge-cut
+  cases and giving WRP ⇒ T*.

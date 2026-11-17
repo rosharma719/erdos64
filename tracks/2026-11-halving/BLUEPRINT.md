@@ -34,10 +34,12 @@ the citing result conditional.
 - **Conjecture T:** the only clean 3-poles are the triangle, uniform H7, skew
   H7 and H15 (3, 7, 7, 15 vertices). Graph6: `FCptO`, `FCZTO`,
   `N?AA@AODAOP_KGGoGH?`.
-- **WRP:** for every prime cubic `B ≠ K4`, root `r`, and labelling of
-  `V(B) − r` by the letters {identity, triangle, uniform H7, skew H7, H15} with
-  port orientations, some cycle of `B − r` has a lifted window containing a
-  power of two.
+- **WRP:** for every cyclically 4-edge-connected cubic `B ≠ K4`, root `r`,
+  and labelling of `V(B) − r` by the letters {identity, triangle, uniform H7,
+  skew H7, H15} with port orientations, some cycle of `B − r` has a lifted
+  window containing a power of two.
+- **Conjecture T\*:** no clean 1-pole, no clean 2-pole, and every clean
+  3-pole is in T's list.
 
 ## Nodes
 
@@ -56,27 +58,31 @@ the citing result conditional.
 
 | ID | Statement | Type | Depends on | Status | Evidence |
 |---|---|---|---|---|---|
-| R1 | Decomposition route: D1 ∧ W1 ∧ K1 ⇒ T | AND | D1, W1, K1 | OPEN | brief, Step 3 |
+| R1 | Decomposition route: WRP ⇒ T* ⇒ T | — | J1, W1 | **Reduced to W1**: every other node on this route is proved | `joint_minimality.md` |
 | R2 | A direct obstruction to growth of clean 3-poles | — | — | OPEN, not stated | — |
+| T* | T*: no clean 1-pole, no clean 2-pole, clean 3-poles = T's list | AND | — | OPEN | E1, E4 |
+| I2 | T*(ii) alone ⇒ G1 (delete an edge on a cycle) | — | L0 | PROVED-DRAFT (Claude) | `joint_minimality.md` |
+| J1 | WRP ⇒ T* (joint minimal counterexample over 1-, 2-, 3-poles) | AND | D1a, K2, W1 | PROVED-DRAFT (Claude); **awaiting ChatGPT's review** | `joint_minimality.md` |
 
 ### Tower theorem
 
-| ID | Statement | Type | Depends on | Status | Owner |
+| ID | Statement | Type | Depends on | Status | Evidence |
 |---|---|---|---|---|---|
-| K1 | Clean triangle-built 3-poles have exactly 1, 3, 7, 15 vertices | AND | K1a, K1b, K1c | COMPUTED (signature level); proof OPEN | ChatGPT, pass XII |
-| K1a | Interval lemma: port-pair path sets of clean triangle-built poles are integer intervals | — | — | CANDIDATE | ChatGPT |
-| K1b | Span lemma: the longest port-pair path has length N − 1 | — | — | CANDIDATE | ChatGPT |
-| K1c | Short-path growth: A(N) ≤ α log₂ N + β, constants to be found | — | — | CANDIDATE | ChatGPT |
+| K1 | Clean triangle-built networks are exactly I, T, S, H (orders 1, 3, 7, 15) | — | K1a, K1b | **REVIEWED** (author ChatGPT; checked by Claude); awaits user sign-off | `tower_theorem.md`, `pass12/REVIEW.md` |
+| K1a | Interval lemma, for clean triangle-built pieces | — | — | PROVED-DRAFT inside K1; **false for unclean pieces** (witness Δ(I,I,T)) | `tower_theorem.md` |
+| K1b | Hamiltonian span: longest port-pair path has length N − 1, for all triangle-built pieces | — | — | REVIEWED | `tower_theorem.md` |
+| K1c | Short-path growth bound | — | — | Not needed (superseded by the finite table) | — |
+| K2 | K4 root with letters I, T, S, U, H: clean only for III, ITT, ISS | — | K1 | REVIEWED (author ChatGPT; table recomputed by Claude) | `tower_theorem.md` |
 
 ### Decomposition lemma
 
-| ID | Statement | Type | Depends on | Status | Owner |
+| ID | Statement | Type | Depends on | Status | Evidence |
 |---|---|---|---|---|---|
-| D1 | A smallest clean 3-pole outside T's list is a prime cubic graph minus a root, with T-list gadgets substituted | AND | D1a–D1d | OPEN | ChatGPT, pass XII |
-| D1a | Case: cyclic 3-edge cuts of the capped graph | — | X1 | OPEN | ChatGPT |
-| D1b | Case: 2-edge cuts (the far side is a clean 2-pole) | — | E4 | OPEN; E4 covers 2-poles ≤ 20 vertices | ChatGPT |
-| D1c | Case: bridges (the far side is a clean 1-pole; doubling gives a min-degree-3 counterexample) | — | L0 | OPEN | ChatGPT |
-| D1d | Lifting rule for cycles and paths through substituted gadgets | — | X1, X2 | OPEN | ChatGPT |
+| D1 | A smallest counterexample to T* is a prime cubic base `B ≠ K4` minus a root, with letters substituted | AND | D1a–D1d | PROVED-DRAFT via J1 | `joint_minimality.md` |
+| D1a | Case: 3-edge-connected caps (cyclic 3-cut contraction; `B ≠ K4`) | — | X1, K2 | **REVIEWED** (author ChatGPT; checked by Claude) | `decomposition_lemma.md`, Part A |
+| D1b | Case: 2-edge cuts | — | J1 | Closed by joint minimality (PROVED-DRAFT, Claude) | `joint_minimality.md`, Step 3 |
+| D1c | Case: bridges | — | J1 | Closed by joint minimality (PROVED-DRAFT, Claude). ChatGPT's Part C also gives ≥ 25 vertices independently (REVIEWED) | `joint_minimality.md`, `decomposition_lemma.md` Part C |
+| D1d | Lifting rule for cycles through substituted letters | — | X1 | REVIEWED (Part A, "exact lifting") | `decomposition_lemma.md` |
 | X1 | Exact length transfer across cyclic 3-edge cuts | — | — | PROVED-DRAFT (pass IV) | `three_cut_prime_transfer.md` |
 | X2 | Exact length transfer across general edge cuts | — | — | PROVED-DRAFT (pass X) | `boundary_linkage_composition.md` |
 
@@ -84,7 +90,7 @@ the citing result conditional.
 
 | ID | Statement | Type | Depends on | Status | Evidence |
 |---|---|---|---|---|---|
-| W1 | WRP | AND | W1a, W1b | OPEN | — |
+| W1 | WRP (letters I, T, S, U, H; statement in `decomposition_lemma.md` Part D) | AND | W1a, W1b | OPEN; **the only open node on route R1** | — |
 | W1a | WRP when `3(n_I + n_T) ≤ n_H7skew + 3 n_H7unif + 17 n_H15` | — | — | PROVED-DRAFT (cycle-space averaging) | `cycle_space_obstruction.md` |
 | W1b | WRP for identity/triangle-heavy labellings (doubling-chain lemma) | — | W1c | OPEN; main conceptual gap | brief, Step 5 |
 | W1c | Root-robust prime conjecture (identity letters only) | — | — | TESTED: primes ≤ 12 vertices; Hamiltonian ≤ 16 | `prime_pole_obstructions.md`, `root_orbit_switching.md` |
@@ -97,7 +103,7 @@ the citing result conditional.
 | E2 | No clean 3-pole on 5 vertices | REVIEWED (author ChatGPT; checked by Claude) | `audits/three_pole_research_handoff.md` |
 | E3 | Pass VI Hamiltonian survivors delete to T's poles (identification, not uniqueness) | COMPUTED | `scripts/check_three_pole_isomorphisms.py` |
 | E4 | No clean 2-pole on ≤ 20 vertices | CERTIFIED for checkers, single generator | `three_pole_census_manifest.md`, `census/` |
-| E5 | Independent generator (not nauty) agrees through 15 vertices | OPEN | ChatGPT, pass XII |
+| E5 | Independent generator (not nauty) agrees through 15 vertices | PARTIAL: ChatGPT's own generator covers 2-poles on 4 and 6 vertices; its 3-pole check (orders 3–11) uses saved cubic catalogs, not its own generator | `pass12/verification_manifest.md` |
 
 ### Novelty
 
@@ -108,7 +114,9 @@ the citing result conditional.
 
 ## Highest-value open nodes
 
-1. **K1** (tower proof): template for every route to T.
-2. **D1** (decomposition): turns T into a statement about prime graphs.
+1. **W1 (WRP)**: now the only open step between the census evidence and
+   Conjecture T. Split as W1a (gadget-heavy, proved above a threshold) and W1b
+   (identity/triangle-heavy, the doubling-chain lemma).
+2. **J1 review**: ChatGPT's blind re-derivation of `joint_minimality.md`.
 3. **E1 at 23 vertices**: the cheapest test that could refute T (about 3.3
    hours of wall time on two cores).
