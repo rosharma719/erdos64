@@ -1,0 +1,34 @@
+{
+  "scope": "All simple connected six-vertex graphs with four degree-2 vertices, two degree-3 vertices, and no power-of-two cycle",
+  "python_version": "3.13.5",
+  "commands": {
+    "python_atlas": {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "/mnt/data/pass13_revised/tracks/2026-11-halving/pass13/census/four_poles_atlas.py"
+      ],
+      "exit_code": 0,
+      "sha256": "8c63b71acea99bd00f48c013354e6395e9a2b46eda2763bee2db80c9f480d3d3",
+      "stream_bytes": 29,
+      "stderr": ""
+    },
+    "c_masks": {
+      "argv": [
+        "/mnt/data/pass13_revised/tracks/2026-11-halving/pass13/census/four_poles_masks"
+      ],
+      "exit_code": 0,
+      "sha256": "8c63b71acea99bd00f48c013354e6395e9a2b46eda2763bee2db80c9f480d3d3",
+      "stream_bytes": 29,
+      "stderr": ""
+    }
+  },
+  "checker_source_sha256": {
+    "four_poles_atlas.py": "e53c263df9e16fc0b35f7c48a6ecd81f1e1f1657f6568e5a7e771ac9c79faf3c",
+    "four_poles_masks.c": "90161e0d4ef6638dd98d89de82a26f1d834928cbb7992897fcdce85534e56004"
+  },
+  "compile_command": "cc -O2 -Wall -Wextra -o four_poles_masks four_poles_masks.c",
+  "compile_exit_code": 0,
+  "checks_agree": true,
+  "certified_classes": 2,
+  "total_labeled_graphs": 450
+}

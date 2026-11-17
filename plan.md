@@ -207,6 +207,34 @@ independently or refute it; do not build on it meanwhile.**
 
 # Status log (newest first)
 
+**2026-11-16 (night, later) — pass XII integrated: tower theorem reviewed; WRP ⇒ T drafted.**
+- [REVIEWED, author ChatGPT, checked by Claude] Tower theorem: clean
+  triangle-built networks are exactly I, T, S, H15. Both composition tables
+  recomputed independently; a gap in the uniqueness step closed by an
+  automorphism of skew H7. Awaits user sign-off.
+- [REVIEWED] Decomposition for 3-edge-connected caps (ChatGPT, Part A).
+- [PROVED-DRAFT, Claude, awaiting ChatGPT review] `joint_minimality.md`: a
+  minimal counterexample taken jointly over clean 1-, 2- and 3-poles has a
+  3-edge-connected cap, so **WRP ⇒ T\* ⇒ T ⇒ cubic Erdős–Gyárfás**. WRP is the
+  only open node on that route.
+
+**2026-11-16 (night) — census certified through 21 vertices; blueprint and workflow added.**
+[CERTIFIED for checkers, single generator] With two independent checkers on
+the same `geng` stream and full manifests (`tracks/2026-11-halving/census/`):
+the clean 3-poles on ≤ 21 vertices are exactly the four in Conjecture T
+(18,580,327 graphs at order 21), and there is no clean 2-pole on ≤ 20
+vertices. Garcia's Prop. 6.2 already covers 3-poles on ≤ 9 vertices. Added
+`BLUEPRINT.md` (node statuses) and `WORKFLOW.md` (Claude–ChatGPT protocol).
+
+**2026-11-16 (late evening) — Conjecture T made the central target; audit added.**
+T (the only clean 3-poles are the triangle, two H7 and H15) **implies
+Erdős–Gyárfás for every cubic graph** (delete a spanning-tree leaf). The
+reduction of T to WRP is recorded as conditional on an unproved decomposition
+lemma. A separate model's audit is added with an erratum; it proves there is no
+clean 3-pole on 5 vertices. The order-19 census is recorded with its limits
+(one run, certification gate not met); the order-21 run is unfinished. See
+`tracks/2026-11-halving/README.md`, "Central target".
+
 **2026-11-16 (evening) — clean three-port pieces classified through 19 vertices.**
 `tracks/2026-11-halving/three_port_classification.md`. [COMPUTED, two
 independent methods agree] The only connected graphs with three degree-2

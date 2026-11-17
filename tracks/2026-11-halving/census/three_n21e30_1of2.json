@@ -1,0 +1,8 @@
+{"label":"three","n":21,"e":30,"degree2_vertices":3,"res":1,"mod":2,
+ "command":"geng -c -f -d2 -D3 21 30:30 1/2","nauty_geng":"Nauty&Traces version 2.8080 (32 bits)","geng_binary":"/tmp/build/pynauty-2.8.8.1/src/nauty2_8_8/geng","geng_binary_sha256":"3ad2f1da08a104b1e1e23327cd5e7a29e503439af5a1aa0a35d1e5add691c552",
+ "checker_A":"cycle_check.c","checker_A_sha256":"7dcf0cd198ddbd01070a76a4356d4a0b7b353ace34ca34432b2a5aa6d2dc5ad4",
+ "checker_B":"verifier/check_power_masks.c","checker_B_sha256":"e398bc3e3e49cddb8c076868055122bb032a99aaf41ba30cc85542ea20679559",
+ "start":"2026-11-17T00:35:50Z","end":"2026-11-17T00:47:46Z","geng_exit":0,"tee_exit":0,"checker_A_exit":0,"checker_B_exit":0,
+ "raw_count":10288007,"checker_A_count":10288007,"checker_B_count":10288007,
+ "c4_seen":0,"clean_A":0,"clean_B":0,
+ "stream_sha256":"3f16c4038f9f6d786620028b65398d5dfb86e748f2f273bfeff08b2657c68112","clean_graphs_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","result":"PASS"}

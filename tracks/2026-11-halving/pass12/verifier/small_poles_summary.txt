@@ -1,0 +1,5 @@
+ORDER 3: rooted records=4, clean rooted records=4
+ORDER 5: rooted records=12, clean rooted records=0
+ORDER 7: rooted records=40, clean rooted records=4
+ORDER 9: rooted records=188, clean rooted records=0
+ORDER 11: rooted records=1012, clean rooted records=0

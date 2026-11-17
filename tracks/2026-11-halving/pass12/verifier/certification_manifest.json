@@ -1,0 +1,216 @@
+{
+  "base": "Pass XI archive, NOT the specified GitHub branch",
+  "checks": [
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "tower_reference.py",
+        "--generate",
+        "graph_examples.txt",
+        "--output",
+        "python_stream.txt"
+      ],
+      "exit_code": 0,
+      "input_sha256": "c39fe477db16bdcf9c38742f3ede8fde3faab090c315d9c3dbcf23e74930922e",
+      "name": "build_graph_input",
+      "stderr_excerpt": "",
+      "stdout_file": null,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "gcc",
+        "-O2",
+        "-std=c11",
+        "tower_independent.c",
+        "-o",
+        "tower_independent"
+      ],
+      "exit_code": 0,
+      "name": "compile_tower_c",
+      "stderr_excerpt": "",
+      "stdout_file": null,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "./tower_independent",
+        "graph_examples.txt"
+      ],
+      "exit_code": 0,
+      "name": "tower_c",
+      "stderr_excerpt": "",
+      "stdout_file": "c_stream.txt",
+      "stdout_sha256": "533cfa919bf279192715ad87ce9ab7f8fe9b8543028526a9b784e15bf59aacf1"
+    },
+    {
+      "c_sha256": "533cfa919bf279192715ad87ce9ab7f8fe9b8543028526a9b784e15bf59aacf1",
+      "exit_code": 0,
+      "name": "tower_stream_compare",
+      "python_sha256": "533cfa919bf279192715ad87ce9ab7f8fe9b8543028526a9b784e15bf59aacf1"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "two_pole_small.py"
+      ],
+      "exit_code": 0,
+      "name": "two_pole_python",
+      "stderr_excerpt": "",
+      "stdout_file": "python_2pole_stream.txt",
+      "stdout_sha256": "2a841450db6f699f4f1e21b92cf89eade94b7af6408a2018ad1798d58a52a120"
+    },
+    {
+      "argv": [
+        "gcc",
+        "-O2",
+        "-std=c11",
+        "two_pole_small.c",
+        "-o",
+        "two_pole_small"
+      ],
+      "exit_code": 0,
+      "name": "compile_two_pole_c",
+      "stderr_excerpt": "",
+      "stdout_file": null,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "./two_pole_small"
+      ],
+      "exit_code": 0,
+      "name": "two_pole_c",
+      "stderr_excerpt": "",
+      "stdout_file": "c_2pole_stream.txt",
+      "stdout_sha256": "2a841450db6f699f4f1e21b92cf89eade94b7af6408a2018ad1798d58a52a120"
+    },
+    {
+      "c_sha256": "2a841450db6f699f4f1e21b92cf89eade94b7af6408a2018ad1798d58a52a120",
+      "exit_code": 0,
+      "name": "two_pole_stream_compare",
+      "python_sha256": "2a841450db6f699f4f1e21b92cf89eade94b7af6408a2018ad1798d58a52a120"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "small_pole_census.py",
+        "--generate",
+        "small_poles_input.txt",
+        "--verify",
+        "python_small_poles_stream.txt",
+        "--summary"
+      ],
+      "exit_code": 0,
+      "input_sha256": "79229e26fa046237de1fec5562e4ffa65621173c19caf1673a0711132f9426c1",
+      "name": "small_pole_input_and_python",
+      "stderr_excerpt": "",
+      "stdout_file": "small_poles_summary.txt",
+      "stdout_sha256": "37194f55b2bbccc43089e3aa8dadc9e213d2341b5bc02440d2e3a0250eb1e5cc",
+      "verified_stream_sha256": "9864c253d63fdf1c0fe8f738d5b36f2cb2b2165e0c963cdcbe72d1ac00fc7b13"
+    },
+    {
+      "argv": [
+        "gcc",
+        "-O2",
+        "-std=c11",
+        "small_pole_independent.c",
+        "-o",
+        "small_pole_independent"
+      ],
+      "exit_code": 0,
+      "name": "compile_small_pole_c",
+      "stderr_excerpt": "",
+      "stdout_file": null,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "./small_pole_independent",
+        "small_poles_input.txt"
+      ],
+      "exit_code": 0,
+      "name": "small_pole_c",
+      "stderr_excerpt": "",
+      "stdout_file": "c_small_poles_stream.txt",
+      "stdout_sha256": "9864c253d63fdf1c0fe8f738d5b36f2cb2b2165e0c963cdcbe72d1ac00fc7b13"
+    },
+    {
+      "c_sha256": "9864c253d63fdf1c0fe8f738d5b36f2cb2b2165e0c963cdcbe72d1ac00fc7b13",
+      "exit_code": 0,
+      "name": "small_pole_stream_compare",
+      "python_sha256": "9864c253d63fdf1c0fe8f738d5b36f2cb2b2165e0c963cdcbe72d1ac00fc7b13"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "verify_h15_isomorphism.py"
+      ],
+      "exit_code": 0,
+      "name": "h15_explicit_isomorphism",
+      "stderr_excerpt": "",
+      "stdout_file": "h15_isomorphism_stream.txt",
+      "stdout_sha256": "fd1b2908a8b014e31ef249b0582a56531fbe4222dad9e1110de2940c3ac870e1"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "/mnt/data/erdos64_pass12/tracks/2026-11-halving/scripts"
+      ],
+      "exit_code": 0,
+      "name": "existing_research_suite",
+      "stderr_excerpt": "",
+      "stdout_file": "pass11_pytest_stream.txt",
+      "stdout_sha256": "e719ceb3738cf1b37760679b0fa5bbe3d94459e0559bf95fbb3eec5d568dd702"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "/mnt/data/erdos64_pass12/tracks/2026-11-halving/pass12/test_pass12.py"
+      ],
+      "exit_code": 0,
+      "name": "pass12_tests",
+      "stderr_excerpt": "",
+      "stdout_file": "pass12_pytest_stream.txt",
+      "stdout_sha256": "44091516c6f7d278c9900d796163d45f95d1ad1819370ffeeaf887bc704f2e38"
+    }
+  ],
+  "geng_status": "UNRUN (geng unavailable; actual branch/shards unavailable)",
+  "requested_geng_orders_2pole": [
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22
+  ],
+  "requested_geng_orders_3pole": [
+    13,
+    15,
+    17,
+    19,
+    21,
+    23
+  ],
+  "source_hash_note": "Final tower/U output and source checksums refreshed from successful independent reruns; other check streams and exit codes are from the completed earlier full certification run. Shared solver unchanged.",
+  "sources_sha256": {
+    "certify_pass12.py": "8d0d2cd48822415d761407234f0be19a7f9845a10d79983121f624435c0dd7dd",
+    "small_pole_census.py": "354a306b89a399d2bc566380d2a84db35da7187d42bbf5d76ea4b1b98b294294",
+    "small_pole_independent.c": "27d94ef987a9aa72e3314895fce8e12384d7d5c8cf4f923bab5e2330a1598d07",
+    "tower_independent.c": "027fe202ae684fc00edb4a0bb328d13374652d0c745a152942c29649a4626457",
+    "tower_reference.py": "fb01273c89ffa2964927f25394a870ef5659ada1d756961a8e67e9e57fba4605",
+    "two_pole_small.c": "7d4833ca5c141d47ce468023041d471bee28332864efd3b7a3ea3782d74fa7d3",
+    "two_pole_small.py": "3940f9e6fe796a1614bb06f643c2cc557ae2400be38db44b2a33c7a53311d5e0",
+    "verify_h15_isomorphism.py": "df8e3ecfe83dda13fdb0c1f49a8d8eb1f66d390447a2dffdd8004cdd1951787a"
+  },
+  "status": "COMPUTED on accessible local fixtures; requested higher-order geng runs NOT PERFORMED",
+  "two_pole_geng_status": "UNRUN"
+}

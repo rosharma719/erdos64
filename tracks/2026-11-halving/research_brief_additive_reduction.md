@@ -20,8 +20,12 @@ condition is the linear inequality
 sum over the cycle of (b_v − 2 a_v − 1) ≥ 0.
 ```
 
-That sum is additive along a cycle, so it is a linear functional on the cycle
-space.
+That sum is additive along a cycle and over vertex-disjoint unions of
+cycles. It is **not** linear over the binary cycle space: a symmetric
+difference cancels shared edges. The averaging argument of
+`cycle_space_obstruction.md` is still valid, because it averages this
+real-valued score over the even subgraphs and then extracts one component
+cycle.
 
 **Caveats.** The condition is sufficient, not necessary: `[17, 32]` fails it
 but contains 32. Full intervals also fail at small orders: the Petersen graph
@@ -32,16 +36,19 @@ the published verification (cubic through 48 vertices).
 ## Step 1. Classify the clean three-port pieces
 
 *Clean 3-pole*: connected, three degree-2 vertices, all others degree 3, no
-power-of-two cycle. Deleting a non-cut vertex from a cubic counterexample
-gives one.
+power-of-two cycle. Deleting a leaf of a spanning tree from a connected cubic
+counterexample gives one.
 
 - **Conjecture T.** The only clean 3-poles are the triangle, the two H7
   gadgets and H15.
-- **Evidence.** Complete for all structures through 19 vertices; complete at
-  every size for triangle-built pieces (`three_port_classification.md`).
-- **Why it matters.** T implies the cubic conjecture. It also means every
-  relevant piece has interval path lengths, which the additive calculus needs.
-- **Task.** Extend the enumeration to 21, 23, 25 vertices in shards. Run the
+- **Evidence.** Certified census through 21 vertices, and no clean 2-pole through 20
+  (`three_pole_census_manifest.md`); `N = 5` by hand proof; complete at every
+  size for triangle-built pieces (`three_port_classification.md`).
+- **Why it matters.** **T alone implies the conjecture for every cubic
+  graph** (proof in `three_port_classification.md`). WRP below is one proposed
+  route to T, not a prerequisite. T also means every relevant piece has
+  interval path lengths, which the additive calculus needs.
+- **Task.** Order 21 is done; extend to 23 and 25 in shards. Run the
   analogous counts for two-port and four-port pieces (no clean two-port piece
   on 8–13 vertices).
 - **Stop rule.** A clean 3-pole outside the list refutes T. If its path
@@ -60,10 +67,10 @@ cycle's window reaches a factor of 2 at the 31-vertex step.
 
 ## Step 3. Reduce to prime graphs
 
-Split along cyclic 3-edge cuts; treat 2-edge cuts and bridges separately. A
-smallest clean 3-pole outside the list is then a prime cubic graph `B` with a
-vertex deleted and listed gadgets substituted at its other vertices. So T is
-equivalent to:
+Split along cyclic 3-edge cuts; treat 2-edge cuts and bridges separately.
+**If the decomposition lemma below holds**, a smallest clean 3-pole outside
+the list is a prime cubic graph `B` with a vertex deleted and listed gadgets
+substituted at its other vertices. T would then reduce to:
 
 > **WRP.** For every prime cubic `B ≠ K4`, every root `r`, and every labelling
 > of the other vertices by the five letters (identity, triangle, uniform H7,
@@ -74,18 +81,26 @@ Every window is an interval `[ℓ + Σ a_v, ℓ + Σ b_v]`, so all the data is
 additive; only the final check is not. WRP with the identity letter only is
 the root-robust prime conjecture of pass V.
 
-- **Deliverable.** The decomposition lemma with all connectivity cases, and
-  the equivalence T ⇔ WRP.
+- **Deliverable.** The decomposition lemma, with bridges, 2-edge cuts and
+  cyclic 3-edge cuts, tracking the three ports and every gadget orientation.
+  Only then does WRP imply T. Without it, WRP is a stronger standalone
+  conjecture.
+- **Not yet proved:** the decomposition lemma itself, and therefore any
+  equivalence between T and WRP.
 
 ## Step 4. Labellings with many large gadgets
 
 The 7- and 15-vertex letters have positive factor-2 weight. Averaging over the
-cycle space (`cycle_space_obstruction.md`) already proves WRP when their
-weight outweighs the identities and triangles; conditioning on an edge
-strengthens it.
+cycle space (`cycle_space_obstruction.md`) already proves WRP on any
+bridgeless base when
 
-- **Deliverable.** An explicit threshold on the share of large letters above
-  which WRP holds for every prime base.
+```
+3 (n_identity + n_triangle) ≤ n_H7skew + 3 n_H7uniform + 17 n_H15.
+```
+
+- **Deliverable.** A **sharper** criterion than this existing global count:
+  edge-conditioned or local versions, and windows that chain together. Do not
+  restate the threshold.
 
 ## Step 5. Labellings with mostly identities and triangles
 
