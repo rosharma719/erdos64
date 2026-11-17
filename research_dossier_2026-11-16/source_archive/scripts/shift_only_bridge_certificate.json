@@ -1,0 +1,14 @@
+{
+  "base_graph6": "KKbA?Wo?x_@P",
+  "base_order": 12,
+  "bridge_edges": [[2, 8], [4, 11]],
+  "old_root": 7,
+  "base_cycle": [0, 3, 8, 9, 6, 11, 4],
+  "base_cycle_length": 7,
+  "base_cycle_uses_one_bridge_edge": true,
+  "child_dyadic_cycle_length": 8,
+  "child_cycle_is_lift_of_base_cycle": true,
+  "child_has_no_root_avoiding_dyadic_bridge_edge_cycle": true,
+  "both_base_and_child_are_cyclically_four_edge_connected": true,
+  "statement": "Root-free power-of-two cycle exists after bridging, but the new bridge edge cannot be used by any such root-free power-of-two cycle; shifted predecessor cycles cannot be discarded from a stability proof."
+}

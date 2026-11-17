@@ -1,0 +1,88 @@
+{
+  "description": "22-vertex cyclically four-edge-connected cubic child of Q20 with 6 squares in two length-3 paths; rooted square transversal minimum 3",
+  "source": {
+    "family": "prism",
+    "rungs": 10,
+    "bridged_edges": [
+      [
+        0,
+        10
+      ],
+      [
+        5,
+        15
+      ]
+    ]
+  },
+  "graph6": "UhCGGC@_G?G@G@C?`?G?@?_C@?G@?G?oE?G?@?CG",
+  "order": 22,
+  "edges": 33,
+  "square_count": 6,
+  "strip_lengths": [
+    3,
+    3
+  ],
+  "rooted_square_transversal": {
+    "0": 4,
+    "1": 3,
+    "2": 3,
+    "3": 3,
+    "4": 3,
+    "5": 4,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 4,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 4,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 3,
+    "20": 4,
+    "21": 4
+  },
+  "minimum_rooted_transversal": 3,
+  "canonical_squares": [
+    [
+      1,
+      2,
+      12,
+      11
+    ],
+    [
+      2,
+      3,
+      13,
+      12
+    ],
+    [
+      3,
+      4,
+      14,
+      13
+    ],
+    [
+      6,
+      7,
+      17,
+      16
+    ],
+    [
+      7,
+      8,
+      18,
+      17
+    ],
+    [
+      8,
+      9,
+      19,
+      18
+    ]
+  ]
+}

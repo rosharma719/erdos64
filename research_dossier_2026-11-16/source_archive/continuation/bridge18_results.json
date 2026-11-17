@@ -1,0 +1,13 @@
+{
+  "base_graphs": 607,
+  "total_bridged_pairs": 138396,
+  "exception_bridges": 5137,
+  "exception_roots": 6508,
+  "newroot_exception_bridges": 0,
+  "repair_length_counts": {
+    "4": 2821,
+    "8": 3687
+  },
+  "bad": [],
+  "elapsed_sec": 1.8
+}

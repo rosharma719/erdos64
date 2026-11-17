@@ -1,0 +1,13 @@
+{
+  "base_graph6": "E{Sw",
+  "base_name": "triangular prism",
+  "base_order": 6,
+  "bridge_edges": [[0, 1], [2, 5]],
+  "old_root": 2,
+  "child_order": 8,
+  "base_root_robust": true,
+  "child_root_critical_at_old_root": true,
+  "both_three_vertex_connected": true,
+  "both_cyclically_four_edge_connected": false,
+  "statement": "Unrestricted bridge stability fails even for 3-connected cubic graphs; the cyclically 4-edge-connected hypothesis is essential to the prime-oriented program."
+}

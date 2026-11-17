@@ -1,0 +1,5 @@
+{"n": 8, "classes": 2, "root_critical_classes": 0, "examples": [], "cycle_coverage_classes": {"4": 2}, "sec_generation": 0.0, "seconds_check": 0.0}
+{"n": 10, "classes": 5, "root_critical_classes": 0, "examples": [], "cycle_coverage_classes": {"4": 4, "8": 1}, "sec_generation": 0.05, "seconds_check": 0.0}
+{"n": 12, "classes": 18, "root_critical_classes": 0, "examples": [], "cycle_coverage_classes": {"4": 16, "8": 4}, "sec_generation": 0.38, "seconds_check": 0.0}
+{"n": 14, "classes": 84, "root_critical_classes": 0, "examples": [], "cycle_coverage_classes": {"4": 75, "8": 24}, "sec_generation": 4.54, "seconds_check": 0.0}
+{"n": 16, "classes": 607, "root_critical_classes": 0, "examples": [], "cycle_coverage_classes": {"4": 558, "8": 180}, "sec_generation": 47.87, "seconds_check": 0.03}
