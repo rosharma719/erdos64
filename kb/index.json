@@ -1655,6 +1655,31 @@
    "metadata_source": "front-matter"
   },
   {
+   "id": "q-defect-growth-via-t-and-k",
+   "title": "Defect growth: is q(G) unbounded via finiteness of t(h) and K(h)?",
+   "kind": "open-problem",
+   "label": "OPEN",
+   "doc_status": "active",
+   "topics": [
+    "defect",
+    "2026-11-halving"
+   ],
+   "date": "2026-11-17",
+   "summary": "For a minimal counterexample, every fixed q bounds n via n ≤ h + c1 + c3 + t(h)(c1+3c3)/2 + K(h)t(h). If the clean-path length t(h) and the clean cyclic-component count K(h) are finite for every h, then q → ∞ with n (m ≤ 2n − g(n)); polynomial bounds would give m ≤ 2n − n^c.",
+   "path": "kb/open/q-defect-growth-via-t-and-k.md",
+   "depends_on": [
+    "q4-independent-check",
+    "linear-defect-growth-audit"
+   ],
+   "evidence": [
+    "kb/open/assets/2026-11-17-defect-growth-screenshot.jpg",
+    "tracks/2026-11-halving/q4_independent_check.md",
+    "kb/notes/defect/linear_defect_growth_audit.md",
+    "kb/notes/defect/defect.md"
+   ],
+   "metadata_source": "front-matter"
+  },
+  {
    "id": "q-fk-threading-constants",
    "title": "M1: recheck Friedman–Krivelevich constants with the threading modifications",
    "kind": "open-problem",

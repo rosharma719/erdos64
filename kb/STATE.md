@@ -156,6 +156,7 @@ contributes:
 | `q-rooted-prime-conjecture` | From the dossier; survives all tests. |
 | `q-three-terminal-forcing-lemma` | Equivalent to EG (handoff §7); a clean reformulation. |
 | `q-order28-rooted-census` | The 251 cubic {C₄,C₈}-free graphs on 28 vertices, rooted classification. |
+| `q-defect-growth-via-t-and-k` | If t(h) and K(h) are finite, q(G) → ∞ (m ≤ 2n − g(n)). Generalizes the q ≥ 4 check; t(4) = 12 and t(5) = 18 are reported only. |
 
 ## 6. Dead ends (do not re-try without a new idea)
 
