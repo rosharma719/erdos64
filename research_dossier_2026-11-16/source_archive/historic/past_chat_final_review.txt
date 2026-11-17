@@ -1,0 +1,306 @@
+Loading older messages…
+Let's take a step back and do some more lit review. I've seen you say "this is a stronger conceptual direction" quite often now. Let's contextualize within broader literature and explore our options.
+Erdős–Gyárfás: A broader research assessment
+Literature and strategy review · November 16, 2026
+I think your criticism is justified. We've repeatedly identified a new mechanism, proved something about a restricted family, and described that mechanism as the next major direction. That has produced useful mathematics, but it hasn't yet established which approach has the greatest chance of yielding a genuinely significant result.
+The broader literature changes the picture in two important ways.
+First, the high-average-degree version of Erdős–Gyárfás has already been solved. Liu and Montgomery proved that every graph with sufficiently large constant average degree contains a power-of-two cycle. Their stronger theorem produces every even cycle length throughout a substantial interval. 
+
+Erdős Problems
++2
+Second, an existing theorem is much stronger than our recent work on finding many cycle lengths in Hamiltonian cubic graphs. Bucić, Gishboliner and Sudakov proved that every 
+n
+n-vertex Hamiltonian graph with minimum degree at least three has cycles of at least
+n
+1
+−
+o
+(
+1
+)
+n 
+1−o(1)
+ 
+​	
+ 
+distinct lengths. That covers all Hamiltonian cubic graphs, without bounded chord spans or special intersection patterns. 
+
+cambridge.org
+Neither theorem resolves Erdős–Gyárfás, but both are crucial for judging our research.
+They show that the frontier is remarkably specific:
+How can the structure of a sparse, nearly cubic graph force a cycle length from an exceptionally sparse multiplicative sequence, when even strong abundance results for cycle lengths are insufficient?
+The conjecture remains open. Erdős and Gyárfás themselves reportedly suspected it might be false, so a serious program should consider both proof and counterexample constructions. 
+
+Erdős Problems
+1. The research landscape is broader than our previous work suggested
+The strongest relevant results fall into five different traditions.
+Research area
+Representative result
+What remains difficult
+Sublinear expansion and density
+Liu–Montgomery (2023): sufficiently large constant average degree forces dyadic cycles
+Extending the method down to minimum degree 3
+Cycle-spectrum abundance
+Bucić–Gishboliner–Sudakov (2022): 
+n
+1
+−
+o
+(
+1
+)
+n 
+1−o(1)
+  cycle lengths in Hamiltonian graphs with minimum degree 3
+Guaranteeing particular lengths
+Connectivity and modular lengths
+Lyngsie–Merker (2021): every residue modulo a fixed odd integer in large 3-connected cubic graphs
+Exact lengths and powers of two
+Structural and restricted-family proofs
+Planar cubic graphs, induced-path restrictions, and highly symmetric Cayley graphs
+Extending beyond the restricted structure
+Minimal counterexamples and computation
+Ducoffe–Dumitru (2026): structural constraints and verification through 48 vertices for cubic graphs
+Converting finite restrictions into general theorems
+
+ems.press
++4
+The fundamental divide is between knowing that many cycle lengths exist and knowing enough about their positions to hit a power of two.
+For example, the set
+{
+2
+k
++
+1
+,
+2
+k
++
+2
+,
+…
+,
+2
+k
++
+1
+−
+1
+}
+{2 
+k
+ +1,2 
+k
+ +2,…,2 
+k+1
+ −1}
+contains 
+2
+k
+−
+1
+2 
+k
+ −1 consecutive integers, yet no power of two.
+This is why even a theorem guaranteeing linearly many distinct cycle lengths need not settle Erdős–Gyárfás.
+2. The most important literature we should add to our working bibliography
+A. Cycles of many lengths in Hamiltonian graphs
+Bucić, Gishboliner & Sudakov · Forum of Mathematics, Sigma · 2022
+Read the open-access paper
+This is the paper most directly relevant to our recent chord research.
+The authors already exploit parallel and interlacing chords, reroute Hamiltonian paths, and combine path-length sets at different scales. Their proof constructs many lengths by putting tightly clustered lengths together with widely separated ones.
+The conceptual resemblance to our Passes XXV–XXVI is substantial. In fact, their Section 2 develops a more sophisticated version of the multiscale viewpoint we've been discussing.
+Crucially, they identify controlling the distribution of lengths as the next difficulty. Their Section 5 proposes further questions about concentrated and widely spaced path-length families. 
+
+Cambridge Core
++1
+Implication: We should work forward from this paper's machinery. Building an independent chord-intersection framework from scratch risks reproducing a weaker version of existing mathematics.
+B. A solution to Erdős and Hajnal's odd cycle problem
+Liu & Montgomery · Journal of the American Mathematical Society · 2023
+Read the research paper
+This is arguably the deepest positive result near the original conjecture.
+The authors obtain a long interval of consecutive even cycle lengths in sufficiently high-average-degree graphs. The underlying machinery uses expansion, paths of approximately prescribed length, and gadgets that repair the remaining length discrepancy.
+It demonstrates that approximate length followed by exact correction is a viable proof architecture in graph theory.
+The barrier is its degree hypothesis. Cubic graphs have average degree exactly three, whereas the theorem requires a sufficiently large constant. 
+
+sciencedirect.com
++1
+Implication: Rather than proving that sparse graphs have many lengths, investigate whether one can reproduce the approximate-length-plus-correction mechanism with only degree three, perhaps under a suitable connectivity condition.
+C. Cycle lengths in expanding graphs
+Friedman & Krivelevich · 2019–2021
+Read the paper
+This paper makes the distinction between approximate and exact cycle lengths particularly clear.
+Ordinary constant expansion guarantees cycles within a bounded additive error of target lengths throughout a substantial range. A stronger expansion condition, requiring edges between any two sufficiently large disjoint vertex sets, forces an actual interval of cycle lengths. 
+
+arxiv.org
+The first result approaches our problem but cannot guarantee an exact dyadic length. The second already implies dyadic cycles in sufficiently large graphs satisfying that stronger condition.
+Implication: The next meaningful question is whether cubic graph structure provides the exact-length correction that ordinary expansion lacks.
+D. The newer minimal-counterexample and restricted-class results
+Three particularly useful developments deserve a place in our notes.
+Ducoffe and Dumitru show that more than two-thirds of a minimal counterexample's vertices must have degree three and establish strong restrictions on its block structure. Their computational verification reaches 40 vertices generally, 48 for cubic graphs, and 66 for bipartite graphs. 
+
+arxiv.org
+Hegde, Sandeep and Shashank's 2024 preprint extends the known induced-path result to 
+P
+13
+P 
+13
+​	
+ -free graphs, using computer assistance. Therefore, assuming their proof, a counterexample must contain an induced path on at least 13 vertices. This supersedes the 
+P
+10
+P 
+10
+​	
+ -free result we previously emphasized. 
+
+arxiv.org
+A November 2026 preprint by Burkhart proves Erdős–Gyárfás for Cayley graphs of odd-order groups and finite nilpotent groups, using cycle-lifting arguments through group quotients. This introduces a different structural mechanism involving covers and compatible cycles. 
+
+arxiv.org
+These are relevant because they demonstrate that new contributions can come from substantially different kinds of structure.
+3. Critical audit of our own research
+I would reclassify our main directions as follows.
+Our direction
+What we have
+Assessment
+Clean 2-/3-poles
+Exact gluing formulas, candidate classification, edge-critical reductions
+Direct relationship to the cubic problem, but the edge-avoidance target is stronger than Erdős–Gyárfás
+Theta-necklace cancellation
+Explicit formulas and subset-sum relationships
+Mathematically useful; likely incremental relative to existing necklace and additive methods
+High-connectivity chord systems
+Structural formulas, infinite-family constructions, obstruction examples
+Useful exploratory mathematics; a broad dyadic theorem is still missing
+Square-incidence parity
+A short parity argument for one-round triangle expansions
+Potentially publishable as a small result after literature and referee-level checking; limited reach
+Computational gadget census
+Certified examples and proposed small-pole classifications
+Useful for falsification, insufficient by itself for a global theorem
+The odd-square parity result is worth retaining. It is a coherent mathematical statement, and its proof is short. I have not established whether it has already appeared elsewhere in equivalent form.
+However, high-girth cubic graphs contain no squares at all. Our square-incidence method is consequently silent on a substantial class of difficult graphs.
+The same issue affects several other directions: we often obtain strong conclusions by starting from configurations that a hypothetical counterexample may simply avoid.
+An important conceptual correction
+We have repeatedly approached Erdős–Gyárfás through edge avoidance:
+∀
+e
+∈
+E
+(
+G
+)
+,
+∃
+ dyadic cycle avoiding 
+e
+.
+∀e∈E(G),∃ dyadic cycle avoiding e.
+This is strictly a stronger assertion than the original cubic conjecture.
+A potential graph whose every dyadic cycle contains one common edge would satisfy Erdős–Gyárfás while falsifying edge avoidance. We have not established that such a graph exists, but neither have we excluded it.
+That makes the clean 2-pole program a higher-risk route. It could demand the resolution of an additional problem that the original conjecture does not require.
+I would retain its structural machinery but stop making edge avoidance our default final target.
+4. Our realistic research options
+Here is how I would rank the main programs now.
+Research program
+Potential impact
+Feasibility
+Priority
+Scale-aware path and cycle-length control in sparse graphs
+Very high
+Difficult but strongly supported by existing machinery
+1
+Minimal-counterexample decomposition and cubic reduction
+Very high
+Difficult; structural leverage
+2
+Constructing or ruling out counterexamples through graph substitutions
+Very high
+Meaningful falsification route
+3
+Multiscale chord and interlacement theory
+High for Hamiltonian graphs
+More accessible, but overlaps existing work
+4
+Covers, quotients, and cycle-lifting invariants
+Potentially high
+Promising for structured graph families
+5
+Small gadget classifications and longer censuses
+Moderate
+Relatively accessible
+6
+These are qualitative judgments about expected research value.
+Option 1: Scale-aware path-length control
+This is my preferred direction.
+The shared theme among Liu–Montgomery, Bucić–Gishboliner–Sudakov, and Lyngsie–Merker is the combination of paths with different attainable lengths.
+Their results differ in how much control they obtain:
+Lyngsie–Merker control residues.
+Bucić–Gishboliner–Sudakov control the number and distribution of many lengths.
+Liu–Montgomery control a substantial interval of exact even lengths under stronger degree assumptions.
+The research goal would be to establish a structural theorem for sparse, well-connected graphs that supports exact-length correction at a suitable scale.
+This could be meaningful even without completely settling Erdős–Gyárfás.
+An attractive intermediate problem is to establish a scale-controlled cycle interval theorem for a nontrivial class of cubic graphs, especially one not already covered by planarity, symmetry or Hamiltonicity.
+Option 2: Minimal-counterexample theory
+This has perhaps the greatest direct leverage on the complete conjecture.
+The existing result that more than two-thirds of the vertices of a minimal counterexample are cubic suggests studying how degree-four-and-higher vertices interact with their cubic neighborhoods.
+A successful local reduction that preserves the absence of dyadic cycles could strengthen the degree-three concentration or exclude an entire class of local configurations.
+The ambitious result would be a principled reduction of the general conjecture to cubic graphs.
+This is OPEN, and we should not assume such a reduction must exist.
+Option 3: Counterexample construction through substitutions
+We should also take seriously the possibility that Erdős–Gyárfás is false.
+Our earlier exact gadget-window calculus could become a systematic theory of how cycle spectra behave under graph substitutions, lifts, and cyclic compositions.
+A substantive result in this direction could classify which substitution operations necessarily preserve a dyadic cycle, or construct an infinite family with increasingly large initial dyadic gaps.
+The principal obstacle is maintaining minimum degree three while controlling all cycles that cross between components.
+This program may produce valuable structural mathematics whether the conjecture is true or false.
+Option 4: Chord interlacement and topology
+This remains appealing because of the exact correspondence between chord choices and circuit partitions, but its scope is naturally Hamiltonian.
+The interlace-polynomial literature already establishes extensive theory connecting circuit partitions, binary matrix nullity and local graph operations. 
+
+sciencedirect.com
++1
+To make a major contribution, we'd need a theorem about weighted circuit lengths that genuinely goes beyond existing interlace-polynomial information.
+That is possible, but we'd need to demonstrate the gap first.
+5. The most useful missing mathematical ingredient
+Across nearly all these approaches, I see the same underlying issue.
+Suppose we can find many paths between prescribed endpoints. Their lengths form a set 
+A
+A. Existing methods often show one of the following:
+∣
+A
+∣
+ is large
+,
+A
+ occupies many residues
+,
+A
+ contains a long progression
+.
+∣A∣ is large,A occupies many residues,A contains a long progression.
+None alone forces a power-of-two length.
+We need a mechanism that couples the location of the attainable lengths to the scale at which they occur.
+A plausible proof architecture would have three components:
+1. Coarse control
+Find a cycle or rooted path whose length lies near a desired power of two.
+2. Fine correction
+Find compatible reroutings that change the length in controlled increments while preserving simplicity.
+3. Structural coverage
+Prove that sparse cubic structure forces both ingredients, or identify a reusable obstruction when they fail.
+The literature already achieves versions of the first two ingredients under suitable hypotheses. The third is where significant new mathematics seems necessary.
+This framework is also broad enough to connect graph decomposition, additive combinatorics and expansion, without committing to one particular gadget.
+6. What I would actually prioritize
+I recommend two coordinated research tracks.
+The primary theoretical track should begin with Bucić–Gishboliner–Sudakov's multiscale path construction and Liu–Montgomery's exact-length correction machinery. We should determine whether the former produces sufficient length control for the latter to work under a cubic connectivity assumption.
+A useful first deliverable would be a precise theorem on rooted path-length sets, with a genuinely weaker hypothesis than the desired dyadic conclusion. We would then test that theorem against high-girth cubic graphs, non-Hamiltonian snarks, and our existing clean-pole examples.
+The secondary track should use our gadget calculus to attack the conjecture from the opposite direction: search for substitution principles that preserve dyadic avoidance, or prove that certain attempted constructions must eventually generate a dyadic cycle.
+I would also impose a stricter standard for declaring progress. A result should qualify as a significant advance only if it establishes a new infinite class that is not already covered by stronger theorems, removes a major case from a complete structural reduction, or introduces a technique that has demonstrable reach beyond the examples motivating it.
+Final assessment
+The research is now better situated, but I would temper the claim that we're on the verge of solving the conjecture. We have identified useful mechanisms, and the literature gives us much stronger starting points than the ones we initially used. We still lack a theorem forcing exact dyadic lengths in general sparse cubic graphs.
+The most convincing opportunity is multiscale rooted path-length control with exact correction, drawing on the strongest published methods rather than reinventing cycle-counting or chord-switching results.
+That is where I would invest our next serious theoretical effort.
+You've reached the maximum length for this conversation, but you can keep talking by starting a new chat.
+
+
+

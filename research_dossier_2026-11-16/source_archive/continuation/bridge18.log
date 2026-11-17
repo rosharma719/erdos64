@@ -1,0 +1,10 @@
+{"progress": 1, "total_base": 607, "pairs": 228, "exception_bridges": 27, "root_exceptions": 27, "bad": 0, "repairs": {"4": 14, "8": 13}, "sec": 0.0}
+{"progress": 76, "total_base": 607, "pairs": 17328, "exception_bridges": 549, "root_exceptions": 625, "bad": 0, "repairs": {"4": 306, "8": 319}, "sec": 0.2}
+{"progress": 151, "total_base": 607, "pairs": 34428, "exception_bridges": 1351, "root_exceptions": 1583, "bad": 0, "repairs": {"4": 755, "8": 828}, "sec": 0.4}
+{"progress": 226, "total_base": 607, "pairs": 51528, "exception_bridges": 1945, "root_exceptions": 2286, "bad": 0, "repairs": {"4": 1051, "8": 1235}, "sec": 0.7}
+{"progress": 301, "total_base": 607, "pairs": 68628, "exception_bridges": 2346, "root_exceptions": 2774, "bad": 0, "repairs": {"4": 1245, "8": 1529}, "sec": 0.8}
+{"progress": 376, "total_base": 607, "pairs": 85728, "exception_bridges": 2807, "root_exceptions": 3300, "bad": 0, "repairs": {"4": 1490, "8": 1810}, "sec": 1.1}
+{"progress": 451, "total_base": 607, "pairs": 102828, "exception_bridges": 4076, "root_exceptions": 5002, "bad": 0, "repairs": {"4": 2258, "8": 2744}, "sec": 1.4}
+{"progress": 526, "total_base": 607, "pairs": 119928, "exception_bridges": 4609, "root_exceptions": 5706, "bad": 0, "repairs": {"4": 2477, "8": 3229}, "sec": 1.6}
+{"progress": 601, "total_base": 607, "pairs": 137028, "exception_bridges": 5101, "root_exceptions": 6466, "bad": 0, "repairs": {"4": 2791, "8": 3675}, "sec": 1.8}
+FINAL {"base_graphs": 607, "total_bridged_pairs": 138396, "exception_bridges": 5137, "exception_roots": 6508, "newroot_exception_bridges": 0, "repair_length_counts": {"4": 2821, "8": 3687}, "bad": [], "elapsed_sec": 1.8}

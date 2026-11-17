@@ -1,0 +1,74 @@
+{
+  "10": {
+    "stats": {
+      "1": 4,
+      "3": 1
+    },
+    "hard": [
+      {
+        "idx": 2,
+        "g6": "IheA@GUAo",
+        "best": 3,
+        "partitions": 20,
+        "hist": {
+          "3": 20
+        }
+      }
+    ],
+    "examples": [
+      {
+        "best": 1,
+        "partitions": 20,
+        "hist": {
+          "1": 20
+        }
+      },
+      {
+        "best": 1,
+        "partitions": 20,
+        "hist": {
+          "1": 20
+        }
+      },
+      {
+        "best": 3,
+        "partitions": 20,
+        "hist": {
+          "3": 20
+        }
+      }
+    ]
+  },
+  "14": {
+    "stats": {
+      "1": 70,
+      "2": 14
+    },
+    "hard": [],
+    "examples": [
+      {
+        "best": 1,
+        "partitions": 68,
+        "hist": {
+          "2": 60,
+          "1": 8
+        }
+      },
+      {
+        "best": 1,
+        "partitions": 64,
+        "hist": {
+          "1": 64
+        }
+      },
+      {
+        "best": 1,
+        "partitions": 66,
+        "hist": {
+          "1": 44,
+          "2": 22
+        }
+      }
+    ]
+  }
+}

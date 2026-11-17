@@ -1,0 +1,8 @@
+progress 0 counts {('path', 'shift'): 27} time 0.0
+progress 100 counts {('path', 'shift'): 805, ('shift',): 5} time 0.5
+progress 200 counts {('path', 'shift'): 1852, ('shift',): 6, ('path',): 7} time 1.0
+progress 300 counts {('path', 'shift'): 2749, ('shift',): 12, ('path',): 13} time 1.5
+progress 400 counts {('path', 'shift'): 3821, ('shift',): 16, ('path',): 21} time 2.0
+progress 500 counts {('path', 'shift'): 5433, ('shift',): 24, ('path',): 23} time 2.7
+progress 600 counts {('path', 'shift'): 6414, ('shift',): 24, ('path',): 28} time 3.2
+FINAL {('path', 'shift'): 6456, ('shift',): 24, ('path',): 28} fail [] seconds 3.18

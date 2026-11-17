@@ -1,0 +1,81 @@
+{
+  "title": "Erdos-Gyarfas pass XIII: tripod-theta coherent tree backbones",
+  "contents": [
+    {
+      "name": "Pass_XIII_Tripod_Theta_Tree_Backbones.md",
+      "bytes": 17182,
+      "sha256": "defc5c9b63cf470ef6ea18d8795e3f7e75f9833dae55c85b8905c30f2e7b06fd"
+    },
+    {
+      "name": "pass13_tree_backbone.py",
+      "bytes": 8129,
+      "sha256": "9b6ff67680598facdbbcbc7eb3c7f6c31a69c195286cd5c36f60b0ed1e2896b7"
+    },
+    {
+      "name": "pass13_prime_certificate.py",
+      "bytes": 2445,
+      "sha256": "4b0dba771ac90c04590309394dd056058d94f5c5036a3e069dcaa8c5fae0f1f2"
+    },
+    {
+      "name": "pass13_prime_certificates.json",
+      "bytes": 4148,
+      "sha256": "b920e658c790afe35cd468dfd82c1327b39f597f9f46b3f56a4b9c53138b3f7a"
+    },
+    {
+      "name": "pass13_prime14_audit.py",
+      "bytes": 2085,
+      "sha256": "041763085a887e3761cd3801f1836916224a3053cd1f4c86fd4d3513fdc5dfb3"
+    },
+    {
+      "name": "pass13_prime14_audit.json",
+      "bytes": 755,
+      "sha256": "c335f4732b2b29e038db998423f3c1b5157dca371a3cb8cb2fae08a88c2dc272"
+    },
+    {
+      "name": "pass13_prime14_optim.py",
+      "bytes": 1237,
+      "sha256": "97d0d98129a036ff0d0c4ed29851f771b5436699c4af68eb2c0c568f6fccb0b6"
+    },
+    {
+      "name": "pass13_prime14_optim.json",
+      "bytes": 1052,
+      "sha256": "eabbe53c06e469d3d28e887b4a5eefa0c9dc5bc356414191ef3b065cd30b8b76"
+    },
+    {
+      "name": "pass13_prime16_optim.py",
+      "bytes": 750,
+      "sha256": "7f8d0d1ed721808740128ccac5008873854bd0124aa0e67224c476a7d18b1362"
+    },
+    {
+      "name": "pass13_prime16_optim.json",
+      "bytes": 79,
+      "sha256": "b7bbf4b740289149d95761afad0a53db66a3842909331eca59f2638f25fd1bb9"
+    },
+    {
+      "name": "decycling_exhaustive.py",
+      "bytes": 1851,
+      "sha256": "59374bcf84d8a23ce5beb64e37858eb609489238ceff49af8c3fa47522ea23e4"
+    },
+    {
+      "name": "decycling_prime_scan.py",
+      "bytes": 1300,
+      "sha256": "1092e3d62719d197fd7666ae29bd867726af41921c57146948b0bdfadbe43b33"
+    },
+    {
+      "name": "decycling_prime18_sample.py",
+      "bytes": 1301,
+      "sha256": "41b84ed53ee8fcb647cded00b2ffe531abc537d28709c7784ffc612fea85d66d"
+    },
+    {
+      "name": "three_arm_family.py",
+      "bytes": 1634,
+      "sha256": "64761f9294b6bd8db52d972bd7c943d2512c7a5533cfaa1b437b8ac5e3345027"
+    },
+    {
+      "name": "three_arm_search.py",
+      "bytes": 1645,
+      "sha256": "f2f19b010916edb324193ed8a4a93342cc565220224b72e96b15a1c26cd8e9f8"
+    }
+  ],
+  "scope": "Research note, code, supporting checks; independent novelty validation is outstanding"
+}
