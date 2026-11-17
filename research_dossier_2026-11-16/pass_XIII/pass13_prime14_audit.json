@@ -1,0 +1,39 @@
+{
+  "10": {
+    "number_graphs": 5,
+    "worst_root_dyadic_connector_complexity_distribution": {
+      "1": 3,
+      "3": 1,
+      "2": 1
+    },
+    "has_a_root_requiring_at_least_two_connectors_for_dyadic": 2,
+    "example": {
+      "graph6": "IheA@GUAo",
+      "J": [
+        0,
+        2,
+        8
+      ],
+      "worst_root_dyadic_connector_count": 3
+    }
+  },
+  "14": {
+    "number_graphs": 84,
+    "worst_root_dyadic_connector_complexity_distribution": {
+      "2": 25,
+      "1": 57,
+      "3": 2
+    },
+    "has_a_root_requiring_at_least_two_connectors_for_dyadic": 27,
+    "example": {
+      "graph6": "M?cAHCPBM?E@`?W?_",
+      "J": [
+        0,
+        1,
+        2,
+        8
+      ],
+      "worst_root_dyadic_connector_count": 2
+    }
+  }
+}

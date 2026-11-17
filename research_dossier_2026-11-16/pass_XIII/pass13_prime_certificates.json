@@ -1,0 +1,259 @@
+{
+  "certificates": [
+    {
+      "graph": "Petersen",
+      "n": 10,
+      "graph6": "IkE?ISqJ?",
+      "node_connectivity": 3,
+      "trivial_three_cuts": 10,
+      "nontrivial_three_cuts": 0,
+      "root": 0,
+      "J": [
+        7,
+        8,
+        9
+      ],
+      "branch_orders": [
+        2,
+        2,
+        2
+      ],
+      "branch_attachments": {
+        "7": [
+          1,
+          4,
+          6
+        ],
+        "8": [
+          2,
+          3,
+          6
+        ],
+        "9": [
+          2,
+          4,
+          5
+        ]
+      },
+      "metric_table": [
+        {
+          "pair": [
+            7,
+            8
+          ],
+          "branch_distances": [
+            1,
+            1,
+            0
+          ],
+          "two_connector_cycle_lengths": [
+            6,
+            5,
+            5
+          ]
+        },
+        {
+          "pair": [
+            7,
+            9
+          ],
+          "branch_distances": [
+            1,
+            0,
+            1
+          ],
+          "two_connector_cycle_lengths": [
+            5,
+            6,
+            5
+          ]
+        },
+        {
+          "pair": [
+            8,
+            9
+          ],
+          "branch_distances": [
+            0,
+            1,
+            1
+          ],
+          "two_connector_cycle_lengths": [
+            5,
+            5,
+            6
+          ]
+        }
+      ],
+      "two_J_lengths": {
+        "5": 6,
+        "6": 3
+      },
+      "explicit_root_avoiding_8cycle": [
+        3,
+        4,
+        7,
+        6,
+        5,
+        9,
+        2,
+        8
+      ]
+    },
+    {
+      "graph": "Prime-14 rank-two barrier",
+      "n": 14,
+      "graph6": "MHEIGC@AM?AD_CGO_",
+      "node_connectivity": 3,
+      "trivial_three_cuts": 14,
+      "nontrivial_three_cuts": 0,
+      "root": 9,
+      "J": [
+        0,
+        1,
+        3,
+        7
+      ],
+      "branch_orders": [
+        3,
+        3,
+        3
+      ],
+      "branch_attachments": {
+        "0": [
+          12,
+          5,
+          10
+        ],
+        "1": [
+          2,
+          6,
+          10
+        ],
+        "3": [
+          2,
+          4,
+          11
+        ],
+        "7": [
+          13,
+          6,
+          8
+        ]
+      },
+      "metric_table": [
+        {
+          "pair": [
+            0,
+            1
+          ],
+          "branch_distances": [
+            2,
+            1,
+            0
+          ],
+          "two_connector_cycle_lengths": [
+            7,
+            6,
+            5
+          ]
+        },
+        {
+          "pair": [
+            0,
+            3
+          ],
+          "branch_distances": [
+            2,
+            1,
+            1
+          ],
+          "two_connector_cycle_lengths": [
+            7,
+            7,
+            6
+          ]
+        },
+        {
+          "pair": [
+            0,
+            7
+          ],
+          "branch_distances": [
+            1,
+            1,
+            2
+          ],
+          "two_connector_cycle_lengths": [
+            6,
+            7,
+            7
+          ]
+        },
+        {
+          "pair": [
+            1,
+            3
+          ],
+          "branch_distances": [
+            0,
+            2,
+            1
+          ],
+          "two_connector_cycle_lengths": [
+            6,
+            5,
+            7
+          ]
+        },
+        {
+          "pair": [
+            1,
+            7
+          ],
+          "branch_distances": [
+            1,
+            0,
+            2
+          ],
+          "two_connector_cycle_lengths": [
+            5,
+            7,
+            6
+          ]
+        },
+        {
+          "pair": [
+            3,
+            7
+          ],
+          "branch_distances": [
+            1,
+            2,
+            1
+          ],
+          "two_connector_cycle_lengths": [
+            7,
+            6,
+            7
+          ]
+        }
+      ],
+      "two_J_lengths": {
+        "5": 3,
+        "6": 6,
+        "7": 9
+      },
+      "explicit_root_avoiding_8cycle": [
+        0,
+        5,
+        6,
+        1,
+        2,
+        3,
+        11,
+        10
+      ]
+    }
+  ]
+}
