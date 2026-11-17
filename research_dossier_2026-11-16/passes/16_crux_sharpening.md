@@ -152,7 +152,7 @@ every Martinsson–Steiner robust core, cycles of length in [C, C log n] that ar
   lengths differing by 1 or 2. That rules out global mod-p rigidity. What is missing is
   control of *where and how long* those cycles are, relative to a robust core.
 
-## 5. Updated program (supersedes the M2 line of `PROGRAM_2026-11-17.md`)
+## 5. Updated program (supersedes the M2 line of `../program/PROGRAM_2026-11-17.md`)
 
 | ID | Statement | Status | Next step |
 |---|---|---|---|

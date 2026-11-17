@@ -3,7 +3,7 @@
 **Date:** 17 November 2026. **Status:** attempt record. Pillar A is **not** proved. This
 note isolates the single missing lemma, explains why it is the crux, records a
 conditional mechanism that does work, and states what to try next. Tags as in
-`STRATEGY_2026-11-17.md`.
+`../program/STRATEGY_2026-11-17.md`.
 
 ## 1. Setting
 

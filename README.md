@@ -36,6 +36,18 @@ Canonical documents, in reading order:
 The fifteen original branches remain untouched on `origin`; nothing here
 deletes them, and this branch has not been merged into `main`.
 
+## November 2026 research run
+
+`research_dossier_2026-11-16/` holds the 16–17 November work. It contains:
+- the consolidated dossier;
+- Passes XIII–XX: rooted stress test, and the expander pillar with Fan adjusters,
+  short nonzero-residue cycles, anchoring and Π-gadgets;
+- the strategy and program;
+- a literature review with verification levels.
+
+Start at `research_dossier_2026-11-16/README.md`. It records its own open-items list
+and does not yet feed into `proof.md`, `plan.md` or `literature.md`.
+
 ## Layout
 - `plan.md` — strategy, rankings, status log, failed/blocked approaches.
 - `literature.md` — verified frontier (P₁₃-free, diameter-2, Carr 2026 minimal-
