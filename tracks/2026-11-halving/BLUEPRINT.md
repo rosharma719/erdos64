@@ -103,7 +103,20 @@ the citing result conditional.
 | E2 | No clean 3-pole on 5 vertices | REVIEWED (author ChatGPT; checked by Claude) | `audits/three_pole_research_handoff.md` |
 | E3 | Pass VI Hamiltonian survivors delete to T's poles (identification, not uniqueness) | COMPUTED | `scripts/check_three_pole_isomorphisms.py` |
 | E4 | No clean 2-pole on ≤ 20 vertices | CERTIFIED for checkers, single generator | `three_pole_census_manifest.md`, `census/` |
+| E6 | Clean 4-poles on ≤ 20 vertices: 48 in all (orders 6–18, none at 20). Every bridged one is two T-list poles joined by a bridge; 36 are bridgeless, all with vertex connectivity 2 | CERTIFIED for checkers, single generator; classification COMPUTED | `four_pole_census.md`, `scripts/classify_four_poles.py` |
 | E5 | Independent generator (not nauty) agrees through 15 vertices | PARTIAL: ChatGPT's own generator covers 2-poles on 4 and 6 vertices; its 3-pole check (orders 3–11) uses saved cubic catalogs, not its own generator | `pass12/verification_manifest.md` |
+
+### Bounded-defect programme (pass XIII)
+
+| ID | Statement | Status | Evidence |
+|---|---|---|---|
+| F(k) | Clean k-poles have bounded order N(k) | OPEN (k ≥ 3); F(1), F(2) are T\*(i),(ii) | `pass13/structural_analytic_pivot.md` |
+| F1 | F(k+1) ⇒ F(k) (bridge gluing) | REVIEWED (author ChatGPT; checked by Claude) | `pass13/REVIEW.md` |
+| F2 | N(k) ≥ 15(k − 2) (bridge-trees of H15) | REVIEWED (author ChatGPT; checked by Claude) | `pass13/REVIEW.md` |
+| F_lin | Every connected clean subcubic graph has \|V\| ≤ 15(δ − 2), δ = deficiency; equivalently m ≤ (22n − 15)/15 | CANDIDATE (author Claude). Implies cubic EG, T\*(i),(ii), the size part of T, and N(k) = 15(k − 2). Holds on ≤ 21 vertices, conditional on E1, E4 and J1 Step 1 | `linear_defect_bound.md` |
+| S1 | Proper-shore isoperimetry | Reduced to F_lin (corollary: c ≥ \|S\|/15 + 2 − δ_G(S)) | `linear_defect_bound.md` |
+| A1 | Dyadic cycle in min-degree-3 expanders with few defects | OPEN; now targeted at defect density ≤ 1/15 | `pass13/structural_analytic_pivot.md`, `linear_defect_bound.md` |
+| X3 | F_lin's minimal violators are expanders | OPEN. The gluing argument forces only 2-edge-connectivity; the extremal graphs (bridge-trees) are not expanders, so expansion would need a new idea | `linear_defect_bound.md` |
 
 ### Novelty
 
@@ -117,6 +130,9 @@ the citing result conditional.
 1. **W1 (WRP)**: now the only open step between the census evidence and
    Conjecture T. Split as W1a (gadget-heavy, proved above a threshold) and W1b
    (identity/triangle-heavy, the doubling-chain lemma).
-2. **J1 review**: ChatGPT's blind re-derivation of `joint_minimality.md`.
-3. **E1 at 23 vertices**: the cheapest test that could refute T (about 3.3
+2. **F_lin at δ = 4** (N(4) = 30): a structural proof for the bridgeless,
+   2-connected 4-poles; then a discharging attack on the general density form.
+3. **J1 review**: a *fresh* ChatGPT chat's blind re-derivation (the pass XIII
+   audit was not blind) of `joint_minimality.md`.
+4. **E1 at 23 vertices**: the cheapest test that could refute T (about 3.3
    hours of wall time on two cores).

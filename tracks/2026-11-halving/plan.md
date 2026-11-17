@@ -1,0 +1,2 @@
+
+- 2026-11-16 (pass XIII integration, Claude): reviewed ChatGPT pass XIII (`pass13/REVIEW.md`); fixed checker-B exit capture and generator provenance in `certify_pole_shard.sh` per ChatGPT's C3 audit; full census rerun under the corrected script; 4-pole census through 20 classified (`four_pole_census.md`); proposed Conjecture F_lin (`linear_defect_bound.md`); BLUEPRINT gains F, F1, F2, F_lin, S1, A1, X3, E6.
