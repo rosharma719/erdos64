@@ -1,0 +1,2 @@
+graph 1 n=6 mindeg=3 C4:6 critical=0 dfsnodes=13
+graph 2 n=6 mindeg=3 C4:6 critical=0 dfsnodes=16

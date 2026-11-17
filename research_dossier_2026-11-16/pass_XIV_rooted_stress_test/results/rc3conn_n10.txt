@@ -1,0 +1,14 @@
+graph 1 n=10 mindeg=3 C4:10 critical=0 dfsnodes=10
+graph 2 n=10 mindeg=3 C4:8 C8:2 critical=0 dfsnodes=93
+graph 3 n=10 mindeg=3 C4:6 C8:4 critical=0 dfsnodes=132
+graph 4 n=10 mindeg=3 C4:9 C8:1 critical=0 dfsnodes=81
+graph 5 n=10 mindeg=3 C8:10 critical=0 dfsnodes=318
+graph 6 n=10 mindeg=3 C4:10 critical=0 dfsnodes=13
+graph 7 n=10 mindeg=3 C4:10 critical=0 dfsnodes=10
+graph 8 n=10 mindeg=3 C4:10 critical=0 dfsnodes=9
+graph 9 n=10 mindeg=3 C4:10 critical=0 dfsnodes=9
+graph 10 n=10 mindeg=3 C4:10 critical=0 dfsnodes=15
+graph 11 n=10 mindeg=3 C4:10 critical=0 dfsnodes=12
+graph 12 n=10 mindeg=3 C8:10 critical=0 dfsnodes=292
+graph 13 n=10 mindeg=3 C4:10 critical=0 dfsnodes=8
+graph 14 n=10 mindeg=3 C8:10 critical=0 dfsnodes=325

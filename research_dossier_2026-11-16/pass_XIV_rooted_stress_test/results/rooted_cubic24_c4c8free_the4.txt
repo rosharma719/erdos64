@@ -1,0 +1,4 @@
+graph 1 n=24 mindeg=3 C16:24 critical=0 dfsnodes=2386
+graph 2 n=24 mindeg=3 C16:24 critical=0 dfsnodes=2774
+graph 3 n=24 mindeg=3 C16:24 critical=0 dfsnodes=3465
+graph 4 n=24 mindeg=3 C16:24 critical=0 dfsnodes=2544

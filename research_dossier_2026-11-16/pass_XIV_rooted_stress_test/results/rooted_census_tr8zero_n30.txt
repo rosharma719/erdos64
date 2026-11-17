@@ -1,0 +1,1 @@
+graph 1 n=30 mindeg=3 C16:30 critical=0 dfsnodes=4142

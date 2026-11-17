@@ -1,0 +1,8 @@
+graph 1: ROOT-CRITICAL vertex 4
+graph 1: ROOT-CRITICAL vertex 5
+graph 1 n=8 mindeg=3 C4:6 critical=2 dfsnodes=180
+graph 2: ROOT-CRITICAL vertex 3
+graph 2: ROOT-CRITICAL vertex 7
+graph 2 n=8 mindeg=3 C4:6 critical=2 dfsnodes=192
+graph 3 n=8 mindeg=3 C4:8 critical=0 dfsnodes=14
+graph 4 n=8 mindeg=3 C4:8 critical=0 dfsnodes=17

@@ -1,0 +1,341 @@
+graph 1 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 2 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=133
+graph 3 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=68
+graph 4 n=14 mindeg=3 C8:14 critical=0 dfsnodes=365
+graph 5 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=147
+graph 6 n=14 mindeg=3 C8:14 critical=0 dfsnodes=196
+graph 7 n=14 mindeg=3 C4:14 critical=0 dfsnodes=42
+graph 8 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=147
+graph 9 n=14 mindeg=3 C4:14 critical=0 dfsnodes=48
+graph 10 n=14 mindeg=3 C4:14 critical=0 dfsnodes=40
+graph 11 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=134
+graph 12 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 13 n=14 mindeg=3 C4:14 critical=0 dfsnodes=13
+graph 14 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 15 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 16 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 17 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 18 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=78
+graph 19 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 20 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=84
+graph 21 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 22 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 23 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 24 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 25 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 26 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 27 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=76
+graph 28 n=14 mindeg=3 C4:14 critical=0 dfsnodes=13
+graph 29 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=82
+graph 30 n=14 mindeg=3 C4:14 critical=0 dfsnodes=13
+graph 31 n=14 mindeg=3 C4:14 critical=0 dfsnodes=13
+graph 32 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 33 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=68
+graph 34 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=69
+graph 35 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 36 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=200
+graph 37 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=72
+graph 38 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=95
+graph 39 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=95
+graph 40 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=207
+graph 41 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 42 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 43 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 44 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=212
+graph 45 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 46 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=219
+graph 47 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 48 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=121
+graph 49 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=67
+graph 50 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 51 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=69
+graph 52 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 53 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 54 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 55 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 56 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 57 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=68
+graph 58 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 59 n=14 mindeg=3 C8:14 critical=0 dfsnodes=500
+graph 60 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=86
+graph 61 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=177
+graph 62 n=14 mindeg=3 C8:14 critical=0 dfsnodes=329
+graph 63 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=197
+graph 64 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=116
+graph 65 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=192
+graph 66 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=73
+graph 67 n=14 mindeg=3 C4:14 critical=0 dfsnodes=46
+graph 68 n=14 mindeg=3 C4:14 critical=0 dfsnodes=46
+graph 69 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=130
+graph 70 n=14 mindeg=3 C8:14 critical=0 dfsnodes=414
+graph 71 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=229
+graph 72 n=14 mindeg=3 C8:14 critical=0 dfsnodes=276
+graph 73 n=14 mindeg=3 C4:14 critical=0 dfsnodes=31
+graph 74 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=126
+graph 75 n=14 mindeg=3 C4:14 critical=0 dfsnodes=30
+graph 76 n=14 mindeg=3 C4:14 critical=0 dfsnodes=33
+graph 77 n=14 mindeg=3 C8:14 critical=0 dfsnodes=206
+graph 78 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=139
+graph 79 n=14 mindeg=3 C8:14 critical=0 dfsnodes=358
+graph 80 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=126
+graph 81 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=68
+graph 82 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=126
+graph 83 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=128
+graph 84 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=74
+graph 85 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=205
+graph 86 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 87 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 88 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 89 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 90 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 91 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 92 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 93 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 94 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=142
+graph 95 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 96 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=287
+graph 97 n=14 mindeg=3 C4:14 critical=0 dfsnodes=54
+graph 98 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=143
+graph 99 n=14 mindeg=3 C4:14 critical=0 dfsnodes=54
+graph 100 n=14 mindeg=3 C4:14 critical=0 dfsnodes=47
+graph 101 n=14 mindeg=3 C4:14 critical=0 dfsnodes=47
+graph 102 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=145
+graph 103 n=14 mindeg=3 C8:14 critical=0 dfsnodes=211
+graph 104 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=236
+graph 105 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=92
+graph 106 n=14 mindeg=3 C4:14 critical=0 dfsnodes=32
+graph 107 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=128
+graph 108 n=14 mindeg=3 C4:14 critical=0 dfsnodes=31
+graph 109 n=14 mindeg=3 C4:14 critical=0 dfsnodes=34
+graph 110 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 111 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=196
+graph 112 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 113 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=141
+graph 114 n=14 mindeg=3 C4:14 critical=0 dfsnodes=26
+graph 115 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 116 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=128
+graph 117 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=68
+graph 118 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=130
+graph 119 n=14 mindeg=3 C4:14 critical=0 dfsnodes=41
+graph 120 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=135
+graph 121 n=14 mindeg=3 C4:14 critical=0 dfsnodes=40
+graph 122 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 123 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=74
+graph 124 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=134
+graph 125 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 126 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 127 n=14 mindeg=3 C4:14 critical=0 dfsnodes=32
+graph 128 n=14 mindeg=3 C4:14 critical=0 dfsnodes=31
+graph 129 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 130 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 131 n=14 mindeg=3 C4:14 critical=0 dfsnodes=32
+graph 132 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=87
+graph 133 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=109
+graph 134 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=130
+graph 135 n=14 mindeg=3 C8:14 critical=0 dfsnodes=192
+graph 136 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 137 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=146
+graph 138 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=149
+graph 139 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=153
+graph 140 n=14 mindeg=3 C8:14 critical=0 dfsnodes=275
+graph 141 n=14 mindeg=3 C8:14 critical=0 dfsnodes=251
+graph 142 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=211
+graph 143 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 144 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=77
+graph 145 n=14 mindeg=3 C8:14 critical=0 dfsnodes=258
+graph 146 n=14 mindeg=3 C8:14 critical=0 dfsnodes=317
+graph 147 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=105
+graph 148 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=242
+graph 149 n=14 mindeg=3 C8:14 critical=0 dfsnodes=255
+graph 150 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 151 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 152 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 153 n=14 mindeg=3 C4:14 critical=0 dfsnodes=78
+graph 154 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 155 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 156 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 157 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 158 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 159 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 160 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 161 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 162 n=14 mindeg=3 C4:14 critical=0 dfsnodes=41
+graph 163 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 164 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 165 n=14 mindeg=3 C4:14 critical=0 dfsnodes=38
+graph 166 n=14 mindeg=3 C4:14 critical=0 dfsnodes=47
+graph 167 n=14 mindeg=3 C4:14 critical=0 dfsnodes=53
+graph 168 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=190
+graph 169 n=14 mindeg=3 C4:14 critical=0 dfsnodes=43
+graph 170 n=14 mindeg=3 C4:14 critical=0 dfsnodes=68
+graph 171 n=14 mindeg=3 C4:14 critical=0 dfsnodes=79
+graph 172 n=14 mindeg=3 C4:14 critical=0 dfsnodes=39
+graph 173 n=14 mindeg=3 C4:14 critical=0 dfsnodes=57
+graph 174 n=14 mindeg=3 C4:14 critical=0 dfsnodes=42
+graph 175 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=223
+graph 176 n=14 mindeg=3 C4:14 critical=0 dfsnodes=60
+graph 177 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=162
+graph 178 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=228
+graph 179 n=14 mindeg=3 C4:14 critical=0 dfsnodes=38
+graph 180 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=146
+graph 181 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=193
+graph 182 n=14 mindeg=3 C4:14 critical=0 dfsnodes=30
+graph 183 n=14 mindeg=3 C4:14 critical=0 dfsnodes=30
+graph 184 n=14 mindeg=3 C4:14 critical=0 dfsnodes=30
+graph 185 n=14 mindeg=3 C4:14 critical=0 dfsnodes=30
+graph 186 n=14 mindeg=3 C4:14 critical=0 dfsnodes=29
+graph 187 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=136
+graph 188 n=14 mindeg=3 C8:14 critical=0 dfsnodes=390
+graph 189 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=131
+graph 190 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 191 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=105
+graph 192 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=98
+graph 193 n=14 mindeg=3 C8:14 critical=0 dfsnodes=193
+graph 194 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 195 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 196 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 197 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 198 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=156
+graph 199 n=14 mindeg=3 C4:13 C8:1 critical=0 dfsnodes=101
+graph 200 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=84
+graph 201 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=129
+graph 202 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=142
+graph 203 n=14 mindeg=3 C4:14 critical=0 dfsnodes=40
+graph 204 n=14 mindeg=3 C4:14 critical=0 dfsnodes=40
+graph 205 n=14 mindeg=3 C8:14 critical=0 dfsnodes=247
+graph 206 n=14 mindeg=3 C8:14 critical=0 dfsnodes=186
+graph 207 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=135
+graph 208 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 209 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 210 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 211 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 212 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 213 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 214 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 215 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 216 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 217 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 218 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 219 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 220 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 221 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=166
+graph 222 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 223 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 224 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 225 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 226 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 227 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 228 n=14 mindeg=3 C4:14 critical=0 dfsnodes=40
+graph 229 n=14 mindeg=3 C4:14 critical=0 dfsnodes=40
+graph 230 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 231 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 232 n=14 mindeg=3 C4:14 critical=0 dfsnodes=41
+graph 233 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 234 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 235 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 236 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 237 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 238 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 239 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 240 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 241 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 242 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=142
+graph 243 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=172
+graph 244 n=14 mindeg=3 C4:14 critical=0 dfsnodes=13
+graph 245 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 246 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 247 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 248 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 249 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 250 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 251 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 252 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 253 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 254 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 255 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 256 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=80
+graph 257 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=73
+graph 258 n=14 mindeg=3 C4:7 C8:7 critical=0 dfsnodes=142
+graph 259 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 260 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 261 n=14 mindeg=3 C8:14 critical=0 dfsnodes=366
+graph 262 n=14 mindeg=3 C8:14 critical=0 dfsnodes=258
+graph 263 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=191
+graph 264 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 265 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=76
+graph 266 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=74
+graph 267 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 268 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=224
+graph 269 n=14 mindeg=3 C8:14 critical=0 dfsnodes=367
+graph 270 n=14 mindeg=3 C8:14 critical=0 dfsnodes=328
+graph 271 n=14 mindeg=3 C4:14 critical=0 dfsnodes=36
+graph 272 n=14 mindeg=3 C4:7 C8:7 critical=0 dfsnodes=143
+graph 273 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=198
+graph 274 n=14 mindeg=3 C8:14 critical=0 dfsnodes=333
+graph 275 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 276 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 277 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=73
+graph 278 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 279 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=97
+graph 280 n=14 mindeg=3 C4:7 C8:7 critical=0 dfsnodes=154
+graph 281 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 282 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=75
+graph 283 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 284 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 285 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=130
+graph 286 n=14 mindeg=3 C4:14 critical=0 dfsnodes=23
+graph 287 n=14 mindeg=3 C8:14 critical=0 dfsnodes=320
+graph 288 n=14 mindeg=3 C8:14 critical=0 dfsnodes=330
+graph 289 n=14 mindeg=3 C4:14 critical=0 dfsnodes=12
+graph 290 n=14 mindeg=3 C4:10 C8:4 critical=0 dfsnodes=68
+graph 291 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=142
+graph 292 n=14 mindeg=3 C4:6 C8:8 critical=0 dfsnodes=141
+graph 293 n=14 mindeg=3 C4:14 critical=0 dfsnodes=11
+graph 294 n=14 mindeg=3 C4:12 C8:2 critical=0 dfsnodes=166
+graph 295 n=14 mindeg=3 C4:14 critical=0 dfsnodes=13
+graph 296 n=14 mindeg=3 C4:14 critical=0 dfsnodes=52
+graph 297 n=14 mindeg=3 C4:14 critical=0 dfsnodes=37
+graph 298 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=78
+graph 299 n=14 mindeg=3 C8:14 critical=0 dfsnodes=258
+graph 300 n=14 mindeg=3 C4:8 C8:6 critical=0 dfsnodes=73
+graph 301 n=14 mindeg=3 C8:14 critical=0 dfsnodes=205
+graph 302 n=14 mindeg=3 C8:14 critical=0 dfsnodes=255
+graph 303 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 304 n=14 mindeg=3 C4:14 critical=0 dfsnodes=86
+graph 305 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 306 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 307 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=172
+graph 308 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 309 n=14 mindeg=3 C4:14 critical=0 dfsnodes=22
+graph 310 n=14 mindeg=3 C8:14 critical=0 dfsnodes=211
+graph 311 n=14 mindeg=3 C8:14 critical=0 dfsnodes=264
+graph 312 n=14 mindeg=3 C4:14 critical=0 dfsnodes=42
+graph 313 n=14 mindeg=3 C4:14 critical=0 dfsnodes=38
+graph 314 n=14 mindeg=3 C8:14 critical=0 dfsnodes=321
+graph 315 n=14 mindeg=3 C8:14 critical=0 dfsnodes=195
+graph 316 n=14 mindeg=3 C4:14 critical=0 dfsnodes=29
+graph 317 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 318 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 319 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 320 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 321 n=14 mindeg=3 C4:14 critical=0 dfsnodes=28
+graph 322 n=14 mindeg=3 C4:14 critical=0 dfsnodes=28
+graph 323 n=14 mindeg=3 C4:14 critical=0 dfsnodes=59
+graph 324 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 325 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 326 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=162
+graph 327 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 328 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=166
+graph 329 n=14 mindeg=3 C8:14 critical=0 dfsnodes=315
+graph 330 n=14 mindeg=3 C8:14 critical=0 dfsnodes=305
+graph 331 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 332 n=14 mindeg=3 C4:14 critical=0 dfsnodes=35
+graph 333 n=14 mindeg=3 C4:11 C8:3 critical=0 dfsnodes=166
+graph 334 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 335 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 336 n=14 mindeg=3 C4:14 critical=0 dfsnodes=9
+graph 337 n=14 mindeg=3 C4:14 critical=0 dfsnodes=10
+graph 338 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 339 n=14 mindeg=3 C4:14 critical=0 dfsnodes=8
+graph 340 n=14 mindeg=3 C4:7 C8:7 critical=0 dfsnodes=139
+graph 341 n=14 mindeg=3 C8:14 critical=0 dfsnodes=255
