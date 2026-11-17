@@ -25,7 +25,7 @@ of a spanning tree from a cubic counterexample. Statement and proof:
 | Clean 3-poles on ≤ 21 vertices are exactly the four in T | **Certified** for checkers (two independent), single generator | `three_pole_census_manifest.md` |
 | No clean 2-pole on ≤ 20 vertices | **Certified** for checkers, single generator | `three_pole_census_manifest.md` |
 | Pass VI Hamiltonian survivors are these poles | **Computed**, identification only, not uniqueness | `scripts/check_three_pole_isomorphisms.py` |
-| Triangle-built clean 3-poles have 1, 3, 7, 15 vertices, at every size (tower theorem) | **Reviewed**: proof by ChatGPT, checked by Claude; awaits your sign-off | `tower_theorem.md`, `pass12/REVIEW.md` |
+| Triangle-built clean 3-poles have 1, 3, 7, 15 vertices, at every size (tower theorem) | **Reviewed**: proof by ChatGPT, checked by Claude, signed off by the user | `tower_theorem.md`, `pass12/REVIEW.md` |
 | Order 23 | **Open**; about 3.3 hours on two cores | `three_pole_census_manifest.md` |
 | Decomposition, 3-edge-connected caps | **Reviewed**: ChatGPT, checked by Claude | `decomposition_lemma.md`, Part A |
 | Decomposition, bridges and 2-edge cuts (joint minimality over 1-, 2-, 3-poles) | **Proved, draft** (Claude); awaits ChatGPT's review | `joint_minimality.md` |

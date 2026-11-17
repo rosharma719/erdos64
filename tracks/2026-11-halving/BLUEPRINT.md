@@ -68,7 +68,7 @@ the citing result conditional.
 
 | ID | Statement | Type | Depends on | Status | Evidence |
 |---|---|---|---|---|---|
-| K1 | Clean triangle-built networks are exactly I, T, S, H (orders 1, 3, 7, 15) | — | K1a, K1b | **REVIEWED** (author ChatGPT; checked by Claude); awaits user sign-off | `tower_theorem.md`, `pass12/REVIEW.md` |
+| K1 | Clean triangle-built networks are exactly I, T, S, H (orders 1, 3, 7, 15) | — | K1a, K1b | **REVIEWED** (author ChatGPT; checked by Claude; signed off by the user, 16 Nov) | `tower_theorem.md`, `pass12/REVIEW.md` |
 | K1a | Interval lemma, for clean triangle-built pieces | — | — | PROVED-DRAFT inside K1; **false for unclean pieces** (witness Δ(I,I,T)) | `tower_theorem.md` |
 | K1b | Hamiltonian span: longest port-pair path has length N − 1, for all triangle-built pieces | — | — | REVIEWED | `tower_theorem.md` |
 | K1c | Short-path growth bound | — | — | Not needed (superseded by the finite table) | — |
