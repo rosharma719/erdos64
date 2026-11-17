@@ -12,6 +12,8 @@ until reproduced, per the house rule on claims from outside the current session.
 
 1. `literature_update_2026-11.md` — papers from Aug–Nov 2026 that supersede
    much of the ledger (order ≥ 41; S4, S5, G1 now published by others).
+   `dd_lemma21_discrepancy.md` resolves its Lemma 2.1 discrepancy (different
+   range of `k`; no contradiction).
 2. `q4_independent_check.md` — `q(G) ≥ 4` confirmed by a shorter route, for
    order ≥ 37.
 3. `halving_calculus.md` — one definition covering the known reductions;

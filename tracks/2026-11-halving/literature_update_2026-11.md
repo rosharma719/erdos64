@@ -20,12 +20,13 @@ the arXiv HTML unless marked "abstract only".
   average degree forces a power-of-two cycle. The only known method that hits
   a multiplicatively sparse target. A separate brief covers it.
 
-## Discrepancy to resolve
+## Discrepancy (resolved 2026-11-17)
 
-Ducoffe–Dumitru Lemma 2.1 states the `2^k+1` cycle for **every** edge. The
-repo's `every_edge_witness_audit.md` says the argument goes through only for
-**non-triangle** edges. One of the two is wrong or they use different
-hypotheses. Not resolved here.
+Ducoffe–Dumitru Lemma 2.1 states the `2^k+1` cycle for **every** edge, but with
+`k ≥ 1`: a triangle edge is covered by the triangle itself (length 3). The
+repo's `every_edge_witness_audit.md` asks for `k ≥ 2` (length ≥ 5), which holds
+for nontriangle edges and is still open for triangle edges. No contradiction;
+see `dd_lemma21_discrepancy.md`.
 
 ## What in the repo may still be unpublished
 
